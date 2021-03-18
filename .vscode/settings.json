@@ -1,0 +1,22 @@
+{
+  "editor.tabSize": 4,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.encoding": "utf8",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  }
+}

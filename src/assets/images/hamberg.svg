@@ -1,0 +1,15 @@
+<svg id="menu-24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #232334;
+      }
+    </style>
+  </defs>
+  <path id="Path" class="cls-1" d="M0,0H24V24H0Z"/>
+  <path id="Shape" class="cls-2" d="M1,12a1,1,0,0,1,0-2H9a1,1,0,0,1,0,2ZM1,7A1,1,0,0,1,1,5H13a1,1,0,1,1,0,2ZM1,2A1,1,0,0,1,1,0H17a1,1,0,0,1,0,2Z" transform="translate(3 6)"/>
+</svg>

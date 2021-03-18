@@ -1,0 +1,41 @@
+<header class="stricky" *ngIf="loaded; else headerLoader">
+    <nav class="bg-white nav-top1">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <div class="d-md-block">
+                    <a class="sidenav-hamberg d-lg-none" (click)="openSideNav()">
+                        <img src="assets/images/hamberg.svg" alt="hamberg" class="d-md-none" />
+                        <img src="assets/images/hamberg-tablet.svg" alt="hamberg" class="d-none d-md-inline-block" />
+                    </a>
+                    <a class="company-logo d-inline-block" [routerLink]="['/']">
+                        <img src="assets/images/Sewn-logo.svg" alt="Comany-Logo" />
+                    </a>
+                </div>
+                <button class="btn-raised ml-auto">Login</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<ng-template #headerLoader>
+    <div class="stricky">
+        <img class="w-100" src="/assets/images/loader-header.gif" />
+    </div>
+</ng-template>
+
+<div class="layout-wrap">
+    <div class="container" *ngIf="loaded">
+        <div class="router-design">
+            <ng-container *ngIf="loaded; else mainLoader">
+                <div>
+                    <router-outlet></router-outlet>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <!-- <app-footer></app-footer> -->
+</div>
+
+<ng-template #mainLoader>
+    <!-- <app-loading></app-loading> -->
+</ng-template>

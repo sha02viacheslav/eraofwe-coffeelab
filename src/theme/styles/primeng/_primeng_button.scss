@@ -1,0 +1,19 @@
+@import '../variables';
+
+.p-button {
+    &:enabled:hover {
+        background: $primary-color;
+        border-color: transparent;
+    }
+}
+
+.p-button:focus {
+    box-shadow: none;
+}
+
+.p-button-text {
+    &:enabled:hover {
+        color: $primary-color !important;
+        background: transparent !important;
+    }
+}

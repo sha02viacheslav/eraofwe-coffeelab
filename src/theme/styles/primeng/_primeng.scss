@@ -1,0 +1,210 @@
+// Custom Theming for Prime Ng
+
+@import '../variables';
+@import 'primeng_accordion';
+@import 'primeng_autocomplete';
+@import 'primeng_breadcrumb';
+@import 'primeng_calendar';
+@import 'primeng_carousel';
+@import 'primeng_checkbox';
+@import 'primeng_dialog';
+@import 'primeng_dropdown';
+@import 'primeng_inputtext';
+@import 'primeng_listbox';
+@import 'primeng_menu';
+@import 'primeng_multiselect';
+@import 'primeng_progressbar';
+@import 'primeng_radio';
+@import 'primeng_rating';
+@import 'primeng_selectbutton';
+@import 'primeng_table';
+@import 'primeng_tabmenu';
+@import 'primeng_tabview';
+@import 'primeng_listbox';
+@import 'primeng_button';
+@import 'primeng_inputswitch';
+
+// global
+.p-component {
+    font-family: $general-font-family;
+    font-size: $general-font-size;
+}
+
+// Icon input
+.p-input-icon-left > i:first-of-type {
+    color: $button-icon-color;
+}
+
+// Form helper
+.p-error,
+.p-invalid {
+    color: $invalid-color;
+}
+
+// sewn-form-field
+.sewn-form-field {
+    margin-bottom: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+    @media (min-width: 768px) {
+        margin-bottom: 1.5rem;
+    }
+    label {
+        color: $general-text-color;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .p-inputtext {
+        padding: 0.9375rem 0.75rem;
+        border-radius: 4px;
+        width: 100%;
+    }
+    .p-dropdown .p-inputtext {
+        padding-right: 0;
+    }
+    .p-error {
+        display: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .ng-dirty ~ .p-error {
+        display: block !important;
+    }
+    .ng-dirty + .p-error {
+        display: block !important;
+    }
+    .ng-touched + .p-error {
+        display: block !important;
+    }
+    .p-inputtext.ng-invalid.ng-touched,
+    input.ng-invalid.ng-touched,
+    input.ng-invalid.ng-touched + .input-group-append {
+        border-color: $error-border-color !important;
+    }
+
+    // Styles for inputgroup with custom addon
+    .p-inputgroup.custom-addon {
+        position: relative;
+        display: inline-block;
+        .p-inputgroup-addon {
+            position: absolute;
+            padding: 0.9375rem 1rem;
+            top: 0;
+            right: 0;
+            border: none;
+            line-height: 18px;
+            color: $muted-text-color;
+        }
+        .p-inputnumber {
+            width: 100%;
+        }
+        .p-inputnumber-input {
+            padding-right: 4rem;
+        }
+    }
+    // Input and select
+    .input-and-select {
+        position: relative;
+        .p-dropdown {
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            border: none;
+            border-radius: 0;
+            border-left: 1px solid $primary-border-color;
+            margin: 0.5rem 0;
+            .p-inputtext {
+                padding: 0.4375rem 0 0.4375rem 0.75rem;
+            }
+            .p-dropdown-trigger {
+                padding-left: 8px;
+                padding-right: 12px;
+            }
+        }
+    }
+
+    .p-autocomplete,
+    .p-dropdown {
+        width: 100%;
+    }
+}
+
+.sewn-form-two-field {
+    display: inline-flex;
+    flex-direction: column;
+    .p-error {
+        color: #fff;
+    }
+
+    .ng-dirty + .p-error {
+        color: $invalid-color;
+    }
+}
+
+p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
+    border-color: $error-border-color;
+}
+
+textarea {
+    &::placeholder,
+    &::-webkit-input-placeholder {
+        color: #8a8b9f !important;
+    }
+}
+
+.custom-search,
+.header-search {
+    position: relative;
+    &::before {
+        content: '';
+        background-image: url(/assets/images/search.svg);
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+    }
+    & > .p-inputtext {
+        padding-left: 3.125rem;
+    }
+}
+
+// Search auto complete
+.header-search {
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+    & > .p-inputtext {
+        color: $general-text-color;
+        font-size: 16px;
+        font-weight: normal;
+        width: 100%;
+        @media (min-width: 768px) {
+            width: 180px;
+        }
+        @media (min-width: 992px) {
+            width: 378px;
+        }
+    }
+    input::placeholder {
+        color: $button-icon-color !important;
+        font-size: 16px !important;
+        font-weight: normal !important;
+    }
+}
+
+.p-inputwrapper-filled .header-search {
+    & > .p-inputtext {
+        border-color: $primary-color;
+    }
+}
+
+// Input group
+.p-inputgroup-addon {
+    background: transparent;
+    color: $general-text-color;
+    border-color: $primary-border-color !important;
+    font-weight: 600;
+}

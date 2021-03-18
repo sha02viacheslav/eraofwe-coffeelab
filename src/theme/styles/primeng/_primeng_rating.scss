@@ -1,0 +1,64 @@
+// Custom Theming for Prime Ng
+
+@import '../variables';
+
+// Rating
+p-rating {
+    line-height: 1;
+}
+.p-rating .p-rating-icon {
+    font-size: inherit;
+    color: $primary-border-color;
+    transition: none;
+}
+.p-rating .p-rating-icon.pi-star {
+    color: transparent;
+}
+.p-rating .p-rating-icon:focus {
+    box-shadow: none;
+}
+// Read only
+.p-rating.p-readonly {
+    .p-rating-icon.pi-star-o {
+        &::before {
+            content: '\e937';
+        }
+    }
+    .p-rating-icon {
+        background-image: url(/assets/images/star-gray.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .p-rating-icon.pi-star {
+        background-image: url(/assets/images/star-orange.svg);
+    }
+    .p-rating-icon:hover {
+        color: transparent;
+    }
+}
+// Editable
+.p-rating:not(.p-disabled):not(.p-readonly) {
+    .p-rating-icon.pi-star-o {
+        color: transparent;
+        &::before {
+            content: '\e937';
+        }
+    }
+    .p-rating-icon {
+        background-image: url(/assets/images/star-white.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 4px;
+    }
+    .p-rating-icon.pi-star:not(.sibling-leave),
+    .p-rating-icon:hover,
+    .p-rating-icon.sibling-enter {
+        color: transparent;
+        background-image: url(/assets/images/star-orange.svg);
+    }
+}
+.ng-dirty.ng-invalid > .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon {
+    background-image: url(/assets/images/star-required.svg);
+}

@@ -1,0 +1,36 @@
+// custom p-inputSwitch
+
+p-inputSwitch {
+    height: 25px;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    background: #32a822;
+    opacity: 1;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background-color: #d3f2da !important;
+}
+
+.p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
+    background-color: #dddddd;
+}
+
+.p-inputswitch-slider {
+    width: 44px;
+    height: 24px;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    left: 2px;
+}
+
+.p-inputswitch .p-inputswitch-slider:before {
+    background-color: #999999;
+    left: 2px;
+}
+
+.p-inputswitch .p-inputswitch-slider {
+    background-color: #dddddd;
+}

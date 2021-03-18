@@ -1,0 +1,193 @@
+@import 'variables';
+
+.layout-wrap {
+    min-height: calc(100vh + 1px);
+}
+.nav-top1 {
+    display: flex;
+    align-items: center;
+    height: $mobile-header-height;
+    @media (min-width: 768px) {
+        height: $tablet-header-height;
+    }
+    @media (min-width: 992px) {
+        height: $desktop-header-height;
+    }
+}
+
+.sidenav-hamberg {
+    img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.router-design {
+    background-color: #f1f1f1;
+    padding-top: calc(#{$mobile-header-height + $mobile-page-pt});
+    padding-bottom: 16px;
+    @media (min-width: 768px) {
+        padding-top: calc(#{$tablet-header-height + $tablet-page-pt});
+    }
+    @media (min-width: 992px) {
+        padding-top: calc(#{$desktop-header-height + $desktop-nav-height + $desktop-page-pt});
+        padding-bottom: $desktop-page-pb;
+    }
+}
+
+.cursor-dots {
+    cursor: pointer;
+    color: #747588;
+    font-family: Muli;
+}
+
+.cursor-dots:hover {
+    text-decoration: none !important;
+    color: #232334 !important;
+}
+
+.profile-name {
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+}
+
+.list-group-item {
+    border: none;
+    font-family: 'Muli';
+    font-size: 12px;
+    font-weight: 600 !important;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #747588 !important;
+}
+
+.list-group-item:hover {
+    color: #232334 !important;
+    font-weight: 600 !important;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+}
+
+::ng-deep .popover-body {
+    padding: 0.25rem 0.25rem !important;
+}
+
+.profile-pic {
+    border-radius: 100%;
+}
+
+.mobile-farm {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .mobile-farm {
+        display: block !important;
+    }
+}
+
+:host >>> .ui-autocomplete .ui-autocomplete-input {
+    padding: 0.429em;
+    position: relative !important;
+    top: -5px !important;
+    left: -75% !important;
+}
+
+:host >>> .ui-autocomplete .ui-autocomplete-panel {
+    left: -75% !important;
+}
+
+// notification popover
+::ng-deep .popover {
+    max-width: 414px !important;
+}
+.p-overlaypanel-content {
+    padding: 4px !important;
+}
+.notification-header {
+    background-color: #f8f8f8;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 4px;
+    .notfi-header-title {
+        position: absolute;
+        transform: translate(12px, 12px);
+    }
+    .mark-all {
+        padding: 14px;
+        float: right;
+        padding-right: 4px;
+    }
+
+    .notif-close {
+        float: right;
+        padding: 12px;
+    }
+}
+.notification-body {
+    ul {
+        max-height: 85vh;
+        overflow: auto;
+        li {
+            padding: 4px;
+            div.border-container {
+                border-bottom: 1px dashed #cccccc;
+                padding-bottom: 8px;
+                div.notifi-cotainer {
+                    padding: 4px;
+                    &:hover {
+                        background-color: #f1f1f1;
+                    }
+                }
+                div.notif-description {
+                    position: relative;
+                    p {
+                        width: 75%;
+                    }
+                    &.active:before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        right: 20px;
+                        transform: translateY(-50%);
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background-color: #30855c;
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        right: 20px;
+                        transform: translateY(-50%);
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background-color: #cbcbcb;
+                    }
+                }
+                .notif-description:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background-color: #e02f1f;
+                }
+            }
+        }
+    }
+}
+
+.under-mark {
+    font-size: 14px;
+    font-weight: bold;
+    color: #80460b;
+    text-decoration: underline;
+}

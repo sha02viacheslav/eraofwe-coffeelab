@@ -1,0 +1,34 @@
+// Custom Theming for Prime Ng
+
+@import '../variables';
+
+// InputText
+.p-inputtext {
+    font-family: $general-font-family;
+    font-size: 14px;
+    font-weight: 600;
+    color: $general-text-color;
+    background: #ffffff;
+    padding: 0.625rem 1rem;
+    border: 1px solid $primary-border-color;
+    line-height: 18px;
+}
+.p-inputtext.highlight {
+    border-color: $primary-color;
+}
+.p-inputtext:enabled:hover,
+.p-inputtext:enabled:focus {
+    border-color: $primary-color;
+}
+.p-inputtext:enabled:read-only:hover,
+.p-inputtext:enabled:read-only:focus {
+    border-color: $primary-border-color;
+}
+.p-inputtext.p-error,
+.p-inputtext.p-invalid,
+.p-inputtext.ng-dirty.ng-invalid {
+    border-color: $invalid-color;
+}
+.round-border.p-inputtext {
+    border-radius: 20px;
+}

@@ -1,0 +1,20 @@
+.p-accordion-header {
+    .p-accordion-header-link {
+        padding: 0 !important;
+        border: 0 !important;
+        background: inherit !important;
+
+        .p-accordion-toggle-icon {
+            display: none !important;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+        }
+    }
+}
+
+.p-accordion-content {
+    border: 0 !important;
+    padding: 0 !important;
+}

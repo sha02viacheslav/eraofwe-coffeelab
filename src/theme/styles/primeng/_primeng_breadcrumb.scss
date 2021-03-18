@@ -1,0 +1,50 @@
+p-breadcrumb {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.p-breadcrumb {
+    border: none;
+    padding: 0;
+    width: max-content;
+}
+.p-breadcrumb ul li .p-menuitem-link:hover {
+    text-decoration: underline;
+    color: $general-text-color;
+    .p-menuitem-text {
+        color: $general-text-color;
+    }
+}
+.p-breadcrumb ul li:last-child .p-menuitem-link:hover {
+    text-decoration: none;
+}
+.p-breadcrumb ul li .p-menuitem-link:focus {
+    box-shadow: none;
+}
+
+.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
+    font-weight: 600;
+    color: $muted-text-color;
+    font-size: 12px;
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
+}
+.p-breadcrumb ul li.p-breadcrumb-chevron {
+    margin-top: -4px;
+    margin-right: 8px;
+    margin-left: 4px;
+    @media (min-width: 768px) {
+        margin-right: 16px;
+        margin-left: 8px;
+    }
+}
+.p-breadcrumb ul li:last-child .p-menuitem-link .p-menuitem-text {
+    color: $general-text-color;
+}
+.p-breadcrumb .pi-chevron-right::before {
+    color: $button-icon-color;
+    font-size: 12px;
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,66 @@
+// Custom Theming for Prime Ng
+
+@import '../variables';
+
+// TabMenu
+.p-tabmenu {
+    .p-tabmenu-nav {
+        border-radius: 0;
+        border-bottom: 1px solid $primary-border-color;
+        .p-tabmenuitem {
+            .p-menuitem-link {
+                position: relative;
+                flex: inherit !important;
+                margin-right: 0px;
+                transition: 0.4s ease-in-out;
+                border: none;
+                background-color: transparent;
+                color: $general-text-color;
+                padding: 0.857rem 1.5rem;
+                font-weight: 600;
+                padding: 0 8px 9px 8px;
+                @media (min-width: 768px) {
+                    padding: 0 24px 9px 24px;
+                }
+
+                &::before {
+                    content: '';
+                    width: 0%;
+                    height: 2px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    text-align: center;
+                    margin: auto;
+                    transform: translate(-50%);
+                    border-radius: 1.5px;
+                    background-color: $primary-color;
+                    opacity: 0;
+                    transition: 0.4s ease-in-out;
+                }
+
+                &:focus {
+                    box-shadow: none !important;
+                }
+
+                &.p-menuitem-link-active,
+                &:hover {
+                    color: $primary-color;
+                    &::before {
+                        width: 100%;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem:not(.p-highlight):not(.p-disabled):hover .p-menuitem-link,
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    background: transparent;
+    color: $primary-color;
+}
+
+.p-tabmenu-nav .p-menuitem-text {
+    line-height: normal !important;
+}
