@@ -30,7 +30,7 @@
         padding-top: calc(#{$tablet-header-height + $tablet-page-pt});
     }
     @media (min-width: 992px) {
-        padding-top: calc(#{$desktop-header-height + $desktop-nav-height + $desktop-page-pt});
+        padding-top: calc(#{$desktop-header-height + $desktop-page-pt});
         padding-bottom: $desktop-page-pb;
     }
 }

@@ -6,6 +6,13 @@ const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
+        children: [
+            {
+                path: 'coffee-lab',
+                loadChildren: () => import('./modules/coffee-lab/coffee-lab.module').then((m) => m.CoffeeLabModule),
+            },
+            { path: '', redirectTo: 'coffee-lab', pathMatch: 'full' },
+        ],
     },
 ];
 

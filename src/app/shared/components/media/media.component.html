@@ -1,0 +1,25 @@
+<div class="position-relative h-100">
+    <ng-container *ngIf="isVideo; else imgBanner">
+        <div class="position-relative">
+            <div class="bg-video-wrap">
+                <video [muted]="true" autoplay playsinline loop>
+                    <source [src]="fileUrl" type="video/mp4" />
+                </video>
+            </div>
+            <img
+                class="play-btn"
+                [class.center]="btnCenter"
+                src="assets/images/play-button-image.svg"
+                (click)="openVideo()"
+            />
+        </div>
+    </ng-container>
+
+    <ng-template #imgBanner>
+        <div class="bg-video-wrap">
+            <img [src]="fileUrl" alt="Brand Profile" />
+        </div>
+    </ng-template>
+
+    <h4 *ngIf="title">{{ title }}</h4>
+</div>
