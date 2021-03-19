@@ -38,6 +38,8 @@ import { TreeModule } from 'primeng/tree';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DividerModule } from 'primeng/divider';
 import { AccordionModule } from 'primeng/accordion';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -95,6 +97,8 @@ const THIRDMODULES = [
     ProgressBarModule,
     AccordionModule,
     DividerModule,
+    AvatarModule,
+    BadgeModule,
 ];
 // #endregion
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DISCUSSIONS_FORUM } from './data';
 
 @Component({
     selector: 'app-google-view',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GoogleViewComponent implements OnInit {
     forumKeySearch: string;
+    data: any[] = DISCUSSIONS_FORUM;
+    selectedData: any = DISCUSSIONS_FORUM[0];
 
     constructor() {}
 
