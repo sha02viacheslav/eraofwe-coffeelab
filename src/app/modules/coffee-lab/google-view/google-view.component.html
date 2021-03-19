@@ -1,1 +1,20 @@
-<p>google-view works!</p>
+<div class="bg-white p-3 p-md-4 p-lg-5 d-flex flex-wrap">
+    <div class="col-12 col-lg-8 p-0 pr-lg-3">
+        <div class="custom-search">
+            <input
+                type="text"
+                pInputText
+                #searchInput
+                [(ngModel)]="forumKeySearch"
+                placeholder="Search QA Forum..."
+                class="w-100"
+            />
+        </div>
+        <div class="mt-3 mt-md-4 mt-lg-45 border-wrapper">Morgan</div>
+    </div>
+    <div class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
+        <div class="border-wrapper">
+            <p>recent</p>
+        </div>
+    </div>
+</div>
