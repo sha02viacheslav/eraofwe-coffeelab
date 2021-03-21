@@ -14,4 +14,32 @@ export class GoogleViewComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}
+
+    getMenuItemsForItem(item) {
+        const items = [
+            {
+                label: 'Share',
+                command: () => {
+                    this.onShare(item);
+                },
+            },
+            {
+                label: 'Save Post',
+                command: () => {
+                    this.onSavePost(item);
+                },
+            },
+            {
+                label: 'Translate answer',
+                command: () => {
+                    this.onTranslate(item);
+                },
+            },
+        ];
+        return [{ items }];
+    }
+
+    onShare(postItem) {}
+    onSavePost(postItem) {}
+    onTranslate(postItem) {}
 }

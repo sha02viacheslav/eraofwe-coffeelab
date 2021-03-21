@@ -47,7 +47,19 @@
                                         </p>
                                         <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ postItem.date }}</p>
                                     </div>
-                                    <i class="pi pi-ellipsis-h text-clr588 cursor-pointer"></i>
+                                    <div class="position-relative">
+                                        <p-menu
+                                            #menu
+                                            popup="popup"
+                                            [model]="getMenuItemsForItem(postItem)"
+                                            styleClass="left-menu-actions"
+                                        >
+                                        </p-menu>
+                                        <i
+                                            class="pi pi-ellipsis-h text-clr588 cursor-pointer"
+                                            (click)="$event.stopPropagation(); menu.toggle($event)"
+                                        ></i>
+                                    </div>
                                 </div>
                                 <div class="d-flex flex-column flex-md-row justify-content-between">
                                     <div class="d-flex align-items-center">
@@ -70,7 +82,11 @@
                             </span>
                         </div>
                     </ng-template>
-                    <ng-template pTemplate="content">Body Content</ng-template>
+                    <ng-template pTemplate="content">
+                        <div>
+                            {{ postItem.description }}
+                        </div>
+                    </ng-template>
                 </p-accordionTab>
             </p-accordion>
         </div>
