@@ -27,9 +27,9 @@
             <div class="mt-3 mt-md-4 fnt-14 fnt-muli fnt-bold text-clr60b text-center background-header">
                 Showing 12 Comments
             </div>
-            <p-accordion styleClass="p-accordion-forum mt-4 mt-md-45 mt-lg-4" [multiple]="true">
-                <p-accordionTab *ngFor="let postItem of selectedData.items">
-                    <ng-template pTemplate="header">
+            <div class="mt-4 mt-md-45 mt-lg-4">
+                <div class="answer-wrapper" *ngFor="let postItem of selectedData.items">
+                    <div class="answer-header">
                         <div class="d-flex flex-wrap w-100">
                             <p-avatar
                                 image="assets/images/user-sample.png"
@@ -68,27 +68,92 @@
                                         </p>
                                         <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ postItem.info }}</p>
                                     </div>
-                                    <span class="fnt-14 fnt-muli fnt-bold text-clr60b pr-4 d-none d-md-block">
-                                        <img src="assets/images/translate.svg" class="translate-icon" />
-                                        Translated answer available
-                                    </span>
+                                    <p-dropdown
+                                        [options]="translateList"
+                                        optionLabel="language"
+                                        optionValue="slug"
+                                        class="d-none d-md-block"
+                                        styleClass="p-dropdown-translate"
+                                        (onChange)="onChangeTranslate($event)"
+                                    >
+                                        <ng-template pTemplate="selectedItem">
+                                            <span class="fnt-14 fnt-muli fnt-bold text-clr60b">
+                                                <img src="assets/images/translate.svg" class="translate-icon" />
+                                                Translated answer available
+                                            </span>
+                                        </ng-template>
+                                        <ng-template let-translateItem pTemplate="item">
+                                            <div class="d-flex align-items-center">
+                                                <p-avatar
+                                                    [image]="translateItem.avatarUrl"
+                                                    shape="circle"
+                                                    styleClass="user-avatar"
+                                                    [style.height]="'40px'"
+                                                ></p-avatar>
+                                                <div class="d-flex flex-column justify-content-between pl-3">
+                                                    <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2">
+                                                        {{ translateItem.name }}
+                                                    </p>
+                                                    <div class="d-flex align-items-center">
+                                                        <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">
+                                                            {{ translateItem.language }}
+                                                        </p>
+                                                        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                                                            {{ translateItem.date }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </p-dropdown>
                                 </div>
                             </div>
-                            <span
-                                class="fnt-14 fnt-muli fnt-bold text-clr60b d-block d-md-none w-100 mt-3 translate-wrapper"
-                            >
-                                <img src="assets/images/translate.svg" class="translate-icon" />
-                                Translated answer available
-                            </span>
+                            <div class="w-100 d-block d-md-none mt-3 translate-wrapper">
+                                <p-dropdown
+                                    [options]="translateList"
+                                    optionLabel="language"
+                                    optionValue="slug"
+                                    styleClass="p-dropdown-translate"
+                                    (onChange)="onChangeTranslate($event)"
+                                >
+                                    <ng-template pTemplate="selectedItem">
+                                        <span class="fnt-14 fnt-muli fnt-bold text-clr60b">
+                                            <img src="assets/images/translate.svg" class="translate-icon" />
+                                            Translated answer available
+                                        </span>
+                                    </ng-template>
+                                    <ng-template let-translateItem pTemplate="item">
+                                        <div class="d-flex align-items-center">
+                                            <p-avatar
+                                                [image]="translateItem.avatarUrl"
+                                                shape="circle"
+                                                styleClass="user-avatar"
+                                                [style.height]="'40px'"
+                                            ></p-avatar>
+                                            <div class="d-flex flex-column justify-content-between pl-3">
+                                                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2">
+                                                    {{ translateItem.name }}
+                                                </p>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">
+                                                        {{ translateItem.language }}
+                                                    </p>
+                                                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                                                        {{ translateItem.date }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
                         </div>
-                    </ng-template>
-                    <ng-template pTemplate="content">
-                        <div>
-                            {{ postItem.description }}
-                        </div>
-                    </ng-template>
-                </p-accordionTab>
-            </p-accordion>
+                    </div>
+                    <div class="answer-content">
+                        {{ postItem.description }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">

@@ -35,7 +35,7 @@
     }
 
     .translate-wrapper {
-        padding: 16px 0 16px 24px;
+        padding: 8px 0 8px 24px;
         border-top: solid 1px #ebebeb;
         border-bottom: solid 1px #ebebeb;
     }
@@ -71,6 +71,21 @@
         padding-bottom: 150px !important;
     }
 }
+
+.answer-wrapper {
+    &:not(:last-child) {
+        margin-bottom: 24px;
+        border-bottom: dashed 1px #d6d6d6;
+    }
+    .answer-header {
+    }
+    .answer-content {
+        padding: 16px 0 !important;
+        @media (min-width: 768px) {
+            padding: 24px 0 !important;
+        }
+    }
+}
 ::ng-deep {
     .p-avatar.user-avatar {
         width: 40px;
@@ -84,44 +99,27 @@
             right: 6px;
         }
     }
-    .p-accordion.p-accordion-forum {
-        .p-accordion-tab {
-            .p-accordion-header {
-                .p-accordion-header-link {
-                    .p-accordion-toggle-icon {
-                        position: absolute;
-                        right: 0;
-                        bottom: 2px;
-                        margin-right: 0 !important;
-                        color: #747588;
-                        width: 16px;
-                        font-size: 14px;
-                        @media (max-width: 767px) {
-                            bottom: 18px;
-                        }
-                    }
-                    &:hover {
-                        text-decoration: none;
-                    }
+    .p-dropdown.p-dropdown-translate {
+        border: none;
+        &:not(.p-disabled).p-focus {
+            box-shadow: none;
+        }
+        .p-dropdown-panel {
+            box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            border: solid 0.2px #ebebeb;
+            .p-dropdown-items {
+                .p-dropdown-item {
+                    padding-left: 12px;
+                    padding-right: 12px;
                 }
-                &:not(.p-disabled).p-highlight .p-accordion-header-link {
-                    color: unset;
-                }
-            }
-            .p-accordion-content {
-                padding: 16px 0 !important;
-                @media (min-width: 768px) {
-                    padding: 24px 0 !important;
+                .p-dropdown-item.p-highlight {
+                    background: #f8f8f8;
                 }
             }
         }
-        p-accordiontab:not(:last-child) {
-            .p-accordion-tab {
-                margin-bottom: 24px;
-            }
-            .p-accordion-tab-active {
-                border-bottom: dashed 1px #d6d6d6;
-            }
+        .p-dropdown-trigger {
+            padding: 0;
+            justify-content: flex-end;
         }
     }
 }
