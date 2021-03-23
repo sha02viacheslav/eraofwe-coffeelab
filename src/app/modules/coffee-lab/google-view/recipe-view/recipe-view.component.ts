@@ -32,6 +32,24 @@ export class RecipeViewComponent implements OnInit {
             value: '2-3',
         },
     ];
+    ingredientsData: any[] = [
+        {
+            label: 'Instant Coffee',
+            value: '3 tbsp',
+        },
+        {
+            label: 'Sugar',
+            value: '2 tbsp',
+        },
+        {
+            label: 'Milk',
+            value: '400~500 ml',
+        },
+        {
+            label: 'Ice',
+            value: '5-6',
+        },
+    ];
 
     constructor() {}
 

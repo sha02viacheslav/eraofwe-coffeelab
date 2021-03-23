@@ -58,13 +58,30 @@
                 <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
                 <div class="recipe-info-wrapper">
                     <div class="recipe-info-item" *ngFor="let recipeInfo of infoData">
-                        <div class="d-flex align-items-center">
+                        <div>
                             <img [src]="recipeInfo.icon" />
-                            <label class="fnt-muli fnt-14 font-normal text-clr63 mb-0 pl-2">{{
-                                recipeInfo.label
-                            }}</label>
                         </div>
-                        <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pl-45">{{ recipeInfo.value }}</p>
+                        <div class="pl-2">
+                            <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{ recipeInfo.label }}</label>
+                            <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pt-2 pt-md-3">
+                                {{ recipeInfo.value }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p class="fnt-muli fnt-14 fnt-normal text-clr334 pt-3 mb-4">
+                    Our easy whipped coffee recipe is simple enough to make at home. This frothy drink, known as dalgona
+                    coffee, might just be your new favourite caffeine kic
+                </p>
+                <div>
+                    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-3">Ingredients</p>
+                    <div class="ingredients-wrapper">
+                        <div class="ingredients-item" *ngFor="let ingredientsItem of ingredientsData">
+                            <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
+                                ingredientsItem.label
+                            }}</label>
+                            <label class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ ingredientsItem.value }}</label>
+                        </div>
                     </div>
                 </div>
             </div>
