@@ -12,22 +12,6 @@ export class QaViewComponent implements OnInit {
     selectedData: any = DISCUSSIONS_FORUM[0];
     lastScrollTop = 0;
     showBanner = false;
-    translateList: any[] = [
-        {
-            slug: 'coffee-spanish',
-            avatarUrl: 'assets/images/user-sample.png',
-            name: 'Gabriel Match',
-            language: 'Spanish Translation',
-            date: '5 days ago',
-        },
-        {
-            slug: 'coffee-swedish',
-            avatarUrl: 'assets/images/user-sample.png',
-            name: 'Anthony Jones',
-            language: 'Swedish Translation',
-            date: '4 days ago',
-        },
-    ];
 
     @HostListener('window:scroll', ['$event'])
     onWindowScroll() {
@@ -71,8 +55,4 @@ export class QaViewComponent implements OnInit {
     onShare(postItem) {}
     onSavePost(postItem) {}
     onTranslate(postItem) {}
-
-    onChangeTranslate(event) {
-        console.log(event);
-    }
 }

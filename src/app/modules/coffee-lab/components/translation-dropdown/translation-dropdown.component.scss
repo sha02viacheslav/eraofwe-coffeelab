@@ -1,0 +1,29 @@
+.translate-icon {
+    width: 16px;
+    height: 16px;
+}
+::ng-deep {
+    .p-dropdown.p-dropdown-translate {
+        border: none;
+        &:not(.p-disabled).p-focus {
+            box-shadow: none;
+        }
+        .p-dropdown-panel {
+            box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            border: solid 0.2px #ebebeb;
+            .p-dropdown-items {
+                .p-dropdown-item {
+                    padding-left: 12px;
+                    padding-right: 12px;
+                }
+                .p-dropdown-item.p-highlight {
+                    background: #f8f8f8;
+                }
+            }
+        }
+        .p-dropdown-trigger {
+            padding: 0;
+            justify-content: flex-end;
+        }
+    }
+}

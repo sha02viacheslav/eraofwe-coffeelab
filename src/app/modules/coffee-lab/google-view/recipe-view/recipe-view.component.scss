@@ -1,0 +1,98 @@
+.page-wrapper {
+    background: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 100vh;
+    .custom-search {
+        input {
+            border-color: #d6d6d6;
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
+    }
+    .border-wrapper {
+        border-radius: 4px;
+        border: solid 1px #ebebeb;
+    }
+    .background-header {
+        padding: 11px 15px;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+    }
+    .forum-row {
+        padding: 24px 16px 0;
+        .forum-row-content {
+            padding-bottom: 24px;
+            border-bottom: dashed 1px #d6d6d6;
+            cursor: pointer;
+            color: #154faa;
+            text-decoration: underline;
+        }
+        &:last-child .forum-row-content {
+            border-bottom: none;
+        }
+    }
+
+    .translate-wrapper {
+        padding: 8px 0 8px 24px;
+        border-top: solid 1px #ebebeb;
+        border-bottom: solid 1px #ebebeb;
+    }
+    .bottom-wrapper {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        .bottom-gradient-wrapper {
+            width: 100%;
+            height: 100px;
+            bottom: 0px;
+            background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+        }
+        .bottom-button-wrapper {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 16px;
+            box-shadow: 0 -22px 74px 0 rgba(0, 0, 0, 0.05);
+            border: solid 0.2px #ebebeb;
+        }
+    }
+}
+
+.extra-padding {
+    @media (max-width: 991px) {
+        padding-bottom: 150px !important;
+    }
+}
+
+.answer-wrapper {
+    &:not(:last-child) {
+        margin-bottom: 24px;
+        border-bottom: dashed 1px #d6d6d6;
+    }
+    .answer-header {
+    }
+    .answer-content {
+        padding: 16px 0 !important;
+        @media (min-width: 768px) {
+            padding: 24px 0 !important;
+        }
+    }
+}
+::ng-deep {
+    .p-avatar.user-avatar {
+        width: 40px;
+        height: 40px;
+        overflow: visible !important;
+        .p-badge {
+            width: 16px;
+            height: 16px;
+            border: solid 2px #ffffff;
+            top: 6px;
+            right: 6px;
+        }
+    }
+}

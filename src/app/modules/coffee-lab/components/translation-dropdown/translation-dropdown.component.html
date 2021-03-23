@@ -1,0 +1,37 @@
+<p-dropdown
+    [options]="translateList"
+    optionLabel="language"
+    optionValue="slug"
+    styleClass="p-dropdown-translate"
+    (onChange)="onChangeTranslate($event)"
+>
+    <ng-template pTemplate="selectedItem">
+        <span class="fnt-14 fnt-muli fnt-bold text-clr60b">
+            <img src="assets/images/translate.svg" class="translate-icon" />
+            Translated answer available
+        </span>
+    </ng-template>
+    <ng-template let-translateItem pTemplate="item">
+        <div class="d-flex align-items-center">
+            <p-avatar
+                [image]="translateItem.avatarUrl"
+                shape="circle"
+                styleClass="user-avatar"
+                [style.height]="'40px'"
+            ></p-avatar>
+            <div class="d-flex flex-column justify-content-between pl-3">
+                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2">
+                    {{ translateItem.name }}
+                </p>
+                <div class="d-flex align-items-center">
+                    <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">
+                        {{ translateItem.language }}
+                    </p>
+                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                        {{ translateItem.date }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dropdown>
