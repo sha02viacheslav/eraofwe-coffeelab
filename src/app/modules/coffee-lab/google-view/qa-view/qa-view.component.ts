@@ -1,12 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { DISCUSSIONS_FORUM } from './data';
+import { DISCUSSIONS_FORUM } from '../data';
 
 @Component({
-    selector: 'app-google-view',
-    templateUrl: './google-view.component.html',
-    styleUrls: ['./google-view.component.scss'],
+    selector: 'app-qa-view',
+    templateUrl: './qa-view.component.html',
+    styleUrls: ['./qa-view.component.scss'],
 })
-export class GoogleViewComponent implements OnInit {
+export class QaViewComponent implements OnInit {
     forumKeySearch: string;
     data: any[] = DISCUSSIONS_FORUM;
     selectedData: any = DISCUSSIONS_FORUM[0];

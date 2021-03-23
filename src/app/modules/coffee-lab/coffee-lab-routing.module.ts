@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
-import { GoogleViewComponent } from './google-view/google-view.component';
+import { QaViewComponent } from './google-view/qa-view/qa-view.component';
+import { RecipeViewComponent } from './google-view/recipe-view/recipe-view.component';
 
 const routes: Routes = [
     {
@@ -10,12 +11,16 @@ const routes: Routes = [
         component: CoffeeLabComponent,
         children: [
             {
-                path: 'google-view',
-                component: GoogleViewComponent,
+                path: 'qa',
+                component: QaViewComponent,
+            },
+            {
+                path: 'recipe',
+                component: RecipeViewComponent,
             },
             {
                 path: '',
-                redirectTo: 'google-view',
+                redirectTo: 'qa',
                 pathMatch: 'full',
             },
         ],
