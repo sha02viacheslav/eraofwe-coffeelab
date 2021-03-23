@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     position: relative;
     min-height: 100vh;
+    padding-bottom: 150px;
     .custom-search {
         input {
             border-color: #d6d6d6;
@@ -38,33 +39,6 @@
         padding: 8px 0 8px 24px;
         border-top: solid 1px #ebebeb;
         border-bottom: solid 1px #ebebeb;
-    }
-    .bottom-wrapper {
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        .bottom-gradient-wrapper {
-            width: 100%;
-            height: 100px;
-            bottom: 0px;
-            background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
-        }
-        .bottom-button-wrapper {
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 32px 16px;
-            box-shadow: 0 -22px 74px 0 rgba(0, 0, 0, 0.05);
-            border: solid 0.2px #ebebeb;
-        }
-    }
-}
-
-.extra-padding {
-    @media (max-width: 991px) {
-        padding-bottom: 150px !important;
     }
 }
 

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <circle id="bu2qb2wsta" cx="12" cy="12" r="12"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-741 -732) translate(148 268) translate(32 440) translate(561 24)">
+                        <mask id="hmazy1kqtb" fill="#fff">
+                            <use xlink:href="#bu2qb2wsta"/>
+                        </mask>
+                        <use fill="#FFF" xlink:href="#bu2qb2wsta"/>
+                        <g stroke-linecap="round" stroke-linejoin="round" mask="url(#hmazy1kqtb)">
+                            <g>
+                                <g>
+                                    <path stroke="#80460B" stroke-width=".8" d="M17.4.3c1.15.3 1.85.65 1.85 1.05C19.25 2.3 15 3.1 9.8 3.1 4.6 3.1.3 2.3.3 1.35.3 1 .85.7 1.8.4M14.85 3.15c0 .6-2.3 1.1-5.1 1.1s-5.1-.5-5.1-1.1" transform="translate(2 2) translate(0 14)"/>
+                                </g>
+                                <path stroke="#80460B" stroke-width=".6" d="M17.4 15.4c-1.75.4-4.75.75-7.65.75-3.2 0-6-.3-7.7-.75" transform="translate(2 2)"/>
+                                <path stroke="#80460B" stroke-width=".8" d="M2.3 15.35C2.3 11.3 5.6 8 9.65 8S17 11.3 17 15.35M10.2 8H8.9v-.65c0-.35.3-.65.65-.65h0c.35 0 .65.3.65.65V8zM7.3 5.9c-.3.1-.65-.1-.8-.4-.15-.3-.1-.65.05-1 .15-.35.3-.6.4-.9.25-.65.2-1.45-.15-2.05M12.3 3.35c.3.1.45.35.5.65.05.3-.05.55-.2.85-.1.25-.25.55-.3.8-.1.5.05 1 .4 1.4M9.6 3c-.35-.15-.4-.6-.35-.9.05-.3.3-.65.45-.95.15-.3.25-.75.05-1M12.05 9.65s2.85.9 3.4 4.5" transform="translate(2 2)"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

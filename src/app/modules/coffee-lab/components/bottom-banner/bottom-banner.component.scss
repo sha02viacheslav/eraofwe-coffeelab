@@ -1,0 +1,21 @@
+.bottom-wrapper {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    .bottom-gradient-wrapper {
+        width: 100%;
+        height: 100px;
+        bottom: 0px;
+        background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+    }
+    .bottom-button-wrapper {
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 16px;
+        box-shadow: 0 -22px 74px 0 rgba(0, 0, 0, 0.05);
+        border: solid 0.2px #ebebeb;
+    }
+}

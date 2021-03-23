@@ -7,9 +7,11 @@ import { CoffeeLabComponent } from './coffee-lab.component';
 import { RecipeViewComponent } from './google-view/recipe-view/recipe-view.component';
 import { QaViewComponent } from './google-view/qa-view/qa-view.component';
 import { TranslationDropdownComponent } from './components/translation-dropdown/translation-dropdown.component';
+import { ForumCardComponent } from './components/forum-card/forum-card.component';
+import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
 
 @NgModule({
-    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent],
+    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent, ForumCardComponent, BottomBannerComponent],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
 export class CoffeeLabModule {}

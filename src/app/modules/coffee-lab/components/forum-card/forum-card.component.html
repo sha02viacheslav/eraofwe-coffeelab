@@ -1,0 +1,20 @@
+<div class="forum-card-wrapper">
+    <img [src]="data.image" class="forum-image" />
+    <div class="d-flex justify-content-end pt-2">
+        <i class="pi pi-ellipsis-h cursor-pointer text-clr588"></i>
+    </div>
+    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-2">{{ data.title }}</p>
+    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ data.description }}</p>
+    <div class="d-flex align-items-center pt-3">
+        <p-avatar
+            [image]="data.authorAvatar"
+            pBadge
+            severity="success"
+            shape="circle"
+            styleClass="user-avatar"
+            [style.height]="'40px'"
+        ></p-avatar>
+        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data.authorName }}</p>
+        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ data.date }}</p>
+    </div>
+</div>

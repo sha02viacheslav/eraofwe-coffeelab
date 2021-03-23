@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <circle id="unmidnyida" cx="12" cy="12" r="12"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-378 -732) translate(148 268) translate(32 440) translate(198 24)">
+                        <mask id="q7i7qkda2b" fill="#fff">
+                            <use xlink:href="#unmidnyida"/>
+                        </mask>
+                        <use fill="#FFF" xlink:href="#unmidnyida"/>
+                        <g stroke="#80460B" stroke-linecap="round" stroke-linejoin="round" mask="url(#q7i7qkda2b)">
+                            <g transform="translate(3 5)">
+                                <path stroke-width=".8" d="M13.272 4.913c1.764.353 2.856.94 2.856 1.529 0 1.118-3.612 2-8.022 2s-8.022-.882-8.022-2c0-1.118 3.612-2 8.022-2H9.24"/>
+                                <path stroke-width=".8" d="M16.17 7.308c0 4.326-3.612 7.854-8.022 7.854S.084 11.634.084 7.308"/>
+                                <path stroke-width=".8" d="M8.106 8.442L14.154.42c.42-.462 1.134-.546 1.596-.126h0c.462.42.462 1.134.042 1.554L10.122 8.4"/>
+                                <circle cx="14.952" cy="1.134" r="1" stroke-width=".5"/>
+                                <path stroke-width=".8" d="M.882 6.644s2.772-1.092 4.074-.63c1.302.462 1.764.294 2.226 0 .924-.588 1.848-.168 1.848-.168h.294"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

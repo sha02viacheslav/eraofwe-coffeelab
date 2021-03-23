@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DISCUSSIONS_FORUM } from '../data';
 
 @Component({
@@ -10,19 +10,28 @@ export class RecipeViewComponent implements OnInit {
     forumKeySearch: string;
     data: any[] = DISCUSSIONS_FORUM;
     selectedData: any = DISCUSSIONS_FORUM[0];
-    lastScrollTop = 0;
-    showBanner = false;
-
-    @HostListener('window:scroll', ['$event'])
-    onWindowScroll() {
-        const pos = document.documentElement.scrollTop || document.body.scrollTop;
-        if (pos > this.lastScrollTop) {
-            this.showBanner = true;
-        } else {
-            this.showBanner = false;
-        }
-        this.lastScrollTop = pos <= 0 ? 0 : pos;
-    }
+    infoData: any[] = [
+        {
+            icon: 'assets/images/expertise-level.svg',
+            label: 'Expertise level',
+            value: 'Beginner',
+        },
+        {
+            icon: 'assets/images/preparation-time.svg',
+            label: 'Preparation Time',
+            value: '15 mins',
+        },
+        {
+            icon: 'assets/images/cooking-time.svg',
+            label: 'Cooking Time',
+            value: '35 mins',
+        },
+        {
+            icon: 'assets/images/servings.svg',
+            label: 'Serving',
+            value: '2-3',
+        },
+    ];
 
     constructor() {}
 

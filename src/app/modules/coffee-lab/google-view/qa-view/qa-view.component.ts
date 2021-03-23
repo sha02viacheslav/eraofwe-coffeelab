@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DISCUSSIONS_FORUM } from '../data';
 
 @Component({
@@ -10,19 +10,6 @@ export class QaViewComponent implements OnInit {
     forumKeySearch: string;
     data: any[] = DISCUSSIONS_FORUM;
     selectedData: any = DISCUSSIONS_FORUM[0];
-    lastScrollTop = 0;
-    showBanner = false;
-
-    @HostListener('window:scroll', ['$event'])
-    onWindowScroll() {
-        const pos = document.documentElement.scrollTop || document.body.scrollTop;
-        if (pos > this.lastScrollTop) {
-            this.showBanner = true;
-        } else {
-            this.showBanner = false;
-        }
-        this.lastScrollTop = pos <= 0 ? 0 : pos;
-    }
 
     constructor() {}
 
