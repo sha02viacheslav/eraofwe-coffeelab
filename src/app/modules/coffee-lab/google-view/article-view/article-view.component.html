@@ -1,0 +1,118 @@
+<div class="p-3 p-md-4 p-lg-5 page-wrapper">
+    <div class="col-12 col-lg-8 p-0 pr-lg-3">
+        <div class="custom-search">
+            <input
+                type="text"
+                pInputText
+                #searchInput
+                [(ngModel)]="forumKeySearch"
+                placeholder="Search QA Forum..."
+                class="w-100"
+            />
+        </div>
+        <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-wrapper">
+            <div class="pb-45">
+                <img class="w-100" src="assets/images/article-bg-sample.png" />
+                <p class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 pt-3 mb-2">
+                    Starting your coffee tasting journey is easy!
+                </p>
+                <p class="fnt-14 fnt-md-16 fnt-muli fnt-normal text-clr334 mb-0">
+                    All about your first steps of coffee!
+                </p>
+            </div>
+            <div class="d-flex flex-wrap w-100">
+                <p-avatar
+                    image="assets/images/user-sample.png"
+                    pBadge
+                    severity="success"
+                    shape="circle"
+                    styleClass="user-avatar"
+                    [style.height]="'40px'"
+                ></p-avatar>
+                <div class="d-flex flex-column justify-content-between pl-3 flex-1">
+                    <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex align-items-center">
+                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">Gabriel Match</p>
+                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">2 days ago</p>
+                        </div>
+                        <div class="position-relative">
+                            <p-menu
+                                #menu
+                                popup="popup"
+                                [model]="getMenuItemsForItem({})"
+                                styleClass="left-menu-actions"
+                            >
+                            </p-menu>
+                            <i class="pi pi-ellipsis-h text-clr588 cursor-pointer" (click)="menu.toggle($event)"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">Coffee Expert</p>
+                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">@Third wave coffee roaster</p>
+                        </div>
+                        <div class="d-none d-md-block">
+                            <app-translation-dropdown></app-translation-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 d-block d-md-none mt-3 translate-wrapper">
+                    <app-translation-dropdown></app-translation-dropdown>
+                </div>
+            </div>
+            <div class="answer-content pt-3 pt-md-4">
+                <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0">
+                    El café proporciona una mezcla compleja de diferentes sabores, que juntos producen una variedad de
+                    sensaciones experiencias. El perfil sensorial de una taza de café varía según una serie de factores:
+                    el tipoy mezcla de granos de café El café proporciona una mezcla compleja de diferentes sabores, que
+                    juntos producen una variedad de sensaciones experiencias. El perfil sensorial de una taza de café
+                    varía según una serie de factores: el tipo y la mezcla de granos de café; fuente geográfica; método
+                    de tostado; y método de preparación 8,9. los La variación en estos aspectos afectará la experiencia
+                    sensorial general obtenida de una taza de café. durante la preparación y el consumo del café. Los
+                    perfiles de aroma y sabor específicos son descritos por expertos sensoriales, para diferenciar
+                    diferentes tipos decafés y tostados. El aroma y el sabor son los factores primordiales que
+                    determinan la preferencia por el café. café los descriptores de aroma incluyen florido, nuez,
+                    ahumado, herbario, mientras que los descriptores de sabor incluyen acidez, amargura, dulzura,
+                    salinidad y acidez (ver Rueda de sabor del café).
+                </p>
+                <div class="d-flex flex-wrap py-3 py-4">
+                    <div class="col-12 col-md-6 p-0 pr-md-25">
+                        <img class="w-100" src="assets/images/article-bg-sample.png" />
+                    </div>
+                    <div class="col-12 col-md-6 p-0 pl-md-25">
+                        <img class="w-100" src="assets/images/article-bg-sample.png" />
+                    </div>
+                </div>
+                <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0">
+                    Coffee provides a complex blend of different flavours, which together produce a range of sensory
+                    experiences. The sensory profile of a cup of coffee varies according to a number of factors: the
+                    type and blend of coffee beans; geographical source; roasting method; and method of preparation8,9.
+                    The variation in these aspects will impact the overall sensory experience obtained from a cup of
+                    coffee during both the preparation and consumption of the coffee. Specific aroma and flavour
+                    profiles are described by sensory experts, to differentiate different types of coffees and roasts.
+                    Aroma and taste, are the overriding factors determining coffee preference. Coffee aroma descriptors
+                    include Flowery, nutty, smoky, herby, while taste descriptors include acidity, bitterness,
+                    sweetness, saltiness and sourness (see Coffee Flavour Wheel). The level of roasting impacts aroma
+                    profiles. Research has suggested that lighter roasts preserve the herb and fruit notes, whilst smoky
+                    and burnt aromas are increased, and acidity reduced, in darker roasts10. In vitro research suggests
+                    that the release of saliva can affect the aroma experience, with results differing according to
+                    brewing method. In addition, it has been suggested that larger sips of coffee appear to generate a
+                    stronger release of aroma.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
+        <div class="">
+            <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
+                Related recipes on the cofee lab
+            </div>
+            <div>
+                <div *ngFor="let forum of data" class="py-2">
+                    <app-forum-card></app-forum-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-bottom-banner></app-bottom-banner>
+</div>

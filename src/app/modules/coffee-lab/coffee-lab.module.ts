@@ -9,9 +9,10 @@ import { QaViewComponent } from './google-view/qa-view/qa-view.component';
 import { TranslationDropdownComponent } from './components/translation-dropdown/translation-dropdown.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
+import { ArticleViewComponent } from './google-view/article-view/article-view.component';
 
 @NgModule({
-    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent, ForumCardComponent, BottomBannerComponent],
+    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent, ForumCardComponent, BottomBannerComponent, ArticleViewComponent],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
 export class CoffeeLabModule {}

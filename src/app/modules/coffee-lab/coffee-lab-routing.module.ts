@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoffeeLabComponent } from './coffee-lab.component';
 import { QaViewComponent } from './google-view/qa-view/qa-view.component';
 import { RecipeViewComponent } from './google-view/recipe-view/recipe-view.component';
+import { ArticleViewComponent } from './google-view/article-view/article-view.component';
 
 const routes: Routes = [
     {
@@ -19,8 +20,12 @@ const routes: Routes = [
                 component: RecipeViewComponent,
             },
             {
+                path: 'article',
+                component: ArticleViewComponent,
+            },
+            {
                 path: '',
-                redirectTo: 'recipe',
+                redirectTo: 'article',
                 pathMatch: 'full',
             },
         ],
