@@ -7,7 +7,6 @@ import { DISCUSSIONS_FORUM } from '../data';
     styleUrls: ['./qa-view.component.scss'],
 })
 export class QaViewComponent implements OnInit {
-    forumKeySearch: string;
     data: any[] = DISCUSSIONS_FORUM;
     selectedData: any = DISCUSSIONS_FORUM[0];
 

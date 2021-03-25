@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -59,6 +61,7 @@ import { MediaComponent } from './components/media/media.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 // #region third libs
 const THIRDMODULES = [
@@ -99,6 +102,8 @@ const THIRDMODULES = [
     DividerModule,
     AvatarModule,
     BadgeModule,
+    LightboxModule,
+    GalleryModule,
 ];
 // #endregion
 
@@ -112,6 +117,7 @@ const COMPONENTS = [
     VideoPlayerComponent,
     ReadMoreComponent,
     LoadingComponent,
+    ConfirmComponent,
 ];
 
 const DIRECTIVES = [WordLimitDirective];

@@ -7,7 +7,6 @@ import { DISCUSSIONS_FORUM } from '../data';
     styleUrls: ['./article-view.component.scss'],
 })
 export class ArticleViewComponent implements OnInit {
-    forumKeySearch: string;
     data: any[] = DISCUSSIONS_FORUM;
     selectedData: any = DISCUSSIONS_FORUM[0];
     infoData: any[] = [
