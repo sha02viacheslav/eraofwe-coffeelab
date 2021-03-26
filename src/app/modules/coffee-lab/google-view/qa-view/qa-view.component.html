@@ -14,7 +14,7 @@
                 <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ selectedData.author }}</p>
                 <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ selectedData.date }}</p>
             </div>
-            <p class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3">{{ selectedData.title }}</p>
+            <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3">{{ selectedData.title }}</h1>
             <div class="mt-3 mt-md-4 fnt-14 fnt-muli fnt-bold text-clr60b text-center background-header">
                 Showing 12 Comments
             </div>
@@ -87,7 +87,9 @@
                         class="fnt-14 fnt-muli fnt-600 lh-normal forum-row-content"
                         (click)="this.selectedData = forum"
                     >
-                        {{ forum.title }}
+                        <a>
+                            {{ forum.title }}
+                        </a>
                     </div>
                 </div>
             </div>
