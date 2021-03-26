@@ -1,5 +1,5 @@
-<div class="p-3 p-md-4 p-lg-5 page-wrapper">
-    <div class="col-12 col-lg-8 p-0 pr-lg-3">
+<main class="p-3 p-md-4 p-lg-5 page-wrapper">
+    <article class="col-12 col-lg-8 p-0 pr-lg-3">
         <app-search-forum></app-search-forum>
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-wrapper">
             <div class="d-flex flex-wrap w-100">
@@ -43,9 +43,9 @@
                 </div>
             </div>
             <div class="answer-content pt-4 pt-lg-45">
-                <p class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0">
+                <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0">
                     Vegan White Chocolate Cappuccino Fudge
-                </p>
+                </h1>
                 <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
                 <div class="recipe-info-wrapper">
                     <div class="recipe-info-item" *ngFor="let recipeInfo of infoData">
@@ -65,7 +65,7 @@
                     coffee, might just be your new favourite caffeine kic
                 </p>
                 <div>
-                    <p class="fnt-muli fnt-14 fnt-bold text-clr33 lh-1574 mb-3">Ingredients</p>
+                    <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">Ingredients</h2>
                     <div class="ingredients-wrapper">
                         <div class="ingredients-item" *ngFor="let ingredientsItem of ingredientsData">
                             <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
@@ -76,9 +76,9 @@
                     </div>
                 </div>
                 <div class="mt-45">
-                    <p class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</p>
+                    <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</h2>
                     <div>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 1:</p>
+                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 1:</h3>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
                             Whisk the coffee, sugar and 3 tbsp boiling water in a bowl for approximately 5 mins until
                             the mixture is thick and fluffy with stiff peaks. This is easiest done using an electric
@@ -87,7 +87,7 @@
                         <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
                     </div>
                     <div>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 2:</p>
+                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 2:</h3>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
                             For hot coffee, heat the milk and pour into two heatproof glasses. For cold coffee, pour the
                             cold milk into two glasses. Divide the coffee mixture in half and spoon evenly on top of the
@@ -95,7 +95,7 @@
                         </p>
                     </div>
                     <div class="mt-3">
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 3:</p>
+                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 3:</h3>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
                             For hot coffee, heat the milk and pour into two heatproof glasses. For cold coffee, pour the
                             cold milk into two glasses. Divide the coffee mixture in half and spoon evenly on top of the
@@ -106,8 +106,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
+    </article>
+    <article class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
         <div class="">
             <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
                 Related recipes on the cofee lab
@@ -118,6 +118,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </article>
     <app-bottom-banner></app-bottom-banner>
-</div>
+</main>
