@@ -1,5 +1,5 @@
 export class Api {}
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponse, RequestDto } from '@models';
 import { environment } from '@env/environment';
 import { CookieService } from 'ngx-cookie-service';
@@ -18,9 +18,10 @@ export class ApiService {
     protected fileUploadUrl: string;
     protected putFileUploadUrl: string;
     protected sendEmailUrl: string;
+    protected generalUrl: string;
 
     constructor(protected cookieSrv: CookieService, protected http: HttpClient) {
-        this.orgType = 'ro';
+        this.orgType = 'co';
         this.postUrl = `${environment.apiURL}/api`;
         this.deleteUrl = `${environment.apiURL}/deleteapi`;
         this.orgPostUrl = `${environment.apiURL}/${this.orgType}/api`;
@@ -29,9 +30,15 @@ export class ApiService {
         this.fileUploadUrl = `${environment.apiURL}/${this.orgType}/filesfolders`;
         this.putFileUploadUrl = `${environment.apiURL}/${this.orgType}/putfilesfolders`;
         this.sendEmailUrl = `${environment.apiURL}/sendemail`;
+        this.generalUrl = `${environment.apiURL}/${this.orgType}/general`;
     }
 
-    protected post(url: string, apiCall: string, method: HttpMethod = '', data?: object): Observable<ApiResponse<any>> {
+    protected post(
+        url: string,
+        apiCall: string,
+        method: HttpMethod = 'GET',
+        data?: object,
+    ): Observable<ApiResponse<any>> {
         const dto = this.getDto(apiCall, method, data);
 
         return this.http.post<ApiResponse<any>>(`${url}`, dto);

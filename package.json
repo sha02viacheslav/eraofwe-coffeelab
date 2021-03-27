@@ -33,6 +33,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ng-gallery": "^5.0.0",
+    "ng-lazyload-image": "^9.1.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-cookie-service": "^11.0.2",
     "ngx-device-detector": "^2.0.6",

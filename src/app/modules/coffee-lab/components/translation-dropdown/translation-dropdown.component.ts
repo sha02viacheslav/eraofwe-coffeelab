@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { languages } from '@constants';
+import { GlobalsService } from '@services';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -6,28 +9,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./translation-dropdown.component.scss'],
 })
 export class TranslationDropdownComponent implements OnInit {
-    translateList: any[] = [
-        {
-            slug: 'coffee-spanish',
-            avatarUrl: 'assets/images/user-sample.png',
-            name: 'Gabriel Match',
-            language: 'Spanish Translation',
-            date: '5 days ago',
-        },
-        {
-            slug: 'coffee-swedish',
-            avatarUrl: 'assets/images/user-sample.png',
-            name: 'Anthony Jones',
-            language: 'Swedish Translation',
-            date: '4 days ago',
-        },
-    ];
+    @Input() translatedList;
+    @Input() forumtype;
+    languages = languages;
 
-    constructor() {}
+    constructor(public globalsService: GlobalsService, private router: Router) {}
 
     ngOnInit(): void {}
 
     onChangeTranslate(event) {
         console.log(event);
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                id: event.value,
+            },
+        };
+        this.router.navigate([`/coffee-lab/${this.forumtype ?? 'article'}`], navigationExtras);
     }
 }

@@ -28,5 +28,17 @@
             padding: 0;
             justify-content: flex-end;
         }
+        .p-dropdown-label.p-placeholder {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.57;
+            color: #80460b !important;
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+            &:before {
+                content: url('/assets/images/translate.svg');
+            }
+        }
     }
 }

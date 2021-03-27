@@ -3,28 +3,27 @@
         <app-search-forum></app-search-forum>
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-wrapper">
             <div class="pb-45">
-                <img class="w-100" src="assets/images/article-bg-sample.png" />
+                <img class="w-100" [lazyLoad]="detailsData?.cover_image_url" />
                 <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 pt-3 mb-2">
-                    Starting your coffee tasting journey is easy!
+                    {{ detailsData?.title }}
                 </h1>
                 <h4 class="fnt-14 fnt-md-16 fnt-muli fnt-normal text-clr334 mb-0">
-                    All about your first steps of coffee!
+                    {{ detailsData?.subtitle }}
                 </h4>
             </div>
             <div class="d-flex flex-wrap w-100">
                 <p-avatar
-                    image="assets/images/user-sample.png"
+                    [image]="detailsData?.profile_image_thumb_url || detailsData?.profile_image_url"
                     pBadge
                     severity="success"
                     shape="circle"
                     styleClass="user-avatar"
-                    [style.height]="'40px'"
                 ></p-avatar>
                 <div class="d-flex flex-column justify-content-between pl-3 flex-1">
                     <div class="d-flex justify-content-between mb-2">
                         <div class="d-flex align-items-center">
-                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">Gabriel Match</p>
-                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">2 days ago</p>
+                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">{{ detailsData?.user_name }}</p>
+                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ detailsData?.created_at }}</p>
                         </div>
                         <div class="position-relative">
                             <p-menu
@@ -42,31 +41,24 @@
                             <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">Coffee Expert</p>
                             <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">@Third wave coffee roaster</p>
                         </div>
-                        <div class="d-none d-md-block">
-                            <app-translation-dropdown></app-translation-dropdown>
+                        <div class="d-none d-md-block" *ngIf="detailsData?.allow_translation">
+                            <app-translation-dropdown
+                                [translatedList]="detailsData?.translated_articles"
+                            ></app-translation-dropdown>
                         </div>
                     </div>
                 </div>
-                <div class="w-100 d-block d-md-none mt-3 translate-wrapper">
-                    <app-translation-dropdown></app-translation-dropdown>
+                <div class="w-100 d-block d-md-none mt-3 translate-wrapper" *ngIf="detailsData?.allow_translation">
+                    <app-translation-dropdown
+                        [translatedList]="detailsData?.translated_articles"
+                    ></app-translation-dropdown>
                 </div>
             </div>
             <div class="answer-content pt-3 pt-md-4">
                 <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0">
-                    El café proporciona una mezcla compleja de diferentes sabores, que juntos producen una variedad de
-                    sensaciones experiencias. El perfil sensorial de una taza de café varía según una serie de factores:
-                    el tipoy mezcla de granos de café El café proporciona una mezcla compleja de diferentes sabores, que
-                    juntos producen una variedad de sensaciones experiencias. El perfil sensorial de una taza de café
-                    varía según una serie de factores: el tipo y la mezcla de granos de café; fuente geográfica; método
-                    de tostado; y método de preparación 8,9. los La variación en estos aspectos afectará la experiencia
-                    sensorial general obtenida de una taza de café. durante la preparación y el consumo del café. Los
-                    perfiles de aroma y sabor específicos son descritos por expertos sensoriales, para diferenciar
-                    diferentes tipos decafés y tostados. El aroma y el sabor son los factores primordiales que
-                    determinan la preferencia por el café. café los descriptores de aroma incluyen florido, nuez,
-                    ahumado, herbario, mientras que los descriptores de sabor incluyen acidez, amargura, dulzura,
-                    salinidad y acidez (ver Rueda de sabor del café).
+                    {{ detailsData?.content }}
                 </p>
-                <div class="d-flex flex-wrap py-3 py-4">
+                <!-- <div class="d-flex flex-wrap py-3 py-4">
                     <div class="col-12 col-md-6 p-0 pr-md-25">
                         <img class="w-100" src="assets/images/article-bg-sample.png" />
                     </div>
@@ -89,7 +81,7 @@
                     that the release of saliva can affect the aroma experience, with results differing according to
                     brewing method. In addition, it has been suggested that larger sips of coffee appear to generate a
                     stronger release of aroma.
-                </p>
+                </p> -->
             </div>
         </div>
     </article>
@@ -99,7 +91,7 @@
                 Related recipes on the cofee lab
             </div>
             <div>
-                <div *ngFor="let forum of data" class="py-2">
+                <div *ngFor="let forum of relatedData" class="py-2">
                     <app-forum-card></app-forum-card>
                 </div>
             </div>

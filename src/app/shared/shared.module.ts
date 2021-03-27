@@ -8,6 +8,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -104,6 +105,7 @@ const THIRDMODULES = [
     BadgeModule,
     LightboxModule,
     GalleryModule,
+    LazyLoadImageModule,
 ];
 // #endregion
 

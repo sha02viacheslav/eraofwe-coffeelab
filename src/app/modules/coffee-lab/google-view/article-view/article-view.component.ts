@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DISCUSSIONS_FORUM } from '../data';
+import { CoffeeLabService } from '@services';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-article-view',
@@ -7,52 +8,52 @@ import { DISCUSSIONS_FORUM } from '../data';
     styleUrls: ['./article-view.component.scss'],
 })
 export class ArticleViewComponent implements OnInit {
-    data: any[] = DISCUSSIONS_FORUM;
-    selectedData: any = DISCUSSIONS_FORUM[0];
-    infoData: any[] = [
-        {
-            icon: 'assets/images/expertise-level.svg',
-            label: 'Expertise level',
-            value: 'Beginner',
-        },
-        {
-            icon: 'assets/images/preparation-time.svg',
-            label: 'Preparation Time',
-            value: '15 mins',
-        },
-        {
-            icon: 'assets/images/cooking-time.svg',
-            label: 'Cooking Time',
-            value: '35 mins',
-        },
-        {
-            icon: 'assets/images/servings.svg',
-            label: 'Serving',
-            value: '2-3',
-        },
-    ];
-    ingredientsData: any[] = [
-        {
-            label: 'Instant Coffee',
-            value: '3 tbsp',
-        },
-        {
-            label: 'Sugar',
-            value: '2 tbsp',
-        },
-        {
-            label: 'Milk',
-            value: '400~500 ml',
-        },
-        {
-            label: 'Ice',
-            value: '5-6',
-        },
-    ];
+    relatedData: any[] = [];
+    detailsData: any;
+    slug: string;
+    id: string;
 
-    constructor() {}
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        public router: Router,
+        private activatedRoute: ActivatedRoute,
+    ) {
+        this.activatedRoute.queryParams.subscribe((params) => {
+            this.slug = params.slug;
+            this.id = params.id;
+            this.getArticleList();
+            if (this.slug || this.id) {
+                this.getDetails();
+            }
+        });
+    }
 
     ngOnInit(): void {}
+
+    getArticleList() {
+        this.coffeeLabService.getForumList('article').subscribe((res: any) => {
+            if (res.success) {
+                this.relatedData = res.result;
+                if (!this.slug && !this.id) {
+                    const navigationExtras: NavigationExtras = {
+                        queryParams: {
+                            slug: res.result[0].slug,
+                        },
+                    };
+                    this.router.navigate(['/coffee-lab/article'], navigationExtras);
+                }
+            }
+        });
+    }
+
+    getDetails() {
+        const idOrSlug = this.slug ?? this.id;
+        this.coffeeLabService.getForumDetails('article', idOrSlug).subscribe((res: any) => {
+            if (res.success) {
+                this.detailsData = res.result;
+            }
+        });
+    }
 
     getMenuItemsForItem(item) {
         const items = [
