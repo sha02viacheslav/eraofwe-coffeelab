@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-forum-card',
@@ -7,17 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ForumCardComponent implements OnInit {
     @Input() data: any;
+    @Input() forumType: string;
 
-    constructor() {}
+    constructor(private router: Router) {}
 
-    ngOnInit(): void {
-        this.data = {
-            title: 'Vegan White Chocolate',
-            description: 'Cappuccino Fudge',
-            authorAvatar: 'assets/images/user-sample.png',
-            authorName: 'Ellyse Perry',
-            date: '2 days ago',
-            image: 'assets/images/recipe-bg-sample.png',
+    ngOnInit(): void {}
+
+    onClick() {
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                slug: this.data.slug,
+            },
         };
+        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
     }
 }

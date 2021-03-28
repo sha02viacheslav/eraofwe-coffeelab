@@ -92,7 +92,7 @@
             </div>
             <div>
                 <div *ngFor="let forum of relatedData" class="py-2">
-                    <app-forum-card></app-forum-card>
+                    <app-forum-card [data]="forum"></app-forum-card>
                 </div>
             </div>
         </div>

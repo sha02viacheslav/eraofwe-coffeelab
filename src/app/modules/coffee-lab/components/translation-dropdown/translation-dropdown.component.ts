@@ -10,7 +10,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;
-    @Input() forumtype;
+    @Input() forumType;
     languages = languages;
 
     constructor(public globalsService: GlobalsService, private router: Router) {}
@@ -18,12 +18,11 @@ export class TranslationDropdownComponent implements OnInit {
     ngOnInit(): void {}
 
     onChangeTranslate(event) {
-        console.log(event);
         const navigationExtras: NavigationExtras = {
             queryParams: {
                 id: event.value,
             },
         };
-        this.router.navigate([`/coffee-lab/${this.forumtype ?? 'article'}`], navigationExtras);
+        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
     }
 }

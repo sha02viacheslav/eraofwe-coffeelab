@@ -1,20 +1,19 @@
-<div class="forum-card-wrapper">
-    <img [src]="data.image" class="forum-image" />
+<div class="forum-card-wrapper" (click)="onClick()">
+    <img [lazyLoad]="data?.cover_image_url" class="forum-image" />
     <div class="d-flex justify-content-end pt-2">
         <i class="pi pi-ellipsis-h cursor-pointer text-clr588"></i>
     </div>
-    <a class="fnt-muli fnt-14 fnt-bold text-clr334 cursor-pointer mb-2">{{ data.title }}</a>
-    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ data.description }}</p>
+    <a class="fnt-muli fnt-14 fnt-bold text-clr334 cursor-pointer mb-2">{{ data?.title }}</a>
+    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ data?.subtitle }}</p>
     <div class="d-flex align-items-center pt-3">
         <p-avatar
-            [image]="data.authorAvatar"
+            [image]="data?.profile_image_thumb_url || data?.profile_image_url"
             pBadge
             severity="success"
             shape="circle"
             styleClass="user-avatar"
-            [style.height]="'40px'"
         ></p-avatar>
-        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data.authorName }}</p>
-        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ data.date }}</p>
+        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data?.user_name }}</p>
+        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ data?.created_at }}</p>
     </div>
 </div>
