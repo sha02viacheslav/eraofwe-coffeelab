@@ -23,7 +23,9 @@
                     <div class="d-flex justify-content-between mb-2">
                         <div class="d-flex align-items-center">
                             <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">{{ detailsData?.user_name }}</p>
-                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ detailsData?.created_at }}</p>
+                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                                {{ detailsData?.created_at | amTimeAgo }}
+                            </p>
                         </div>
                         <div class="position-relative">
                             <p-menu

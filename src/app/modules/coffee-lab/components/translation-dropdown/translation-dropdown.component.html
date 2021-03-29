@@ -30,7 +30,7 @@
                         {{ globalsService.getLanguage(translateItem.language) }} Translation
                     </p>
                     <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                        {{ translateItem.created_at }}
+                        {{ translateItem.created_at | amTimeAgo }}
                     </p>
                 </div>
             </div>
