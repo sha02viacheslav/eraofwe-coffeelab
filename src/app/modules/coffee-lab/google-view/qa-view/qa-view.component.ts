@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DISCUSSIONS_FORUM } from '../data';
+import { CoffeeLabService } from '@services';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-qa-view',
@@ -7,12 +8,54 @@ import { DISCUSSIONS_FORUM } from '../data';
     styleUrls: ['./qa-view.component.scss'],
 })
 export class QaViewComponent implements OnInit {
-    data: any[] = DISCUSSIONS_FORUM;
-    selectedData: any = DISCUSSIONS_FORUM[0];
+    relatedData: any[] = [];
+    detailsData: any;
+    slug: string;
+    id: string;
 
-    constructor() {}
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        public router: Router,
+        private activatedRoute: ActivatedRoute,
+    ) {
+        this.activatedRoute.queryParams.subscribe((params) => {
+            this.slug = params.slug;
+            this.id = params.id;
+            this.getQaList();
+            if (this.slug || this.id) {
+                this.getDetails();
+            }
+        });
+    }
 
     ngOnInit(): void {}
+
+    getQaList() {
+        this.coffeeLabService.getForumList('question').subscribe((res: any) => {
+            if (res.success) {
+                this.relatedData = res.result.questions.filter(
+                    (item) => item.id !== this.id || item.slug !== this.slug,
+                );
+                if (!this.slug && !this.id) {
+                    const navigationExtras: NavigationExtras = {
+                        queryParams: {
+                            id: res.result.questions[0].id,
+                        },
+                    };
+                    this.router.navigate(['/coffee-lab/qa'], navigationExtras);
+                }
+            }
+        });
+    }
+
+    getDetails() {
+        const idOrSlug = this.slug ?? this.id;
+        this.coffeeLabService.getForumDetails('question', idOrSlug).subscribe((res: any) => {
+            if (res.success) {
+                this.detailsData = res.result;
+            }
+        });
+    }
 
     getMenuItemsForItem(item) {
         const items = [
@@ -36,6 +79,16 @@ export class QaViewComponent implements OnInit {
             },
         ];
         return [{ items }];
+    }
+
+    onGoRelatedQuestion(item) {
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                id: item.id,
+            },
+        };
+        console.log(item);
+        this.router.navigate(['/coffee-lab/qa'], navigationExtras);
     }
 
     onShare(postItem) {}

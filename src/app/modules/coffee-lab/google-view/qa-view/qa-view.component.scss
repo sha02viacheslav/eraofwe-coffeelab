@@ -51,8 +51,9 @@
     }
     .answer-content {
         padding: 16px 0 !important;
-        @media (min-width: 768px) {
-            padding: 24px 0 !important;
+        img {
+            width: 100%;
+            margin-bottom: 16px;
         }
     }
 }
