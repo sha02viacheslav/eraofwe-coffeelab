@@ -394,92 +394,20 @@ span.star {
     flex: 1;
 }
 
-.sewn-container {
-    height: 100%;
-    margin: auto;
-
-    .content-wrapper {
-        padding: 2rem 3rem 2.667rem;
-        min-width: 100%;
-        width: 100%;
-        height: 100%;
-        min-height: 731px;
-    }
-
-    @media (min-width: 1280px) {
-        max-width: 1240px !important;
-    }
-
-    @media (max-width: 991px) {
-        .content-wrapper {
-            padding: 2rem 1rem;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .content-wrapper {
-            padding-top: 1rem;
-            padding-bottom: 1.5rem;
-        }
-    }
-}
-
-.total-section {
-    padding: 1.875rem 2rem 1.5rem;
-
-    @media (max-width: 991px) {
-        padding: 1rem;
-
-        .request-title-text {
-            margin-bottom: 4px;
-        }
-    }
-
-    @media (max-width: 767px) {
-        padding-top: 12px !important;
-        .request-title-text {
-            margin-bottom: 14px;
-        }
-    }
-}
-
-.green_grading_cont {
-    h1 {
-        font-family: 'Playfair Display';
-        font-size: 24px;
-        font-weight: normal;
-        color: #232334;
-
-        @media (max-width: 767px) {
-            font-size: 16px !important;
-            margin-bottom: 0.25rem;
-        }
-    }
-
-    h3 {
-        font-family: Muli;
-        font-size: 14px;
-        font-weight: normal;
-        color: #747588;
-        padding-top: 0.25rem;
-
-        @media (max-width: 767px) {
-            font-size: 12px !important;
-        }
-    }
-}
-
-.request-title-text {
-    font-family: 'Playfair Display';
-    font-size: 24px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #232334;
-}
-
 .h-fit-content {
     height: fit-content;
+}
+
+.page-wrapper {
+    background: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 150px;
+    .background-header {
+        padding: 11px 15px;
+        border-radius: 4px;
+        background-color: $primary-bg-color;
+    }
 }

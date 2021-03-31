@@ -1,7 +1,7 @@
 <main class="p-3 p-md-4 p-lg-5 page-wrapper">
     <article class="col-12 col-lg-8 p-0 pr-lg-3">
         <app-search-forum></app-search-forum>
-        <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-wrapper">
+        <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-main br-4">
             <div class="d-flex flex-wrap w-100">
                 <p-avatar
                     [image]="detailsData?.profile_image_thumb_url || detailsData?.profile_image_url"
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div
-                    class="w-100 d-block d-md-none mt-3 translate-wrapper"
+                    class="w-100 d-block d-md-none mt-3 py-2 pr-0 pl-4 border-top-main border-bottom-main"
                     *ngIf="detailsData?.allow_translation && detailsData?.translations"
                 >
                     <app-translation-dropdown [translatedList]="detailsData?.translations"></app-translation-dropdown>
