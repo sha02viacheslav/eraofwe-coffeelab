@@ -90,6 +90,12 @@
             width: 100%;
         }
     }
+
+    .video-wrap {
+        video {
+            width: 100%;
+        }
+    }
 }
 
 ::ng-deep {

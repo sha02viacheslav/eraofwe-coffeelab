@@ -13,7 +13,9 @@
             shape="circle"
             styleClass="user-avatar"
         ></p-avatar>
-        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data?.user_name }}</p>
-        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ data?.created_at | amTimeAgo }}</p>
+        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data?.user_name || data?.posted_user }}</p>
+        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+            {{ data?.posted_at ? (data.posted_at | amTimeAgo) : (data?.created_at | amTimeAgo) }}
+        </p>
     </div>
 </div>

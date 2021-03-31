@@ -25,7 +25,7 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: 'qa',
+                redirectTo: 'recipe',
                 pathMatch: 'full',
             },
         ],

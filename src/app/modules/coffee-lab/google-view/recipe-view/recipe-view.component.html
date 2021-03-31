@@ -4,18 +4,19 @@
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-wrapper">
             <div class="d-flex flex-wrap w-100">
                 <p-avatar
-                    image="assets/images/user-sample.png"
+                    [image]="detailsData?.profile_image_thumb_url || detailsData?.profile_image_url"
                     pBadge
                     severity="success"
                     shape="circle"
                     styleClass="user-avatar"
-                    [style.height]="'40px'"
                 ></p-avatar>
                 <div class="d-flex flex-column justify-content-between pl-3 flex-1">
                     <div class="d-flex justify-content-between mb-2">
                         <div class="d-flex align-items-center">
-                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">Gabriel Match</p>
-                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">2 days ago</p>
+                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">{{ detailsData?.posted_user }}</p>
+                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                                {{ detailsData?.posted_at | amTimeAgo }}
+                            </p>
                         </div>
                         <div class="position-relative">
                             <p-menu
@@ -33,75 +34,69 @@
                             <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">Coffee Expert</p>
                             <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">@Third wave coffee roaster</p>
                         </div>
-                        <div class="d-none d-md-block">
-                            <app-translation-dropdown></app-translation-dropdown>
+                        <div
+                            class="d-none d-md-block"
+                            *ngIf="detailsData?.allow_translation && detailsData?.translations"
+                        >
+                            <app-translation-dropdown
+                                [translatedList]="detailsData?.translations"
+                            ></app-translation-dropdown>
                         </div>
                     </div>
                 </div>
-                <div class="w-100 d-block d-md-none mt-3 translate-wrapper">
-                    <app-translation-dropdown></app-translation-dropdown>
+                <div
+                    class="w-100 d-block d-md-none mt-3 translate-wrapper"
+                    *ngIf="detailsData?.allow_translation && detailsData?.translations"
+                >
+                    <app-translation-dropdown [translatedList]="detailsData?.translations"></app-translation-dropdown>
                 </div>
             </div>
             <div class="answer-content pt-4 pt-lg-45">
                 <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0">
-                    Vegan White Chocolate Cappuccino Fudge
+                    {{ detailsData?.name }}
                 </h1>
-                <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
+                <img class="my-3 w-100" [lazyLoad]="detailsData?.cover_image_url" />
                 <div class="recipe-info-wrapper">
                     <div class="recipe-info-item" *ngFor="let recipeInfo of infoData">
                         <div>
                             <img [src]="recipeInfo.icon" />
                         </div>
-                        <div class="pl-2">
+                        <div class="pl-2 d-flex flex-column justify-content-between">
                             <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{ recipeInfo.label }}</label>
                             <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pt-2 pt-md-3">
-                                {{ recipeInfo.value }}
+                                {{ detailsData[recipeInfo.key] }}
+                                {{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}
                             </p>
                         </div>
                     </div>
                 </div>
                 <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 pt-3 mb-4">
-                    Our easy whipped coffee recipe is simple enough to make at home. This frothy drink, known as dalgona
-                    coffee, might just be your new favourite caffeine kic
+                    {{ detailsData?.description }}
                 </p>
-                <div>
+                <div *ngIf="detailsData?.ingredients">
                     <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">Ingredients</h2>
                     <div class="ingredients-wrapper">
-                        <div class="ingredients-item" *ngFor="let ingredientsItem of ingredientsData">
-                            <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
-                                ingredientsItem.label
-                            }}</label>
-                            <label class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ ingredientsItem.value }}</label>
+                        <div class="ingredients-item" *ngFor="let ingredientsItem of detailsData.ingredients">
+                            <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{ ingredientsItem.name }}</label>
+                            <label class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">
+                                {{ ingredientsItem.quantity }} {{ ingredientsItem.quantity_unit }}
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="mt-45">
                     <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</h2>
-                    <div>
-                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 1:</h3>
+                    <div class="pb-3 pb-md-4" *ngFor="let step of detailsData?.steps; let i = index">
+                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
-                            Whisk the coffee, sugar and 3 tbsp boiling water in a bowl for approximately 5 mins until
-                            the mixture is thick and fluffy with stiff peaks. This is easiest done using an electric
-                            whisk but can be done by hand.
+                            {{ step.description }}
                         </p>
-                        <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
+                        <img class="mt-3 w-100" [lazyLoad]="step.image_thumb_url || step.image_thumb_url" />
                     </div>
-                    <div>
-                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 2:</h3>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
-                            For hot coffee, heat the milk and pour into two heatproof glasses. For cold coffee, pour the
-                            cold milk into two glasses. Divide the coffee mixture in half and spoon evenly on top of the
-                            glasses. Serve and stir thoroughly before drinking.
-                        </p>
-                    </div>
-                    <div class="mt-3">
-                        <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step 3:</h3>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0">
-                            For hot coffee, heat the milk and pour into two heatproof glasses. For cold coffee, pour the
-                            cold milk into two glasses. Divide the coffee mixture in half and spoon evenly on top of the
-                            glasses. Serve and stir thoroughly before drinking.
-                        </p>
-                        <img class="my-3 w-100" src="assets/images/article-bg-sample.png" />
+                    <div class="video-wrap">
+                        <video [muted]="true" autoplay playsinline loop *ngIf="detailsData?.video_url">
+                            <source [src]="detailsData.video_url" type="video/mp4" />
+                        </video>
                     </div>
                 </div>
             </div>
@@ -113,8 +108,8 @@
                 Related recipes on the cofee lab
             </div>
             <div>
-                <div *ngFor="let forum of data" class="py-2">
-                    <app-forum-card></app-forum-card>
+                <div *ngFor="let forum of relatedData" class="py-2">
+                    <app-forum-card [data]="forum" forumType="recipe"></app-forum-card>
                 </div>
             </div>
         </div>
