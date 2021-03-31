@@ -24,8 +24,10 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "stylePreprocessorOptions": {
-                            "includePaths": ["./src/theme/styles"]
-                        },
+              "includePaths": [
+                "./src/theme/styles"
+              ]
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
