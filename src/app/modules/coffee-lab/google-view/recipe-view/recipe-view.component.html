@@ -15,7 +15,7 @@
                         <div class="d-flex align-items-center">
                             <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">{{ detailsData?.posted_user }}</p>
                             <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                                {{ detailsData?.posted_at | amTimeAgo }}
+                                {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
                             </p>
                         </div>
                         <div class="position-relative">

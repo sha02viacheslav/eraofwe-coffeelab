@@ -11,7 +11,9 @@
                     styleClass="user-avatar"
                 ></p-avatar>
                 <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
-                <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ detailsData?.posted_at | amTimeAgo }}</p>
+                <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                    {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
+                </p>
             </div>
             <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3">
                 {{ detailsData?.question }}
@@ -56,10 +58,10 @@
                             </div>
                             <div class="d-flex flex-column flex-md-row justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">
+                                    <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">Coffee Hero</p>
+                                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
                                         {{ postItem.company_name }}
                                     </p>
-                                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">{{ postItem.info }}</p>
                                 </div>
                                 <div class="d-none d-md-block" *ngIf="detailsData?.allow_translation">
                                     <app-translation-dropdown
