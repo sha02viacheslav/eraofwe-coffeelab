@@ -29,7 +29,8 @@
 .p-menu.left-menu-actions {
     &.p-menu-overlay {
         top: calc(50% - 24px) !important;
-        left: -200px !important;
+        right: 30px !important;
+        left: unset !important;
         &::after {
             content: '';
             position: absolute;

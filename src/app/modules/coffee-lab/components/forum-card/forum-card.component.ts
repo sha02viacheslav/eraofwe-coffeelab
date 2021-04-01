@@ -22,4 +22,25 @@ export class ForumCardComponent implements OnInit {
         };
         this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
     }
+
+    getMenuItemsForItem(item) {
+        const items = [
+            {
+                label: 'Share',
+                command: () => {
+                    this.onShare(item);
+                },
+            },
+            {
+                label: 'Save Post',
+                command: () => {
+                    this.onSavePost(item);
+                },
+            },
+        ];
+        return [{ items }];
+    }
+
+    onShare(postItem) {}
+    onSavePost(postItem) {}
 }

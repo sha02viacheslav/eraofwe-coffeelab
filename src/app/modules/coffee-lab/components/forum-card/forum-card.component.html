@@ -1,7 +1,11 @@
 <div class="border-main br-4 p-3 forum-card-wrapper" (click)="onClick()">
     <img [lazyLoad]="data?.cover_image_url" class="w-100" />
-    <div class="d-flex justify-content-end pt-2">
-        <i class="pi pi-ellipsis-h cursor-pointer text-clr588"></i>
+    <div class="d-flex justify-content-end pt-2 position-relative">
+        <p-menu #menu popup="popup" [model]="getMenuItemsForItem({})" styleClass="left-menu-actions"> </p-menu>
+        <i
+            class="pi pi-ellipsis-h cursor-pointer text-clr588"
+            (click)="$event.stopPropagation(); menu.toggle($event)"
+        ></i>
     </div>
     <a class="fnt-muli fnt-14 fnt-bold text-clr334 cursor-pointer mb-2">{{ data?.title }}</a>
     <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ data?.subtitle }}</p>
