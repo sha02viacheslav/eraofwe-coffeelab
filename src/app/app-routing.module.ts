@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { HealthCheckComponent } from '@components';
 
 const routes: Routes = [
     {
@@ -14,12 +15,15 @@ const routes: Routes = [
             { path: '', redirectTo: 'coffee-lab', pathMatch: 'full' },
         ],
     },
+    { path: 'health-check', component: HealthCheckComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})],
+    imports: [
+        RouterModule.forRoot(routes, {
+            initialNavigation: 'enabled',
+        }),
+    ],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

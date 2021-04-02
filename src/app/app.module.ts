@@ -9,9 +9,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
+import { HealthCheckComponent } from '@components';
 
 @NgModule({
-    declarations: [AppComponent, LayoutComponent],
+    declarations: [AppComponent, LayoutComponent, HealthCheckComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
