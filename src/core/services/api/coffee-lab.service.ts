@@ -20,4 +20,8 @@ export class CoffeeLabService extends ApiService {
     getForumDetails(type: string, idOrSlug: string) {
         return this.post(this.generalUrl, `general/${type}s/${idOrSlug}`, 'GET');
     }
+
+    healthCheck() {
+        return this.post(this.postUrl, `health-check`, 'GET');
+    }
 }

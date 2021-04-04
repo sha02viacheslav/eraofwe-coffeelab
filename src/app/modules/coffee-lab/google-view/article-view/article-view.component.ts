@@ -33,7 +33,9 @@ export class ArticleViewComponent implements OnInit {
     getArticleList() {
         this.coffeeLabService.getForumList('article').subscribe((res: any) => {
             if (res.success) {
-                this.relatedData = res.result.filter((item) => item.id !== this.id && item.slug !== this.slug);
+                this.relatedData = res.result
+                    .filter((item) => item.id !== this.id || item.slug !== this.slug)
+                    .slice(0, 5);
                 if (!this.slug && !this.id) {
                     const navigationExtras: NavigationExtras = {
                         queryParams: {
