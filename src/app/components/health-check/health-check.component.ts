@@ -7,7 +7,7 @@ import { CoffeeLabService } from '@services';
     styleUrls: ['./health-check.component.scss'],
 })
 export class HealthCheckComponent implements OnInit {
-    object: any = { status: '200 ok', message: 'ok' };
+    object: any;
     constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {
