@@ -1,4 +1,11 @@
 .forum-card-wrapper {
+    & > img {
+        height: 161px;
+        object-fit: cover;
+        @media (max-width: 767px) {
+            height: 180px;
+        }
+    }
     &:hover {
         cursor: pointer;
         box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);

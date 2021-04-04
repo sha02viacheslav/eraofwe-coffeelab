@@ -411,3 +411,11 @@ span.star {
         background-color: $primary-bg-color;
     }
 }
+
+.banner-image {
+    height: 276px;
+    object-fit: cover;
+    @media (max-width: 767px) {
+        height: 256px;
+    }
+}
