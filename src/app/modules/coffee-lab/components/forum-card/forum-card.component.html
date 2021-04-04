@@ -1,14 +1,19 @@
 <div class="border-main br-4 p-3 forum-card-wrapper" (click)="onClick()">
     <img [lazyLoad]="data?.cover_image_url" class="w-100" />
-    <div class="d-flex justify-content-end pt-2 position-relative">
-        <p-menu #menu popup="popup" [model]="getMenuItemsForItem({})" styleClass="left-menu-actions"> </p-menu>
-        <i
-            class="pi pi-ellipsis-h cursor-pointer text-clr588"
-            (click)="$event.stopPropagation(); menu.toggle($event)"
-        ></i>
+    <div class="d-flex justify-content-between pt-3">
+        <a class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 cursor-pointer">
+            {{ data?.title }}
+            <br />
+            {{ data?.subtitle }}
+        </a>
+        <div class="position-relative">
+            <p-menu #menu popup="popup" [model]="getMenuItemsForItem({})" styleClass="left-menu-actions"> </p-menu>
+            <i
+                class="pi pi-ellipsis-h cursor-pointer text-clr588"
+                (click)="$event.stopPropagation(); menu.toggle($event)"
+            ></i>
+        </div>
     </div>
-    <a class="fnt-muli fnt-14 fnt-bold text-clr334 cursor-pointer mb-2">{{ data?.title }}</a>
-    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0">{{ data?.subtitle }}</p>
     <div class="d-flex align-items-center pt-3">
         <p-avatar
             [image]="data?.profile_image_thumb_url || data?.profile_image_url"
@@ -16,6 +21,7 @@
             severity="success"
             shape="circle"
             styleClass="user-avatar"
+            style="height: 40px"
         ></p-avatar>
         <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ data?.user_name || data?.posted_user }}</p>
         <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
