@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeLabService } from '@services';
 
 @Component({
     selector: 'app-health-check',
@@ -7,12 +6,8 @@ import { CoffeeLabService } from '@services';
     styleUrls: ['./health-check.component.scss'],
 })
 export class HealthCheckComponent implements OnInit {
-    object: any;
-    constructor(private coffeeLabService: CoffeeLabService) {}
+    object: any = { 'lab-status': '200 ok', message: 'ok' };
+    constructor() {}
 
-    ngOnInit(): void {
-        this.coffeeLabService.healthCheck().subscribe((res: any) => {
-            this.object = res;
-        });
-    }
+    ngOnInit(): void {}
 }
