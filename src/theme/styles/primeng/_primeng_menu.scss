@@ -19,8 +19,11 @@
     line-height: normal;
 }
 .p-menu .p-menuitem-link:not(.p-disabled):hover {
-    color: $general-text-color;
+    color: $general-text-color !important;
     background: $primary-bg-color;
+    .p-menuitem-text {
+        color: $general-text-color !important;
+    }
 }
 .p-menu .p-menuitem-link:focus {
     box-shadow: none;

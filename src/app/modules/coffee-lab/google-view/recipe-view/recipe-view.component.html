@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div
-                    class="w-100 d-block d-md-none mt-3 py-2 pr-0 border-top-main border-bottom-main"
+                    class="w-100 d-block d-md-none mt-3 py-3 pr-0 border-top-main border-bottom-main"
                     *ngIf="detailsData?.allow_translation && detailsData?.translations"
                 >
                     <app-translation-dropdown [translatedList]="detailsData?.translations"></app-translation-dropdown>
@@ -113,10 +113,17 @@
             <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
                 Related recipes on the cofee lab
             </div>
-            <div>
+            <div class="d-none d-lg-block">
                 <div *ngFor="let forum of relatedData" class="py-2">
                     <app-forum-card [data]="forum" forumType="recipe"></app-forum-card>
                 </div>
+            </div>
+            <div class="d-block d-lg-none pt-3">
+                <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numScroll]="1">
+                    <ng-template let-forum pTemplate="item">
+                        <app-forum-card [data]="forum" forumType="recipe"></app-forum-card>
+                    </ng-template>
+                </p-carousel>
             </div>
         </div>
     </article>
