@@ -1,0 +1,36 @@
+.p-carousel {
+    &.p-carousel-forum {
+        .p-carousel-item {
+            margin-right: 16px;
+            @media (max-width: 767px) {
+                margin-right: 8px;
+            }
+        }
+        .p-carousel-prev,
+        .p-carousel-next {
+            display: none;
+        }
+        .p-carousel-indicators .p-carousel-indicator {
+            &.p-highlight button {
+                background-color: #80460b;
+            }
+            button {
+                width: 8px;
+                height: 8px;
+                margin: 0 0 0 4px;
+                border: solid 1px #80460b;
+                background-color: #faf8f4;
+                border-radius: 50%;
+            }
+        }
+        .p-carousel-items-container {
+            @media (max-width: 991px) {
+                width: 374px;
+            }
+
+            @media (max-width: 767px) {
+                width: 247px;
+            }
+        }
+    }
+}
