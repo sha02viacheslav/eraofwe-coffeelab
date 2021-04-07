@@ -7,22 +7,32 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class BottomBannerComponent implements OnInit {
     showBanner = false;
+    ticking = false;
 
     @HostListener('window:scroll', ['$event'])
-    onWindowScroll(event) {
-        event.preventDefault();
-        const pos = document.documentElement.scrollTop || document.body.scrollTop;
-        if (pos >= 300) {
-            this.showBanner = true;
-            setTimeout(() => {
-                window.scrollTo(0, 300);
-            }, 100);
-        } else {
-            this.showBanner = false;
+    onWindowScroll() {
+        const self = this;
+        if (!this.ticking) {
+            window.requestAnimationFrame(() => {
+                self.handleScrolling();
+                self.ticking = false;
+            });
         }
+
+        this.ticking = true;
     }
 
     constructor() {}
 
     ngOnInit(): void {}
+
+    handleScrolling() {
+        const pos = document.documentElement.scrollTop || document.body.scrollTop;
+        if (pos >= 300) {
+            this.showBanner = true;
+            window.scrollTo(0, 300);
+        } else {
+            this.showBanner = false;
+        }
+    }
 }
