@@ -7,7 +7,7 @@
             {{ data?.subtitle }}
         </a>
         <div class="position-relative">
-            <p-menu #menu popup="popup" [model]="getMenuItemsForItem({})" styleClass="left-menu-actions"> </p-menu>
+            <p-menu #menu [popup]="true" [model]="getMenuItemsForItem({})" styleClass="left-menu-actions"> </p-menu>
             <i
                 class="pi pi-ellipsis-h cursor-pointer text-clr588"
                 (click)="$event.stopPropagation(); menu.toggle($event)"

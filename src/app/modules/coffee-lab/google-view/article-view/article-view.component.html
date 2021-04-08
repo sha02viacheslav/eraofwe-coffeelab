@@ -30,7 +30,7 @@
                         <div class="position-relative">
                             <p-menu
                                 #menu
-                                popup="popup"
+                                [popup]="true"
                                 [model]="getMenuItemsForItem({})"
                                 styleClass="left-menu-actions"
                             >
@@ -81,7 +81,7 @@
             <div class="d-block d-lg-none pt-3">
                 <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
                     <ng-template let-forum pTemplate="item">
-                        <app-forum-card [data]="forum" forumType="recipe"></app-forum-card>
+                        <app-forum-card [data]="forum"></app-forum-card>
                     </ng-template>
                 </p-carousel>
             </div>
