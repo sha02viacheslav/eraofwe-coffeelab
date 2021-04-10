@@ -1,12 +1,15 @@
 .translate-icon {
     width: 16px;
-    height: 16px;
+    height: 21px;
 }
 ::ng-deep {
     .p-dropdown.p-dropdown-translate {
         border: none;
         &:not(.p-disabled).p-focus {
             box-shadow: none;
+        }
+        .p-inputtext {
+            padding: 0 8px;
         }
         .p-dropdown-panel {
             box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);

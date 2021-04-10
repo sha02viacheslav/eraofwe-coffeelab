@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { languages } from '@constants';
 import { GlobalsService } from '@services';
 import { Router, NavigationExtras } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;
     @Input() forumType;
+    @Output() handleChangeTranslation = new EventEmitter();
     languages = languages;
 
     constructor(public globalsService: GlobalsService, private router: Router) {}
@@ -23,6 +24,10 @@ export class TranslationDropdownComponent implements OnInit {
                 id: event.value,
             },
         };
-        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
+        if (this.handleChangeTranslation.observers.length > 0) {
+            this.handleChangeTranslation.emit(event.value);
+        } else {
+            this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
+        }
     }
 }

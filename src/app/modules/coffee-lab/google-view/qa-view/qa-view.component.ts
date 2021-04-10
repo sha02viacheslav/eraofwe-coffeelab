@@ -57,6 +57,21 @@ export class QaViewComponent implements OnInit {
         });
     }
 
+    getAnswer(id) {
+        this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
+            if (res.success) {
+                const temp = this.detailsData.answers.map((item) => {
+                    console.log(item.id, res.result.original_details.id);
+                    if (item.id === res.result.original_details.id) {
+                        item = res.result;
+                    }
+                    return item;
+                });
+                this.detailsData.answers = temp;
+            }
+        });
+    }
+
     getMenuItemsForItem(item) {
         const items = [
             {
@@ -87,7 +102,6 @@ export class QaViewComponent implements OnInit {
                 id: item.id,
             },
         };
-        console.log(item);
         this.router.navigate(['/coffee-lab/qa'], navigationExtras);
     }
 
