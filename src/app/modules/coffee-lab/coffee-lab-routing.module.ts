@@ -16,11 +16,23 @@ const routes: Routes = [
                 component: QaViewComponent,
             },
             {
+                path: 'qa/:idOrSlug',
+                component: QaViewComponent,
+            },
+            {
                 path: 'recipe',
                 component: RecipeViewComponent,
             },
             {
+                path: 'recipe/:idOrSlug',
+                component: RecipeViewComponent,
+            },
+            {
                 path: 'article',
+                component: ArticleViewComponent,
+            },
+            {
+                path: 'article/:idOrSlug',
                 component: ArticleViewComponent,
             },
             {

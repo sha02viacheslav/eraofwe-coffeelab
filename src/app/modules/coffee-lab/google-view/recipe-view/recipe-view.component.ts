@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-recipe-view',
@@ -10,8 +10,7 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 export class RecipeViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
-    slug: string;
-    id: string;
+    idOrSlug: string;
     infoData: any[] = [
         {
             icon: 'assets/images/expertise-level.svg',
@@ -60,11 +59,10 @@ export class RecipeViewComponent implements OnInit {
         public router: Router,
         private activatedRoute: ActivatedRoute,
     ) {
-        this.activatedRoute.queryParams.subscribe((params) => {
-            this.slug = params.slug;
-            this.id = params.id;
+        this.activatedRoute.params.subscribe((params) => {
+            this.idOrSlug = params.idOrSlug;
             this.getRecipeList();
-            if (this.slug || this.id) {
+            if (this.idOrSlug) {
                 this.getDetails();
             }
         });
@@ -76,23 +74,17 @@ export class RecipeViewComponent implements OnInit {
         this.coffeeLabService.getForumList('recipe').subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
-                    .filter((item) => item.id !== this.id || item.slug !== this.slug)
+                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.slug && !this.id) {
-                    const navigationExtras: NavigationExtras = {
-                        queryParams: {
-                            slug: res.result[0].slug,
-                        },
-                    };
-                    this.router.navigate(['/coffee-lab/recipe'], navigationExtras);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/coffee-lab/recipe/${res.result[0].slug}`]);
                 }
             }
         });
     }
 
     getDetails() {
-        const idOrSlug = this.slug ?? this.id;
-        this.coffeeLabService.getForumDetails('recipe', idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
             }

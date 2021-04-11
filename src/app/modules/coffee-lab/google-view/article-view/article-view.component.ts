@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-article-view',
@@ -10,19 +10,17 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 export class ArticleViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
-    slug: string;
-    id: string;
+    idOrSlug: string;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
     ) {
-        this.activatedRoute.queryParams.subscribe((params) => {
-            this.slug = params.slug;
-            this.id = params.id;
+        this.activatedRoute.params.subscribe((params) => {
+            this.idOrSlug = params.idOrSlug;
             this.getArticleList();
-            if (this.slug || this.id) {
+            if (this.idOrSlug) {
                 this.getDetails();
             }
         });
@@ -34,23 +32,17 @@ export class ArticleViewComponent implements OnInit {
         this.coffeeLabService.getForumList('article').subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
-                    .filter((item) => item.id !== this.id || item.slug !== this.slug)
+                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.slug && !this.id) {
-                    const navigationExtras: NavigationExtras = {
-                        queryParams: {
-                            slug: res.result[0].slug,
-                        },
-                    };
-                    this.router.navigate(['/coffee-lab/article'], navigationExtras);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/coffee-lab/article/${res.result[0].slug}`]);
                 }
             }
         });
     }
 
     getDetails() {
-        const idOrSlug = this.slug ?? this.id;
-        this.coffeeLabService.getForumDetails('article', idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
             }

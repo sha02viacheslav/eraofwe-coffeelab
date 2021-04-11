@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-forum-card',
@@ -15,12 +15,7 @@ export class ForumCardComponent implements OnInit {
     ngOnInit(): void {}
 
     onClick() {
-        const navigationExtras: NavigationExtras = {
-            queryParams: {
-                slug: this.data.slug,
-            },
-        };
-        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
+        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}/${this.data.slug}`]);
     }
 
     getMenuItemsForItem(item) {

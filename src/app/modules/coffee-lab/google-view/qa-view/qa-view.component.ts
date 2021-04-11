@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-qa-view',
@@ -10,19 +10,17 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 export class QaViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
-    slug: string;
-    id: string;
+    idOrSlug: string;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
     ) {
-        this.activatedRoute.queryParams.subscribe((params) => {
-            this.slug = params.slug;
-            this.id = params.id;
+        this.activatedRoute.params.subscribe((params) => {
+            this.idOrSlug = params.idOrSlug;
             this.getQaList();
-            if (this.slug || this.id) {
+            if (this.idOrSlug) {
                 this.getDetails();
             }
         });
@@ -34,23 +32,17 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumList('question').subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result.questions
-                    .filter((item) => item.id !== this.id || item.slug !== this.slug)
+                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.slug && !this.id) {
-                    const navigationExtras: NavigationExtras = {
-                        queryParams: {
-                            id: res.result.questions[0].id,
-                        },
-                    };
-                    this.router.navigate(['/coffee-lab/qa'], navigationExtras);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/coffee-lab/qa/${res.result.questions[0].id}`]);
                 }
             }
         });
     }
 
     getDetails() {
-        const idOrSlug = this.slug ?? this.id;
-        this.coffeeLabService.getForumDetails('question', idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
             }
@@ -97,12 +89,7 @@ export class QaViewComponent implements OnInit {
     }
 
     onGoRelatedQuestion(item) {
-        const navigationExtras: NavigationExtras = {
-            queryParams: {
-                id: item.id,
-            },
-        };
-        this.router.navigate(['/coffee-lab/qa'], navigationExtras);
+        this.router.navigate([`/coffee-lab/qa/${item.id}`]);
     }
 
     onShare(postItem) {}

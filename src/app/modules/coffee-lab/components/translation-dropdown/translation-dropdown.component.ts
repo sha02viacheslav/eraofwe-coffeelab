@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { languages } from '@constants';
 import { GlobalsService } from '@services';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -19,15 +19,10 @@ export class TranslationDropdownComponent implements OnInit {
     ngOnInit(): void {}
 
     onChangeTranslate(event) {
-        const navigationExtras: NavigationExtras = {
-            queryParams: {
-                id: event.value,
-            },
-        };
         if (this.handleChangeTranslation.observers.length > 0) {
             this.handleChangeTranslation.emit(event.value);
         } else {
-            this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}`], navigationExtras);
+            this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}/${event.value}`]);
         }
     }
 }
