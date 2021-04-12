@@ -53,6 +53,7 @@ export class RecipeViewComponent implements OnInit {
             value: '5-6',
         },
     ];
+    loading = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -84,10 +85,12 @@ export class RecipeViewComponent implements OnInit {
     }
 
     getDetails() {
+        this.loading = true;
         this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
             }
+            this.loading = false;
         });
     }
 

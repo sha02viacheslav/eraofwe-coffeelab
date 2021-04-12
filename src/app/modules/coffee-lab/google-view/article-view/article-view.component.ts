@@ -11,6 +11,7 @@ export class ArticleViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
+    loading = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -42,10 +43,12 @@ export class ArticleViewComponent implements OnInit {
     }
 
     getDetails() {
+        this.loading = true;
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
             }
+            this.loading = false;
         });
     }
 
