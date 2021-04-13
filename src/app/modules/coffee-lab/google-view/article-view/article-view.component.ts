@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-article-view',
@@ -12,6 +13,7 @@ export class ArticleViewComponent implements OnInit {
     detailsData: any;
     idOrSlug: string;
     loading = false;
+    jsonLD: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -47,6 +49,16 @@ export class ArticleViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
+                this.jsonLD = {
+                    '@context': 'https://schema.org',
+                    '@type': 'DiscussionForumPosting',
+                    '@id': `${environment.coffeeLabWeb}coffee-lab/article/${this.detailsData.slug}`,
+                    headline: res.result.title,
+                    author: {
+                        '@type': 'Person',
+                        name: this.detailsData.user_name,
+                    },
+                };
             }
             this.loading = false;
         });

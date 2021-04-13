@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-qa-view',
@@ -12,6 +13,7 @@ export class QaViewComponent implements OnInit {
     detailsData: any;
     idOrSlug: string;
     loading = false;
+    jsonLD: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -47,6 +49,21 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
+                this.jsonLD = {
+                    '@context': 'https://schema.org',
+                    '@type': 'DiscussionForumPosting',
+                    '@id': `${environment.coffeeLabWeb}coffee-lab/qa/${this.detailsData.slug}`,
+                    headline: res.result.question,
+                    author: {
+                        '@type': 'Person',
+                        name: this.detailsData.user_name,
+                    },
+                    interactionStatistic: {
+                        '@type': 'InteractionCounter',
+                        interactionType: 'https://schema.org/CommentAction',
+                        userInteractionCount: this.detailsData.answers.length,
+                    },
+                };
             }
             this.loading = false;
         });

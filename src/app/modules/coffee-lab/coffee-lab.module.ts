@@ -11,9 +11,10 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
 import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
 import { ArticleViewComponent } from './google-view/article-view/article-view.component';
 import { SearchForumComponent } from './components/search-forum/search-forum.component';
+import { JsonLdComponent } from './components/json-ld/json-ld.component';
 
 @NgModule({
-    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent, ForumCardComponent, BottomBannerComponent, ArticleViewComponent, SearchForumComponent],
+    declarations: [CoffeeLabComponent, RecipeViewComponent, QaViewComponent, TranslationDropdownComponent, ForumCardComponent, BottomBannerComponent, ArticleViewComponent, SearchForumComponent, JsonLdComponent],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
 export class CoffeeLabModule {}
