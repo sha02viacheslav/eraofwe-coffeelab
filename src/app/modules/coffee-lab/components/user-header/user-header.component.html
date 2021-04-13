@@ -1,0 +1,31 @@
+<div class="d-flex">
+    <div class="mr-25">
+        <p-avatar
+            [image]="
+                prop?.profile_image_url ||
+                prop?.profile_image_thumb_url ||
+                prop?.posted_user_profile_image_url ||
+                'assets/images/default-avatar.png'
+            "
+            pBadge
+            severity="success"
+            shape="circle"
+            styleClass="user-avatar"
+            [style.height]="'40px'"
+        ></p-avatar>
+    </div>
+    <div>
+        <div class="d-flex align-items-center mb-2">
+            <div class="fnt-muli font-weight-bold fnt-14 text-clr24 mr-3">
+                {{ prop?.user_name || prop?.question_user || prop?.posted_user || 'Unknown User' }}
+            </div>
+            <div class="fnt-muli fnt-12 text-clr588">
+                {{ prop?.posted_at || prop?.created_at | amTimeAgo }}
+            </div>
+        </div>
+        <div class="fnt-12 fnt-muli text-clr588">
+            <span class="font-weight-bold mr-2">Coffee Expert</span>
+            <span>@{{ prop?.organisation_name || prop?.org_type }}</span>
+        </div>
+    </div>
+</div>

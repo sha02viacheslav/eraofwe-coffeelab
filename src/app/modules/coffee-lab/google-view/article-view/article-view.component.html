@@ -12,22 +12,10 @@
                 </h4>
             </div>
             <div class="d-flex flex-wrap w-100">
-                <p-avatar
-                    [image]="detailsData?.profile_image_thumb_url || detailsData?.profile_image_url"
-                    pBadge
-                    severity="success"
-                    shape="circle"
-                    styleClass="user-avatar"
-                ></p-avatar>
-                <div class="d-flex flex-column justify-content-between pl-3 flex-1">
-                    <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                            <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 pr-3">{{ detailsData?.user_name }}</p>
-                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                                {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
-                            </p>
-                        </div>
-                        <div class="position-relative">
+                <div class="d-flex justify-content-between align-items-md-end w-100">
+                    <app-user-header [prop]="detailsData"></app-user-header>
+                    <div class="d-flex flex-column align-items-end">
+                        <div class="position-relative mb-md-1">
                             <p-menu
                                 #menu
                                 [popup]="true"
@@ -37,16 +25,9 @@
                             </p-menu>
                             <i class="pi pi-ellipsis-h text-clr588 cursor-pointer" (click)="menu.toggle($event)"></i>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">Coffee Expert</p>
-                            <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                                {{ detailsData?.organisation_name }}
-                            </p>
-                        </div>
                         <div class="d-none d-md-block" *ngIf="detailsData?.allow_translation">
                             <app-translation-dropdown
+                                forumType="article"
                                 [translatedList]="detailsData?.translated_articles"
                             ></app-translation-dropdown>
                         </div>
