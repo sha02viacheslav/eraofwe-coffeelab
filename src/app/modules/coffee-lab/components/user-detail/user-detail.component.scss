@@ -1,0 +1,21 @@
+.user-details-wrapper {
+    max-width: 100%;
+    .user-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .message-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 16px;
+        border-radius: 2px;
+        border: solid 1px #747588;
+        cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+        min-width: 494px;
+    }
+}

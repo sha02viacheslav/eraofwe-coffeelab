@@ -1,5 +1,10 @@
 <div class="d-flex">
     <div class="mr-25">
+        <p-overlayPanel #op styleClass="user-details-overlay" appendTo="body">
+            <ng-template pTemplate>
+                <app-user-detail [data]="userDetails"></app-user-detail>
+            </ng-template>
+        </p-overlayPanel>
         <p-avatar
             [image]="
                 prop?.profile_image_url ||
@@ -10,8 +15,9 @@
             pBadge
             severity="success"
             shape="circle"
-            styleClass="user-avatar"
+            styleClass="user-avatar cursor-pointer"
             [style.height]="'40px'"
+            (mouseenter)="op.toggle($event)"
         ></p-avatar>
     </div>
     <div>

@@ -24,4 +24,8 @@ export class CoffeeLabService extends ApiService {
     healthCheck() {
         return this.post(this.postUrl, `health-check`, 'GET');
     }
+
+    getUserDetail(userId: string | number, orgType: string) {
+        return this.post(this.generalUrl, `general/${orgType}/users/${userId}`, 'GET');
+    }
 }

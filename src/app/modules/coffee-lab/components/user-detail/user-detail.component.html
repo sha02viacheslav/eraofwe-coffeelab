@@ -1,1 +1,36 @@
-<p>user-detail works!</p>
+<div class="user-details-wrapper">
+    <div class="p-4 p-md-45 d-flex">
+        <img
+            class="user-image"
+            [src]="data.profile_image_thumb_url || data.profile_image_url || 'assets/images/default-avatar.png'"
+        />
+        <div class="pl-4">
+            <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-25">{{ data.firstname }} {{ data.lastname }}</p>
+            <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-25">
+                Employee {{ data?.organization_name ? '@' + data.organization_name : '' }}
+            </p>
+            <span class="fnt-muli fnt-18 fnt-normal lh-normal text-clr588 mb-0">
+                {{ orgName }} <img class="ml-4" src="assets/images/position.svg" />
+                {{ globalsService.getCountryName(data.country) }}
+            </span>
+        </div>
+    </div>
+    <p-divider styleClass="m-0"></p-divider>
+    <div class="p-4 p-md-45">
+        <p class="fnt-muli fnt-18 fnt-600 lh-normal text-clr588 mb-3">Can converse in :</p>
+        <div class="d-flex flex-wrap">
+            <div class="flex-1" *ngFor="let language of data.converse_languages">
+                <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-0">
+                    {{ globalsService.getLanguage(language) }}
+                </p>
+            </div>
+        </div>
+        <div class="mt-5 d-flex flex-wrap">
+            <div class="message-button w-mob-100">
+                <img class="mr-2" src="assets/images/message-icon.svg" />
+                Send Message
+            </div>
+            <button class="btn-raised ml-0 ml-md-3 mt-3 mt-md-0 w-mob-100">View Profile</button>
+        </div>
+    </div>
+</div>

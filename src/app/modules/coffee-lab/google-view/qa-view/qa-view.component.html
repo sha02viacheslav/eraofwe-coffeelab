@@ -3,21 +3,28 @@
         <app-search-forum></app-search-forum>
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-main br-4">
             <div class="d-flex align-items-center">
+                <p-overlayPanel #op styleClass="user-details-overlay" appendTo="body">
+                    <ng-template pTemplate>
+                        <app-user-detail [data]="userDetails"></app-user-detail>
+                    </ng-template>
+                </p-overlayPanel>
                 <p-avatar
                     [image]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
                     pBadge
                     severity="success"
                     shape="circle"
-                    styleClass="user-avatar"
+                    styleClass="user-avatar cursor-pointer"
+                    (mouseenter)="op.toggle($event)"
                 ></p-avatar>
                 <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
                 <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
                     {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
                 </p>
             </div>
-            <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3">
-                {{ detailsData?.question }}
-            </h1>
+            <h1
+                class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
+                [innerHTML]="detailsData?.question"
+            ></h1>
             <div class="mt-3 mt-md-4 fnt-14 fnt-muli fnt-bold text-clr60b text-center background-header">
                 Showing {{ detailsData?.answers ? detailsData.answers.length : '0' }} Comments
             </div>
@@ -61,7 +68,7 @@
                         </div>
                     </div>
                     <div class="py-3 px-0">
-                        <p>{{ postItem.answer }}</p>
+                        <div class="mb-2" [innerHTML]="postItem.answer"></div>
                         <ng-container *ngIf="postItem.images">
                             <img
                                 class="w-100 mb-3"
@@ -85,9 +92,7 @@
                         class="fnt-14 fnt-muli fnt-600 lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
                         (click)="onGoRelatedQuestion(forum)"
                     >
-                        <a>
-                            {{ forum.question }}
-                        </a>
+                        <a [innerHTML]="forum.question"> </a>
                     </div>
                 </div>
             </div>

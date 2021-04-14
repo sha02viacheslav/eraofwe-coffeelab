@@ -1,0 +1,11 @@
+.p-overlaypanel {
+    &.user-details-overlay {
+        border-radius: 4px;
+        box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+        border: solid 0.5px #ebebeb;
+        background-color: #ffffff;
+        .p-overlaypanel-content {
+            padding: 0;
+        }
+    }
+}

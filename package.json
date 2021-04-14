@@ -39,6 +39,7 @@
     "ngx-device-detector": "^2.0.6",
     "ngx-moment": "^5.0.0",
     "ngx-plyr": "^4.0.0",
+    "ngx-toastr": "^13.2.1",
     "plyr": "^3.6.4",
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",

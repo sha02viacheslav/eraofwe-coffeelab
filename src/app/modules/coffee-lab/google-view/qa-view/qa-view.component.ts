@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-qa-view',
@@ -14,11 +15,13 @@ export class QaViewComponent implements OnInit {
     idOrSlug: string;
     loading = false;
     jsonLD: any;
+    userDetails: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
+        private toastService: ToastrService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
@@ -38,7 +41,7 @@ export class QaViewComponent implements OnInit {
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
                 if (!this.idOrSlug) {
-                    this.router.navigate([`/coffee-lab/qa/${res.result.questions[0].id}`]);
+                    this.router.navigate([`/coffee-lab/qa/${res.result.questions[0].slug}`]);
                 }
             }
         });
@@ -49,6 +52,7 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
+                this.getUserDetails();
                 this.jsonLD = {
                     '@context': 'https://schema.org',
                     '@type': 'DiscussionForumPosting',
@@ -109,7 +113,19 @@ export class QaViewComponent implements OnInit {
     }
 
     onGoRelatedQuestion(item) {
-        this.router.navigate([`/coffee-lab/qa/${item.id}`]);
+        this.router.navigate([`/coffee-lab/qa/${item.slug}`]);
+    }
+
+    getUserDetails() {
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.user_id, this.detailsData.org_type)
+            .subscribe((res: any) => {
+                if (res.success) {
+                    this.userDetails = res.result;
+                } else {
+                    this.toastService.error('Cannot get user details.');
+                }
+            });
     }
 
     onShare(postItem) {}
