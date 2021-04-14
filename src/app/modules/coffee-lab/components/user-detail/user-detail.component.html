@@ -19,8 +19,9 @@
     <div class="p-4 p-md-45">
         <p class="fnt-muli fnt-18 fnt-600 lh-normal text-clr588 mb-3">Can converse in :</p>
         <div class="d-flex flex-wrap">
-            <div class="flex-1" *ngFor="let language of data.converse_languages">
-                <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-0">
+            <div class="flex-1 d-flex align-items-center" *ngFor="let language of data.converse_languages">
+                <img src="assets/images/en.jpg" />
+                <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 ml-2 mb-0">
                     {{ globalsService.getLanguage(language) }}
                 </p>
             </div>
