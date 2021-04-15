@@ -9,7 +9,10 @@
                 <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0">
                     {{ data.firstname }} {{ data.lastname }}
                 </p>
-                <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="handleClose.emit()"></i>
+                <i
+                    class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer d-block d-md-none"
+                    (click)="handleClose.emit()"
+                ></i>
             </div>
             <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-2 mb-md-25">
                 Employee {{ data?.organization_name ? '@' + data.organization_name : '' }}
