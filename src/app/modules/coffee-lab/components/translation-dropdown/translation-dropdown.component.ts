@@ -20,9 +20,9 @@ export class TranslationDropdownComponent implements OnInit {
 
     onChangeTranslate(event) {
         if (this.handleChangeTranslation.observers.length > 0) {
-            this.handleChangeTranslation.emit(event.value);
+            this.handleChangeTranslation.emit(event.value.id);
         } else {
-            this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}/${event.value}`]);
+            this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}/${event.value.slug}`]);
         }
     }
 }
