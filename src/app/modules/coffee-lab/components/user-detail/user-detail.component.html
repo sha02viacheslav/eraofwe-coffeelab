@@ -23,15 +23,15 @@
     <p-divider styleClass="m-0"></p-divider>
     <div class="p-3 p-md-45">
         <p class="fnt-muli fnt-18 fnt-600 lh-normal text-clr588 mb-3">Can converse in :</p>
-        <div class="d-flex flex-wrap">
-            <div class="flex-1 d-flex align-items-center" *ngFor="let language of data.converse_languages">
+        <div class="language-wrapper">
+            <div class="p-2 px-md-4 d-flex align-items-center" *ngFor="let language of data.converse_languages">
                 <img src="assets/images/en.jpg" />
                 <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 ml-2 mb-0">
                     {{ globalsService.getLanguage(language) }}
                 </p>
             </div>
         </div>
-        <div class="mt-4 mt-md-5 d-flex flex-wrap">
+        <div class="mt-3 mt-md-475 d-flex flex-wrap">
             <div class="message-button fnt-14 fnt-muli fnt-bold lh-157 text-clr334">
                 <img class="mr-2" src="assets/images/message-icon.svg" />
                 Send Message

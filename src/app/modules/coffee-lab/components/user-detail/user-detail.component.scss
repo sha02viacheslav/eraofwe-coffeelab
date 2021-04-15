@@ -14,12 +14,20 @@
         border: solid 1px #747588;
         cursor: pointer;
     }
+    .language-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -8px;
+    }
 
     @media (min-width: 768px) {
         min-width: 494px;
         .user-image {
             width: 80px;
             height: 80px;
+        }
+        .language-wrapper {
+            margin: -8px -24px;
         }
     }
 }
