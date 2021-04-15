@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ORG_LIST } from '@constants';
 import { GlobalsService } from '@services';
 
@@ -10,6 +10,7 @@ import { GlobalsService } from '@services';
 export class UserDetailComponent implements OnInit {
     @Input() data: any;
     orgName: any;
+    @Output() handleClose = new EventEmitter();
     constructor(public globalsService: GlobalsService) {}
 
     ngOnInit(): void {

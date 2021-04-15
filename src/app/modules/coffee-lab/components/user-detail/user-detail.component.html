@@ -1,12 +1,17 @@
-<div class="user-details-wrapper">
-    <div class="p-4 p-md-45 d-flex">
+<div class="py-2 py-md-0 user-details-wrapper">
+    <div class="p-3 p-md-45 d-flex">
         <img
             class="user-image"
             [src]="data.profile_image_thumb_url || data.profile_image_url || 'assets/images/default-avatar.png'"
         />
-        <div class="pl-4">
-            <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-25">{{ data.firstname }} {{ data.lastname }}</p>
-            <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-25">
+        <div class="pl-4 w-100">
+            <div class="d-flex align-items-center justify-content-between mb-2 mb-md-25">
+                <p class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0">
+                    {{ data.firstname }} {{ data.lastname }}
+                </p>
+                <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="handleClose.emit()"></i>
+            </div>
+            <p class="fnt-muli fnt-18 fnt-normal lh-normal text-clr334 mb-2 mb-md-25">
                 Employee {{ data?.organization_name ? '@' + data.organization_name : '' }}
             </p>
             <span class="fnt-muli fnt-18 fnt-normal lh-normal text-clr588 mb-0">
@@ -16,7 +21,7 @@
         </div>
     </div>
     <p-divider styleClass="m-0"></p-divider>
-    <div class="p-4 p-md-45">
+    <div class="p-3 p-md-45">
         <p class="fnt-muli fnt-18 fnt-600 lh-normal text-clr588 mb-3">Can converse in :</p>
         <div class="d-flex flex-wrap">
             <div class="flex-1 d-flex align-items-center" *ngFor="let language of data.converse_languages">
@@ -26,12 +31,12 @@
                 </p>
             </div>
         </div>
-        <div class="mt-5 d-flex flex-wrap">
-            <div class="message-button w-mob-100">
+        <div class="mt-4 mt-md-5 d-flex flex-wrap">
+            <div class="message-button fnt-14 fnt-muli fnt-bold lh-157 text-clr334">
                 <img class="mr-2" src="assets/images/message-icon.svg" />
                 Send Message
             </div>
-            <button class="btn-raised ml-0 ml-md-3 mt-3 mt-md-0 w-mob-100">View Profile</button>
+            <button class="btn-raised ml-3">View Profile</button>
         </div>
     </div>
 </div>

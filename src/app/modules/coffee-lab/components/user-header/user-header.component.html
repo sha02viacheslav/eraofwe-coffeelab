@@ -2,7 +2,7 @@
     <div class="mr-25">
         <p-overlayPanel #op styleClass="user-details-overlay" appendTo="body">
             <ng-template pTemplate>
-                <app-user-detail [data]="userDetails"></app-user-detail>
+                <app-user-detail [data]="userDetails" (handleClose)="op.hide()"></app-user-detail>
             </ng-template>
         </p-overlayPanel>
         <p-avatar
