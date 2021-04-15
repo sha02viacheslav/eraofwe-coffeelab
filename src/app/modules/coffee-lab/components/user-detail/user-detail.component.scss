@@ -1,8 +1,8 @@
 .user-details-wrapper {
     max-width: 100%;
     .user-image {
-        width: 80px;
-        height: 80px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
     }
     .message-button {
@@ -17,5 +17,9 @@
 
     @media (min-width: 768px) {
         min-width: 494px;
+        .user-image {
+            width: 80px;
+            height: 80px;
+        }
     }
 }
