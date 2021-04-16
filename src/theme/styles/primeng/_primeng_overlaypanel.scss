@@ -7,5 +7,9 @@
         .p-overlaypanel-content {
             padding: 0;
         }
+        &:before,
+        &::after {
+            display: none;
+        }
     }
 }
