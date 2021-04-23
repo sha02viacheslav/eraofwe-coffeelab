@@ -1,8 +1,25 @@
+@import 'variables';
+
+.avatar {
+    background-color: $brown-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 0;
+    }
+}
+
 .user-details-wrapper {
     max-width: 100%;
     .user-image {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
     }
     .message-button {
@@ -18,16 +35,29 @@
         display: flex;
         flex-wrap: wrap;
         margin: -8px;
-    }
-
-    @media (min-width: 768px) {
-        min-width: 494px;
-        .user-image {
-            width: 80px;
-            height: 80px;
+        .language-item {
+            border-radius: 13px;
         }
-        .language-wrapper {
-            margin: -8px -24px;
+    }
+    @media (min-width: 356px) {
+        width: 322px;
+    }
+}
+
+::ng-deep {
+    .p-overlaypanel {
+        &.user-details-overlay {
+            border-radius: 4px;
+            box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            border: solid 0.5px #ebebeb;
+            background-color: #ffffff;
+            .p-overlaypanel-content {
+                padding: 0;
+            }
+            &:before,
+            &::after {
+                display: none;
+            }
         }
     }
 }

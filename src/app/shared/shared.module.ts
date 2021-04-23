@@ -53,6 +53,7 @@ import { MonthPipe } from './pipes/month/month.pipe';
 import { WordCountPipe } from './pipes/word-count/word-count.pipe';
 import { ArrayFilterPipe } from './pipes/array-filter.pipe';
 import { StringReplacePipe } from './pipes/string-replace.pipe';
+import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
 
 import { WordLimitDirective } from './directives/word-limit.directive';
 
@@ -125,7 +126,15 @@ const COMPONENTS = [
 ];
 
 const DIRECTIVES = [WordLimitDirective];
-const PIPES = [ArrayFilterPipe, FileIconPipe, FileNamePipe, MonthPipe, StringReplacePipe, WordCountPipe];
+const PIPES = [
+    ArrayFilterPipe,
+    FileIconPipe,
+    FileNamePipe,
+    MonthPipe,
+    StringReplacePipe,
+    WordCountPipe,
+    ConvertToShortDescriptionPipe,
+];
 // #endregion
 
 @NgModule({

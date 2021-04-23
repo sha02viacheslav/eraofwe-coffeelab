@@ -1,24 +1,17 @@
 <div class="d-flex">
     <div class="mr-25">
-        <p-overlayPanel #op styleClass="user-details-overlay" appendTo="body">
-            <ng-template pTemplate>
-                <app-user-detail [data]="userDetails" (handleClose)="op.hide()"></app-user-detail>
-            </ng-template>
-        </p-overlayPanel>
-        <p-avatar
-            [image]="
+        <app-user-detail
+            [imageUrl]="
                 prop?.profile_image_url ||
                 prop?.profile_image_thumb_url ||
                 prop?.posted_user_profile_image_url ||
                 'assets/images/default-avatar.png'
             "
-            pBadge
-            severity="success"
-            shape="circle"
-            styleClass="user-avatar cursor-pointer"
-            [style.height]="'40px'"
-            (mouseenter)="op.toggle($event)"
-        ></p-avatar>
+            [size]="40"
+            [userId]="prop?.user_id"
+            [orgType]="prop?.organisation_type || prop?.org_type"
+        >
+        </app-user-detail>
     </div>
     <div>
         <div class="d-flex align-items-center mb-2">

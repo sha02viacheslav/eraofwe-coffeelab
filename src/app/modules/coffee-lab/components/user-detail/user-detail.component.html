@@ -1,49 +1,76 @@
-<div class="py-2 py-md-0 user-details-wrapper">
-    <div class="p-3 p-md-45 d-flex">
-        <img
-            class="user-image"
-            [src]="data.profile_image_thumb_url || data.profile_image_url || 'assets/images/default-avatar.png'"
-        />
-        <div class="pl-4 w-100 d-flex justify-content-between">
-            <div>
-                <p class="fnt-muli fnt-16 fnt-md-18 fnt-bold lh-normal text-clr334 mb-2 mb-md-25">
-                    {{ data.firstname }} {{ data.lastname }}
-                </p>
-                <p class="fnt-muli fnt-14 fnt-md-18 fnt-normal lh-normal text-clr334 mb-2 mb-md-25">
-                    Employee {{ data?.organization_name ? '@' + data.organization_name : '' }}
-                </p>
-                <span class="fnt-muli fnt-14 fnt-md-18 fnt-normal lh-normal text-clr588 mb-0">
-                    {{ orgName }} <img class="ml-4" src="assets/images/position.svg" />
-                    {{ globalsService.getCountryName(data.country) }}
-                </span>
-            </div>
-            <i
-                class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer d-block d-md-none"
-                (click)="handleClose.emit()"
-            ></i>
-        </div>
-    </div>
-    <p-divider styleClass="m-0"></p-divider>
-    <div class="px-3 px-md-45 pt-3 pt-md-45 pb-2 pb-md-4">
-        <p class="fnt-muli fnt-14 fnt-md-18 fnt-600 lh-normal text-clr588 mb-3">Can converse in :</p>
-        <div class="language-wrapper">
-            <div class="p-2 px-md-4 d-flex align-items-center" *ngFor="let language of data.converse_languages">
-                <img src="assets/images/en.jpg" />
-                <p class="fnt-muli fnt-14 fnt-md-18 fnt-normal lh-normal text-clr334 ml-2 mb-0">
-                    {{ globalsService.getLanguage(language) }}
-                </p>
-            </div>
-        </div>
-        <div class="mt-3 mt-md-475 row gutter-16">
-            <div class="p-2">
-                <div class="message-button fnt-14 fnt-muli fnt-bold lh-157 text-clr334">
-                    <img class="mr-2" src="assets/images/message-icon.svg" />
-                    Send Message
+<div
+    class="avatar"
+    [style.width]="size + 'px'"
+    [style.height]="size + 'px'"
+    [style.border]="hasBorder ? '2px solid #fff' : 'none'"
+    (mouseenter)="myOp.toggle($event)"
+>
+    <img
+        *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
+        [src]="data?.profile_image_thumb_url || data?.profile_image_url"
+        [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
+        [style.borderRadius]="shape === 'rectangle' ? 'unset' : '50%'"
+    />
+    <span
+        *ngIf="!data?.profile_image_thumb_url && !data?.profile_image_url"
+        class="text-white"
+        [style.font-size]="size / 1.5 + 'px'"
+        >{{ name && name.length ? name.slice(0, 1) : '' }}</span
+    >
+</div>
+<p-overlayPanel #myOp styleClass="user-details-overlay" appendTo="body">
+    <ng-template pTemplate>
+        <div class="py-2 py-md-0 user-details-wrapper">
+            <div class="p-3 p-md-4 d-flex">
+                <img
+                    class="user-image"
+                    [src]="
+                        imageUrl ||
+                        data?.profile_image_thumb_url ||
+                        data?.profile_image_url ||
+                        'assets/images/default-avatar.png'
+                    "
+                />
+                <div class="pl-4 w-100 d-flex justify-content-between">
+                    <div>
+                        <p class="fnt-muli fnt-14 fnt-bold lh-normal text-clr334 mb-1">
+                            {{ data?.firstname }} {{ data?.lastname }}
+                        </p>
+                        <p class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 mb-25">
+                            Employee {{ data?.organization_name ? '@' + data?.organization_name : '' }}
+                        </p>
+                        <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr588 mb-0">
+                            {{ orgName }} <img class="ml-4" src="assets/images/position.svg" />
+                            {{ globalsService.getCountryName(data?.country) }}
+                        </span>
+                    </div>
+                    <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="myOp.hide()"></i>
                 </div>
             </div>
-            <div class="p-2">
-                <button class="btn-raised">View Profile</button>
+            <p-divider styleClass="m-0"></p-divider>
+            <div class="p-3 px-md-4 pt-md-3 pb-md-4">
+                <p class="fnt-muli fnt-14 fnt-600 lh-15 text-clr588 pt-z5 mb-3" *ngIf="data?.about_me">
+                    {{ data?.about_me | convertToShortDescription: 13 }}
+                </p>
+                <p class="fnt-muli fnt-14 fnt-600 lh-normal text-clr588 mb-25">{{ 'languages_spoken' | translate }}:</p>
+                <div class="language-wrapper">
+                    <div class="p-1" *ngFor="let language of data?.converse_languages">
+                        <div class="border-main px-25 py-1 language-item">
+                            <p class="fnt-muli fnt-14 fnt-600 lh-normal text-clr334 mb-0">
+                                {{ globalsService.getLanguage(language) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex align-items-center">
+                    <button class="btn-raised mr-3" [routerLink]="'/profile/' + userId + '/' + orgType">
+                        {{ 'view_profile' | translate }}
+                    </button>
+                    <div class="message-button fnt-14 fnt-muli" (click)="myOp.hide(); openChat()">
+                        <img src="assets/images/message-icon.svg" />
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </ng-template>
+</p-overlayPanel>

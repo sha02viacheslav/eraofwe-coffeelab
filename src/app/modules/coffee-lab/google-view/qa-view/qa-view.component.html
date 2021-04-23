@@ -3,19 +3,13 @@
         <app-search-forum></app-search-forum>
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-main br-4">
             <div class="d-flex align-items-center">
-                <p-overlayPanel #op styleClass="user-details-overlay" appendTo="body">
-                    <ng-template pTemplate>
-                        <app-user-detail [data]="userDetails" (handleClose)="op.hide()"></app-user-detail>
-                    </ng-template>
-                </p-overlayPanel>
-                <p-avatar
-                    [image]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                    pBadge
-                    severity="success"
-                    shape="circle"
-                    styleClass="user-avatar cursor-pointer"
-                    (mouseenter)="op.toggle($event)"
-                ></p-avatar>
+                <app-user-detail
+                    [imageUrl]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
+                    [size]="40"
+                    [userId]="detailsData?.user_id"
+                    [orgType]="detailsData?.organisation_type || detailsData?.org_type"
+                >
+                </app-user-detail>
                 <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
                 <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
                     {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
