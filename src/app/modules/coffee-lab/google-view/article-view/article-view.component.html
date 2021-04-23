@@ -43,9 +43,10 @@
                 </div>
             </div>
             <div class="answer-content pt-3 pt-md-4">
-                <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0">
-                    {{ detailsData?.content }}
-                </p>
+                <div
+                    class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
+                    [innerHTML]="detailsData?.content"
+                ></div>
             </div>
         </div>
     </article>
