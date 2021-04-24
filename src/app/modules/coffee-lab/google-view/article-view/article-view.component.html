@@ -25,7 +25,14 @@
                             </p-menu>
                             <i class="pi pi-ellipsis-h text-clr588 cursor-pointer" (click)="menu.toggle($event)"></i>
                         </div>
-                        <div class="d-none d-md-block" *ngIf="detailsData?.allow_translation">
+                        <div
+                            class="d-none d-md-block"
+                            *ngIf="
+                                detailsData?.allow_translation &&
+                                detailsData?.translated_articles &&
+                                detailsData?.translated_articles.length > 0
+                            "
+                        >
                             <app-translation-dropdown
                                 forumType="article"
                                 [translatedList]="detailsData?.translated_articles"
@@ -35,14 +42,18 @@
                 </div>
                 <div
                     class="w-100 d-block d-md-none mt-3 py-3 pr-0 border-top-main border-bottom-main"
-                    *ngIf="detailsData?.allow_translation"
+                    *ngIf="
+                        detailsData?.allow_translation &&
+                        detailsData?.translated_articles &&
+                        detailsData?.translated_articles.length > 0
+                    "
                 >
                     <app-translation-dropdown
                         [translatedList]="detailsData?.translated_articles"
                     ></app-translation-dropdown>
                 </div>
             </div>
-            <div class="answer-content pt-3 pt-md-4">
+            <div class="forum-content pt-3 pt-md-4">
                 <div
                     class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
                     [innerHTML]="detailsData?.content"

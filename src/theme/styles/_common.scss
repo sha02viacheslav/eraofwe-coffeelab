@@ -419,3 +419,15 @@ span.star {
         height: 256px;
     }
 }
+
+.forum-content > div {
+    p {
+        margin-bottom: 0;
+    }
+    img {
+        width: 100%;
+        height: 276px;
+        margin: 16px 0;
+        object-fit: cover;
+    }
+}
