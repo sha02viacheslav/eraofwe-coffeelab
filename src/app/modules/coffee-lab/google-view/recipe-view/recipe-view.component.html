@@ -59,9 +59,12 @@
                         </div>
                     </div>
                 </div>
-                <p class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 pt-3 mb-4">
-                    {{ detailsData?.description }}
-                </p>
+                <div class="forum-content pt-3 pt-md-4">
+                    <div
+                        class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157"
+                        [innerHTML]="detailsData?.description"
+                    ></div>
+                </div>
                 <div *ngIf="detailsData?.ingredients">
                     <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">Ingredients</h2>
                     <div class="border-main br-4 py-2 px-4 ingredients-wrapper">
