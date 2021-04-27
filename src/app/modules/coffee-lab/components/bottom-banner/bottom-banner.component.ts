@@ -28,9 +28,9 @@ export class BottomBannerComponent implements OnInit {
 
     handleScrolling() {
         const pos = document.documentElement.scrollTop || document.body.scrollTop;
-        if (pos >= 300) {
+        if (pos >= 600) {
             this.showBanner = true;
-            window.scrollTo(0, 300);
+            window.scrollTo(0, 600);
         } else {
             this.showBanner = false;
         }
