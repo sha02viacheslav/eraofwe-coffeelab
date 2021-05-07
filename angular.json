@@ -25,7 +25,7 @@
             "aot": true,
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/theme/styles"
+                "src/theme/styles"
               ]
             },
             "assets": [
@@ -134,7 +134,12 @@
           "options": {
             "outputPath": "dist/coffee-lab/server",
             "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/theme/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
