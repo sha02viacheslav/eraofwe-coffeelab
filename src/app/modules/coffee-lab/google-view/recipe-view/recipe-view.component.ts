@@ -80,7 +80,7 @@ export class RecipeViewComponent implements OnInit {
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
                 if (!this.idOrSlug) {
-                    this.router.navigate([`/coffee-lab/recipe/${res.result[0].slug}`]);
+                    this.router.navigate([`/recipe/${res.result[0].slug}`]);
                 }
             }
         });
@@ -94,7 +94,7 @@ export class RecipeViewComponent implements OnInit {
                 this.jsonLD = {
                     '@context': 'https://schema.org',
                     '@type': 'DiscussionForumPosting',
-                    '@id': `${environment.coffeeLabWeb}coffee-lab/recipe/${this.detailsData.slug}`,
+                    '@id': `${environment.coffeeLabWeb}recipe/${this.detailsData.slug}`,
                     headline: res.result.name,
                     author: {
                         '@type': 'Person',

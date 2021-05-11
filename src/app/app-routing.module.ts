@@ -9,10 +9,9 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             {
-                path: 'coffee-lab',
+                path: '',
                 loadChildren: () => import('./modules/coffee-lab/coffee-lab.module').then((m) => m.CoffeeLabModule),
             },
-            { path: '', redirectTo: 'coffee-lab', pathMatch: 'full' },
         ],
     },
     { path: 'health-check', component: HealthCheckComponent },

@@ -41,7 +41,7 @@ export class QaViewComponent implements OnInit {
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
                 if (!this.idOrSlug) {
-                    this.router.navigate([`/coffee-lab/qa/${res.result.questions[0].slug}`]);
+                    this.router.navigate([`/qa/${res.result.questions[0].slug}`]);
                 }
             }
         });
@@ -56,7 +56,7 @@ export class QaViewComponent implements OnInit {
                 this.jsonLD = {
                     '@context': 'https://schema.org',
                     '@type': 'DiscussionForumPosting',
-                    '@id': `${environment.coffeeLabWeb}coffee-lab/qa/${this.detailsData.slug}`,
+                    '@id': `${environment.coffeeLabWeb}qa/${this.detailsData.slug}`,
                     headline: res.result.question,
                     author: {
                         '@type': 'Person',
@@ -113,7 +113,7 @@ export class QaViewComponent implements OnInit {
     }
 
     onGoRelatedQuestion(item) {
-        this.router.navigate([`/coffee-lab/qa/${item.slug}`]);
+        this.router.navigate([`/qa/${item.slug}`]);
     }
 
     getUserDetails() {

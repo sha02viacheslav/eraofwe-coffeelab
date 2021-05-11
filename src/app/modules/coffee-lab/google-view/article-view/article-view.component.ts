@@ -39,7 +39,7 @@ export class ArticleViewComponent implements OnInit {
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
                 if (!this.idOrSlug) {
-                    this.router.navigate([`/coffee-lab/article/${res.result[0].slug}`]);
+                    this.router.navigate([`/article/${res.result[0].slug}`]);
                 }
             }
         });
@@ -53,7 +53,7 @@ export class ArticleViewComponent implements OnInit {
                 this.jsonLD = {
                     '@context': 'https://schema.org',
                     '@type': 'DiscussionForumPosting',
-                    '@id': `${environment.coffeeLabWeb}coffee-lab/article/${this.detailsData.slug}`,
+                    '@id': `${environment.coffeeLabWeb}article/${this.detailsData.slug}`,
                     headline: res.result.title,
                     author: {
                         '@type': 'Person',

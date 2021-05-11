@@ -15,7 +15,7 @@ export class ForumCardComponent implements OnInit {
     ngOnInit(): void {}
 
     onClick() {
-        this.router.navigate([`/coffee-lab/${this.forumType ?? 'article'}/${this.data.slug}`]);
+        this.router.navigate([`/${this.forumType ?? 'article'}/${this.data.slug}`]);
     }
 
     getMenuItemsForItem(item) {
