@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
 
@@ -19,6 +19,7 @@ export class ArticleViewComponent implements OnInit {
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
+        private seoService: SEOService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
@@ -59,9 +60,16 @@ export class ArticleViewComponent implements OnInit {
                         name: this.detailsData.user_name,
                     },
                 };
+                this.setSEO();
             }
             this.loading = false;
         });
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle(this.detailsData?.title);
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang();
     }
 
     getMenuItemsForItem(item) {
