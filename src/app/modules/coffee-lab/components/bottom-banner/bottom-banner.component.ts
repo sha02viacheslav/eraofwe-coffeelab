@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
 
 @Component({
     selector: 'app-bottom-banner',
@@ -22,12 +24,12 @@ export class BottomBannerComponent implements OnInit {
         this.ticking = true;
     }
 
-    constructor() {}
+    constructor(@Inject(DOCUMENT) private doc) {}
 
     ngOnInit(): void {}
 
     handleScrolling() {
-        const pos = document.documentElement.scrollTop || document.body.scrollTop;
+        const pos = this.doc.documentElement.scrollTop || this.doc.body.scrollTop;
         if (pos >= 600) {
             this.showBanner = true;
             window.scrollTo(0, 600);
