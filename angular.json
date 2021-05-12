@@ -150,9 +150,9 @@
                         "serverTarget": "coffee-lab:server"
                     },
                     "configurations": {
-                        "production": {
-                            "browserTarget": "coffee-lab:build:production",
-                            "serverTarget": "coffee-lab:server:production"
+                        "production-coffee-lab": {
+                            "browserTarget": "coffee-lab:build:production-coffee-lab",
+                            "serverTarget": "coffee-lab:server:production-coffee-lab"
                         }
                     }
                 },
