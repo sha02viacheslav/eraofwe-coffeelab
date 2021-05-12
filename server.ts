@@ -40,13 +40,7 @@ export function app() {
         res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
     });
     server.get('*', (req, res) => {
-        const defaultPrefix = 'coffee-lab';
-        const supportedPrefixes = ['coffee-lab'];
-        const matches = req.url.match(/^\/([a-z]{5,6}(?:-[A-Z]{5,6})?)\//);
-
-        // check if the requested url has a correct format '/locale' and matches any of the supportedLocales
-        const prefix = matches && supportedPrefixes.indexOf(matches[1]) !== -1 ? matches[1] : defaultPrefix;
-
+        const prefix = 'coffee-lab';
         res.render(`${prefix}/index`, {
             req,
             providers: [

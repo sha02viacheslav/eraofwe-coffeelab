@@ -35,7 +35,7 @@
                     },
                     "configurations": {
                         "production": {
-                            "outputPath": "dist/coffee-lab/browser/",
+                            "outputPath": "dist/coffee-lab/browser/coffee-lab/",
                             "baseHref": "/coffee-lab/",
                             "fileReplacements": [
                                 {
