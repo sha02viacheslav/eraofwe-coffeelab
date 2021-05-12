@@ -30,11 +30,10 @@
                             "src/styles.scss"
                         ],
                         "scripts": [
-
                         ]
                     },
-                    "configurations": {
-                        "production": {
+                     "configurations": {
+                        "production-coffee-lab": {
                             "outputPath": "dist/coffee-lab/browser/coffee-lab/",
                             "baseHref": "/coffee-lab/",
                             "fileReplacements": [
@@ -72,14 +71,14 @@
                         }
                     }
                 },
-                "serve": {
+                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "coffee-lab:build"
                     },
                     "configurations": {
-                        "production": {
-                            "browserTarget": "coffee-lab:build:production"
+                        "production-coffee-lab": {
+                            "browserTarget": "coffee-lab:build:production-coffee-lab"
                         }
                     }
                 },
@@ -108,7 +107,7 @@
                         "exclude": ["**/node_modules/**"]
                     }
                 },
-                "e2e": {
+                 "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
@@ -131,7 +130,7 @@
                         }
                     },
                     "configurations": {
-                        "production": {
+                        "production-coffee-lab": {
                             "outputHashing": "media",
                             "fileReplacements": [
                                 {
