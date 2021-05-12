@@ -34,8 +34,8 @@
                         ]
                     },
                     "configurations": {
-                        "production-coffee-lab": {
-                            "outputPath": "dist/coffee-lab/browser/coffee-lab/",
+                        "production": {
+                            "outputPath": "dist/coffee-lab/browser/",
                             "baseHref": "/coffee-lab/",
                             "fileReplacements": [
                                 {
@@ -78,8 +78,8 @@
                         "browserTarget": "coffee-lab:build"
                     },
                     "configurations": {
-                        "production-coffee-lab": {
-                            "browserTarget": "coffee-lab:build:production-coffee-lab"
+                        "production": {
+                            "browserTarget": "coffee-lab:build:production"
                         }
                     }
                 },
@@ -131,7 +131,7 @@
                         }
                     },
                     "configurations": {
-                        "production-coffee-lab": {
+                        "production": {
                             "outputHashing": "media",
                             "fileReplacements": [
                                 {
