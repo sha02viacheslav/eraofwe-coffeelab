@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
 import { ToastrService } from 'ngx-toastr';
@@ -16,15 +16,18 @@ export class QaViewComponent implements OnInit {
     loading = false;
     jsonLD: any;
     userDetails: any;
+    lang: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
         private toastService: ToastrService,
+        private seoService: SEOService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
+            this.lang = params.lang;
             this.getQaList();
             if (this.idOrSlug) {
                 this.getDetails();
@@ -68,9 +71,16 @@ export class QaViewComponent implements OnInit {
                         userInteractionCount: this.detailsData.answers.length,
                     },
                 };
+                this.setSEO();
             }
             this.loading = false;
         });
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle(this.detailsData?.question);
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang();
     }
 
     getAnswer(id) {

@@ -20,6 +20,14 @@ const routes: Routes = [
                 component: QaViewComponent,
             },
             {
+                path: ':lang/qa',
+                component: QaViewComponent,
+            },
+            {
+                path: ':lang/qa/:idOrSlug',
+                component: QaViewComponent,
+            },
+            {
                 path: 'recipe',
                 component: RecipeViewComponent,
             },
@@ -28,11 +36,27 @@ const routes: Routes = [
                 component: RecipeViewComponent,
             },
             {
+                path: ':lang/recipe',
+                component: RecipeViewComponent,
+            },
+            {
+                path: ':lang/recipe/:idOrSlug',
+                component: RecipeViewComponent,
+            },
+            {
                 path: 'article',
                 component: ArticleViewComponent,
             },
             {
                 path: 'article/:idOrSlug',
+                component: ArticleViewComponent,
+            },
+            {
+                path: ':lang/article',
+                component: ArticleViewComponent,
+            },
+            {
+                path: ':lang/article/:idOrSlug',
                 component: ArticleViewComponent,
             },
             {

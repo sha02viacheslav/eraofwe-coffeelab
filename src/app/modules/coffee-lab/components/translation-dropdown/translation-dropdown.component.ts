@@ -22,7 +22,7 @@ export class TranslationDropdownComponent implements OnInit {
         if (this.handleChangeTranslation.observers.length > 0) {
             this.handleChangeTranslation.emit(event.value.id);
         } else {
-            this.router.navigate([`/${this.forumType ?? 'article'}/${event.value.slug}`]);
+            this.router.navigate([`/${event.value.language}/${this.forumType ?? 'article'}/${event.value.slug}`]);
         }
     }
 }
