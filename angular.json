@@ -41,7 +41,7 @@
             "scripts": []
           },
           "configurations": {
-            "production-coffe-lab": {
+            "production-coffee-lab": {
               "outputPath": "dist/coffee-lab/browser/coffee-lab/",
               "baseHref": "/coffee-lab/",
               "fileReplacements": [

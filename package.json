@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run coffee-lab:serve-ssr",
     "serve:ssr": "node dist/coffee-lab/server/main.js",
-    "build:ssr": "ng build --prod && ng run coffee-lab:server:production",
+    "build:ssr": "ng run coffee-lab:build:production-coffee-lab && ng run coffee-lab:server:production-coffee-lab",
     "prerender": "ng run coffee-lab:prerender"
   },
   "private": true,
