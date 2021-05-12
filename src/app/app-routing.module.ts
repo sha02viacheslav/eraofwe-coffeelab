@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HealthCheckComponent } from '@components';
 
 const routes: Routes = [
+    { path: 'health-check', component: HealthCheckComponent },
     {
         path: '',
         component: LayoutComponent,
@@ -14,7 +15,6 @@ const routes: Routes = [
             },
         ],
     },
-    { path: 'health-check', component: HealthCheckComponent },
 ];
 
 @NgModule({
