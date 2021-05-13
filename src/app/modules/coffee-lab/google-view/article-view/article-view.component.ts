@@ -30,9 +30,7 @@ export class ArticleViewComponent implements OnInit {
             this.idOrSlug = params.idOrSlug;
             this.lang = params.lang;
             this.getArticleList();
-            if (this.idOrSlug) {
-                this.getDetails();
-            }
+            this.getDetails();
         });
     }
 
@@ -44,9 +42,6 @@ export class ArticleViewComponent implements OnInit {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`/article/${res.result[0].slug}`]);
-                }
             }
         });
     }
@@ -72,6 +67,9 @@ export class ArticleViewComponent implements OnInit {
                     };
                     this.setSEO();
                 }
+            } else {
+                this.toastService.error('The article is not exist.');
+                this.router.navigate(['/error']);
             }
             this.loading = false;
         });

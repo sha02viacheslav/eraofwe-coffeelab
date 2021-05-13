@@ -72,9 +72,7 @@ export class RecipeViewComponent implements OnInit {
             this.idOrSlug = params.idOrSlug;
             this.lang = params.lang;
             this.getRecipeList();
-            if (this.idOrSlug) {
-                this.getDetails();
-            }
+            this.getDetails();
         });
     }
 
@@ -86,9 +84,6 @@ export class RecipeViewComponent implements OnInit {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`/recipe/${res.result[0].slug}`]);
-                }
             }
         });
     }
@@ -114,6 +109,9 @@ export class RecipeViewComponent implements OnInit {
                     };
                     this.setSEO();
                 }
+            } else {
+                this.toastService.error('The recipe is not exist.');
+                this.router.navigate(['/error']);
             }
             this.loading = false;
         });

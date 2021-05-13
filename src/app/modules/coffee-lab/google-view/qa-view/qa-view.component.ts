@@ -31,9 +31,7 @@ export class QaViewComponent implements OnInit {
             this.idOrSlug = params.idOrSlug;
             this.lang = params.lang;
             this.getQaList();
-            if (this.idOrSlug) {
-                this.getDetails();
-            }
+            this.getDetails();
         });
     }
 
@@ -45,9 +43,6 @@ export class QaViewComponent implements OnInit {
                 this.relatedData = res.result.questions
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 5);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`/qa/${res.result.questions[0].slug}`]);
-                }
             }
         });
     }
@@ -79,6 +74,9 @@ export class QaViewComponent implements OnInit {
                     };
                     this.setSEO();
                 }
+            } else {
+                this.toastService.error('The question is not exist.');
+                this.router.navigate(['/error']);
             }
             this.loading = false;
         });

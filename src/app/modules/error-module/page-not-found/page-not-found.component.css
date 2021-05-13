@@ -1,0 +1,49 @@
+.welcome-sec {
+    border-radius: 4px;
+    background-color: #ffffff;   
+    width:85%;
+    margin: auto;
+    margin:32px 100px 32px 100px;
+}
+.pink {
+    padding-bottom: 184px;
+} 
+.error-image {
+    margin-top:109px;
+    margin-bottom: 40.1px;
+}
+.add-tem-butn {
+    border-radius: 4px;
+    background-color: #30855c;
+    border: 1px solid #30855c;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 12px 24px;
+}
+.page-not-found { 
+    height: 100%;
+    width:100%;
+    background-color: #f1f1f1;
+}
+.error-header {
+    font-family: Muli;
+    font-size: 32px;
+    font-weight: bold;
+    color: #232334;
+    margin-bottom: 12px;
+}
+.error-sub-text {
+    font-family: Muli;
+    font-size: 20px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #747588;
+    margin-bottom: 40px;
+    max-width: 759px;
+    max-height: 60px;
+    margin: auto;
+    margin-bottom: 40px;
+}

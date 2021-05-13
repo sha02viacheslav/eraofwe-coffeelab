@@ -4,7 +4,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { HealthCheckComponent } from '@components';
 
 const routes: Routes = [
-    { path: 'health-check', component: HealthCheckComponent },
     {
         path: '',
         component: LayoutComponent,
@@ -14,6 +13,15 @@ const routes: Routes = [
                 loadChildren: () => import('./modules/coffee-lab/coffee-lab.module').then((m) => m.CoffeeLabModule),
             },
         ],
+    },
+    { path: 'health-check', component: HealthCheckComponent },
+    {
+        path: 'error',
+        loadChildren: () => import('./modules/error-module/error-module.module').then((m) => m.ErrorModuleModule),
+    },
+    {
+        path: '**',
+        redirectTo: 'error',
     },
 ];
 
