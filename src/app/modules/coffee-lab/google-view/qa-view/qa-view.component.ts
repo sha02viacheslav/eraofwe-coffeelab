@@ -57,7 +57,6 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                console.log(this.lang, res.result.lang_code);
                 if (this.lang && this.lang !== res.result.lang_code) {
                     this.toastService.error('Language is not matched.');
                     this.location.back();

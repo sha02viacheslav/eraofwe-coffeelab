@@ -12,15 +12,7 @@ const routes: Routes = [
         component: CoffeeLabComponent,
         children: [
             {
-                path: 'qa',
-                component: QaViewComponent,
-            },
-            {
                 path: 'qa/:idOrSlug',
-                component: QaViewComponent,
-            },
-            {
-                path: ':lang/qa',
                 component: QaViewComponent,
             },
             {
@@ -28,15 +20,7 @@ const routes: Routes = [
                 component: QaViewComponent,
             },
             {
-                path: 'recipe',
-                component: RecipeViewComponent,
-            },
-            {
                 path: 'recipe/:idOrSlug',
-                component: RecipeViewComponent,
-            },
-            {
-                path: ':lang/recipe',
                 component: RecipeViewComponent,
             },
             {
@@ -44,15 +28,7 @@ const routes: Routes = [
                 component: RecipeViewComponent,
             },
             {
-                path: 'article',
-                component: ArticleViewComponent,
-            },
-            {
                 path: 'article/:idOrSlug',
-                component: ArticleViewComponent,
-            },
-            {
-                path: ':lang/article',
                 component: ArticleViewComponent,
             },
             {

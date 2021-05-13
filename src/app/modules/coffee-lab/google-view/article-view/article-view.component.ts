@@ -56,7 +56,6 @@ export class ArticleViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                console.log(this.lang, res.result.language);
                 if (this.lang && this.lang !== res.result.language) {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
