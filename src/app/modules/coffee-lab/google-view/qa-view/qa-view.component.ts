@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
@@ -24,6 +25,7 @@ export class QaViewComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private toastService: ToastrService,
         private seoService: SEOService,
+        private location: Location,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
@@ -55,23 +57,29 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                this.getUserDetails();
-                this.jsonLD = {
-                    '@context': 'https://schema.org',
-                    '@type': 'DiscussionForumPosting',
-                    '@id': `${environment.coffeeLabWeb}qa/${this.detailsData.slug}`,
-                    headline: res.result.question,
-                    author: {
-                        '@type': 'Person',
-                        name: this.detailsData.user_name,
-                    },
-                    interactionStatistic: {
-                        '@type': 'InteractionCounter',
-                        interactionType: 'https://schema.org/CommentAction',
-                        userInteractionCount: this.detailsData.answers.length,
-                    },
-                };
-                this.setSEO();
+                console.log(this.lang, res.result.lang_code);
+                if (this.lang && this.lang !== res.result.lang_code) {
+                    this.toastService.error('Language is not matched.');
+                    this.location.back();
+                } else {
+                    this.getUserDetails();
+                    this.jsonLD = {
+                        '@context': 'https://schema.org',
+                        '@type': 'DiscussionForumPosting',
+                        '@id': `${environment.coffeeLabWeb}qa/${this.detailsData.slug}`,
+                        headline: res.result.question,
+                        author: {
+                            '@type': 'Person',
+                            name: this.detailsData.user_name,
+                        },
+                        interactionStatistic: {
+                            '@type': 'InteractionCounter',
+                            interactionType: 'https://schema.org/CommentAction',
+                            userInteractionCount: this.detailsData.answers.length,
+                        },
+                    };
+                    this.setSEO();
+                }
             }
             this.loading = false;
         });

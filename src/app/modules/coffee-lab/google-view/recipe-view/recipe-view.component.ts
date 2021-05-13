@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-recipe-view',
@@ -56,15 +58,19 @@ export class RecipeViewComponent implements OnInit {
     ];
     loading = false;
     jsonLD: any;
+    lang: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
+        private toastService: ToastrService,
+        private location: Location,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
+            this.lang = params.lang;
             this.getRecipeList();
             if (this.idOrSlug) {
                 this.getDetails();
@@ -92,17 +98,23 @@ export class RecipeViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                this.jsonLD = {
-                    '@context': 'https://schema.org',
-                    '@type': 'DiscussionForumPosting',
-                    '@id': `${environment.coffeeLabWeb}recipe/${this.detailsData.slug}`,
-                    headline: res.result.name,
-                    author: {
-                        '@type': 'Person',
-                        name: this.detailsData.posted_user,
-                    },
-                };
-                this.setSEO();
+                console.log(this.lang, res.result.language);
+                if (this.lang && this.lang !== res.result.language) {
+                    this.toastService.error('Language is not matched.');
+                    this.location.back();
+                } else {
+                    this.jsonLD = {
+                        '@context': 'https://schema.org',
+                        '@type': 'DiscussionForumPosting',
+                        '@id': `${environment.coffeeLabWeb}recipe/${this.detailsData.slug}`,
+                        headline: res.result.name,
+                        author: {
+                            '@type': 'Person',
+                            name: this.detailsData.posted_user,
+                        },
+                    };
+                    this.setSEO();
+                }
             }
             this.loading = false;
         });
