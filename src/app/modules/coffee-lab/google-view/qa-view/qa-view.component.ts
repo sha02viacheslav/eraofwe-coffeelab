@@ -57,21 +57,6 @@ export class QaViewComponent implements OnInit {
                     this.location.back();
                 } else {
                     this.getUserDetails();
-                    this.jsonLD = {
-                        '@context': 'https://schema.org',
-                        '@type': 'DiscussionForumPosting',
-                        '@id': `${environment.coffeeLabWeb}qa/${this.detailsData.slug}`,
-                        headline: res.result.question,
-                        author: {
-                            '@type': 'Person',
-                            name: this.detailsData.user_name,
-                        },
-                        interactionStatistic: {
-                            '@type': 'InteractionCounter',
-                            interactionType: 'https://schema.org/CommentAction',
-                            userInteractionCount: this.detailsData.answers.length,
-                        },
-                    };
                     this.setSEO();
                 }
             } else {
@@ -85,7 +70,8 @@ export class QaViewComponent implements OnInit {
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.question);
         this.seoService.createLinkForCanonicalURL();
-        this.seoService.createLinkForHreflang();
+        this.seoService.createLinkForHreflang(this.lang || 'x-default');
+        this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name, this.detailsData.answers.length);
     }
 
     getAnswer(id) {

@@ -97,16 +97,6 @@ export class RecipeViewComponent implements OnInit {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
-                    this.jsonLD = {
-                        '@context': 'https://schema.org',
-                        '@type': 'DiscussionForumPosting',
-                        '@id': `${environment.coffeeLabWeb}recipe/${this.detailsData.slug}`,
-                        headline: res.result.name,
-                        author: {
-                            '@type': 'Person',
-                            name: this.detailsData.posted_user,
-                        },
-                    };
                     this.setSEO();
                 }
             } else {
@@ -120,7 +110,8 @@ export class RecipeViewComponent implements OnInit {
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.name);
         this.seoService.createLinkForCanonicalURL();
-        this.seoService.createLinkForHreflang();
+        this.seoService.createLinkForHreflang(this.lang || 'x-default');
+        this.jsonLD = this.seoService.getJsonLD(this.detailsData.posted_user);
     }
 
     getMenuItemsForItem(item) {

@@ -55,16 +55,6 @@ export class ArticleViewComponent implements OnInit {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
-                    this.jsonLD = {
-                        '@context': 'https://schema.org',
-                        '@type': 'DiscussionForumPosting',
-                        '@id': `${environment.coffeeLabWeb}article/${this.detailsData.slug}`,
-                        headline: res.result.title,
-                        author: {
-                            '@type': 'Person',
-                            name: this.detailsData.user_name,
-                        },
-                    };
                     this.setSEO();
                 }
             } else {
@@ -78,7 +68,8 @@ export class ArticleViewComponent implements OnInit {
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.title);
         this.seoService.createLinkForCanonicalURL();
-        this.seoService.createLinkForHreflang();
+        this.seoService.createLinkForHreflang(this.lang || 'x-default');
+        this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name);
     }
 
     getMenuItemsForItem(item) {
