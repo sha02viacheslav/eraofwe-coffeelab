@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '@env/environment';
+import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -69,6 +69,10 @@ export class QaViewComponent implements OnInit {
 
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.question);
+        if (this.detailsData?.answers?.length) {
+            const firstAnswer = this.detailsData?.answers[0];
+            this.seoService.setMetaData('description', getJustText(firstAnswer.answer));
+        }
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name, this.detailsData.answers.length);
@@ -78,7 +82,6 @@ export class QaViewComponent implements OnInit {
         this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
             if (res.success) {
                 const temp = this.detailsData.answers.map((item) => {
-                    console.log(item.id, res.result.original_details.id);
                     if (item.id === res.result.original_details.id) {
                         item = res.result;
                     }

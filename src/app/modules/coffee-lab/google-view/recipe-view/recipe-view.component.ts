@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '@env/environment';
+import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
@@ -109,6 +109,7 @@ export class RecipeViewComponent implements OnInit {
 
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.name);
+        this.seoService.setMetaData('description', getJustText(this.detailsData?.description));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.jsonLD = this.seoService.getJsonLD(this.detailsData.posted_user);

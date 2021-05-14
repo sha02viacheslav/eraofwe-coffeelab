@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CoffeeLabService, SEOService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '@env/environment';
+import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -67,6 +67,7 @@ export class ArticleViewComponent implements OnInit {
 
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.title);
+        this.seoService.setMetaData('description', getJustText(this.detailsData?.content));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name);
