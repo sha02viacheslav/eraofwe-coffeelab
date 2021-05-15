@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,11 @@ import { HealthCheckComponent } from '@components';
 
 import { environment } from '@env/environment';
 
+import { StartupService } from '@services';
+export function StartupServiceFactory(startupService: StartupService) {
+    return () => startupService.load();
+}
+
 @NgModule({
     declarations: [AppComponent, LayoutComponent, HealthCheckComponent],
     imports: [
@@ -26,18 +31,18 @@ import { environment } from '@env/environment';
             preventDuplicates: true,
             positionClass: 'toast-bottom-right',
         }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (http: HttpClient) => {
-                    return new TranslateHttpLoader(http, 'https://fed-api.sewnstaging.com/language/', '');
-                },
-                deps: [HttpClient],
-            },
-        }),
+        TranslateModule.forRoot(),
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
-    providers: [],
+    providers: [
+        StartupService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: StartupServiceFactory,
+            deps: [StartupService],
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
