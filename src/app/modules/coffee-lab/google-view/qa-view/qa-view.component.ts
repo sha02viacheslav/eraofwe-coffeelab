@@ -16,7 +16,6 @@ export class QaViewComponent implements OnInit {
     idOrSlug: string;
     loading = false;
     jsonLD: any;
-    userDetails: any;
     lang: any;
 
     constructor(
@@ -56,7 +55,6 @@ export class QaViewComponent implements OnInit {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
-                    this.getUserDetails();
                     this.setSEO();
                 }
             } else {
@@ -76,20 +74,6 @@ export class QaViewComponent implements OnInit {
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name, this.detailsData.answers.length);
-    }
-
-    getAnswer(id) {
-        this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
-            if (res.success) {
-                const temp = this.detailsData.answers.map((item) => {
-                    if (item.id === res.result.original_details.id) {
-                        item = res.result;
-                    }
-                    return item;
-                });
-                this.detailsData.answers = temp;
-            }
-        });
     }
 
     getMenuItemsForItem(item) {
@@ -118,18 +102,6 @@ export class QaViewComponent implements OnInit {
 
     onGoRelatedQuestion(item) {
         this.router.navigate([`/qa/${item.slug}`]);
-    }
-
-    getUserDetails() {
-        this.coffeeLabService
-            .getUserDetail(this.detailsData.user_id, this.detailsData.org_type)
-            .subscribe((res: any) => {
-                if (res.success) {
-                    this.userDetails = res.result;
-                } else {
-                    this.toastService.error('Cannot get user details.');
-                }
-            });
     }
 
     onShare(postItem) {}
