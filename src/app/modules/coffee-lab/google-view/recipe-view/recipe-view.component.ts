@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeLabService, SEOService } from '@services';
+import { CoffeeLabService, SEOService, I18NService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
@@ -67,6 +67,7 @@ export class RecipeViewComponent implements OnInit {
         private seoService: SEOService,
         private toastService: ToastrService,
         private location: Location,
+        private i18nService: I18NService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.idOrSlug = params.idOrSlug;
@@ -97,6 +98,7 @@ export class RecipeViewComponent implements OnInit {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
+                    this.i18nService.use(this.lang || 'en');
                     this.setSEO();
                 }
             } else {

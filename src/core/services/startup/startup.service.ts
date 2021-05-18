@@ -27,6 +27,7 @@ export class StartupService {
                 )
                 .subscribe(
                     ([langData]) => {
+                        console.log(langData);
                         this.translate.setTranslation(this.i18n.currentLang, langData);
                         this.globals.languageJson = langData;
                     },

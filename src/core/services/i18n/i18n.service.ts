@@ -1,8 +1,12 @@
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, DOCUMENT } from '@angular/common';
 import ngEn from '@angular/common/locales/en';
 import ngSe from '@angular/common/locales/se';
-import { Injectable } from '@angular/core';
+import ngSv from '@angular/common/locales/sv';
+import ngPt from '@angular/common/locales/pt';
+import { Inject, Injectable, Injector } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '@env/environment';
+import { APP_LANGUAGES } from '@constants';
 
 interface LangData {
     text: string;
@@ -16,8 +20,16 @@ const LANGS: { [key: string]: LangData } = {
         ng: ngEn,
     },
     es: {
-        text: 'Swedish',
+        text: 'Spanish',
         ng: ngSe,
+    },
+    sv: {
+        text: 'Swedish',
+        ng: ngSv,
+    },
+    pt: {
+        text: 'Portuguese',
+        ng: ngPt,
     },
 };
 
@@ -30,30 +42,24 @@ export class I18NService {
         return { code, text: item.text };
     });
 
-    constructor(private translate: TranslateService) {
+    constructor(private translate: TranslateService, @Inject(DOCUMENT) private doc) {
         const lans = this.langs.map((item) => item.code);
         translate.addLangs(lans);
 
         const defaultLan = this.getDefaultLang();
         if (lans.includes(defaultLan)) {
             this.default = defaultLan;
-            localStorage.setItem('locale', this.default);
         }
 
         this.updateLangData(this.default);
     }
 
     private getDefaultLang(): string | undefined {
-        let browserLang;
-        if (localStorage.getItem('locale')) {
-            browserLang = localStorage.getItem('locale');
-            this.translate.use(browserLang);
-        } else {
-            browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang);
-            localStorage.setItem('locale', browserLang);
+        const code = this.doc.URL.split(environment.coffeeLabWeb)[1]?.split('/')[1];
+        if (APP_LANGUAGES.includes(code)) {
+            return code;
         }
-        return browserLang;
+        return 'en';
     }
 
     private updateLangData(lang: string) {
@@ -67,7 +73,6 @@ export class I18NService {
             return;
         }
         this.updateLangData(lang);
-        localStorage.setItem('locale', lang);
         this.translate.use(lang);
     }
 
