@@ -1,30 +1,29 @@
-<div class="d-flex">
+<div class="d-flex align-items-center w-100">
     <div class="mr-25">
         <app-user-detail
-            [imageUrl]="
-                prop?.profile_image_url ||
-                prop?.profile_image_thumb_url ||
-                prop?.posted_user_profile_image_url ||
-                'assets/images/default-avatar.png'
-            "
-            [size]="40"
+            [imageUrl]="prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url"
             [userId]="prop?.user_id || prop?.posted_by"
-            [orgType]="prop?.organisation_type || prop?.org_type"
-        >
-        </app-user-detail>
+            [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
+            size="40"
+        ></app-user-detail>
     </div>
-    <div>
-        <div class="d-flex align-items-center mb-2">
-            <div class="fnt-muli font-weight-bold fnt-14 text-clr24 mr-3">
+    <div class="flex-1 overflow-hidden">
+        <div class="d-flex align-items-center mr-3 text-nowrap">
+            <div
+                [ngClass]="{ ellipsis: enableEllipsis }"
+                class="fnt-muli font-weight-bold fnt-14 text-clr24 mr-md-3 mr-1"
+            >
                 {{ prop?.user_name || prop?.question_user || prop?.posted_user || 'Unknown User' }}
             </div>
             <div class="fnt-muli fnt-12 text-clr588">
-                {{ prop?.posted_at || prop?.created_at | amTimeAgo }}
+                {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
             </div>
         </div>
-        <div class="fnt-12 fnt-muli text-clr588">
+        <div *ngIf="prop?.org_type !== 'co'" class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">
             <span class="font-weight-bold mr-2">Coffee Expert</span>
-            <span>@{{ prop?.organisation_name || prop?.company_name }}</span>
+            <span class="ellipsis"
+                >@{{ prop?.company_name || prop?.organization_name || prop?.organisation_name || prop?.org_type }}</span
+            >
         </div>
     </div>
 </div>
