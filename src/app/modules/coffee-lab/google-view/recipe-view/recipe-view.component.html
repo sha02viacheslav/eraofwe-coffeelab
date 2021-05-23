@@ -41,7 +41,11 @@
                 <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0">
                     {{ detailsData?.name }}
                 </h1>
-                <img class="my-3 w-100 banner-image" [lazyLoad]="detailsData?.cover_image_url" />
+                <img
+                    class="my-3 w-100 banner-image"
+                    [lazyLoad]="detailsData?.cover_image_url"
+                    [alt]="detailsData?.name + 'cover image'"
+                />
                 <div class="p-3 px-md-2 recipe-info-wrapper">
                     <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
                         <div>

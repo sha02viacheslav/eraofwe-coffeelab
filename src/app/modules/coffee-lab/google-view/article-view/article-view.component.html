@@ -3,7 +3,11 @@
         <app-search-forum></app-search-forum>
         <div class="mt-3 mt-lg-45 p-3 py-md-45 px-lg-45 border-main br-4">
             <div class="pb-3 pb-md-4 pb-lg-45">
-                <img class="w-100 banner-image" [lazyLoad]="detailsData?.cover_image_url" />
+                <img
+                    class="w-100 banner-image"
+                    [lazyLoad]="detailsData?.cover_image_url"
+                    [alt]="detailsData?.title + ' cover image'"
+                />
                 <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 pt-3 mb-2">
                     {{ detailsData?.title }}
                 </h1>
