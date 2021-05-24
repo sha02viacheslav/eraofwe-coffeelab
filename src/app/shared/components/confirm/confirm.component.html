@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="config.data.type">
     <div *ngSwitchCase="'delete'" class="text-center dialog-wrap">
-        <img src="/assets/images/delete-role.svg" alt="" />
+        <img src="assets/images/delete-role.svg" alt="" />
         <div class="title lh-normal fnt-bold text-clr02 fnt-play mt-3">
             {{ config.data.title || ('oh_no' | translate) }}
         </div>
@@ -16,7 +16,7 @@
     </div>
 
     <div *ngSwitchDefault class="text-center dialog-wrap">
-        <img src="/assets/images/confirm-icon.svg" alt="" />
+        <img src="assets/images/confirm-icon.svg" alt="" />
         <div class="title lh-normal fnt-bold text-clr02 fnt-play mt-35">
             {{ config.data.title }}
         </div>

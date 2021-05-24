@@ -14,6 +14,7 @@ import { SearchForumComponent } from './components/search-forum/search-forum.com
 import { JsonLdComponent } from './components/json-ld/json-ld.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
+import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
         JsonLdComponent,
         UserDetailComponent,
         UserHeaderComponent,
+        EraOfWeComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })

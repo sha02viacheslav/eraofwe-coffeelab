@@ -28,10 +28,15 @@ export class QaViewComponent implements OnInit {
         private i18nService: I18NService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
-            this.idOrSlug = params.idOrSlug;
-            this.lang = params.lang;
-            this.getQaList();
-            this.getDetails();
+            console.log(params);
+            if (params.idOrSlug) {
+                this.idOrSlug = params.idOrSlug;
+                this.lang = params.lang;
+                this.getDetails();
+            }
+            if (!this.relatedData?.length) {
+                this.getQaList();
+            }
         });
     }
 
@@ -42,7 +47,10 @@ export class QaViewComponent implements OnInit {
             if (res.success) {
                 this.relatedData = res.result.questions
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 5);
+                    .slice(0, 3);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/qa/${this.relatedData[0].slug}`]);
+                }
             }
         });
     }

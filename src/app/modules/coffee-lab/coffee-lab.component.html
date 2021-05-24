@@ -1,1 +1,26 @@
-<router-outlet> </router-outlet>
+<div class="p-2 p-md-3 p-lg-5 bg-white">
+    <div class="d-flex flex-column flex-md-row justify-content-between w-100">
+        <div>
+            <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-25">
+                {{ 'the_coffee_lab' | translate | titlecase }}
+            </h1>
+            <p class="fnt-14 fnt-muli fnt-normal text-clr588 lh-normal mb-0">
+                {{ 'coffee_lab_sub_text' | translate }}
+            </p>
+        </div>
+        <app-search-forum></app-search-forum>
+    </div>
+    <div class="pt-6">
+        <p-tabMenu [model]="menuItems" styleClass="tabmenu-coffee-lab">
+            <ng-template pTemplate="item" let-item let-i="index">
+                <img [src]="item.icon" alt="icon" />
+                <img [src]="item.activeIcon" alt="icon" class="active-icon" />
+                <span class="pl-1 d-none d-md-block">{{ item.label | translate }}</span>
+            </ng-template>
+        </p-tabMenu>
+        <div class="pt-35 pt-lg-45">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-bottom-banner></app-bottom-banner>
+</div>
