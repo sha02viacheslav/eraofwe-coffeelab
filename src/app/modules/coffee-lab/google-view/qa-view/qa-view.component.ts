@@ -14,7 +14,7 @@ export class QaViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
-    loading = false;
+    loading = true;
     jsonLD: any;
     lang: any;
 
@@ -28,7 +28,6 @@ export class QaViewComponent implements OnInit {
         private i18nService: I18NService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
-            console.log(params);
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;

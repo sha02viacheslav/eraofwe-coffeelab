@@ -56,7 +56,7 @@ export class RecipeViewComponent implements OnInit {
             value: '5-6',
         },
     ];
-    loading = false;
+    loading = true;
     jsonLD: any;
     lang: any;
 
@@ -70,10 +70,14 @@ export class RecipeViewComponent implements OnInit {
         private i18nService: I18NService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
-            this.idOrSlug = params.idOrSlug;
-            this.lang = params.lang;
-            this.getRecipeList();
-            this.getDetails();
+            if (params.idOrSlug) {
+                this.idOrSlug = params.idOrSlug;
+                this.lang = params.lang;
+                this.getDetails();
+            }
+            if (!this.relatedData?.length) {
+                this.getRecipeList();
+            }
         });
     }
 
@@ -84,7 +88,10 @@ export class RecipeViewComponent implements OnInit {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 5);
+                    .slice(0, 3);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/recipe/${this.relatedData[0].slug}`]);
+                }
             }
         });
     }

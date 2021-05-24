@@ -14,7 +14,7 @@ export class ArticleViewComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
-    loading = false;
+    loading = true;
     jsonLD: any;
     lang: any;
 
@@ -28,10 +28,14 @@ export class ArticleViewComponent implements OnInit {
         private i18nService: I18NService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
-            this.idOrSlug = params.idOrSlug;
-            this.lang = params.lang;
-            this.getArticleList();
-            this.getDetails();
+            if (params.idOrSlug) {
+                this.idOrSlug = params.idOrSlug;
+                this.lang = params.lang;
+                this.getDetails();
+            }
+            if (!this.relatedData?.length) {
+                this.getArticleList();
+            }
         });
     }
 
@@ -42,7 +46,10 @@ export class ArticleViewComponent implements OnInit {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 5);
+                    .slice(0, 3);
+                if (!this.idOrSlug) {
+                    this.router.navigate([`/article/${this.relatedData[0].slug}`]);
+                }
             }
         });
     }
