@@ -1,4 +1,4 @@
-<main class="p-2 p-md-3 p-lg-5 page-wrapper" *ngIf="!loading">
+<main class="page-wrapper" *ngIf="!loading">
     <article class="col-12 col-lg-8 p-0 pr-lg-3">
         <div class="p-3 py-md-45 px-lg-45 border-main br-4">
             <div class="pb-3 pb-md-4 pb-lg-45">
@@ -65,25 +65,25 @@
         </div>
     </article>
     <article class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
-        <div class="">
-            <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
-                Recent articles on the coffee lab
-            </div>
-            <div class="d-none d-lg-block">
-                <div *ngFor="let forum of relatedData" class="py-2">
-                    <app-forum-card [data]="forum"></app-forum-card>
-                </div>
-            </div>
-            <div class="d-block d-lg-none pt-3">
-                <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
-                    <ng-template let-forum pTemplate="item">
-                        <app-forum-card [data]="forum"></app-forum-card>
-                    </ng-template>
-                </p-carousel>
+        <div class="d-none d-lg-block mb-4">
+            <app-join-community></app-join-community>
+        </div>
+        <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
+            Recent articles on the coffee lab
+        </div>
+        <div class="d-none d-lg-block">
+            <div *ngFor="let forum of relatedData" class="py-2">
+                <app-forum-card [data]="forum"></app-forum-card>
             </div>
         </div>
+        <div class="d-block d-lg-none pt-3">
+            <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
+                <ng-template let-forum pTemplate="item">
+                    <app-forum-card [data]="forum"></app-forum-card>
+                </ng-template>
+            </p-carousel>
+        </div>
     </article>
-    <app-bottom-banner></app-bottom-banner>
     <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
 </main>
 <app-loading *ngIf="loading"></app-loading>
