@@ -1,0 +1,24 @@
+.article-item {
+    height: 100%;
+    img {
+        height: 243px;
+        object-fit: cover;
+    }
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+    }
+}
+
+.article-title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: inherit;
+    text-decoration: none;
+    p {
+        margin-bottom: 0 !important;
+    }
+}

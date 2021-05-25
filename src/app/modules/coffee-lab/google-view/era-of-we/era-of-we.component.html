@@ -1,1 +1,26 @@
-<p>era-of-we works!</p>
+<div class="d-block d-lg-flex flex-wrap">
+    <div class="row gutter-16 flex-1 pr-lg-125">
+        <div class="col-12 col-md-6 mb-3" *ngFor="let article of data">
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" [routerLink]="'/article/' + article.slug">
+                <div class="d-flex justify-content-between">
+                    <div class="flex-1 overflow-hidden">
+                        <app-user-header [prop]="article"></app-user-header>
+                    </div>
+                </div>
+                <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" />
+                <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
+                    {{ article?.title }}
+                </div>
+                <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
+                    <a class="article-title-text">
+                        {{ article?.subtitle }}
+                    </a>
+                    <p class="brown-cta mb-0 pt-2">{{ 'read_more' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-4 p-0 pl-lg-125">
+        <app-join-community></app-join-community>
+    </div>
+</div>
