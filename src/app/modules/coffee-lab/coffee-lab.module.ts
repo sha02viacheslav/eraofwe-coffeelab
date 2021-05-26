@@ -16,6 +16,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { JoinCommunityComponent } from './components/join-community/join-community.component';
+import { ForumMenuComponent } from './components/forum-menu/forum-menu.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { JoinCommunityComponent } from './components/join-community/join-communi
         UserHeaderComponent,
         EraOfWeComponent,
         JoinCommunityComponent,
+        ForumMenuComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })

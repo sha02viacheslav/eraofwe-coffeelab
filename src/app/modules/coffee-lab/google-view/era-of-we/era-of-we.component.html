@@ -4,8 +4,26 @@
             <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" [routerLink]="'/article/' + article.slug">
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
-                        <app-user-header [prop]="article"></app-user-header>
+                        <div class="d-flex align-items-center w-100">
+                            <img
+                                [src]="article?.profile_image_thumb_url || article?.profile_image_url"
+                                [alt]="article?.user_name + 'profile image'"
+                                class="mr-25 profile-image"
+                            />
+                            <div class="flex-1 overflow-hidden">
+                                <div class="d-flex align-items-center mr-3 text-nowrap">
+                                    <div class="ellipsis fnt-muli font-weight-bold fnt-14 text-clr24 mr-md-3 mr-1">
+                                        {{ article?.user_name }}
+                                    </div>
+                                </div>
+                                <div class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">
+                                    <span class="font-weight-bold mr-2">Coffee Here</span>
+                                    <span class="ellipsis">@ Era of We</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <app-forum-menu></app-forum-menu>
                 </div>
                 <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" />
                 <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">

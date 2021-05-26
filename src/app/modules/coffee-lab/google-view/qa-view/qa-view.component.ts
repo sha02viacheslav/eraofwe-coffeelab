@@ -85,35 +85,7 @@ export class QaViewComponent implements OnInit {
         this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name, this.detailsData.answers.length);
     }
 
-    getMenuItemsForItem(item) {
-        const items = [
-            {
-                label: 'Share',
-                command: () => {
-                    this.onShare(item);
-                },
-            },
-            {
-                label: 'Save Post',
-                command: () => {
-                    this.onSavePost(item);
-                },
-            },
-            {
-                label: 'Translate answer',
-                command: () => {
-                    this.onTranslate(item);
-                },
-            },
-        ];
-        return [{ items }];
-    }
-
     onGoRelatedQuestion(item) {
         this.router.navigate([`/qa/${item.slug}`]);
     }
-
-    onShare(postItem) {}
-    onSavePost(postItem) {}
-    onTranslate(postItem) {}
 }

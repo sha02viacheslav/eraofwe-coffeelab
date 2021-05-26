@@ -18,16 +18,7 @@
                 <div class="d-flex justify-content-between align-items-md-end w-100">
                     <app-user-header [prop]="detailsData"></app-user-header>
                     <div class="d-flex flex-column align-items-end">
-                        <div class="position-relative mb-md-1">
-                            <p-menu
-                                #menu
-                                [popup]="true"
-                                [model]="getMenuItemsForItem({})"
-                                styleClass="left-menu-actions"
-                            >
-                            </p-menu>
-                            <i class="pi pi-ellipsis-h text-clr588 cursor-pointer" (click)="menu.toggle($event)"></i>
-                        </div>
+                        <app-forum-menu></app-forum-menu>
                         <div
                             class="d-none d-md-block"
                             *ngIf="

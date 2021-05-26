@@ -17,25 +17,4 @@ export class ForumCardComponent implements OnInit {
     onClick() {
         this.router.navigate([`/${this.forumType ?? 'article'}/${this.data.slug}`]);
     }
-
-    getMenuItemsForItem(item) {
-        const items = [
-            {
-                label: 'Share',
-                command: () => {
-                    this.onShare(item);
-                },
-            },
-            {
-                label: 'Save Post',
-                command: () => {
-                    this.onSavePost(item);
-                },
-            },
-        ];
-        return [{ items }];
-    }
-
-    onShare(postItem) {}
-    onSavePost(postItem) {}
 }
