@@ -160,7 +160,7 @@ textarea {
     position: relative;
     &::before {
         content: '';
-        background-image: url(/assets/images/search.svg);
+        background-image: url(assets/images/search.svg);
         width: 30px;
         height: 30px;
         position: absolute;
