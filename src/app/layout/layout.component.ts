@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-layout',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
     loaded = true;
 
-    constructor() {}
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
     ngOnInit(): void {}
 
     openSideNav() {}
+    gotoLogin() {
+        this.document.location.href = `${environment.ssoWeb}/login`;
+    }
 }

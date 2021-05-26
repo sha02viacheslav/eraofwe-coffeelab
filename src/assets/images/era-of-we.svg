@@ -1,11 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+    <defs>
+        <path id="qv8sg36mqa" d="M0 0H32V32H0z"/>
+    </defs>
     <g fill="none" fill-rule="evenodd">
         <g>
             <g>
                 <g>
-                    <g>
-                        <g>
-                            <g transform="translate(-587 -256) translate(148 251) translate(435 1) translate(4 4)">
+                    <g transform="translate(-583 -252) translate(148 251) translate(435 1)">
+                        <mask id="q4d13ujj8b" fill="#fff">
+                            <use xlink:href="#qv8sg36mqa"/>
+                        </mask>
+                        <g mask="url(#q4d13ujj8b)">
+                            <g transform="translate(4 4)">
                                 <rect width="23.2" height="23.2" x=".5" y=".5" stroke="#2C2C3C" rx="2.2"/>
                                 <g fill-rule="nonzero">
                                     <path fill="#333" d="M8.788 5.495l-.074-.053-.02-.013-.08-.05-.032-.02-.048-.027-.046-.023-.034-.018-.1-.045h-.019c-.021-.01-.044-.018-.065-.027l-.073-.025v3.624l.073-.025.067-.025h.019l.101-.045.033-.018.046-.023.048-.027.032-.02c.027-.014.054-.032.08-.048l.02-.014.074-.054c.3-.224.526-.522.656-.86h2.782c.031-.214.047-.429.048-.644.006-2.228-1.736-4.122-4.088-4.445v1.293c1.339.257 2.385 1.238 2.661 2.493H9.444c-.13-.338-.356-.636-.656-.86zM6.815 8.818V5.182c-.585.195-1.045.626-1.253 1.174H2.776C2.4 8.8 4.206 11.072 6.815 11.43v-1.293C5.475 9.88 4.429 8.9 4.153 7.644h1.41c.207.548.667.98 1.252 1.174z" transform="translate(5 5)"/>
