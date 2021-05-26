@@ -1,0 +1,9 @@
+.qa-forum-search {
+    width: 100%;
+    @media (max-width: 991px) {
+        width: 263px;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}

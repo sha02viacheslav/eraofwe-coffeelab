@@ -4,12 +4,16 @@ import { CoffeLabRoutingModule } from './coffee-lab-routing.module';
 import { SharedModule } from '@shared';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
-import { RecipeViewComponent } from './google-view/recipe-view/recipe-view.component';
-import { QaViewComponent } from './google-view/qa-view/qa-view.component';
+import { CoffeeRecipesViewComponent } from './google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.component';
+import { RecipeDetailComponent } from './google-view/coffee-recipes/recipe-detail/recipe-detail.component';
+import { QaForumViewComponent } from './google-view/qa-forum/qa-forum-view/qa-forum-view.component';
+import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/question-detail.component';
+import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
+import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
+
 import { TranslationDropdownComponent } from './components/translation-dropdown/translation-dropdown.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
-import { ArticleViewComponent } from './google-view/article-view/article-view.component';
 import { SearchForumComponent } from './components/search-forum/search-forum.component';
 import { JsonLdComponent } from './components/json-ld/json-ld.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -17,16 +21,21 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { JoinCommunityComponent } from './components/join-community/join-community.component';
 import { ForumMenuComponent } from './components/forum-menu/forum-menu.component';
+import { OverviewComponent } from './google-view/overview/overview.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 
 @NgModule({
     declarations: [
         CoffeeLabComponent,
-        RecipeViewComponent,
-        QaViewComponent,
+        CoffeeRecipesViewComponent,
+        RecipeDetailComponent,
+        QaForumViewComponent,
+        QuestionDetailComponent,
+        ArticlesViewComponent,
+        ArticleDetailComponent,
         TranslationDropdownComponent,
         ForumCardComponent,
         BottomBannerComponent,
-        ArticleViewComponent,
         SearchForumComponent,
         JsonLdComponent,
         UserDetailComponent,
@@ -34,6 +43,8 @@ import { ForumMenuComponent } from './components/forum-menu/forum-menu.component
         EraOfWeComponent,
         JoinCommunityComponent,
         ForumMenuComponent,
+        OverviewComponent,
+        QuestionsComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })

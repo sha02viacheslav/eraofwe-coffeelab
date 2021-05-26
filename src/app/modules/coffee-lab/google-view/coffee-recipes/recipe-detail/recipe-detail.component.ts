@@ -6,11 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
 @Component({
-    selector: 'app-recipe-view',
-    templateUrl: './recipe-view.component.html',
-    styleUrls: ['./recipe-view.component.scss'],
+    selector: 'app-recipe-detail',
+    templateUrl: './recipe-detail.component.html',
+    styleUrls: ['./recipe-detail.component.scss'],
 })
-export class RecipeViewComponent implements OnInit {
+export class RecipeDetailComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;

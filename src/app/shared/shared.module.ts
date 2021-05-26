@@ -44,6 +44,7 @@ import { DividerModule } from 'primeng/divider';
 import { AccordionModule } from 'primeng/accordion';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -109,6 +110,7 @@ const THIRDMODULES = [
     GalleryModule,
     LazyLoadImageModule,
     MomentModule,
+    PaginatorModule,
 ];
 // #endregion
 

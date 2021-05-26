@@ -1,0 +1,133 @@
+@import 'variables';
+.coffee-recipes-view-container {
+    .hide-paginator {
+        display: none;
+    }
+    .font-family {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+    .ingredient-field {
+        .p-component {
+            border-radius: 20px;
+            font-size: 14px !important;
+        }
+    }
+    .expertise {
+        text-transform: capitalize;
+        font-weight: 600;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        margin: 16px;
+        padding: 8px 16px;
+        border-radius: 14px;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(116, 117, 136, 0.45);
+        color: $white;
+    }
+    .heading {
+        min-width: 150px;
+        color: $muted-text-color;
+    }
+    .coffee-item {
+        img {
+            height: 243px;
+            border-radius: 4px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        .value {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .coffee-content-wrapper {
+            padding-top: 24px;
+
+            ::ng-deep p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                min-height: 36px;
+                margin: 0 !important;
+            }
+        }
+    }
+    .recepie-text {
+        padding: 32px 0 32px;
+        font-family: Muli;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $general-text-color;
+    }
+    .coffee-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -8px;
+        .coffee-item {
+            img {
+                height: 243px;
+            }
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            }
+            .coffee-content-wrapper {
+                padding-top: 24px;
+                p {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    margin: 0 !important;
+                }
+                .red-more-text {
+                    &:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        @media (max-width: 767px) {
+            margin: -8px 0;
+            .coffee-content-wrapper {
+                padding-top: 16px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .mt-sm-16 {
+            margin-top: 16px;
+        }
+        .pl-xsm-0 {
+            padding: 0 !important;
+        }
+        .recepie-text {
+            font-size: 18px;
+            padding: 16px 0 24px;
+        }
+        .filter-dropdown {
+            display: block !important;
+        }
+    }
+}
