@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmComponent } from '@shared';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-search-forum',
@@ -11,7 +13,7 @@ export class SearchForumComponent implements OnInit {
     forumKeySearch: string;
     showDialog = false;
 
-    constructor(public dialogSrv: DialogService) {}
+    constructor(public dialogSrv: DialogService, @Inject(DOCUMENT) private document: Document) {}
 
     ngOnInit(): void {}
 
@@ -30,7 +32,7 @@ export class SearchForumComponent implements OnInit {
             })
             .onClose.subscribe((action: any) => {
                 if (action === 'yes') {
-                    console.log('yes');
+                    this.document.location.href = `${environment.ssoWeb}/sign-up`;
                 }
             });
     }
