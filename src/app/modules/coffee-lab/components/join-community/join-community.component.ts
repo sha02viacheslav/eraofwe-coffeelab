@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 
 @Component({
@@ -8,12 +9,14 @@ import { environment } from '@env/environment';
     styleUrls: ['./join-community.component.scss'],
 })
 export class JoinCommunityComponent implements OnInit {
-    constructor(@Inject(DOCUMENT) private document: Document) {}
+    @Input() type: string;
+
+    constructor(@Inject(DOCUMENT) private document: Document, private router: Router) {}
 
     ngOnInit(): void {}
 
-    gotoLogin() {
-        this.document.location.href = `${environment.ssoWeb}/login`;
+    exploreCoffeeLab() {
+        this.router.navigate([`/overview/${this.type}`]);
     }
 
     gotoSignup() {

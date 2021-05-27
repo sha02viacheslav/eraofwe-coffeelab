@@ -1,5 +1,10 @@
+@import 'variables';
 .join-wrapper {
+    padding: 40px 32px 32px;
     border-radius: 4px;
-    border: solid 1px #30855c;
-    background-color: rgba(48, 133, 92, 0.05);
+    border: solid 1px $secondary-border-color;
+    background-color: $primary-bg-color;
+    width: 374px;
+    .logo-image {
+    }
 }

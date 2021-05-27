@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="page-wrapper" *ngIf="!loading">
-        <article class="col-12 col-lg-8 p-0 pr-lg-3">
+        <article class="flex-1 pr-lg-3">
             <div class="p-3 py-md-45 px-lg-45 border-main br-4">
                 <div class="pb-3 pb-md-4 pb-lg-45">
                     <img
@@ -61,9 +61,9 @@
                 </div>
             </div>
         </article>
-        <article class="col-12 col-lg-4 p-0 pl-lg-3 mt-4 mt-lg-0">
+        <article class="w-mob-100 pl-lg-3 mt-4 mt-lg-0 w-min-content">
             <div class="d-none d-lg-block mb-4">
-                <app-join-community></app-join-community>
+                <app-join-community type="articles"></app-join-community>
             </div>
             <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
                 Recent articles on the coffee lab
