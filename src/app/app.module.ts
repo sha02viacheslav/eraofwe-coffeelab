@@ -10,7 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
-import { HealthCheckComponent } from '@components';
+import { HealthCheckComponent, FooterComponent } from '@components';
 
 import { environment } from '@env/environment';
 
@@ -20,7 +20,7 @@ export function StartupServiceFactory(startupService: StartupService) {
 }
 
 @NgModule({
-    declarations: [AppComponent, LayoutComponent, HealthCheckComponent],
+    declarations: [AppComponent, LayoutComponent, HealthCheckComponent, FooterComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
