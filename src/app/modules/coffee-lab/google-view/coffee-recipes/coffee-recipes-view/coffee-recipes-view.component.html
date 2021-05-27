@@ -1,41 +1,8 @@
 <div class="coffee-recipes-view-container">
-    <div class="fnt-18 fnt-md-24 font-weight-bold d-md-none">
+    <div class="fnt-18 fnt-md-24 fnt-bold text-clr334 mb-0">
         {{ 'recipes' | translate }}
     </div>
-    <div class="row justify-content-lg-between pt-3 pt-md-0 gutter-32">
-        <div class="col-lg-4 d-block d-md-none d-lg-block d-xl-block mt-4 mt-lg-0">
-            <div class="custom-search qa-forum-search d-lg-block">
-                <input
-                    class="w-100 fnt-16"
-                    type="text"
-                    pInputText
-                    [(ngModel)]="searchQuery"
-                    (ngModelChange)="getCoffeeRecipesData()"
-                    [placeholder]="'search_recipes' | translate"
-                />
-            </div>
-        </div>
-    </div>
-
-    <div
-        class="d-none d-md-flex flex-column align-items-center flex-md-row justify-content-md-between pb-lg-3 pb-md-0 pt-md-4 pt-lg-45"
-    >
-        <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
-            {{ 'recipes' | translate }}
-        </h1>
-        <span class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
-            <input
-                class="w-100 fnt-16"
-                type="text"
-                pInputText
-                [(ngModel)]="searchQuery"
-                (ngModelChange)="getCoffeeRecipesData()"
-                [placeholder]="'search_recipes' | translate"
-            />
-        </span>
-    </div>
-
-    <div class="d-flex align-items-md-center justify-content-between py-4 pt-lg-0 pb-md-4 pt-md-0 pb-lg-45">
+    <div class="d-flex align-items-md-center justify-content-between py-4 pb-md-4 pb-lg-45">
         <div class="d-block flex-wrap d-md-flex">
             <div class="mt-md-4 mt-lg-0">
                 <p-dropdown
@@ -89,10 +56,7 @@
     </div>
     <div class="coffee-wrapper" *ngIf="!isLoading">
         <div class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2" *ngFor="let coffee of coffeeRecipeData">
-            <div
-                class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item"
-                [routerLink]="'/coffee-lab/recipes/' + coffee.slug"
-            >
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item" [routerLink]="getLink(coffee)">
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
                         <app-user-header [prop]="coffee"></app-user-header>
@@ -103,7 +67,7 @@
                     <img [src]="coffee.cover_image_url" class="w-100 my-3 my-md-4" />
                     <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                 </div>
-                <a class="fnt-muli fnt-lg-14 fnt-16 fnt-bold text-clr334 cursor-pointer">
+                <div class="fnt-muli fnt-lg-14 fnt-16 fnt-bold text-clr334 cursor-pointer">
                     {{ coffee?.name }}
                     <div class="py-3 m-0 d-flex">
                         <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'preparation_time' | translate }}:</div>
@@ -115,7 +79,7 @@
                             {{ coffee.ingredients }}
                         </span>
                     </div>
-                </a>
+                </div>
                 <div class="coffee-content-wrapper">
                     <p class="fnt-muli fnt-14 fnt-normal lh-15 text-clr334 mb-0" [innerHTML]="coffee.description"></p>
 

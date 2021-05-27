@@ -21,7 +21,6 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { JoinCommunityComponent } from './components/join-community/join-community.component';
 import { ForumMenuComponent } from './components/forum-menu/forum-menu.component';
-import { OverviewComponent } from './google-view/overview/overview.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 
 @NgModule({
@@ -43,7 +42,6 @@ import { QuestionsComponent } from './components/questions/questions.component';
         EraOfWeComponent,
         JoinCommunityComponent,
         ForumMenuComponent,
-        OverviewComponent,
         QuestionsComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],

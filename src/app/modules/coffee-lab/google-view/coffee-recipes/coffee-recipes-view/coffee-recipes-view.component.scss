@@ -84,6 +84,7 @@
         .coffee-item {
             img {
                 height: 243px;
+                object-fit: cover;
             }
             &:hover {
                 cursor: pointer;

@@ -128,6 +128,11 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         }
     }
 
+    getLink(item) {
+        const url = `${item.lang_code === 'en' || !item.lang_code ? '' : item.lang_code}/recipe/${item.slug}`;
+        return url;
+    }
+
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();

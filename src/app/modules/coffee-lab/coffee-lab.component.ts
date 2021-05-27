@@ -13,19 +13,19 @@ export class CoffeeLabComponent implements OnInit {
     menuItems = [
         {
             label: 'qa_forum',
-            routerLink: '/qa',
+            routerLink: '/qa-forum',
             icon: 'assets/images/qa-forum.svg',
             activeIcon: 'assets/images/qa-forum-active.svg',
         },
         {
             label: 'articles',
-            routerLink: '/article',
+            routerLink: '/articles',
             icon: 'assets/images/article.svg',
             activeIcon: 'assets/images/article-active.svg',
         },
         {
             label: 'coffee_recipes',
-            routerLink: '/recipe',
+            routerLink: '/coffee-recipes',
             icon: 'assets/images/coffee-recipe.svg',
             activeIcon: 'assets/images/coffee-recipe-active.svg',
         },

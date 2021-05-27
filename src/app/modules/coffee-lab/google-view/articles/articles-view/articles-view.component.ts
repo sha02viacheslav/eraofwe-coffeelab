@@ -98,6 +98,11 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         this.displayData = this.articlesData.slice(event.first, event.first + event.rows);
     }
 
+    getLink(item) {
+        const url = `${item.language === 'en' || !item.language ? '' : item.language}/article/${item.slug}`;
+        return url;
+    }
+
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
