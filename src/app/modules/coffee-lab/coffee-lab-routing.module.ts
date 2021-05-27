@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
+import { OverviewComponent } from './google-view/overview/overview.component';
 import { CoffeeRecipesViewComponent } from './google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.component';
 import { RecipeDetailComponent } from './google-view/coffee-recipes/recipe-detail/recipe-detail.component';
 import { QaForumViewComponent } from './google-view/qa-forum/qa-forum-view/qa-forum-view.component';
@@ -17,25 +18,35 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'qa-forum',
+                redirectTo: 'overview',
                 pathMatch: 'full',
             },
             {
-                path: '',
-                redirectTo: 'qa-forum',
-                pathMatch: 'full',
-            },
-            {
-                path: 'qa-forum',
-                component: QaForumViewComponent,
-            },
-            {
-                path: 'articles',
-                component: ArticlesViewComponent,
-            },
-            {
-                path: 'coffee-recipes',
-                component: CoffeeRecipesViewComponent,
+                path: 'overview',
+                component: OverviewComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'qa-forum',
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'qa-forum',
+                        component: QaForumViewComponent,
+                    },
+                    {
+                        path: 'articles',
+                        component: ArticlesViewComponent,
+                    },
+                    {
+                        path: 'coffee-recipes',
+                        component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'about-era-of-we',
+                        component: EraOfWeComponent,
+                    },
+                ],
             },
 
             {
@@ -61,10 +72,6 @@ const routes: Routes = [
             {
                 path: ':lang/article/:idOrSlug',
                 component: ArticleDetailComponent,
-            },
-            {
-                path: 'about-era-of-we',
-                component: EraOfWeComponent,
             },
         ],
     },

@@ -394,10 +394,6 @@ span.star {
     flex: 1;
 }
 
-.h-fit-content {
-    height: fit-content;
-}
-
 .page-wrapper {
     background: #ffffff;
     display: flex;
@@ -436,4 +432,12 @@ span.star {
     width: 40px;
     height: 40px !important;
     border-radius: 50%;
+}
+
+.h-fit-content {
+    height: fit-content;
+}
+
+.w-fit-content {
+    width: fit-content;
 }
