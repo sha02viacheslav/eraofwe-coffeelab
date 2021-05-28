@@ -1,0 +1,17 @@
+<div class="p-3 bg-f8 br-4 d-flex align-items-center">
+    <div class="sewn-form-field w-100 mb-0">
+        <input
+            type="text"
+            pInputText
+            placeholder="{{
+                (type === 'article'
+                    ? 'publish_article'
+                    : type === 'recipe'
+                    ? 'start_making_a_recipe'
+                    : 'ask_your_question'
+                ) | translate
+            }}"
+            (focus)="onFocus()"
+        />
+    </div>
+</div>

@@ -25,6 +25,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { OverviewComponent } from './google-view/overview/overview.component';
 import { LanguageDropdownComponent } from './components/language-dropdown/language-dropdown.component';
 import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
+import { PublishForumComponent } from './components/publish-forum/publish-forum.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { SignupModalComponent } from './components/signup-modal/signup-modal.com
         OverviewComponent,
         LanguageDropdownComponent,
         SignupModalComponent,
+        PublishForumComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
