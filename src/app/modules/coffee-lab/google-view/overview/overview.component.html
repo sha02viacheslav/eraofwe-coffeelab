@@ -1,5 +1,8 @@
 <div class="mt-lg-3">
-    <div class="d-flex flex-column flex-md-row justify-content-between w-100">
+    <div class="language-wrapper d-md-none mb-3">
+        <app-language-dropdown></app-language-dropdown>
+    </div>
+    <div class="d-flex flex-column flex-md-row justify-content-between w-100 pb-4">
         <div class="mb-3 mb-md-0">
             <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-2 mb-md-25">
                 {{ 'the_coffee_lab' | translate | titlecase }}
@@ -10,7 +13,13 @@
         </div>
         <app-search-forum></app-search-forum>
     </div>
-    <div class="pt-4 pt-md-5 pt-lg-6">
+    <div class="d-none d-md-flex justify-content-between align-items-center pt-2 pb-45">
+        <p class="fnt-14 fnt-muli fnt-600 text-clr334 mb-0">{{ 'discussions_knowledge_language' | translate }}</p>
+        <div>
+            <app-language-dropdown></app-language-dropdown>
+        </div>
+    </div>
+    <div class="">
         <p-tabMenu [model]="menuItems" styleClass="tabmenu-coffee-lab">
             <ng-template pTemplate="item" let-item let-i="index">
                 <img [src]="item.icon" alt="icon" />

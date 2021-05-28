@@ -1,6 +1,44 @@
 <div class="coffee-recipes-view-container">
-    <div class="fnt-18 fnt-md-24 fnt-bold text-clr334 mb-0">
+    <h1 class="fnt-18 fnt-md-24 fnt-bold text-clr334 d-md-none">
         {{ 'recipes' | translate }}
+    </h1>
+    <div class="row justify-content-lg-between pt-3 pt-md-0 gutter-32">
+        <div class="col-lg-8">
+            <div class="p-3 bg-f8 br-4 d-flex align-items-center">
+                <div class="sewn-form-field w-100 mb-0">
+                    <input type="text" pInputText [placeholder]="'start_making_a_recipe' | translate" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 d-block d-md-none d-lg-block d-xl-block mt-4 mt-lg-0">
+            <div class="custom-search qa-forum-search d-lg-block">
+                <input
+                    class="w-100 fnt-16"
+                    type="text"
+                    pInputText
+                    [(ngModel)]="searchQuery"
+                    (ngModelChange)="getCoffeeRecipesData()"
+                    [placeholder]="'search_recipes' | translate"
+                />
+            </div>
+        </div>
+    </div>
+    <div
+        class="d-none d-md-flex flex-column align-items-center flex-md-row justify-content-md-between pb-lg-3 pb-md-0 pt-md-4 pt-lg-45"
+    >
+        <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
+            {{ 'recipes' | translate }}
+        </h1>
+        <span class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
+            <input
+                class="w-100 fnt-16"
+                type="text"
+                pInputText
+                [(ngModel)]="searchQuery"
+                (ngModelChange)="getCoffeeRecipesData()"
+                [placeholder]="'search_recipes' | translate"
+            />
+        </span>
     </div>
     <div class="d-flex align-items-md-center justify-content-between py-4 pb-md-4 pb-lg-45">
         <div class="d-block flex-wrap d-md-flex">

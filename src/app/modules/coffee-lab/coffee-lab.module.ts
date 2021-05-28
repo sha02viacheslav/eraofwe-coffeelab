@@ -23,6 +23,8 @@ import { JoinCommunityComponent } from './components/join-community/join-communi
 import { ForumMenuComponent } from './components/forum-menu/forum-menu.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { OverviewComponent } from './google-view/overview/overview.component';
+import { LanguageDropdownComponent } from './components/language-dropdown/language-dropdown.component';
+import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +47,8 @@ import { OverviewComponent } from './google-view/overview/overview.component';
         ForumMenuComponent,
         QuestionsComponent,
         OverviewComponent,
+        LanguageDropdownComponent,
+        SignupModalComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })

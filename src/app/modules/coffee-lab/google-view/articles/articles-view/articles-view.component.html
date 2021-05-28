@@ -1,7 +1,47 @@
 <div>
-    <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
+    <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0 d-block d-md-none">
         {{ 'articles' | translate }}
     </h1>
+    <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
+        <div class="col-12 col-lg-8">
+            <div class="p-3 bg-f8 br-4 d-flex align-items-center">
+                <div class="sewn-form-field w-100 mb-0">
+                    <input type="text" pInputText placeholder="{{ 'publish_article' | translate }}" />
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 d-none d-lg-block">
+            <div class="custom-search h-fit-content mt-3 mt-md-0">
+                <input
+                    class="w-100 fnt-16"
+                    type="text"
+                    pInputText
+                    #searchInput
+                    [(ngModel)]="keyword"
+                    placeholder="{{ 'search_articles' | translate }}"
+                    (ngModelChange)="getData()"
+                />
+            </div>
+        </div>
+    </div>
+    <div
+        class="d-none d-md-flex flex-column flex-md-row justify-content-md-between pt-md-4 pt-lg-45 align-items-center"
+    >
+        <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
+            {{ 'articles' | translate }}
+        </h1>
+        <div class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
+            <input
+                class="w-100 fnt-16"
+                type="text"
+                pInputText
+                #searchInput
+                [(ngModel)]="keyword"
+                placeholder="{{ 'search_articles' | translate }}"
+                (ngModelChange)="getData()"
+            />
+        </div>
+    </div>
     <div class="d-flex justify-content-between align-items-center py-3 pb-md-4 pb-lg-45">
         <p-dropdown
             [options]="translationsList"

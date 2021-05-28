@@ -1,3 +1,8 @@
+@import 'variables';
+.language-wrapper {
+    background-color: $primary-bg-color;
+    padding: 12px 8px 11px;
+}
 ::ng-deep {
     .p-tabmenu {
         &.tabmenu-coffee-lab {

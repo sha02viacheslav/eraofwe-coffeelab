@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ConfirmComponent } from '@shared';
+import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 
 @Component({
@@ -19,37 +19,30 @@ export class ForumMenuComponent implements OnInit {
             {
                 label: 'Share',
                 command: () => {
-                    this.showModal('share');
+                    this.showModal();
                 },
             },
             {
                 label: 'Save Post',
                 command: () => {
-                    this.showModal('save post');
+                    this.showModal();
                 },
             },
             {
                 label: 'Translate answer',
                 command: () => {
-                    this.showModal('translate answer');
+                    this.showModal();
                 },
             },
         ];
         return [{ items }];
     }
 
-    showModal(functionality: any) {
+    showModal() {
         this.dialogSrv
-            .open(ConfirmComponent, {
-                data: {
-                    title: 'Confirm',
-                    desp: `Sign Up to ${functionality}`,
-                    type: 'confirm',
-                    noButton: 'Cancel',
-                    yesButton: 'Yes, Sign Up',
-                },
+            .open(SignupModalComponent, {
                 showHeader: false,
-                styleClass: 'confirm-dialog',
+                styleClass: 'signup-dialog',
             })
             .onClose.subscribe((action: any) => {
                 if (action === 'yes') {
