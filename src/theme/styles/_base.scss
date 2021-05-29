@@ -544,6 +544,12 @@ input[type='number'] {
     text-overflow: ellipsis;
 }
 
+.w-tab-100 {
+    @media (max-width: 991px) {
+        width: 100% !important;
+    }
+}
+
 .w-mob-100 {
     @media (max-width: 767px) {
         width: 100%;

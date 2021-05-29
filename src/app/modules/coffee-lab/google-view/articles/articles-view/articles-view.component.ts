@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoffeeLabService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 @Component({
@@ -37,8 +36,6 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     articlesData: any[] = [];
     displayData: any[] = [];
     isLoading = false;
-    pageDesc: string | undefined;
-    organizationId: any;
     destroy$: Subject<boolean> = new Subject<boolean>();
     forumLanguage: string;
     totalRecords = 0;
@@ -46,13 +43,9 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         public coffeeLabService: CoffeeLabService,
         private toastService: ToastrService,
         private router: Router,
-        private cookieService: CookieService,
-    ) {
-        this.pageDesc = this.router.url.split('/')[this.router.url.split('/').length - 2];
-    }
+    ) {}
 
     ngOnInit(): void {
-        this.organizationId = +this.cookieService.get('roaster_id');
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.getData();
