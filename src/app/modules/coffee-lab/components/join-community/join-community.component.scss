@@ -4,7 +4,11 @@
     border-radius: 4px;
     border: solid 1px $secondary-border-color;
     background-color: $primary-bg-color;
-    width: 374px;
+    min-width: 374px;
     .logo-image {
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
     }
 }

@@ -1,14 +1,21 @@
 <main>
-    <div class="back-page mt-1 mt-lg-3 pb-35 pb-lg-45 w-fit-content" [routerLink]="previousUrl" *ngIf="previousUrl">
+    <div
+        class="back-page mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content"
+        [routerLink]="previousUrl"
+        *ngIf="previousUrl"
+    >
         <a>
             <span>{{ 'back' | translate }}</span>
         </a>
     </div>
-    <div class="pt-md-2 pb-4 pb-lg-45" *ngIf="!loading">
+    <div class="pb-3 pb-md-4 pb-lg-45" *ngIf="!loading">
         <app-limit-banner></app-limit-banner>
     </div>
+    <div class="d-lg-none mb-4">
+        <app-join-community type="coffee-recipes"></app-join-community>
+    </div>
     <div class="page-wrapper d-block d-lg-flex" *ngIf="!loading">
-        <article class="pr-lg-3 flex-1">
+        <article class="pr-lg-3 flex-1 mb-4">
             <div class="p-3 py-md-45 px-lg-45 border-main br-4">
                 <div class="d-flex align-items-center">
                     <img
@@ -67,7 +74,7 @@
                 </div>
             </div>
         </article>
-        <article class="w-tab-100 pl-lg-3 mt-4 mt-lg-0 w-min-content">
+        <article class="w-tab-100 pl-lg-3 w-min-content">
             <div class="d-none d-lg-block mb-4">
                 <app-join-community type="qa-forum"></app-join-community>
             </div>
