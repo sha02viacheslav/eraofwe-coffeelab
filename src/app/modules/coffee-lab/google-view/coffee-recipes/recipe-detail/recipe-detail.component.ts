@@ -59,6 +59,7 @@ export class RecipeDetailComponent implements OnInit {
     loading = true;
     jsonLD: any;
     lang: any;
+    previousUrl: string;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -82,7 +83,9 @@ export class RecipeDetailComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.previousUrl = this.globalsService.previousUrl;
+    }
 
     getRecipeList() {
         this.coffeeLabService.getForumList('recipe').subscribe((res: any) => {

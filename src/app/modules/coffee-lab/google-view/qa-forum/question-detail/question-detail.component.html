@@ -1,5 +1,5 @@
 <main>
-    <div class="back-page mt-1 mt-lg-3 pb-35 pb-lg-45 w-fit-content" routerLink="/overview/qa-forum">
+    <div class="back-page mt-1 mt-lg-3 pb-35 pb-lg-45 w-fit-content" [routerLink]="previousUrl" *ngIf="previousUrl">
         <a>
             <span>{{ 'back' | translate }}</span>
         </a>

@@ -19,6 +19,7 @@ export class QuestionDetailComponent implements OnInit {
     loading = true;
     jsonLD: any;
     lang: any;
+    previousUrl: string;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -43,7 +44,9 @@ export class QuestionDetailComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.previousUrl = this.globalsService.previousUrl;
+    }
 
     getQaList() {
         this.coffeeLabService.getForumList('question').subscribe((res: any) => {

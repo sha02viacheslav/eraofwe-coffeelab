@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { COUNTRY_LIST, CONTINIENT_LIST, languages } from '@constants';
+import { COUNTRY_LIST, CONTINIENT_LIST, languages, POST_LIMIT_COUNT } from '@constants';
 import { Country } from '@models';
 
 @Injectable({
@@ -28,9 +30,22 @@ export class GlobalsService {
     permissionList: any;
     userInvitesArray: any = [];
     device = 'desktop';
+    previousUrl: string;
+    private currentUrl: string;
 
-    constructor(private cookieService: CookieService, private deviceSrv: DeviceDetectorService) {
-        // console.log(this.permissions);
+    constructor(
+        private cookieService: CookieService,
+        private deviceSrv: DeviceDetectorService,
+        private router: Router,
+    ) {
+        this.router.events
+            .pipe(filter((event: RouterEvent) => event instanceof NavigationEnd))
+            .subscribe((event: NavigationEnd) => {
+                this.previousUrl = this.currentUrl;
+                this.currentUrl = event.urlAfterRedirects;
+                console.log('prev: ', this.previousUrl);
+                console.log('curr: ', this.currentUrl);
+            });
         if (deviceSrv.isMobile()) {
             this.device = 'mobile';
         } else if (deviceSrv.isTablet()) {
@@ -131,7 +146,7 @@ export class GlobalsService {
     }
 
     getLimitCounter() {
-        const count = !!this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : 3;
+        const count = this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : POST_LIMIT_COUNT;
         return count;
     }
 
