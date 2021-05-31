@@ -15,12 +15,12 @@
                 </div>
                 <div
                     class="fnt-muli fnt-16 fnt-md-18 font-weight-bold text-clr24 mt-4 cursor-pointer hover-underline"
-                    [routerLink]="'/qa/' + question.slug"
+                    (click)="gotoDetailPage(question)"
                     [innerHTML]="question?.question"
                 ></div>
                 <button
                     *ngIf="question.total_answers > 0"
-                    [routerLink]="'/qa/' + question.slug"
+                    (click)="gotoDetailPage(question)"
                     class="btn-f8 w-100 d-inline-block d-md-none mt-4"
                 >
                     See all answers
@@ -37,15 +37,12 @@
                     </div>
                     <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
                         <span [innerHTML]="answer?.answer | convertToShortDescription: 20"></span>
-                        <a
-                            [routerLink]="'/qa/' + question.slug"
-                            [queryParams]="{ answer: answer.id }"
-                            class="brown-cta ml-2"
-                            >{{ 'read_more' | translate }}</a
-                        >
+                        <a (click)="gotoDetailPage(question, answer)" class="brown-cta ml-2">{{
+                            'read_more' | translate
+                        }}</a>
                     </div>
                 </div>
-                <button *ngIf="question.total_answers > 0" [routerLink]="'/qa/' + question.slug" class="btn-f8 w-100">
+                <button *ngIf="question.total_answers > 0" (click)="gotoDetailPage(question)" class="btn-f8 w-100">
                     {{ 'see_all_answers' | translate }}
                 </button>
             </div>

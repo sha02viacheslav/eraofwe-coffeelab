@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { CoffeeLabService, SEOService, I18NService } from '@services';
+import { CoffeeLabService, SEOService, I18NService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-question-detail',
@@ -26,6 +28,8 @@ export class QuestionDetailComponent implements OnInit {
         private seoService: SEOService,
         private location: Location,
         private i18nService: I18NService,
+        private globalsService: GlobalsService,
+        public dialogSrv: DialogService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -63,6 +67,7 @@ export class QuestionDetailComponent implements OnInit {
                     this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
+                    this.globalsService.setLimitCounter();
                     this.i18nService.use(this.lang || 'en');
                     this.setSEO();
                 }
@@ -86,6 +91,17 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     onGoRelatedQuestion(item) {
-        this.router.navigate([`/qa/${item.slug}`]);
+        if (this.globalsService.getLimitCounter() > 0) {
+            this.router.navigate([`/qa/${item.slug}`]);
+        } else {
+            this.dialogSrv.open(SignupModalComponent, {
+                data: {
+                    isLimit: true,
+                    count: this.globalsService.getLimitCounter(),
+                },
+                showHeader: false,
+                styleClass: 'signup-dialog',
+            });
+        }
     }
 }

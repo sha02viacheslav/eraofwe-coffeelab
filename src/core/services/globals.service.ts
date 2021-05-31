@@ -129,4 +129,14 @@ export class GlobalsService {
         }
         return '';
     }
+
+    getLimitCounter() {
+        const count = !!this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : 3;
+        return count;
+    }
+
+    setLimitCounter() {
+        const count = this.getLimitCounter() > 0 ? this.getLimitCounter() - 1 : 0;
+        this.cookieService.set('limit_count', count.toString());
+    }
 }

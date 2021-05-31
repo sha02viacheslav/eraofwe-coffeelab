@@ -90,7 +90,7 @@
     </div>
     <div class="coffee-wrapper" *ngIf="!isLoading">
         <div class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2" *ngFor="let coffee of coffeeRecipeData">
-            <div class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item" [routerLink]="getLink(coffee)">
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item" (click)="gotoDetailPage(coffee)">
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
                         <app-user-header [prop]="coffee"></app-user-header>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
-import { CookieService } from 'ngx-cookie-service';
+import { GlobalsService } from '@services';
 
 @Component({
     selector: 'app-limit-banner',
@@ -10,12 +10,10 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LimitBannerComponent implements OnInit {
     leftCount = 3;
-    constructor(private cookieService: CookieService, public dialogSrv: DialogService) {}
+    constructor(private globalsService: GlobalsService, public dialogSrv: DialogService) {}
 
     ngOnInit(): void {
-        if (!!this.cookieService.get('left_count')) {
-            this.leftCount = +this.cookieService.get('left_count');
-        }
+        this.leftCount = this.globalsService.getLimitCounter();
     }
 
     onSignup() {

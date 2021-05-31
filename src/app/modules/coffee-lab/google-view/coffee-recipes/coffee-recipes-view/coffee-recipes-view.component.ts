@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, GlobalsService } from '@services';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -64,6 +66,8 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         private toastService: ToastrService,
         private router: Router,
         public coffeeLabService: CoffeeLabService,
+        public dialogSrv: DialogService,
+        private globalsService: GlobalsService,
     ) {}
 
     ngOnInit(): void {
@@ -124,6 +128,21 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     getLink(item) {
         const url = `${item.lang_code === 'en' || !item.lang_code ? '' : item.lang_code}/recipe/${item.slug}`;
         return url;
+    }
+
+    gotoDetailPage(item: any) {
+        if (this.globalsService.getLimitCounter() > 0) {
+            this.router.navigate([this.getLink(item)]);
+        } else {
+            this.dialogSrv.open(SignupModalComponent, {
+                data: {
+                    isLimit: true,
+                    count: this.globalsService.getLimitCounter(),
+                },
+                showHeader: false,
+                styleClass: 'signup-dialog',
+            });
+        }
     }
 
     ngOnDestroy(): void {

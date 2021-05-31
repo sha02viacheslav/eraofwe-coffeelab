@@ -4,7 +4,7 @@
             <span>{{ 'back' | translate }}</span>
         </a>
     </div>
-    <div class="pt-md-2 pb-4 pb-lg-45">
+    <div class="pt-md-2 pb-4 pb-lg-45" *ngIf="!loading">
         <app-limit-banner></app-limit-banner>
     </div>
     <div class="page-wrapper" *ngIf="!loading">
