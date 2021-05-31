@@ -64,7 +64,6 @@ export class ArticleDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 if (this.lang && this.lang !== res.result.language) {
-                    this.toastService.error('Language is not matched.');
                     this.location.back();
                 } else {
                     this.globalsService.setLimitCounter();

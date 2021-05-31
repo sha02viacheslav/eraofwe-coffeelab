@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class OverviewComponent implements OnInit {
     menuItems = [
         {
-            label: 'qa_forum',
+            label: 'question_answers',
             routerLink: '/overview/qa-forum',
             icon: 'assets/images/qa-forum.svg',
             activeIcon: 'assets/images/qa-forum-active.svg',
         },
         {
-            label: 'articles',
+            label: 'posts',
             routerLink: '/overview/articles',
             icon: 'assets/images/article.svg',
             activeIcon: 'assets/images/article-active.svg',
