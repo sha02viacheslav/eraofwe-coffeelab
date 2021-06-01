@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CoffeeLabService, SEOService, I18NService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
-import { Location } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -70,6 +70,7 @@ export class RecipeDetailComponent implements OnInit {
         private location: Location,
         private i18nService: I18NService,
         private globalsService: GlobalsService,
+        @Inject(DOCUMENT) private doc,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -125,6 +126,33 @@ export class RecipeDetailComponent implements OnInit {
         this.seoService.setMetaData('description', getJustText(this.detailsData?.description));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.jsonLD = this.seoService.getJsonLD(this.detailsData.posted_user);
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@type': 'Recipe',
+            author: this.detailsData?.posted_user,
+            cookTime: this.detailsData?.cooking_time,
+            datePublished: this.detailsData?.posted_at,
+            description: getJustText(this.detailsData?.description),
+            image: this.detailsData?.cover_image_url,
+            recipeIngredient: this.detailsData?.ingredients.map((item) => {
+                return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
+            }),
+            name: this.detailsData?.name,
+            prepTime: this.detailsData?.preparation_time,
+            recipeInstructions: this.detailsData?.steps.map((item, index) => {
+                return {
+                    '@type': 'HowToStep',
+                    name: `Step ${index + 1}`,
+                    text: getJustText(item.description),
+                    url: `${this.doc.URL}?#step${index + 1}`,
+                    image: item.image_url,
+                };
+            }),
+            recipeYield: this.detailsData?.serves,
+        };
     }
 }

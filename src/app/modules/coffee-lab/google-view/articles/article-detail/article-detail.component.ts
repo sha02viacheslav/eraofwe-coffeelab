@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Location, DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, I18NService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
@@ -28,6 +28,7 @@ export class ArticleDetailComponent implements OnInit {
         private toastService: ToastrService,
         private i18nService: I18NService,
         private globalsService: GlobalsService,
+        @Inject(DOCUMENT) private doc,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -83,6 +84,19 @@ export class ArticleDetailComponent implements OnInit {
         this.seoService.setMetaData('description', getJustText(this.detailsData?.content));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name);
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@type': 'DiscussionForumPosting',
+            '@id': this.doc.URL,
+            headline: this.seoService.getPageTitle(),
+            author: {
+                '@type': 'Person',
+                name: this.detailsData.user_name,
+            },
+        };
     }
 }
