@@ -32,9 +32,6 @@
                     class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
                     [innerHTML]="detailsData?.question"
                 ></h1>
-                <div class="mt-3 mt-md-4 fnt-14 fnt-muli fnt-bold text-clr60b text-center background-header">
-                    Showing {{ detailsData?.answers ? detailsData.answers.length : '0' }} Comments
-                </div>
                 <div class="mt-4 mt-md-45 mt-lg-4" *ngIf="detailsData?.answers">
                     <div class="answer-wrapper border-bottom-primary mb-4" *ngFor="let postItem of detailsData.answers">
                         <div class="d-flex flex-wrap w-100">
