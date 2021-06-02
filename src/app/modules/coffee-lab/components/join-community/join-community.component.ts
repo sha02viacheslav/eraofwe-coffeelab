@@ -16,7 +16,9 @@ export class JoinCommunityComponent implements OnInit {
     ngOnInit(): void {}
 
     exploreCoffeeLab() {
-        this.router.navigate([`/overview/${this.type}`]);
+        if (this.type) {
+            this.router.navigate([`/overview/${this.type}`]);
+        }
     }
 
     gotoSignup() {

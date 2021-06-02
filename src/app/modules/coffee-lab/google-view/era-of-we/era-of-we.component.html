@@ -1,4 +1,7 @@
 <div class="d-block d-lg-flex flex-wrap">
+    <div class="d-lg-none mb-4">
+        <app-join-community></app-join-community>
+    </div>
     <div class="row gutter-16 flex-1 pr-lg-125">
         <div class="col-12 col-md-6 mb-3" *ngFor="let article of data">
             <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" [routerLink]="'/article/' + article.slug">
@@ -38,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="d-none d-lg-block col-lg-4 p-0 pl-lg-125">
+    <div class="d-none d-lg-block w-min-content p-0 pl-lg-125">
         <app-join-community></app-join-community>
     </div>
 </div>

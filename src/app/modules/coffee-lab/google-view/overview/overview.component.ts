@@ -20,7 +20,7 @@ export class OverviewComponent implements OnInit {
             activeIcon: 'assets/images/article-active.svg',
         },
         {
-            label: 'brewing-guides',
+            label: 'brewing_guides',
             routerLink: '/overview/coffee-recipes',
             icon: 'assets/images/coffee-recipe.svg',
             activeIcon: 'assets/images/coffee-recipe-active.svg',
