@@ -17,7 +17,7 @@ export class RecipeDetailComponent implements OnInit {
     infoData: any[] = [
         {
             icon: 'assets/images/expertise-level.svg',
-            label: 'Expertise level',
+            label: 'Difficulty',
             key: 'expertise',
         },
         {
