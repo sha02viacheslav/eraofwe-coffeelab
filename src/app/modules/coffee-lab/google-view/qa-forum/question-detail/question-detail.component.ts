@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Location, DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, I18NService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
@@ -31,6 +31,7 @@ export class QuestionDetailComponent implements OnInit {
         private i18nService: I18NService,
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
+        @Inject(DOCUMENT) private doc,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -89,7 +90,37 @@ export class QuestionDetailComponent implements OnInit {
         }
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.jsonLD = this.seoService.getJsonLD(this.detailsData.user_name, this.detailsData.answers.length);
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@type': 'QAPage',
+            mainEntity: {
+                '@type': 'Question',
+                name: this.detailsData?.slug,
+                text: this.detailsData?.question,
+                answerCount: this.detailsData?.answers?.length || 0,
+                dateCreated: this.detailsData?.created_at,
+                author: {
+                    '@type': 'Person',
+                    name: this.detailsData?.user_name,
+                },
+                suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
+                    return {
+                        '@type': 'Answer',
+                        text: getJustText(answer.answer),
+                        dateCreated: answer.created_at,
+                        url: `${this.doc.URL}?#answer-${answer.id}`,
+                        author: {
+                            '@type': 'Person',
+                            name: answer.user_name,
+                        },
+                    };
+                }),
+            },
+        };
     }
 
     onGoRelatedQuestion(item) {

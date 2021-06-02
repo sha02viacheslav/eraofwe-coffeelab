@@ -93,7 +93,11 @@
                     </div>
                     <div class="mt-45">
                         <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</h2>
-                        <div class="pb-3 pb-md-4" *ngFor="let step of detailsData?.steps; let i = index">
+                        <div
+                            class="pb-3 pb-md-4"
+                            *ngFor="let step of detailsData?.steps; let i = index"
+                            [id]="'step' + (i + 1)"
+                        >
                             <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
                             <div
                                 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0"

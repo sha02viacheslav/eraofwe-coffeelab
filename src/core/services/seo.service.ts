@@ -38,25 +38,5 @@ export class SEOService {
         link.setAttribute('href', newUrl);
         link.setAttribute('hreflang', lang);
     }
-    getJsonLD(userName, count?) {
-        const jsonLD: any = {
-            '@context': 'https://schema.org',
-            '@type': 'DiscussionForumPosting',
-            '@id': this.doc.URL,
-            headline: this.getPageTitle(),
-            author: {
-                '@type': 'Person',
-                name: userName,
-            },
-        };
-        if (count) {
-            jsonLD.interactionStatistic = {
-                '@type': 'InteractionCounter',
-                interactionType: 'https://schema.org/CommentAction',
-                userInteractionCount: count,
-            };
-        }
-        return jsonLD;
-    }
     createUrlForLang() {}
 }

@@ -93,6 +93,7 @@ export class ArticleDetailComponent implements OnInit {
             '@type': 'DiscussionForumPosting',
             '@id': this.doc.URL,
             headline: this.seoService.getPageTitle(),
+            image: this.detailsData?.cover_image_url,
             author: {
                 '@type': 'Person',
                 name: this.detailsData.user_name,
