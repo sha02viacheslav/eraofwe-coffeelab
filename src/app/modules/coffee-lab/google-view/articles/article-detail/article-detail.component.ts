@@ -18,6 +18,7 @@ export class ArticleDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
+    isPublic: boolean;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -30,6 +31,9 @@ export class ArticleDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
     ) {
+        this.activatedRoute.queryParams.subscribe((params) => {
+            this.isPublic = params.is_public;
+        });
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
@@ -67,7 +71,9 @@ export class ArticleDetailComponent implements OnInit {
                 if (this.lang && this.lang !== res.result.language) {
                     this.location.back();
                 } else {
-                    this.globalsService.setLimitCounter();
+                    if (!this.isPublic) {
+                        this.globalsService.setLimitCounter();
+                    }
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
                 }
