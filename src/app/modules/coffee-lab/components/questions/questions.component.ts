@@ -34,7 +34,7 @@ export class QuestionsComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const url = `${item.language === 'en' || !item.language ? '' : item.language}/qa/${item.slug}`;
+        const url = `${item.lang_code === 'en' || !item.lang_code ? '' : item.language}/qa/${item.slug}`;
         return {
             url,
             queryParmas: {

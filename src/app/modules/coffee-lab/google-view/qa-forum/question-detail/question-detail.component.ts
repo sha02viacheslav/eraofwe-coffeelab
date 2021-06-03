@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Location, DOCUMENT } from '@angular/common';
-import { CoffeeLabService, SEOService, I18NService, GlobalsService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
@@ -28,7 +28,7 @@ export class QuestionDetailComponent implements OnInit {
         private toastService: ToastrService,
         private seoService: SEOService,
         private location: Location,
-        private i18nService: I18NService,
+        private startupService: StartupService,
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
@@ -71,7 +71,7 @@ export class QuestionDetailComponent implements OnInit {
                     this.location.back();
                 } else {
                     this.globalsService.setLimitCounter();
-                    this.i18nService.use(this.lang || 'en');
+                    this.startupService.load(this.lang || 'en');
                     this.setSEO();
                 }
             } else {

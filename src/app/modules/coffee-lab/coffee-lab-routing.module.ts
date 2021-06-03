@@ -10,7 +10,13 @@ import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/
 import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
+import { APP_LANGUAGES } from '@constants';
+import { isNgTemplate } from '@angular/compiler';
 
+let language = navigator.language.substr(0, 2);
+if (!APP_LANGUAGES.find((item) => item.value === language)) {
+    language = 'en';
+}
 const routes: Routes = [
     {
         path: '',
@@ -18,11 +24,38 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'overview',
+                redirectTo: `${language}/overview`,
                 pathMatch: 'full',
             },
             {
                 path: 'overview',
+                component: OverviewComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'qa-forum',
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'qa-forum',
+                        component: QaForumViewComponent,
+                    },
+                    {
+                        path: 'articles',
+                        component: ArticlesViewComponent,
+                    },
+                    {
+                        path: 'coffee-recipes',
+                        component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'about-era-of-we',
+                        component: EraOfWeComponent,
+                    },
+                ],
+            },
+            {
+                path: ':lang/overview',
                 component: OverviewComponent,
                 children: [
                     {

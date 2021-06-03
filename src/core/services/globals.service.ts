@@ -31,7 +31,7 @@ export class GlobalsService {
     userInvitesArray: any = [];
     device = 'desktop';
     previousUrl: string;
-    private currentUrl: string;
+    currentUrl: string;
 
     constructor(
         private cookieService: CookieService,
