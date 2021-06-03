@@ -137,7 +137,6 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {
                     isLimit: true,
-                    count: this.globalsService.getLimitCounter(),
                 },
                 showHeader: false,
                 styleClass: 'signup-dialog',

@@ -52,7 +52,6 @@ export class QuestionsComponent implements OnInit {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {
                     isLimit: true,
-                    count: this.globalsService.getLimitCounter(),
                 },
                 showHeader: false,
                 styleClass: 'signup-dialog',

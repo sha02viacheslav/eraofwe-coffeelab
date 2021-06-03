@@ -1,12 +1,10 @@
-<div class="pt-4 pb-475 pl-45 pr-4">
+<div class="pt-4 pb-475 pl-45 pr-4 br-4">
     <div class="d-flex justify-content-end">
         <i class="pi pi-times fnt-18 text-clr588 cursor-pointer" (click)="close()"></i>
     </div>
     <div class="text-center">
         <p class="fnt-play fnt-28 fnt-bold lh-normal text-clr334 mb-2">
-            {{
-                config.data?.isLimit ? 'You have read your ' + config.data.count + ' posts!' : ('hi_there' | translate)
-            }}
+            {{ config.data?.isLimit ? 'You have read your 3 posts!' : ('hi_there' | translate) }}
         </p>
         <div class="fnt-muli fnt-14 fnt-normal lh-157 text-clr588 mb-475 mt-z5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_part_community') | translate }}
