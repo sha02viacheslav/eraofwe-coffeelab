@@ -9,9 +9,11 @@
         <div class="d-flex align-items-center mt-3">
             <p class="fnt-muli fnt-16 fnt-bold lh-normal text-clr334 mb-0">
                 {{ 'or' | translate }}
-                <span class="pl-3 text-clr55c cursor-pointer text-underline" (click)="exploreCoffeeLab()">{{
-                    'explore_lab' | translate
-                }}</span>
+                <span
+                    class="pl-3 text-clr55c cursor-pointer text-underline"
+                    [routerLink]="'/' + coffeeLabService.currentForumLanguage + '/overview/qa-forum'"
+                    >{{ 'explore_lab' | translate }}</span
+                >
             </p>
         </div>
     </div>
