@@ -43,7 +43,7 @@
                                 <app-user-header [prop]="postItem"></app-user-header>
                                 <div class="d-flex flex-column align-items-end">
                                     <app-forum-menu></app-forum-menu>
-                                    <div class="d-none d-md-block" *ngIf="postItem.translations">
+                                    <div class="translate-wrapper" *ngIf="postItem.translations">
                                         <app-translation-dropdown
                                             forumType="qa"
                                             [translatedList]="postItem.translations"
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div
-                                class="w-100 d-block d-md-none mt-3 py-3 pr-0 border-top-main border-bottom-main"
+                                class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
                                 *ngIf="postItem.translations"
                             >
                                 <app-translation-dropdown

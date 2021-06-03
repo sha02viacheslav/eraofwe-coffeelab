@@ -11,7 +11,6 @@ import { ArticlesViewComponent } from './google-view/articles/articles-view/arti
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { APP_LANGUAGES } from '@constants';
-import { isNgTemplate } from '@angular/compiler';
 
 let language = navigator.language.substr(0, 2);
 if (!APP_LANGUAGES.find((item) => item.value === language)) {

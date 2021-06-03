@@ -23,7 +23,7 @@
                         <div class="d-flex flex-column align-items-end">
                             <app-forum-menu></app-forum-menu>
                             <div
-                                class="d-none d-md-block"
+                                class="translate-wrapper"
                                 *ngIf="detailsData?.allow_translation && detailsData?.translations"
                             >
                                 <app-translation-dropdown
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div
-                        class="w-100 d-block d-md-none mt-3 py-3 pr-0 border-top-main border-bottom-main"
+                        class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
                         *ngIf="detailsData?.allow_translation && detailsData?.translations"
                     >
                         <app-translation-dropdown
