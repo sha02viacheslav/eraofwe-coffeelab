@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Location, DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -87,7 +86,7 @@ export class ArticleDetailComponent implements OnInit {
 
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.title);
-        this.seoService.setMetaData('description', getJustText(this.detailsData?.content));
+        this.seoService.setMetaData('description', this.globalsService.getJustText(this.detailsData?.content));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.setSchemaMackup();

@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Location, DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
@@ -86,7 +85,7 @@ export class QuestionDetailComponent implements OnInit {
         this.seoService.setPageTitle(this.detailsData?.question);
         if (this.detailsData?.answers?.length) {
             const firstAnswer = this.detailsData?.answers[0];
-            this.seoService.setMetaData('description', getJustText(firstAnswer.answer));
+            this.seoService.setMetaData('description', this.globalsService.getJustText(firstAnswer.answer));
         }
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
@@ -110,7 +109,7 @@ export class QuestionDetailComponent implements OnInit {
                 suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
                     return {
                         '@type': 'Answer',
-                        text: getJustText(answer.answer),
+                        text: this.globalsService.getJustText(answer.answer),
                         dateCreated: answer.created_at,
                         url: `${this.doc.URL}?#answer-${answer.id}`,
                         author: {

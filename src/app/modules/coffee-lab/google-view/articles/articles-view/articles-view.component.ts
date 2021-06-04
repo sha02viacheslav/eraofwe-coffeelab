@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService } from '@services';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { DOCUMENT } from '@angular/common';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -47,6 +48,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         private router: Router,
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
+        @Inject(DOCUMENT) private document: Document,
     ) {}
 
     ngOnInit(): void {
@@ -82,7 +84,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     getJustText(content: any) {
-        const contentElement = document.createElement('div');
+        const contentElement = this.document.createElement('div');
         contentElement.innerHTML = content;
         const images = contentElement.querySelectorAll('img');
         images.forEach((image) => {

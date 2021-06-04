@@ -96,7 +96,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
                     this.totalRecords = res.result_info.total_count;
                     this.rows = res.result_info.per_page;
                     this.coffeeRecipeData.map((item) => {
-                        item.description = this.getJustText(item.description);
+                        item.description = this.globalsService.getJustText(item.description);
                         return item;
                     });
                 }
@@ -105,16 +105,6 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
             }
             this.isLoading = false;
         });
-    }
-
-    getJustText(content: any) {
-        const contentElement = document.createElement('div');
-        contentElement.innerHTML = content;
-        const images = contentElement.querySelectorAll('img');
-        images.forEach((image) => {
-            image.parentNode.removeChild(image);
-        });
-        return contentElement.innerHTML;
     }
 
     getData(event) {

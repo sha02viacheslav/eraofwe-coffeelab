@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { getJustText } from '@utils';
 import { ToastrService } from 'ngx-toastr';
 import { Location, DOCUMENT } from '@angular/common';
 
@@ -123,7 +122,7 @@ export class RecipeDetailComponent implements OnInit {
 
     setSEO() {
         this.seoService.setPageTitle(this.detailsData?.name);
-        this.seoService.setMetaData('description', getJustText(this.detailsData?.description));
+        this.seoService.setMetaData('description', this.globalsService.getJustText(this.detailsData?.description));
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.setSchemaMackup();
@@ -136,7 +135,7 @@ export class RecipeDetailComponent implements OnInit {
             author: this.detailsData?.posted_user,
             cookTime: this.detailsData?.cooking_time,
             datePublished: this.detailsData?.posted_at,
-            description: getJustText(this.detailsData?.description),
+            description: this.globalsService.getJustText(this.detailsData?.description),
             image: this.detailsData?.cover_image_url,
             recipeIngredient: this.detailsData?.ingredients.map((item) => {
                 return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
@@ -147,7 +146,7 @@ export class RecipeDetailComponent implements OnInit {
                 return {
                     '@type': 'HowToStep',
                     name: `Step ${index + 1}`,
-                    text: getJustText(item.description),
+                    text: this.globalsService.getJustText(item.description),
                     url: `${this.doc.URL}?#step${index + 1}`,
                     image: item.image_url,
                 };
