@@ -12,10 +12,11 @@ import { ArticleDetailComponent } from './google-view/articles/article-detail/ar
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { APP_LANGUAGES } from '@constants';
 
-let language = navigator.language.substr(0, 2);
-if (!APP_LANGUAGES.find((item) => item.value === language)) {
-    language = 'en';
-}
+// let language = navigator.language.substr(0, 2);
+// if (!APP_LANGUAGES.find((item) => item.value === language)) {
+//     language = 'en';
+// }
+const language = 'en';
 const routes: Routes = [
     {
         path: '',
