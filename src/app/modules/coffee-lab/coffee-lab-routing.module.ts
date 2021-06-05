@@ -10,13 +10,7 @@ import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/
 import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
-import { APP_LANGUAGES } from '@constants';
 
-// let language = navigator.language.substr(0, 2);
-// if (!APP_LANGUAGES.find((item) => item.value === language)) {
-//     language = 'en';
-// }
-const language = 'en';
 const routes: Routes = [
     {
         path: '',
@@ -24,7 +18,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: `${language}/overview`,
+                redirectTo: 'overview',
                 pathMatch: 'full',
             },
             {
