@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-question-detail',
@@ -93,33 +94,58 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     setSchemaMackup() {
-        this.jsonLD = {
-            '@context': 'https://schema.org',
-            '@type': 'QAPage',
-            mainEntity: {
-                '@type': 'Question',
-                name: this.detailsData?.slug,
-                text: this.detailsData?.question,
-                answerCount: this.detailsData?.answers?.length || 0,
-                dateCreated: this.detailsData?.created_at,
-                author: {
-                    '@type': 'Person',
-                    name: this.detailsData?.user_name,
-                },
-                suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
-                    return {
-                        '@type': 'Answer',
-                        text: this.globalsService.getJustText(answer.answer),
-                        dateCreated: answer.created_at,
-                        url: `${this.doc.URL}?#answer-${answer.id}`,
-                        author: {
-                            '@type': 'Person',
-                            name: answer.user_name,
-                        },
-                    };
-                }),
+        this.jsonLD = [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Overview',
+                        item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Q+A Forum',
+                        item: `${environment.coffeeLabWeb}/${this.lang}/overview/qa-forum`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 3,
+                        name: this.detailsData?.question,
+                    },
+                ],
             },
-        };
+            {
+                '@context': 'https://schema.org',
+                '@type': 'QAPage',
+                mainEntity: {
+                    '@type': 'Question',
+                    name: this.detailsData?.slug,
+                    text: this.detailsData?.question,
+                    answerCount: this.detailsData?.answers?.length || 0,
+                    dateCreated: this.detailsData?.created_at,
+                    author: {
+                        '@type': 'Person',
+                        name: this.detailsData?.user_name,
+                    },
+                    suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
+                        return {
+                            '@type': 'Answer',
+                            text: this.globalsService.getJustText(answer.answer),
+                            dateCreated: answer.created_at,
+                            url: `${this.doc.URL}?#answer-${answer.id}`,
+                            author: {
+                                '@type': 'Person',
+                                name: answer.user_name,
+                            },
+                        };
+                    }),
+                },
+            },
+        ];
     }
 
     onGoRelatedQuestion(item) {
