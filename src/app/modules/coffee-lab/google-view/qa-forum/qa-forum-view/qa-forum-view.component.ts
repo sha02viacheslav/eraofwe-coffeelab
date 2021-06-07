@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -34,8 +35,13 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     keyword = '';
     destroy$: Subject<boolean> = new Subject<boolean>();
     forumLanguage: string;
+    jsonLD: any;
 
-    constructor(private coffeeLabService: CoffeeLabService, private toastService: ToastrService) {}
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        private toastService: ToastrService,
+        private seoService: SEOService,
+    ) {}
 
     ngOnInit(): void {
         window.scroll(0, 0);
@@ -67,5 +73,45 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
+        this.seoService.setMetaData('description', 'Q+A Forums for Coffee Lab');
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Overview',
+                        item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Q+A Forums',
+                    },
+                ],
+            },
+            // {
+            //     '@context': 'https://schema.org',
+            //     '@type': 'DiscussionForumPosting',
+            //     '@id': this.document.URL,
+            //     headline: this.seoService.getPageTitle(),
+            //     author: {
+            //         '@type': 'Person',
+            //         name: this.detailsData.user_name,
+            //     },
+            // },
+        ];
     }
 }

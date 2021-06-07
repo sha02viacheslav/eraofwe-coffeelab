@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService } from '@services';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -61,6 +62,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         },
     ];
     selectedOrder = 'latest';
+    jsonLD: any;
 
     constructor(
         private toastService: ToastrService,
@@ -68,6 +70,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         public coffeeLabService: CoffeeLabService,
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
+        private seoService: SEOService,
     ) {}
 
     ngOnInit(): void {
@@ -99,6 +102,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
                         item.description = this.globalsService.getJustText(item.description);
                         return item;
                     });
+                    this.setSEO();
                 }
             } else {
                 this.toastService.error('Cannot get Recipes data');
@@ -137,5 +141,45 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle('Era of We - The Coffee Lab Brewing Gudes');
+        this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Overview',
+                        item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Brewing Gudes',
+                    },
+                ],
+            },
+            // {
+            //     '@context': 'https://schema.org',
+            //     '@type': 'DiscussionForumPosting',
+            //     '@id': this.document.URL,
+            //     headline: this.seoService.getPageTitle(),
+            //     author: {
+            //         '@type': 'Person',
+            //         name: this.detailsData.user_name,
+            //     },
+            // },
+        ];
     }
 }
