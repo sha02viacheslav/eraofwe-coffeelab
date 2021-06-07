@@ -3,6 +3,7 @@ import { Location, DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-article-detail',
@@ -93,16 +94,41 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSchemaMackup() {
-        this.jsonLD = {
-            '@context': 'https://schema.org',
-            '@type': 'DiscussionForumPosting',
-            '@id': this.doc.URL,
-            headline: this.seoService.getPageTitle(),
-            image: this.detailsData?.cover_image_url,
-            author: {
-                '@type': 'Person',
-                name: this.detailsData.user_name,
+        this.jsonLD = [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Overview',
+                        item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Posts',
+                        item: `${environment.coffeeLabWeb}/${this.lang}/overview/articles`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 3,
+                        name: this.detailsData?.title,
+                    },
+                ],
             },
-        };
+            {
+                '@context': 'https://schema.org',
+                '@type': 'DiscussionForumPosting',
+                '@id': this.doc.URL,
+                headline: this.seoService.getPageTitle(),
+                image: this.detailsData?.cover_image_url,
+                author: {
+                    '@type': 'Person',
+                    name: this.detailsData.user_name,
+                },
+            },
+        ];
     }
 }

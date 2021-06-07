@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoffeeLabService, GlobalsService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { DOCUMENT } from '@angular/common';
+import { environment } from '@env/environment';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -42,6 +43,8 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     forumLanguage: string;
     totalRecords = 0;
+    jsonLD: any;
+
     constructor(
         public coffeeLabService: CoffeeLabService,
         private toastService: ToastrService,
@@ -49,6 +52,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private document: Document,
+        private seoService: SEOService,
     ) {}
 
     ngOnInit(): void {
@@ -76,6 +80,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
                     item.content = this.getJustText(item.content);
                     return item;
                 });
+                this.setSEO();
             } else {
                 this.toastService.error('Cannot get Articles data');
             }
@@ -119,5 +124,45 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle('Era of We - The Coffee Lab Posts');
+        this.seoService.setMetaData('description', 'Posts for Coffee Lab');
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        this.setSchemaMackup();
+    }
+
+    setSchemaMackup() {
+        this.jsonLD = [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Overview',
+                        item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Posts',
+                    },
+                ],
+            },
+            // {
+            //     '@context': 'https://schema.org',
+            //     '@type': 'DiscussionForumPosting',
+            //     '@id': this.document.URL,
+            //     headline: this.seoService.getPageTitle(),
+            //     author: {
+            //         '@type': 'Person',
+            //         name: this.detailsData.user_name,
+            //     },
+            // },
+        ];
     }
 }
