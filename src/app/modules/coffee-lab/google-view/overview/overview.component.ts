@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, GlobalsService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -42,39 +42,45 @@ export class OverviewComponent implements OnInit {
         private globalsService: GlobalsService,
         private startupService: StartupService,
         private router: Router,
+        private activatedRoute: ActivatedRoute,
     ) {}
 
     ngOnInit(): void {
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.menuItems = [
-                {
-                    label: 'question_answers',
-                    routerLink: `/${language}/overview/qa-forum`,
-                    icon: 'assets/images/qa-forum.svg',
-                    activeIcon: 'assets/images/qa-forum-active.svg',
-                },
-                {
-                    label: 'posts',
-                    routerLink: `/${language}/overview/articles`,
-                    icon: 'assets/images/article.svg',
-                    activeIcon: 'assets/images/article-active.svg',
-                },
-                {
-                    label: 'brewing_guides',
-                    routerLink: `/${language}/overview/coffee-recipes`,
-                    icon: 'assets/images/coffee-recipe.svg',
-                    activeIcon: 'assets/images/coffee-recipe-active.svg',
-                },
-                {
-                    label: 'about_era_of_we',
-                    routerLink: `/${language}/overview/about-era-of-we`,
-                    icon: 'assets/images/era-of-we.svg',
-                    activeIcon: 'assets/images/era-of-we-active.svg',
-                },
-            ];
-            this.startupService.load(language);
-            const currentRouter = this.globalsService.currentUrl.substr(3);
-            this.router.navigate([`/${language}${currentRouter}`]);
+        this.activatedRoute.params.subscribe((params) => {
+            const lang = params.lang;
+            this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+                this.menuItems = [
+                    {
+                        label: 'question_answers',
+                        routerLink: `/${language}/overview/qa-forum`,
+                        icon: 'assets/images/qa-forum.svg',
+                        activeIcon: 'assets/images/qa-forum-active.svg',
+                    },
+                    {
+                        label: 'posts',
+                        routerLink: `/${language}/overview/articles`,
+                        icon: 'assets/images/article.svg',
+                        activeIcon: 'assets/images/article-active.svg',
+                    },
+                    {
+                        label: 'brewing_guides',
+                        routerLink: `/${language}/overview/coffee-recipes`,
+                        icon: 'assets/images/coffee-recipe.svg',
+                        activeIcon: 'assets/images/coffee-recipe-active.svg',
+                    },
+                    {
+                        label: 'about_era_of_we',
+                        routerLink: `/${language}/overview/about-era-of-we`,
+                        icon: 'assets/images/era-of-we.svg',
+                        activeIcon: 'assets/images/era-of-we-active.svg',
+                    },
+                ];
+                if (lang) {
+                    this.startupService.load(language);
+                    const currentRouter = this.globalsService.currentUrl.substr(3);
+                    this.router.navigate([`/${language}${currentRouter}`]);
+                }
+            });
         });
     }
 }

@@ -18,7 +18,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'en/overview',
+                redirectTo: 'overview',
                 pathMatch: 'full',
             },
             {
