@@ -30,12 +30,12 @@ export class QuestionsComponent implements OnInit {
     ngOnInit(): void {
         this.displayData = this.questions.slice(0, 10);
         this.totalRecords = this.questions.length;
-        // this.setSchemaMackup();
+        this.setSchemaMackup();
     }
 
     paginate(event: any) {
         this.displayData = this.questions.slice(event.first, event.first + event.rows);
-        // this.setSchemaMackup();
+        this.setSchemaMackup();
     }
 
     getLink(item: any, answer: any) {
