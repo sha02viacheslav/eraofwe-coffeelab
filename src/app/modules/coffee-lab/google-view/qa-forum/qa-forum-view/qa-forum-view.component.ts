@@ -3,7 +3,6 @@ import { CoffeeLabService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -35,7 +34,6 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     keyword = '';
     destroy$: Subject<boolean> = new Subject<boolean>();
     forumLanguage: string;
-    jsonLD: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -80,39 +78,5 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
         this.seoService.setMetaData('description', 'Q+A Forums for Coffee Lab');
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
-        this.setSchemaMackup();
-    }
-
-    setSchemaMackup() {
-        this.jsonLD = {
-            '@context': 'https://schema.org',
-            '@graph': [
-                {
-                    '@type': 'BreadcrumbList',
-                    itemListElement: [
-                        {
-                            '@type': 'ListItem',
-                            position: 1,
-                            name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
-                        },
-                        {
-                            '@type': 'ListItem',
-                            position: 2,
-                            name: 'Q+A Forums',
-                        },
-                    ],
-                },
-                // {
-                //     '@type': 'DiscussionForumPosting',
-                //     '@id': this.document.URL,
-                //     headline: this.seoService.getPageTitle(),
-                //     author: {
-                //         '@type': 'Person',
-                //         name: this.detailsData.user_name,
-                //     },
-                // },
-            ],
-        };
     }
 }

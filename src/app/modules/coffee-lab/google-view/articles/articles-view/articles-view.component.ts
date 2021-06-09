@@ -75,11 +75,11 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
             if (res.success) {
                 this.articlesData = res.result ?? [];
                 this.totalRecords = this.articlesData.length;
-                this.displayData = this.articlesData.slice(0, 9);
                 this.articlesData.map((item) => {
                     item.content = this.getJustText(item.content);
                     return item;
                 });
+                this.displayData = this.articlesData.slice(0, 9);
                 this.setSEO();
             } else {
                 this.toastService.error('Cannot get Articles data');
@@ -100,6 +100,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
 
     paginate(event: any) {
         this.displayData = this.articlesData.slice(event.first, event.first + event.rows);
+        this.setSchemaMackup();
     }
 
     getLink(item) {
@@ -135,6 +136,23 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     setSchemaMackup() {
+        const forumList: any[] = [];
+        for (const forum of this.displayData) {
+            const itemData = {
+                '@type': 'Article',
+                '@id': `${environment.coffeeLabWeb}/${this.forumLanguage}/article/${forum.slug}`,
+                headline: forum.title,
+                description: this.globalsService.getJustText(forum.content),
+                image: forum.cover_image_url,
+                datePublished: forum.created_at,
+                author: {
+                    '@type': 'Person',
+                    name: forum.user_name,
+                },
+            };
+            forumList.push(itemData);
+        }
+
         this.jsonLD = {
             '@context': 'https://schema.org',
             '@graph': [
@@ -154,15 +172,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
                         },
                     ],
                 },
-                // {
-                //     '@type': 'DiscussionForumPosting',
-                //     '@id': this.document.URL,
-                //     headline: this.seoService.getPageTitle(),
-                //     author: {
-                //         '@type': 'Person',
-                //         name: this.detailsData.user_name,
-                //     },
-                // },
+                ...forumList,
             ],
         };
     }

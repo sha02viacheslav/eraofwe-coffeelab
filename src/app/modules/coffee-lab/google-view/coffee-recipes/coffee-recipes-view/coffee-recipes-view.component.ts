@@ -152,6 +152,21 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     }
 
     setSchemaMackup() {
+        const forumList: any[] = [];
+        for (const forum of this.coffeeRecipeData) {
+            const itemData = {
+                '@type': 'Recipe',
+                author: forum.posted_user,
+                cookTime: forum.cooking_time,
+                datePublished: forum.posted_at,
+                description: this.globalsService.getJustText(forum.description),
+                image: forum.cover_image_url,
+                name: forum.name,
+                prepTime: forum.preparation_time,
+                recipeYield: forum.serves,
+            };
+            forumList.push(itemData);
+        }
         this.jsonLD = {
             '@context': 'https://schema.org',
             '@graph': [
@@ -171,15 +186,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
                         },
                     ],
                 },
-                // {
-                //     '@type': 'DiscussionForumPosting',
-                //     '@id': this.document.URL,
-                //     headline: this.seoService.getPageTitle(),
-                //     author: {
-                //         '@type': 'Person',
-                //         name: this.detailsData.user_name,
-                //     },
-                // },
+                ...forumList,
             ],
         };
     }

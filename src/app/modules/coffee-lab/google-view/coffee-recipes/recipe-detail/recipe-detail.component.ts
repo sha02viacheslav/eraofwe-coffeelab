@@ -38,24 +38,7 @@ export class RecipeDetailComponent implements OnInit {
             key: 'serves',
         },
     ];
-    ingredientsData: any[] = [
-        {
-            label: 'Instant Coffee',
-            value: '3 tbsp',
-        },
-        {
-            label: 'Sugar',
-            value: '2 tbsp',
-        },
-        {
-            label: 'Milk',
-            value: '400~500 ml',
-        },
-        {
-            label: 'Ice',
-            value: '5-6',
-        },
-    ];
+
     loading = true;
     jsonLD: any;
     lang: any;

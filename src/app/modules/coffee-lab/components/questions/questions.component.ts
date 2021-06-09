@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-questions',
@@ -13,9 +14,11 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class QuestionsComponent implements OnInit {
     @Input() questions: any[] = [];
     @Input() viewMode = 'list';
+    @Input() forumLanguage;
     questionMenuItems: MenuItem[] = [];
     totalRecords = 0;
     displayData: any[] = [];
+    jsonLD: any;
 
     constructor(
         private router: Router,
@@ -27,10 +30,12 @@ export class QuestionsComponent implements OnInit {
     ngOnInit(): void {
         this.displayData = this.questions.slice(0, 10);
         this.totalRecords = this.questions.length;
+        this.setSchemaMackup();
     }
 
     paginate(event: any) {
         this.displayData = this.questions.slice(event.first, event.first + event.rows);
+        this.setSchemaMackup();
     }
 
     getLink(item: any, answer: any) {
@@ -57,5 +62,60 @@ export class QuestionsComponent implements OnInit {
                 styleClass: 'signup-dialog',
             });
         }
+    }
+
+    setSchemaMackup() {
+        const forumList: any[] = [];
+        for (const forum of this.displayData) {
+            const itemData = {
+                '@type': 'QAPage',
+                mainEntity: {
+                    '@type': 'Question',
+                    name: forum.slug,
+                    text: forum.question,
+                    answerCount: forum.answers?.length || 0,
+                    dateCreated: forum.created_at,
+                    author: {
+                        '@type': 'Person',
+                        name: forum.question_user,
+                    },
+                    suggestedAnswer: forum.answers?.map((answer, index) => {
+                        return {
+                            '@type': 'Answer',
+                            text: this.globalsService.getJustText(answer.answer),
+                            dateCreated: answer.created_at,
+                            url: `${environment.coffeeLabWeb}/${this.forumLanguage}/qa/${forum.slug}?#answer-${answer.id}`,
+                            author: {
+                                '@type': 'Person',
+                                name: answer.user_name,
+                            },
+                        };
+                    }),
+                },
+            };
+            forumList.push(itemData);
+        }
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@graph': [
+                {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Overview',
+                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'Q+A Forums',
+                        },
+                    ],
+                },
+                ...forumList,
+            ],
+        };
     }
 }
