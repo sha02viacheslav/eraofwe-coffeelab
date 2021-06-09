@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <!-- <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld> -->
+    <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
 </div>
 <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
     <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
