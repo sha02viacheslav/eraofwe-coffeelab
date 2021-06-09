@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService } from '@services';
@@ -11,7 +11,7 @@ import { environment } from '@env/environment';
     templateUrl: './questions.component.html',
     styleUrls: ['./questions.component.scss'],
 })
-export class QuestionsComponent implements OnInit {
+export class QuestionsComponent implements OnInit, OnDestroy {
     @Input() questions: any[] = [];
     @Input() viewMode = 'list';
     @Input() forumLanguage;
@@ -62,6 +62,10 @@ export class QuestionsComponent implements OnInit {
                 styleClass: 'signup-dialog',
             });
         }
+    }
+
+    ngOnDestroy(): void {
+        this.jsonLD = null;
     }
 
     setSchemaMackup() {

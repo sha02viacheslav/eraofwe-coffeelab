@@ -155,7 +155,25 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
 
         this.jsonLD = {
             '@context': 'https://schema.org',
-            '@graph': [...forumList],
+            '@graph': [
+                {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Overview',
+                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'Posts',
+                        },
+                    ],
+                },
+                ...forumList,
+            ],
         };
     }
 }
