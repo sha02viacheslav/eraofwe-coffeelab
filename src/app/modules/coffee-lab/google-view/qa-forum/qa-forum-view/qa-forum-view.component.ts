@@ -84,34 +84,35 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     }
 
     setSchemaMackup() {
-        this.jsonLD = [
-            {
-                '@context': 'https://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    {
-                        '@type': 'ListItem',
-                        position: 1,
-                        name: 'Overview',
-                        item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        name: 'Q+A Forums',
-                    },
-                ],
-            },
-            // {
-            //     '@context': 'https://schema.org',
-            //     '@type': 'DiscussionForumPosting',
-            //     '@id': this.document.URL,
-            //     headline: this.seoService.getPageTitle(),
-            //     author: {
-            //         '@type': 'Person',
-            //         name: this.detailsData.user_name,
-            //     },
-            // },
-        ];
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@graph': [
+                {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Overview',
+                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'Q+A Forums',
+                        },
+                    ],
+                },
+                // {
+                //     '@type': 'DiscussionForumPosting',
+                //     '@id': this.document.URL,
+                //     headline: this.seoService.getPageTitle(),
+                //     author: {
+                //         '@type': 'Person',
+                //         name: this.detailsData.user_name,
+                //     },
+                // },
+            ],
+        };
     }
 }

@@ -94,41 +94,44 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSchemaMackup() {
-        this.jsonLD = [
-            {
-                '@context': 'https://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    {
-                        '@type': 'ListItem',
-                        position: 1,
-                        name: 'Overview',
-                        item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        name: 'Posts',
-                        item: `${environment.coffeeLabWeb}/${this.lang}/overview/articles`,
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 3,
-                        name: this.detailsData?.title,
-                    },
-                ],
-            },
-            {
-                '@context': 'https://schema.org',
-                '@type': 'DiscussionForumPosting',
-                '@id': this.doc.URL,
-                headline: this.seoService.getPageTitle(),
-                image: this.detailsData?.cover_image_url,
-                author: {
-                    '@type': 'Person',
-                    name: this.detailsData.user_name,
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@graph': [
+                {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Overview',
+                            item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'Posts',
+                            item: `${environment.coffeeLabWeb}/${this.lang}/overview/articles`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 3,
+                            name: this.detailsData?.title,
+                        },
+                    ],
                 },
-            },
-        ];
+                {
+                    '@type': 'Article',
+                    '@id': this.doc.URL,
+                    headline: this.seoService.getPageTitle(),
+                    description: this.globalsService.getJustText(this.detailsData?.content),
+                    image: this.detailsData?.cover_image_url,
+                    datePublished: this.detailsData?.created_at,
+                    author: {
+                        '@type': 'Person',
+                        name: this.detailsData.user_name,
+                    },
+                },
+            ],
+        };
     }
 }

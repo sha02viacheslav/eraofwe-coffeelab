@@ -130,54 +130,55 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     setSchemaMackup() {
-        this.jsonLD = [
-            {
-                '@context': 'https://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    {
-                        '@type': 'ListItem',
-                        position: 1,
-                        name: 'Overview',
-                        item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 2,
-                        name: 'Brewing guides',
-                        item: `${environment.coffeeLabWeb}/${this.lang}/overview/coffee-recipes`,
-                    },
-                    {
-                        '@type': 'ListItem',
-                        position: 3,
-                        name: this.detailsData?.name,
-                    },
-                ],
-            },
-            {
-                '@context': 'https://schema.org',
-                '@type': 'Recipe',
-                author: this.detailsData?.posted_user,
-                cookTime: this.detailsData?.cooking_time,
-                datePublished: this.detailsData?.posted_at,
-                description: this.globalsService.getJustText(this.detailsData?.description),
-                image: this.detailsData?.cover_image_url,
-                recipeIngredient: this.detailsData?.ingredients.map((item) => {
-                    return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
-                }),
-                name: this.detailsData?.name,
-                prepTime: this.detailsData?.preparation_time,
-                recipeInstructions: this.detailsData?.steps.map((item, index) => {
-                    return {
-                        '@type': 'HowToStep',
-                        name: `Step ${index + 1}`,
-                        text: this.globalsService.getJustText(item.description),
-                        url: `${this.doc.URL}?#step${index + 1}`,
-                        image: item.image_url,
-                    };
-                }),
-                recipeYield: this.detailsData?.serves,
-            },
-        ];
+        this.jsonLD = {
+            '@context': 'https://schema.org',
+            '@graph': [
+                {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        {
+                            '@type': 'ListItem',
+                            position: 1,
+                            name: 'Overview',
+                            item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 2,
+                            name: 'Brewing guides',
+                            item: `${environment.coffeeLabWeb}/${this.lang}/overview/coffee-recipes`,
+                        },
+                        {
+                            '@type': 'ListItem',
+                            position: 3,
+                            name: this.detailsData?.name,
+                        },
+                    ],
+                },
+                {
+                    '@type': 'Recipe',
+                    author: this.detailsData?.posted_user,
+                    cookTime: this.detailsData?.cooking_time,
+                    datePublished: this.detailsData?.posted_at,
+                    description: this.globalsService.getJustText(this.detailsData?.description),
+                    image: this.detailsData?.cover_image_url,
+                    recipeIngredient: this.detailsData?.ingredients.map((item) => {
+                        return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
+                    }),
+                    name: this.detailsData?.name,
+                    prepTime: this.detailsData?.preparation_time,
+                    recipeInstructions: this.detailsData?.steps.map((item, index) => {
+                        return {
+                            '@type': 'HowToStep',
+                            name: `Step ${index + 1}`,
+                            text: this.globalsService.getJustText(item.description),
+                            url: `${this.doc.URL}?#step${index + 1}`,
+                            image: item.image_url,
+                        };
+                    }),
+                    recipeYield: this.detailsData?.serves,
+                },
+            ],
+        };
     }
 }
