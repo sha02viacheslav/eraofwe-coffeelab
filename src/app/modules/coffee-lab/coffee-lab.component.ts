@@ -15,9 +15,11 @@ export class CoffeeLabComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.globalsService.currentUrl);
         const browserLang = this.translateService.getBrowserLang();
-        const currentRouter = this.globalsService.currentUrl.substr(3);
+        let currentRouter = this.globalsService.currentUrl;
+        if (this.globalsService.currentUrl.indexOf('/overview') !== 0) {
+            currentRouter = this.globalsService.currentUrl.substr(3);
+        }
         this.router.navigate([`/${browserLang}${currentRouter}`]);
     }
 }

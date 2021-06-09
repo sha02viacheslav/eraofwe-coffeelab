@@ -77,7 +77,10 @@ export class OverviewComponent implements OnInit {
                 ];
                 if (lang) {
                     this.startupService.load(language);
-                    const currentRouter = this.globalsService.currentUrl.substr(3);
+                    let currentRouter = this.globalsService.currentUrl;
+                    if (this.globalsService.currentUrl.indexOf('/overview') !== 0) {
+                        currentRouter = this.globalsService.currentUrl.substr(3);
+                    }
                     this.router.navigate([`/${language}${currentRouter}`]);
                 }
             });

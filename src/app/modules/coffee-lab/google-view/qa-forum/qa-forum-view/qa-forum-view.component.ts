@@ -62,6 +62,7 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
             console.log('questions >>>', res);
             if (res.success) {
                 this.questions = res.result?.questions;
+                this.setSEO();
             } else {
                 this.toastService.error('Cannot get forum data');
             }
