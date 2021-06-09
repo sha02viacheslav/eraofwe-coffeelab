@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService } from '@services';
@@ -11,7 +11,7 @@ import { environment } from '@env/environment';
     templateUrl: './questions.component.html',
     styleUrls: ['./questions.component.scss'],
 })
-export class QuestionsComponent implements OnInit, OnDestroy {
+export class QuestionsComponent implements OnInit {
     @Input() questions: any[] = [];
     @Input() viewMode = 'list';
     @Input() forumLanguage;
@@ -64,10 +64,6 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy(): void {
-        this.jsonLD = null;
-    }
-
     setSchemaMackup() {
         const forumList: any[] = [];
         for (const forum of this.displayData) {
@@ -101,25 +97,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         }
         this.jsonLD = {
             '@context': 'https://schema.org',
-            '@graph': [
-                {
-                    '@type': 'BreadcrumbList',
-                    itemListElement: [
-                        {
-                            '@type': 'ListItem',
-                            position: 1,
-                            name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
-                        },
-                        {
-                            '@type': 'ListItem',
-                            position: 2,
-                            name: 'Q+A Forums',
-                        },
-                    ],
-                },
-                ...forumList,
-            ],
+            '@graph': [...forumList],
         };
     }
 }
