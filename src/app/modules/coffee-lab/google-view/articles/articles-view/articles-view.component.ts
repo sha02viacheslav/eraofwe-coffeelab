@@ -104,7 +104,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     getLink(item) {
-        const url = `${item.language === 'en' || !item.language ? '' : item.language}/article/${item.slug}`;
+        const url = `${item.language}/article/${item.slug}`;
         return url;
     }
 

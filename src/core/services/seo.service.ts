@@ -29,14 +29,15 @@ export class SEOService {
         link.setAttribute('href', this.doc.URL);
     }
     createLinkForHreflang(lang: string) {
-        // const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
-        // const link: HTMLLinkElement = this.doc.createElement('link');
-        // link.setAttribute('rel', 'alternate');
-        // const newUrl =
-        //     lang === 'x-default' ? `${environment.coffeeLabWeb}${url}` : `${environment.coffeeLabWeb}/${lang}${url}`;
-        // this.doc.head.appendChild(link);
-        // link.setAttribute('href', newUrl);
-        // link.setAttribute('hreflang', lang);
+        const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
+        const link: HTMLLinkElement = this.doc.createElement('link');
+        link.setAttribute('rel', 'alternate');
+        const url2 = url.substr(3);
+        const newUrl =
+            lang === 'x-default' ? `${environment.coffeeLabWeb}${url}` : `${environment.coffeeLabWeb}/${lang}${url2}`;
+        this.doc.head.appendChild(link);
+        link.setAttribute('href', newUrl);
+        link.setAttribute('hreflang', lang);
     }
     createUrlForLang() {}
 }

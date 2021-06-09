@@ -19,7 +19,8 @@ export class ForumCardComponent implements OnInit {
 
     onClick() {
         if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([`/${this.forumType ?? 'article'}/${this.data.slug}`]);
+            const language = this.data?.language || this.data?.lang_code;
+            this.router.navigate([`${language}/${this.forumType ?? 'article'}/${this.data.slug}`]);
         } else {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {
