@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+        <!-- <app-json-ld [jsonLD]="jsonLD"></app-json-ld> -->
     </div>
     <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4">
         <p-paginator [rows]="9" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
