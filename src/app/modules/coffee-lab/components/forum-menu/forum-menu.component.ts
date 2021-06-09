@@ -28,12 +28,6 @@ export class ForumMenuComponent implements OnInit {
                     this.showModal();
                 },
             },
-            {
-                label: 'Translate answer',
-                command: () => {
-                    this.showModal();
-                },
-            },
         ];
         return [{ items }];
     }

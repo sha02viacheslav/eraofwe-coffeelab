@@ -208,25 +208,55 @@ $border-widths: (
             .border#{$infix}-#{$size} {
                 border: solid 1px $value !important;
             }
+            .border-dashed#{$infix}-#{$size} {
+                border: dashed 1px $value !important;
+            }
+            .border#{$infix}-none {
+                border: none !important;
+            }
         }
         @each $size, $value in $border-lefts {
             .border-left#{$infix}-#{$size} {
                 border-left: solid 1px $value !important;
+            }
+            .border-left-dashed#{$infix}-#{$size} {
+                border-left: dashed 1px $value !important;
+            }
+            .border-left#{$infix}-none {
+                border-left: none !important;
             }
         }
         @each $size, $value in $border-rights {
             .border-right#{$infix}-#{$size} {
                 border-right: solid 1px $value !important;
             }
+            .border-right-dashed#{$infix}-#{$size} {
+                border-right: dashed 1px $value !important;
+            }
+            .border-right#{$infix}-none {
+                border-right: none !important;
+            }
         }
         @each $size, $value in $border-tops {
             .border-top#{$infix}-#{$size} {
                 border-top: solid 1px $value !important;
             }
+            .border-top-dashed#{$infix}-#{$size} {
+                border-top: dashed 1px $value !important;
+            }
+            .border-top#{$infix}-none {
+                border-top: none !important;
+            }
         }
         @each $size, $value in $border-bottoms {
             .border-bottom#{$infix}-#{$size} {
                 border-bottom: solid 1px $value !important;
+            }
+            .border-bottom-dashed#{$infix}-#{$size} {
+                border-bottom: dashed 1px $value !important;
+            }
+            .border-bottom#{$infix}-none {
+                border-bottom: none !important;
             }
         }
         @each $size, $value in $border-widths {

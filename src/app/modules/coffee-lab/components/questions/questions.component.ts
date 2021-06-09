@@ -24,7 +24,7 @@ export class QuestionsComponent implements OnInit {
         private router: Router,
         public coffeeLabService: CoffeeLabService,
         public dialogSrv: DialogService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
     ) {}
 
     ngOnInit(): void {
