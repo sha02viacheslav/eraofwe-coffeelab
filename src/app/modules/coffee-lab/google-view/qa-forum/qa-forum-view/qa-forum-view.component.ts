@@ -57,6 +57,16 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
                 value: 'oldest',
             },
         ];
+        this.filterOptions = [
+            {
+                label: this.globalsService.languageJson?.coffee_experts,
+                value: false,
+            },
+            {
+                label: this.globalsService.languageJson?.end_consumers,
+                value: true,
+            },
+        ];
         window.scroll(0, 0);
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;

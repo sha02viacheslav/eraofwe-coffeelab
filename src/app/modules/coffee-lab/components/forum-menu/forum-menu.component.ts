@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
+import { GlobalsService } from '@services';
 
 @Component({
     selector: 'app-forum-menu',
@@ -10,20 +11,24 @@ import { environment } from '@env/environment';
     styleUrls: ['./forum-menu.component.scss'],
 })
 export class ForumMenuComponent implements OnInit {
-    constructor(public dialogSrv: DialogService, @Inject(DOCUMENT) private document: Document) {}
+    constructor(
+        public dialogSrv: DialogService,
+        @Inject(DOCUMENT) private document: Document,
+        private globalsService: GlobalsService,
+    ) {}
 
     ngOnInit(): void {}
 
     getMenuItemsForItem() {
         const items = [
             {
-                label: 'Share',
+                label: this.globalsService.languageJson?.share,
                 command: () => {
                     this.showModal();
                 },
             },
             {
-                label: 'Save Post',
+                label: this.globalsService.languageJson?.save_post,
                 command: () => {
                     this.showModal();
                 },

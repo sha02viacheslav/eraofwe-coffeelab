@@ -37,7 +37,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         },
     ];
 
-    labels: any[] = [
+    levels: any[] = [
         {
             label: 'Easy',
             value: 'Easy',
@@ -61,6 +61,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
             value: 'oldest',
         },
     ];
+
     selectedOrder = 'latest';
     jsonLD: any;
 
@@ -74,6 +75,40 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.levels = [
+            {
+                label: this.globalsService.languageJson?.easy,
+                value: 'easy',
+            },
+            {
+                label: this.globalsService.languageJson?.intermediate,
+                value: 'intermediate',
+            },
+            {
+                label: this.globalsService.languageJson?.hard,
+                value: 'hard',
+            },
+        ];
+        this.translationsList = [
+            {
+                label: this.globalsService.languageJson?.yes,
+                value: true,
+            },
+            {
+                label: this.globalsService.languageJson?.no,
+                value: false,
+            },
+        ];
+        this.orderList = [
+            {
+                label: this.globalsService.languageJson?.latest,
+                value: 'latest',
+            },
+            {
+                label: this.globalsService.languageJson?.oldest,
+                value: 'oldest',
+            },
+        ];
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.getCoffeeRecipesData();
