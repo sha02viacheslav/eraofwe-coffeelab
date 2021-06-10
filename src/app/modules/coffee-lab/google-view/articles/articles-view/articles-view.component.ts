@@ -56,6 +56,26 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.orderList = [
+            {
+                label: this.globalsService.languageJson?.latest,
+                value: 'latest',
+            },
+            {
+                label: this.globalsService.languageJson?.oldest,
+                value: 'oldest',
+            },
+        ];
+        this.translationsList = [
+            {
+                label: this.globalsService.languageJson?.yes,
+                value: true,
+            },
+            {
+                label: this.globalsService.languageJson?.no,
+                value: false,
+            },
+        ];
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.getData();

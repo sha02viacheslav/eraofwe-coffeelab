@@ -46,7 +46,7 @@
                     [showClear]="true"
                     [(ngModel)]="label"
                     (onChange)="getCoffeeRecipesData()"
-                    placeholder="Levels"
+                    [placeholder]="'difficulty' | translate"
                     styleClass="round-border"
                 >
                 </p-dropdown>

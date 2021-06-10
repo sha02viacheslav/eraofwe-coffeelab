@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoffeeLabService, SEOService } from '@services';
+import { CoffeeLabService, SEOService, GlobalsService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -39,9 +39,24 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
         private coffeeLabService: CoffeeLabService,
         private toastService: ToastrService,
         private seoService: SEOService,
+        private globalsService: GlobalsService,
     ) {}
 
     ngOnInit(): void {
+        this.sortOptions = [
+            {
+                label: this.globalsService.languageJson?.latest,
+                value: 'latest',
+            },
+            {
+                label: this.globalsService.languageJson?.most_answered,
+                value: 'most_answered',
+            },
+            {
+                label: this.globalsService.languageJson?.oldest,
+                value: 'oldest',
+            },
+        ];
         window.scroll(0, 0);
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
