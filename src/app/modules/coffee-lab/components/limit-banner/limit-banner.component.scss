@@ -5,4 +5,9 @@
     @media (min-width: 768px) {
         text-align: center;
     }
+    ::ng-deep {
+        .read-limit {
+            color: #80460b;
+        }
+    }
 }

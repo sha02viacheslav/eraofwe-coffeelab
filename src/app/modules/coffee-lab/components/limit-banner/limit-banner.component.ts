@@ -11,10 +11,14 @@ import { POST_LIMIT_COUNT } from '@constants';
 })
 export class LimitBannerComponent implements OnInit {
     leftCount = POST_LIMIT_COUNT;
+    params: any;
     constructor(private globalsService: GlobalsService, public dialogSrv: DialogService) {}
 
     ngOnInit(): void {
         this.leftCount = this.globalsService.getLimitCounter();
+        this.params = {
+            limit: this.leftCount,
+        };
     }
 
     onSignup() {
