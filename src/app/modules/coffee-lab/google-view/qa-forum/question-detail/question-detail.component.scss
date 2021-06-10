@@ -7,7 +7,7 @@
             text-decoration: underline;
         }
         &:last-child .forum-row-content {
-            border-bottom: none;
+            border-bottom: none !important;
         }
     }
 }

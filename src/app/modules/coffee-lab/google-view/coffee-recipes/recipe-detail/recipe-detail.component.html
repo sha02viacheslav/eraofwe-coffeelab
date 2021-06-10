@@ -75,7 +75,7 @@
                             [innerHTML]="detailsData?.description"
                         ></div>
                     </div>
-                    <div *ngIf="detailsData?.ingredients">
+                    <div *ngIf="detailsData?.ingredients" class="pt-4">
                         <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">Ingredients</h2>
                         <div class="border-main br-4 py-2 px-4 ingredients-wrapper">
                             <div
@@ -94,7 +94,7 @@
                     <div class="mt-45">
                         <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</h2>
                         <div
-                            class="pb-3 pb-md-4"
+                            class="pb-4 step-wrapper"
                             *ngFor="let step of detailsData?.steps; let i = index"
                             [id]="'step' + (i + 1)"
                         >
@@ -103,7 +103,7 @@
                                 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0"
                                 [innerHTML]="step.description"
                             ></div>
-                            <img class="mt-3 w-100" [lazyLoad]="step.image_thumb_url || step.image_thumb_url" />
+                            <img class="w-100" [lazyLoad]="step.image_thumb_url || step.image_thumb_url" />
                         </div>
                         <div>
                             <video
@@ -121,7 +121,7 @@
                 </div>
             </div>
         </article>
-        <article class="w-min-content pl-lg-3">
+        <article class="w-min-content pl-lg-3 w-tab-100">
             <div class="d-none d-lg-block mb-4">
                 <app-join-community></app-join-community>
             </div>

@@ -16,8 +16,8 @@
     </div>
     <div class="page-wrapper" *ngIf="!loading">
         <article class="flex-1 pr-lg-3 mb-4">
-            <div class="p-3 py-md-45 px-lg-45 border-main br-4">
-                <div class="pb-3 pb-md-4 pb-lg-45">
+            <div class="p-3 pt-md-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
+                <div class="pb-45">
                     <img
                         class="w-100 banner-image"
                         [lazyLoad]="detailsData?.cover_image_url"
@@ -63,7 +63,7 @@
                         ></app-translation-dropdown>
                     </div>
                 </div>
-                <div class="forum-content pt-3 pt-md-4">
+                <div class="forum-content pt-4">
                     <div
                         class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
                         [innerHTML]="detailsData?.content"

@@ -49,4 +49,16 @@
             width: 100%;
         }
     }
+
+    .step-wrapper {
+        img {
+            height: 276px;
+            object-fit: cover;
+        }
+        @media (max-width: 767px) {
+            img {
+                height: 256px;
+            }
+        }
+    }
 }

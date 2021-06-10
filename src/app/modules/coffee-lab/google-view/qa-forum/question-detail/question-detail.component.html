@@ -16,7 +16,7 @@
     </div>
     <div class="page-wrapper d-block d-lg-flex" *ngIf="!loading">
         <article class="pr-lg-3 flex-1 mb-4">
-            <div class="p-3 py-md-45 px-lg-45 border-main br-4">
+            <div class="p-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
                 <div class="d-flex align-items-center">
                     <img
                         [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
@@ -32,10 +32,11 @@
                     class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
                     [innerHTML]="detailsData?.question"
                 ></h1>
-                <div class="mt-4 mt-md-45 mt-lg-4" *ngIf="detailsData?.answers">
+                <p-divider styleClass="d-md-none my-3 p-divider-primary"></p-divider>
+                <div class="mt-md-45 mt-lg-4" *ngIf="detailsData?.answers">
                     <div
                         class="answer-wrapper border-bottom-primary mb-4"
-                        *ngFor="let postItem of detailsData.answers"
+                        *ngFor="let postItem of detailsData.answers; let isLast = last"
                         [id]="'answer-' + postItem.id"
                     >
                         <div class="d-flex flex-wrap w-100">
@@ -61,8 +62,8 @@
                                 ></app-translation-dropdown>
                             </div>
                         </div>
-                        <div class="py-3 px-0 forum-content">
-                            <div class="mb-2" [innerHTML]="postItem.answer"></div>
+                        <div class="pt-4 px-0 forum-content">
+                            <div [ngClass]="{ 'mb-2': !isLast }" [innerHTML]="postItem.answer"></div>
                             <ng-container *ngIf="postItem.images">
                                 <img
                                     class="w-100 mb-3"
