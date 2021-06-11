@@ -25,7 +25,7 @@
                     />
                     <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
                     <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                        {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo }}
+                        {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}
                     </p>
                 </div>
                 <h1

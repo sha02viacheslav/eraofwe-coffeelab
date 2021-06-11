@@ -21,7 +21,7 @@
                 {{ prop?.user_name || prop?.question_user || prop?.posted_user || 'Unknown User' }}
             </div>
             <div class="fnt-muli fnt-12 text-clr588">
-                {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
+                {{ prop?.posted_at || prop?.created_at | amTimeAgo: true | dateAgoReplace }}
             </div>
         </div>
         <div *ngIf="prop?.org_type !== 'co'" class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">

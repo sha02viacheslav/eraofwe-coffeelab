@@ -55,6 +55,7 @@ import { WordCountPipe } from './pipes/word-count/word-count.pipe';
 import { ArrayFilterPipe } from './pipes/array-filter.pipe';
 import { StringReplacePipe } from './pipes/string-replace.pipe';
 import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
+import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
 
 import { WordLimitDirective } from './directives/word-limit.directive';
 
@@ -136,6 +137,7 @@ const PIPES = [
     StringReplacePipe,
     WordCountPipe,
     ConvertToShortDescriptionPipe,
+    DateAgoReplacePipe,
 ];
 // #endregion
 
