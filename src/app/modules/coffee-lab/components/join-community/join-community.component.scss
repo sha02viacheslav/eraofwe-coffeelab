@@ -1,0 +1,14 @@
+@import 'variables';
+.join-wrapper {
+    padding: 40px 32px 32px;
+    border-radius: 4px;
+    border: solid 1px $secondary-border-color;
+    background-color: $primary-bg-color;
+    width: 374px;
+    .logo-image {
+    }
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}

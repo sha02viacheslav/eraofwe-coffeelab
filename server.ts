@@ -8,6 +8,11 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
+// const MockBrowser = require('mock-browser').mocks.MockBrowser;
+// const mock = new MockBrowser();
+
+// global['navigator'] = mock.getNavigator();
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
     const server = express();
@@ -37,7 +42,14 @@ export function app() {
 
     // All regular routes use the Universal engine
     server.get('*', (req, res) => {
-        res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+        const prefix = 'coffee-lab';
+        res.render(`${prefix}/${indexHtml}`, {
+            req,
+            providers: [
+                { provide: APP_BASE_HREF, useValue: req.baseUrl },
+                { provide: 'prefix', useValue: prefix },
+            ],
+        });
     });
 
     return server;

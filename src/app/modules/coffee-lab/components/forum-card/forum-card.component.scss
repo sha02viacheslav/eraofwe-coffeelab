@@ -1,4 +1,12 @@
 .forum-card-wrapper {
+    height: 100%;
+    .forum-title-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
     & > img {
         height: 160px;
         object-fit: cover;

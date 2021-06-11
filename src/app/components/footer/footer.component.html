@@ -1,0 +1,47 @@
+<div class="footer-container">
+    <div class="container">
+        <div class="footer-content flex-column flex-sm-row">
+            <a class="company-logo__img d-inline-block d-sm-none mb-3" [routerLink]="['/']">
+                <img src="assets/images/Sewn-logo.svg" alt="Comany-Logo" />
+            </a>
+            <div class="d-flex flex-column flex-md-row">
+                <span class="text-content pr-0 pr-md-6 my-3 my-md-0">
+                    {{ 'about_us' | translate }}
+                    <a class="footer-link" [href]="env.termsUserUrl" target="_blank">
+                        {{ 'terms_and_condition_user' | translate }}
+                    </a>
+                    <a [href]="env.privacyPolicyUrl" target="_blank">
+                        {{ 'privacy_policy' | translate }}
+                    </a>
+                    <a [href]="env.cookiePolicyUrl" target="_blank">
+                        {{ 'cookie_policy' | translate }}
+                    </a>
+                </span>
+                <span class="text-content pl-0 pl-md-5 my-3 my-md-0">
+                    {{ 'help_and_support' | translate }}:
+                    <a [href]="'mailto:' + env.supportEmailAddress">{{ env.supportEmailAddress }}</a>
+                </span>
+            </div>
+            <div class="d-flex flex-column align-items-start align-items-sm-end">
+                <a class="company-logo__img d-none d-sm-inline-block mb-3" [routerLink]="['/']">
+                    <img src="assets/images/Sewn-logo.svg" alt="Comany-Logo" />
+                </a>
+                <div class="d-flex mt-3">
+                    <a class="social-logo">
+                        <img src="assets/images/facebook.svg" alt="social-Logo" />
+                    </a>
+                    <a class="social-logo">
+                        <img src="assets/images/twitter.svg" alt="social-Logo" />
+                    </a>
+                    <a class="social-logo">
+                        <img src="assets/images/instagram.svg" alt="social-Logo" />
+                    </a>
+                    <a class="social-logo">
+                        <img src="assets/images/youtube.svg" alt="social-Logo" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrapper">©2021 SEWN Technology Solutions AB All rights reserved.</div>
+    </div>
+</div>

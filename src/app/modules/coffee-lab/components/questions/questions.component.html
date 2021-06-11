@@ -1,0 +1,57 @@
+<div class="row gutter-24">
+    <div
+        *ngFor="let question of displayData"
+        [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
+    >
+        <div class="br-4 border-main mb-4 mb-md-3 mb-lg-4">
+            <div class="p-md-4 p-3">
+                <div class="d-flex justify-content-between">
+                    <div class="flex-1">
+                        <app-user-header [prop]="question"></app-user-header>
+                    </div>
+                    <div class="mobile-dot">
+                        <app-forum-menu></app-forum-menu>
+                    </div>
+                </div>
+                <div
+                    class="fnt-muli fnt-16 fnt-md-18 font-weight-bold text-clr24 mt-4 cursor-pointer hover-underline"
+                    (click)="gotoDetailPage(question)"
+                    [innerHTML]="question?.question"
+                ></div>
+                <button
+                    *ngIf="question.total_answers > 0"
+                    (click)="gotoDetailPage(question)"
+                    class="btn-f8 w-100 d-inline-block d-md-none mt-4"
+                >
+                    See all answers
+                </button>
+            </div>
+            <div *ngIf="question.total_answers > 0" class="py-4 px-5 border-top-main d-none d-md-block">
+                <div
+                    *ngFor="let answer of question?.answers; let isLast = last"
+                    [ngClass]="{ 'border-bottom-dashed-primary': !isLast }"
+                    class="mb-4"
+                >
+                    <div class="mb-4">
+                        <app-user-header [prop]="answer"></app-user-header>
+                    </div>
+                    <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
+                        <span
+                            [innerHTML]="globalsService.getJustText(answer.answer) | convertToShortDescription: 20"
+                        ></span>
+                        <a (click)="gotoDetailPage(question, answer)" class="custom-link ml-2">{{
+                            'read_more' | translate
+                        }}</a>
+                    </div>
+                </div>
+                <button *ngIf="question.total_answers > 0" (click)="gotoDetailPage(question)" class="btn-f8 w-100">
+                    {{ 'see_all_answers' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
+</div>
+<div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
+    <p-paginator [rows]="10" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+</div>

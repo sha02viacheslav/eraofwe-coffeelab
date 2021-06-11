@@ -1,0 +1,93 @@
+<div>
+    <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0 d-block d-md-none">
+        {{ 'posts' | translate }}
+    </h1>
+    <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
+        <div class="col-12 col-lg-8">
+            <app-publish-forum type="article"></app-publish-forum>
+        </div>
+        <div class="col-12 col-lg-4 d-none d-lg-block">
+            <div class="custom-search h-fit-content mt-3 mt-md-0">
+                <input
+                    class="w-100 fnt-16"
+                    type="text"
+                    pInputText
+                    #searchInput
+                    [(ngModel)]="keyword"
+                    placeholder="{{ 'search_posts' | translate }}"
+                    (ngModelChange)="getData()"
+                />
+            </div>
+        </div>
+    </div>
+    <div
+        class="d-none d-md-flex flex-column flex-md-row justify-content-md-between pt-md-4 pt-lg-45 align-items-center"
+    >
+        <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
+            {{ 'posts' | translate }}
+        </h1>
+        <div class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
+            <input
+                class="w-100 fnt-16"
+                type="text"
+                pInputText
+                #searchInput
+                [(ngModel)]="keyword"
+                placeholder="{{ 'search_posts' | translate }}"
+                (ngModelChange)="getData()"
+            />
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center py-3 pb-md-4 pb-lg-45">
+        <p-dropdown
+            [options]="translationsList"
+            optionLabel="label"
+            optionValue="value"
+            [showClear]="true"
+            [(ngModel)]="isAvailableTranslation"
+            (onChange)="getData()"
+            placeholder="{{ 'translations_available' | translate }}"
+            styleClass="round-border"
+        >
+        </p-dropdown>
+        <p-dropdown
+            [options]="orderList"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="selectedOrder"
+            (onChange)="getData()"
+            styleClass="no-border"
+        >
+        </p-dropdown>
+    </div>
+    <div class="articles-wrapper" *ngIf="!isLoading">
+        <div class="col-12 col-md-6 col-lg-4 px-0 py-25 p-md-2" *ngFor="let article of displayData">
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" (click)="gotoDetailPage(article)">
+                <div class="d-flex justify-content-between">
+                    <div class="flex-1 overflow-hidden">
+                        <app-user-header [prop]="article"></app-user-header>
+                    </div>
+                    <app-forum-menu></app-forum-menu>
+                </div>
+                <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" />
+                <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
+                    {{ article?.title }}
+                </div>
+                <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
+                    <span class="article-title-text">
+                        {{ article?.subtitle }}
+                    </span>
+                    <p class="brown-cta mb-0 pt-2">{{ 'read_more' | translate }}</p>
+                </div>
+            </div>
+        </div>
+        <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+    </div>
+    <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4">
+        <p-paginator [rows]="9" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div *ngIf="!isLoading && !articlesData.length" class="text-center my-4 fnt-muli text-clr24">
+        {{ 'no_data_is_available' | translate }}
+    </div>
+</div>

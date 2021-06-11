@@ -1,0 +1,76 @@
+<h1 class="fnt-18 fnt-muli text-clr334 font-weight-bold d-block d-md-none mb-3">
+    {{ 'question_answers' | translate }}
+</h1>
+
+<div class="row gutter-32">
+    <div class="col-lg-8">
+        <app-publish-forum type="qa"></app-publish-forum>
+    </div>
+    <div class="col-lg-4">
+        <div class="custom-search qa-forum-search d-none d-lg-block">
+            <input
+                class="w-100 fnt-16"
+                [(ngModel)]="keyword"
+                (ngModelChange)="getQuestions()"
+                type="text"
+                pInputText
+                [placeholder]="'search_qa_forum' | translate"
+            />
+        </div>
+    </div>
+</div>
+<div class="row gutter-32 mt-4 mt-lg-45">
+    <div class="col-lg-8" [ngClass]="{ 'col-lg-8': viewMode === 'list', 'col-12': viewMode === 'grid' }">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block">
+                {{ 'question_answers' | translate }}
+            </h1>
+            <div class="custom-search qa-forum-search d-block d-lg-none">
+                <input
+                    class="w-100 fnt-16"
+                    [(ngModel)]="keyword"
+                    type="text"
+                    pInputText
+                    [placeholder]="'search_qna_forum' | translate"
+                />
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-45">
+            <div>
+                <p-dropdown
+                    [options]="filterOptions"
+                    [(ngModel)]="filterBy"
+                    [showClear]="true"
+                    (ngModelChange)="getQuestions()"
+                    styleClass="round-border text-clr588"
+                    [placeholder]="'posted_by' | translate"
+                    optionLabel="label"
+                    optionValue="value"
+                ></p-dropdown>
+            </div>
+            <div>
+                <p-dropdown
+                    [options]="sortOptions"
+                    [(ngModel)]="sortBy"
+                    (ngModelChange)="getQuestions()"
+                    styleClass="no-border no-padding text-clr588"
+                    optionLabel="label"
+                    optionValue="value"
+                ></p-dropdown>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <app-questions
+                [questions]="questions"
+                [viewMode]="viewMode"
+                [forumLanguage]="forumLanguage"
+            ></app-questions>
+        </div>
+        <div *ngIf="isLoading">
+            <app-loading></app-loading>
+        </div>
+        <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
+            {{ 'no_data_is_available' | translate }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="join-wrapper px-3 py-4 p-md-45 pt-md-475">
+    <img class="logo-image mt-md-2 mb-3" src="assets/images/Sewn-logo.svg" alt="Comany-Logo" />
+    <p class="fnt-play fnt-18 fnt-bold lh-normal text-clr334 mb-3">
+        {{ 'welcome_coffee_community' | translate }}
+    </p>
+    <p class="fnt-muli fnt-16 fnt-normal lh-normal text-clr334 mb-2 mb-md-3">
+        {{ 'join_community_change' | translate }}
+    </p>
+    <div class="d-flex flex-column flex-md-row flex-wrap align-items-center pt-z5">
+        <button class="btn-raised mr-3 mt-3 w-mob-100" (click)="gotoSignup()">{{ 'sign_up_now' | translate }}</button>
+        <p class="fnt-muli fnt-16 fnt-bold lh-normal text-clr334 mb-0 mt-3">
+            {{ 'or' | translate }}
+        </p>
+        <span
+            class="fnt-muli fnt-16 fnt-bold lh-normal pl-3 text-clr55c cursor-pointer text-underline mt-3"
+            [routerLink]="'/' + coffeeLabService.currentForumLanguage + '/overview/qa-forum'"
+            >{{ 'explore_lab' | translate }}</span
+        >
+    </div>
+</div>

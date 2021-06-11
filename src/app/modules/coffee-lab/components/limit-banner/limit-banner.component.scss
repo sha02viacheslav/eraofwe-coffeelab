@@ -1,0 +1,13 @@
+.limit-banner-wrapper {
+    border-radius: 4px;
+    border: solid 1px #80460b;
+    background-color: #faf8f4;
+    @media (min-width: 768px) {
+        text-align: center;
+    }
+    ::ng-deep {
+        .read-limit {
+            color: #80460b;
+        }
+    }
+}

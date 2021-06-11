@@ -1,19 +1,26 @@
-import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
-import { HealthCheckComponent } from '@components';
+import { HealthCheckComponent, FooterComponent } from '@components';
+
+import { environment } from '@env/environment';
+
+import { StartupService } from '@services';
+export function StartupServiceFactory(startupService: StartupService) {
+    return () => startupService.load();
+}
 
 @NgModule({
-    declarations: [AppComponent, LayoutComponent, HealthCheckComponent],
+    declarations: [AppComponent, LayoutComponent, HealthCheckComponent, FooterComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
@@ -23,17 +30,18 @@ import { HealthCheckComponent } from '@components';
             preventDuplicates: true,
             positionClass: 'toast-bottom-right',
         }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (http: HttpClient) => {
-                    return new TranslateHttpLoader(http, 'https://fed-api.sewnstaging.com/language/', '');
-                },
-                deps: [HttpClient],
-            },
-        }),
+        TranslateModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
-    providers: [],
+    providers: [
+        StartupService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: StartupServiceFactory,
+            deps: [StartupService],
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

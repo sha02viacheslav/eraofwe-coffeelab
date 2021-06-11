@@ -44,6 +44,7 @@ import { DividerModule } from 'primeng/divider';
 import { AccordionModule } from 'primeng/accordion';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -54,6 +55,7 @@ import { WordCountPipe } from './pipes/word-count/word-count.pipe';
 import { ArrayFilterPipe } from './pipes/array-filter.pipe';
 import { StringReplacePipe } from './pipes/string-replace.pipe';
 import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
+import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
 
 import { WordLimitDirective } from './directives/word-limit.directive';
 
@@ -109,6 +111,7 @@ const THIRDMODULES = [
     GalleryModule,
     LazyLoadImageModule,
     MomentModule,
+    PaginatorModule,
 ];
 // #endregion
 
@@ -134,6 +137,7 @@ const PIPES = [
     StringReplacePipe,
     WordCountPipe,
     ConvertToShortDescriptionPipe,
+    DateAgoReplacePipe,
 ];
 // #endregion
 

@@ -10,17 +10,24 @@
         .p-carousel-next {
             display: none;
         }
-        .p-carousel-indicators .p-carousel-indicator {
-            &.p-highlight button {
-                background-color: #80460b;
+        .p-carousel-indicators {
+            padding: 1.5rem 0 0.5rem;
+            .p-carousel-indicator {
+                margin-bottom: 0;
+                &.p-highlight button {
+                    background-color: #80460b;
+                }
+                button {
+                    width: 8px;
+                    height: 8px;
+                    margin: 0 0 0 4px;
+                    border: solid 1px #80460b;
+                    background-color: #faf8f4;
+                    border-radius: 50%;
+                }
             }
-            button {
-                width: 8px;
-                height: 8px;
-                margin: 0 0 0 4px;
-                border: solid 1px #80460b;
-                background-color: #faf8f4;
-                border-radius: 50%;
+            @media (max-width: 767px) {
+                padding-bottom: 16px;
             }
         }
         .p-carousel-items-container {

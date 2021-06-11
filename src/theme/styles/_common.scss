@@ -47,12 +47,12 @@
 .main-block {
     background-color: #fff;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 0.5rem 0.5rem 1rem;
     @media (min-width: 768px) {
-        padding: 24px 16px 16px 16px;
+        padding: 16px;
     }
     @media (min-width: 992px) {
-        padding: 32px 48px 24px 48px;
+        padding: 32px 48px;
     }
 }
 
@@ -93,7 +93,7 @@ span.star {
         height: 20px;
         left: 0;
         top: 0;
-        background-image: url('/assets/images/back-arrow1.svg');
+        background-image: url('assets/images/back-arrow1.svg');
         background-size: cover;
         background-position: center;
         transition: all 0.6s cubic-bezier(0.2, 0.59, 0.21, 0.6);
@@ -394,17 +394,12 @@ span.star {
     flex: 1;
 }
 
-.h-fit-content {
-    height: fit-content;
-}
-
 .page-wrapper {
     background: #ffffff;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     min-height: 100vh;
-    padding-bottom: 150px;
     .background-header {
         padding: 11px 15px;
         border-radius: 4px;
@@ -427,7 +422,49 @@ span.star {
     img {
         width: 100%;
         height: 276px;
-        margin: 16px 0;
         object-fit: cover;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px !important;
+    border-radius: 50%;
+}
+
+.h-fit-content {
+    height: fit-content;
+}
+
+.w-fit-content {
+    width: fit-content;
+}
+
+.w-min-content {
+    width: min-content;
+}
+
+.translate-wrapper {
+    @media (max-width: 767px) {
+        display: none;
+    }
+    @media (min-width: 992px) and (max-width: 1280px) {
+        display: none;
+    }
+}
+
+.translate-mob-wrapper {
+    display: none;
+    @media (max-width: 767px) {
+        display: block;
+    }
+    @media (min-width: 992px) and (max-width: 1280px) {
+        display: block;
     }
 }

@@ -1,0 +1,10 @@
+::ng-deep {
+    .p-dialog.signup-dialog {
+        padding: 0;
+        max-width: 536px;
+        .p-dialog-content {
+            padding: 0;
+            border-radius: 4px;
+        }
+    }
+}

@@ -1,0 +1,97 @@
+<main>
+    <div
+        class="back-page mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content"
+        [routerLink]="previousUrl"
+        *ngIf="previousUrl"
+    >
+        <a>
+            <span>{{ 'back' | translate }}</span>
+        </a>
+    </div>
+    <div class="pb-3 pb-md-4 pb-lg-45" *ngIf="!loading">
+        <app-limit-banner></app-limit-banner>
+    </div>
+    <div class="d-lg-none mb-4">
+        <app-join-community></app-join-community>
+    </div>
+    <div class="page-wrapper" *ngIf="!loading">
+        <article class="flex-1 pr-lg-3 mb-4">
+            <div class="p-3 pt-md-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
+                <div class="pb-45">
+                    <img
+                        class="w-100 banner-image"
+                        [lazyLoad]="detailsData?.cover_image_url"
+                        [alt]="detailsData?.title + ' cover image'"
+                    />
+                    <h1 class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 pt-3 mb-2">
+                        {{ detailsData?.title }}
+                    </h1>
+                    <h4 class="fnt-14 fnt-md-16 fnt-muli fnt-normal text-clr334 mb-0">
+                        {{ detailsData?.subtitle }}
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap w-100">
+                    <div class="d-flex justify-content-between align-items-md-end w-100">
+                        <app-user-header [prop]="detailsData"></app-user-header>
+                        <div class="d-flex flex-column align-items-end">
+                            <app-forum-menu></app-forum-menu>
+                            <div
+                                class="translate-wrapper"
+                                *ngIf="
+                                    detailsData?.allow_translation &&
+                                    detailsData?.translated_articles &&
+                                    detailsData?.translated_articles.length > 0
+                                "
+                            >
+                                <app-translation-dropdown
+                                    forumType="article"
+                                    [translatedList]="detailsData?.translated_articles"
+                                ></app-translation-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
+                        *ngIf="
+                            detailsData?.allow_translation &&
+                            detailsData?.translated_articles &&
+                            detailsData?.translated_articles.length > 0
+                        "
+                    >
+                        <app-translation-dropdown
+                            [translatedList]="detailsData?.translated_articles"
+                        ></app-translation-dropdown>
+                    </div>
+                </div>
+                <div class="forum-content pt-4">
+                    <div
+                        class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
+                        [innerHTML]="detailsData?.content"
+                    ></div>
+                </div>
+            </div>
+        </article>
+        <article class="w-tab-100 pl-lg-3 w-min-content">
+            <div class="d-none d-lg-block mb-4">
+                <app-join-community></app-join-community>
+            </div>
+            <div class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
+                {{ 'recent_articles' | translate }}
+            </div>
+            <div class="d-none d-lg-block">
+                <div *ngFor="let forum of relatedData" class="py-2">
+                    <app-forum-card [data]="forum"></app-forum-card>
+                </div>
+            </div>
+            <div class="d-block d-lg-none pt-3">
+                <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
+                    <ng-template let-forum pTemplate="item">
+                        <app-forum-card [data]="forum"></app-forum-card>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </article>
+        <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+    </div>
+</main>
+<app-loading *ngIf="loading"></app-loading>

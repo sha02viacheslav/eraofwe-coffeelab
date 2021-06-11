@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UserHeaderComponent implements OnInit {
     @Input() prop: any;
-    userDetails: any;
+    @Input() enableEllipsis = true;
 
     constructor() {}
 

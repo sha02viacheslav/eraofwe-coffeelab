@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ConfirmComponent } from '@shared';
+import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-search-forum',
@@ -16,22 +16,9 @@ export class SearchForumComponent implements OnInit {
     ngOnInit(): void {}
 
     onFocus() {
-        this.dialogSrv
-            .open(ConfirmComponent, {
-                data: {
-                    title: 'Confirm',
-                    desp: 'Sign Up to continue reading',
-                    type: 'confirm',
-                    noButton: 'Cancel',
-                    yesButton: 'Yes, Sign Up',
-                },
-                showHeader: false,
-                styleClass: 'confirm-dialog',
-            })
-            .onClose.subscribe((action: any) => {
-                if (action === 'yes') {
-                    console.log('yes');
-                }
-            });
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }

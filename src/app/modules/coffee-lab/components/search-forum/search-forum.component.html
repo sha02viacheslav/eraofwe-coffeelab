@@ -1,11 +1,10 @@
 <div class="custom-search">
     <input
+        class="w-100 fnt-16"
         type="text"
         pInputText
-        #searchInput
         [(ngModel)]="forumKeySearch"
-        placeholder="Search QA Forum..."
-        class="w-100 search-forum"
+        [placeholder]="'search_the_coffee_lab' | translate"
         (focus)="onFocus()"
     />
 </div>

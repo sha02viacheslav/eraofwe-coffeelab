@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { COUNTRY_LIST, CONTINIENT_LIST, languages } from '@constants';
+import { COUNTRY_LIST, CONTINIENT_LIST, languages, POST_LIMIT_COUNT } from '@constants';
 import { Country } from '@models';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
     providedIn: 'root',
@@ -28,9 +31,23 @@ export class GlobalsService {
     permissionList: any;
     userInvitesArray: any = [];
     device = 'desktop';
+    previousUrl: string;
+    currentUrl: string;
 
-    constructor(private cookieService: CookieService, private deviceSrv: DeviceDetectorService) {
-        // console.log(this.permissions);
+    constructor(
+        private cookieService: CookieService,
+        private deviceSrv: DeviceDetectorService,
+        private router: Router,
+        @Inject(DOCUMENT) private document: Document,
+    ) {
+        this.router.events
+            .pipe(filter((event: RouterEvent) => event instanceof NavigationEnd))
+            .subscribe((event: NavigationEnd) => {
+                this.previousUrl = this.currentUrl;
+                this.currentUrl = event.urlAfterRedirects;
+                console.log('prev: ', this.previousUrl);
+                console.log('curr: ', this.currentUrl);
+            });
         if (deviceSrv.isMobile()) {
             this.device = 'mobile';
         } else if (deviceSrv.isTablet()) {
@@ -128,5 +145,25 @@ export class GlobalsService {
             }
         }
         return '';
+    }
+
+    getLimitCounter() {
+        const count = this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : POST_LIMIT_COUNT;
+        return count;
+    }
+
+    setLimitCounter() {
+        const count = this.getLimitCounter() > 0 ? this.getLimitCounter() - 1 : 0;
+        this.cookieService.set('limit_count', count.toString());
+    }
+
+    getJustText(content: any) {
+        const contentElement = this.document.createElement('div');
+        contentElement.innerHTML = content;
+        const images = contentElement.querySelectorAll('img');
+        images.forEach((image) => {
+            image.parentNode.removeChild(image);
+        });
+        return contentElement.textContent;
     }
 }

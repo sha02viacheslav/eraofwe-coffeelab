@@ -25,6 +25,8 @@
 @import 'primeng_inputswitch';
 @import 'primeng_avatar';
 @import 'primeng_overlaypanel';
+@import 'primeng_paginator';
+@import 'primeng_divider';
 
 // global
 .p-component {
@@ -160,7 +162,7 @@ textarea {
     position: relative;
     &::before {
         content: '';
-        background-image: url(/assets/images/search.svg);
+        background-image: url(assets/images/search.svg);
         width: 30px;
         height: 30px;
         position: absolute;
