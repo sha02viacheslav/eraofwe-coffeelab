@@ -4,7 +4,7 @@
     </div>
     <div class="text-center">
         <p class="fnt-play fnt-28 fnt-bold lh-normal text-clr334 mb-2">
-            {{ config.data?.isLimit ? 'You have read your 3 posts!' : ('hi_there' | translate) }}
+            {{ config.data?.isLimit ? ('you_read_posts' | translate: { count: 3 }) : ('hi_there' | translate) }}
         </p>
         <div class="fnt-muli fnt-14 fnt-normal lh-157 text-clr588 mb-475 mt-z5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_part_community') | translate }}

@@ -58,7 +58,9 @@
                                 <img [src]="recipeInfo.icon" />
                             </div>
                             <div class="pl-2 d-flex flex-column justify-content-between">
-                                <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{ recipeInfo.label }}</label>
+                                <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
+                                    recipeInfo.label | translate
+                                }}</label>
                                 <p
                                     class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pt-2 pt-md-3"
                                     *ngIf="detailsData"
