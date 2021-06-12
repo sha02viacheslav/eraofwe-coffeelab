@@ -9,22 +9,23 @@
             .recipe-info-item {
                 width: 50%;
                 &:nth-child(1) {
-                    padding: 0 19px 12px 0;
+                    padding: 0 19px 12px 4px !important;
                     border-bottom: solid 1px $primary-border-color;
                     border-right: solid 1px $primary-border-color;
                 }
                 &:nth-child(2) {
-                    padding: 0 0 12px 19px;
+                    padding: 0 0 12px 19px !important;
                     border-bottom: solid 1px $primary-border-color;
-                    justify-content: flex-end;
                 }
                 &:nth-child(3) {
-                    padding: 12px 19px 0 0;
+                    padding: 12px 19px 0 8px !important;
                     border-right: solid 1px $primary-border-color;
                 }
                 &:nth-child(4) {
-                    padding: 12px 0 0 19px;
-                    justify-content: flex-end;
+                    padding: 12px 0 0 19px !important;
+                }
+                p {
+                    word-break: break-word;
                 }
             }
         }
