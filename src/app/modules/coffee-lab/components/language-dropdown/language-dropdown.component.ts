@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { languages } from '@constants';
 import { CoffeeLabService, GlobalsService } from '@services';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { APP_LANGUAGES } from '@constants';
 
 @Component({

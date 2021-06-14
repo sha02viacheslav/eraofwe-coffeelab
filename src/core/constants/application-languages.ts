@@ -9,12 +9,12 @@ export const APP_LANGUAGES: LabelValue[] = [
         label: 'Swedish',
         value: 'sv',
     },
-    {
-        label: 'Portuguese',
-        value: 'pt',
-    },
-    {
-        label: 'Spanish',
-        value: 'es',
-    },
+    // {
+    //     label: 'Portuguese',
+    //     value: 'pt',
+    // },
+    // {
+    //     label: 'Spanish',
+    //     value: 'es',
+    // },
 ];
