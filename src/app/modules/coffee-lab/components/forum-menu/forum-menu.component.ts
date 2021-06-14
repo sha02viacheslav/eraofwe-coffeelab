@@ -23,21 +23,23 @@ export class ForumMenuComponent implements OnInit {
         const items = [
             {
                 label: this.globalsService.languageJson?.share,
-                command: () => {
-                    this.showModal();
+                command: (event) => {
+                    event.originalEvent.stopPropagation();
+                    this.showModal(event);
                 },
             },
             {
                 label: this.globalsService.languageJson?.save_post,
-                command: () => {
-                    this.showModal();
+                command: (event) => {
+                    event.originalEvent.stopPropagation();
+                    this.showModal(event);
                 },
             },
         ];
         return [{ items }];
     }
 
-    showModal() {
+    showModal(event) {
         this.dialogSrv
             .open(SignupModalComponent, {
                 showHeader: false,
