@@ -145,12 +145,12 @@ export class RecipeDetailComponent implements OnInit {
                     datePublished: this.detailsData?.posted_at,
                     description: this.globalsService.getJustText(this.detailsData?.description),
                     image: this.detailsData?.cover_image_url,
-                    recipeIngredient: this.detailsData?.ingredients.map((item) => {
+                    recipeIngredient: this.detailsData?.ingredients?.map((item) => {
                         return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
                     }),
                     name: this.detailsData?.name,
                     prepTime: this.detailsData?.preparation_time,
-                    recipeInstructions: this.detailsData?.steps.map((item, index) => {
+                    recipeInstructions: this.detailsData?.steps?.map((item, index) => {
                         return {
                             '@type': 'HowToStep',
                             name: `Step ${index + 1}`,
