@@ -159,9 +159,22 @@
                 "prerender": {
                     "builder": "@nguniversal/builders:prerender",
                     "options": {
-                        "browserTarget": "coffee-lab:build:production",
-                        "serverTarget": "coffee-lab:server:production",
-                        "routes": ["/"]
+                        "browserTarget": "coffee-lab:build:production-coffee-lab",
+                        "serverTarget": "coffee-lab:server:production-coffee-lab",
+                        "routes": [
+                            "/",
+                            "/health-check",
+                            "/en/overview",
+                            "/en/overview/qa-forum",
+                            "/en/overview/articles",
+                            "/en/overview/coffee-recipes",
+                            "/en/overview/about-era-of-we",
+                            "/sv/overview",
+                            "/sv/overview/qa-forum",
+                            "/sv/overview/articles",
+                            "/sv/overview/coffee-recipes",
+                            "/sv/overview/about-era-of-we"
+                        ]
                     },
                     "configurations": {
                         "production": {}
