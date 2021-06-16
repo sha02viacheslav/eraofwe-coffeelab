@@ -174,7 +174,8 @@
                             "/sv/overview/qa-forum",
                             "/sv/overview/articles",
                             "/sv/overview/coffee-recipes",
-                            "/sv/overview/about-era-of-we"
+                            "/sv/overview/about-era-of-we",
+                            "/en/article/:idOrSlug"
                         ]
                     },
                     "configurations": {

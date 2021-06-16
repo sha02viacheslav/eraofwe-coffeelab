@@ -45,8 +45,8 @@ export class GlobalsService {
             .subscribe((event: NavigationEnd) => {
                 this.previousUrl = this.currentUrl;
                 this.currentUrl = event.urlAfterRedirects;
-                console.log('prev: ', this.previousUrl);
-                console.log('curr: ', this.currentUrl);
+                console.log('prev== ', this.previousUrl);
+                console.log('curr== ', this.currentUrl);
             });
         if (deviceSrv.isMobile()) {
             this.device = 'mobile';
@@ -91,7 +91,7 @@ export class GlobalsService {
         stringData = stringData.replace(/(^\s*)|(\s*$)/gi, '');
         stringData = stringData.replace(/[ ]{2,}/gi, ' ');
         stringData = stringData.replace(/\n /, '\n');
-        if (stringData == '') {
+        if (stringData === '') {
             return 0;
         } else {
             const outputLength = stringData.split(' ').length;

@@ -59,6 +59,7 @@ export class RecipeDetailComponent implements OnInit {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;
+                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -105,8 +106,13 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.name);
-        this.seoService.setMetaData('description', this.globalsService.getJustText(this.detailsData?.description));
+        this.seoService.setPageTitle(this.detailsData?.name || this.idOrSlug.replace('-', ''));
+        this.seoService.setMetaData(
+            'description',
+            this.detailsData?.description
+                ? this.globalsService.getJustText(this.detailsData?.description)
+                : 'Brewing guides for Coffee',
+        );
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
         this.setSchemaMackup();

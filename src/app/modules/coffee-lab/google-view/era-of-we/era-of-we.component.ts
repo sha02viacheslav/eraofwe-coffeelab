@@ -1,18 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { CoffeeLabService } from '@services';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { CoffeeLabService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
+import { DOCUMENT } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-era-of-we',
     templateUrl: './era-of-we.component.html',
     styleUrls: ['./era-of-we.component.scss'],
 })
-export class EraOfWeComponent implements OnInit {
+export class EraOfWeComponent implements OnInit, OnDestroy {
     data: any[] = [];
     isLoading = false;
-    constructor(private coffeeLabService: CoffeeLabService, private toastService: ToastrService) {}
+    forumLanguage: string;
+    destroy$: Subject<boolean> = new Subject<boolean>();
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        private toastService: ToastrService,
+        @Inject(DOCUMENT) private document: Document,
+        private seoService: SEOService,
+    ) {}
 
     ngOnInit(): void {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.forumLanguage = language;
+            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.getData();
+        });
+        this.setSEO();
         this.getData();
     }
 
@@ -32,5 +48,17 @@ export class EraOfWeComponent implements OnInit {
                 }
                 this.isLoading = false;
             });
+    }
+
+    setSEO() {
+        this.seoService.setPageTitle('About Era of We');
+        this.seoService.setMetaData('description', 'Posts for Era of We');
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     }
 }
