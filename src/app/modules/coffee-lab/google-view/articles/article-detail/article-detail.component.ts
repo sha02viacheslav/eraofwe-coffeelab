@@ -59,9 +59,6 @@ export class ArticleDetailComponent implements OnInit {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 3);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`${this.relatedData[0].language}/article/${this.relatedData[0].slug}`]);
-                }
             }
         });
     }

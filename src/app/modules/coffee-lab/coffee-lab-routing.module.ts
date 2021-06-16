@@ -39,8 +39,16 @@ const routes: Routes = [
                         component: ArticlesViewComponent,
                     },
                     {
+                        path: 'articles/:idOrSlug',
+                        component: ArticleDetailComponent,
+                    },
+                    {
                         path: 'coffee-recipes',
                         component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'coffee-recipes/:idOrSlug',
+                        component: RecipeDetailComponent,
                     },
                     {
                         path: 'about-era-of-we',
