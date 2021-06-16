@@ -29,10 +29,11 @@ export class SEOService {
         link.setAttribute('href', this.doc.URL);
     }
     createLinkForHreflang(lang: string) {
-        const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
+        const url = this.doc.URL.split(environment.coffeeLabWeb)[1] ?? this.doc.URL;
         const link: HTMLLinkElement = this.doc.createElement('link');
         link.setAttribute('rel', 'alternate');
         const url2 = url.substr(3);
+        console.log('hreflang====>', url2);
         const newUrl =
             lang === 'x-default' ? `${environment.coffeeLabWeb}${url}` : `${environment.coffeeLabWeb}/${lang}${url2}`;
         this.doc.head.appendChild(link);

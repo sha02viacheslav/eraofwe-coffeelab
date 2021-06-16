@@ -50,7 +50,8 @@ export function app() {
 
     // All regular routes use the Universal engine
     server.get('*', (req, res) => {
-        res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+        const prefix = 'coffee-lab';
+        res.render(`${prefix}/${indexHtml}`, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
     });
 
     return server;
