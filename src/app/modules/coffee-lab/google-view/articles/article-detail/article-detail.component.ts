@@ -91,8 +91,7 @@ export class ArticleDetailComponent implements OnInit {
         if (this.detailsData?.title) {
             this.seoService.setPageTitle(this.detailsData?.title);
         } else {
-            const slug = this.activatedRoute.snapshot.queryParams.idOrSlug;
-            this.seoService.setPageTitle(slug.replace('-', ''));
+            this.seoService.setPageTitle('Era of We - The Coffee Lab');
         }
         this.seoService.setMetaData(
             'description',
