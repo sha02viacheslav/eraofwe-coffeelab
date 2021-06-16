@@ -11,9 +11,6 @@ import { ArticlesViewComponent } from './google-view/articles/articles-view/arti
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 
-const userLang = navigator.language;
-const lang = userLang === 'sv' || userLang === 'sv-sv' ? 'sv' : 'en';
-
 const routes: Routes = [
     {
         path: '',
@@ -21,38 +18,11 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: `${lang}/overview`,
+                redirectTo: 'overview',
                 pathMatch: 'full',
             },
             {
                 path: 'overview',
-                component: OverviewComponent,
-                children: [
-                    {
-                        path: '',
-                        redirectTo: 'qa-forum',
-                        pathMatch: 'full',
-                    },
-                    {
-                        path: 'qa-forum',
-                        component: QaForumViewComponent,
-                    },
-                    {
-                        path: 'articles',
-                        component: ArticlesViewComponent,
-                    },
-                    {
-                        path: 'coffee-recipes',
-                        component: CoffeeRecipesViewComponent,
-                    },
-                    {
-                        path: 'about-era-of-we',
-                        component: EraOfWeComponent,
-                    },
-                ],
-            },
-            {
-                path: ':lang/overview',
                 component: OverviewComponent,
                 children: [
                     {
@@ -84,23 +54,11 @@ const routes: Routes = [
                 component: QuestionDetailComponent,
             },
             {
-                path: ':lang/qa/:idOrSlug',
-                component: QuestionDetailComponent,
-            },
-            {
                 path: 'recipe/:idOrSlug',
                 component: RecipeDetailComponent,
             },
             {
-                path: ':lang/recipe/:idOrSlug',
-                component: RecipeDetailComponent,
-            },
-            {
-                path: 'en/article/:idOrSlug',
-                component: ArticleDetailComponent,
-            },
-            {
-                path: 'sv/article/:idOrSlug',
+                path: 'article/:idOrSlug',
                 component: ArticleDetailComponent,
             },
         ],
