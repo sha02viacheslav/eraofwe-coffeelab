@@ -96,6 +96,7 @@ export class RecipeDetailComponent implements OnInit {
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
+                    this.setSchemaMackup();
                 }
             } else {
                 this.toastService.error('The recipe is not exist.');
@@ -115,7 +116,6 @@ export class RecipeDetailComponent implements OnInit {
         );
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.setSchemaMackup();
     }
 
     setSchemaMackup() {

@@ -37,6 +37,7 @@ export class QuestionDetailComponent implements OnInit {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;
+                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -73,6 +74,7 @@ export class QuestionDetailComponent implements OnInit {
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
+                    this.setSchemaMackup();
                 }
             } else {
                 this.toastService.error('The question is not exist.');
@@ -83,14 +85,15 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.question);
+        this.seoService.setPageTitle(this.detailsData?.question || this.idOrSlug.replace('-', ''));
         if (this.detailsData?.answers?.length) {
             const firstAnswer = this.detailsData?.answers[0];
             this.seoService.setMetaData('description', this.globalsService.getJustText(firstAnswer.answer));
+        } else {
+            this.seoService.setMetaData('description', 'Questions and Answers for Coffee.');
         }
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.setSchemaMackup();
     }
 
     setSchemaMackup() {
