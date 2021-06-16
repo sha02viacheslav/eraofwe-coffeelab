@@ -6,28 +6,22 @@ const userLang = navigator.language;
 const lang = userLang === 'sv' || userLang === 'sv-sv' ? 'sv' : 'en';
 
 const routes: Routes = [
-    {
-        path: '',
-        redirectTo: lang,
-        pathMatch: 'full',
-    },
     { path: 'health-check', component: HealthCheckComponent },
     {
-        path: 'en',
+        path: '',
         component: LayoutComponent,
         children: [
             {
                 path: '',
+                redirectTo: lang,
+                pathMatch: 'full',
+            },
+            {
+                path: 'en',
                 loadChildren: () => import('./modules/coffee-lab/coffee-lab.module').then((m) => m.CoffeeLabModule),
             },
-        ],
-    },
-    {
-        path: 'sv',
-        component: LayoutComponent,
-        children: [
             {
-                path: '',
+                path: 'sv',
                 loadChildren: () => import('./modules/coffee-lab/coffee-lab.module').then((m) => m.CoffeeLabModule),
             },
         ],
