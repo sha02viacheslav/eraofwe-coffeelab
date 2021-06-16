@@ -42,7 +42,7 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
             .getForumList('article', params, this.coffeeLabService.currentForumLanguage)
             .subscribe((res) => {
                 if (res.success) {
-                    this.data = res.result ? res.result.slice(0, 2) : [];
+                    this.data = res.result ? res.result : [];
                 } else {
                     this.toastService.error('Cannot get Articles data');
                 }
