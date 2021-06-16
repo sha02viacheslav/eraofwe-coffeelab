@@ -23,12 +23,12 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.setSEO();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getData();
         });
-        this.setSEO();
         this.getData();
     }
 

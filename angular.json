@@ -175,7 +175,8 @@
                             "/sv/overview/articles",
                             "/sv/overview/coffee-recipes",
                             "/sv/overview/about-era-of-we",
-                            "/en/article/:idOrSlug"
+                            "/en/article/coffee-heroes-and-how-they",
+                            "/en/article/what-is-the-coffee-lab"
                         ]
                     },
                     "configurations": {
