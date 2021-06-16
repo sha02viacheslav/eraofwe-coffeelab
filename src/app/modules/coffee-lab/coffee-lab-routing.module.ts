@@ -96,11 +96,11 @@ const routes: Routes = [
                 component: RecipeDetailComponent,
             },
             {
-                path: 'article/:idOrSlug',
+                path: 'en/article/:idOrSlug',
                 component: ArticleDetailComponent,
             },
             {
-                path: ':lang/article/:idOrSlug',
+                path: 'sv/article/:idOrSlug',
                 component: ArticleDetailComponent,
             },
         ],

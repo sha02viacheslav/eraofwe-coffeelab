@@ -38,7 +38,6 @@ export class ArticleDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
-                this.lang = params.lang;
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -69,16 +68,13 @@ export class ArticleDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                if (this.lang && this.lang !== res.result.language) {
-                    this.location.back();
-                } else {
-                    if (!this.isPublic) {
-                        this.globalsService.setLimitCounter();
-                    }
-                    this.startupService.load(this.lang || 'en');
-                    this.setSEO();
-                    this.setSchemaMackup();
+                this.lang = res.result.language;
+                if (!this.isPublic) {
+                    this.globalsService.setLimitCounter();
                 }
+                this.startupService.load(this.lang || 'en');
+                this.setSEO();
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);
@@ -88,11 +84,7 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSEO() {
-        if (this.detailsData?.title) {
-            this.seoService.setPageTitle(this.detailsData?.title);
-        } else {
-            this.seoService.setPageTitle('Era of We - The Coffee Lab');
-        }
+        this.seoService.setPageTitle(this.detailsData?.title || 'Era of We - The Coffee Lab');
         this.seoService.setMetaData(
             'description',
             this.detailsData?.content
