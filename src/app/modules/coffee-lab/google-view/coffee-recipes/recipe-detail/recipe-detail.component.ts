@@ -59,7 +59,6 @@ export class RecipeDetailComponent implements OnInit {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;
-                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -69,6 +68,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.setSEO();
         this.previousUrl = this.globalsService.previousUrl;
     }
 
@@ -95,7 +95,7 @@ export class RecipeDetailComponent implements OnInit {
                 } else {
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
-                    this.setSEO();
+                    // this.setSEO();
                     this.setSchemaMackup();
                 }
             } else {
@@ -107,7 +107,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.name || this.idOrSlug.replace('-', ''));
+        this.seoService.setPageTitle(this.detailsData?.name || 'Era of We - The Coffee Lab');
         this.seoService.setMetaData(
             'description',
             this.detailsData?.description
