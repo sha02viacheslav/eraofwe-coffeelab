@@ -38,6 +38,7 @@ export class ArticleDetailComponent implements OnInit {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;
+                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -76,6 +77,7 @@ export class ArticleDetailComponent implements OnInit {
                     }
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
+                    this.setSchemaMackup();
                 }
             } else {
                 this.toastService.error('The article is not exist.');
@@ -86,11 +88,15 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.title);
-        this.seoService.setMetaData('description', this.globalsService.getJustText(this.detailsData?.content));
+        this.seoService.setPageTitle(this.detailsData?.title || this.idOrSlug.replace('-', ''));
+        this.seoService.setMetaData(
+            'description',
+            this.detailsData?.content
+                ? this.globalsService.getJustText(this.detailsData?.content)
+                : 'article for Coffee',
+        );
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
-        this.setSchemaMackup();
     }
 
     setSchemaMackup() {
