@@ -43,6 +43,12 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.forumLanguage = language;
+            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.getQuestions();
+        });
+        this.setSEO();
         this.sortOptions = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -68,10 +74,6 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
             },
         ];
         window.scroll(0, 0);
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.getQuestions();
-        });
     }
 
     getQuestions(): void {
@@ -86,7 +88,6 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             if (res.success) {
                 this.questions = res.result?.questions;
-                this.setSEO();
             } else {
                 this.toastService.error('Cannot get forum data');
             }

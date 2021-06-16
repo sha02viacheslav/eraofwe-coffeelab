@@ -56,6 +56,12 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.forumLanguage = language;
+            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.getData();
+        });
+        this.setSEO();
         this.orderList = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -76,10 +82,6 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
                 value: false,
             },
         ];
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.getData();
-        });
     }
 
     getData(): void {
@@ -100,7 +102,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
                     return item;
                 });
                 this.displayData = this.articlesData.slice(0, 9);
-                this.setSEO();
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Articles data');
             }
@@ -152,7 +154,6 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         this.seoService.setMetaData('description', 'Posts for Coffee Lab');
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
-        this.setSchemaMackup();
     }
 
     setSchemaMackup() {

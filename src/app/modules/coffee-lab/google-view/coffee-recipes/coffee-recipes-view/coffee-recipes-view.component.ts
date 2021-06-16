@@ -75,6 +75,12 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.forumLanguage = language;
+            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.getCoffeeRecipesData();
+        });
+        this.setSEO();
         this.levels = [
             {
                 label: this.globalsService.languageJson?.easy,
@@ -109,10 +115,6 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
                 value: 'oldest',
             },
         ];
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.getCoffeeRecipesData();
-        });
     }
 
     getCoffeeRecipesData(): void {
@@ -137,7 +139,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
                         item.description = this.globalsService.getJustText(item.description);
                         return item;
                     });
-                    this.setSEO();
+                    this.setSchemaMackup();
                 }
             } else {
                 this.toastService.error('Cannot get Recipes data');
@@ -183,7 +185,6 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
         this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
-        this.setSchemaMackup();
     }
 
     setSchemaMackup() {
