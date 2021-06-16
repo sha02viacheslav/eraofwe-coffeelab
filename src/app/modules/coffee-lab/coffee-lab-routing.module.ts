@@ -11,6 +11,9 @@ import { ArticlesViewComponent } from './google-view/articles/articles-view/arti
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 
+const userLang = navigator.language;
+const lang = userLang === 'sv' || userLang === 'sv-sv' ? 'sv' : 'en';
+
 const routes: Routes = [
     {
         path: '',
@@ -18,7 +21,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'overview',
+                redirectTo: `${lang}/overview`,
                 pathMatch: 'full',
             },
             {

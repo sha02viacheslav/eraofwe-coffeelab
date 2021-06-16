@@ -75,14 +75,12 @@ export class OverviewComponent implements OnInit {
                         activeIcon: 'assets/images/era-of-we-active.svg',
                     },
                 ];
-                if (lang) {
-                    this.startupService.load(language);
-                    let currentRouter = this.globalsService.currentUrl;
-                    if (this.globalsService.currentUrl.indexOf('/overview') !== 0) {
-                        currentRouter = this.globalsService.currentUrl.substr(3);
-                    }
-                    this.router.navigate([`/${language}${currentRouter}`]);
+                this.startupService.load(language);
+                let currentRouter = this.globalsService.currentUrl;
+                if (this.globalsService.currentUrl.indexOf('/overview') !== 0) {
+                    currentRouter = this.globalsService.currentUrl.substr(3);
                 }
+                this.router.navigate([`/${language}${currentRouter}`]);
             });
         });
     }
