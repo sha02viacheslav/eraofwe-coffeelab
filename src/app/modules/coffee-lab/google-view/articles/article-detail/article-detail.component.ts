@@ -31,6 +31,7 @@ export class ArticleDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
     ) {
+        this.setSEO();
         this.activatedRoute.queryParams.subscribe((params) => {
             this.isPublic = params.is_public;
         });
@@ -38,7 +39,6 @@ export class ArticleDetailComponent implements OnInit {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.lang = params.lang;
-                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -88,7 +88,12 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.title || this.idOrSlug.replace('-', ''));
+        if (this.detailsData?.title) {
+            this.seoService.setPageTitle(this.detailsData?.title);
+        } else {
+            const slug = this.activatedRoute.snapshot.queryParams.idOrSlug;
+            this.seoService.setPageTitle(slug.replace('-', ''));
+        }
         this.seoService.setMetaData(
             'description',
             this.detailsData?.content
