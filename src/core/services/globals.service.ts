@@ -148,13 +148,14 @@ export class GlobalsService {
     }
 
     getLimitCounter() {
-        const count = this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : POST_LIMIT_COUNT;
-        return count;
+        // const count = this.cookieService.get('limit_count') ? +this.cookieService.get('limit_count') : POST_LIMIT_COUNT;
+        // return count;
+        return 3;
     }
 
     setLimitCounter() {
-        const count = this.getLimitCounter() > 0 ? this.getLimitCounter() - 1 : 0;
-        this.cookieService.set('limit_count', count.toString());
+        // const count = this.getLimitCounter() > 0 ? this.getLimitCounter() - 1 : 0;
+        // this.cookieService.set('limit_count', count.toString());
     }
 
     getJustText(content: any) {
