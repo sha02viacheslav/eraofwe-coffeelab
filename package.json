@@ -11,7 +11,7 @@
     "dev:ssr": "ng run coffee-lab:serve-ssr",
     "serve:ssr": "node dist/coffee-lab/server/main.js",
     "prerender": "ng run coffee-lab:prerender",
-    "build:ssr": "ng run coffee-lab:build:production-coffee-lab && ng run coffee-lab:server:production-coffee-lab && npm run prerender"
+    "build:ssr": "ng build --prod && ng run coffee-lab:server:production && ng run coffee-lab:prerender"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "^4.6.0",
+    "domino": "^2.1.6",
     "express": "^4.15.2",
     "mock-browser": "^0.92.14",
     "moment": "^2.29.1",

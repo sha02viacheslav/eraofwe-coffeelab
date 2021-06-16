@@ -1,5 +1,8 @@
 import 'zone.js/dist/zone-node';
-
+const domino = require('domino');
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
+global['navigator'] = mock.getNavigator();
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
@@ -8,10 +11,15 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
-// const MockBrowser = require('mock-browser').mocks.MockBrowser;
-// const mock = new MockBrowser();
+const templateA = existsSync(join('dist/coffee-lab/browser', 'index.html')).toString();
+const win = domino.createWindow(templateA);
+win.Object = Object;
+win.Math = Math;
 
-// global['navigator'] = mock.getNavigator();
+global['window'] = win;
+global['document'] = win.document;
+global['branch'] = null;
+global['object'] = win.object;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -42,14 +50,7 @@ export function app() {
 
     // All regular routes use the Universal engine
     server.get('*', (req, res) => {
-        const prefix = 'coffee-lab';
-        res.render(`${prefix}/${indexHtml}`, {
-            req,
-            providers: [
-                { provide: APP_BASE_HREF, useValue: req.baseUrl },
-                { provide: 'prefix', useValue: prefix },
-            ],
-        });
+        res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
     });
 
     return server;

@@ -1,4 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { APP_BASE_HREF, registerLocaleData } from '@angular/common';
+import localeSe from '@angular/common/locales/se';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +43,10 @@ export function StartupServiceFactory(startupService: StartupService) {
             deps: [StartupService],
             multi: true,
         },
+        { provide: APP_BASE_HREF, useValue: '/coffee-lab' },
     ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+registerLocaleData(localeSe);

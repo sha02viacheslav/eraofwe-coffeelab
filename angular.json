@@ -13,6 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "baseHref": "/coffee-lab/",
                         "outputPath": "dist/coffee-lab/browser",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -33,8 +34,8 @@
                         ]
                     },
                      "configurations": {
-                        "production-coffee-lab": {
-                            "outputPath": "dist/coffee-lab/browser/coffee-lab/",
+                        "production": {
+                            "outputPath": "dist/coffee-lab/browser/coffee-lab",
                             "baseHref": "/coffee-lab/",
                             "fileReplacements": [
                                 {
@@ -77,8 +78,8 @@
                         "browserTarget": "coffee-lab:build"
                     },
                     "configurations": {
-                        "production-coffee-lab": {
-                            "browserTarget": "coffee-lab:build:production-coffee-lab"
+                        "production": {
+                            "browserTarget": "coffee-lab:build:production"
                         }
                     }
                 },
@@ -130,7 +131,7 @@
                         }
                     },
                     "configurations": {
-                        "production-coffee-lab": {
+                        "production": {
                             "outputHashing": "media",
                             "fileReplacements": [
                                 {
@@ -150,17 +151,17 @@
                         "serverTarget": "coffee-lab:server"
                     },
                     "configurations": {
-                        "production-coffee-lab": {
-                            "browserTarget": "coffee-lab:build:production-coffee-lab",
-                            "serverTarget": "coffee-lab:server:production-coffee-lab"
+                        "production": {
+                            "browserTarget": "coffee-lab:build:production",
+                            "serverTarget": "coffee-lab:server:production"
                         }
                     }
                 },
                 "prerender": {
                     "builder": "@nguniversal/builders:prerender",
                     "options": {
-                        "browserTarget": "coffee-lab:build:production-coffee-lab",
-                        "serverTarget": "coffee-lab:server:production-coffee-lab",
+                        "browserTarget": "coffee-lab:build:production",
+                        "serverTarget": "coffee-lab:server:production",
                         "routes": [
                             "/",
                             "/health-check",
