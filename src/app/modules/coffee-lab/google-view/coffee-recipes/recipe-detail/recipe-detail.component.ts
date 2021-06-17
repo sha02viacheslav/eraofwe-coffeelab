@@ -114,7 +114,6 @@ export class RecipeDetailComponent implements OnInit {
                 ? this.globalsService.getJustText(this.detailsData?.description)
                 : 'Brewing guides for Coffee',
         );
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }
 

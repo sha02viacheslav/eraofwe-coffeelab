@@ -102,7 +102,6 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     setSEO() {
         this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
         this.seoService.setMetaData('description', 'Q+A Forums for Coffee Lab');
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 }

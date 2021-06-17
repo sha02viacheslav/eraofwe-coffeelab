@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SEOService } from '@services';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    title = 'coffee-lab';
+    constructor(private seoService: SEOService) {
+        this.seoService.createLinkForCanonicalURL();
+    }
 }

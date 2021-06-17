@@ -92,7 +92,6 @@ export class QuestionDetailComponent implements OnInit {
         } else {
             this.seoService.setMetaData('description', 'Questions and Answers for Coffee.');
         }
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }
 

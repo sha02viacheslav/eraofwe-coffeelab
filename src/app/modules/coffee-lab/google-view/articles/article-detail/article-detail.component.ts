@@ -33,7 +33,6 @@ export class ArticleDetailComponent implements OnInit {
     ) {
         this.seoService.setPageTitle('Era of We - The Coffee Lab');
         this.seoService.setMetaData('description', 'article for Coffee');
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.createLinkForHreflang('x-default');
         this.activatedRoute.queryParams.subscribe((params) => {
             this.isPublic = params.is_public;
