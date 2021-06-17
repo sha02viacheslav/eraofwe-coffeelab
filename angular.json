@@ -164,19 +164,9 @@
                         "serverTarget": "coffee-lab:server:production",
                         "routes": [
                             "/",
-                            "/health-check",
-                            "/en/overview",
                             "/en/overview/qa-forum",
                             "/en/overview/articles",
-                            "/en/overview/coffee-recipes",
-                            "/sv/overview",
-                            "/sv/overview/qa-forum",
-                            "/sv/overview/articles",
-                            "/sv/overview/coffee-recipes",
-                            "/en/overview/articles/coffee-heroes-and-how-they",
-                            "/en/overview/articles/what-is-the-coffee-lab",
-                            "/en/recipe/new-june-recipe",
-                            "/en/qa/test-question-added-by-ro-june"
+                            "/en/overview/coffee-recipes"
                         ]
                     },
                     "configurations": {
