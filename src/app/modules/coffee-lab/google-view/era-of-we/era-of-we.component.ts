@@ -5,6 +5,8 @@ import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { DISCUSSIONS_FORUM } from '../data';
+
 @Component({
     selector: 'app-era-of-we',
     templateUrl: './era-of-we.component.html',
@@ -23,13 +25,14 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.data = DISCUSSIONS_FORUM;
         this.setSEO();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
-            this.getData();
+            // this.getData();
         });
-        this.getData();
+        // this.getData();
     }
 
     getData(): void {
