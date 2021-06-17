@@ -130,7 +130,9 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         return url;
     }
 
-    gotoDetailPage(item: any) {
+    gotoDetailPage(event, item: any) {
+        event.stopPropagation();
+        event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([this.getLink(item)]);
         } else {

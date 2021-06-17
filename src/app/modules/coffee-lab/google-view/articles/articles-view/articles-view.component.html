@@ -66,22 +66,21 @@
             *ngFor="let article of displayData"
             [routerLink]="[getLink(article)]"
         >
-            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item">
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" (click)="gotoDetailPage($event, article)">
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
                         <app-user-header [prop]="article"></app-user-header>
                     </div>
                     <app-forum-menu></app-forum-menu>
                 </div>
-                <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" />
-                <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
+                <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" [alt]="article.title" />
+                <h3 class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
                     {{ article?.title }}
-                </div>
+                </h3>
                 <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
                     <span class="article-title-text">
                         {{ article?.subtitle }}
                     </span>
-                    <p class="brown-cta mb-0 pt-2">{{ 'read_more' | translate }}</p>
                 </div>
             </div>
         </a>

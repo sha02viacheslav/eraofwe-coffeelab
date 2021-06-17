@@ -21,7 +21,9 @@ export class ForumCardComponent implements OnInit {
         this.detailsUrl = `/${language}/${this.forumType ?? 'article'}/${this.data.slug}`;
     }
 
-    onClick() {
+    onClick(event) {
+        event.stopPropagation();
+        event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([this.detailsUrl]);
         } else {

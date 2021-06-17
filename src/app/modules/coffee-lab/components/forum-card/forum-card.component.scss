@@ -17,6 +17,9 @@
     &:hover {
         cursor: pointer;
         box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+        .forum-title-text {
+            text-decoration: underline;
+        }
     }
     @media (max-width: 991px) {
         width: 374px;

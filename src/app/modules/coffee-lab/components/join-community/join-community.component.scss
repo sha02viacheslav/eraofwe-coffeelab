@@ -5,7 +5,8 @@
     border: solid 1px $secondary-border-color;
     background-color: $primary-bg-color;
     width: 374px;
-    .logo-image {
+    a.text-clr55c:hover {
+        color: $primary-color;
     }
 
     @media (max-width: 767px) {
