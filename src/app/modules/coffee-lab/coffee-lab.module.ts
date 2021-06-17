@@ -27,6 +27,7 @@ import { LanguageDropdownComponent } from './components/language-dropdown/langua
 import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
 import { PublishForumComponent } from './components/publish-forum/publish-forum.component';
 import { LimitBannerComponent } from './components/limit-banner/limit-banner.component';
+import { TestSeoComponent } from './google-view/test-seo/test-seo.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { LimitBannerComponent } from './components/limit-banner/limit-banner.com
         SignupModalComponent,
         PublishForumComponent,
         LimitBannerComponent,
+        TestSeoComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
