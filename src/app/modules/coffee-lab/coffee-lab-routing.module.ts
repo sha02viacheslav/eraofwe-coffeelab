@@ -10,7 +10,6 @@ import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/
 import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
-import { TestSeoComponent } from './google-view/test-seo/test-seo.component';
 
 const routes: Routes = [
     {
@@ -41,10 +40,6 @@ const routes: Routes = [
                     {
                         path: 'about-era-of-we',
                         component: EraOfWeComponent,
-                    },
-                    {
-                        path: 'test-seo',
-                        component: TestSeoComponent,
                     },
                 ],
             },
