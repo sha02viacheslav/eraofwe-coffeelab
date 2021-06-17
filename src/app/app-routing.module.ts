@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { HealthCheckComponent } from '@components';
 const userLang = navigator.language;
-const lang = userLang === 'sv' || userLang === 'sv-sv' ? 'sv' : 'en';
+const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
 
 const routes: Routes = [
     { path: 'health-check', component: HealthCheckComponent },
