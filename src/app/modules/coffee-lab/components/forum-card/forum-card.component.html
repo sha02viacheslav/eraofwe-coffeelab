@@ -1,14 +1,16 @@
-<div class="border-main br-4 p-3 forum-card-wrapper" (click)="onClick()">
-    <img [lazyLoad]="data?.cover_image_url" class="w-100" alt="cover background" />
-    <div class="d-flex justify-content-between pt-3">
-        <a class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 cursor-pointer forum-title-text">
-            {{ data?.title }}
-            <br />
-            {{ data?.subtitle }}
-        </a>
-        <app-forum-menu></app-forum-menu>
+<a class="text-non-underline" [routerLink]="[detailsUrl]">
+    <div class="border-main br-4 p-3 forum-card-wrapper">
+        <img [lazyLoad]="data?.cover_image_url" class="w-100" alt="cover background" />
+        <div class="d-flex justify-content-between pt-3">
+            <a class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 cursor-pointer forum-title-text">
+                {{ data?.title }}
+                <br />
+                {{ data?.subtitle }}
+            </a>
+            <app-forum-menu></app-forum-menu>
+        </div>
+        <div class="pt-3">
+            <app-user-header [prop]="data"></app-user-header>
+        </div>
     </div>
-    <div class="pt-3">
-        <app-user-header [prop]="data"></app-user-header>
-    </div>
-</div>
+</a>

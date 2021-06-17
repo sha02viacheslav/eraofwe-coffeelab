@@ -61,8 +61,12 @@
         </p-dropdown>
     </div>
     <div class="articles-wrapper" *ngIf="!isLoading">
-        <div class="col-12 col-md-6 col-lg-4 px-0 py-25 p-md-2" *ngFor="let article of displayData">
-            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" (click)="gotoDetailPage(article)">
+        <a
+            class="col-12 col-md-6 col-lg-4 px-0 py-25 p-md-2 text-non-underline"
+            *ngFor="let article of displayData"
+            [routerLink]="[getLink(article)]"
+        >
+            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item">
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
                         <app-user-header [prop]="article"></app-user-header>
@@ -80,7 +84,7 @@
                     <p class="brown-cta mb-0 pt-2">{{ 'read_more' | translate }}</p>
                 </div>
             </div>
-        </div>
+        </a>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>
     <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4">

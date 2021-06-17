@@ -12,15 +12,18 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class ForumCardComponent implements OnInit {
     @Input() data: any;
     @Input() forumType: string;
+    detailsUrl: any;
 
     constructor(private router: Router, public dialogSrv: DialogService, private globalsService: GlobalsService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        const language = this.data?.language || this.data?.lang_code;
+        this.detailsUrl = `/${language}/${this.forumType ?? 'article'}/${this.data.slug}`;
+    }
 
     onClick() {
         if (this.globalsService.getLimitCounter() > 0) {
-            const language = this.data?.language || this.data?.lang_code;
-            this.router.navigate([`${language}/${this.forumType ?? 'article'}/${this.data.slug}`]);
+            this.router.navigate([this.detailsUrl]);
         } else {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {
