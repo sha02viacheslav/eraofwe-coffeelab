@@ -111,7 +111,7 @@ export class ArticleDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Posts',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/overview/articles`,
+                            item: `${environment.coffeeLabWeb}/${this.lang}/articles`,
                         },
                         {
                             '@type': 'ListItem',

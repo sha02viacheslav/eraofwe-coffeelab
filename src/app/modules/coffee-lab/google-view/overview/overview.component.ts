@@ -14,25 +14,25 @@ export class OverviewComponent implements OnInit {
     menuItems = [
         {
             label: 'question_answers',
-            routerLink: '/overview/qa-forum',
+            routerLink: '/qa-forum',
             icon: 'assets/images/qa-forum.svg',
             activeIcon: 'assets/images/qa-forum-active.svg',
         },
         {
             label: 'posts',
-            routerLink: '/overview/articles',
+            routerLink: '/articles',
             icon: 'assets/images/article.svg',
             activeIcon: 'assets/images/article-active.svg',
         },
         {
             label: 'brewing_guides',
-            routerLink: '/overview/coffee-recipes',
+            routerLink: '/coffee-recipes',
             icon: 'assets/images/coffee-recipe.svg',
             activeIcon: 'assets/images/coffee-recipe-active.svg',
         },
         {
             label: 'about_era_of_we',
-            routerLink: '/overview/about-era-of-we',
+            routerLink: '/about-era-of-we',
             icon: 'assets/images/era-of-we.svg',
             activeIcon: 'assets/images/era-of-we-active.svg',
         },
@@ -52,25 +52,25 @@ export class OverviewComponent implements OnInit {
                 this.menuItems = [
                     {
                         label: 'question_answers',
-                        routerLink: `/${language}/overview/qa-forum`,
+                        routerLink: `/${language}/qa-forum`,
                         icon: 'assets/images/qa-forum.svg',
                         activeIcon: 'assets/images/qa-forum-active.svg',
                     },
                     {
                         label: 'posts',
-                        routerLink: `/${language}/overview/articles`,
+                        routerLink: `/${language}/articles`,
                         icon: 'assets/images/article.svg',
                         activeIcon: 'assets/images/article-active.svg',
                     },
                     {
                         label: 'brewing_guides',
-                        routerLink: `/${language}/overview/coffee-recipes`,
+                        routerLink: `/${language}/coffee-recipes`,
                         icon: 'assets/images/coffee-recipe.svg',
                         activeIcon: 'assets/images/coffee-recipe-active.svg',
                     },
                     {
                         label: 'about_era_of_we',
-                        routerLink: `/${language}/overview/about-era-of-we`,
+                        routerLink: `/${language}/about-era-of-we`,
                         icon: 'assets/images/era-of-we.svg',
                         activeIcon: 'assets/images/era-of-we-active.svg',
                     },

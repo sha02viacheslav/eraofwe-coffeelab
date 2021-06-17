@@ -135,7 +135,7 @@ export class RecipeDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Brewing guides',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/overview/coffee-recipes`,
+                            item: `${environment.coffeeLabWeb}/${this.lang}/coffee-recipes`,
                         },
                         {
                             '@type': 'ListItem',

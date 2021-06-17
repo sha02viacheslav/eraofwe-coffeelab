@@ -18,11 +18,6 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'overview',
-                pathMatch: 'full',
-            },
-            {
-                path: 'overview',
                 component: OverviewComponent,
                 children: [
                     {
@@ -49,6 +44,10 @@ const routes: Routes = [
                 ],
             },
 
+            {
+                path: 'qa/coffee-heroes-and-how-they',
+                component: QuestionDetailComponent,
+            },
             {
                 path: 'qa/:idOrSlug',
                 component: QuestionDetailComponent,

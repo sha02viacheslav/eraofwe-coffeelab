@@ -113,7 +113,7 @@ export class QuestionDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Q+A Forum',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/overview/qa-forum`,
+                            item: `${environment.coffeeLabWeb}/${this.lang}/qa-forum`,
                         },
                         {
                             '@type': 'ListItem',
