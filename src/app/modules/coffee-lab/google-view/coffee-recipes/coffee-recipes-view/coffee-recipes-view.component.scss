@@ -44,6 +44,9 @@
         &:hover {
             cursor: pointer;
             box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            .recipe-name {
+                text-decoration: underline;
+            }
         }
 
         .value {
