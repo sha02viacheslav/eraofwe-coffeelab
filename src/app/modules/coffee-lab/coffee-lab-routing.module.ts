@@ -41,6 +41,10 @@ const routes: Routes = [
                         path: 'about-era-of-we',
                         component: EraOfWeComponent,
                     },
+                    {
+                        path: 'test-seo',
+                        component: EraOfWeComponent,
+                    },
                 ],
             },
             {
