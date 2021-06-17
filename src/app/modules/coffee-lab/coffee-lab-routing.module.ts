@@ -43,11 +43,11 @@ const routes: Routes = [
                     },
                 ],
             },
-
             {
-                path: 'qa/coffee-heroes-and-how-they',
-                component: QuestionDetailComponent,
+                path: 'article/tset-seo',
+                component: EraOfWeComponent,
             },
+
             {
                 path: 'qa/:idOrSlug',
                 component: QuestionDetailComponent,
