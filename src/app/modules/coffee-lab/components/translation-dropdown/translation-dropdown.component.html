@@ -4,7 +4,6 @@
     [autoDisplayFirst]="false"
     styleClass="p-dropdown-translate"
     placeholder="Translated answer available"
-    (onChange)="onChangeTranslate($event)"
 >
     <ng-template pTemplate="selectedItem">
         <span class="fnt-14 fnt-muli fnt-bold text-clr60b d-flex align-items-center">
@@ -13,7 +12,7 @@
         </span>
     </ng-template>
     <ng-template let-translateItem pTemplate="item">
-        <a class="d-flex align-items-center">
+        <a class="d-flex align-items-center" [routerLink]="[getLink(translateItem)]">
             <p-avatar
                 [image]="translateItem?.profile_image_thumb_url || translateItem?.profile_image_url"
                 shape="circle"

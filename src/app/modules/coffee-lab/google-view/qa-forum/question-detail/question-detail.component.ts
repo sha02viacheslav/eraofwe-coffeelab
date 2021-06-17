@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Location, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +27,6 @@ export class QuestionDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private toastService: ToastrService,
         private seoService: SEOService,
-        private location: Location,
         private startupService: StartupService,
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
@@ -36,7 +35,6 @@ export class QuestionDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
-                this.lang = params.lang;
                 this.setSEO();
                 this.getDetails();
             }
@@ -56,9 +54,6 @@ export class QuestionDetailComponent implements OnInit {
                 this.relatedData = res.result.questions
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 3);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`/qa/${this.relatedData[0].slug}`]);
-                }
             }
         });
     }
@@ -68,14 +63,11 @@ export class QuestionDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                if (this.lang && this.lang !== res.result.lang_code) {
-                    this.location.back();
-                } else {
-                    this.globalsService.setLimitCounter();
-                    this.startupService.load(this.lang || 'en');
-                    this.setSEO();
-                    this.setSchemaMackup();
-                }
+                this.lang = res.result.lang_code;
+                this.globalsService.setLimitCounter();
+                this.startupService.load(this.lang || 'en');
+                this.setSEO();
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('The question is not exist.');
                 this.router.navigate(['/error']);
@@ -106,7 +98,7 @@ export class QuestionDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                            item: `${environment.coffeeLabWeb}/${this.lang}`,
                         },
                         {
                             '@type': 'ListItem',
@@ -151,9 +143,11 @@ export class QuestionDetailComponent implements OnInit {
         };
     }
 
-    onGoRelatedQuestion(item) {
+    onGoRelatedQuestion(event, item) {
+        event.stopPropagation();
+        event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([`/qa/${item.slug}`]);
+            this.router.navigate([`/${this.lang}/qa/${item.slug}`]);
         } else {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {

@@ -128,7 +128,7 @@ export class RecipeDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/overview`,
+                            item: `${environment.coffeeLabWeb}/${this.lang}`,
                         },
                         {
                             '@type': 'ListItem',

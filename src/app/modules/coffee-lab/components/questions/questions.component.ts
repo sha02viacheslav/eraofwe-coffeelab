@@ -39,7 +39,7 @@ export class QuestionsComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const url = `${this.coffeeLabService.currentForumLanguage}/qa/${item.slug}`;
+        const url = `/${this.coffeeLabService.currentForumLanguage}/qa/${item.slug}`;
         return {
             url,
             queryParmas: {
@@ -48,7 +48,9 @@ export class QuestionsComponent implements OnInit {
         };
     }
 
-    gotoDetailPage(item: any, answer?: any) {
+    gotoDetailPage(event, item: any, answer?: any) {
+        event.stopPropagation();
+        event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([this.getLink(item, answer).url], {
                 queryParams: this.getLink(item, answer).queryParmas,
@@ -105,7 +107,7 @@ export class QuestionsComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',

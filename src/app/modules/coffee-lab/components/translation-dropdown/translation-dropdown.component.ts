@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { languages } from '@constants';
 import { GlobalsService } from '@services';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -13,13 +12,11 @@ export class TranslationDropdownComponent implements OnInit {
     @Input() forumType;
     languages = languages;
 
-    constructor(public globalsService: GlobalsService, private router: Router) {}
+    constructor(public globalsService: GlobalsService) {}
 
     ngOnInit(): void {}
 
-    onChangeTranslate(event) {
-        this.router.navigate([
-            `/${event.value.language}/${this.forumType ?? 'article'}/${event.value.slug || event.value.question_slug}`,
-        ]);
+    getLink(item) {
+        return `/${item.language}/${this.forumType ?? 'article'}/${item.slug || item.question_slug}`;
     }
 }

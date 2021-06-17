@@ -1,7 +1,7 @@
 <main>
     <div
         class="back-page mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content"
-        [routerLink]="previousUrl"
+        [routerLink]="['/' + lang + '/qa-forum']"
         *ngIf="previousUrl"
     >
         <a>
@@ -86,12 +86,13 @@
                 </div>
                 <div>
                     <div *ngFor="let forum of relatedData" class="forum-row pt-4 px-3 pb-0">
-                        <div
-                            class="fnt-14 fnt-muli fnt-600 lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
-                            (click)="onGoRelatedQuestion(forum)"
-                        >
-                            <a [innerHTML]="forum.question"> </a>
-                        </div>
+                        <a [routerLink]="['/' + lang + '/qa/' + forum.slug]">
+                            <div
+                                class="fnt-14 fnt-muli fnt-600 lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
+                                [innerHTML]="forum.question"
+                                (click)="onGoRelatedQuestion($event, forum)"
+                            ></div>
+                        </a>
                     </div>
                 </div>
             </div>

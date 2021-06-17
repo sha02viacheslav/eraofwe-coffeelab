@@ -185,7 +185,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}/overview`,
+                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',
