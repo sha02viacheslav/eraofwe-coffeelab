@@ -58,7 +58,6 @@ export class RecipeDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
-                this.lang = params.lang;
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -90,14 +89,11 @@ export class RecipeDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                if (this.lang && this.lang !== res.result.lang_code) {
-                    this.location.back();
-                } else {
-                    this.globalsService.setLimitCounter();
-                    this.startupService.load(this.lang || 'en');
-                    // this.setSEO();
-                    this.setSchemaMackup();
-                }
+                this.globalsService.setLimitCounter();
+                this.lang = res.result.lang_code;
+                this.startupService.load(this.lang || 'en');
+                // this.setSEO();
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);
