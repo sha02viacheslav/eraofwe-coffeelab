@@ -33,6 +33,7 @@ export class GlobalsService {
     device = 'desktop';
     previousUrl: string;
     currentUrl: string;
+    logoAlt: string;
 
     constructor(
         private cookieService: CookieService,
@@ -47,6 +48,19 @@ export class GlobalsService {
                 this.currentUrl = event.urlAfterRedirects;
                 console.log('prev: ', this.previousUrl);
                 console.log('curr=> ', this.currentUrl);
+                if (this.currentUrl.includes('/en/qa-forum')) {
+                    this.logoAlt = 'Title - Q+A';
+                } else if (this.currentUrl.includes('/en/articles')) {
+                    this.logoAlt = 'Title - Post';
+                } else if (this.currentUrl.includes('/en/coffee-recipes')) {
+                    this.logoAlt = 'Title - Coffee Recipe';
+                } else if (this.currentUrl.includes('/sv/qa-forum')) {
+                    this.logoAlt = 'Title - Frågor & Svar';
+                } else if (this.currentUrl.includes('/sv/articles')) {
+                    this.logoAlt = 'Title - Artikel';
+                } else if (this.currentUrl.includes('/sv/coffee-recipes')) {
+                    this.logoAlt = 'Title - Recept';
+                }
             });
         if (deviceSrv.isMobile()) {
             this.device = 'mobile';

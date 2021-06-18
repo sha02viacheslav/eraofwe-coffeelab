@@ -39,7 +39,7 @@ export class QuestionsComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const url = `/${this.coffeeLabService.currentForumLanguage}/qa/${item.slug}`;
+        const url = `/${this.coffeeLabService.currentForumLanguage}/qa-forum/${item.slug}`;
         return {
             url,
             queryParmas: {
@@ -86,7 +86,7 @@ export class QuestionsComponent implements OnInit {
                             '@type': 'Answer',
                             text: this.globalsService.getJustText(answer.answer),
                             dateCreated: answer.created_at,
-                            url: `${environment.coffeeLabWeb}/${this.forumLanguage}/qa/${forum.slug}?#answer-${answer.id}`,
+                            url: `${environment.coffeeLabWeb}/${this.forumLanguage}/qa-forum/${forum.slug}?#answer-${answer.id}`,
                             author: {
                                 '@type': 'Person',
                                 name: answer.user_name,

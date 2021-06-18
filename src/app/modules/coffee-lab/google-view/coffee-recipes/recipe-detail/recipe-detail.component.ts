@@ -78,7 +78,7 @@ export class RecipeDetailComponent implements OnInit {
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 3);
                 if (!this.idOrSlug) {
-                    this.router.navigate([`/recipe/${this.relatedData[0].slug}`]);
+                    this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
                 }
             }
         });

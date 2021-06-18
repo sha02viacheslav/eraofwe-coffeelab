@@ -147,7 +147,7 @@ export class QuestionDetailComponent implements OnInit {
         event.stopPropagation();
         event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([`/${this.lang}/qa/${item.slug}`]);
+            this.router.navigate([`/${this.lang}/qa-forum/${item.slug}`]);
         } else {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {

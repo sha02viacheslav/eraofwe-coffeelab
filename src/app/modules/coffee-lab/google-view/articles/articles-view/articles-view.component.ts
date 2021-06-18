@@ -126,7 +126,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     getLink(item) {
-        const url = `/${item.language}/article/${item.slug}`;
+        const url = `/${item.language}/articles/${item.slug}`;
         return url;
     }
 
@@ -162,7 +162,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         for (const forum of this.displayData) {
             const itemData = {
                 '@type': 'Article',
-                '@id': `${environment.coffeeLabWeb}/${this.forumLanguage}/article/${forum.slug}`,
+                '@id': `${environment.coffeeLabWeb}/${this.forumLanguage}/articles/${forum.slug}`,
                 headline: forum.title,
                 description: this.globalsService.getJustText(forum.content),
                 image: forum.cover_image_url,

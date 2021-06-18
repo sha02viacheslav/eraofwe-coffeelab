@@ -157,7 +157,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     }
 
     getLink(item) {
-        const url = `/${item.lang_code}/recipe/${item.slug}`;
+        const url = `/${item.lang_code}/coffee-recipes/${item.slug}`;
         return url;
     }
 

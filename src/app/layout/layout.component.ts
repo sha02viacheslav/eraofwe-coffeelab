@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
+import { GlobalsService } from '@services';
 
 @Component({
     selector: 'app-layout',
@@ -10,7 +11,7 @@ import { environment } from '@env/environment';
 export class LayoutComponent implements OnInit {
     loaded = true;
 
-    constructor(@Inject(DOCUMENT) private document: Document) {}
+    constructor(@Inject(DOCUMENT) private document: Document, public glogbalService: GlobalsService) {}
 
     ngOnInit(): void {}
 

@@ -8,7 +8,7 @@
                         <img src="assets/images/hamberg-tablet.svg" alt="hamberg" class="d-none d-md-inline-block" />
                     </a>
                     <a class="company-logo d-inline-block" [routerLink]="['/']">
-                        <img src="assets/images/era-we-black.svg" alt="Comany-Logo" />
+                        <img src="assets/images/era-we-black.svg" [alt]="glogbalService.logoAlt" />
                     </a>
                 </div>
                 <button class="btn-raised ml-auto" (click)="gotoLogin()">{{ 'login' | translate }}</button>

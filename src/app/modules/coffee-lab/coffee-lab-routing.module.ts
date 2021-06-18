@@ -44,20 +44,15 @@ const routes: Routes = [
                 ],
             },
             {
-                path: 'article/tset-seo',
-                component: EraOfWeComponent,
-            },
-
-            {
-                path: 'qa/:idOrSlug',
+                path: 'qa-forum/:idOrSlug',
                 component: QuestionDetailComponent,
             },
             {
-                path: 'recipe/:idOrSlug',
+                path: 'coffee-recipes/:idOrSlug',
                 component: RecipeDetailComponent,
             },
             {
-                path: 'article/:idOrSlug',
+                path: 'articles/:idOrSlug',
                 component: ArticleDetailComponent,
             },
         ],

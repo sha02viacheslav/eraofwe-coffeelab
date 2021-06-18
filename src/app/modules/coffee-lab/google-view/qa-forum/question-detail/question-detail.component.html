@@ -86,7 +86,7 @@
                 </div>
                 <div>
                     <div *ngFor="let forum of relatedData" class="forum-row pt-4 px-3 pb-0">
-                        <a [routerLink]="['/' + lang + '/qa/' + forum.slug]">
+                        <a [routerLink]="['/' + lang + '/qa-forum/' + forum.slug]">
                             <div
                                 class="fnt-14 fnt-muli fnt-600 lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
                                 [innerHTML]="forum.question"
