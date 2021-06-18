@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, GlobalsService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { routerMap } from '@constants';
 
 @Component({
     selector: 'app-overview',
@@ -52,35 +53,39 @@ export class OverviewComponent implements OnInit {
                 this.menuItems = [
                     {
                         label: 'question_answers',
-                        routerLink: `/${language}/qa-forum`,
+                        routerLink: `/${language}/${language === 'en' ? 'qa-forum' : routerMap['qa-forum']}`,
                         icon: 'assets/images/qa-forum.svg',
                         activeIcon: 'assets/images/qa-forum-active.svg',
                     },
                     {
                         label: 'posts',
-                        routerLink: `/${language}/articles`,
+                        routerLink: `/${language}/${language === 'en' ? 'articles' : routerMap['articles']}`,
                         icon: 'assets/images/article.svg',
                         activeIcon: 'assets/images/article-active.svg',
                     },
                     {
                         label: 'brewing_guides',
-                        routerLink: `/${language}/coffee-recipes`,
+                        routerLink: `/${language}/${
+                            language === 'en' ? 'coffee-recipes' : routerMap['coffee-recipes']
+                        }`,
                         icon: 'assets/images/coffee-recipe.svg',
                         activeIcon: 'assets/images/coffee-recipe-active.svg',
                     },
                     {
                         label: 'about_era_of_we',
-                        routerLink: `/${language}/about-era-of-we`,
+                        routerLink: `/${language}/${
+                            language === 'en' ? 'about-era-of-we' : routerMap['about-era-of-we']
+                        }`,
                         icon: 'assets/images/era-of-we.svg',
                         activeIcon: 'assets/images/era-of-we-active.svg',
                     },
                 ];
                 this.startupService.load(language);
                 let currentRouter = this.globalsService.currentUrl;
-                if (this.globalsService.currentUrl && this.globalsService.currentUrl.indexOf('/overview') !== 0) {
-                    currentRouter = this.globalsService.currentUrl.substr(3);
+                if (this.globalsService.currentUrl) {
+                    currentRouter = this.globalsService.currentUrl.substr(4);
                 }
-                this.router.navigate([`/${language}${currentRouter}`]);
+                this.router.navigate([`/${language}/${language === 'en' ? currentRouter : routerMap[currentRouter]}`]);
             });
         });
     }

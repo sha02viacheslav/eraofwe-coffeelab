@@ -11,6 +11,8 @@ import { ArticlesViewComponent } from './google-view/articles/articles-view/arti
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 
+const userLang = navigator.language;
+const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
 const routes: Routes = [
     {
         path: '',
@@ -22,37 +24,53 @@ const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        redirectTo: 'qa-forum',
+                        redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar',
                         pathMatch: 'full',
                     },
                     {
-                        path: 'qa-forum',
+                        path: 'en/qa-forum',
                         component: QaForumViewComponent,
                     },
                     {
-                        path: 'articles',
+                        path: 'en/articles',
                         component: ArticlesViewComponent,
                     },
                     {
-                        path: 'coffee-recipes',
+                        path: 'en/coffee-recipes',
                         component: CoffeeRecipesViewComponent,
                     },
                     {
-                        path: 'about-era-of-we',
+                        path: 'en/about-era-of-we',
+                        component: EraOfWeComponent,
+                    },
+                    {
+                        path: 'sv/fragor-och-svar',
+                        component: QaForumViewComponent,
+                    },
+                    {
+                        path: 'sv/artiklar-och-kunskap',
+                        component: ArticlesViewComponent,
+                    },
+                    {
+                        path: 'sv/recept-och-bryggningsmetoder',
+                        component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'sv/om-era-of-we',
                         component: EraOfWeComponent,
                     },
                 ],
             },
             {
-                path: 'qa-forum/:idOrSlug',
+                path: ':lang/qa-forum/:idOrSlug',
                 component: QuestionDetailComponent,
             },
             {
-                path: 'coffee-recipes/:idOrSlug',
+                path: ':lang/coffee-recipes/:idOrSlug',
                 component: RecipeDetailComponent,
             },
             {
-                path: 'articles/:idOrSlug',
+                path: ':lang/articles/:idOrSlug',
                 component: ArticleDetailComponent,
             },
         ],
