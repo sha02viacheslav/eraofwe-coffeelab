@@ -5,8 +5,13 @@
     border: solid 1px $secondary-border-color;
     background-color: $primary-bg-color;
     width: 374px;
+
     a.text-clr55c:hover {
         color: $primary-color;
+    }
+
+    .button-wrapper {
+        white-space: nowrap;
     }
 
     @media (max-width: 767px) {
