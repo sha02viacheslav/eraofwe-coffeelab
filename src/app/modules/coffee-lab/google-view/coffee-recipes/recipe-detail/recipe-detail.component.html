@@ -78,7 +78,9 @@
                         ></div>
                     </div>
                     <div *ngIf="detailsData?.ingredients" class="pt-4">
-                        <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">Ingredients</h2>
+                        <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-1574 mb-3">
+                            {{ 'ingredients' | translate }}
+                        </h2>
                         <div class="border-main br-4 py-2 px-4 ingredients-wrapper">
                             <div
                                 class="d-flex py-3 px-0 justify-content-between border-bottom-main ingredients-item"
@@ -94,7 +96,7 @@
                         </div>
                     </div>
                     <div class="mt-45">
-                        <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">Directions</h2>
+                        <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">{{ 'directions' | translate }}</h2>
                         <div
                             class="pb-4 step-wrapper"
                             *ngFor="let step of detailsData?.steps; let i = index"
