@@ -54,7 +54,8 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.setPageTitle('About Era of We');
+        this.seoService.createLinkForCanonicalURL();
+        this.seoService.setPageTitle('Era of We - About Era of We');
         this.seoService.setMetaData('description', 'Posts for Era of We');
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }

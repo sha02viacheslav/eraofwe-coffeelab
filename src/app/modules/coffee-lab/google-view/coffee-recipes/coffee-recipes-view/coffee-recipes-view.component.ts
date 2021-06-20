@@ -183,6 +183,7 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
+        this.seoService.createLinkForCanonicalURL();
         this.seoService.setPageTitle('Era of We - The Coffee Lab Brewing Gudes');
         this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');

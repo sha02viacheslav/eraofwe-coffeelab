@@ -67,6 +67,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.seoService.createLinkForCanonicalURL();
         this.setSEO();
         this.previousUrl = this.globalsService.previousUrl;
     }

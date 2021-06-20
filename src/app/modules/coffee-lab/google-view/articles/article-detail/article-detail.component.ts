@@ -31,9 +31,8 @@ export class ArticleDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
     ) {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab');
-        this.seoService.setMetaData('description', 'article for Coffee');
-        this.seoService.createLinkForHreflang('x-default');
+        this.seoService.createLinkForCanonicalURL();
+        this.setSEO();
         this.activatedRoute.queryParams.subscribe((params) => {
             this.isPublic = params.is_public;
         });
@@ -88,7 +87,7 @@ export class ArticleDetailComponent implements OnInit {
             'description',
             this.detailsData?.content
                 ? this.globalsService.getJustText(this.detailsData?.content)
-                : 'article for Coffee',
+                : 'Era of We - Article for Coffee',
         );
         this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }

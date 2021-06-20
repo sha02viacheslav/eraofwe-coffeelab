@@ -9,7 +9,7 @@ import { environment } from '@env/environment';
 export class SEOService {
     constructor(private title: Title, @Inject(DOCUMENT) private doc, private meta: Meta) {}
     setPageTitle(title: string) {
-        this.title.setTitle(title);
+        this.title.setTitle(title?.substr(0, 60));
     }
     getPageTitle() {
         return this.title.getTitle();
@@ -17,7 +17,7 @@ export class SEOService {
     setMetaData(name, content) {
         const metaData: any = {
             name,
-            content,
+            content: name === 'description' ? content?.substr(0, 160) : content,
         };
         this.meta.updateTag(metaData);
     }

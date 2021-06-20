@@ -152,6 +152,7 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
+        this.seoService.createLinkForCanonicalURL();
         this.seoService.setPageTitle('Era of We - The Coffee Lab Posts');
         this.seoService.setMetaData('description', 'Posts for Coffee Lab');
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');

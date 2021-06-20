@@ -43,6 +43,7 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.seoService.createLinkForCanonicalURL();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
@@ -101,7 +102,7 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
 
     setSEO() {
         this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
-        this.seoService.setMetaData('description', 'Q+A Forums for Coffee Lab');
+        this.seoService.setMetaData('description', 'Era of We - Q+A Forums for Coffee Lab');
         this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 }
