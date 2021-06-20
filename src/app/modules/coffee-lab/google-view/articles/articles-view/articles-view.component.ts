@@ -63,8 +63,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.getData();
+            this.setSEO();
         });
-        this.setSEO();
         this.orderList = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -155,8 +155,16 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Posts');
-        this.seoService.setMetaData('description', 'Posts for Coffee Lab');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee articles & news - The Coffee Lab'
+                : 'Kaffe artiklar & nyheter - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee articles written by coffee experts from the coffee community'
+                : 'Kaffe artiklar och nyheter skapade av kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('description', description);
     }
 
     setSchemaMackup() {

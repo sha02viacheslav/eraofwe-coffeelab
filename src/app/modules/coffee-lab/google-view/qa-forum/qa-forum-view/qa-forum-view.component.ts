@@ -50,8 +50,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
             this.getQuestions();
+            this.setSEO();
         });
-        this.setSEO();
         this.sortOptions = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -103,7 +103,15 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
-        this.seoService.setMetaData('description', 'Era of We - Q+A Forums for Coffee Lab');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee forum & community - The Coffee Lab'
+                : 'Kaffe forum & community - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee questions & answers forum for end-consumers and coffee experts the coffee supply chain.'
+                : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('description', description);
     }
 }

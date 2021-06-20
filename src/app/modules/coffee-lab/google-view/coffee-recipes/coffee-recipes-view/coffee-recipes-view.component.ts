@@ -81,9 +81,9 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
+            this.setSEO();
             this.getCoffeeRecipesData();
         });
-        this.setSEO();
         this.levels = [
             {
                 label: this.globalsService.languageJson?.easy,
@@ -186,8 +186,16 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Brewing Gudes');
-        this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee recipes & brewing guides - The Coffee Lab'
+                : 'Kafferecept och bryggguider - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
+                : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('description', description);
     }
 
     setSchemaMackup() {
