@@ -1,5 +1,5 @@
 <div class="coffee-recipes-view-container">
-    <h1 class="fnt-18 fnt-md-24 fnt-bold text-clr334 d-md-none">
+    <h1 class="fnt-18 fnt-md-24 fnt-bold text-clr334 d-md-none" *ngIf="isMobile$ | async">
         {{ 'brewing_guides_recipes' | translate }}
     </h1>
     <div class="row justify-content-lg-between pt-3 pt-md-0 gutter-32">
@@ -20,7 +20,8 @@
         </div>
     </div>
     <div
-        class="d-none d-md-flex flex-column align-items-center flex-md-row justify-content-md-between pb-lg-3 pb-md-0 pt-md-4 pt-lg-45"
+        class="d-md-flex flex-column align-items-center flex-md-row justify-content-md-between pb-lg-3 pb-md-0 pt-md-4 pt-lg-45"
+        *ngIf="!(isMobile$ | async)"
     >
         <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
             {{ 'brewing_guides_recipes' | translate }}

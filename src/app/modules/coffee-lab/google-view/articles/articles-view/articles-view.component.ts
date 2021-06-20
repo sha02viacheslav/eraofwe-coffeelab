@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoffeeLabService, GlobalsService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,12 +8,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
+import { ResizeableComponent } from '@base-components';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
     styleUrls: ['./articles-view.component.scss'],
 })
-export class ArticlesViewComponent implements OnInit, OnDestroy {
+export class ArticlesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     keyword?: string;
     translationsList: any[] = [
         {
@@ -53,7 +54,10 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private document: Document,
         private seoService: SEOService,
-    ) {}
+        protected resizeService: ResizeService,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {

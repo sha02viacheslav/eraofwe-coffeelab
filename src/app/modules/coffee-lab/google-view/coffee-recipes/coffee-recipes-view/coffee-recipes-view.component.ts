@@ -1,19 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
+import { ResizeableComponent } from '@base-components';
 
 @Component({
     selector: 'app-coffee-recipes-view',
     templateUrl: './coffee-recipes-view.component.html',
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
-export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
+export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     rows = 9;
     pageNumber = 1;
     totalRecords = 0;
@@ -72,7 +73,10 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
         private seoService: SEOService,
-    ) {}
+        protected resizeService: ResizeService,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {

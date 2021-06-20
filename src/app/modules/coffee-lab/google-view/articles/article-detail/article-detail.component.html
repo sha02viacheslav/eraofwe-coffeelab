@@ -80,13 +80,13 @@
             </div>
             <div class="d-none d-lg-block">
                 <div *ngFor="let forum of relatedData" class="py-2">
-                    <app-forum-card [data]="forum"></app-forum-card>
+                    <app-forum-card [data]="forum" forumType="articles"></app-forum-card>
                 </div>
             </div>
             <div class="d-block d-lg-none pt-3">
                 <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
                     <ng-template let-forum pTemplate="item">
-                        <app-forum-card [data]="forum"></app-forum-card>
+                        <app-forum-card [data]="forum" forumType="articles"></app-forum-card>
                     </ng-template>
                 </p-carousel>
             </div>

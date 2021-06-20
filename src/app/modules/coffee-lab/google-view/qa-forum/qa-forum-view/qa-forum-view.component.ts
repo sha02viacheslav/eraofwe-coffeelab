@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoffeeLabService, SEOService, GlobalsService } from '@services';
+import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ResizeableComponent } from '@base-components';
 
 @Component({
     selector: 'app-qa-forum-view',
     templateUrl: './qa-forum-view.component.html',
     styleUrls: ['./qa-forum-view.component.scss'],
 })
-export class QaForumViewComponent implements OnInit, OnDestroy {
+export class QaForumViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
     sortOptions = [
@@ -40,7 +41,10 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
         private toastService: ToastrService,
         private seoService: SEOService,
         private globalsService: GlobalsService,
-    ) {}
+        protected resizeService: ResizeService,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.seoService.createLinkForCanonicalURL();
