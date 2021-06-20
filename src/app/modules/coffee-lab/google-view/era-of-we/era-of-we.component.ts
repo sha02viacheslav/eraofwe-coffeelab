@@ -29,7 +29,6 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
         this.setSEO();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             // this.getData();
         });
         // this.getData();
@@ -54,10 +53,8 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.setPageTitle('Era of We - About Era of We');
         this.seoService.setMetaData('description', 'Posts for Era of We');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 
     ngOnDestroy(): void {

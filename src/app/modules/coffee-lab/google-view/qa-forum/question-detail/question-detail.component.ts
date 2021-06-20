@@ -32,7 +32,6 @@ export class QuestionDetailComponent implements OnInit {
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
     ) {
-        this.seoService.createLinkForCanonicalURL();
         this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -85,7 +84,6 @@ export class QuestionDetailComponent implements OnInit {
         } else {
             this.seoService.setMetaData('description', 'Questions and Answers for Coffee.');
         }
-        this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }
 
     setSchemaMackup() {

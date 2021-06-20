@@ -31,7 +31,6 @@ export class ArticleDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
     ) {
-        this.seoService.createLinkForCanonicalURL();
         this.setSEO();
         this.activatedRoute.queryParams.subscribe((params) => {
             this.isPublic = params.is_public;
@@ -89,7 +88,6 @@ export class ArticleDetailComponent implements OnInit {
                 ? this.globalsService.getJustText(this.detailsData?.content)
                 : 'Era of We - Article for Coffee',
         );
-        this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }
 
     setSchemaMackup() {

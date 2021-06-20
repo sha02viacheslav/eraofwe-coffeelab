@@ -62,7 +62,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getData();
         });
         this.setSEO();
@@ -156,10 +155,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     setSEO() {
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.setPageTitle('Era of We - The Coffee Lab Posts');
         this.seoService.setMetaData('description', 'Posts for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 
     setSchemaMackup() {

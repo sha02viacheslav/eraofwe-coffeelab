@@ -81,7 +81,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getCoffeeRecipesData();
         });
         this.setSEO();
@@ -187,10 +186,8 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     setSEO() {
-        this.seoService.createLinkForCanonicalURL();
         this.seoService.setPageTitle('Era of We - The Coffee Lab Brewing Gudes');
         this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 
     setSchemaMackup() {

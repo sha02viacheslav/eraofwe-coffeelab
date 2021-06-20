@@ -67,7 +67,6 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.seoService.createLinkForCanonicalURL();
         this.setSEO();
         this.previousUrl = this.globalsService.previousUrl;
     }
@@ -111,7 +110,6 @@ export class RecipeDetailComponent implements OnInit {
                 ? this.globalsService.getJustText(this.detailsData?.description)
                 : 'Brewing guides for Coffee',
         );
-        this.seoService.createLinkForHreflang(this.lang || 'x-default');
     }
 
     setSchemaMackup() {

@@ -47,10 +47,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     }
 
     ngOnInit(): void {
-        this.seoService.createLinkForCanonicalURL();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getQuestions();
         });
         this.setSEO();
@@ -107,6 +105,5 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     setSEO() {
         this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
         this.seoService.setMetaData('description', 'Era of We - Q+A Forums for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
     }
 }
