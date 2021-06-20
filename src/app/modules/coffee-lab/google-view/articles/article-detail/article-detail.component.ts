@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
 import { DISCUSSIONS_FORUM } from '../../data';
+import { routerMap } from '@constants';
 
 @Component({
     selector: 'app-article-detail',
@@ -47,9 +48,7 @@ export class ArticleDetailComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {
-        this.previousUrl = this.globalsService.previousUrl;
-    }
+    ngOnInit(): void {}
 
     getArticleList() {
         this.coffeeLabService.getForumList('article').subscribe((res: any) => {
@@ -66,6 +65,7 @@ export class ArticleDetailComponent implements OnInit {
         if (this.isPublic) {
             this.detailsData = DISCUSSIONS_FORUM.find((item) => item.slug === this.idOrSlug);
             this.loading = false;
+            this.previousUrl = '/en/about-era-of-we';
         } else {
             this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
                 if (res.success) {
@@ -77,6 +77,7 @@ export class ArticleDetailComponent implements OnInit {
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
                     this.setSchemaMackup();
+                    this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'articles' : routerMap['articles']}`;
                 } else {
                     this.toastService.error('The article is not exist.');
                     this.router.navigate(['/error']);
