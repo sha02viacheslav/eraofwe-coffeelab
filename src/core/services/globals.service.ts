@@ -47,7 +47,7 @@ export class GlobalsService {
                 this.previousUrl = this.currentUrl;
                 this.currentUrl = event.urlAfterRedirects;
                 console.log('prev: ', this.previousUrl);
-                console.log('curr=> ', this.currentUrl);
+                console.log('curr: ', this.currentUrl);
                 if (this.currentUrl.includes('/en/qa-forum')) {
                     this.logoAlt = 'Title - Q+A';
                 } else if (this.currentUrl.includes('/en/articles')) {
