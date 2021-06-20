@@ -53,20 +53,20 @@ export class OverviewComponent implements OnInit {
                 this.menuItems = [
                     {
                         label: 'question_answers',
-                        routerLink: `/${language}/${language === 'en' ? 'qa-forum' : routerMap['qa-forum']}`,
+                        routerLink: `/${language}/${language === 'en' ? 'qa-forum' : routerMap.sv['qa-forum']}`,
                         icon: 'assets/images/qa-forum.svg',
                         activeIcon: 'assets/images/qa-forum-active.svg',
                     },
                     {
                         label: 'posts',
-                        routerLink: `/${language}/${language === 'en' ? 'articles' : routerMap['articles']}`,
+                        routerLink: `/${language}/${language === 'en' ? 'articles' : routerMap.sv['articles']}`,
                         icon: 'assets/images/article.svg',
                         activeIcon: 'assets/images/article-active.svg',
                     },
                     {
                         label: 'brewing_guides',
                         routerLink: `/${language}/${
-                            language === 'en' ? 'coffee-recipes' : routerMap['coffee-recipes']
+                            language === 'en' ? 'coffee-recipes' : routerMap.sv['coffee-recipes']
                         }`,
                         icon: 'assets/images/coffee-recipe.svg',
                         activeIcon: 'assets/images/coffee-recipe-active.svg',
@@ -74,7 +74,7 @@ export class OverviewComponent implements OnInit {
                     {
                         label: 'about_era_of_we',
                         routerLink: `/${language}/${
-                            language === 'en' ? 'about-era-of-we' : routerMap['about-era-of-we']
+                            language === 'en' ? 'about-era-of-we' : routerMap.sv['about-era-of-we']
                         }`,
                         icon: 'assets/images/era-of-we.svg',
                         activeIcon: 'assets/images/era-of-we-active.svg',
@@ -85,7 +85,8 @@ export class OverviewComponent implements OnInit {
                 if (this.globalsService.currentUrl) {
                     currentRouter = this.globalsService.currentUrl.substr(4);
                 }
-                this.router.navigate([`/${language}/${routerMap[currentRouter]}`]);
+                console.log(language, currentRouter);
+                this.router.navigate([`/${language}/${routerMap[language][currentRouter]}`]);
             });
         });
     }

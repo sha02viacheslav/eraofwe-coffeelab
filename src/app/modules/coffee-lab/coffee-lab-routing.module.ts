@@ -45,19 +45,19 @@ const routes: Routes = [
                         component: EraOfWeComponent,
                     },
                     {
-                        path: `sv/${routerMap['qa-forum']}`,
+                        path: `sv/${routerMap.sv['qa-forum']}`,
                         component: QaForumViewComponent,
                     },
                     {
-                        path: `sv/${routerMap['articles']}`,
+                        path: `sv/${routerMap.sv['articles']}`,
                         component: ArticlesViewComponent,
                     },
                     {
-                        path: `sv/${routerMap['coffee-recipes']}`,
+                        path: `sv/${routerMap.sv['coffee-recipes']}`,
                         component: CoffeeRecipesViewComponent,
                     },
                     {
-                        path: `sv/${routerMap['about-era-of-we']}`,
+                        path: `sv/${routerMap.sv['about-era-of-we']}`,
                         component: EraOfWeComponent,
                     },
                 ],
