@@ -32,10 +32,10 @@ export class QuestionDetailComponent implements OnInit {
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
     ) {
-        this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
+                this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
