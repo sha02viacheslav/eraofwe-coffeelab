@@ -4,6 +4,7 @@ import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@s
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
+import { DISCUSSIONS_FORUM } from '../../data';
 
 @Component({
     selector: 'app-article-detail',
@@ -62,22 +63,27 @@ export class ArticleDetailComponent implements OnInit {
 
     getDetails() {
         this.loading = true;
-        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
-            if (res.success) {
-                this.detailsData = res.result;
-                this.lang = res.result.language;
-                if (!this.isPublic) {
-                    this.globalsService.setLimitCounter();
-                }
-                this.startupService.load(this.lang || 'en');
-                this.setSEO();
-                this.setSchemaMackup();
-            } else {
-                this.toastService.error('The article is not exist.');
-                this.router.navigate(['/error']);
-            }
+        if (this.isPublic) {
+            this.detailsData = DISCUSSIONS_FORUM.find((item) => item.slug === this.idOrSlug);
             this.loading = false;
-        });
+        } else {
+            this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
+                if (res.success) {
+                    this.detailsData = res.result;
+                    this.lang = res.result.language;
+                    if (!this.isPublic) {
+                        this.globalsService.setLimitCounter();
+                    }
+                    this.startupService.load(this.lang || 'en');
+                    this.setSEO();
+                    this.setSchemaMackup();
+                } else {
+                    this.toastService.error('The article is not exist.');
+                    this.router.navigate(['/error']);
+                }
+                this.loading = false;
+            });
+        }
     }
 
     setSEO() {

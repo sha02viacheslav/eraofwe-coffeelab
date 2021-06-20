@@ -18,11 +18,11 @@
         <article class="pr-lg-3 flex-1 mb-4">
             <div class="p-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
                 <div class="d-flex align-items-center">
-                    <img
+                    <app-avatar
                         [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                        [alt]="detailsData.question_user + 'profile image'"
-                        class="profile-image"
-                    />
+                        size="40"
+                        [name]="detailsData?.user_name"
+                    ></app-avatar>
                     <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
                     <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
                         {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}

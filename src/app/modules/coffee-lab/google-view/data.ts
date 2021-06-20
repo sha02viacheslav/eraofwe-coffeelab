@@ -23,7 +23,7 @@ export const DISCUSSIONS_FORUM = [
         subtitle: 'Become recognized as a global leader for coffee knowledge by becoming a Coffee Hero contributor.',
         title: 'Coffee Heroes and How They Save the Coffee Community',
         user_id: 5,
-        user_name: 'Nissee 123 ',
+        user_name: 'Katrina Yentch',
     },
     {
         allow_translation: false,
@@ -49,6 +49,6 @@ export const DISCUSSIONS_FORUM = [
         subtitle: 'Learn what The Coffee Lab is and how it can help you connect with the coffee community.',
         title: 'What is The Coffee Lab?',
         user_id: 5,
-        user_name: 'Nissee 123 ',
+        user_name: 'Katrina Yentch',
     },
 ];

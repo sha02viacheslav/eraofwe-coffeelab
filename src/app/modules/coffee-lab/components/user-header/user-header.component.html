@@ -1,16 +1,10 @@
 <div class="d-flex align-items-center w-100">
     <div class="mr-25">
-        <!-- <app-user-detail
-            [imageUrl]="prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url"
-            [userId]="prop?.user_id || prop?.posted_by"
-            [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
-            size="40"
-        ></app-user-detail> -->
-        <img
+        <app-avatar
             [src]="prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url"
-            [alt]="(prop?.user_name || prop?.question_user || prop?.posted_user) + 'profile image'"
-            class="mr-25 profile-image"
-        />
+            size="40"
+            [name]="prop?.user_name || prop?.question_user || prop?.posted_user"
+        ></app-avatar>
     </div>
     <div class="flex-1 overflow-hidden">
         <div class="d-flex align-items-center mr-3 text-nowrap">
@@ -27,7 +21,13 @@
         <div *ngIf="prop?.org_type !== 'co'" class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">
             <span class="font-weight-bold mr-2">Coffee Expert</span>
             <span class="ellipsis"
-                >@{{ prop?.company_name || prop?.organization_name || prop?.organisation_name || prop?.org_type }}</span
+                >@{{
+                    prop?.company_name ||
+                        prop?.organization_name ||
+                        prop?.organisation_name ||
+                        prop?.org_type ||
+                        'Era of We'
+                }}</span
             >
         </div>
     </div>
