@@ -11,12 +11,12 @@
                     <div class="d-flex justify-content-between">
                         <div class="flex-1 overflow-hidden">
                             <div class="d-flex align-items-center w-100">
-                                <img
+                                <app-avatar
                                     [src]="article?.profile_image_thumb_url || article?.profile_image_url"
-                                    [alt]="article?.user_name + 'profile image'"
-                                    class="mr-25 profile-image"
-                                />
-                                <div class="flex-1 overflow-hidden">
+                                    size="40"
+                                    [name]="article?.user_name"
+                                ></app-avatar>
+                                <div class="flex-1 overflow-hidden ml-25">
                                     <div class="d-flex align-items-center mr-3 text-nowrap">
                                         <div class="ellipsis fnt-muli font-weight-bold fnt-14 text-clr24 mr-md-3 mr-1">
                                             {{ article?.user_name }}

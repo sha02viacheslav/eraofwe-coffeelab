@@ -16,8 +16,7 @@ export const DISCUSSIONS_FORUM = [
         organisation_name: '',
         organisation_type: 'sa',
         original_article_id: 0,
-        profile_image_thumb_url:
-            'https://bed-api.sewnstaging.com/public/staging/profiles/images/5/thumb/profile_5_20210423075845.png',
+        profile_image_thumb_url: '',
         slug: 'coffee-heroes-and-how-they',
         status: 'PUBLISHED',
         subtitle: 'Become recognized as a global leader for coffee knowledge by becoming a Coffee Hero contributor.',
@@ -42,8 +41,7 @@ export const DISCUSSIONS_FORUM = [
         organisation_name: '',
         organisation_type: 'sa',
         original_article_id: 0,
-        profile_image_thumb_url:
-            'https://bed-api.sewnstaging.com/public/staging/profiles/images/5/thumb/profile_5_20210423075845.png',
+        profile_image_thumb_url: '',
         slug: 'what-is-the-coffee-lab',
         status: 'PUBLISHED',
         subtitle: 'Learn what The Coffee Lab is and how it can help you connect with the coffee community.',
