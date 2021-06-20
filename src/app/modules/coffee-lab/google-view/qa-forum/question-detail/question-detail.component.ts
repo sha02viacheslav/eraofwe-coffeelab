@@ -46,6 +46,7 @@ export class QuestionDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.previousUrl = this.globalsService.previousUrl;
+        window.scrollTo(0, 0);
     }
 
     getQaList() {

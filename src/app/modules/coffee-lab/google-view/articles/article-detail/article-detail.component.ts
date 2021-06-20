@@ -48,7 +48,9 @@ export class ArticleDetailComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        window.scrollTo(0, 0);
+    }
 
     getArticleList() {
         this.coffeeLabService.getForumList('article').subscribe((res: any) => {
