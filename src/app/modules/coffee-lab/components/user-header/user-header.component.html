@@ -19,16 +19,8 @@
             </div>
         </div>
         <div *ngIf="prop?.org_type !== 'co'" class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">
-            <span class="font-weight-bold mr-2">Coffee Expert</span>
-            <span class="ellipsis"
-                >@{{
-                    prop?.company_name ||
-                        prop?.organization_name ||
-                        prop?.organisation_name ||
-                        prop?.org_type ||
-                        'Era of We'
-                }}</span
-            >
+            <span class="font-weight-bold mr-2">{{ 'coffee_expert' | translate }}</span>
+            <span class="ellipsis">@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span>
         </div>
     </div>
 </div>
