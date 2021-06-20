@@ -31,7 +31,11 @@
                         </div>
                         <app-forum-menu></app-forum-menu>
                     </div>
-                    <img [src]="article.cover_image_url" class="br-4 w-100 my-3 my-md-4" />
+                    <img
+                        [src]="article.cover_image_url"
+                        class="br-4 w-100 my-3 my-md-4"
+                        [alt]="article?.title + ' cover image'"
+                    />
                     <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
                         {{ article?.title }}
                     </div>
