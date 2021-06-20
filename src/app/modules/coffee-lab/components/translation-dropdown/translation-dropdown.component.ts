@@ -17,6 +17,6 @@ export class TranslationDropdownComponent implements OnInit {
     ngOnInit(): void {}
 
     getLink(item) {
-        return `/${item.language}/${this.forumType ?? 'article'}/${item.slug || item.question_slug}`;
+        return `/${item.language}/${this.forumType ?? 'articles'}/${item.slug || item.question_slug}`;
     }
 }

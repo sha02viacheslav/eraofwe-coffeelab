@@ -46,7 +46,7 @@
                                     <app-forum-menu></app-forum-menu>
                                     <div class="translate-wrapper" *ngIf="postItem.translations">
                                         <app-translation-dropdown
-                                            forumType="qa"
+                                            forumType="qa-forum"
                                             [translatedList]="postItem.translations"
                                         ></app-translation-dropdown>
                                     </div>
@@ -57,7 +57,7 @@
                                 *ngIf="postItem.translations"
                             >
                                 <app-translation-dropdown
-                                    forumType="qa"
+                                    forumType="qa-forum"
                                     [translatedList]="postItem.translations"
                                 ></app-translation-dropdown>
                             </div>
