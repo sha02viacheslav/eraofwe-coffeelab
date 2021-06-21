@@ -24,7 +24,7 @@ export class SEOService {
 
     createLinkForCanonicalURL() {
         console.log(this.doc.URL);
-        if (this.doc.URL?.incldues('https')) {
+        if (this.doc.URl?.includes('https')) {
             console.log('https======', this.doc.URL);
             const link: HTMLLinkElement = this.doc.createElement('link');
             link.setAttribute('rel', 'canonical');
