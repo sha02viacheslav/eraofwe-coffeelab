@@ -118,7 +118,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         this.seoService.setMetaData('name', 'description', description);
 
         this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
         this.seoService.setMetaData('property', 'og:description', description);
         this.seoService.setMetaData('property', 'og:url', this.document.URL);
 
@@ -126,6 +125,5 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
         this.seoService.setMetaData('name', 'twitter:title', title);
         this.seoService.setMetaData('name', 'twitter:description', description);
-        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
     }
 }
