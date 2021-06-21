@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { GlobalsService, SEOService } from '@services';
+import { protectPassword } from '@constants';
 
 @Component({
     selector: 'app-layout',
@@ -10,6 +11,8 @@ import { GlobalsService, SEOService } from '@services';
 })
 export class LayoutComponent implements OnInit {
     loaded = true;
+    password = '';
+    isMatched: boolean;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -24,5 +27,9 @@ export class LayoutComponent implements OnInit {
     openSideNav() {}
     gotoLogin() {
         this.document.location.href = `${environment.ssoWeb}/login`;
+    }
+
+    onCheckPassword() {
+        this.isMatched = this.password === protectPassword;
     }
 }

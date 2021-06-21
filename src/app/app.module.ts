@@ -4,7 +4,9 @@ import localeSe from '@angular/common/locales/se';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SharedModule } from '@shared';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -28,6 +30,9 @@ export function StartupServiceFactory(startupService: StartupService) {
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
         ToastrModule.forRoot({
             preventDuplicates: true,
             positionClass: 'toast-bottom-right',
