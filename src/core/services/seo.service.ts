@@ -14,9 +14,9 @@ export class SEOService {
     getPageTitle() {
         return this.title.getTitle();
     }
-    setMetaData(name, content) {
+    setMetaData(type, name, content) {
         const metaData: any = {
-            name,
+            [type]: name,
             content: name === 'description' ? content?.substr(0, 160) : content,
         };
         this.meta.updateTag(metaData);

@@ -2,7 +2,7 @@ export const routerMap = {
     en: {
         'qa-forum': 'qa-forum',
         articles: 'articles',
-        'coffee-recipes': 'recept-och-bryggningsmetoder',
+        'coffee-recipes': 'coffee-recipes',
         'about-era-of-we': 'about-era-of-we',
         'fragor-och-svar': 'qa-forum',
         'artiklar-och-kunskap': 'articles',

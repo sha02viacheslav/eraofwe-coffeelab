@@ -9,6 +9,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -164,7 +165,18 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 ? 'Coffee articles written by coffee experts from the coffee community'
                 : 'Kaffe artiklar och nyheter skapade av kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('description', description);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
     }
 
     setSchemaMackup() {

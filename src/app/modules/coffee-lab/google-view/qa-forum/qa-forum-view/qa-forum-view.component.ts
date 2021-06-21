@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -42,6 +44,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         private seoService: SEOService,
         private globalsService: GlobalsService,
         protected resizeService: ResizeService,
+        @Inject(DOCUMENT) private document: Document,
     ) {
         super(resizeService);
     }
@@ -112,6 +115,17 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                 ? 'Coffee questions & answers forum for end-consumers and coffee experts the coffee supply chain.'
                 : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('description', description);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
     }
 }

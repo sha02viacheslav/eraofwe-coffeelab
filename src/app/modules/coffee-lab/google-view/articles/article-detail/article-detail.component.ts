@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
 import { DISCUSSIONS_FORUM } from '../../data';
-import { routerMap } from '@constants';
+import { routerMap, seoVariables } from '@constants';
 
 @Component({
     selector: 'app-article-detail',
@@ -90,13 +90,25 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.title || 'Era of We - The Coffee Lab');
-        this.seoService.setMetaData(
-            'description',
-            this.detailsData?.content
-                ? this.globalsService.getJustText(this.detailsData?.content)
-                : 'Era of We - Article for Coffee',
-        );
+        const title = this.detailsData?.title || 'Era of We - The Coffee Lab';
+        const description = this.detailsData?.content
+            ? this.globalsService.getJustText(this.detailsData?.content)
+            : 'Era of We - Article for Coffee';
+        const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
+
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', imageUrl);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', imageUrl);
     }
 
     setSchemaMackup() {

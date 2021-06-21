@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -74,6 +76,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         private globalsService: GlobalsService,
         private seoService: SEOService,
         protected resizeService: ResizeService,
+        @Inject(DOCUMENT) private document: Document,
     ) {
         super(resizeService);
     }
@@ -195,7 +198,18 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
                 : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('description', description);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
     }
 
     setSchemaMackup() {

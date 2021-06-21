@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Location, DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
-import { routerMap } from '@constants';
+import { routerMap, seoVariables } from '@constants';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -93,7 +93,9 @@ export class RecipeDetailComponent implements OnInit {
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'articles' : routerMap.sv['coffee-recipes']}`;
+                this.previousUrl = `/${this.lang}/${
+                    this.lang === 'en' ? 'coffee-recipes' : routerMap.sv['coffee-recipes']
+                }`;
                 // this.setSEO();
                 this.setSchemaMackup();
             } else {
@@ -105,13 +107,25 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.name || 'Era of We - The Coffee Lab');
-        this.seoService.setMetaData(
-            'description',
-            this.detailsData?.description
-                ? this.globalsService.getJustText(this.detailsData?.description)
-                : 'Brewing guides for Coffee',
-        );
+        const title = this.detailsData?.name || 'Era of We - The Coffee Lab';
+        const description = this.detailsData?.description
+            ? this.globalsService.getJustText(this.detailsData?.description)
+            : 'Era of We - Article for Coffee';
+        const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
+
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', imageUrl);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', imageUrl);
     }
 
     setSchemaMackup() {

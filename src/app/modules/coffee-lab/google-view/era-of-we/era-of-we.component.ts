@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { routerMap, seoVariables } from '@constants';
 
 import { DISCUSSIONS_FORUM } from '../data';
 
@@ -62,7 +63,18 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
                 ? 'The Coffee Lab is a global community committed to the future of coffee.'
                 : 'The Coffee Lab är ett globalt community för att säkerställa framitden för kaffe.';
         this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('description', description);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
     }
 
     ngOnDestroy(): void {
