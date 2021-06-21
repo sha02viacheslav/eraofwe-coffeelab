@@ -23,10 +23,12 @@ export class SEOService {
     }
 
     createLinkForCanonicalURL() {
-        const link: HTMLLinkElement = this.doc.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        this.doc.head.appendChild(link);
-        link.setAttribute('href', this.doc.URL);
+        if (this.doc.URL) {
+            const link: HTMLLinkElement = this.doc.createElement('link');
+            link.setAttribute('rel', 'canonical');
+            this.doc.head.appendChild(link);
+            link.setAttribute('href', this.doc.URL);
+        }
     }
     createLinkForHreflang(lang: string) {
         const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
