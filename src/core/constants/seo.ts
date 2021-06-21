@@ -1,4 +1,4 @@
 export const seoVariables = {
     author: 'EraOfWe',
-    image: 'assets/images/eow-logo.png',
+    image: 'https://www.sewnstaging.com/coffee-lab/assets/images/eow-logo.png',
 };
