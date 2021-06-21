@@ -6,10 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { SharedModule } from '@shared';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
@@ -32,12 +32,12 @@ export function StartupServiceFactory(startupService: StartupService) {
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        SharedModule,
         ToastrModule.forRoot({
             preventDuplicates: true,
             positionClass: 'toast-bottom-right',
         }),
         TranslateModule.forRoot(),
+        InputTextModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
