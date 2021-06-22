@@ -22,7 +22,7 @@ export const environment = {
     termsEntityUrl: 'https://support.eraofwe.com/en/kb/articles/general-terms-conditions-legal-entity',
     privacyPolicyUrl: 'https://support.eraofwe.com/en/kb/articles/privacy-policy',
     cookiePolicyUrl: 'https://support.eraofwe.com/en/kb/articles/cookie-policy',
-    protectNeed: false,
+    needProtect: false,
     production: false,
 };
 

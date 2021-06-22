@@ -12,7 +12,7 @@ import { protectPassword } from '@constants';
 export class LayoutComponent implements OnInit {
     loaded = true;
     password = '';
-    isMatched = !environment.protectNeed;
+    isMatched = !environment.needProtect;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -30,6 +30,6 @@ export class LayoutComponent implements OnInit {
     }
 
     onCheckPassword() {
-        this.isMatched = this.password === protectPassword || !environment.protectNeed;
+        this.isMatched = this.password === protectPassword || !environment.needProtect;
     }
 }
