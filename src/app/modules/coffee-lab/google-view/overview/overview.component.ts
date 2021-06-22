@@ -85,7 +85,6 @@ export class OverviewComponent implements OnInit {
                 if (this.globalsService.currentUrl) {
                     currentRouter = this.globalsService.currentUrl.substr(4);
                 }
-                console.log(language, currentRouter);
                 this.router.navigate([`/${language}/${routerMap[language][currentRouter]}`]);
             });
         });

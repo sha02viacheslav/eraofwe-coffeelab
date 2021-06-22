@@ -74,29 +74,16 @@ async function sitemap(req: Request, res: any) {
         });
         const pipeline = sitemapStream.pipe(createGzip());
 
-        // Fetch qa
-        let questions: any = await axios.post(`${environment.apiURL}/co/general`, {
-            api_call: '/general/questions?page=0',
-            method: 'GET',
-        });
-        questions = questions.data.result?.questions ?? [];
-
-        // Fetch articles
-        let articles: any = await axios.post(`${environment.apiURL}/co/general`, {
-            api_call: '/general/articles?page=0',
-            method: 'GET',
-        });
-
-        articles = articles.data.result ?? [];
-
-        for (const article of articles) {
-            sitemapStream.write({
-                priority: 1.0,
-                changefreq: EnumChangefreq.ALWAYS,
-                url: `${environment.coffeeLabWeb}/${article.language}/${routerMap[article.language].articles}/${
-                    article.slug
-                }`,
-            } as SitemapItem);
+        const languages = ['en', 'sv'];
+        const types = ['qa-forum', 'articles', 'coffee-recipes', 'about-era-of-we'];
+        for (const lang of languages) {
+            for (const type of types) {
+                sitemapStream.write({
+                    priority: 1.0,
+                    changefreq: EnumChangefreq.ALWAYS,
+                    url: `${environment.coffeeLabWeb}${lang}/${routerMap[lang][type]}`,
+                } as SitemapItem);
+            }
         }
 
         // Stream write the response

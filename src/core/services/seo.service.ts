@@ -37,6 +37,7 @@ export class SEOService {
             const link: HTMLLinkElement = this.doc.createElement('link');
             link.setAttribute('rel', 'alternate');
             const url2 = url.substr(3);
+            console.log(url2, lang);
             const newUrl =
                 lang === 'x-default'
                     ? `${environment.coffeeLabWeb}${url}`
