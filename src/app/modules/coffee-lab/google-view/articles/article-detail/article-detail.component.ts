@@ -4,6 +4,8 @@ import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@s
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
+import { DISCUSSIONS_FORUM } from '../../data';
+import { routerMap, seoVariables } from '@constants';
 
 @Component({
     selector: 'app-article-detail',
@@ -31,9 +33,7 @@ export class ArticleDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
     ) {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab');
-        this.seoService.setMetaData('description', 'article for Coffee');
-        this.seoService.createLinkForHreflang('x-default');
+        this.setSEO();
         this.activatedRoute.queryParams.subscribe((params) => {
             this.isPublic = params.is_public;
         });
@@ -49,7 +49,7 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.previousUrl = this.globalsService.previousUrl;
+        window.scrollTo(0, 0);
     }
 
     getArticleList() {
@@ -64,33 +64,49 @@ export class ArticleDetailComponent implements OnInit {
 
     getDetails() {
         this.loading = true;
-        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
-            if (res.success) {
-                this.detailsData = res.result;
-                this.lang = res.result.language;
-                if (!this.isPublic) {
-                    this.globalsService.setLimitCounter();
-                }
-                this.startupService.load(this.lang || 'en');
-                this.setSEO();
-                this.setSchemaMackup();
-            } else {
-                this.toastService.error('The article is not exist.');
-                this.router.navigate(['/error']);
-            }
+        if (this.isPublic) {
+            this.detailsData = DISCUSSIONS_FORUM.find((item) => item.slug === this.idOrSlug);
             this.loading = false;
-        });
+            this.previousUrl = '/en/about-era-of-we';
+        } else {
+            this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
+                if (res.success) {
+                    this.detailsData = res.result;
+                    this.lang = res.result.language;
+                    if (!this.isPublic) {
+                        this.globalsService.setLimitCounter();
+                    }
+                    this.startupService.load(this.lang || 'en');
+                    this.setSEO();
+                    this.setSchemaMackup();
+                    this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'articles' : routerMap.sv['articles']}`;
+                } else {
+                    this.toastService.error('The article is not exist.');
+                    this.router.navigate(['/error']);
+                }
+                this.loading = false;
+            });
+        }
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.title || 'Era of We - The Coffee Lab');
-        this.seoService.setMetaData(
-            'description',
-            this.detailsData?.content
-                ? this.globalsService.getJustText(this.detailsData?.content)
-                : 'article for Coffee',
-        );
-        this.seoService.createLinkForHreflang(this.lang || 'x-default');
+        const title = this.detailsData?.title || 'Era of We - The Coffee Lab';
+        const description = this.detailsData?.content
+            ? this.globalsService.getJustText(this.detailsData?.content)
+            : 'Era of We - Article for Coffee';
+        const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
+
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 
     setSchemaMackup() {

@@ -10,6 +10,7 @@ import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/
 import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
+import { routerMap } from '@constants';
 
 const userLang = navigator.language;
 const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
@@ -44,19 +45,19 @@ const routes: Routes = [
                         component: EraOfWeComponent,
                     },
                     {
-                        path: 'sv/fragor-och-svar',
+                        path: `sv/${routerMap.sv['qa-forum']}`,
                         component: QaForumViewComponent,
                     },
                     {
-                        path: 'sv/artiklar-och-kunskap',
+                        path: `sv/${routerMap.sv['articles']}`,
                         component: ArticlesViewComponent,
                     },
                     {
-                        path: 'sv/recept-och-bryggningsmetoder',
+                        path: `sv/${routerMap.sv['coffee-recipes']}`,
                         component: CoffeeRecipesViewComponent,
                     },
                     {
-                        path: 'sv/om-era-of-we',
+                        path: `sv/${routerMap.sv['about-era-of-we']}`,
                         component: EraOfWeComponent,
                     },
                 ],

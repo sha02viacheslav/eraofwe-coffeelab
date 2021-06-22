@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoffeeLabService, GlobalsService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,12 +8,14 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
+import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
     styleUrls: ['./articles-view.component.scss'],
 })
-export class ArticlesViewComponent implements OnInit, OnDestroy {
+export class ArticlesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     keyword?: string;
     translationsList: any[] = [
         {
@@ -53,15 +55,17 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private document: Document,
         private seoService: SEOService,
-    ) {}
+        protected resizeService: ResizeService,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getData();
+            this.setSEO();
         });
-        this.setSEO();
         this.orderList = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -152,9 +156,25 @@ export class ArticlesViewComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Posts');
-        this.seoService.setMetaData('description', 'Posts for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee articles & news - The Coffee Lab'
+                : 'Kaffe artiklar & nyheter - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee articles written by coffee experts from the coffee community'
+                : 'Kaffe artiklar och nyheter skapade av kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 
     setSchemaMackup() {

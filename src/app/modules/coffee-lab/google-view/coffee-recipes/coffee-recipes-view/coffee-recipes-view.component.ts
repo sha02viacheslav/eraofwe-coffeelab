@@ -1,19 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
+import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 
 @Component({
     selector: 'app-coffee-recipes-view',
     templateUrl: './coffee-recipes-view.component.html',
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
-export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
+export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     rows = 9;
     pageNumber = 1;
     totalRecords = 0;
@@ -72,15 +75,18 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
         private seoService: SEOService,
-    ) {}
+        protected resizeService: ResizeService,
+        @Inject(DOCUMENT) private document: Document,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.setSEO();
             this.getCoffeeRecipesData();
         });
-        this.setSEO();
         this.levels = [
             {
                 label: this.globalsService.languageJson?.easy,
@@ -183,9 +189,25 @@ export class CoffeeRecipesViewComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Brewing Gudes');
-        this.seoService.setMetaData('description', 'Brewing Gudes for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee recipes & brewing guides - The Coffee Lab'
+                : 'Kafferecept och bryggguider - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
+                : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 
     setSchemaMackup() {

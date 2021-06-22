@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { routerMap, seoVariables } from '@constants';
 
 import { DISCUSSIONS_FORUM } from '../data';
 
@@ -26,10 +27,9 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.data = DISCUSSIONS_FORUM;
-        this.setSEO();
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+            this.setSEO();
             // this.getData();
         });
         // this.getData();
@@ -54,9 +54,25 @@ export class EraOfWeComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.setPageTitle('About Era of We');
-        this.seoService.setMetaData('description', 'Posts for Era of We');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Creating impactful relationships - The Coffee Lab'
+                : 'Skapar effektfulla relationer - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'The Coffee Lab is a global community committed to the future of coffee.'
+                : 'The Coffee Lab är ett globalt community för att säkerställa framitden för kaffe.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 
     ngOnDestroy(): void {

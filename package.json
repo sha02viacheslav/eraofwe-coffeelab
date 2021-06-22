@@ -29,6 +29,7 @@
     "@nguniversal/express-engine": "^9.1.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "domino": "^2.1.6",
     "express": "^4.15.2",
@@ -47,7 +48,9 @@
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "rxjs": "~6.5.4",
+    "sitemap": "^7.0.0",
     "tslib": "^1.10.0",
+    "zlib": "^1.0.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

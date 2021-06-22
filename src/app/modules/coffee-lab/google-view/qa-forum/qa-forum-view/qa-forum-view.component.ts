@@ -1,15 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoffeeLabService, SEOService, GlobalsService } from '@services';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ResizeableComponent } from '@base-components';
+import { seoVariables } from '@constants';
 
 @Component({
     selector: 'app-qa-forum-view',
     templateUrl: './qa-forum-view.component.html',
     styleUrls: ['./qa-forum-view.component.scss'],
 })
-export class QaForumViewComponent implements OnInit, OnDestroy {
+export class QaForumViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
     sortOptions = [
@@ -40,15 +43,18 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
         private toastService: ToastrService,
         private seoService: SEOService,
         private globalsService: GlobalsService,
-    ) {}
+        protected resizeService: ResizeService,
+        @Inject(DOCUMENT) private document: Document,
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.forumLanguage = language;
-            this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
             this.getQuestions();
+            this.setSEO();
         });
-        this.setSEO();
         this.sortOptions = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -100,8 +106,24 @@ export class QaForumViewComponent implements OnInit, OnDestroy {
     }
 
     setSEO() {
-        this.seoService.setPageTitle('Era of We - The Coffee Lab Q+A Forums');
-        this.seoService.setMetaData('description', 'Q+A Forums for Coffee Lab');
-        this.seoService.createLinkForHreflang(this.forumLanguage || 'x-default');
+        const title =
+            this.forumLanguage === 'en'
+                ? 'Coffee forum & community - The Coffee Lab'
+                : 'Kaffe forum & community - The Coffee Lab';
+        const description =
+            this.forumLanguage === 'en'
+                ? 'Coffee questions & answers forum for end-consumers and coffee experts the coffee supply chain.'
+                : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.document.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 }

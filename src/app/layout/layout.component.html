@@ -22,20 +22,29 @@
         <img class="w-100" src="/assets/images/loader-header.gif" />
     </div>
 </ng-template>
-
-<div class="layout-wrap">
-    <div class="container" *ngIf="loaded">
-        <div class="router-design">
-            <ng-container *ngIf="loaded; else mainLoader">
-                <div>
-                    <router-outlet></router-outlet>
-                </div>
-            </ng-container>
+<ng-container *ngIf="true; else protectWrapper">
+    <div class="layout-wrap">
+        <div class="container" *ngIf="loaded">
+            <div class="router-design">
+                <router-outlet></router-outlet>
+            </div>
         </div>
+        <app-footer></app-footer>
     </div>
-    <app-footer></app-footer>
-</div>
+</ng-container>
 
 <ng-template #mainLoader>
     <!-- <app-loading></app-loading> -->
+</ng-template>
+
+<ng-template #protectWrapper>
+    <div class="protect-wrapper">
+        <input
+            pInputText
+            type="password"
+            [(ngModel)]="password"
+            (ngModelChange)="onCheckPassword()"
+            placeholder="Please input password"
+        />
+    </div>
 </ng-template>

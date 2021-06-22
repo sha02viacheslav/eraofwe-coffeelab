@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
+import { routerMap, seoVariables } from '@constants';
 
 @Component({
     selector: 'app-question-detail',
@@ -45,7 +46,7 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.previousUrl = this.globalsService.previousUrl;
+        window.scrollTo(0, 0);
     }
 
     getQaList() {
@@ -66,6 +67,7 @@ export class QuestionDetailComponent implements OnInit {
                 this.lang = res.result.lang_code;
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
+                this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'qa-forum' : routerMap.sv['qa-forum']}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {
@@ -77,14 +79,24 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     setSEO() {
-        this.seoService.setPageTitle(this.detailsData?.question || this.idOrSlug.replace('-', ''));
-        if (this.detailsData?.answers?.length) {
-            const firstAnswer = this.detailsData?.answers[0];
-            this.seoService.setMetaData('description', this.globalsService.getJustText(firstAnswer.answer));
-        } else {
-            this.seoService.setMetaData('description', 'Questions and Answers for Coffee.');
-        }
-        this.seoService.createLinkForHreflang(this.lang || 'x-default');
+        const title = this.detailsData?.question || this.idOrSlug.replace('-', '');
+        const firstAnswer = this.detailsData?.answers[0];
+        const description = firstAnswer
+            ? this.globalsService.getJustText(firstAnswer.answer)
+            : 'Questions and Answers for Coffee.';
+        const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
+
+        this.seoService.setPageTitle(title);
+        this.seoService.setMetaData('name', 'description', description);
+
+        this.seoService.setMetaData('property', 'og:title', title);
+        this.seoService.setMetaData('property', 'og:description', description);
+        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
+
+        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
+        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
+        this.seoService.setMetaData('name', 'twitter:title', title);
+        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 
     setSchemaMackup() {

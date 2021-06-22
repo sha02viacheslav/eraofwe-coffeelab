@@ -9,24 +9,27 @@ import { environment } from '@env/environment';
 export class SEOService {
     constructor(private title: Title, @Inject(DOCUMENT) private doc, private meta: Meta) {}
     setPageTitle(title: string) {
-        this.title.setTitle(title);
+        this.title.setTitle(title?.substr(0, 60));
     }
     getPageTitle() {
         return this.title.getTitle();
     }
-    setMetaData(name, content) {
+    setMetaData(type, name, content) {
         const metaData: any = {
-            name,
-            content,
+            [type]: name,
+            content: name === 'description' ? content?.substr(0, 160) : content,
         };
         this.meta.updateTag(metaData);
     }
 
     createLinkForCanonicalURL() {
-        const link: HTMLLinkElement = this.doc.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        this.doc.head.appendChild(link);
-        link.setAttribute('href', this.doc.URL);
+        console.log(this.doc.URL);
+        if (this.doc.URL) {
+            const link: HTMLLinkElement = this.doc.createElement('link');
+            link.setAttribute('rel', 'canonical');
+            this.doc.head.appendChild(link);
+            link.setAttribute('href', this.doc.URL);
+        }
     }
     createLinkForHreflang(lang: string) {
         const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
@@ -34,6 +37,7 @@ export class SEOService {
             const link: HTMLLinkElement = this.doc.createElement('link');
             link.setAttribute('rel', 'alternate');
             const url2 = url.substr(3);
+            console.log(url2, lang);
             const newUrl =
                 lang === 'x-default'
                     ? `${environment.coffeeLabWeb}${url}`

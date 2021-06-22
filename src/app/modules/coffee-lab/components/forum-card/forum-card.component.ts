@@ -18,7 +18,7 @@ export class ForumCardComponent implements OnInit {
 
     ngOnInit(): void {
         const language = this.data?.language || this.data?.lang_code;
-        this.detailsUrl = `/${language}/${this.forumType ?? 'article'}/${this.data.slug}`;
+        this.detailsUrl = `/${language}/${this.forumType ?? 'articles'}/${this.data.slug}`;
     }
 
     onClick(event) {

@@ -12,11 +12,12 @@ export const environment = {
     agroUrl: 'https://api.agromonitoring.com/agro/1.0/',
     estateBrandProfileUrl: 'https://www.sewnstaging.com/estate',
     roasterBrandProfileUrl: 'https://www.sewnstaging.com/roaster',
-    coffeeLabWeb: 'https://www.sewnstaging.com/coffee-lab',
+    coffeeLabWeb: 'https://www.sewnstaging.com/coffee-lab/',
     supportEmailAddress: 'support@eraofwe.com',
     termsUserUrl: 'https://support.eraofwe.com/en/kb/articles/general-terms-conditions-user',
     termsEntityUrl: 'https://support.eraofwe.com/en/kb/articles/general-terms-conditions-legal-entity',
     privacyPolicyUrl: 'https://support.eraofwe.com/en/kb/articles/privacy-policy',
     cookiePolicyUrl: 'https://support.eraofwe.com/en/kb/articles/cookie-policy',
+    needProtect: true,
     production: true,
 };

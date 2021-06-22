@@ -164,7 +164,6 @@
                         "serverTarget": "coffee-lab:server:production",
                         "routes": [
                             "/",
-                            "/en",
                             "/en/qa-forum",
                             "/en/articles",
                             "/en/coffee-recipes",
