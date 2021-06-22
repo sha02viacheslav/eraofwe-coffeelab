@@ -10,11 +10,6 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-import { SitemapStream, SitemapItem, EnumChangefreq } from 'sitemap';
-import { createGzip } from 'zlib';
-import { environment } from '@env/environment';
-import axios from 'axios';
-import { routerMap } from '@constants';
 
 const templateA = existsSync(join('dist/coffee-lab/browser', 'index.html')).toString();
 const win = domino.createWindow(templateA);
@@ -43,8 +38,6 @@ export function app() {
     server.set('view engine', 'html');
     server.set('views', distFolder);
 
-    // Serve sitemap
-    server.get('/coffee-lab/sitemap.xml', sitemap);
     // server.get('/api/**', (req, res) => { });
     // Serve static files from /browser
     server.get(
@@ -61,40 +54,6 @@ export function app() {
     });
 
     return server;
-}
-
-async function sitemap(req: Request, res: any) {
-    res.header('Content-Type', 'application/xml');
-    res.header('Content-Encoding', 'gzip');
-
-    try {
-        const sitemapStream = new SitemapStream({
-            // This is required because we will be adding sitemap entries using relative URLs
-            hostname: `${window.location.protocol}//${window.location.host}`,
-        });
-        const pipeline = sitemapStream.pipe(createGzip());
-
-        const languages = ['en', 'sv'];
-        const types = ['qa-forum', 'articles', 'coffee-recipes', 'about-era-of-we'];
-        for (const lang of languages) {
-            for (const type of types) {
-                sitemapStream.write({
-                    priority: 1.0,
-                    changefreq: EnumChangefreq.ALWAYS,
-                    url: `${environment.coffeeLabWeb}${lang}/${routerMap[lang][type]}`,
-                } as SitemapItem);
-            }
-        }
-
-        // Stream write the response
-        sitemapStream.end();
-        pipeline.pipe(res).on('error', (error: Error) => {
-            throw error;
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).end();
-    }
 }
 
 function run() {
