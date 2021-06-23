@@ -96,8 +96,17 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 this.totalRecords = this.articlesData.length;
                 this.articlesData.map((item) => {
                     item.content = this.globalsService.getJustText(item.content);
+                    item.cardType = 'forum';
                     return item;
                 });
+                const joinCard = {
+                    cardType: 'joinCard',
+                };
+                if (this.articlesData.length < 3) {
+                    this.articlesData.push(joinCard);
+                } else {
+                    this.articlesData.splice(2, 0, joinCard);
+                }
                 this.displayData = this.articlesData.slice(0, 9);
                 this.setSchemaMackup();
             } else {
@@ -114,7 +123,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     getLink(item) {
         const url = `/${item.language}/articles/${item.slug}`;
-        return url;
+        return item.cardType === 'forum' ? url : `/${this.coffeeLabService.currentForumLanguage}/articles`;
     }
 
     gotoDetailPage(event, item: any) {

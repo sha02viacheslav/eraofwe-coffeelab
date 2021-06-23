@@ -63,11 +63,16 @@
     </div>
     <div class="articles-wrapper" *ngIf="!isLoading">
         <a
-            class="col-12 col-md-6 col-lg-4 px-0 py-25 p-md-2 text-non-underline"
+            class="col-12 col-md-6 col-xl-4 px-0 py-25 p-md-2 article-item-wrapper"
+            [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of displayData"
             [routerLink]="[getLink(article)]"
         >
-            <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item" (click)="gotoDetailPage($event, article)">
+            <div
+                class="border-main br-4 p-3 py-md-4 px-lg-4 article-item"
+                (click)="gotoDetailPage($event, article)"
+                *ngIf="article.cardType === 'forum'"
+            >
                 <div class="d-flex justify-content-between">
                     <div class="flex-1 overflow-hidden">
                         <app-user-header [prop]="article"></app-user-header>
@@ -84,6 +89,7 @@
                     </span>
                 </div>
             </div>
+            <app-join-community *ngIf="article.cardType === 'joinCard'"></app-join-community>
         </a>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>

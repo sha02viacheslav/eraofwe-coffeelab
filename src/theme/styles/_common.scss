@@ -456,6 +456,10 @@ span.star {
     width: min-content;
 }
 
+.empty-join-wrapper {
+    width: 374px;
+}
+
 .translate-wrapper {
     @media (max-width: 767px) {
         display: none;

@@ -2,11 +2,11 @@
     {{ 'question_answers' | translate }}
 </h1>
 
-<div class="row gutter-32">
-    <div class="col-lg-8">
+<div class="d-flex">
+    <div class="flex-1 pr-lg-3">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
-    <div class="col-lg-4">
+    <div class="empty-join-wrapper pl-lg-3 d-none d-lg-block">
         <div class="custom-search qa-forum-search d-none d-lg-block">
             <input
                 class="w-100 fnt-16"
@@ -19,23 +19,23 @@
         </div>
     </div>
 </div>
-<div class="row gutter-32 mt-4 mt-lg-45">
-    <div class="col-lg-8" [ngClass]="{ 'col-lg-8': viewMode === 'list', 'col-12': viewMode === 'grid' }">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
-                {{ 'question_answers' | translate }}
-            </h1>
-            <div class="custom-search qa-forum-search d-block d-lg-none">
-                <input
-                    class="w-100 fnt-16"
-                    [(ngModel)]="keyword"
-                    type="text"
-                    pInputText
-                    [placeholder]="'search_qna_forum' | translate"
-                />
-            </div>
+<div class="mt-4 mt-lg-45">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
+            {{ 'question_answers' | translate }}
+        </h1>
+        <div class="custom-search qa-forum-search d-block d-lg-none">
+            <input
+                class="w-100 fnt-16"
+                [(ngModel)]="keyword"
+                type="text"
+                pInputText
+                [placeholder]="'search_qna_forum' | translate"
+            />
         </div>
-        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-45">
+    </div>
+    <div class="d-flex">
+        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-45 pr-lg-2 flex-1">
             <div>
                 <p-dropdown
                     [options]="filterOptions"
@@ -59,14 +59,15 @@
                 ></p-dropdown>
             </div>
         </div>
-        <div *ngIf="!isLoading">
-            <app-questions [questions]="questions" [viewMode]="viewMode"></app-questions>
-        </div>
-        <div *ngIf="isLoading">
-            <app-loading></app-loading>
-        </div>
-        <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
-            {{ 'no_data_is_available' | translate }}
-        </div>
+        <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+    </div>
+    <div *ngIf="!isLoading">
+        <app-questions [questions]="questions" [viewMode]="viewMode"></app-questions>
+    </div>
+    <div *ngIf="isLoading">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
+        {{ 'no_data_is_available' | translate }}
     </div>
 </div>

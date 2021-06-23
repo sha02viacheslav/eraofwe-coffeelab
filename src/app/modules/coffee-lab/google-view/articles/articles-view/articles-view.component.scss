@@ -21,6 +21,13 @@
     }
 }
 
+.article-item-wrapper {
+    text-decoration: none;
+    @media (min-width: 992px) and (max-width: 1279px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
 .article-content-text {
     overflow: hidden;
     text-overflow: ellipsis;
