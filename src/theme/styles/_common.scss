@@ -362,6 +362,12 @@ span.star {
     &.bs-popover-auto[x-placement^='left'] > .arrow::before {
         border-left-color: transparent;
     }
+
+    &.bs-popover-bottom > .arrow::before,
+    &.bs-popover-auto[x-placement^='bottom'] > .arrow::before {
+        border-bottom-color: rgba(143, 51, 11, 0.1);
+    }
+
     .menu-list {
         margin: 0;
         li {
