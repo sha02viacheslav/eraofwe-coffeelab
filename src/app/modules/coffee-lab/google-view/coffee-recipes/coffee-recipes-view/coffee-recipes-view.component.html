@@ -90,8 +90,12 @@
         </div>
     </div>
     <div class="coffee-wrapper" *ngIf="!isLoading">
-        <div class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2" *ngFor="let coffee of coffeeRecipeData">
-            <a [routerLink]="getLink(coffee)" class="text-non-underline">
+        <div
+            class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
+            *ngFor="let coffee of displayData"
+            [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
+        >
+            <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
                 <div class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item" (click)="gotoDetailPage($event, coffee)">
                     <div class="d-flex justify-content-between">
                         <div class="flex-1 overflow-hidden">
@@ -128,6 +132,7 @@
                     </div>
                 </div>
             </a>
+            <app-join-community *ngIf="coffee.cardType === 'joinCard'"></app-join-community>
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>

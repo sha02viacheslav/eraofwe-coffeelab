@@ -24,7 +24,10 @@ export class EraOfWeComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.data = DISCUSSIONS_FORUM;
+        const joinCard = {
+            cardType: 'joinCard',
+        };
+        this.data = [...DISCUSSIONS_FORUM, joinCard];
         this.setSEO();
         // this.getData();
     }

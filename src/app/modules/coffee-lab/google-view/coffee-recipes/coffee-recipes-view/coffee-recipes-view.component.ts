@@ -17,7 +17,6 @@ import { seoVariables } from '@constants';
 })
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
     rows = 9;
-    pageNumber = 1;
     totalRecords = 0;
     destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
@@ -26,6 +25,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     searchIngredient = '';
     coffeeRecipeData: any[] = [];
+    displayData: any[] = [];
     isLoading = false;
     translationsList: any[] = [
         {
@@ -127,19 +127,28 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
             level: this.label?.toLowerCase(),
-            page: this.pageNumber,
-            per_page: this.rows,
+            page: 1,
+            per_page: 10000,
         };
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
                 if (res.result) {
                     this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
                     this.totalRecords = res.result_info.total_count;
-                    this.rows = res.result_info.per_page;
                     this.coffeeRecipeData.map((item) => {
                         item.description = this.globalsService.getJustText(item.description);
+                        item.cardType = 'forum';
                         return item;
                     });
+                    const joinCard = {
+                        cardType: 'joinCard',
+                    };
+                    if (this.coffeeRecipeData.length < 3) {
+                        this.coffeeRecipeData.push(joinCard);
+                    } else {
+                        this.coffeeRecipeData.splice(2, 0, joinCard);
+                    }
+                    this.displayData = this.coffeeRecipeData.slice(0, 9);
                     this.setSchemaMackup();
                 }
             } else {
@@ -150,11 +159,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     getData(event) {
-        if (event.page > -1) {
-            const currentPage = event.first / this.rows;
-            this.pageNumber = currentPage + 1;
-            this.getCoffeeRecipesData();
-        }
+        this.displayData = this.coffeeRecipeData.slice(event.first, event.first + event.rows);
     }
 
     getLink(item) {

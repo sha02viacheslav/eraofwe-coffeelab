@@ -83,17 +83,19 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     getData(): void {
         this.isLoading = true;
-        const params = {
+        const params: any = {
             query: this.keyword,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
+            page: 1,
+            per_page: 10000,
         };
 
         this.coffeeLabService.getForumList('article', params).subscribe((res) => {
             if (res.success) {
                 this.articlesData = res.result ?? [];
-                this.totalRecords = this.articlesData.length;
+                this.totalRecords = res.result_info.total_count;
                 this.articlesData.map((item) => {
                     item.content = this.globalsService.getJustText(item.content);
                     item.cardType = 'forum';

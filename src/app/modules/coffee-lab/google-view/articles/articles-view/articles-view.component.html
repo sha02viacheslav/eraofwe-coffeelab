@@ -63,7 +63,7 @@
     </div>
     <div class="articles-wrapper" *ngIf="!isLoading">
         <a
-            class="col-12 col-md-6 col-xl-4 px-0 py-25 p-md-2 article-item-wrapper"
+            class="col-12 col-xl-4 px-0 py-25 p-md-2 article-item-wrapper"
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of displayData"
             [routerLink]="[getLink(article)]"
