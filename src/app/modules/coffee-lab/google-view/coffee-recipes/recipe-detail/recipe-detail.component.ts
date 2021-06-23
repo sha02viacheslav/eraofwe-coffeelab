@@ -96,7 +96,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.previousUrl = `/${this.lang}/${
                     this.lang === 'en' ? 'coffee-recipes' : routerMap.sv['coffee-recipes']
                 }`;
-                // this.setSEO();
+                this.setSEO();
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('The recipe is not exist.');

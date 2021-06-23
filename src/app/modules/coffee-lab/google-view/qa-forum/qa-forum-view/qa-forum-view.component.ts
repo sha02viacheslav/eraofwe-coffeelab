@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ResizeableComponent } from '@base-components';
 import { seoVariables } from '@constants';
 
@@ -12,7 +10,7 @@ import { seoVariables } from '@constants';
     templateUrl: './qa-forum-view.component.html',
     styleUrls: ['./qa-forum-view.component.scss'],
 })
-export class QaForumViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
+export class QaForumViewComponent extends ResizeableComponent implements OnInit {
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
     sortOptions = [
@@ -35,8 +33,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     questions: any[] = [];
     isLoading = false;
     keyword = '';
-    destroy$: Subject<boolean> = new Subject<boolean>();
-    forumLanguage: string;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -50,11 +46,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     }
 
     ngOnInit(): void {
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.getQuestions();
-            this.setSEO();
-        });
+        this.getQuestions();
+        this.setSEO();
         this.sortOptions = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -90,7 +83,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
             sort_order: this.sortBy === 'most_answered' ? 'desc' : this.sortBy === 'latest' ? 'desc' : 'asc',
         };
         this.isLoading = true;
-        this.coffeeLabService.getForumList('question', params, this.forumLanguage).subscribe((res: any) => {
+        this.coffeeLabService.getForumList('question', params).subscribe((res: any) => {
             this.isLoading = false;
             if (res.success) {
                 this.questions = res.result?.questions;
@@ -100,18 +93,13 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         });
     }
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
-    }
-
     setSEO() {
         const title =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee forum & community - The Coffee Lab'
                 : 'Kaffe forum & community - The Coffee Lab';
         const description =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee questions & answers forum for end-consumers and coffee experts the coffee supply chain.'
                 : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);

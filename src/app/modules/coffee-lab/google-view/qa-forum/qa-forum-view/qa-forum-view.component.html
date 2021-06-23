@@ -60,11 +60,7 @@
             </div>
         </div>
         <div *ngIf="!isLoading">
-            <app-questions
-                [questions]="questions"
-                [viewMode]="viewMode"
-                [forumLanguage]="forumLanguage"
-            ></app-questions>
+            <app-questions [questions]="questions" [viewMode]="viewMode"></app-questions>
         </div>
         <div *ngIf="isLoading">
             <app-loading></app-loading>

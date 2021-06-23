@@ -14,7 +14,6 @@ import { environment } from '@env/environment';
 export class QuestionsComponent implements OnInit {
     @Input() questions: any[] = [];
     @Input() viewMode = 'list';
-    @Input() forumLanguage;
     questionMenuItems: MenuItem[] = [];
     totalRecords = 0;
     displayData: any[] = [];
@@ -86,7 +85,7 @@ export class QuestionsComponent implements OnInit {
                             '@type': 'Answer',
                             text: this.globalsService.getJustText(answer.answer),
                             dateCreated: answer.created_at,
-                            url: `${environment.coffeeLabWeb}/${this.forumLanguage}/qa-forum/${forum.slug}?#answer-${answer.id}`,
+                            url: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}/qa-forum/${forum.slug}?#answer-${answer.id}`,
                             author: {
                                 '@type': 'Person',
                                 name: answer.user_name,
@@ -107,7 +106,7 @@ export class QuestionsComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}`,
+                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',

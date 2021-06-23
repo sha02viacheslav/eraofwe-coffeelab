@@ -1,9 +1,7 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { DOCUMENT } from '@angular/common';
@@ -15,7 +13,7 @@ import { seoVariables } from '@constants';
     templateUrl: './articles-view.component.html',
     styleUrls: ['./articles-view.component.scss'],
 })
-export class ArticlesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
+export class ArticlesViewComponent extends ResizeableComponent implements OnInit {
     keyword?: string;
     translationsList: any[] = [
         {
@@ -42,8 +40,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     articlesData: any[] = [];
     displayData: any[] = [];
     isLoading = false;
-    destroy$: Subject<boolean> = new Subject<boolean>();
-    forumLanguage: string;
     totalRecords = 0;
     jsonLD: any;
 
@@ -61,11 +57,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     ngOnInit(): void {
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.getData();
-            this.setSEO();
-        });
+        this.getData();
+        this.setSEO();
         this.orderList = [
             {
                 label: this.globalsService.languageJson?.latest,
@@ -97,12 +90,12 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
         };
 
-        this.coffeeLabService.getForumList('article', params, this.forumLanguage).subscribe((res) => {
+        this.coffeeLabService.getForumList('article', params).subscribe((res) => {
             if (res.success) {
                 this.articlesData = res.result ?? [];
                 this.totalRecords = this.articlesData.length;
                 this.articlesData.map((item) => {
-                    item.content = this.getJustText(item.content);
+                    item.content = this.globalsService.getJustText(item.content);
                     return item;
                 });
                 this.displayData = this.articlesData.slice(0, 9);
@@ -112,16 +105,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             }
             this.isLoading = false;
         });
-    }
-
-    getJustText(content: any) {
-        const contentElement = this.document.createElement('div');
-        contentElement.innerHTML = content;
-        const images = contentElement.querySelectorAll('img');
-        images.forEach((image) => {
-            image.parentNode.removeChild(image);
-        });
-        return contentElement.innerHTML;
     }
 
     paginate(event: any) {
@@ -150,18 +133,13 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         }
     }
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
-    }
-
     setSEO() {
         const title =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee articles & news - The Coffee Lab'
                 : 'Kaffe artiklar & nyheter - The Coffee Lab';
         const description =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee articles written by coffee experts from the coffee community'
                 : 'Kaffe artiklar och nyheter skapade av kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
@@ -184,7 +162,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         for (const forum of this.displayData) {
             const itemData = {
                 '@type': 'Article',
-                '@id': `${environment.coffeeLabWeb}/${this.forumLanguage}/articles/${forum.slug}`,
+                '@id': `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}/articles/${forum.slug}`,
                 headline: forum.title,
                 description: this.globalsService.getJustText(forum.content),
                 image: forum.cover_image_url,
@@ -207,7 +185,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}`,
+                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',

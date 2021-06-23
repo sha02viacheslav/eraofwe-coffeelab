@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
@@ -16,7 +15,7 @@ import { seoVariables } from '@constants';
     templateUrl: './coffee-recipes-view.component.html',
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
-export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit, OnDestroy {
+export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
     rows = 9;
     pageNumber = 1;
     totalRecords = 0;
@@ -28,7 +27,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchIngredient = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
-    forumLanguage: string;
     translationsList: any[] = [
         {
             label: 'Yes',
@@ -82,11 +80,8 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     ngOnInit(): void {
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-            this.forumLanguage = language;
-            this.setSEO();
-            this.getCoffeeRecipesData();
-        });
+        this.setSEO();
+        this.getCoffeeRecipesData();
         this.levels = [
             {
                 label: this.globalsService.languageJson?.easy,
@@ -135,7 +130,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             page: this.pageNumber,
             per_page: this.rows,
         };
-        this.coffeeLabService.getForumList('recipe', params, this.forumLanguage).subscribe((res) => {
+        this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
                 if (res.result) {
                     this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
@@ -183,18 +178,13 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         }
     }
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
-    }
-
     setSEO() {
         const title =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee recipes & brewing guides - The Coffee Lab'
                 : 'Kafferecept och bryggguider - The Coffee Lab';
         const description =
-            this.forumLanguage === 'en'
+            this.coffeeLabService.currentForumLanguage === 'en'
                 ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
                 : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
@@ -238,7 +228,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.forumLanguage}`,
+                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',
