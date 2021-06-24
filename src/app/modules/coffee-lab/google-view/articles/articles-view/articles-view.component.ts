@@ -159,7 +159,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         this.seoService.setMetaData('property', 'og:title', title);
         this.seoService.setMetaData('property', 'og:description', description);
         this.seoService.setMetaData('property', 'og:url', this.document.URL);
-        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
+        this.seoService.setMetaData('property', 'og:image', `${seoVariables.image}?v=${Date.now()}`);
 
         this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
         this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
