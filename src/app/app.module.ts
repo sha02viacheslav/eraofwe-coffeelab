@@ -11,6 +11,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
+import {
+    SocialLoginModule,
+    SocialAuthServiceConfig,
+    GoogleLoginProvider,
+    FacebookLoginProvider,
+} from 'angularx-social-login';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -38,6 +44,7 @@ export function StartupServiceFactory(startupService: StartupService) {
         }),
         TranslateModule.forRoot(),
         InputTextModule,
+        SocialLoginModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
@@ -49,6 +56,24 @@ export function StartupServiceFactory(startupService: StartupService) {
             multi: true,
         },
         { provide: APP_BASE_HREF, useValue: '/coffee-lab' },
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: false,
+                providers: [
+                    {
+                        id: GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider(
+                            '899330219942-0iv0tk5mmkjlt9v9effbgvgufl5ukquk.apps.googleusercontent.com',
+                        ),
+                    },
+                    {
+                        id: FacebookLoginProvider.PROVIDER_ID,
+                        provider: new FacebookLoginProvider('737251000291479'),
+                    },
+                ],
+            } as SocialAuthServiceConfig,
+        },
     ],
     bootstrap: [AppComponent],
 })

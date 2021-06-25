@@ -24,11 +24,14 @@ export class SEOService {
 
     createLinkForCanonicalURL() {
         console.log(this.doc.URL);
-        if (this.doc.URL) {
-            const link: HTMLLinkElement = this.doc.createElement('link');
-            link.setAttribute('rel', 'canonical');
-            this.doc.head.appendChild(link);
-            link.setAttribute('href', this.doc.URL);
+        const existingLink = this.doc.querySelector('link[rel="canonical"]');
+        if (existingLink) {
+            existingLink.setAttribute('href', this.doc.URL);
+        } else {
+            const newLink: HTMLLinkElement = this.doc.createElement('link');
+            newLink.setAttribute('rel', 'canonical');
+            this.doc.head.appendChild(newLink);
+            newLink.setAttribute('href', this.doc.URL);
         }
     }
     createLinkForHreflang(lang: string) {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
-import { GlobalsService, SEOService } from '@services';
+import { GlobalsService } from '@services';
 import { protectPassword } from '@constants';
 
 @Component({
@@ -14,15 +14,9 @@ export class LayoutComponent implements OnInit {
     password = '';
     isMatched = !environment.needProtect;
 
-    constructor(
-        @Inject(DOCUMENT) private document: Document,
-        public glogbalService: GlobalsService,
-        private seoService: SEOService,
-    ) {}
+    constructor(@Inject(DOCUMENT) private document: Document, public glogbalService: GlobalsService) {}
 
-    ngOnInit(): void {
-        this.seoService.createLinkForCanonicalURL();
-    }
+    ngOnInit(): void {}
 
     openSideNav() {}
     gotoLogin() {
