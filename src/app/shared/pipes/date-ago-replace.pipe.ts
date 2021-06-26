@@ -10,11 +10,12 @@ export class DateAgoReplacePipe implements PipeTransform {
         if (!value) {
             return '';
         }
+        console.log(value);
         const [amount, unit] = value.split(' ');
         let suffix = amount;
         if (isNaN(+amount)) {
             suffix = this.globalService.languageJson[amount];
         }
-        return `${suffix} ${this.globalService.languageJson[unit]}`;
+        return `${suffix ?? amount} ${this.globalService.languageJson[unit]}`;
     }
 }
