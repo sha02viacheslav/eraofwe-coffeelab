@@ -104,6 +104,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
         this.seoService.setPageTitle(title);
         this.seoService.setMetaData('name', 'description', description);
+        this.seoService.createLinkForCanonicalURL();
 
         this.seoService.setMetaData('property', 'og:title', title);
         this.seoService.setMetaData('property', 'og:description', description);
