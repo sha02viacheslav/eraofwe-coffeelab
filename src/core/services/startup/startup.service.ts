@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { GlobalsService } from '../globals.service';
 import { I18NService } from '../i18n/i18n.service';
 import { CoffeeLabService } from '../api/coffee-lab.service';
+import { environment } from '@env/environment';
 
 @Injectable()
 export class StartupService {
@@ -26,7 +27,7 @@ export class StartupService {
         }
         if (!language || oldLanguage !== this.i18n.currentLang) {
             return new Promise((resolve) => {
-                zip(this.httpClient.get(`https://fed-api.sewnstaging.com/translations/${this.i18n.currentLang}/common`))
+                zip(this.httpClient.get(`${environment.apiURL}/translations/${this.i18n.currentLang}/common`))
                     .pipe(
                         catchError((res) => {
                             console.warn(`StartupService.load: Network request failed`, res);
