@@ -11,7 +11,9 @@
                         <img src="assets/images/era-we-black.svg" [alt]="glogbalService.logoAlt" />
                     </a>
                 </div>
-                <button class="btn-raised ml-auto" (click)="gotoLogin()">{{ 'login' | translate }}</button>
+                <a [href]="ssoWeb + '/login'" class="btn-raised ml-auto" [rel]="isStaging ? 'nofollow' : ''">{{
+                    'login' | translate
+                }}</a>
             </div>
         </div>
     </nav>
