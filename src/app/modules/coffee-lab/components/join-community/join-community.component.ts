@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
 
@@ -10,6 +9,8 @@ import { CoffeeLabService } from '@services';
     styleUrls: ['./join-community.component.scss'],
 })
 export class JoinCommunityComponent implements OnInit {
+    ssoWeb = environment.ssoWeb;
+    isStaging = environment.needProtect;
     constructor(@Inject(DOCUMENT) private document: Document, public coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {}

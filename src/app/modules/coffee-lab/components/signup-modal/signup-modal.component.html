@@ -28,16 +28,19 @@
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
-            <div
-                class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-4"
-                (click)="gotoSignup()"
-            >
-                <img src="assets/images/email-icon.png" />
-                <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 ml-3">
-                    {{ 'signup_with_email' | translate }}
-                </span>
-            </div>
-            <div class="custom-link text-center" (click)="gotoLogin()">{{ 'already_have_account' | translate }}</div>
+            <a [href]="ssoWeb + '/email-signup'" class="text-no-underline" [rel]="isStaging ? 'nofollow' : ''">
+                <div
+                    class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-4"
+                >
+                    <img src="assets/images/email-icon.png" />
+                    <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 ml-3">
+                        {{ 'signup_with_email' | translate }}
+                    </span>
+                </div>
+            </a>
+            <a [href]="ssoWeb + '/login'" class="custom-link text-center" [rel]="isStaging ? 'nofollow' : ''">{{
+                'already_have_account' | translate
+            }}</a>
         </div>
     </div>
 </div>

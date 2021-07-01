@@ -460,6 +460,13 @@ span.star {
     width: 374px;
 }
 
+.text-no-underline {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 .translate-wrapper {
     @media (max-width: 767px) {
         display: none;

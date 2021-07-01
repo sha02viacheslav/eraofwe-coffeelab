@@ -10,9 +10,9 @@
             {{ 'join_community_change' | translate }}
         </p>
         <div class="d-flex flex-column flex-md-row align-items-center pt-z5 button-wrapper">
-            <button class="btn-raised mr-3 mt-3 w-mob-100" (click)="gotoSignup()">
+            <a [href]="ssoWeb + '/sign-up'" class="btn-raised mr-3 mt-3 w-mob-100" [rel]="isStaging ? 'nofollow' : ''">
                 {{ 'sign_up_now' | translate }}
-            </button>
+            </a>
             <p class="fnt-muli fnt-16 fnt-bold lh-normal text-clr334 mb-0 mt-3">
                 {{ 'or' | translate }}
             </p>
