@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
 import { GlobalsService } from '@services';
 import { protectPassword } from '@constants';
@@ -16,11 +15,9 @@ export class LayoutComponent implements OnInit {
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
 
-    constructor(@Inject(DOCUMENT) private document: Document, public glogbalService: GlobalsService) {}
+    constructor(public glogbalService: GlobalsService) {}
 
-    ngOnInit(): void {
-        console.log(this.ssoWeb);
-    }
+    ngOnInit(): void {}
 
     openSideNav() {}
 
