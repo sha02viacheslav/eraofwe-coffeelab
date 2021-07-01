@@ -13,15 +13,16 @@ export class LayoutComponent implements OnInit {
     loaded = true;
     password = '';
     isMatched = !environment.needProtect;
+    ssoWeb = environment.ssoWeb;
+    isStaging = environment.needProtect;
 
     constructor(@Inject(DOCUMENT) private document: Document, public glogbalService: GlobalsService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        console.log(this.ssoWeb);
+    }
 
     openSideNav() {}
-    gotoLogin() {
-        this.document.location.href = `${environment.ssoWeb}/login`;
-    }
 
     onCheckPassword() {
         this.isMatched = this.password === protectPassword || !environment.needProtect;
