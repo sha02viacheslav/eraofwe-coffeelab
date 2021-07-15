@@ -59,26 +59,28 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     ngOnInit(): void {
         this.getData();
         this.setSEO();
-        this.orderList = [
-            {
-                label: this.globalsService.languageJson?.latest,
-                value: 'latest',
-            },
-            {
-                label: this.globalsService.languageJson?.oldest,
-                value: 'oldest',
-            },
-        ];
-        this.translationsList = [
-            {
-                label: this.globalsService.languageJson?.yes,
-                value: true,
-            },
-            {
-                label: this.globalsService.languageJson?.no,
-                value: false,
-            },
-        ];
+        setTimeout(() => {
+            this.orderList = [
+                {
+                    label: this.globalsService.languageJson?.latest,
+                    value: 'latest',
+                },
+                {
+                    label: this.globalsService.languageJson?.oldest,
+                    value: 'oldest',
+                },
+            ];
+            this.translationsList = [
+                {
+                    label: this.globalsService.languageJson?.yes,
+                    value: true,
+                },
+                {
+                    label: this.globalsService.languageJson?.no,
+                    value: false,
+                },
+            ];
+        }, 300);
     }
 
     getData(): void {

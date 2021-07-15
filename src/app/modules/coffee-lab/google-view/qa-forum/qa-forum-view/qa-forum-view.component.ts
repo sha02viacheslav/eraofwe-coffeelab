@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
@@ -13,11 +13,7 @@ import { seoVariables } from '@constants';
 export class QaForumViewComponent extends ResizeableComponent implements OnInit {
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
-    sortOptions = [
-        { label: 'Latest', value: 'latest' },
-        { label: 'Most Answered', value: 'most_answered' },
-        { label: 'Oldest', value: 'oldest' },
-    ];
+    sortOptions = [];
     filterOptions = [
         {
             label: 'Coffee experts',
@@ -48,30 +44,33 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     ngOnInit(): void {
         this.getQuestions();
         this.setSEO();
-        this.sortOptions = [
-            {
-                label: this.globalsService.languageJson?.latest,
-                value: 'latest',
-            },
-            {
-                label: this.globalsService.languageJson?.most_answered,
-                value: 'most_answered',
-            },
-            {
-                label: this.globalsService.languageJson?.oldest,
-                value: 'oldest',
-            },
-        ];
-        this.filterOptions = [
-            {
-                label: this.globalsService.languageJson?.coffee_experts,
-                value: false,
-            },
-            {
-                label: this.globalsService.languageJson?.end_consumers,
-                value: true,
-            },
-        ];
+        setTimeout(() => {
+            this.sortOptions = [
+                {
+                    label: this.globalsService.languageJson?.latest,
+                    value: 'latest',
+                },
+                {
+                    label: this.globalsService.languageJson?.most_answered,
+                    value: 'most_answered',
+                },
+                {
+                    label: this.globalsService.languageJson?.oldest,
+                    value: 'oldest',
+                },
+            ];
+            this.filterOptions = [
+                {
+                    label: this.globalsService.languageJson?.coffee_experts,
+                    value: false,
+                },
+                {
+                    label: this.globalsService.languageJson?.end_consumers,
+                    value: true,
+                },
+            ];
+        }, 300);
+
         window.scroll(0, 0);
     }
 

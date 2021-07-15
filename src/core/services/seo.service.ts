@@ -23,7 +23,7 @@ export class SEOService {
     }
 
     createLinkForCanonicalURL() {
-        console.log(this.doc.URL);
+        // console.log(this.doc.URL);
         if (this.doc.URL?.includes('https')) {
             const existingLink = this.doc.querySelector('link[rel="canonical"]');
             if (existingLink) {
@@ -42,7 +42,7 @@ export class SEOService {
             const link: HTMLLinkElement = this.doc.createElement('link');
             link.setAttribute('rel', 'alternate');
             const url2 = url.substr(3);
-            console.log(url2, lang);
+            // console.log(url2, lang);
             const newUrl =
                 lang === 'x-default'
                     ? `${environment.coffeeLabWeb}${url}`

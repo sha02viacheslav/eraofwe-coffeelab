@@ -38,30 +38,8 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         },
     ];
 
-    levels: any[] = [
-        {
-            label: 'Easy',
-            value: 'Easy',
-        },
-        {
-            label: 'Intermediate',
-            value: 'Intermediate',
-        },
-        {
-            label: 'Hard',
-            value: 'Hard',
-        },
-    ];
-    orderList: any[] = [
-        {
-            label: this.globalsService.languageJson?.latest,
-            value: 'latest',
-        },
-        {
-            label: this.globalsService.languageJson?.oldest,
-            value: 'oldest',
-        },
-    ];
+    levels: any[] = [];
+    orderList: any[] = [];
 
     selectedOrder = 'latest';
     jsonLD: any;
@@ -82,40 +60,52 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     ngOnInit(): void {
         this.setSEO();
         this.getCoffeeRecipesData();
-        this.levels = [
-            {
-                label: this.globalsService.languageJson?.easy,
-                value: 'easy',
-            },
-            {
-                label: this.globalsService.languageJson?.intermediate,
-                value: 'intermediate',
-            },
-            {
-                label: this.globalsService.languageJson?.hard,
-                value: 'hard',
-            },
-        ];
-        this.translationsList = [
-            {
-                label: this.globalsService.languageJson?.yes,
-                value: true,
-            },
-            {
-                label: this.globalsService.languageJson?.no,
-                value: false,
-            },
-        ];
-        this.orderList = [
-            {
-                label: this.globalsService.languageJson?.latest,
-                value: 'latest',
-            },
-            {
-                label: this.globalsService.languageJson?.oldest,
-                value: 'oldest',
-            },
-        ];
+        setTimeout(() => {
+            this.orderList = [
+                {
+                    label: this.globalsService.languageJson?.latest,
+                    value: 'latest',
+                },
+                {
+                    label: this.globalsService.languageJson?.oldest,
+                    value: 'oldest',
+                },
+            ];
+            this.levels = [
+                {
+                    label: this.globalsService.languageJson?.easy,
+                    value: 'easy',
+                },
+                {
+                    label: this.globalsService.languageJson?.intermediate,
+                    value: 'intermediate',
+                },
+                {
+                    label: this.globalsService.languageJson?.hard,
+                    value: 'hard',
+                },
+            ];
+            this.translationsList = [
+                {
+                    label: this.globalsService.languageJson?.yes,
+                    value: true,
+                },
+                {
+                    label: this.globalsService.languageJson?.no,
+                    value: false,
+                },
+            ];
+            this.orderList = [
+                {
+                    label: this.globalsService.languageJson?.latest,
+                    value: 'latest',
+                },
+                {
+                    label: this.globalsService.languageJson?.oldest,
+                    value: 'oldest',
+                },
+            ];
+        }, 300);
     }
 
     getCoffeeRecipesData(): void {
