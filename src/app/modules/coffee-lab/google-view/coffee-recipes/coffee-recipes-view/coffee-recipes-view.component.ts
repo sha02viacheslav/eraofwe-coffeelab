@@ -54,11 +54,11 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     ];
     orderList: any[] = [
         {
-            label: 'Latest',
+            label: this.globalsService.languageJson?.latest,
             value: 'latest',
         },
         {
-            label: 'Oldest',
+            label: this.globalsService.languageJson?.oldest,
             value: 'oldest',
         },
     ];
