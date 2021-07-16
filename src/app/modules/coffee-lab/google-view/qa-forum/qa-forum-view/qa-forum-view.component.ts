@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
@@ -14,16 +14,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
     sortOptions = [];
-    filterOptions = [
-        {
-            label: 'Coffee experts',
-            value: false,
-        },
-        {
-            label: 'End consumers',
-            value: true,
-        },
-    ];
+    filterOptions = [];
     sortBy = 'latest';
     filterBy: any;
     questions: any[] = [];
@@ -69,9 +60,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     value: true,
                 },
             ];
-        }, 300);
-
-        window.scroll(0, 0);
+            window.scroll(0, 0);
+        }, 1000);
     }
 
     getQuestions(): void {

@@ -80,7 +80,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     value: false,
                 },
             ];
-        }, 300);
+        }, 1000);
     }
 
     getData(): void {

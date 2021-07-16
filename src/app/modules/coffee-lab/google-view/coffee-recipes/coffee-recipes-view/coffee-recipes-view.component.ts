@@ -105,7 +105,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     value: 'oldest',
                 },
             ];
-        }, 300);
+        }, 1000);
     }
 
     getCoffeeRecipesData(): void {
