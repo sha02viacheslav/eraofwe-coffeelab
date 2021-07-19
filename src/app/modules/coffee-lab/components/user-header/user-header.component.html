@@ -20,7 +20,9 @@
         </div>
         <div class="fnt-12 fnt-muli text-clr588 mt-2 d-flex text-nowrap">
             <span class="font-weight-bold mr-2">{{ 'coffee_expert' | translate }}</span>
-            <span class="ellipsis">@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span>
+            <span class="ellipsis" *ngIf="orgType !== 'co'"
+                >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
+            >
         </div>
     </div>
 </div>
