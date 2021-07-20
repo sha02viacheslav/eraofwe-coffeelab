@@ -18,20 +18,14 @@ export class RecipeDetailComponent implements OnInit {
     infoData: any[] = [
         {
             icon: 'assets/images/expertise-level.svg',
-            label: 'difficulty',
+            label: 'expertise_level',
             key: 'expertise',
         },
         {
             icon: 'assets/images/preparation-time.svg',
-            label: 'preparation_time',
-            key: 'preparation_time',
-            key2: 'preparation_time_unit',
-        },
-        {
-            icon: 'assets/images/cooking-time.svg',
-            label: 'cooking_time',
-            key: 'cooking_time',
-            key2: 'cooking_time_unit',
+            label: 'brew_ratio',
+            key: 'coffee_ratio',
+            key2: 'water_ratio',
         },
         {
             icon: 'assets/images/servings.svg',

@@ -112,10 +112,8 @@
                             {{ coffee?.name }}
                         </div>
                         <div class="py-3 m-0 d-flex">
-                            <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'preparation_time' | translate }}:</div>
-                            <span class="fnt-600">
-                                {{ coffee.preparation_time }}{{ coffee.preparation_time_unit }}
-                            </span>
+                            <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'brew_ratio' | translate }}:</div>
+                            <span class="fnt-600"> {{ coffee.coffee_ratio }} : {{ coffee.water_ratio }} </span>
                         </div>
                         <div class="m-0 d-flex">
                             <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'ingredients' | translate }}:</div>
