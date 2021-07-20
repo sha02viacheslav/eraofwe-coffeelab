@@ -16,7 +16,6 @@ export class AppComponent {
         @Inject(DOCUMENT) private document: Document,
     ) {
         this.seoService.createLinkForCanonicalURL();
-        console.log(this.i8nService.currentLang);
         this.document.documentElement.lang = this.i8nService.currentLang;
         if (this.isStaging) {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
