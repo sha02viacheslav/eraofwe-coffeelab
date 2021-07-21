@@ -63,3 +63,9 @@
         }
     }
 }
+
+::ng-deep .step-desc {
+    img {
+        width: 100%;
+    }
+}
