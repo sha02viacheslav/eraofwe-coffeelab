@@ -5,6 +5,14 @@
 // You can add more entries to the $spacers map, should you need more variation.
 @import 'variables';
 
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1280px,
+) !default;
+
 $spacer: 1rem !default;
 $spacers: () !default;
 $spacers: map-merge(
