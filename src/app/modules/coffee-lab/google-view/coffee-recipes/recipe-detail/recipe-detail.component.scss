@@ -1,37 +1,51 @@
 @import 'variables';
 .page-wrapper {
-    .recipe-info-wrapper {
-        background-color: $primary-bg-color;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        @media (max-width: 767px) {
-            .recipe-info-item {
-                width: 50%;
-                &:nth-child(1) {
-                    padding: 0 19px 12px 4px !important;
-                    border-bottom: solid 1px $primary-border-color;
-                    border-right: solid 1px $primary-border-color;
-                }
-                &:nth-child(2) {
-                    padding: 0 0 12px 19px !important;
-                    border-bottom: solid 1px $primary-border-color;
-                }
-                &:nth-child(3) {
-                    padding: 12px 19px 0 8px !important;
-                    border-right: solid 1px $primary-border-color;
-                }
-                &:nth-child(4) {
-                    padding: 12px 0 0 19px !important;
-                }
-                p {
-                    word-break: break-word;
+    @media screen and(max-width:767px) {
+        .recipe-info-wrapper {
+            background-color: $primary-bg-color;
+            border-radius: 4px;
+        }
+        .recipe-info-item {
+            border-bottom: solid 1px $primary-border-color;
+        }
+        .recipe-info-item:last-child {
+            border-bottom: none !important;
+        }
+    }
+    @media (min-width: 768px) {
+        .recipe-info-wrapper {
+            background-color: $primary-bg-color;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            @media (max-width: 767px) {
+                .recipe-info-item {
+                    width: 50%;
+                    &:nth-child(1) {
+                        padding: 0 19px 12px 4px !important;
+                        border-bottom: solid 1px $primary-border-color;
+                        border-right: solid 1px $primary-border-color;
+                    }
+                    &:nth-child(2) {
+                        padding: 0 0 12px 19px !important;
+                        border-bottom: solid 1px $primary-border-color;
+                    }
+                    &:nth-child(3) {
+                        padding: 12px 19px 0 8px !important;
+                        border-right: solid 1px $primary-border-color;
+                    }
+                    &:nth-child(4) {
+                        padding: 12px 0 0 19px !important;
+                    }
+                    p {
+                        word-break: break-word;
+                    }
                 }
             }
-        }
-        @media only screen and (max-width: 1280px) and (min-width: 992px) {
-            .recipe-info-item {
-                width: 25%;
+            @media only screen and (max-width: 1280px) and (min-width: 992px) {
+                .recipe-info-item {
+                    width: 25%;
+                }
             }
         }
     }
