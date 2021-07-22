@@ -33,18 +33,16 @@ body {
 
 /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
-html,
-body {
-    height: 100%;
-}
-
-/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
-
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     box-shadow: none !important;
+}
+
+ul,
+p {
+    margin: 0;
 }
 
 .overlay-sewn {
