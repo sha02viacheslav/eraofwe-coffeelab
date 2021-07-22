@@ -1,4 +1,4 @@
-<header class="stricky" *ngIf="loaded; else headerLoader">
+<header class="stricky">
     <nav class="bg-white nav-top1">
         <div class="container">
             <div class="d-flex align-items-center">
@@ -19,14 +19,9 @@
     </nav>
 </header>
 
-<ng-template #headerLoader>
-    <div class="stricky">
-        <img class="w-100" src="/assets/images/loader-header.gif" />
-    </div>
-</ng-template>
 <ng-container *ngIf="isMatched; else protectWrapper">
     <div class="layout-wrap">
-        <div class="container" *ngIf="loaded">
+        <div class="container">
             <div class="router-design">
                 <router-outlet></router-outlet>
             </div>
@@ -34,10 +29,6 @@
         <app-footer></app-footer>
     </div>
 </ng-container>
-
-<ng-template #mainLoader>
-    <!-- <app-loading></app-loading> -->
-</ng-template>
 
 <ng-template #protectWrapper>
     <div class="protect-wrapper">

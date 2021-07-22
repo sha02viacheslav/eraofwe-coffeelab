@@ -33,6 +33,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { SkeletonModule } from 'primeng/skeleton';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -58,15 +59,6 @@ import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-descript
 import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
 
 import { WordLimitDirective } from './directives/word-limit.directive';
-
-import { AvatarComponent } from './components/avatar/avatar.component';
-import { BlankComponent } from './components/blank/blank.component';
-import { EmptyComponent } from './components/empty/empty.component';
-import { MediaComponent } from './components/media/media.component';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
-import { ReadMoreComponent } from './components/read-more/read-more.component';
-import { LoadingComponent } from './components/loading/loading.component';
-import { ConfirmComponent } from './components/confirm/confirm.component';
 
 // #region third libs
 const THIRDMODULES = [
@@ -95,6 +87,7 @@ const THIRDMODULES = [
     RadioButtonModule,
     RatingModule,
     SelectButtonModule,
+    SkeletonModule,
     SliderModule,
     TableModule,
     TabMenuModule,
@@ -115,7 +108,15 @@ const THIRDMODULES = [
 ];
 // #endregion
 
-// #region your componets & directives
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { BlankComponent } from './components/blank/blank.component';
+import { EmptyComponent } from './components/empty/empty.component';
+import { MediaComponent } from './components/media/media.component';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { ReadMoreComponent } from './components/read-more/read-more.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+
 const COMPONENTS = [
     AvatarComponent,
     BlankComponent,

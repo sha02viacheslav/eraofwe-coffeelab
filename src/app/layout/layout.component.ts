@@ -9,7 +9,6 @@ import { protectPassword } from '@constants';
     styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-    loaded = true;
     password = '';
     isMatched = !environment.needProtect;
     ssoWeb = environment.ssoWeb;
