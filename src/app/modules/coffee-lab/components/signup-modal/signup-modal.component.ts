@@ -21,9 +21,7 @@ export class SignupModalComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {
-            console.log(user);
-        });
+        this.authService.authState.subscribe((user) => {});
     }
 
     close(value = null) {
