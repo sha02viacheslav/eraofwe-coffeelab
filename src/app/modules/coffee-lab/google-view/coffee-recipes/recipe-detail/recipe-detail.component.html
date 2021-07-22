@@ -53,7 +53,7 @@
                     <div class="p-3 px-md-2 recipe-info-wrapper">
                         <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
                             <div>
-                                <img [src]="recipeInfo.icon" />
+                                <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
                             </div>
                             <div class="pl-2 d-flex flex-column justify-content-between">
                                 <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
