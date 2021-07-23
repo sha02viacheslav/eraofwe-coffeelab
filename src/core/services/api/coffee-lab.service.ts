@@ -9,6 +9,7 @@ import { ApiService } from './api.service';
 })
 export class CoffeeLabService extends ApiService {
     forumLanguage = new BehaviorSubject('en');
+    gotTranslations = new BehaviorSubject({});
 
     get currentForumLanguage(): string {
         return this.forumLanguage.value;

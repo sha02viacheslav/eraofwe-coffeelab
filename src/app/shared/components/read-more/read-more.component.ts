@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { CoffeeLabService } from '@services';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-read-more',
@@ -12,8 +15,9 @@ export class ReadMoreComponent implements OnInit, AfterViewInit {
     @Input() rows = 1;
     public contentVisibility = false;
     lineHeight: any = 16;
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
-    constructor() {}
+    constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit() {
         if (this.content.length < 10) {
@@ -23,7 +27,7 @@ export class ReadMoreComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.lineHeight = window.getComputedStyle(this.contentDom.nativeElement).lineHeight;
             if (this.lineHeight === 'normal') {
                 this.lineHeight = Math.ceil(

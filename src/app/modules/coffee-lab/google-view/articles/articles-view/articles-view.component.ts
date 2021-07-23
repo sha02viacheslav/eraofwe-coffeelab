@@ -8,6 +8,8 @@ import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { seoVariables } from '@constants';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -42,6 +44,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     isLoading = false;
     totalRecords = 0;
     jsonLD: any;
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
         public coffeeLabService: CoffeeLabService,
@@ -59,7 +62,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     ngOnInit(): void {
         this.getData();
         this.setSEO();
-        setTimeout(() => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.orderList = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -80,7 +83,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     value: false,
                 },
             ];
-        }, 1000);
+        });
     }
 
     getData(): void {

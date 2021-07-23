@@ -4,6 +4,8 @@ import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@se
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
 import { seoVariables } from '@constants';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -20,6 +22,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     questions: any[] = [];
     isLoading = false;
     keyword = '';
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -35,7 +38,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     ngOnInit(): void {
         this.getQuestions();
         this.setSEO();
-        setTimeout(() => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.sortOptions = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -61,7 +64,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 },
             ];
             window.scroll(0, 0);
-        }, 1000);
+        });
     }
 
     getQuestions(): void {

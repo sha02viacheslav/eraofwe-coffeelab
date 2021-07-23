@@ -9,6 +9,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { seoVariables } from '@constants';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -60,7 +61,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     ngOnInit(): void {
         this.setSEO();
         this.getCoffeeRecipesData();
-        setTimeout(() => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.orderList = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -105,7 +106,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     value: 'oldest',
                 },
             ];
-        }, 1000);
+        });
     }
 
     getCoffeeRecipesData(): void {
