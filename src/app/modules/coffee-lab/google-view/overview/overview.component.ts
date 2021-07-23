@@ -48,7 +48,17 @@ export class OverviewComponent implements OnInit {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
-            const lang = params.lang;
+            let lang;
+            if (window.location.href?.includes('/en/')) {
+                lang = 'en';
+            } else if (window.location.href?.includes('/sv/')) {
+                lang = 'sv';
+            }
+
+            if (lang) {
+                this.coffeeLabService.forumLanguage.next(lang);
+            }
+
             this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
                 this.menuItems = [
                     {
