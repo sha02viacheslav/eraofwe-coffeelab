@@ -81,9 +81,8 @@ export class QuestionDetailComponent implements OnInit {
     setSEO() {
         const title = this.detailsData?.question || this.idOrSlug.replace('-', '');
         const firstAnswer = this.detailsData?.answers[0];
-        const description = firstAnswer
-            ? this.globalsService.getJustText(firstAnswer.answer)
-            : 'Questions and Answers for Coffee.';
+        const description =
+            this.globalsService.getJustText(firstAnswer?.answer || '') || 'Questions and Answers for Coffee.';
         const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
 
         this.seoService.setPageTitle(title);
