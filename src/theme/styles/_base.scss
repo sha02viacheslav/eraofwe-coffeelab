@@ -310,50 +310,8 @@ button.toast-close-button {
     margin-top: -4px;
 }
 
-/********Chart Css*********/
-
-.border-total-chart {
-    border-radius: 20px;
-    border: solid 1px #d6d6d6;
-    background-color: #ffffff;
-    padding: 10px 12px;
-    margin-right: 12px;
-    cursor: pointer;
-}
-
-.list-group-item.chart {
-    border: none;
-    font-family: 'Muli';
-    font-size: 12px;
-    font-weight: 600;
-    color: #747588;
-    cursor: pointer;
-}
-
-.list-group-item.chart:hover {
-    color: #232334;
-    font-weight: 600;
-    background-color: #f8f8f8;
-}
-
 .pointer-items {
     cursor: pointer;
-}
-
-app-available-coffee-list .popover-body {
-    padding: 0.25rem 0.25rem !important;
-}
-
-app-available-coffee-list .popover {
-    border: none !important;
-    border-radius: 5px !important;
-    box-shadow: 0 0 17px 2px rgba(27, 27, 27, 0.08) !important;
-    background-color: #ffffff;
-    top: 4px !important;
-}
-
-app-available-coffee-list .bs-popover-bottom .arrow:after {
-    top: 0px !important;
 }
 
 /* Chrome, Safari, Edge, Opera */
