@@ -350,41 +350,6 @@ span.star {
     // }
 }
 
-// Menu
-.popover {
-    border: none;
-    border-radius: 2px;
-    box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
-    .popover-body {
-        padding: 4px;
-    }
-    &.bs-popover-left > .arrow::before,
-    &.bs-popover-auto[x-placement^='left'] > .arrow::before {
-        border-left-color: transparent;
-    }
-
-    &.bs-popover-bottom > .arrow::before,
-    &.bs-popover-auto[x-placement^='bottom'] > .arrow::before {
-        border-bottom-color: rgba(143, 51, 11, 0.1);
-    }
-
-    .menu-list {
-        margin: 0;
-        li {
-            font-family: $general-font-family;
-            color: $muted-text-color;
-            border-radius: 2px;
-            padding: 0.75rem 3rem 0.75rem 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            &:hover {
-                color: $general-text-color;
-                background: $primary-bg-color;
-            }
-        }
-    }
-}
-
 .navigation-link {
     font-weight: bold;
     text-decoration: none !important;

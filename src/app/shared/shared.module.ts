@@ -14,34 +14,24 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TabMenuModule } from 'primeng/tabmenu';
 
-import { GalleryModule } from 'ng-gallery';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { LightboxModule } from 'ng-gallery/lightbox';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { MomentModule } from 'ngx-moment';
-import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TranslateModule } from '@ngx-translate/core';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 const THIRDMODULES = [
     CarouselModule,
     DividerModule,
     DropdownModule,
     DynamicDialogModule,
-    GalleryModule,
     InputTextModule,
     LazyLoadImageModule,
-    LightboxModule,
     MenuModule,
-    ModalModule,
     MomentModule,
     OverlayPanelModule,
     PaginatorModule,
-    PopoverModule,
     SkeletonModule,
     TabMenuModule,
     TranslateModule,
-    TypeaheadModule,
 ];
 // #endregion
 
