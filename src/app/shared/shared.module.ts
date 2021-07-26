@@ -96,25 +96,9 @@ const THIRDMODULES = [
 // #endregion
 
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { BlankComponent } from './components/blank/blank.component';
-import { EmptyComponent } from './components/empty/empty.component';
-import { MediaComponent } from './components/media/media.component';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
-import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { ConfirmComponent } from './components/confirm/confirm.component';
 
-const COMPONENTS = [
-    AvatarComponent,
-    BlankComponent,
-    EmptyComponent,
-    BlankComponent,
-    MediaComponent,
-    VideoPlayerComponent,
-    ReadMoreComponent,
-    LoadingComponent,
-    ConfirmComponent,
-];
+const COMPONENTS = [AvatarComponent, LoadingComponent];
 
 const DIRECTIVES = [];
 
