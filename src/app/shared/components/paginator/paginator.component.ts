@@ -1,5 +1,6 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import {
+    AfterViewInit,
     Component,
     EventEmitter,
     Inject,
@@ -17,22 +18,26 @@ import { Paginator } from 'primeng/paginator';
     templateUrl: './paginator.component.html',
     styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, AfterViewInit {
     @ViewChild('paginator', { static: true }) paginator: Paginator;
 
     @Input() totalRecords;
     @Input() rows;
     @Input() page = 0;
     @Output() onPageChange = new EventEmitter();
-    isBrowser = true;
+    isServer = false;
 
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
         if (isPlatformServer(this.platformId)) {
-            this.isBrowser = false;
+            this.isServer = true;
         }
     }
 
     ngOnInit(): void {
+        this.setPaginator();
+    }
+
+    ngAfterViewInit() {
         this.setPaginator();
     }
 

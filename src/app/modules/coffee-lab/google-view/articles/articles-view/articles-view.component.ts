@@ -48,15 +48,15 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
-        public coffeeLabService: CoffeeLabService,
-        private toastService: ToastrService,
-        private router: Router,
-        private route: ActivatedRoute,
-        public dialogSrv: DialogService,
-        private globalsService: GlobalsService,
         @Inject(DOCUMENT) private document: Document,
+        private globalsService: GlobalsService,
+        private route: ActivatedRoute,
+        private router: Router,
         private seoService: SEOService,
+        private toastService: ToastrService,
         protected resizeService: ResizeService,
+        public coffeeLabService: CoffeeLabService,
+        public dialogSrv: DialogService,
     ) {
         super(resizeService);
     }

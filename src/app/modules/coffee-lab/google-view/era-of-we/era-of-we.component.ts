@@ -29,7 +29,6 @@ export class EraOfWeComponent implements OnInit {
         };
         this.data = [...DISCUSSIONS_FORUM, joinCard];
         this.setSEO();
-        // this.getData();
     }
 
     getData(): void {

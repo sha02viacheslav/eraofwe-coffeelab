@@ -1,12 +1,6 @@
-<p-paginator
-    *ngIf="isBrowser"
-    #paginator
-    [rows]="rows"
-    [totalRecords]="totalRecords"
-    (onPageChange)="onPaginate($event)"
-></p-paginator>
+<p-paginator #paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
 
-<div *ngIf="!isBrowser">
+<div *ngIf="isServer">
     <a *ngFor="let item of pageCounter(); let i = index" [routerLink]="[]" [queryParams]="{ page: i + 1 }">{{
         i + 1
     }}</a>

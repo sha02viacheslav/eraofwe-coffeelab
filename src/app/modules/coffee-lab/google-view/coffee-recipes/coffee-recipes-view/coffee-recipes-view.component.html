@@ -13,7 +13,7 @@
                     type="text"
                     pInputText
                     [(ngModel)]="searchQuery"
-                    (ngModelChange)="getCoffeeRecipesData()"
+                    (ngModelChange)="getData()"
                     [placeholder]="'search_recipes' | translate"
                 />
             </div>
@@ -32,7 +32,7 @@
                 type="text"
                 pInputText
                 [(ngModel)]="searchQuery"
-                (ngModelChange)="getCoffeeRecipesData()"
+                (ngModelChange)="getData()"
                 [placeholder]="'search_recipes' | translate"
             />
         </span>
@@ -46,7 +46,7 @@
                     optionValue="value"
                     [showClear]="true"
                     [(ngModel)]="label"
-                    (onChange)="getCoffeeRecipesData()"
+                    (onChange)="getData()"
                     [placeholder]="'difficulty' | translate"
                     styleClass="round-border"
                 >
@@ -59,7 +59,7 @@
                     optionValue="value"
                     [showClear]="true"
                     [(ngModel)]="isAvailableTranslation"
-                    (onChange)="getCoffeeRecipesData()"
+                    (onChange)="getData()"
                     [placeholder]="'translation_available' | translate"
                     styleClass="round-border"
                 >
@@ -71,7 +71,7 @@
                     type="text"
                     pInputText
                     [(ngModel)]="searchIngredient"
-                    (ngModelChange)="getCoffeeRecipesData()"
+                    (ngModelChange)="getData()"
                     styleClass="ingredient-field"
                     [placeholder]="'search_by_ingredient' | translate"
                 />
@@ -83,7 +83,7 @@
                 optionLabel="label"
                 optionValue="value"
                 [(ngModel)]="selectedOrder"
-                (onChange)="getCoffeeRecipesData()"
+                (onChange)="getData()"
                 styleClass="no-border mobile-ui"
             >
             </p-dropdown>
@@ -92,7 +92,7 @@
     <div class="coffee-wrapper" *ngIf="!isLoading">
         <div
             class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
-            *ngFor="let coffee of displayData"
+            *ngFor="let coffee of coffeeRecipeData"
             [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
         >
             <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
@@ -134,13 +134,13 @@
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>
-    <div class="w-100" *ngIf="!isLoading && totalRecords">
-        <p-paginator
+    <div class="w-100 mt-45" *ngIf="!isLoading && totalRecords">
+        <app-paginator
             [rows]="rows"
             [totalRecords]="totalRecords"
-            (onPageChange)="getData($event)"
-            styleClass="mt-45"
-        ></p-paginator>
+            [page]="page"
+            (onPageChange)="paginate($event)"
+        ></app-paginator>
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
     <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 fnt-muli text-clr24">

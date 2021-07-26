@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
@@ -17,8 +17,9 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
-    rows = 9;
+    rows = 8;
     totalRecords = 0;
+    page: number = 1;
     destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
     label?: string;
@@ -26,7 +27,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     searchIngredient = '';
     coffeeRecipeData: any[] = [];
-    displayData: any[] = [];
     isLoading = false;
     translationsList: any[] = [
         {
@@ -46,21 +46,21 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     jsonLD: any;
 
     constructor(
-        private toastService: ToastrService,
+        @Inject(DOCUMENT) private document: Document,
+        private globalsService: GlobalsService,
+        private route: ActivatedRoute,
         private router: Router,
+        private seoService: SEOService,
+        private toastService: ToastrService,
+        protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
         public dialogSrv: DialogService,
-        private globalsService: GlobalsService,
-        private seoService: SEOService,
-        protected resizeService: ResizeService,
-        @Inject(DOCUMENT) private document: Document,
     ) {
         super(resizeService);
     }
 
     ngOnInit(): void {
         this.setSEO();
-        this.getCoffeeRecipesData();
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.orderList = [
                 {
@@ -107,9 +107,19 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 },
             ];
         });
+
+        this.route.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                this.page = +params.get('page');
+                if (this.page < 1) {
+                    this.page = 1;
+                }
+            }
+            this.getData();
+        });
     }
 
-    getCoffeeRecipesData(): void {
+    getData(): void {
         this.isLoading = true;
         const params = {
             query: this.searchQuery,
@@ -118,8 +128,8 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
             level: this.label?.toLowerCase(),
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
@@ -139,7 +149,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     } else {
                         this.coffeeRecipeData.splice(2, 0, joinCard);
                     }
-                    this.displayData = this.coffeeRecipeData.slice(0, 9);
                     this.setSchemaMackup();
                 }
             } else {
@@ -149,8 +158,11 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         });
     }
 
-    getData(event) {
-        this.displayData = this.coffeeRecipeData.slice(event.first, event.first + event.rows);
+    paginate(event: any) {
+        if (this.page !== event.page + 1) {
+            this.router.navigate([], { queryParams: { page: event.page + 1 } });
+            this.getData();
+        }
     }
 
     getLink(item) {
