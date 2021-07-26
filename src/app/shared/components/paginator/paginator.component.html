@@ -1,6 +1,6 @@
 <p-paginator #paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
 
-<div *ngIf="isServer">
+<div class="seo-paginator">
     <a *ngFor="let item of pageCounter(); let i = index" [routerLink]="[]" [queryParams]="{ page: i + 1 }">{{
         i + 1
     }}</a>
