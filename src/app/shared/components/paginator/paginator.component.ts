@@ -24,11 +24,11 @@ export class PaginatorComponent implements OnInit {
     @Input() rows;
     @Input() page = 0;
     @Output() onPageChange = new EventEmitter();
-    isBrowser = false;
+    isBrowser = true;
 
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
         if (isPlatformServer(this.platformId)) {
-            this.isBrowser = true;
+            this.isBrowser = false;
         }
     }
 
