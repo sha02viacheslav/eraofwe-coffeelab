@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.26" height="18.132" viewBox="0 0 25.26 18.132">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #747588;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="Group_4" data-name="Group 4" transform="translate(0.75 0.75)">
+    <rect id="Rectangle" class="cls-1" width="23.76" height="16.632" rx="2"/>
+    <path id="Path" class="cls-1" d="M0,0,10.208,7.122a2,2,0,0,0,2.289,0L22.7,0" transform="translate(0.75 2.25)"/>
+  </g>
+</svg>
