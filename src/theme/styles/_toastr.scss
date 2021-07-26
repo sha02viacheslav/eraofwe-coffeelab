@@ -197,18 +197,6 @@ button.toast-close-button {
     opacity: 0.4;
 }
 
-.dataTables_empty {
-    padding-bottom: 0px !important;
-    text-align: center;
-}
-
-.text-overflow-ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 117px;
-}
-
 /* Responsive Design */
 
 @media all and (max-width: 240px) {

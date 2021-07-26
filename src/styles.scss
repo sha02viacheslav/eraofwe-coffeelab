@@ -12,17 +12,6 @@
 @import 'theme/styles/_header';
 @import 'theme/styles/toastr';
 
-body {
-    margin: 0 !important;
-    font-family: 'Muli' !important;
-    font-size: 0.875rem !important;
-    font-weight: 400 !important;
-    line-height: 1.5 !important;
-    color: #3e5569 !important;
-    text-align: left !important;
-    background-color: #f1f1f1 !important;
-}
-
 .stricky {
     position: fixed;
     left: 0;
