@@ -7,7 +7,6 @@
 .prettierrc
 
 src/assets/*
-src/index.html
 node_modules/
 .vscode/
 coverage/
