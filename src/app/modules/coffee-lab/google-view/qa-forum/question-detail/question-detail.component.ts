@@ -50,7 +50,7 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     getQaList() {
-        this.coffeeLabService.getForumList('question').subscribe((res: any) => {
+        this.coffeeLabService.getForumList('question', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result.questions
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)

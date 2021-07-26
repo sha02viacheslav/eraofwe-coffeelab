@@ -67,7 +67,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     getRecipeList() {
-        this.coffeeLabService.getForumList('recipe').subscribe((res: any) => {
+        this.coffeeLabService.getForumList('recipe', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
