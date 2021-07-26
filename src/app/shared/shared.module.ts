@@ -3,15 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { GalleryModule } from 'ng-gallery';
-import { LightboxModule } from 'ng-gallery/lightbox';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MomentModule } from 'ngx-moment';
-
+import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -19,6 +14,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipsModule } from 'primeng/chips';
 import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { GalleriaModule } from 'primeng/galleria';
@@ -29,6 +25,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PaginatorModule } from 'primeng/paginator';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
@@ -40,27 +38,16 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { DividerModule } from 'primeng/divider';
-import { AccordionModule } from 'primeng/accordion';
-import { AvatarModule } from 'primeng/avatar';
-import { BadgeModule } from 'primeng/badge';
-import { PaginatorModule } from 'primeng/paginator';
 
+import { GalleryModule } from 'ng-gallery';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LightboxModule } from 'ng-gallery/lightbox';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MomentModule } from 'ngx-moment';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TranslateModule } from '@ngx-translate/core';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-import { FileIconPipe } from './pipes/file-icon.pipe';
-import { FileNamePipe } from './pipes/file-name.pipe';
-import { MonthPipe } from './pipes/month/month.pipe';
-import { WordCountPipe } from './pipes/word-count/word-count.pipe';
-import { ArrayFilterPipe } from './pipes/array-filter.pipe';
-import { StringReplacePipe } from './pipes/string-replace.pipe';
-import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
-import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
-
-import { WordLimitDirective } from './directives/word-limit.directive';
-
-// #region third libs
 const THIRDMODULES = [
     ModalModule,
     PopoverModule,
@@ -129,7 +116,17 @@ const COMPONENTS = [
     ConfirmComponent,
 ];
 
-const DIRECTIVES = [WordLimitDirective];
+const DIRECTIVES = [];
+
+import { FileIconPipe } from './pipes/file-icon.pipe';
+import { FileNamePipe } from './pipes/file-name.pipe';
+import { MonthPipe } from './pipes/month/month.pipe';
+import { WordCountPipe } from './pipes/word-count/word-count.pipe';
+import { ArrayFilterPipe } from './pipes/array-filter.pipe';
+import { StringReplacePipe } from './pipes/string-replace.pipe';
+import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
+import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
+
 const PIPES = [
     ArrayFilterPipe,
     FileIconPipe,
@@ -140,33 +137,17 @@ const PIPES = [
     ConvertToShortDescriptionPipe,
     DateAgoReplacePipe,
 ];
-// #endregion
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        ReactiveFormsModule,
-        // third libs
-        ...THIRDMODULES,
-    ],
-    declarations: [
-        // your components
-        ...COMPONENTS,
-        ...DIRECTIVES,
-        ...PIPES,
-    ],
+    imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ...THIRDMODULES],
+    declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
 
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-
-        // third libs
         ...THIRDMODULES,
-        // your components
         ...COMPONENTS,
         ...DIRECTIVES,
         ...PIPES,
