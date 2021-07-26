@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
@@ -49,27 +48,35 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 const THIRDMODULES = [
-    ModalModule,
-    PopoverModule,
-    TypeaheadModule,
+    AccordionModule,
     AutoCompleteModule,
+    BadgeModule,
     BreadcrumbModule,
     ButtonModule,
     CalendarModule,
     CarouselModule,
     CheckboxModule,
-    DialogModule,
     ChipsModule,
+    DialogModule,
+    DividerModule,
     DropdownModule,
     DynamicDialogModule,
     GalleriaModule,
+    GalleryModule,
     InputNumberModule,
     InputSwitchModule,
     InputTextareaModule,
     InputTextModule,
+    LazyLoadImageModule,
+    LightboxModule,
     MenuModule,
+    ModalModule,
+    MomentModule,
     MultiSelectModule,
     OverlayPanelModule,
+    PaginatorModule,
+    PopoverModule,
+    ProgressBarModule,
     ProgressSpinnerModule,
     RadioButtonModule,
     RatingModule,
@@ -80,18 +87,9 @@ const THIRDMODULES = [
     TabMenuModule,
     TabViewModule,
     TooltipModule,
-    TreeModule,
     TranslateModule,
-    ProgressBarModule,
-    AccordionModule,
-    DividerModule,
-    AvatarModule,
-    BadgeModule,
-    LightboxModule,
-    GalleryModule,
-    LazyLoadImageModule,
-    MomentModule,
-    PaginatorModule,
+    TreeModule,
+    TypeaheadModule,
 ];
 // #endregion
 
