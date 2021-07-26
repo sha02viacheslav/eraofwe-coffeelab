@@ -118,25 +118,10 @@ const COMPONENTS = [
 
 const DIRECTIVES = [];
 
-import { FileIconPipe } from './pipes/file-icon.pipe';
-import { FileNamePipe } from './pipes/file-name.pipe';
-import { MonthPipe } from './pipes/month/month.pipe';
-import { WordCountPipe } from './pipes/word-count/word-count.pipe';
-import { ArrayFilterPipe } from './pipes/array-filter.pipe';
-import { StringReplacePipe } from './pipes/string-replace.pipe';
 import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
 import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
 
-const PIPES = [
-    ArrayFilterPipe,
-    FileIconPipe,
-    FileNamePipe,
-    MonthPipe,
-    StringReplacePipe,
-    WordCountPipe,
-    ConvertToShortDescriptionPipe,
-    DateAgoReplacePipe,
-];
+const PIPES = [ConvertToShortDescriptionPipe, DateAgoReplacePipe];
 
 @NgModule({
     imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ...THIRDMODULES],
