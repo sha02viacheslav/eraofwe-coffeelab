@@ -136,7 +136,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     paginate(event: any) {
         if (this.page !== event.page + 1) {
             this.router.navigate([], { queryParams: { page: event.page + 1 } });
-            this.getData();
         }
     }
 

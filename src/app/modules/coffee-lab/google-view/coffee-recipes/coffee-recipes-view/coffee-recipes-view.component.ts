@@ -161,7 +161,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     paginate(event: any) {
         if (this.page !== event.page + 1) {
             this.router.navigate([], { queryParams: { page: event.page + 1 } });
-            this.getData();
         }
     }
 
