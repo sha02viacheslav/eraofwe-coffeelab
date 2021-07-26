@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
@@ -49,7 +48,6 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 const THIRDMODULES = [
     AccordionModule,
     AutoCompleteModule,
-    BreadcrumbModule,
     ButtonModule,
     CalendarModule,
     CarouselModule,
