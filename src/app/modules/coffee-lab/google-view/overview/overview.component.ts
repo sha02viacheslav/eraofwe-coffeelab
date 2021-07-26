@@ -93,9 +93,11 @@ export class OverviewComponent implements OnInit {
                 this.startupService.load(language);
                 let currentRouter = this.globalsService.currentUrl;
                 if (this.globalsService.currentUrl) {
-                    currentRouter = this.globalsService.currentUrl.substr(4);
+                    currentRouter = this.globalsService.currentUrl.split('/')[2].split('?')[0];
                 }
-                this.router.navigate([`/${language}/${routerMap[language][currentRouter]}`]);
+                this.router.navigate([`/${language}/${routerMap[language][currentRouter]}`], {
+                    queryParamsHandling: 'merge',
+                });
             });
         });
     }

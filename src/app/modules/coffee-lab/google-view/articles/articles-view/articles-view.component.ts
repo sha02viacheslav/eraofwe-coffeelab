@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -40,9 +40,10 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     isAvailableTranslation?: any;
     selectedOrder = 'latest';
     articlesData: any[] = [];
-    displayData: any[] = [];
     isLoading = false;
     totalRecords = 0;
+    rows: number = 8;
+    page: number = 1;
     jsonLD: any;
     destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -50,6 +51,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         public coffeeLabService: CoffeeLabService,
         private toastService: ToastrService,
         private router: Router,
+        private route: ActivatedRoute,
         public dialogSrv: DialogService,
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private document: Document,
@@ -60,7 +62,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     ngOnInit(): void {
-        this.getData();
         this.setSEO();
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.orderList = [
@@ -84,6 +85,16 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 },
             ];
         });
+
+        this.route.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                this.page = +params.get('page');
+                if (this.page < 1) {
+                    this.page = 1;
+                }
+            }
+            this.getData();
+        });
     }
 
     getData(): void {
@@ -93,8 +104,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService.getForumList('article', params).subscribe((res) => {
@@ -114,7 +125,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 } else {
                     this.articlesData.splice(2, 0, joinCard);
                 }
-                this.displayData = this.articlesData.slice(0, 9);
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Articles data');
@@ -124,8 +134,10 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     paginate(event: any) {
-        this.displayData = this.articlesData.slice(event.first, event.first + event.rows);
-        this.setSchemaMackup();
+        if (this.page !== event.page + 1) {
+            this.router.navigate([], { queryParams: { page: event.page + 1 } });
+            this.getData();
+        }
     }
 
     getLink(item) {
@@ -175,7 +187,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     setSchemaMackup() {
         const forumList: any[] = [];
-        for (const forum of this.displayData) {
+        for (const forum of this.articlesData) {
             const itemData = {
                 '@type': 'Article',
                 '@id': `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}/articles/${forum.slug}`,

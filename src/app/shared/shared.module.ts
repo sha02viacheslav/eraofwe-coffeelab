@@ -37,8 +37,9 @@ const THIRDMODULES = [
 
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
-const COMPONENTS = [AvatarComponent, LoadingComponent];
+const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
 
 const DIRECTIVES = [];
 

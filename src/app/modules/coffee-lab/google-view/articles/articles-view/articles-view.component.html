@@ -61,11 +61,11 @@
         >
         </p-dropdown>
     </div>
-    <div class="articles-wrapper" *ngIf="!isLoading">
+    <div class="articles-wrapper" *ngIf="!isLoading; else loading">
         <div
             class="col-12 col-xl-4 px-0 py-25 p-md-2 article-item-wrapper"
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
-            *ngFor="let article of displayData"
+            *ngFor="let article of articlesData"
         >
             <a [routerLink]="[getLink(article)]" class="text-non-underline" *ngIf="article.cardType === 'forum'">
                 <div
@@ -92,12 +92,22 @@
             <app-join-community *ngIf="article.cardType === 'joinCard'"></app-join-community>
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
-    </div>
-    <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4">
-        <p-paginator [rows]="9" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
-    </div>
-    <app-loading *ngIf="isLoading"></app-loading>
-    <div *ngIf="!isLoading && !articlesData.length" class="text-center my-4 fnt-muli text-clr24">
-        {{ 'no_data_is_available' | translate }}
+
+        <div *ngIf="totalRecords" class="pt-3 pt-md-4">
+            <app-paginator
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+                [page]="page"
+                (onPageChange)="paginate($event)"
+            ></app-paginator>
+        </div>
+
+        <div *ngIf="!articlesData?.length" class="text-center my-4 fnt-muli text-clr24">
+            {{ 'no_data_is_available' | translate }}
+        </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>
