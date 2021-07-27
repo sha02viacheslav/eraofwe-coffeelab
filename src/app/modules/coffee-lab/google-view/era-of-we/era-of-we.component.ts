@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { CoffeeLabService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
@@ -17,18 +17,16 @@ export class EraOfWeComponent implements OnInit {
     isLoading = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     constructor(
-        private coffeeLabService: CoffeeLabService,
-        private toastService: ToastrService,
         @Inject(DOCUMENT) private document: Document,
+        private coffeeLabService: CoffeeLabService,
+        private globalsService: GlobalsService,
         private seoService: SEOService,
+        private toastService: ToastrService,
     ) {}
 
     ngOnInit(): void {
-        const joinCard = {
-            cardType: 'joinCard',
-        };
-        this.data = [...DISCUSSIONS_FORUM, joinCard];
         this.setSEO();
+        this.getData();
     }
 
     getData(): void {
@@ -42,6 +40,21 @@ export class EraOfWeComponent implements OnInit {
             .subscribe((res) => {
                 if (res.success) {
                     this.data = res.result ? res.result : [];
+
+                    this.data = res.result ?? [];
+                    this.data.map((item) => {
+                        item.content = this.globalsService.getJustText(item.content);
+                        item.cardType = 'forum';
+                        return item;
+                    });
+                    const joinCard = {
+                        cardType: 'joinCard',
+                    };
+                    if (this.data.length < 3) {
+                        this.data.push(joinCard);
+                    } else {
+                        this.data.splice(2, 0, joinCard);
+                    }
                 } else {
                     this.toastService.error('Cannot get Articles data');
                 }

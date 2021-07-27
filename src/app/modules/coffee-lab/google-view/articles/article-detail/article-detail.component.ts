@@ -20,7 +20,6 @@ export class ArticleDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    isPublic: boolean;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -35,9 +34,6 @@ export class ArticleDetailComponent implements OnInit {
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.setSEO();
-        this.activatedRoute.queryParams.subscribe((params) => {
-            this.isPublic = params.is_public;
-        });
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
@@ -67,29 +63,25 @@ export class ArticleDetailComponent implements OnInit {
 
     getDetails() {
         this.loading = true;
-        if (this.isPublic) {
-            this.detailsData = DISCUSSIONS_FORUM.find((item) => item.slug === this.idOrSlug);
-            this.loading = false;
-            this.previousUrl = '/en/about-era-of-we';
-        } else {
-            this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
-                if (res.success) {
-                    this.detailsData = res.result;
-                    this.lang = res.result.language;
-                    if (!this.isPublic) {
-                        this.globalsService.setLimitCounter();
-                    }
-                    this.startupService.load(this.lang || 'en');
-                    this.setSEO();
-                    this.setSchemaMackup();
-                    this.previousUrl = `/${this.lang}/${routerMap[this.lang]['articles']}`;
+        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
+            if (res.success) {
+                this.detailsData = res.result;
+                this.lang = res.result.language;
+                if (res.is_era_of_we) {
+                    this.previousUrl = '/en/about-era-of-we';
                 } else {
-                    this.toastService.error('The article is not exist.');
-                    this.router.navigate(['/error']);
+                    this.previousUrl = `/${this.lang}/${routerMap[this.lang].articles}`;
+                    this.globalsService.setLimitCounter();
                 }
-                this.loading = false;
-            });
-        }
+                this.startupService.load(this.lang || 'en');
+                this.setSEO();
+                this.setSchemaMackup();
+            } else {
+                this.toastService.error('The article is not exist.');
+                this.router.navigate(['/error']);
+            }
+            this.loading = false;
+        });
     }
 
     setSEO() {
