@@ -48,9 +48,26 @@ export function app() {
     );
 
     // All regular routes use the Universal engine
+    // server.get('*', (req, res) => {
+    //     const prefix = 'coffee-lab';
+    //     res.render(`${prefix}/${indexHtml}`, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    // });
+
+    // All regular routes use the Universal engine
     server.get('*', (req, res) => {
+        const defaultLang = 'en';
+        const supportedLangs = ['en', 'sv', 'pt', 'es'];
+        const matches = req.url.match(/\/([a-z]{2})\//);
+        const lang = matches && supportedLangs.indexOf(matches[1]) !== -1 ? matches[1] : defaultLang;
+
         const prefix = 'coffee-lab';
-        res.render(`${prefix}/${indexHtml}`, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+        res.render(`${prefix}/index`, {
+            req,
+            providers: [
+                { provide: APP_BASE_HREF, useValue: req.baseUrl },
+                { provide: 'lang', useValue: lang },
+            ],
+        });
     });
 
     return server;

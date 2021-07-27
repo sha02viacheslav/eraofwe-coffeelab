@@ -13,7 +13,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class OverviewComponent implements OnInit {
     destroy$: Subject<boolean> = new Subject<boolean>();
-    menuItems: MenuItem[];
+    menuItems: MenuItem[] = [];
     constructor(
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
@@ -23,19 +23,7 @@ export class OverviewComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.menuItems = this.getMenuItems('en');
         this.activatedRoute.params.subscribe((params) => {
-            let lang;
-            if (window.location.href?.includes('/en/')) {
-                lang = 'en';
-            } else if (window.location.href?.includes('/sv/')) {
-                lang = 'sv';
-            }
-
-            if (lang) {
-                this.coffeeLabService.forumLanguage.next(lang);
-            }
-
             this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
                 this.menuItems = this.getMenuItems(language);
                 this.startupService.load(language);
@@ -60,7 +48,7 @@ export class OverviewComponent implements OnInit {
             },
             {
                 label: 'posts',
-                routerLink: `/${language}/${routerMap[language]['articles']}`,
+                routerLink: `/${language}/${routerMap[language].articles}`,
                 icon: 'assets/images/article.svg',
                 activeIcon: 'assets/images/article-active.svg',
             },

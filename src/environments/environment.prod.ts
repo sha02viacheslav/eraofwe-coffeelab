@@ -22,6 +22,6 @@ export const environment = {
     twitterUrl: 'https://twitter.com/eraofweofficial',
     instagramUrl: 'https://www.instagram.com/eraofweofficial/',
     linkedinUrl: 'https://www.linkedin.com/company/eraofwe/',
-    needProtect: true,
+    needProtect: false,
     production: true,
 };
