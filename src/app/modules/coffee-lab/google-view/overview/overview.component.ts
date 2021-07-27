@@ -37,7 +37,6 @@ export class OverviewComponent implements OnInit {
             }
 
             this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-                console.log('sdfsdfsdf');
                 this.menuItems = this.getMenuItems(language);
                 this.startupService.load(language);
                 let currentRouter = this.globalsService.currentUrl;
