@@ -79,7 +79,7 @@ export class ArticleDetailComponent implements OnInit {
                     this.startupService.load(this.lang || 'en');
                     this.setSEO();
                     this.setSchemaMackup();
-                    this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'articles' : routerMap.sv['articles']}`;
+                    this.previousUrl = `/${this.lang}/${routerMap[this.lang]['articles']}`;
                 } else {
                     this.toastService.error('The article is not exist.');
                     this.router.navigate(['/error']);

@@ -4,6 +4,7 @@ import { CoffeeLabService, GlobalsService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { routerMap } from '@constants';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-overview',
@@ -12,32 +13,7 @@ import { routerMap } from '@constants';
 })
 export class OverviewComponent implements OnInit {
     destroy$: Subject<boolean> = new Subject<boolean>();
-    menuItems = [
-        {
-            label: 'question_answers',
-            routerLink: '/qa-forum',
-            icon: 'assets/images/qa-forum.svg',
-            activeIcon: 'assets/images/qa-forum-active.svg',
-        },
-        {
-            label: 'posts',
-            routerLink: '/articles',
-            icon: 'assets/images/article.svg',
-            activeIcon: 'assets/images/article-active.svg',
-        },
-        {
-            label: 'brewing_guides',
-            routerLink: '/coffee-recipes',
-            icon: 'assets/images/coffee-recipe.svg',
-            activeIcon: 'assets/images/coffee-recipe-active.svg',
-        },
-        {
-            label: 'about_era_of_we',
-            routerLink: '/about-era-of-we',
-            icon: 'assets/images/era-of-we.svg',
-            activeIcon: 'assets/images/era-of-we-active.svg',
-        },
-    ];
+    menuItems: MenuItem[];
     constructor(
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
@@ -47,6 +23,7 @@ export class OverviewComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.menuItems = this.getMenuItems('en');
         this.activatedRoute.params.subscribe((params) => {
             let lang;
             if (window.location.href?.includes('/en/')) {
@@ -60,36 +37,8 @@ export class OverviewComponent implements OnInit {
             }
 
             this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-                this.menuItems = [
-                    {
-                        label: 'question_answers',
-                        routerLink: `/${language}/${language === 'en' ? 'qa-forum' : routerMap.sv['qa-forum']}`,
-                        icon: 'assets/images/qa-forum.svg',
-                        activeIcon: 'assets/images/qa-forum-active.svg',
-                    },
-                    {
-                        label: 'posts',
-                        routerLink: `/${language}/${language === 'en' ? 'articles' : routerMap.sv['articles']}`,
-                        icon: 'assets/images/article.svg',
-                        activeIcon: 'assets/images/article-active.svg',
-                    },
-                    {
-                        label: 'brewing_guides',
-                        routerLink: `/${language}/${
-                            language === 'en' ? 'coffee-recipes' : routerMap.sv['coffee-recipes']
-                        }`,
-                        icon: 'assets/images/coffee-recipe.svg',
-                        activeIcon: 'assets/images/coffee-recipe-active.svg',
-                    },
-                    {
-                        label: 'about_era_of_we',
-                        routerLink: `/${language}/${
-                            language === 'en' ? 'about-era-of-we' : routerMap.sv['about-era-of-we']
-                        }`,
-                        icon: 'assets/images/era-of-we.svg',
-                        activeIcon: 'assets/images/era-of-we-active.svg',
-                    },
-                ];
+                console.log('sdfsdfsdf');
+                this.menuItems = this.getMenuItems(language);
                 this.startupService.load(language);
                 let currentRouter = this.globalsService.currentUrl;
                 if (this.globalsService.currentUrl) {
@@ -100,5 +49,34 @@ export class OverviewComponent implements OnInit {
                 });
             });
         });
+    }
+
+    getMenuItems(language) {
+        return [
+            {
+                label: 'question_answers',
+                routerLink: `/${language}/${routerMap[language]['qa-forum']}`,
+                icon: 'assets/images/qa-forum.svg',
+                activeIcon: 'assets/images/qa-forum-active.svg',
+            },
+            {
+                label: 'posts',
+                routerLink: `/${language}/${routerMap[language]['articles']}`,
+                icon: 'assets/images/article.svg',
+                activeIcon: 'assets/images/article-active.svg',
+            },
+            {
+                label: 'brewing_guides',
+                routerLink: `/${language}/${routerMap[language]['coffee-recipes']}`,
+                icon: 'assets/images/coffee-recipe.svg',
+                activeIcon: 'assets/images/coffee-recipe-active.svg',
+            },
+            {
+                label: 'about_era_of_we',
+                routerLink: `/${language}/${routerMap[language]['about-era-of-we']}`,
+                icon: 'assets/images/era-of-we.svg',
+                activeIcon: 'assets/images/era-of-we-active.svg',
+            },
+        ];
     }
 }

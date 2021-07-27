@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { languages } from '@constants';
 import { CoffeeLabService } from '@services';
 import { APP_LANGUAGES } from '@constants';
 
@@ -9,7 +8,6 @@ import { APP_LANGUAGES } from '@constants';
     styleUrls: ['./language-dropdown.component.scss'],
 })
 export class LanguageDropdownComponent implements OnInit {
-    languages = languages;
     languageList: any[] = APP_LANGUAGES;
     selectedLanguage: string;
 

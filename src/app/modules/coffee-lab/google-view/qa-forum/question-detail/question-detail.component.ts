@@ -67,7 +67,7 @@ export class QuestionDetailComponent implements OnInit {
                 this.lang = res.result.lang_code;
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'qa-forum' : routerMap.sv['qa-forum']}`;
+                this.previousUrl = `/${this.lang}/${routerMap[this.lang]['qa-forum']}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {

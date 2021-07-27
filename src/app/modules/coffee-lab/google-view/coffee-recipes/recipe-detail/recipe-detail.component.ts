@@ -87,9 +87,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${
-                    this.lang === 'en' ? 'coffee-recipes' : routerMap.sv['coffee-recipes']
-                }`;
+                this.previousUrl = `/${this.lang}/${routerMap[this.lang]['coffee-recipes']}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {
