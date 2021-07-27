@@ -33,3 +33,9 @@
         </a>
     </ng-template>
 </p-dropdown>
+
+<div class="seo-hidden">
+    <a *ngFor="let translateItem of translatedList" [routerLink]="[getLink(translateItem)]"
+        >{{ globalsService.getLanguage(translateItem.language) }} Translation</a
+    >
+</div>
