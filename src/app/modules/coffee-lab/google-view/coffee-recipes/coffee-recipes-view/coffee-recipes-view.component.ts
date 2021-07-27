@@ -133,24 +133,22 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         };
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
-                if (res.result) {
-                    this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
-                    this.totalRecords = res.result_info.total_count;
-                    this.coffeeRecipeData.map((item) => {
-                        item.description = this.globalsService.getJustText(item.description);
-                        item.cardType = 'forum';
-                        return item;
-                    });
-                    const joinCard = {
-                        cardType: 'joinCard',
-                    };
-                    if (this.coffeeRecipeData.length < 3) {
-                        this.coffeeRecipeData.push(joinCard);
-                    } else {
-                        this.coffeeRecipeData.splice(2, 0, joinCard);
-                    }
-                    this.setSchemaMackup();
+                this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
+                this.totalRecords = res.result_info.total_count;
+                this.coffeeRecipeData.map((item) => {
+                    item.description = this.globalsService.getJustText(item.description);
+                    item.cardType = 'forum';
+                    return item;
+                });
+                const joinCard = {
+                    cardType: 'joinCard',
+                };
+                if (this.coffeeRecipeData.length < 3) {
+                    this.coffeeRecipeData.push(joinCard);
+                } else {
+                    this.coffeeRecipeData.splice(2, 0, joinCard);
                 }
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');
             }
