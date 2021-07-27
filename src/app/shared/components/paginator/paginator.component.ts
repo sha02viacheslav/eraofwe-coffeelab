@@ -42,7 +42,7 @@ export class PaginatorComponent implements OnInit, AfterViewInit {
     }
 
     pageCounter() {
-        return new Array(parseInt('' + this.totalRecords / this.rows));
+        return new Array(Math.ceil(this.totalRecords / this.rows));
     }
 
     setPaginator() {
