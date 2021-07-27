@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +32,7 @@ export class QuestionDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -46,7 +47,9 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getQaList() {

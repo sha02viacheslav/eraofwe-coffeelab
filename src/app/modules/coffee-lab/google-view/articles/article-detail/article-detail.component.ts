@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Location, DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +32,7 @@ export class ArticleDetailComponent implements OnInit {
         private startupService: StartupService,
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.setSEO();
         this.activatedRoute.queryParams.subscribe((params) => {
@@ -49,7 +50,9 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getArticleList() {

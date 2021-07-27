@@ -116,10 +116,6 @@ export class GlobalsService {
     getJustText(content: any) {
         const contentElement = this.document.createElement('div');
         contentElement.innerHTML = content;
-        const images = contentElement.querySelectorAll('img');
-        images.forEach((image) => {
-            image.parentNode.removeChild(image);
-        });
         return contentElement.textContent;
     }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
@@ -44,6 +44,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         protected resizeService: ResizeService,
         public dialogSrv: DialogService,
         public globalsService: GlobalsService,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         super(resizeService);
     }
@@ -75,7 +76,9 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     value: true,
                 },
             ];
-            window.scroll(0, 0);
+            if (isPlatformBrowser(this.platformId)) {
+                window.scrollTo(0, 0);
+            }
         });
 
         this.route.queryParamMap.subscribe((params) => {

@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Location, DOCUMENT } from '@angular/common';
+import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { routerMap, seoVariables } from '@constants';
 
@@ -49,6 +49,7 @@ export class RecipeDetailComponent implements OnInit {
         private startupService: StartupService,
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -62,7 +63,9 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
         this.setSEO();
     }
 
