@@ -13,7 +13,6 @@ import { ArticleDetailComponent } from './google-view/articles/article-detail/ar
 
 import { TranslationDropdownComponent } from './components/translation-dropdown/translation-dropdown.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
-import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
 import { SearchForumComponent } from './components/search-forum/search-forum.component';
 import { JsonLdComponent } from './components/json-ld/json-ld.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -38,7 +37,6 @@ import { LimitBannerComponent } from './components/limit-banner/limit-banner.com
         ArticleDetailComponent,
         TranslationDropdownComponent,
         ForumCardComponent,
-        BottomBannerComponent,
         SearchForumComponent,
         JsonLdComponent,
         UserDetailComponent,
