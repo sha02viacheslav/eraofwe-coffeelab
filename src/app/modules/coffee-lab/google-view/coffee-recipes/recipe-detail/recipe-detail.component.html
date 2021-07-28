@@ -96,9 +96,9 @@
                             *ngFor="let step of detailsData?.steps; let i = index"
                             [id]="'step' + (i + 1)"
                         >
-                            <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
+                            <h3 class="fnt-muli fnt-14 fnt-semi-bold text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
                             <div
-                                class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0 step-desc"
+                                class="fnt-muli fnt-14 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
                                 [innerHTML]="step.description"
                             ></div>
                             <img
