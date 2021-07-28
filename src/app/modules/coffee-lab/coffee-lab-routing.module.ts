@@ -24,11 +24,6 @@ const routes: Routes = [
                 component: OverviewComponent,
                 children: [
                     {
-                        path: '',
-                        redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar',
-                        pathMatch: 'full',
-                    },
-                    {
                         path: 'en/qa-forum',
                         component: QaForumViewComponent,
                     },
@@ -92,7 +87,6 @@ const routes: Routes = [
                         path: 'es/about-era-of-we',
                         component: EraOfWeComponent,
                     },
-                    { path: '**', redirectTo: 'en/qa-forum' },
                 ],
             },
             {
@@ -107,6 +101,7 @@ const routes: Routes = [
                 path: ':lang/articles/:idOrSlug',
                 component: ArticleDetailComponent,
             },
+            { path: '**', redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar' },
         ],
     },
 ];

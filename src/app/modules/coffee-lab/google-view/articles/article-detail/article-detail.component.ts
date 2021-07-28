@@ -67,7 +67,7 @@ export class ArticleDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 this.lang = res.result.language;
-                if (res.is_era_of_we) {
+                if (res.result?.is_era_of_we) {
                     this.previousUrl = '/en/about-era-of-we';
                 } else {
                     this.previousUrl = `/${this.lang}/${routerMap[this.lang].articles}`;
