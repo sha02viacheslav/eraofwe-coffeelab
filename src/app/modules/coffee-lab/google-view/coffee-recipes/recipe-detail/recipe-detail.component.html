@@ -55,10 +55,7 @@
                                 <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
                                     recipeInfo.label | translate
                                 }}</label>
-                                <p
-                                    class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pt-2 pt-md-3"
-                                    *ngIf="detailsData"
-                                >
+                                <p class="fnt-muli fnt-18 fnt-bold text-clr334 mb-0 pt-2 pt-md-3" *ngIf="detailsData">
                                     {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
                                     }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}
                                 </p>
