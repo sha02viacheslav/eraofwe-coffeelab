@@ -14,7 +14,7 @@ export class LangPrefixService {
             return `${lang}`;
         } else {
             const supportedLangs = ['en', 'sv', 'pt', 'es'];
-            const matches = window.location.href.match(/\/([a-z]{2})\//);
+            const matches = window.location.href.match(/\/([a-z]{2})(\/|$)/);
             const lang = matches && supportedLangs.indexOf(matches[1]) !== -1 ? matches[1] : defaultLang;
             return lang;
         }

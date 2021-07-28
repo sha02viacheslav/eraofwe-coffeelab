@@ -92,6 +92,7 @@ const routes: Routes = [
                         path: 'es/about-era-of-we',
                         component: EraOfWeComponent,
                     },
+                    { path: '**', redirectTo: 'en/qa-forum' },
                 ],
             },
             {

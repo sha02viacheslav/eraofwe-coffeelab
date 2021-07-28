@@ -57,7 +57,7 @@ export function app() {
     server.get('*', (req, res) => {
         const defaultLang = 'en';
         const supportedLangs = ['en', 'sv', 'pt', 'es'];
-        const matches = req.url.match(/\/([a-z]{2})\//);
+        const matches = req.url.match(/\/([a-z]{2})(\/|$)/);
         const lang = matches && supportedLangs.indexOf(matches[1]) !== -1 ? matches[1] : defaultLang;
 
         const prefix = 'coffee-lab';
