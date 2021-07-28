@@ -24,6 +24,11 @@ const routes: Routes = [
                 component: OverviewComponent,
                 children: [
                     {
+                        path: '',
+                        redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar',
+                        pathMatch: 'full',
+                    },
+                    {
                         path: 'en/qa-forum',
                         component: QaForumViewComponent,
                     },
