@@ -208,6 +208,5 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
         const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
         this.seoService.setSEO(title, description);
-        this.seoService.createLinkForCanonicalURL();
     }
 }

@@ -88,17 +88,7 @@ export class QuestionDetailComponent implements OnInit {
             this.globalsService.getJustText(firstAnswer?.answer || '') || 'Questions and Answers for Coffee.';
         const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
 
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
-
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {

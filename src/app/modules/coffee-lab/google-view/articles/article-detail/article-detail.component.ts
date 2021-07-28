@@ -91,17 +91,7 @@ export class ArticleDetailComponent implements OnInit {
             : 'Era of We - Article for Coffee';
         const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
 
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
-
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {

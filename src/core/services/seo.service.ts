@@ -37,6 +37,8 @@ export class SEOService {
         this.setMetaData('name', 'twitter:site', this.doc.URL);
         this.setMetaData('name', 'twitter:title', title);
         this.setMetaData('name', 'twitter:description', description);
+
+        this.createLinkForCanonicalURL();
     }
 
     createLinkForCanonicalURL() {
