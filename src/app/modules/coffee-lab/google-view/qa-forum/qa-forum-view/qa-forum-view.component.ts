@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
-import { seoVariables } from '@constants';
+import { SeoDescription, SeoTitle, seoVariables } from '@constants';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -29,8 +30,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     keyword = '';
     questionMenuItems: MenuItem[] = [];
     totalRecords = 0;
-    rows: number = 10;
-    page: number = 1;
+    rows = 10;
+    page = 1;
     jsonLD: any;
     destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -204,27 +205,9 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     }
 
     setSEO() {
-        const title =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee forum & community - The Coffee Lab'
-                : 'Kaffe forum & community - The Coffee Lab';
-        const description =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee questions & answers forum for end-consumers and coffee experts the coffee supply chain.'
-                : 'Kaffe forum frågor och svar för konsumenter och kaffe experter från kaffeindustrin.';
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
+        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
+        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
+        this.seoService.setSEO(title, description);
         this.seoService.createLinkForCanonicalURL();
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.document.URL);
-        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
-
-        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
     }
 }

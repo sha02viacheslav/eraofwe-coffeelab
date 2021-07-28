@@ -8,8 +8,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
-import { seoVariables } from '@constants';
+import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -184,27 +185,9 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     setSEO() {
-        const title =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee recipes & brewing guides - The Coffee Lab'
-                : 'Kafferecept och bryggguider - The Coffee Lab';
-        const description =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
-                : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.document.URL);
-        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
-
-        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
+        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {
