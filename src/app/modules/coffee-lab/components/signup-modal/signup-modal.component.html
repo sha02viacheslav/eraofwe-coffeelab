@@ -3,7 +3,7 @@
         <i class="pi pi-times fnt-18 text-clr588 cursor-pointer" (click)="close()"></i>
     </div>
     <div class="text-center">
-        <p class="fnt-play fnt-28 fnt-bold lh-normal text-clr334 mb-2">
+        <p class="fnt-play fnt-28 fnt-bold text-clr334 mb-2">
             {{ config.data?.isLimit ? ('you_read_posts' | translate: { count: 3 }) : ('hi_there' | translate) }}
         </p>
         <div class="fnt-muli fnt-14 fnt-normal lh-157 text-clr588 mb-475 mt-z5">
@@ -14,8 +14,8 @@
                 class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-3"
                 (click)="signInWithGoogle()"
             >
-                <img src="assets/images/google-icon.png" />
-                <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 ml-3">
+                <img src="assets/images/google.svg" />
+                <span class="fnt-semi-bold text-clr334 ml-3">
                     {{ 'signup_with_google' | translate }}
                 </span>
             </div>
@@ -23,8 +23,8 @@
                 class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-3"
                 (click)="signInWithFacebook()"
             >
-                <img src="assets/images/facebook-icon.png" />
-                <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 ml-3">
+                <img src="assets/images/facebook-color.svg" />
+                <span class="fnt-semi-bold text-clr334 ml-3">
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
@@ -32,8 +32,8 @@
                 <div
                     class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-4"
                 >
-                    <img src="assets/images/email-icon.png" />
-                    <span class="fnt-muli fnt-14 fnt-normal lh-normal text-clr334 ml-3">
+                    <img src="assets/images/email.svg" />
+                    <span class="fnt-semi-bold text-clr334 ml-3">
                         {{ 'signup_with_email' | translate }}
                     </span>
                 </div>

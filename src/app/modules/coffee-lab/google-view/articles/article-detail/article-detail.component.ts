@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Location, DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +20,6 @@ export class ArticleDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    isPublic: boolean;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -32,11 +31,9 @@ export class ArticleDetailComponent implements OnInit {
         private startupService: StartupService,
         private globalsService: GlobalsService,
         @Inject(DOCUMENT) private doc,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.setSEO();
-        this.activatedRoute.queryParams.subscribe((params) => {
-            this.isPublic = params.is_public;
-        });
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
@@ -49,11 +46,13 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getArticleList() {
-        this.coffeeLabService.getForumList('article').subscribe((res: any) => {
+        this.coffeeLabService.getForumList('article', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
@@ -64,29 +63,25 @@ export class ArticleDetailComponent implements OnInit {
 
     getDetails() {
         this.loading = true;
-        if (this.isPublic) {
-            this.detailsData = DISCUSSIONS_FORUM.find((item) => item.slug === this.idOrSlug);
-            this.loading = false;
-            this.previousUrl = '/en/about-era-of-we';
-        } else {
-            this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
-                if (res.success) {
-                    this.detailsData = res.result;
-                    this.lang = res.result.language;
-                    if (!this.isPublic) {
-                        this.globalsService.setLimitCounter();
-                    }
-                    this.startupService.load(this.lang || 'en');
-                    this.setSEO();
-                    this.setSchemaMackup();
-                    this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'articles' : routerMap.sv['articles']}`;
+        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
+            if (res.success) {
+                this.detailsData = res.result;
+                this.lang = res.result.language;
+                if (res.result?.is_era_of_we) {
+                    this.previousUrl = '/en/about-era-of-we';
                 } else {
-                    this.toastService.error('The article is not exist.');
-                    this.router.navigate(['/error']);
+                    this.previousUrl = `/${this.lang}/${routerMap[this.lang].articles}`;
+                    this.globalsService.setLimitCounter();
                 }
-                this.loading = false;
-            });
-        }
+                this.startupService.load(this.lang || 'en');
+                this.setSEO();
+                this.setSchemaMackup();
+            } else {
+                this.toastService.error('The article is not exist.');
+                this.router.navigate(['/error']);
+            }
+            this.loading = false;
+        });
     }
 
     setSEO() {
@@ -96,17 +91,7 @@ export class ArticleDetailComponent implements OnInit {
             : 'Era of We - Article for Coffee';
         const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
 
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
-
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {

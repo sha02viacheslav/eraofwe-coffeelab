@@ -2,14 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
-import { seoVariables } from '@constants';
+import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -17,8 +18,9 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
-    rows = 9;
+    rows = 8;
     totalRecords = 0;
+    page: number = 1;
     destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
     label?: string;
@@ -26,7 +28,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     searchIngredient = '';
     coffeeRecipeData: any[] = [];
-    displayData: any[] = [];
     isLoading = false;
     translationsList: any[] = [
         {
@@ -46,21 +47,21 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     jsonLD: any;
 
     constructor(
-        private toastService: ToastrService,
+        @Inject(DOCUMENT) private document: Document,
+        private globalsService: GlobalsService,
+        private route: ActivatedRoute,
         private router: Router,
+        private seoService: SEOService,
+        private toastService: ToastrService,
+        protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
         public dialogSrv: DialogService,
-        private globalsService: GlobalsService,
-        private seoService: SEOService,
-        protected resizeService: ResizeService,
-        @Inject(DOCUMENT) private document: Document,
     ) {
         super(resizeService);
     }
 
     ngOnInit(): void {
         this.setSEO();
-        this.getCoffeeRecipesData();
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
             this.orderList = [
                 {
@@ -107,9 +108,19 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 },
             ];
         });
+
+        this.route.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                this.page = +params.get('page');
+                if (this.page < 1) {
+                    this.page = 1;
+                }
+            }
+            this.getData();
+        });
     }
 
-    getCoffeeRecipesData(): void {
+    getData(): void {
         this.isLoading = true;
         const params = {
             query: this.searchQuery,
@@ -118,30 +129,27 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
             level: this.label?.toLowerCase(),
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
-                if (res.result) {
-                    this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
-                    this.totalRecords = res.result_info.total_count;
-                    this.coffeeRecipeData.map((item) => {
-                        item.description = this.globalsService.getJustText(item.description);
-                        item.cardType = 'forum';
-                        return item;
-                    });
-                    const joinCard = {
-                        cardType: 'joinCard',
-                    };
-                    if (this.coffeeRecipeData.length < 3) {
-                        this.coffeeRecipeData.push(joinCard);
-                    } else {
-                        this.coffeeRecipeData.splice(2, 0, joinCard);
-                    }
-                    this.displayData = this.coffeeRecipeData.slice(0, 9);
-                    this.setSchemaMackup();
+                this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
+                this.totalRecords = res.result_info.total_count;
+                this.coffeeRecipeData.map((item) => {
+                    item.description = this.globalsService.getJustText(item.description);
+                    item.cardType = 'forum';
+                    return item;
+                });
+                const joinCard = {
+                    cardType: 'joinCard',
+                };
+                if (this.coffeeRecipeData.length < 3) {
+                    this.coffeeRecipeData.push(joinCard);
+                } else {
+                    this.coffeeRecipeData.splice(2, 0, joinCard);
                 }
+                this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');
             }
@@ -149,8 +157,10 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         });
     }
 
-    getData(event) {
-        this.displayData = this.coffeeRecipeData.slice(event.first, event.first + event.rows);
+    paginate(event: any) {
+        if (this.page !== event.page + 1) {
+            this.router.navigate([], { queryParams: { page: event.page + 1 } });
+        }
     }
 
     getLink(item) {
@@ -175,27 +185,9 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     setSEO() {
-        const title =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee recipes & brewing guides - The Coffee Lab'
-                : 'Kafferecept och bryggguider - The Coffee Lab';
-        const description =
-            this.coffeeLabService.currentForumLanguage === 'en'
-                ? 'Coffee Recipes and brewing guides created by experts from the coffee community.'
-                : 'Kafferecept och bryggguider skapat av kaffe experter från kaffeindustrin.';
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.document.URL);
-        this.seoService.setMetaData('property', 'og:image', seoVariables.image);
-
-        this.seoService.setMetaData('name', 'twitter:image', seoVariables.image);
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.document.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
+        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {

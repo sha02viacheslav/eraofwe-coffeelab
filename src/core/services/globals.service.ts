@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { COUNTRY_LIST, CONTINIENT_LIST, languages, POST_LIMIT_COUNT } from '@constants';
 import { Country } from '@models';
 import { DOCUMENT } from '@angular/common';
@@ -11,33 +10,13 @@ import { DOCUMENT } from '@angular/common';
     providedIn: 'root',
 })
 export class GlobalsService {
-    monthList: any[] = [
-        { label: 'January', value: '1' },
-        { label: 'February', value: '2' },
-        { label: 'March', value: '3' },
-        { label: 'April', value: '4' },
-        { label: 'May', value: '5' },
-        { label: 'June', value: '6' },
-        { label: 'July', value: '7' },
-        { label: 'August', value: '8' },
-        { label: 'September', value: '9' },
-        { label: 'October', value: '10' },
-        { label: 'November', value: '11' },
-        { label: 'December', value: '12' },
-    ];
     languageJson: any;
-    slugList: any;
-    permissions: any = {};
-    permissionList: any;
-    userInvitesArray: any = [];
-    device = 'desktop';
     previousUrl: string;
     currentUrl: string;
     logoAlt: string;
 
     constructor(
         private cookieService: CookieService,
-        private deviceSrv: DeviceDetectorService,
         private router: Router,
         @Inject(DOCUMENT) private document: Document,
     ) {
@@ -60,42 +39,6 @@ export class GlobalsService {
                     this.logoAlt = 'Title - Recept';
                 }
             });
-        if (deviceSrv.isMobile()) {
-            this.device = 'mobile';
-        } else if (deviceSrv.isTablet()) {
-            this.device = 'tablet';
-        }
-    }
-
-    checkItem(data, listkey = null) {
-        if (!listkey) {
-            const flag3 = this.slugList.filter((elememts) => elememts.slug === data)[0];
-            const arr1 = ['manage', 'view'];
-            if (flag3 && arr1.includes(flag3.access_type)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            const flag1 = this.slugList.filter((elememt) => elememt.slug === data)[0];
-            const flag2 = this.slugList.filter((element1) => element1.slug === data)[0];
-            const arr = ['manage', 'view'];
-            if ((flag1 && arr.includes(flag1.access_type)) || (flag2 && arr.includes(flag2.access_type))) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    permissionMethod() {
-        this.slugList = JSON.parse(this.cookieService.get('permissionSlug'));
-        this.slugList.forEach((element) => {
-            this.permissions[element.slug] = {
-                manage: element.access_type === 'manage' ? true : false,
-                view: element.access_type === 'view' ? true : false,
-            };
-        });
     }
 
     countTheString(value: any, count: any) {
@@ -173,10 +116,6 @@ export class GlobalsService {
     getJustText(content: any) {
         const contentElement = this.document.createElement('div');
         contentElement.innerHTML = content;
-        const images = contentElement.querySelectorAll('img');
-        images.forEach((image) => {
-            image.parentNode.removeChild(image);
-        });
         return contentElement.textContent;
     }
 }

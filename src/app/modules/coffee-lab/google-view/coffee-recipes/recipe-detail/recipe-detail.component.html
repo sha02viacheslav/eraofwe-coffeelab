@@ -1,10 +1,6 @@
 <main>
-    <div
-        class="back-page mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content"
-        [routerLink]="previousUrl"
-        *ngIf="previousUrl"
-    >
-        <a>
+    <div class="mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content" *ngIf="previousUrl">
+        <a class="back-page" [routerLink]="previousUrl">
             <span>{{ 'back' | translate }}</span>
         </a>
     </div>
@@ -59,10 +55,7 @@
                                 <label class="fnt-muli fnt-14 fnt-normal text-clr63 mb-0">{{
                                     recipeInfo.label | translate
                                 }}</label>
-                                <p
-                                    class="fnt-muli fnt-18 fnt-bold lh-normal text-clr334 mb-0 pt-2 pt-md-3"
-                                    *ngIf="detailsData"
-                                >
+                                <p class="fnt-muli fnt-18 fnt-bold text-clr334 mb-0 pt-2 pt-md-3" *ngIf="detailsData">
                                     {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
                                     }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}
                                 </p>
@@ -100,9 +93,9 @@
                             *ngFor="let step of detailsData?.steps; let i = index"
                             [id]="'step' + (i + 1)"
                         >
-                            <h3 class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
+                            <h3 class="fnt-muli fnt-14 fnt-semi-bold text-clr334 lh-157 mb-1">Step {{ i + 1 }}:</h3>
                             <div
-                                class="fnt-muli fnt-14 fnt-600 text-clr334 lh-157 mb-0 step-desc"
+                                class="fnt-muli fnt-14 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
                                 [innerHTML]="step.description"
                             ></div>
                             <img

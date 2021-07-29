@@ -1,31 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
 @import 'theme/styles/bootstrap';
 @import 'theme/styles/base';
 @import 'theme/styles/primeng/primeng';
 @import 'theme/styles/fonts';
 @import 'theme/styles/buttons';
-@import 'theme/styles/micro-effects';
 @import 'theme/styles/common';
 @import 'theme/styles/_variables';
 @import 'theme/styles/_header';
 @import 'theme/styles/toastr';
-
-body {
-    margin: 0 !important;
-    font-family: 'Muli' !important;
-    font-size: 0.875rem !important;
-    font-weight: 400 !important;
-    line-height: 1.5 !important;
-    color: #3e5569 !important;
-    text-align: left !important;
-    background-color: #f1f1f1 !important;
-}
 
 .stricky {
     position: fixed;
@@ -34,22 +19,6 @@ body {
     top: 0px;
     z-index: 99;
     box-shadow: 0 12px 44px -10px rgb(143 51 11 / 10%);
-}
-
-.text-left {
-    text-align: left !important;
-}
-
-.text-right {
-    text-align: right !important;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.position-relative {
-    position: relative !important;
 }
 
 .cursor-pointer {

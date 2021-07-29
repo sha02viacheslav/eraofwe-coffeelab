@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +32,7 @@ export class QuestionDetailComponent implements OnInit {
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
@@ -46,11 +47,13 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getQaList() {
-        this.coffeeLabService.getForumList('question').subscribe((res: any) => {
+        this.coffeeLabService.getForumList('question', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result.questions
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
@@ -67,7 +70,7 @@ export class QuestionDetailComponent implements OnInit {
                 this.lang = res.result.lang_code;
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${this.lang === 'en' ? 'qa-forum' : routerMap.sv['qa-forum']}`;
+                this.previousUrl = `/${this.lang}/${routerMap[this.lang]['qa-forum']}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {
@@ -81,22 +84,11 @@ export class QuestionDetailComponent implements OnInit {
     setSEO() {
         const title = this.detailsData?.question || this.idOrSlug.replace('-', '');
         const firstAnswer = this.detailsData?.answers[0];
-        const description = firstAnswer
-            ? this.globalsService.getJustText(firstAnswer.answer)
-            : 'Questions and Answers for Coffee.';
+        const description =
+            this.globalsService.getJustText(firstAnswer?.answer || '') || 'Questions and Answers for Coffee.';
         const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
 
-        this.seoService.setPageTitle(title);
-        this.seoService.setMetaData('name', 'description', description);
-
-        this.seoService.setMetaData('property', 'og:title', title);
-        this.seoService.setMetaData('property', 'og:description', description);
-        this.seoService.setMetaData('property', 'og:url', this.doc.URL);
-
-        this.seoService.setMetaData('name', 'twitter:creator', seoVariables.author);
-        this.seoService.setMetaData('name', 'twitter:site', this.doc.URL);
-        this.seoService.setMetaData('name', 'twitter:title', title);
-        this.seoService.setMetaData('name', 'twitter:description', description);
+        this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {

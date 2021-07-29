@@ -13,7 +13,6 @@ import { ArticleDetailComponent } from './google-view/articles/article-detail/ar
 
 import { TranslationDropdownComponent } from './components/translation-dropdown/translation-dropdown.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
-import { BottomBannerComponent } from './components/bottom-banner/bottom-banner.component';
 import { SearchForumComponent } from './components/search-forum/search-forum.component';
 import { JsonLdComponent } from './components/json-ld/json-ld.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -21,7 +20,6 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { JoinCommunityComponent } from './components/join-community/join-community.component';
 import { ForumMenuComponent } from './components/forum-menu/forum-menu.component';
-import { QuestionsComponent } from './components/questions/questions.component';
 import { OverviewComponent } from './google-view/overview/overview.component';
 import { LanguageDropdownComponent } from './components/language-dropdown/language-dropdown.component';
 import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
@@ -39,7 +37,6 @@ import { LimitBannerComponent } from './components/limit-banner/limit-banner.com
         ArticleDetailComponent,
         TranslationDropdownComponent,
         ForumCardComponent,
-        BottomBannerComponent,
         SearchForumComponent,
         JsonLdComponent,
         UserDetailComponent,
@@ -47,7 +44,6 @@ import { LimitBannerComponent } from './components/limit-banner/limit-banner.com
         EraOfWeComponent,
         JoinCommunityComponent,
         ForumMenuComponent,
-        QuestionsComponent,
         OverviewComponent,
         LanguageDropdownComponent,
         SignupModalComponent,

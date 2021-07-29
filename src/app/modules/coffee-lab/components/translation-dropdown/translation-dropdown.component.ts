@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { languages } from '@constants';
 import { GlobalsService } from '@services';
 
 @Component({
@@ -10,7 +9,6 @@ import { GlobalsService } from '@services';
 export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;
     @Input() forumType;
-    languages = languages;
 
     constructor(public globalsService: GlobalsService) {}
 

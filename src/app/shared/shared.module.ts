@@ -3,170 +3,61 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { GalleryModule } from 'ng-gallery';
-import { LightboxModule } from 'ng-gallery/lightbox';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MomentModule } from 'ngx-moment';
-
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { ButtonModule } from 'primeng/button';
-import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ChipsModule } from 'primeng/chips';
-import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
-import { GalleriaModule } from 'primeng/galleria';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
-import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { RatingModule } from 'primeng/rating';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { SkeletonModule } from 'primeng/skeleton';
-import { SliderModule } from 'primeng/slider';
-import { TableModule } from 'primeng/table';
-import { TabMenuModule } from 'primeng/tabmenu';
-import { TabViewModule } from 'primeng/tabview';
-import { TooltipModule } from 'primeng/tooltip';
-import { TreeModule } from 'primeng/tree';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { DividerModule } from 'primeng/divider';
-import { AccordionModule } from 'primeng/accordion';
-import { AvatarModule } from 'primeng/avatar';
-import { BadgeModule } from 'primeng/badge';
 import { PaginatorModule } from 'primeng/paginator';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TabMenuModule } from 'primeng/tabmenu';
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MomentModule } from 'ngx-moment';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FileIconPipe } from './pipes/file-icon.pipe';
-import { FileNamePipe } from './pipes/file-name.pipe';
-import { MonthPipe } from './pipes/month/month.pipe';
-import { WordCountPipe } from './pipes/word-count/word-count.pipe';
-import { ArrayFilterPipe } from './pipes/array-filter.pipe';
-import { StringReplacePipe } from './pipes/string-replace.pipe';
-import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
-import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
-
-import { WordLimitDirective } from './directives/word-limit.directive';
-
-// #region third libs
 const THIRDMODULES = [
-    ModalModule,
-    PopoverModule,
-    TypeaheadModule,
-    AutoCompleteModule,
-    BreadcrumbModule,
-    ButtonModule,
-    CalendarModule,
     CarouselModule,
-    CheckboxModule,
-    DialogModule,
-    ChipsModule,
+    DividerModule,
     DropdownModule,
     DynamicDialogModule,
-    GalleriaModule,
-    InputNumberModule,
-    InputSwitchModule,
-    InputTextareaModule,
     InputTextModule,
-    MenuModule,
-    MultiSelectModule,
-    OverlayPanelModule,
-    ProgressSpinnerModule,
-    RadioButtonModule,
-    RatingModule,
-    SelectButtonModule,
-    SkeletonModule,
-    SliderModule,
-    TableModule,
-    TabMenuModule,
-    TabViewModule,
-    TooltipModule,
-    TreeModule,
-    TranslateModule,
-    ProgressBarModule,
-    AccordionModule,
-    DividerModule,
-    AvatarModule,
-    BadgeModule,
-    LightboxModule,
-    GalleryModule,
     LazyLoadImageModule,
+    MenuModule,
     MomentModule,
+    OverlayPanelModule,
     PaginatorModule,
+    SkeletonModule,
+    TabMenuModule,
+    TranslateModule,
 ];
 // #endregion
 
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { BlankComponent } from './components/blank/blank.component';
-import { EmptyComponent } from './components/empty/empty.component';
-import { MediaComponent } from './components/media/media.component';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
-import { ReadMoreComponent } from './components/read-more/read-more.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { ConfirmComponent } from './components/confirm/confirm.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
-const COMPONENTS = [
-    AvatarComponent,
-    BlankComponent,
-    EmptyComponent,
-    BlankComponent,
-    MediaComponent,
-    VideoPlayerComponent,
-    ReadMoreComponent,
-    LoadingComponent,
-    ConfirmComponent,
-];
+const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
 
-const DIRECTIVES = [WordLimitDirective];
-const PIPES = [
-    ArrayFilterPipe,
-    FileIconPipe,
-    FileNamePipe,
-    MonthPipe,
-    StringReplacePipe,
-    WordCountPipe,
-    ConvertToShortDescriptionPipe,
-    DateAgoReplacePipe,
-];
-// #endregion
+const DIRECTIVES = [];
+
+import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
+import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
+
+const PIPES = [ConvertToShortDescriptionPipe, DateAgoReplacePipe];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        ReactiveFormsModule,
-        // third libs
-        ...THIRDMODULES,
-    ],
-    declarations: [
-        // your components
-        ...COMPONENTS,
-        ...DIRECTIVES,
-        ...PIPES,
-    ],
+    imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ...THIRDMODULES],
+    declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
 
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-
-        // third libs
         ...THIRDMODULES,
-        // your components
         ...COMPONENTS,
         ...DIRECTIVES,
         ...PIPES,

@@ -5,6 +5,7 @@ import ngPt from '@angular/common/locales/pt';
 import ngEs from '@angular/common/locales/es';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { LangPrefixService } from '../lang-prefix.service';
 
 interface LangData {
     text: string;
@@ -45,7 +46,7 @@ export class I18NService {
         return { code, text: item.text };
     });
 
-    constructor(private translate: TranslateService) {
+    constructor(private translate: TranslateService, private langPrefixService: LangPrefixService) {
         const lans = this.langs.map((item) => item.code);
         translate.addLangs(lans);
 
@@ -53,8 +54,8 @@ export class I18NService {
         if (lans.includes(defaultLan)) {
             this.default = defaultLan;
         }
-
-        this.updateLangData(this.default);
+        const lang = this.langPrefixService.langPrefix();
+        this.updateLangData(lang || this.default);
     }
 
     private getDefaultLang(): string | undefined {
@@ -65,7 +66,8 @@ export class I18NService {
 
     private updateLangData(lang: string) {
         const item = LANGS[lang];
-        registerLocaleData(item.ng);
+        this.translate.use(lang);
+        registerLocaleData(item?.ng || ngEn);
     }
 
     use(lang: string): void {
@@ -91,6 +93,6 @@ export class I18NService {
     }
 
     get locale() {
-        return LANGS[this.currentLang].locale;
+        return LANGS[this.currentLang]?.locale || 'en-US';
     }
 }

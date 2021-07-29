@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -9,11 +10,17 @@ export class ResizeService {
     private readonly tabletMinWidth = 768;
     private readonly desktopMinWidth = 992;
 
-    private readonly isMobileSubject = new BehaviorSubject<boolean>(window.innerWidth < this.tabletMinWidth);
-    private readonly isTabletSubject = new BehaviorSubject<boolean>(
-        window.innerWidth < this.desktopMinWidth && window.innerWidth >= this.tabletMinWidth,
+    private readonly isMobileSubject = new BehaviorSubject<boolean>(
+        isPlatformBrowser(this.platformId) ? window.innerWidth < this.tabletMinWidth : false,
     );
-    private readonly isDesktopSubject = new BehaviorSubject<boolean>(window.innerWidth >= this.desktopMinWidth);
+    private readonly isTabletSubject = new BehaviorSubject<boolean>(
+        isPlatformBrowser(this.platformId)
+            ? window.innerWidth < this.desktopMinWidth && window.innerWidth >= this.tabletMinWidth
+            : false,
+    );
+    private readonly isDesktopSubject = new BehaviorSubject<boolean>(
+        isPlatformBrowser(this.platformId) ? window.innerWidth >= this.desktopMinWidth : true,
+    );
 
     get isMobile$(): Observable<boolean> {
         return this.isMobileSubject.asObservable().pipe(distinctUntilChanged());
@@ -26,6 +33,8 @@ export class ResizeService {
     get isDesktop$(): Observable<boolean> {
         return this.isDesktopSubject.asObservable().pipe(distinctUntilChanged());
     }
+
+    constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
     isMobile(): boolean {
         return this.isMobileSubject.getValue();

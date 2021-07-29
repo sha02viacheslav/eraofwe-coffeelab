@@ -7,13 +7,17 @@
             <div class="d-flex flex-column flex-md-row">
                 <span class="text-content pr-0 pr-md-6 my-3 my-md-0">
                     {{ 'about_us' | translate }}
-                    <a class="footer-link" [href]="env.termsUserUrl" target="_blank">
+                    <a
+                        class="footer-link"
+                        href="{{ hostProtocol + '//' + hostName + '/terms-and-condition' }}"
+                        target="_blank"
+                    >
                         {{ 'terms_and_condition_user' | translate }}
                     </a>
-                    <a [href]="env.privacyPolicyUrl" target="_blank">
+                    <a href="{{ hostProtocol + '//' + hostName + '/privacy-policy' }}" target="_blank">
                         {{ 'privacy_policy' | translate }}
                     </a>
-                    <a [href]="env.cookiePolicyUrl" target="_blank">
+                    <a href="{{ hostProtocol + '//' + hostName + '/cookie-policy' }}" target="_blank">
                         {{ 'cookie_policy' | translate }}
                     </a>
                 </span>

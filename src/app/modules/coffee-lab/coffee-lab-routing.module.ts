@@ -60,6 +60,38 @@ const routes: Routes = [
                         path: `sv/${routerMap.sv['about-era-of-we']}`,
                         component: EraOfWeComponent,
                     },
+                    {
+                        path: 'pt/qa-forum',
+                        component: QaForumViewComponent,
+                    },
+                    {
+                        path: 'pt/articles',
+                        component: ArticlesViewComponent,
+                    },
+                    {
+                        path: 'pt/coffee-recipes',
+                        component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'pt/about-era-of-we',
+                        component: EraOfWeComponent,
+                    },
+                    {
+                        path: 'es/qa-forum',
+                        component: QaForumViewComponent,
+                    },
+                    {
+                        path: 'es/articles',
+                        component: ArticlesViewComponent,
+                    },
+                    {
+                        path: 'es/coffee-recipes',
+                        component: CoffeeRecipesViewComponent,
+                    },
+                    {
+                        path: 'es/about-era-of-we',
+                        component: EraOfWeComponent,
+                    },
                 ],
             },
             {
@@ -74,6 +106,7 @@ const routes: Routes = [
                 path: ':lang/articles/:idOrSlug',
                 component: ArticleDetailComponent,
             },
+            { path: '**', redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar' },
         ],
     },
 ];
