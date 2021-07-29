@@ -41,7 +41,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 
 const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
 
-const DIRECTIVES = [];
+import { AppShellNoRenderDirective } from './directives';
+const DIRECTIVES = [AppShellNoRenderDirective];
 
 import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
 import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
