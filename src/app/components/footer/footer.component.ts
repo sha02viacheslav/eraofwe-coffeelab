@@ -8,8 +8,6 @@ import { CoffeeLabService } from '../../../core/services/api/coffee-lab.service'
     styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-    hostName = location.host;
-    hostProtocol = location.protocol;
     readonly env = environment;
     constructor(public coffeeLabService: CoffeeLabService) {}
 

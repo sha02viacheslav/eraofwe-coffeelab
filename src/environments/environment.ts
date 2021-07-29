@@ -26,6 +26,7 @@ export const environment = {
     twitterUrl: 'https://twitter.com/eraofweofficial',
     instagramUrl: 'https://www.instagram.com/eraofweofficial/',
     linkedinUrl: 'https://www.linkedin.com/company/eraofwe/',
+    publicWeb: 'https://sewnstaging.com',
     needProtect: false,
     production: false,
 };
