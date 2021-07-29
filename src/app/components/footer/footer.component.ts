@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
+import { CoffeeLabService } from '../../../core/services/api/coffee-lab.service';
 
 @Component({
     selector: 'app-footer',
@@ -7,12 +8,8 @@ import { environment } from '@env/environment';
     styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-    hostName = location.host;
-    hostProtocol = location.protocol;
     readonly env = environment;
-    constructor() {}
+    constructor(public coffeeLabService: CoffeeLabService) {}
 
-    ngOnInit(): void {
-        console.log(this.hostName, this.hostProtocol);
-    }
+    ngOnInit(): void {}
 }
