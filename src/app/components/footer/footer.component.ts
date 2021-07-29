@@ -7,8 +7,12 @@ import { environment } from '@env/environment';
     styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
+    hostName = location.host;
+    hostProtocol = location.protocol;
     readonly env = environment;
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        console.log(this.hostName, this.hostProtocol);
+    }
 }
