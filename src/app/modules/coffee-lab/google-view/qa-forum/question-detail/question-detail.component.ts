@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
-import { routerMap, seoVariables } from '@constants';
+import { RouterMap, seoVariables } from '@constants';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-question-detail',
@@ -70,7 +71,7 @@ export class QuestionDetailComponent implements OnInit {
                 this.lang = res.result.lang_code;
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${routerMap[this.lang]['qa-forum']}`;
+                this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {

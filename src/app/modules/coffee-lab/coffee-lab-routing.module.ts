@@ -10,7 +10,8 @@ import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/
 import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
 import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
-import { routerMap } from '@constants';
+import { RouterMap } from '@constants';
+import { RouterSlug } from '@enums';
 
 const userLang = navigator.language;
 const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
@@ -45,19 +46,19 @@ const routes: Routes = [
                         component: EraOfWeComponent,
                     },
                     {
-                        path: `sv/${routerMap.sv['qa-forum']}`,
+                        path: `sv/${RouterMap.sv[RouterSlug.QA]}`,
                         component: QaForumViewComponent,
                     },
                     {
-                        path: `sv/${routerMap.sv['articles']}`,
+                        path: `sv/${RouterMap.sv[RouterSlug.ARTICLE]}`,
                         component: ArticlesViewComponent,
                     },
                     {
-                        path: `sv/${routerMap.sv['coffee-recipes']}`,
+                        path: `sv/${RouterMap.sv[RouterSlug.RECIPE]}`,
                         component: CoffeeRecipesViewComponent,
                     },
                     {
-                        path: `sv/${routerMap.sv['about-era-of-we']}`,
+                        path: `sv/${RouterMap.sv[RouterSlug.EOW]}`,
                         component: EraOfWeComponent,
                     },
                     {

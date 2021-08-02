@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, GlobalsService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { routerMap } from '@constants';
+import { RouterMap, SlugMap } from '@constants';
 import { MenuItem } from 'primeng/api';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-overview',
@@ -31,7 +32,7 @@ export class OverviewComponent implements OnInit {
                 if (this.globalsService.currentUrl) {
                     currentRouter = this.globalsService.currentUrl.split('/')[2].split('?')[0];
                 }
-                this.router.navigate([`/${language}/${routerMap[language][currentRouter]}`], {
+                this.router.navigate([`/${language}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`], {
                     queryParamsHandling: 'merge',
                 });
             });
@@ -42,25 +43,25 @@ export class OverviewComponent implements OnInit {
         return [
             {
                 label: 'question_answers',
-                routerLink: `/${language}/${routerMap[language]['qa-forum']}`,
+                routerLink: `/${language}/${RouterMap[language][RouterSlug.QA]}`,
                 icon: 'assets/images/qa-forum.svg',
                 activeIcon: 'assets/images/qa-forum-active.svg',
             },
             {
                 label: 'posts',
-                routerLink: `/${language}/${routerMap[language].articles}`,
+                routerLink: `/${language}/${RouterMap[language][RouterSlug.ARTICLE]}`,
                 icon: 'assets/images/article.svg',
                 activeIcon: 'assets/images/article-active.svg',
             },
             {
                 label: 'brewing_guides',
-                routerLink: `/${language}/${routerMap[language]['coffee-recipes']}`,
+                routerLink: `/${language}/${RouterMap[language][RouterSlug.RECIPE]}`,
                 icon: 'assets/images/coffee-recipe.svg',
                 activeIcon: 'assets/images/coffee-recipe-active.svg',
             },
             {
                 label: 'about_era_of_we',
-                routerLink: `/${language}/${routerMap[language]['about-era-of-we']}`,
+                routerLink: `/${language}/${RouterMap[language][RouterSlug.EOW]}`,
                 icon: 'assets/images/era-of-we.svg',
                 activeIcon: 'assets/images/era-of-we-active.svg',
             },

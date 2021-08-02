@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
-import { routerMap } from '@constants';
+import { RouterMap } from '@constants';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-join-community',
@@ -10,7 +11,8 @@ import { routerMap } from '@constants';
     styleUrls: ['./join-community.component.scss'],
 })
 export class JoinCommunityComponent implements OnInit {
-    readonly routerMap = routerMap;
+    readonly RouterMap = RouterMap;
+    readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
     constructor(@Inject(DOCUMENT) private document: Document, public coffeeLabService: CoffeeLabService) {}

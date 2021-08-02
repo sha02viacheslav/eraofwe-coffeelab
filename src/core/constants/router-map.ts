@@ -1,42 +1,41 @@
-export const routerMap = {
+import { RouterSlug } from '@enums';
+
+export const ROUTER_SLUG_ITEMS: string[] = [RouterSlug.QA, RouterSlug.ARTICLE, RouterSlug.RECIPE, RouterSlug.EOW];
+
+export const RouterMap = {
     en: {
-        'qa-forum': 'qa-forum',
-        articles: 'articles',
-        'coffee-recipes': 'coffee-recipes',
-        'about-era-of-we': 'about-era-of-we',
-        'fragor-och-svar': 'qa-forum',
-        'artiklar-och-kunskap': 'articles',
-        'recept-och-bryggningsmetoder': 'coffee-recipes',
-        'om-era-of-we': 'about-era-of-we',
+        [RouterSlug.QA]: 'qa-forum',
+        [RouterSlug.ARTICLE]: 'articles',
+        [RouterSlug.RECIPE]: 'coffee-recipes',
+        [RouterSlug.EOW]: 'about-era-of-we',
     },
     sv: {
-        'qa-forum': 'fragor-och-svar',
-        articles: 'artiklar-och-kunskap',
-        'coffee-recipes': 'recept-och-bryggningsmetoder',
-        'about-era-of-we': 'om-era-of-we',
-        'fragor-och-svar': 'fragor-och-svar',
-        'artiklar-och-kunskap': 'artiklar-och-kunskap',
-        'recept-och-bryggningsmetoder': 'recept-och-bryggningsmetoder',
-        'om-era-of-we': 'om-era-of-we',
+        [RouterSlug.QA]: 'fragor-och-svar',
+        [RouterSlug.ARTICLE]: 'artiklar-och-kunskap',
+        [RouterSlug.RECIPE]: 'recept-och-bryggningsmetoder',
+        [RouterSlug.EOW]: 'om-era-of-we',
     },
     pt: {
-        'qa-forum': 'qa-forum',
-        articles: 'articles',
-        'coffee-recipes': 'coffee-recipes',
-        'about-era-of-we': 'about-era-of-we',
-        'fragor-och-svar': 'qa-forum',
-        'artiklar-och-kunskap': 'articles',
-        'recept-och-bryggningsmetoder': 'coffee-recipes',
-        'om-era-of-we': 'about-era-of-we',
+        [RouterSlug.QA]: 'qa-forum',
+        [RouterSlug.ARTICLE]: 'articles',
+        [RouterSlug.RECIPE]: 'coffee-recipes',
+        [RouterSlug.EOW]: 'about-era-of-we',
     },
     es: {
-        'qa-forum': 'qa-forum',
-        articles: 'articles',
-        'coffee-recipes': 'coffee-recipes',
-        'about-era-of-we': 'about-era-of-we',
-        'fragor-och-svar': 'qa-forum',
-        'artiklar-och-kunskap': 'articles',
-        'recept-och-bryggningsmetoder': 'coffee-recipes',
-        'om-era-of-we': 'about-era-of-we',
+        [RouterSlug.QA]: 'qa-forum',
+        [RouterSlug.ARTICLE]: 'articles',
+        [RouterSlug.RECIPE]: 'coffee-recipes',
+        [RouterSlug.EOW]: 'about-era-of-we',
     },
+};
+
+export const SlugMap = {
+    'qa-forum': RouterSlug.QA,
+    articles: RouterSlug.ARTICLE,
+    'coffee-recipes': RouterSlug.RECIPE,
+    'about-era-of-we': RouterSlug.EOW,
+    'fragor-och-svar': RouterSlug.QA,
+    'artiklar-och-kunskap': RouterSlug.ARTICLE,
+    'recept-och-bryggningsmetoder': RouterSlug.RECIPE,
+    'om-era-of-we': RouterSlug.EOW,
 };

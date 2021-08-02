@@ -5,7 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
 import { DISCUSSIONS_FORUM } from '../../data';
-import { routerMap, seoVariables } from '@constants';
+import { RouterMap, seoVariables } from '@constants';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-article-detail',
@@ -68,9 +69,9 @@ export class ArticleDetailComponent implements OnInit {
                 this.detailsData = res.result;
                 this.lang = res.result.language;
                 if (res.result?.is_era_of_we) {
-                    this.previousUrl = '/en/about-era-of-we';
+                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;
                 } else {
-                    this.previousUrl = `/${this.lang}/${routerMap[this.lang].articles}`;
+                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
                     this.globalsService.setLimitCounter();
                 }
                 this.startupService.load(this.lang || 'en');

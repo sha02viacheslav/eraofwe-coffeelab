@@ -4,7 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
-import { routerMap, seoVariables } from '@constants';
+import { RouterMap, seoVariables } from '@constants';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -90,7 +91,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${routerMap[this.lang]['coffee-recipes']}`;
+                this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                 this.setSEO();
                 this.setSchemaMackup();
             } else {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
-import { APP_LANGUAGES } from '@constants';
+import { APP_LANGUAGES, RouterMap, ROUTER_SLUG_ITEMS } from '@constants';
 
 @Component({
     selector: 'app-language-dropdown',
@@ -8,6 +8,8 @@ import { APP_LANGUAGES } from '@constants';
     styleUrls: ['./language-dropdown.component.scss'],
 })
 export class LanguageDropdownComponent implements OnInit {
+    readonly RouterMap = RouterMap;
+    readonly ROUTER_SLUG_ITEMS = ROUTER_SLUG_ITEMS;
     languageList: any[] = APP_LANGUAGES;
     selectedLanguage: string;
 
