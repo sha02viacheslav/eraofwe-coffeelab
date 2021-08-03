@@ -99,8 +99,9 @@
                                 [innerHTML]="step.description"
                             ></div>
                             <img
+                                *ngIf="step.image_thumb_url || step.image_url"
                                 class="w-100"
-                                [lazyLoad]="step.image_thumb_url || step.image_thumb_url"
+                                [lazyLoad]="step.image_thumb_url || step.image_url"
                                 [alt]="detailsData?.name + ' step image'"
                             />
                         </div>
