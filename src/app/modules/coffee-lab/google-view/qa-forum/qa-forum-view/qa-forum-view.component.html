@@ -63,7 +63,7 @@
     </div>
     <div *ngIf="!isLoading">
         <div class="d-flex">
-            <div class="flex-1 pr-lg-2">
+            <div class="flex-1 pr-lg-2" [ngClass]="{ 'no-data': !questions.length }">
                 <div class="row gutter-24">
                     <div
                         *ngFor="let question of questions; let i = index"
@@ -135,6 +135,9 @@
                         (onPageChange)="paginate($event)"
                     ></app-paginator>
                 </div>
+                <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
+                    {{ 'no_data_is_available' | translate }}
+                </div>
             </div>
             <div class="pl-lg-2 w-min-content d-none d-lg-block h-fit-content">
                 <app-join-community></app-join-community>
@@ -143,8 +146,5 @@
     </div>
     <div *ngIf="isLoading">
         <app-loading></app-loading>
-    </div>
-    <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
-        {{ 'no_data_is_available' | translate }}
     </div>
 </div>
