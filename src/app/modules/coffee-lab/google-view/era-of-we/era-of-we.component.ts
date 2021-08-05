@@ -4,9 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { SeoDescription, SeoTitle } from '@constants';
-
-import { DISCUSSIONS_FORUM } from '../data';
 import { RouterSlug } from '@enums';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-era-of-we',

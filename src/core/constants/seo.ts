@@ -10,25 +10,25 @@ export const SeoTitle = {
         [RouterSlug.QA]: 'Coffee Questions & Answer Forum',
         [RouterSlug.ARTICLE]: 'Coffee Articles Shared by Knowledgeable Coffee Experts',
         [RouterSlug.RECIPE]: 'Coffee Recipes & Brewing Guides for consumers and experts',
-        [RouterSlug.EOW]: 'Era of We - The Coffee Lab',
+        [RouterSlug.EOW]: 'About Era of We - The Coffee Lab',
     },
     sv: {
         [RouterSlug.QA]: 'Kaffe Frågor & Svar Forum',
         [RouterSlug.ARTICLE]: 'Kaffefakta och artiklar delat av kaffe experter från hela världen',
         [RouterSlug.RECIPE]: 'Kafferecept & Byggmetoder för konsumenter och experter',
-        [RouterSlug.EOW]: 'Era of We - The Coffee Lab',
+        [RouterSlug.EOW]: 'About Era of We - The Coffee Lab',
     },
     pt: {
         [RouterSlug.QA]: 'Coffee Questions & Answer Forum',
         [RouterSlug.ARTICLE]: 'Coffee Articles Shared by Knowledgeable Coffee Experts',
         [RouterSlug.RECIPE]: 'Coffee Recipes & Brewing Guides for consumers and experts',
-        [RouterSlug.EOW]: 'Era of We - The Coffee Lab',
+        [RouterSlug.EOW]: 'About Era of We - The Coffee Lab',
     },
     es: {
         [RouterSlug.QA]: 'Coffee Questions & Answer Forum',
         [RouterSlug.ARTICLE]: 'Coffee Articles Shared by Knowledgeable Coffee Experts',
         [RouterSlug.RECIPE]: 'Coffee Recipes & Brewing Guides for consumers and experts',
-        [RouterSlug.EOW]: 'Era of We - The Coffee Lab',
+        [RouterSlug.EOW]: 'About Era of We - The Coffee Lab',
     },
 };
 
