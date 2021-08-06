@@ -115,7 +115,7 @@ export class RecipeDetailComponent implements OnInit {
             title = 'Era of We Coffee Marketplace';
         }
         if (this.detailsData?.description) {
-            if (this.globalsService.getJustText(this.detailsData?.description).length < 40) {
+            if (this.globalsService.getJustText(this.detailsData?.description).length < 60) {
                 description = this.detailsData?.description.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
