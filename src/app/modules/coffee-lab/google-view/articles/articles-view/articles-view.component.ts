@@ -18,26 +18,8 @@ import { RouterSlug } from '@enums';
 })
 export class ArticlesViewComponent extends ResizeableComponent implements OnInit {
     keyword?: string;
-    translationsList: any[] = [
-        {
-            label: 'Yes',
-            value: true,
-        },
-        {
-            label: 'No',
-            value: false,
-        },
-    ];
-    orderList: any[] = [
-        {
-            label: 'Latest',
-            value: 'latest',
-        },
-        {
-            label: 'Oldest',
-            value: 'oldest',
-        },
-    ];
+    translationsList: any[] = [];
+    orderList: any[] = [];
     isAvailableTranslation?: any;
     selectedOrder = 'latest';
     articlesData: any[] = [];

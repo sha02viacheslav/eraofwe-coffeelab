@@ -10,6 +10,9 @@
     width: 374px;
     min-width: 100%;
 
+    a.wrap-text {
+        white-space: pre-wrap;
+    }
     a.text-clr55c:hover {
         color: $primary-color;
     }

@@ -21,10 +21,11 @@
                 {{ 'or' | translate }}
             </p>
             <a
-                class="fnt-muli fnt-16 fnt-bold pl-3 text-clr55c cursor-pointer text-underline mt-3 text"
+                class="fnt-muli fnt-16 fnt-bold pl-3 text-clr55c cursor-pointer text-underline mt-3"
                 routerLink="/{{ coffeeLabService.currentForumLanguage }}/{{
                     RouterMap[coffeeLabService.currentForumLanguage][RouterSlug.QA]
                 }}"
+                [ngClass]="{ 'wrap-text': i18nService.currentLang === 'pt' || i18nService.currentLang === 'es' }"
                 >{{ 'explore_lab' | translate }}</a
             >
         </div>
