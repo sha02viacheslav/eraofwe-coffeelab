@@ -34,7 +34,7 @@ export class ArticleDetailComponent implements OnInit {
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
-        this.setSEO();
+        // this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
@@ -86,10 +86,29 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     setSEO() {
-        const title = this.detailsData?.title || 'Era of We - The Coffee Lab';
-        const description = this.detailsData?.content
-            ? this.globalsService.getJustText(this.detailsData?.content)
-            : 'Era of We - Article for Coffee';
+        let title: string;
+        let description: string;
+        if (this.detailsData?.title) {
+            if (this.detailsData?.title.length < 40) {
+                title = this.detailsData?.title.concat(' - Era of We Coffee Marketplace');
+            } else {
+                title = this.detailsData?.title;
+            }
+        } else {
+            title = 'Era of We Coffee Marketplace';
+        }
+        if (this.detailsData?.content) {
+            if (this.globalsService.getJustText(this.detailsData?.content).length < 40) {
+                title = this.detailsData?.content.concat(
+                    '- Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                );
+            } else {
+                title = this.globalsService.getJustText(this.detailsData?.content);
+            }
+        } else {
+            description =
+                'Era of We A global coffee marketplace and community that brings together all members of the supply chain';
+        }
         const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
 
         this.seoService.setSEO(title, description);

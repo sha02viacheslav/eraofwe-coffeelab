@@ -43,8 +43,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     articlesData: any[] = [];
     isLoading = false;
     totalRecords = 0;
-    rows: number = 8;
-    page: number = 1;
+    rows = 8;
+    page = 1;
     jsonLD: any;
     destroy$: Subject<boolean> = new Subject<boolean>();
 

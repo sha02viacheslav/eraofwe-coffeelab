@@ -67,7 +67,7 @@ export class RecipeDetailComponent implements OnInit {
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
         }
-        this.setSEO();
+        // this.setSEO();
     }
 
     getRecipeList() {
@@ -103,10 +103,29 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     setSEO() {
-        const title = this.detailsData?.name || 'Era of We - The Coffee Lab';
-        const description = this.detailsData?.description
-            ? this.globalsService.getJustText(this.detailsData?.description)
-            : 'Era of We - Article for Coffee';
+        let title: string;
+        let description: string;
+        if (this.detailsData?.name) {
+            if (this.detailsData?.name.length < 40) {
+                title = this.detailsData?.name.concat(' - Era of We Coffee Marketplace');
+            } else {
+                title = this.detailsData?.name;
+            }
+        } else {
+            title = 'Era of We Coffee Marketplace';
+        }
+        if (this.detailsData?.description) {
+            if (this.globalsService.getJustText(this.detailsData?.description).length < 40) {
+                title = this.detailsData?.description.concat(
+                    '- Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                );
+            } else {
+                title = this.globalsService.getJustText(this.detailsData?.description);
+            }
+        } else {
+            description =
+                'Era of We A global coffee marketplace and community that brings together all members of the supply chain';
+        }
         const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
 
         this.seoService.setSEO(title, description);

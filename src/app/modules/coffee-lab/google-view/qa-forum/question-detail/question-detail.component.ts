@@ -38,7 +38,7 @@ export class QuestionDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
-                this.setSEO();
+                // this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -83,10 +83,32 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     setSEO() {
-        const title = this.detailsData?.question || this.idOrSlug.replace('-', '');
+        let title: string;
+        let description: string;
         const firstAnswer = this.detailsData?.answers[0];
-        const description =
-            this.globalsService.getJustText(firstAnswer?.answer || '') || 'Questions and Answers for Coffee.';
+        if (this.detailsData?.question) {
+            if (this.detailsData?.question.length < 40) {
+                title = this.detailsData?.question.concat(' - Era of We Coffee Marketplace');
+            } else {
+                title = this.detailsData?.question;
+            }
+        } else {
+            title = this.idOrSlug.replace('-', '').concat(' - Era of We Coffee Marketplace');
+        }
+        if (this.globalsService.getJustText(firstAnswer?.answer)) {
+            if (this.globalsService.getJustText(firstAnswer?.answer).length < 40) {
+                title = this.globalsService
+                    .getJustText(firstAnswer?.answer)
+                    .concat(
+                        '- Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                    );
+            } else {
+                title = this.globalsService.getJustText(firstAnswer?.answer);
+            }
+        } else {
+            description =
+                'Era of We A global coffee marketplace and community that brings together all members of the supply chain';
+        }
         const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
 
         this.seoService.setSEO(title, description);
