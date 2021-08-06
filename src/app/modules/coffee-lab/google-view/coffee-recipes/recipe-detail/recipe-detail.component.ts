@@ -116,11 +116,11 @@ export class RecipeDetailComponent implements OnInit {
         }
         if (this.detailsData?.description) {
             if (this.globalsService.getJustText(this.detailsData?.description).length < 40) {
-                title = this.detailsData?.description.concat(
+                description = this.detailsData?.description.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                title = this.globalsService.getJustText(this.detailsData?.description);
+                description = this.globalsService.getJustText(this.detailsData?.description);
             }
         } else {
             description =

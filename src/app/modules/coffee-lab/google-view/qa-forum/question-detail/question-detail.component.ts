@@ -97,13 +97,13 @@ export class QuestionDetailComponent implements OnInit {
         }
         if (this.globalsService.getJustText(firstAnswer?.answer)) {
             if (this.globalsService.getJustText(firstAnswer?.answer).length < 40) {
-                title = this.globalsService
+                description = this.globalsService
                     .getJustText(firstAnswer?.answer)
                     .concat(
                         ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                     );
             } else {
-                title = this.globalsService.getJustText(firstAnswer?.answer);
+                description = this.globalsService.getJustText(firstAnswer?.answer);
             }
         } else {
             description =
