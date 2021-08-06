@@ -100,7 +100,7 @@ export class QuestionDetailComponent implements OnInit {
                 title = this.globalsService
                     .getJustText(firstAnswer?.answer)
                     .concat(
-                        '- Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                        ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                     );
             } else {
                 title = this.globalsService.getJustText(firstAnswer?.answer);

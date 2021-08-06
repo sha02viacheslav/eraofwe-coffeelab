@@ -100,7 +100,7 @@ export class ArticleDetailComponent implements OnInit {
         if (this.detailsData?.content) {
             if (this.globalsService.getJustText(this.detailsData?.content).length < 40) {
                 title = this.detailsData?.content.concat(
-                    '- Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                    ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
                 title = this.globalsService.getJustText(this.detailsData?.content);
