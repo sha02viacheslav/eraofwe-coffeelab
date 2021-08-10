@@ -15,6 +15,6 @@ export class DateAgoReplacePipe implements PipeTransform {
         if (isNaN(+amount)) {
             suffix = this.globalService.languageJson[amount];
         }
-        return `${suffix ?? amount} ${this.globalService.languageJson[unit]}`;
+        return `${suffix ?? amount} ${this.globalService.languageJson[unit]} ago`;
     }
 }
