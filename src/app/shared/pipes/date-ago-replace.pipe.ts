@@ -13,7 +13,7 @@ export class DateAgoReplacePipe implements PipeTransform {
         const [amount, unit] = value.split(' ');
         let suffix = amount;
         if (isNaN(+amount)) {
-            suffix = this.translateService.instant('amount');
+            suffix = this.translateService.instant(amount);
         }
         return `${suffix ?? amount} ${this.translateService.instant('unit')} ${this.translateService.instant('ago')}`;
     }
