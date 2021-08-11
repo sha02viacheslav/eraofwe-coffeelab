@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GlobalsService } from '@services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Pipe({
     name: 'dateAgoReplace',
 })
 export class DateAgoReplacePipe implements PipeTransform {
-    constructor(private globalService: GlobalsService) {}
+    constructor(private translateService: TranslateService) {}
     transform(value: string): string {
         if (!value) {
             return '';
@@ -13,8 +13,8 @@ export class DateAgoReplacePipe implements PipeTransform {
         const [amount, unit] = value.split(' ');
         let suffix = amount;
         if (isNaN(+amount)) {
-            suffix = this.globalService.languageJson[amount];
+            suffix = this.translateService.instant('amount');
         }
-        return `${suffix ?? amount} ${this.globalService.languageJson[unit]} ago`;
+        return `${suffix ?? amount} ${this.translateService.instant('unit')} ${this.translateService.instant('ago')}`;
     }
 }
