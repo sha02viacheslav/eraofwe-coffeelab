@@ -86,6 +86,12 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="detailsData?.video_url" class="pt-3 pt-md-4 pt-lg-45">
+                        <div class="fnt-14 fnt-muli fnt-bold text-clr334 mb-3">
+                            {{ 'see_recipe_video' | translate }}
+                        </div>
+                        <video class="w-100" [src]="detailsData?.video_url" controls></video>
+                    </div>
                     <div class="mt-45">
                         <h2 class="fnt-muli fnt-14 fnt-bold text-clr334 lh-157 mb-2">{{ 'directions' | translate }}</h2>
                         <div
@@ -101,21 +107,9 @@
                             <img
                                 *ngIf="step.image_thumb_url || step.image_url"
                                 class="w-100"
-                                [lazyLoad]="step.image_thumb_url || step.image_url"
+                                [lazyLoad]="step.image_url || step.image_thumb_url"
                                 [alt]="detailsData?.name + ' step image'"
                             />
-                        </div>
-                        <div>
-                            <video
-                                class="w-100"
-                                [muted]="true"
-                                autoplay
-                                playsinline
-                                loop
-                                *ngIf="detailsData?.video_url"
-                            >
-                                <source [src]="detailsData.video_url" type="video/mp4" />
-                            </video>
                         </div>
                     </div>
                 </div>
