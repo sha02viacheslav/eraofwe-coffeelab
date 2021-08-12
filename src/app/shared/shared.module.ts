@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { CarouselModule } from 'primeng/carousel';
@@ -50,19 +50,10 @@ import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
 const PIPES = [ConvertToShortDescriptionPipe, DateAgoReplacePipe];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule, ...THIRDMODULES],
+    imports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES],
     declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
 
-    exports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        ...THIRDMODULES,
-        ...COMPONENTS,
-        ...DIRECTIVES,
-        ...PIPES,
-    ],
+    exports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
     providers: [DialogService],
 })
 export class SharedModule {}
