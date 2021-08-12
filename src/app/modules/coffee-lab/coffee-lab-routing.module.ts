@@ -12,6 +12,7 @@ import { ArticleDetailComponent } from './google-view/articles/article-detail/ar
 import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 const userLang = navigator.language;
 const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
@@ -20,6 +21,10 @@ const routes: Routes = [
         path: '',
         component: CoffeeLabComponent,
         children: [
+            {
+                path: 'user-profile',
+                component: MyProfileComponent,
+            },
             {
                 path: '',
                 component: OverviewComponent,

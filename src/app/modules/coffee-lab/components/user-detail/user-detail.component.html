@@ -41,7 +41,7 @@
                             Employee {{ data?.organization_name ? '@' + data?.organization_name : '' }}
                         </p>
                         <span class="fnt-muli fnt-14 fnt-normal text-clr588 mb-0">
-                            {{ orgName }} <img class="ml-4" src="assets/images/position.svg" />
+                            {{ orgName }} <img class="ml-2" src="assets/images/position.svg" />
                             {{ globalsService.getCountryName(data?.organization_country) }}
                         </span>
                     </div>
@@ -64,7 +64,14 @@
                     </div>
                 </div>
                 <div class="mt-4 d-flex align-items-center">
-                    <button class="btn-raised mr-3" [routerLink]="'/profile/' + userId + '/' + orgType">
+                    <button
+                        class="btn-raised mr-3"
+                        routerLink="/user-profile"
+                        [queryParams]="{
+                            user_id: userId,
+                            organization: orgType
+                        }"
+                    >
                         View Profile
                     </button>
                     <div class="message-button fnt-14 fnt-muli" (click)="myOp.hide(); openChat()">

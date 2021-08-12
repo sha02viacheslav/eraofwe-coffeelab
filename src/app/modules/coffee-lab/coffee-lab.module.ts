@@ -25,10 +25,12 @@ import { LanguageDropdownComponent } from './components/language-dropdown/langua
 import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
 import { PublishForumComponent } from './components/publish-forum/publish-forum.component';
 import { LimitBannerComponent } from './components/limit-banner/limit-banner.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
     declarations: [
         CoffeeLabComponent,
+        MyProfileComponent,
         CoffeeRecipesViewComponent,
         RecipeDetailComponent,
         QaForumViewComponent,

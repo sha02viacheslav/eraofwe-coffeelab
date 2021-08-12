@@ -46,4 +46,8 @@ export class CoffeeLabService extends ApiService {
     getUserDetail(userId: string | number, orgType: string) {
         return this.post(this.generalUrl, `general/${orgType}/users/${userId}`, 'GET');
     }
+
+    getUserRoles() {
+        return this.postWithOrg(this.postUrl, `users/roles`, 'GET');
+    }
 }

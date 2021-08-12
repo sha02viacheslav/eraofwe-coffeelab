@@ -1,10 +1,11 @@
 <div class="d-flex align-items-center w-100">
     <div class="mr-25">
-        <app-avatar
-            [src]="prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url"
+        <app-user-detail
+            [imageUrl]="prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url"
+            [userId]="prop?.user_id || prop?.posted_by"
+            [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
             size="40"
-            [name]="prop?.user_name || prop?.question_user || prop?.posted_user"
-        ></app-avatar>
+        ></app-user-detail>
     </div>
     <div class="flex-1 overflow-hidden">
         <div class="d-flex align-items-center mr-3 text-nowrap">

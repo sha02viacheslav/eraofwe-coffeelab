@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { organizationTypes } from '@constants';
 import { GlobalsService, CoffeeLabService } from '@services';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-user-detail',
@@ -18,7 +20,11 @@ export class UserDetailComponent implements OnInit, OnChanges {
     data: any;
     name: any;
 
-    constructor(public globalsService: GlobalsService, private coffeeLabService: CoffeeLabService) {}
+    constructor(
+        public globalsService: GlobalsService,
+        public dialogSrv: DialogService,
+        private coffeeLabService: CoffeeLabService,
+    ) {}
     ngOnChanges(): void {
         this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;
         if (this.userId && this.orgType) {
@@ -34,10 +40,9 @@ export class UserDetailComponent implements OnInit, OnChanges {
     ngOnInit(): void {}
 
     openChat(): void {
-        // this.chatHandler.openChatThread({
-        //     user_id: this.userId,
-        //     org_type: this.orgType.toLowerCase(),
-        //     org_id: this.data.organization_id,
-        // });
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }
