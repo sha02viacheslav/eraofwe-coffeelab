@@ -2,41 +2,28 @@
     {{ 'question_answers' | translate }}
 </h1>
 
-<div class="d-flex">
-    <div class="flex-1 pr-lg-3">
+<div class="row">
+    <div class="col-12 col-md-8 pr-lg-5">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
-    <div class="empty-join-wrapper pl-lg-3 d-none d-lg-block">
-        <div class="custom-search qa-forum-search d-none d-lg-block">
-            <input
-                class="w-100 fnt-16"
-                [(ngModel)]="keyword"
-                (ngModelChange)="getData()"
-                type="text"
-                pInputText
-                [placeholder]="'search_qna_forum' | translate"
-            />
-        </div>
-    </div>
 </div>
-<div class="mt-4 mt-lg-45">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
-            {{ 'question_answers' | translate }}
-        </h1>
-        <div class="custom-search qa-forum-search d-block d-lg-none">
-            <input
-                class="w-100 fnt-16"
-                [(ngModel)]="keyword"
-                type="text"
-                pInputText
-                [placeholder]="'search_qna_forum' | translate"
-            />
-        </div>
-    </div>
+
+<div class="d-flex justify-content-between mt-4 mt-mb-45 mt-lg-5">
     <div class="d-flex">
-        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-45 pr-lg-2 flex-1">
-            <div>
+        <div class="d-flex justify-content-between align-items-center pr-lg-2 flex-1">
+            <div class="mr-3">
+                <p-dropdown
+                    [options]="filterOptions"
+                    [(ngModel)]="filterBy"
+                    [showClear]="true"
+                    (ngModelChange)="getData()"
+                    styleClass="round-border text-clr588"
+                    [placeholder]="'Categories'"
+                    optionLabel="label"
+                    optionValue="value"
+                ></p-dropdown>
+            </div>
+            <div class="mr-3">
                 <p-dropdown
                     [options]="filterOptions"
                     [(ngModel)]="filterBy"
@@ -61,15 +48,43 @@
         </div>
         <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
     </div>
+    <div class="empty-join-wrapper d-none d-lg-block">
+        <div class="custom-search qa-forum-search d-none d-lg-block">
+            <input
+                class="w-100 fnt-16"
+                [(ngModel)]="keyword"
+                (ngModelChange)="getData()"
+                type="text"
+                pInputText
+                [placeholder]="'search_qna_forum' | translate"
+            />
+        </div>
+    </div>
+</div>
+<div class="mt-2">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
+            {{ 'question_answers' | translate }}
+        </h1> -->
+        <div class="custom-search qa-forum-search d-block d-lg-none">
+            <input
+                class="w-100 fnt-16"
+                [(ngModel)]="keyword"
+                type="text"
+                pInputText
+                [placeholder]="'search_qna_forum' | translate"
+            />
+        </div>
+    </div>
     <div *ngIf="!isLoading">
         <div class="d-flex">
-            <div class="flex-1 pr-lg-2" [ngClass]="{ 'no-data': !questions.length }">
+            <div class="flex-1 pr-lg-5" [ngClass]="{ 'no-data': !questions.length }">
                 <div class="row gutter-24">
                     <div
                         *ngFor="let question of questions; let i = index"
                         [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
                     >
-                        <div class="br-4 border-main mb-4 mb-md-3 mb-lg-4">
+                        <div class="br-8 border-box mb-4 mb-md-3 mb-lg-4">
                             <div class="p-md-4 p-3">
                                 <div class="d-flex justify-content-between">
                                     <div class="flex-1">
@@ -94,6 +109,35 @@
                                     {{ 'see_all_answers' | translate }}
                                 </button>
                             </div>
+                            <div class="d-flex mb-4 ml-4">
+                                <div *ngFor="let btn of buttonList">
+                                    <div class="button-list">{{ btn.button }}</div>
+                                </div>
+                            </div>
+                            <div class="like-box border-btm py-325 px-4" *ngIf="question.total_answers < 1">
+                                <span>Be the first one to post an answer </span>
+                            </div>
+                            <div
+                                class="like-box py-3 px-4 d-flex justify-content-between"
+                                [ngClass]="{ 'border-l8': question.total_answers < 1 }"
+                            >
+                                <div class="d-flex">
+                                    <div class="d-flex">
+                                        <img src="assets/images/thumbs-up-active.svg" alt="thumbs-up" />
+                                        <span class="d-flex align-items-lg-end ml-3 mb-1">42</span>
+                                    </div>
+                                    <div class="align-items-center d-flex ml-4">
+                                        <img src="assets/images/message.svg" alt="message" />
+                                    </div>
+                                    <div class="align-items-center d-flex ml-4">
+                                        <img src="assets/images/share.svg" alt="share" />
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="align-items-center d-flex mr-2">Join the discussion</p>
+                                    <img src="assets/images/right-arrow-active.svg" alt="right-arrow" />
+                                </div>
+                            </div>
                             <div *ngIf="question.total_answers > 0" class="py-4 px-5 border-top-main d-none d-md-block">
                                 <div
                                     *ngFor="let answer of question?.answers; let isLast = last"
@@ -101,7 +145,10 @@
                                     class="mb-4"
                                 >
                                     <div class="mb-4">
-                                        <app-user-header [prop]="answer"></app-user-header>
+                                        <app-user-header
+                                            [total]="question.total_answers"
+                                            [prop]="answer"
+                                        ></app-user-header>
                                     </div>
                                     <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
                                         <span

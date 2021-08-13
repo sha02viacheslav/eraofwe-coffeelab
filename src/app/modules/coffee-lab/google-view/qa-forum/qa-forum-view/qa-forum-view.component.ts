@@ -33,6 +33,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     rows = 10;
     page = 1;
     jsonLD: any;
+    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(

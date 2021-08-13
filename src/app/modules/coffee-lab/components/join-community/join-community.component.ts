@@ -15,6 +15,25 @@ export class JoinCommunityComponent implements OnInit {
     readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
+    questionList = [
+        {
+            question:
+                'Hey, could someone explain to me more about Omni roasts and the benefits from a business (Roaster) perspective?',
+        },
+        {
+            question:
+                'Hi Everyone, Our family have estates at Sumatera, Indonesia. Is there any buyers here who like to try our sample?',
+        },
+        {
+            question: 'What are coffee flavour profiles? How many profiles can a coffee have?',
+        },
+        {
+            question: 'What are coffee flavour profiles? How many profiles can a coffee have?',
+        },
+        {
+            question: 'What are coffee flavour profiles? How many profiles can a coffee have?',
+        },
+    ];
     constructor(
         @Inject(DOCUMENT) private document: Document,
         public coffeeLabService: CoffeeLabService,

@@ -35,3 +35,14 @@
         }
     }
 }
+
+.question-header {
+    border-top: 2px solid $body-bg-color;
+    border-bottom: 2px solid $body-bg-color;
+    .question-list {
+        border-bottom: 1px solid #d8d8d8;
+    }
+    .question-list:last-child {
+        border-bottom: none !important;
+    }
+}

@@ -1,17 +1,34 @@
-<div class="p-3 bg-f8 br-4 d-flex align-items-center">
-    <div class="sewn-form-field w-100 mb-0">
-        <input
-            type="text"
-            pInputText
-            placeholder="{{
-                (type === 'article'
-                    ? 'publish_article'
-                    : type === 'recipe'
-                    ? 'start_making_a_recipe'
-                    : 'ask_your_question'
-                ) | translate
-            }}"
-            (focus)="onFocus()"
-        />
+<div class="p-4 bg-f34 br-4 d-flex">
+    <div class="user-profile">
+        <app-user-detail
+            [imageUrl]="
+                'https://bed-api.sewnstaging.com/public/staging/profiles/images/5/thumb/profile_5_20210802233919.png'
+            "
+            [userId]="'test'"
+            [orgType]="'test'"
+            size="36"
+        ></app-user-detail>
+    </div>
+
+    <div class="w-100">
+        <div class="sewn-form-field ask-question w-100 mb-0">
+            <input
+                type="text"
+                pInputText
+                placeholder="{{
+                    (type === 'article'
+                        ? 'publish_article'
+                        : type === 'recipe'
+                        ? 'start_making_a_recipe'
+                        : 'ask_your_question'
+                    ) | translate
+                }}"
+                (focus)="onFocus()"
+            />
+        </div>
+        <div>
+            <button class="post-btn">Write a post</button>
+            <button class="post-btn">Create a brewing guide</button>
+        </div>
     </div>
 </div>
