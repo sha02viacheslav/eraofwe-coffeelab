@@ -79,6 +79,7 @@
 }
 
 ::ng-deep .step-desc {
+    word-break: break-all;
     img {
         width: 100%;
     }
