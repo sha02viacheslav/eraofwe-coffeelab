@@ -26,6 +26,7 @@ import { SignupModalComponent } from './components/signup-modal/signup-modal.com
 import { PublishForumComponent } from './components/publish-forum/publish-forum.component';
 import { LimitBannerComponent } from './components/limit-banner/limit-banner.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { LikeDividerComponent } from './components/like-divider/like-divider.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
         SignupModalComponent,
         PublishForumComponent,
         LimitBannerComponent,
+        LikeDividerComponent,
     ],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })

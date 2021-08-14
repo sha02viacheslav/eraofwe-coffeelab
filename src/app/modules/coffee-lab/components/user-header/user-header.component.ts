@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-user-header',
@@ -11,7 +12,7 @@ export class UserHeaderComponent implements OnInit {
     @Input() enableEllipsis = true;
     orgType: string;
 
-    constructor() {}
+    constructor(public route: ActivatedRoute) {}
 
     ngOnInit(): void {
         this.orgType =

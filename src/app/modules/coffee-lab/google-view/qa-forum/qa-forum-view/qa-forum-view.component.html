@@ -10,32 +10,34 @@
 
 <div class="d-flex justify-content-between mt-4 mt-mb-45 mt-lg-5">
     <div class="d-flex">
-        <div class="d-flex justify-content-between align-items-center pr-lg-2 flex-1">
-            <div class="mr-3">
-                <p-dropdown
-                    [options]="filterOptions"
-                    [(ngModel)]="filterBy"
-                    [showClear]="true"
-                    (ngModelChange)="getData()"
-                    styleClass="round-border text-clr588"
-                    [placeholder]="'Categories'"
-                    optionLabel="label"
-                    optionValue="value"
-                ></p-dropdown>
+        <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
+            <div class="d-flex">
+                <div class="mr-3">
+                    <p-dropdown
+                        [options]="filterOptions"
+                        [(ngModel)]="filterBy"
+                        [showClear]="true"
+                        (ngModelChange)="getData()"
+                        styleClass="round-border text-clr588"
+                        [placeholder]="'Categories'"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-dropdown>
+                </div>
+                <div class="mr-3">
+                    <p-dropdown
+                        [options]="filterOptions"
+                        [(ngModel)]="filterBy"
+                        [showClear]="true"
+                        (ngModelChange)="getData()"
+                        styleClass="round-border text-clr588"
+                        [placeholder]="'posted_by' | translate"
+                        optionLabel="label"
+                        optionValue="value"
+                    ></p-dropdown>
+                </div>
             </div>
-            <div class="mr-3">
-                <p-dropdown
-                    [options]="filterOptions"
-                    [(ngModel)]="filterBy"
-                    [showClear]="true"
-                    (ngModelChange)="getData()"
-                    styleClass="round-border text-clr588"
-                    [placeholder]="'posted_by' | translate"
-                    optionLabel="label"
-                    optionValue="value"
-                ></p-dropdown>
-            </div>
-            <div>
+            <div class="my-3 ml-3 my-md-0 ml-md-0">
                 <p-dropdown
                     [options]="sortOptions"
                     [(ngModel)]="sortBy"
@@ -90,7 +92,7 @@
                                     <div class="flex-1">
                                         <app-user-header [prop]="question"></app-user-header>
                                     </div>
-                                    <div class="mobile-dot">
+                                    <div class="mobile-dot d-none d-md-block">
                                         <app-forum-menu></app-forum-menu>
                                     </div>
                                 </div>
@@ -109,36 +111,11 @@
                                     {{ 'see_all_answers' | translate }}
                                 </button>
                             </div>
-                            <div class="d-flex mb-4 ml-4">
-                                <div *ngFor="let btn of buttonList">
-                                    <div class="button-list">{{ btn.button }}</div>
-                                </div>
-                            </div>
-                            <div class="like-box border-btm py-325 px-4" *ngIf="question.total_answers < 1">
-                                <span>Be the first one to post an answer </span>
-                            </div>
+                            <app-like-divider [total]="question.total_answers"></app-like-divider>
                             <div
-                                class="like-box py-3 px-4 d-flex justify-content-between"
-                                [ngClass]="{ 'border-l8': question.total_answers < 1 }"
+                                *ngIf="question.total_answers > 0"
+                                class="py-4 pl-5 pr-4 border-top-main d-none d-md-block"
                             >
-                                <div class="d-flex">
-                                    <div class="d-flex">
-                                        <img src="assets/images/thumbs-up-active.svg" alt="thumbs-up" />
-                                        <span class="d-flex align-items-lg-end ml-3 mb-1">42</span>
-                                    </div>
-                                    <div class="align-items-center d-flex ml-4">
-                                        <img src="assets/images/message.svg" alt="message" />
-                                    </div>
-                                    <div class="align-items-center d-flex ml-4">
-                                        <img src="assets/images/share.svg" alt="share" />
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="align-items-center d-flex mr-2">Join the discussion</p>
-                                    <img src="assets/images/right-arrow-active.svg" alt="right-arrow" />
-                                </div>
-                            </div>
-                            <div *ngIf="question.total_answers > 0" class="py-4 px-5 border-top-main d-none d-md-block">
                                 <div
                                     *ngFor="let answer of question?.answers; let isLast = last"
                                     [ngClass]="{ 'border-bottom-dashed-primary': !isLast }"
@@ -186,7 +163,7 @@
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
-            <div class="pl-lg-2 w-min-content d-none d-lg-block h-fit-content">
+            <div class="col-md-4 px-md-0 pl-lg-2 w-min-content d-none d-lg-block h-fit-content">
                 <app-join-community></app-join-community>
             </div>
         </div>

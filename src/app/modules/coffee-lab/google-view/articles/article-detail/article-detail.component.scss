@@ -1,3 +1,83 @@
 ::ng-deep .forum-content > div {
     word-break: break-all;
 }
+
+.article-main-block {
+    padding: 0 10rem;
+}
+
+.main-heading {
+    font-family: CormorantGaramond;
+    text-align: center;
+    font-size: 3rem;
+}
+.fnt-20 {
+    font-size: 20px;
+}
+
+.published {
+    color: #797a8d;
+    line-height: 1.57;
+}
+
+.button-list {
+    margin: 0 4px 5px 0;
+    padding: 7px 10px 8px;
+    border-radius: 4px;
+    background-color: #eaeaea;
+    border: none;
+    @media (min-width: 768px) {
+        margin: 0 12px 0 0;
+        padding: 8px 10px;
+    }
+}
+
+.innter-box {
+    padding: 0 7.5rem;
+}
+.background-header {
+    border-top: 2px solid #f1f1f1;
+}
+.p-articles img {
+    width: 89px;
+    height: 89px;
+    object-fit: cover;
+}
+.fnt-fly {
+    font-family: CormorantGaramond;
+    font-size: 22px;
+    line-height: 1.23;
+}
+
+.articles-answer {
+    border-top: 1px solid #232334;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.author-image img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.add-comment {
+    height: 50px;
+    margin: 0 0 0 8px;
+    padding: 16px 419px 16px 16px;
+    object-fit: contain;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.comment {
+    margin: 0 0 0 8px;
+    padding: 24px 26px 27px 24px;
+    object-fit: contain;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.white-space {
+    white-space: pre;
+}

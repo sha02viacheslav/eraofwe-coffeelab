@@ -12,30 +12,67 @@
     </div>
     <div class="page-wrapper d-block d-lg-flex" *ngIf="!loading">
         <article class="pr-lg-3 flex-1 mb-4">
-            <div class="p-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
-                <div class="d-flex align-items-center">
-                    <app-avatar
-                        [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                        size="40"
-                        [name]="detailsData?.user_name"
-                    ></app-avatar>
-                    <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
-                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                        {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}
-                    </p>
+            <div class="border-question-view br-12">
+                <div class="p-3 pt-lg-4 px-lg-4">
+                    <div class="d-flex align-items-center">
+                        <app-avatar
+                            [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
+                            size="36"
+                            [name]="detailsData?.user_name"
+                        ></app-avatar>
+                        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-2">{{ detailsData?.user_name }}</p>
+                        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
+                            {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}
+                        </p>
+                    </div>
+                    <h1
+                        class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
+                        [innerHTML]="detailsData?.question"
+                    ></h1>
                 </div>
-                <h1
-                    class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
-                    [innerHTML]="detailsData?.question"
-                ></h1>
-                <p-divider styleClass="my-3 my-md-45 my-lg-4 p-divider-primary"></p-divider>
+                <app-like-divider></app-like-divider>
+                <div class="d-flex ml-5 mr-4 my-35">
+                    <div class="d-flex mt-1">
+                        <app-avatar
+                            [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
+                            size="40"
+                            [name]="detailsData?.user_name"
+                        ></app-avatar>
+                    </div>
+
+                    <button
+                        *ngIf="!addComment"
+                        class="add-comment w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                        (click)="addComment = true"
+                    >
+                        Add a comment
+                    </button>
+                    <div *ngIf="addComment" class="w-100">
+                        <div class="comment">
+                            For the consumer, flavor is arguably the most important aspect of a good coffee. Coffee
+                            flavor is extremely complex and arises from numerous chemical, biological and physical
+                            influences of cultivar, coffee cherry maturity, geographical growing location, production,
+                            processing, roasting and cup preparation. Not surprisingly there is a large volume of
+                            research published detailing the volatile and non-volatile compounds in coffee and that are
+                            likely to be playing a role in coffee flavor. Further, there is much published on the
+                            sensory properties of coffee. Nevertheless, the link between flavor components and the
+                            sensory properties expressed in the complex matrix of coffee is yet to be fully understood.
+                            This paper provides an overview of the chemical components that are thought to b
+                        </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button class="btn-raised" (click)="addComment = false">Add comment</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <p-divider styleClass="my-3 my-md-45 my-lg-4 p-divider-primary"></p-divider> -->
                 <div *ngIf="detailsData?.answers">
                     <div
-                        class="answer-wrapper border-bottom-primary mb-4"
+                        class="answer-wrapper border-bottom-primary mb-4 ml-5 mr-4"
                         *ngFor="let postItem of detailsData.answers; let isLast = last"
                         [id]="'answer-' + postItem.id"
                     >
-                        <div class="d-flex flex-wrap w-100">
+                        <div class="d-flex flex-wrap w-100 mt-3">
                             <div class="d-flex justify-content-between align-items-md-end w-100">
                                 <app-user-header [prop]="postItem"></app-user-header>
                                 <div class="d-flex flex-column align-items-end">
@@ -69,8 +106,25 @@
                                 />
                             </ng-container>
                         </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up" />
+                                    <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
+                                </div>
+                                <div class="align-items-center d-flex ml-4">
+                                    <img src="assets/images/share-button.svg" alt="share-button" />
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <img src="assets/images/upload.svg" alt="ubload" />
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <button class="fnt-14 fnt-bold fnt-muli text-clr60b ml-5 mb-4 bg-transparent border-0 text-underline">
+                    Write a comment
+                </button>
             </div>
         </article>
         <article class="w-tab-100 pl-lg-3 w-min-content">

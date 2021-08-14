@@ -29,7 +29,10 @@
         </div>
     </div>
     <div>
-        <div *ngIf="!total" class="fnt-muli fnt-12 text-clr588 time-text">
+        <div
+            *ngIf="!total && route.snapshot.routeConfig.path === 'en/qa-forum'"
+            class="fnt-muli fnt-12 text-clr588 d-none d-md-block time-text"
+        >
             {{ prop?.posted_at || prop?.created_at | amTimeAgo: true | dateAgoReplace }}
         </div>
         <div *ngIf="total">
