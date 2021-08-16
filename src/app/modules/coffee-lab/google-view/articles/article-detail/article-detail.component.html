@@ -106,6 +106,7 @@
                             <div class="d-flex">
                                 <div class="author-image mr-3">
                                     <img
+                                        class="br-4"
                                         [src]="
                                             detailsData?.profile_image_url ||
                                             detailsData?.profile_image_thumb_url ||
@@ -162,7 +163,7 @@
                             </div>
 
                             <button
-                                class="add-comment white-space w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                                class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
                                 (click)="addComment = true"
                             >
                                 Share your thoughts

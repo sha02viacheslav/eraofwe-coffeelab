@@ -63,23 +63,10 @@
 .add-comment {
     height: 50px;
     margin: 0 0 0 8px;
-    padding: 16px 419px 16px 16px;
     object-fit: contain;
     border: none;
     border-radius: 25px;
     background-color: rgba(116, 117, 136, 0.08);
-}
-
-.comment {
-    margin: 0 0 0 8px;
-    padding: 24px 26px 27px 24px;
-    object-fit: contain;
-    border-radius: 25px;
-    background-color: rgba(116, 117, 136, 0.08);
-}
-
-.white-space {
-    white-space: pre;
 }
 
 .answer-wrapper {
