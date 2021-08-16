@@ -70,7 +70,7 @@
             *ngFor="let article of articlesData"
         >
             <a [routerLink]="[getLink(article)]" class="text-non-underline" *ngIf="article.cardType === 'forum'">
-                <div class="border-main br-4 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
+                <div class="border-main br-4 py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
                     <div class="d-flex justify-content-betweenn px-4">
                         <div class="flex-1 overflow-hidden">
                             <app-user-header [prop]="article"></app-user-header>
@@ -90,7 +90,7 @@
                     <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
                     <div class="mx-4">
                         <div class="d-flex justify-content-between">
-                            <div class="icon-save">
+                            <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div>
                             <span>{{

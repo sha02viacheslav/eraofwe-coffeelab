@@ -5,10 +5,6 @@
     .article-item {
         border-radius: 14px !important;
         height: 100%;
-        .icon-save img {
-            width: 36px;
-            height: 36px;
-        }
         img {
             height: 243px;
             object-fit: cover;
@@ -53,4 +49,14 @@
 }
 .border-main {
     border: 1px solid #f1f1f1 !important;
+}
+
+.thumb-icon img {
+    width: 21px !important;
+    height: 20px !important;
+}
+
+.icon-save img {
+    width: 36px !important;
+    height: 36px !important;
 }
