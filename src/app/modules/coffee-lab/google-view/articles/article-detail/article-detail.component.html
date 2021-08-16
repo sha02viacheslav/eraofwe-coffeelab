@@ -8,55 +8,6 @@
         <app-join-community></app-join-community>
     </div> -->
 
-    <div class="py-2 py-md-0 user-wrapper d-none d-md-block">
-        <div class="pb-4 d-flex">
-            <div class="w-100 d-flex justify-content-between">
-                <div>
-                    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
-                        {{ detailsData?.user_name }}
-                    </p>
-                    <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
-                        {{ detailsData?.subtitle }}
-                    </p>
-                    <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">@{{ detailsData?.status }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="pb-4">
-            <div class="d-flex align-items-center">
-                <button
-                    class="view-button mr-2 fnt-14 fnt-bold fnt-muli"
-                    routerLink="/user-profile"
-                    [queryParams]="{
-                        user_id: detailsData?.user_id || detailsData?.posted_by,
-                        organization:
-                            detailsData?.org_type || detailsData?.organisation_type || detailsData?.organization_type
-                    }"
-                >
-                    View Profile
-
-                    <!-- [userId]="prop?.user_id || prop?.posted_by"
-                [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type" -->
-                </button>
-                <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli">
-                    <img (click)="onFocus()" src="assets/images/message-icon-white.svg" />
-                </div>
-            </div>
-        </div>
-        <p-divider styleClass="m-0"></p-divider>
-        <div class="d-flex my-4">
-            <div class="d-flex">
-                <img (click)="onFocus()" src="assets/images/thumbs-up-button.svg" alt="thumb" />
-                <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
-            </div>
-            <div class="message-icon ml-3">
-                <img (click)="onFocus()" src="assets/images/message-button.svg" alt="message" />
-            </div>
-            <div class="ml-3">
-                <img (click)="onFocus()" src="assets/images/bookmark-button.svg" alt="bookmark" />
-            </div>
-        </div>
-    </div>
     <div class="container article-main-block" *ngIf="!loading">
         <div>
             <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
@@ -100,6 +51,57 @@
                     [lazyLoad]="detailsData?.cover_image_url"
                     [alt]="detailsData?.title + ' cover image'"
                 />
+            </div>
+            <div class="py-2 py-md-0 user-wrapper d-none d-md-block">
+                <div class="pb-4 d-flex">
+                    <div class="w-100 d-flex justify-content-between">
+                        <div>
+                            <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
+                                {{ detailsData?.user_name }}
+                            </p>
+                            <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
+                                {{ detailsData?.subtitle }}
+                            </p>
+                            <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">@{{ detailsData?.status }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-4">
+                    <div class="d-flex align-items-center">
+                        <button
+                            class="view-button mr-2 fnt-14 fnt-bold fnt-muli"
+                            routerLink="/user-profile"
+                            [queryParams]="{
+                                user_id: detailsData?.user_id || detailsData?.posted_by,
+                                organization:
+                                    detailsData?.org_type ||
+                                    detailsData?.organisation_type ||
+                                    detailsData?.organization_type
+                            }"
+                        >
+                            View Profile
+
+                            <!-- [userId]="prop?.user_id || prop?.posted_by"
+                [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type" -->
+                        </button>
+                        <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli">
+                            <img (click)="onFocus()" src="assets/images/message-icon-white.svg" />
+                        </div>
+                    </div>
+                </div>
+                <p-divider styleClass="m-0"></p-divider>
+                <div class="d-flex my-4">
+                    <div class="d-flex">
+                        <img (click)="onFocus()" src="assets/images/thumbs-up-button.svg" alt="thumb" />
+                        <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
+                    </div>
+                    <div class="message-icon ml-3">
+                        <img (click)="onFocus()" src="assets/images/message-button.svg" alt="message" />
+                    </div>
+                    <div class="ml-3">
+                        <img (click)="onFocus()" src="assets/images/bookmark-button.svg" alt="bookmark" />
+                    </div>
+                </div>
             </div>
             <div class="d-flex flex-wrap w-100 innter-box">
                 <div class="d-flex justify-content-between align-items-md-end w-100">
