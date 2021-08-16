@@ -10,18 +10,20 @@
 <div class="like-box py-2 py-md-3 px-3 px-md-4 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
     <div class="d-flex">
         <div class="d-flex">
-            <img src="assets/images/thumbs-up-active.svg" alt="thumbs-up" />
-            <span class="d-flex align-items-end ml-md-3 ml-1 mb-1">42</span>
+            <img (click)="onFocus()" src="assets/images/shape.svg" alt="thumbs-up" />
+            <span (click)="onFocus()" class="d-flex align-items-end ml-md-2 ml-1 mb-05">42</span>
+        </div>
+        <div class="align-items-center d-flex ml-3">
+            <img (click)="onFocus()" src="assets/images/message.svg" alt="message" />
         </div>
         <div class="align-items-center d-flex ml-4">
-            <img src="assets/images/message.svg" alt="message" />
-        </div>
-        <div class="align-items-center d-flex ml-4">
-            <img src="assets/images/share.svg" alt="share" />
+            <img (click)="onFocus()" src="assets/images/bookmark.svg" alt="bookmark" />
         </div>
     </div>
     <div class="d-flex">
-        <p class="d-none d-md-block"><span class="align-items-center d-flex mr-2">Join the discussion</span></p>
-        <img src="assets/images/right-arrow-active.svg" alt="right-arrow" />
+        <p (click)="onFocus()" class="align-items-center d-flex">
+            <span class="mr-2 d-none d-md-block">Join the discussion</span>
+        </p>
+        <img (click)="onFocus()" src="assets/images/right-arrow-active.svg" alt="right-arrow" />
     </div>
 </div>

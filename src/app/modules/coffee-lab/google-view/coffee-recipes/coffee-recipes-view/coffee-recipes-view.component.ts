@@ -20,7 +20,7 @@ import { RouterSlug } from '@enums';
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
     rows = 8;
     totalRecords = 0;
-    page: number = 1;
+    page = 1;
     destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
     label?: string;

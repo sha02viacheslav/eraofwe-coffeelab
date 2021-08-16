@@ -186,4 +186,11 @@ export class QuestionDetailComponent implements OnInit {
             });
         }
     }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
+    }
 }

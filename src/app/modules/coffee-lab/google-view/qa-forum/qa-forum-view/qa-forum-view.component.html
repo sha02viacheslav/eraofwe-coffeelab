@@ -3,66 +3,15 @@
 </h1>
 
 <div class="row">
-    <div class="col-12 col-md-8 pr-lg-5">
+    <div class="col-12 col-md-7 pr-md-0">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
 </div>
 
-<div class="d-flex justify-content-between mt-4 mt-mb-45 mt-lg-5">
-    <div class="d-flex">
-        <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
-            <div class="d-flex">
-                <div class="mr-3">
-                    <p-dropdown
-                        [options]="filterOptions"
-                        [(ngModel)]="filterBy"
-                        [showClear]="true"
-                        (ngModelChange)="getData()"
-                        styleClass="round-border text-clr588"
-                        [placeholder]="'Categories'"
-                        optionLabel="label"
-                        optionValue="value"
-                    ></p-dropdown>
-                </div>
-                <div class="mr-3">
-                    <p-dropdown
-                        [options]="filterOptions"
-                        [(ngModel)]="filterBy"
-                        [showClear]="true"
-                        (ngModelChange)="getData()"
-                        styleClass="round-border text-clr588"
-                        [placeholder]="'posted_by' | translate"
-                        optionLabel="label"
-                        optionValue="value"
-                    ></p-dropdown>
-                </div>
-            </div>
-            <div class="my-3 ml-3 my-md-0 ml-md-0">
-                <p-dropdown
-                    [options]="sortOptions"
-                    [(ngModel)]="sortBy"
-                    (ngModelChange)="getData()"
-                    styleClass="no-border no-padding text-clr588"
-                    optionLabel="label"
-                    optionValue="value"
-                ></p-dropdown>
-            </div>
-        </div>
-        <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
-    </div>
-    <div class="empty-join-wrapper d-none d-lg-block">
-        <div class="custom-search qa-forum-search d-none d-lg-block">
-            <input
-                class="w-100 fnt-16"
-                [(ngModel)]="keyword"
-                (ngModelChange)="getData()"
-                type="text"
-                pInputText
-                [placeholder]="'search_qna_forum' | translate"
-            />
-        </div>
-    </div>
-</div>
+<!-- <div class="d-flex justify-content-between mt-4 mt-mb-45 mt-lg-5">
+    
+   
+</div> -->
 <div class="mt-2">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
@@ -80,7 +29,48 @@
     </div>
     <div *ngIf="!isLoading">
         <div class="d-flex">
-            <div class="flex-1 pr-lg-5" [ngClass]="{ 'no-data': !questions.length }">
+            <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
+                <div class="d-flex mb-4">
+                    <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
+                        <div class="d-flex">
+                            <div class="mr-3">
+                                <p-dropdown
+                                    [options]="filterOptions"
+                                    [(ngModel)]="filterBy"
+                                    [showClear]="true"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    [placeholder]="'Categories'"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                ></p-dropdown>
+                            </div>
+                            <div class="mr-3">
+                                <p-dropdown
+                                    [options]="filterOptions"
+                                    [(ngModel)]="filterBy"
+                                    [showClear]="true"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    [placeholder]="'posted_by' | translate"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                ></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="my-3 ml-3 my-md-0 ml-md-0">
+                            <p-dropdown
+                                [options]="sortOptions"
+                                [(ngModel)]="sortBy"
+                                (ngModelChange)="getData()"
+                                styleClass="no-border no-padding text-clr588"
+                                optionLabel="label"
+                                optionValue="value"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+                </div>
                 <div class="row gutter-24">
                     <div
                         *ngFor="let question of questions; let i = index"
@@ -163,7 +153,19 @@
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
-            <div class="col-md-4 px-md-0 pl-lg-2 w-min-content d-none d-lg-block h-fit-content">
+            <div class="col-12 col-md-4 px-0 mx-auto w-min-content d-none d-lg-block h-fit-content">
+                <div class="empty-join-wrapper d-none d-lg-block mb-4">
+                    <div class="custom-search qa-forum-search d-none d-lg-block">
+                        <input
+                            class="w-100 fnt-16"
+                            [(ngModel)]="keyword"
+                            (ngModelChange)="getData()"
+                            type="text"
+                            pInputText
+                            [placeholder]="'search_qna_forum' | translate"
+                        />
+                    </div>
+                </div>
                 <app-join-community></app-join-community>
             </div>
         </div>

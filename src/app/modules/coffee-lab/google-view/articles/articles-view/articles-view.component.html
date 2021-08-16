@@ -3,7 +3,7 @@
         {{ 'posts' | translate }}
     </h1>
     <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="article"></app-publish-forum>
         </div>
     </div>
@@ -76,7 +76,13 @@
                             <app-user-header [prop]="article"></app-user-header>
                         </div>
                         <div class="icon-save">
-                            <img src="assets/images/share-button.svg" width="36" height="36" alt="share-button" />
+                            <img
+                                (click)="onFocus()"
+                                src="assets/images/bookmark-button.svg"
+                                width="36"
+                                height="36"
+                                alt="bookmark-button"
+                            />
                         </div>
 
                         <!-- <app-forum-menu></app-forum-menu> -->
@@ -85,7 +91,7 @@
                     <div class="mx-4">
                         <div class="d-flex justify-content-between">
                             <div class="icon-save">
-                                <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up-button" />
+                                <img src="assets/images/shape.svg" alt="thumbs" />
                             </div>
                             <span>{{
                                 article?.posted_at || article?.created_at | amTimeAgo: true | dateAgoReplace
