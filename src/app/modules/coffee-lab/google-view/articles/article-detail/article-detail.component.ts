@@ -7,6 +7,8 @@ import { environment } from '@env/environment';
 import { DISCUSSIONS_FORUM } from '../../data';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-article-detail',
@@ -33,6 +35,7 @@ export class ArticleDetailComponent implements OnInit {
         private toastService: ToastrService,
         private startupService: StartupService,
         private globalsService: GlobalsService,
+        private dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -157,5 +160,11 @@ export class ArticleDetailComponent implements OnInit {
                 },
             ],
         };
+    }
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }
