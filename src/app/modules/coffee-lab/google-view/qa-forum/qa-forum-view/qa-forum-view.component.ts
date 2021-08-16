@@ -23,7 +23,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     viewMode = 'list';
     sortOptions = [];
     filterOptions = [];
-    sortBy = 'latest';
+    sortBy;
     filterBy: any;
     questions: any[] = [];
     isLoading = false;

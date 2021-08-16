@@ -33,7 +33,7 @@
             *ngIf="!total && route.snapshot.routeConfig.path === 'en/qa-forum'"
             class="fnt-muli fnt-12 text-clr588 d-none d-md-block time-text"
         >
-            {{ prop?.posted_at || prop?.created_at | amTimeAgo: true | dateAgoReplace }}
+            {{ prop?.posted_at || prop?.created_at | date: 'mediumDate' }}
         </div>
         <div *ngIf="total">
             <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up-button" />
