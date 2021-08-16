@@ -1,7 +1,7 @@
 <div>
-    <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0" *ngIf="isMobile$ | async">
+    <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0" *ngIf="isMobile$ | async">
         {{ 'posts' | translate }}
-    </h1>
+    </h1> -->
     <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="article"></app-publish-forum>
@@ -40,12 +40,13 @@
             >
             </p-dropdown>
             <p-dropdown
+                class="pl-md-3 pl-25"
                 [options]="orderList"
                 optionLabel="label"
                 optionValue="value"
                 [(ngModel)]="selectedOrder"
                 (onChange)="getData()"
-                styleClass="no-border"
+                styleClass="round-border"
             >
             </p-dropdown>
         </div>
@@ -93,9 +94,7 @@
                             <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div>
-                            <span>{{
-                                article?.posted_at || article?.created_at | amTimeAgo: true | dateAgoReplace
-                            }}</span>
+                            <span>{{ article?.posted_at || article?.created_at | date: 'longDate' }}</span>
                         </div>
                         <h3 class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
                             {{ article?.title }}

@@ -1,6 +1,6 @@
-<h1 class="fnt-18 fnt-muli text-clr334 font-weight-bold d-block d-md-none mb-3" *ngIf="isMobile$ | async">
+<!-- <h1 class="fnt-18 fnt-muli text-clr334 font-weight-bold d-block d-md-none mb-3" *ngIf="isMobile$ | async">
     {{ 'question_answers' | translate }}
-</h1>
+</h1> -->
 
 <div class="row">
     <div class="col-12 col-md-7 pr-md-0">
@@ -58,7 +58,7 @@
                                 ></p-dropdown>
                             </div>
                         </div>
-                        <div class="my-3 ml-3 my-md-0 ml-md-0">
+                        <div class="my-3 my-md-0 ml-0">
                             <p-dropdown
                                 [options]="sortOptions"
                                 [(ngModel)]="sortBy"
@@ -66,6 +66,7 @@
                                 styleClass="no-border no-padding text-clr588"
                                 optionLabel="label"
                                 optionValue="value"
+                                styleClass="round-border"
                             ></p-dropdown>
                         </div>
                     </div>
