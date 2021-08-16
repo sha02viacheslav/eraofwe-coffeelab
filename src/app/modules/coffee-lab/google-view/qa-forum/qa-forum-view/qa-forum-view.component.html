@@ -106,7 +106,7 @@
                             <app-like-divider [total]="question.total_answers"></app-like-divider>
                             <div
                                 *ngIf="question.total_answers > 0"
-                                class="py-md-4 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
+                                class="py-md-4 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
                             >
                                 <div
                                     *ngFor="let answer of question?.answers; let isLast = last"
