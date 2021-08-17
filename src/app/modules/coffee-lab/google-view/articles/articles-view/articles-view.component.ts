@@ -21,11 +21,11 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     translationsList: any[] = [];
     orderList: any[] = [];
     isAvailableTranslation?: any;
-    selectedOrder = 'latest';
+    selectedOrder = '';
     articlesData: any[] = [];
     isLoading = false;
     totalRecords = 0;
-    rows = 8;
+    rows = 9;
     page = 1;
     jsonLD: any;
     destroy$: Subject<boolean> = new Subject<boolean>();
@@ -86,7 +86,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             query: this.keyword,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
-            sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
+            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             page: this.page,
             per_page: this.rows,
         };
@@ -100,15 +100,15 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     item.cardType = 'forum';
                     return item;
                 });
-                const joinCard = {
-                    cardType: 'joinCard',
-                };
-                if (this.articlesData.length < 3) {
-                    this.articlesData.push(joinCard);
-                } else {
-                    this.articlesData.splice(2, 0, joinCard);
-                }
-                this.setSchemaMackup();
+                // const joinCard = {
+                //     cardType: 'joinCard',
+                // };
+                // if (this.articlesData.length < 3) {
+                //     this.articlesData.push(joinCard);
+                // } else {
+                //     this.articlesData.splice(2, 0, joinCard);
+                // }
+                // this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Articles data');
             }
@@ -189,5 +189,11 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 ...forumList,
             ],
         };
+    }
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }

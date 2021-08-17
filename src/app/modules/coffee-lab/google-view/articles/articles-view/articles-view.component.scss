@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     margin: -8px;
     .article-item {
+        border-radius: 14px !important;
         height: 100%;
         img {
             height: 243px;
@@ -45,4 +46,20 @@
     p {
         margin-bottom: 0 !important;
     }
+}
+.border-main {
+    border: 1px solid #f1f1f1 !important;
+}
+
+.thumb-icon img {
+    height: 21px !important;
+}
+
+.icon-save img {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+.cursor-point {
+    cursor: pointer;
 }

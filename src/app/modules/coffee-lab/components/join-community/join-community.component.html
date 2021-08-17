@@ -1,4 +1,12 @@
-<div class="join-wrapper px-3 py-4 p-md-45 pt-md-475 h-100">
+<div class="question-header mb-4">
+    <p class="fnt-16 fnt-bold fnt-muli text-clr24 mt-3">Recent discussions on forum</p>
+    <div class="question-list" *ngFor="let question of questionList">
+        <p class="fnt-14 fnt-muli fnt-600 text-clr24 py-3">
+            {{ question.question }}
+        </p>
+    </div>
+</div>
+<!-- <div class="join-wrapper px-3 py-4 p-md-45 pt-md-475 h-100">
     <div class="logo-wrapper">
         <img class="logo-image mt-md-2 mb-3" src="assets/images/era-we-black.svg" alt="Comany-Logo" />
     </div>
@@ -30,4 +38,4 @@
             >
         </div>
     </div>
-</div>
+</div> -->

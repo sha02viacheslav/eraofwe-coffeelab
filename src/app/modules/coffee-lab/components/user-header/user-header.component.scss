@@ -1,1 +1,10 @@
-
+.time-text {
+    position: relative;
+    right: -18px;
+    top: 24px;
+    text-align: end;
+    @media (min-width: 768px) {
+        top: 16px;
+        white-space: pre;
+    }
+}

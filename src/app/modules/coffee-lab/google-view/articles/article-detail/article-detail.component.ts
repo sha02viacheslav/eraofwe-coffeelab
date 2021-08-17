@@ -7,6 +7,8 @@ import { environment } from '@env/environment';
 import { DISCUSSIONS_FORUM } from '../../data';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-article-detail',
@@ -21,6 +23,8 @@ export class ArticleDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
+    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
+    addComment = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -31,6 +35,7 @@ export class ArticleDetailComponent implements OnInit {
         private toastService: ToastrService,
         private startupService: StartupService,
         private globalsService: GlobalsService,
+        private dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -67,6 +72,7 @@ export class ArticleDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
+                console.log(this.detailsData);
                 this.lang = res.result.language;
                 if (res.result?.is_era_of_we) {
                     this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;
@@ -154,5 +160,11 @@ export class ArticleDetailComponent implements OnInit {
                 },
             ],
         };
+    }
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }

@@ -1,0 +1,22 @@
+@import 'variables';
+.bg-f34 {
+    background: $general-text-color;
+    .user-profile {
+        padding: 2px 10px 2px 0px;
+    }
+    .ask-question input {
+        padding: 0.625rem 0.75rem !important;
+    }
+    .post-btn {
+        height: 35px;
+        margin: 16px 13px 0 0;
+        padding: 8px 14px 7px 13px;
+        border-radius: 17.5px;
+        color: $white;
+        border: solid 1px $muted-text-color;
+        background-color: rgba(116, 117, 136, 0.39);
+    }
+    .cursor-point {
+        cursor: pointer;
+    }
+}

@@ -13,9 +13,37 @@
 }
 
 .answer-wrapper {
-    border-bottom-style: dashed !important;
-    &:last-child {
-        margin-bottom: 0 !important;
-        border-bottom: none !important;
+    border-bottom: 1px solid #d8d8d8;
+    &:first-child {
+        border-top: 1px solid #d8d8d8;
     }
+}
+
+.br-12 {
+    border-radius: 12px;
+}
+
+.border-question-view {
+    border: 1px solid #d0d0d0;
+}
+
+.add-comment {
+    height: 50px;
+    margin: 0 0 0 8px;
+    object-fit: contain;
+    border: 0;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.comment {
+    margin: 0 0 0 8px;
+    padding: 24px 26px 27px 24px;
+    object-fit: contain;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.cursor-point {
+    cursor: pointer;
 }

@@ -1,0 +1,29 @@
+<div class="mx-3 mx-md-4 mb-3 mb-md-4">
+    <span *ngFor="let btn of buttonList">
+        <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">{{ btn.button }}</button>
+    </span>
+</div>
+
+<div class="like-box border-btm py-325 px-3 px-md-4" *ngIf="total < 1">
+    <span>Be the first one to post an answer </span>
+</div>
+<div class="like-box py-2 py-md-3 px-3 px-md-4 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
+    <div class="d-flex">
+        <div class="d-flex">
+            <img (click)="onFocus()" class="cursor-point" src="assets/images/shape.svg" alt="thumbs-up" />
+            <span class="d-flex align-items-end ml-md-2 ml-1 mb-05">42</span>
+        </div>
+        <div class="align-items-center d-flex ml-3">
+            <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
+        </div>
+        <div class="align-items-center d-flex ml-4">
+            <img (click)="onFocus()" class="cursor-point" src="assets/images/bookmarks.svg" alt="bookmark" />
+        </div>
+    </div>
+    <div class="d-flex">
+        <p (click)="onFocus()" class="align-items-center d-flex cursor-point">
+            <span class="mr-2 d-none d-md-block">Join the discussion</span>
+        </p>
+        <img (click)="onFocus()" class="cursor-point" src="assets/images/right-arrow-active.svg" alt="right-arrow" />
+    </div>
+</div>
