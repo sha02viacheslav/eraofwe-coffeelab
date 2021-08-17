@@ -4,9 +4,6 @@
             <span>Back to forum</span>
         </a>
     </div>
-    <!-- <div class="d-lg-none mb-4">
-        <app-join-community></app-join-community>
-    </div> -->
 
     <div class="container article-main-block" *ngIf="!loading">
         <div>
@@ -284,7 +281,7 @@
             </div> -->
         </div>
         <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
-            <app-join-community></app-join-community>
+            <app-join-community [type]="'article'"></app-join-community>
         </div>
     </article>
 </div>

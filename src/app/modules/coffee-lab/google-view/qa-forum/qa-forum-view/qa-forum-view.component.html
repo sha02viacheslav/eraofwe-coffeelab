@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div class="d-lg-none mb-4 mb-md-3" *ngIf="i === 1">
-                            <app-join-community></app-join-community>
+                            <app-join-community [pages]="page" [type]="'question'"></app-join-community>
                         </div>
                     </div>
                     <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
@@ -168,7 +168,7 @@
                         />
                     </div>
                 </div>
-                <app-join-community></app-join-community>
+                <app-join-community [pages]="page" [type]="'question'"></app-join-community>
             </div>
         </div>
     </div>
