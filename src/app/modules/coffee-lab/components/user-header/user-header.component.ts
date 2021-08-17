@@ -15,6 +15,7 @@ export class UserHeaderComponent implements OnInit {
     constructor(public route: ActivatedRoute) {}
 
     ngOnInit(): void {
+        console.log(this.prop);
         this.orgType =
             this.prop?.company_name ||
             this.prop?.organization_name ||

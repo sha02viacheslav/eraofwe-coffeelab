@@ -19,7 +19,7 @@ export class PublishForumComponent implements OnInit {
         if (this.type === 'article') {
             this.firstBtnValue = this.globals.languageJson?.ask_a_question;
             this.secondBtnValue = this.globals.languageJson?.create_brew_guide;
-            this.placeHolderValue = this.globals.languageJson?.publish_article;
+            this.placeHolderValue = this.globals.languageJson?.write_post;
         } else if (this.type === 'recipe') {
             this.firstBtnValue = this.globals.languageJson?.write_post;
             this.secondBtnValue = this.globals.languageJson?.ask_a_question;

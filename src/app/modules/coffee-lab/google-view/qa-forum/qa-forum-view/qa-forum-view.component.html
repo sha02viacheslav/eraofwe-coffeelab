@@ -1,22 +1,10 @@
-<!-- <h1 class="fnt-18 fnt-muli text-clr334 font-weight-bold d-block d-md-none mb-3" *ngIf="isMobile$ | async">
-    {{ 'question_answers' | translate }}
-</h1> -->
-
 <div class="row">
     <div class="col-12 col-md-7 pr-md-0">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
 </div>
-
-<!-- <div class="d-flex justify-content-between mt-4 mt-mb-45 mt-lg-5">
-    
-   
-</div> -->
 <div class="mt-2">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
-            {{ 'question_answers' | translate }}
-        </h1> -->
         <div class="custom-search qa-forum-search d-block d-lg-none">
             <input
                 class="w-100 fnt-16"
@@ -95,15 +83,8 @@
                                         [innerHTML]="question?.question"
                                     ></div>
                                 </a>
-                                <!-- <button
-                                    *ngIf="question.total_answers > 0"
-                                    (click)="gotoDetailPage($event, question)"
-                                    class="btn-f8 w-100 d-inline-block d-md-none mt-4"
-                                >
-                                    {{ 'see_all_answers' | translate }}
-                                </button> -->
                             </div>
-                            <app-like-divider [total]="question.total_answers"></app-like-divider>
+                            <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
                             <div
                                 *ngIf="question.total_answers > 0"
                                 class="py-md-4 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
@@ -128,13 +109,6 @@
                                         ></span>
                                     </div>
                                 </div>
-                                <button
-                                    *ngIf="question.total_answers > 0"
-                                    (click)="gotoDetailPage($event, question)"
-                                    class="btn-f8 w-100"
-                                >
-                                    {{ 'see_all_answers' | translate }}
-                                </button>
                             </div>
                         </div>
                         <div class="d-lg-none mb-4 mb-md-3" *ngIf="i === 1">

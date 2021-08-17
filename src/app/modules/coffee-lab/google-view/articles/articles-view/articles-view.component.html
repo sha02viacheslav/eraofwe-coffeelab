@@ -1,7 +1,4 @@
 <div>
-    <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0" *ngIf="isMobile$ | async">
-        {{ 'posts' | translate }}
-    </h1> -->
     <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="article"></app-publish-forum>
@@ -11,9 +8,6 @@
         class="d-md-flex flex-column flex-md-row justify-content-md-between pt-md-4 pt-lg-45 align-items-center"
         *ngIf="!(isMobile$ | async)"
     >
-        <!-- <h1 class="fnt-18 fnt-md-24 fnt-muli fnt-bold text-clr334 mb-0">
-            {{ 'posts' | translate }}
-        </h1> -->
         <div class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
             <input
                 class="w-100 fnt-16"

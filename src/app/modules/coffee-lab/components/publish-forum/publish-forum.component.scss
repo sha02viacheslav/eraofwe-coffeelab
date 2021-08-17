@@ -10,10 +10,11 @@
     .post-btn {
         height: 35px;
         margin: 16px 13px 0 0;
-        padding: 8px 14px 7px 13px;
+        padding: 6px 14px 7px 13px;
         border-radius: 17.5px;
         color: $white;
         border: solid 1px $muted-text-color;
+        cursor: pointer;
         background-color: rgba(116, 117, 136, 0.39);
     }
     .cursor-point {

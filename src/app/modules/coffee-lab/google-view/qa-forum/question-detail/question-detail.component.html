@@ -9,24 +9,14 @@
         <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
             <div class="border-question-view br-12">
                 <div class="p-3 pt-lg-4 px-lg-4">
-                    <div class="d-flex align-items-center">
-                        <app-avatar
-                            [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                            size="36"
-                            [name]="detailsData?.user_name"
-                        ></app-avatar>
-                        <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-2">{{ detailsData?.user_name }}</p>
-                        <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                            {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}
-                        </p>
-                    </div>
+                    <app-user-header [prop]="detailsData"></app-user-header>
                     <h1
                         class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
                         [innerHTML]="detailsData?.question"
                     ></h1>
                 </div>
                 <app-like-divider></app-like-divider>
-                <div class="d-flex mr-4 my-35">
+                <div class="d-flex mr-4 my-35 ml-4 pl-3">
                     <button
                         class="add-comment cursor-point w-100 fnt-14 fnt-600 fnt-muli text-clr588 d-flex align-items-center pl-4"
                     >
