@@ -132,6 +132,7 @@
                                     <div class="d-flex">
                                         <img
                                             (click)="onFocus()"
+                                            class="cursor-point"
                                             src="assets/images/thumbs-up-button.svg"
                                             alt="thumbs-up"
                                         />
@@ -140,13 +141,19 @@
                                     <div class="align-items-center ml-4">
                                         <img
                                             (click)="onFocus()"
+                                            class="cursor-point"
                                             src="assets/images/bookmark-button.svg"
                                             alt="bookmark"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <img (click)="onFocus()" src="assets/images/upload.svg" alt="upload" />
+                                    <img
+                                        (click)="onFocus()"
+                                        class="cursor-point"
+                                        src="assets/images/upload.svg"
+                                        alt="upload"
+                                    />
                                 </div>
                             </div>
                             <span *ngFor="let btn of buttonList">
@@ -315,21 +322,36 @@
                         View Profile
                     </button>
                     <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli">
-                        <img (click)="onFocus()" src="assets/images/message-icon-white.svg" />
+                        <img (click)="onFocus()" class="cursor-point" src="assets/images/message-icon-white.svg" />
                     </div>
                 </div>
             </div>
             <p-divider styleClass="m-0"></p-divider>
             <div class="d-flex my-4">
                 <div class="d-flex">
-                    <img (click)="onFocus()" src="assets/images/thumbs-up-button.svg" alt="thumb" />
+                    <img
+                        (click)="onFocus()"
+                        class="cursor-point"
+                        src="assets/images/thumbs-up-button.svg"
+                        alt="thumb"
+                    />
                     <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                 </div>
                 <div class="message-icon ml-3">
-                    <img (click)="onFocus()" src="assets/images/message-button.svg" alt="message" />
+                    <img
+                        (click)="onFocus()"
+                        class="cursor-point"
+                        src="assets/images/message-button.svg"
+                        alt="message"
+                    />
                 </div>
                 <div class="ml-3">
-                    <img (click)="onFocus()" src="assets/images/bookmark-button.svg" alt="bookmark" />
+                    <img
+                        (click)="onFocus()"
+                        class="cursor-point"
+                        src="assets/images/bookmark-button.svg"
+                        alt="bookmark"
+                    />
                 </div>
             </div>
         </div>

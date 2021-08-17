@@ -63,11 +63,11 @@
                                 [options]="sortOptions"
                                 [(ngModel)]="sortBy"
                                 (ngModelChange)="getData()"
-                                styleClass="no-border no-padding text-clr588"
+                                styleClass="round-border text-clr588"
                                 optionLabel="label"
                                 optionValue="value"
                                 styleClass="round-border"
-                                placeholder="Sort by"
+                                [placeholder]="'sort_by' | translate"
                             ></p-dropdown>
                         </div>
                     </div>

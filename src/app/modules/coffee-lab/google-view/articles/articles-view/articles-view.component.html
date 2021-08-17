@@ -43,6 +43,7 @@
                 class="pl-md-3 pl-25"
                 [options]="orderList"
                 optionLabel="label"
+                [placeholder]="'sort_by' | translate"
                 optionValue="value"
                 [(ngModel)]="selectedOrder"
                 (onChange)="getData()"
@@ -79,6 +80,7 @@
                         <div class="icon-save">
                             <img
                                 (click)="onFocus()"
+                                class="cursor-point"
                                 src="assets/images/bookmark-button.svg"
                                 width="36"
                                 height="36"

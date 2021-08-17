@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GlobalsService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
@@ -9,9 +10,26 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 })
 export class PublishForumComponent implements OnInit {
     @Input() type: string;
-    constructor(public dialogSrv: DialogService) {}
+    firstBtnValue: string;
+    secondBtnValue: string;
+    placeHolderValue: string;
+    constructor(public dialogSrv: DialogService, private globals: GlobalsService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.type === 'article') {
+            this.firstBtnValue = this.globals.languageJson?.ask_a_question;
+            this.secondBtnValue = this.globals.languageJson?.create_brew_guide;
+            this.placeHolderValue = this.globals.languageJson?.publish_article;
+        } else if (this.type === 'recipe') {
+            this.firstBtnValue = this.globals.languageJson?.write_post;
+            this.secondBtnValue = this.globals.languageJson?.ask_a_question;
+            this.placeHolderValue = this.globals.languageJson?.start_making_a_recipe;
+        } else {
+            this.firstBtnValue = this.globals.languageJson?.write_post;
+            this.secondBtnValue = this.globals.languageJson?.create_brew_guide;
+            this.placeHolderValue = this.globals.languageJson?.ask_your_question;
+        }
+    }
 
     onFocus() {
         this.dialogSrv.open(SignupModalComponent, {

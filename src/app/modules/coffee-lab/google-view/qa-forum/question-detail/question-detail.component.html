@@ -31,41 +31,13 @@
                     ></h1>
                 </div>
                 <app-like-divider></app-like-divider>
-                <div class="d-flex ml-5 mr-4 my-35">
-                    <div class="d-flex mt-1">
-                        <app-avatar
-                            [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                            size="40"
-                            [name]="detailsData?.user_name"
-                        ></app-avatar>
-                    </div>
-
+                <div class="d-flex mr-4 my-35">
                     <button
-                        *ngIf="!addComment"
-                        class="add-comment w-100 fnt-14 fnt-600 fnt-muli text-clr588 d-flex align-items-center pl-4"
-                        (click)="addComment = true"
+                        class="add-comment cursor-point w-100 fnt-14 fnt-600 fnt-muli text-clr588 d-flex align-items-center pl-4"
                     >
                         Add a comment
                     </button>
-                    <div *ngIf="addComment" class="w-100">
-                        <div class="comment">
-                            For the consumer, flavor is arguably the most important aspect of a good coffee. Coffee
-                            flavor is extremely complex and arises from numerous chemical, biological and physical
-                            influences of cultivar, coffee cherry maturity, geographical growing location, production,
-                            processing, roasting and cup preparation. Not surprisingly there is a large volume of
-                            research published detailing the volatile and non-volatile compounds in coffee and that are
-                            likely to be playing a role in coffee flavor. Further, there is much published on the
-                            sensory properties of coffee. Nevertheless, the link between flavor components and the
-                            sensory properties expressed in the complex matrix of coffee is yet to be fully understood.
-                            This paper provides an overview of the chemical components that are thought to b
-                        </div>
-                        <div class="d-flex justify-content-end mt-4">
-                            <button class="btn-raised" (click)="addComment = false">Add comment</button>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- <p-divider styleClass="my-3 my-md-45 my-lg-4 p-divider-primary"></p-divider> -->
                 <div *ngIf="detailsData?.answers">
                     <div
                         class="answer-wrapper border-bottom-primary mb-4 ml-5 mr-4"
@@ -109,25 +81,37 @@
                         <div class="d-flex justify-content-between mb-3">
                             <div class="d-flex">
                                 <div class="d-flex">
-                                    <img (click)="onFocus()" src="assets/images/thumbs-up-button.svg" alt="thumbs-up" />
+                                    <img
+                                        (click)="onFocus()"
+                                        class="cursor-point"
+                                        src="assets/images/thumbs-up-button.svg"
+                                        alt="thumbs-up"
+                                    />
                                     <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
                                 </div>
                                 <div class="align-items-center d-flex ml-4">
                                     <img
                                         (click)="onFocus()"
+                                        class="cursor-point"
                                         src="assets/images/bookmark-button.svg"
                                         alt="bookmark-button"
                                     />
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <img (click)="onFocus()" src="assets/images/upload.svg" alt="ubload" />
+                                <img
+                                    (click)="onFocus()"
+                                    class="cursor-point"
+                                    src="assets/images/upload.svg"
+                                    alt="ubload"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
                 <button
-                    (focus)="onFocus()"
+                    (click)="onFocus()"
+                    class="cursor-point"
                     class="fnt-14 fnt-bold fnt-muli text-clr60b ml-5 mb-4 bg-transparent border-0 text-underline"
                 >
                     Write a comment
