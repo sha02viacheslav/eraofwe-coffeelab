@@ -16,10 +16,28 @@ export class LanguageDropdownComponent implements OnInit {
     constructor(public coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {
-        this.selectedLanguage = this.coffeeLabService.currentForumLanguage;
+        if (this.coffeeLabService.currentForumLanguage === 'en') {
+            this.selectedLanguage = 'English';
+        } else if (this.coffeeLabService.currentForumLanguage === 'sv') {
+            this.selectedLanguage = 'Swedish';
+        } else if (this.coffeeLabService.currentForumLanguage === 'Portuguese') {
+            this.selectedLanguage = 'Portuguese';
+        } else if (this.coffeeLabService.currentForumLanguage === 'Spanish') {
+            this.selectedLanguage = 'Spanish';
+        }
     }
 
     onChangeLanguage(): void {
-        this.coffeeLabService.forumLanguage.next(this.selectedLanguage);
+        let value: string;
+        if (this.selectedLanguage === 'English') {
+            value = 'en';
+        } else if (this.selectedLanguage === 'Swedish') {
+            value = 'sv';
+        } else if (this.selectedLanguage === 'Portuguese') {
+            value = 'pt';
+        } else if (this.selectedLanguage === 'Spanish') {
+            value = 'es';
+        }
+        this.coffeeLabService.forumLanguage.next(value);
     }
 }

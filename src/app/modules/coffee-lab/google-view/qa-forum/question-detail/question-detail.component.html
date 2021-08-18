@@ -1,7 +1,7 @@
 <main>
     <div class="mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content" *ngIf="previousUrl">
         <a class="back-page" [routerLink]="previousUrl">
-            <span>{{ 'back' | translate }}</span>
+            <span>{{ 'back_to_forum' | translate }}</span>
         </a>
     </div>
 
@@ -63,7 +63,7 @@
                                 />
                             </ng-container>
                         </div>
-                        <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex justify-content-between my-3">
                             <div class="d-flex">
                                 <div class="d-flex">
                                     <img
@@ -107,22 +107,6 @@
             <div class="d-none d-lg-block mb-4">
                 <app-join-community [type]="'question'"></app-join-community>
             </div>
-            <!-- <div class="border-main br-4">
-                <div class="m-1 fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
-                    {{ 'recent_discussions_on_forum' | translate }}
-                </div>
-                <div>
-                    <div *ngFor="let forum of relatedData" class="forum-row pt-4 px-3 pb-0">
-                        <a [routerLink]="['/' + lang + '/qa-forum/' + forum.slug]">
-                            <h2
-                                class="fnt-14 fnt-muli fnt-semi-bold lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
-                                [innerHTML]="forum.question"
-                                (click)="onGoRelatedQuestion($event, forum)"
-                            ></h2>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
         </article>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>
