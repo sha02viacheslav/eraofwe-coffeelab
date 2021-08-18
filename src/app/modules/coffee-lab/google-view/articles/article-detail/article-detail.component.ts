@@ -72,7 +72,6 @@ export class ArticleDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
-                console.log(this.detailsData);
                 this.lang = res.result.language;
                 if (res.result?.is_era_of_we) {
                     this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;

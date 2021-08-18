@@ -33,7 +33,6 @@ export class JoinCommunityComponent implements OnInit {
                 per_page: 5,
             })
             .subscribe((res: any) => {
-                console.log(res);
                 if (res.success) {
                     if (this.type === 'question') {
                         this.relatedData = res.result.questions;

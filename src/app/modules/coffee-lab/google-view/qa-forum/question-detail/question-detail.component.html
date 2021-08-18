@@ -8,10 +8,17 @@
     <div class="page-wrapper d-block d-lg-flex justify-content-between" *ngIf="!loading">
         <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
             <div class="border-question-view br-12">
-                <div class="p-3 pt-lg-4 px-lg-4">
-                    <app-user-header [prop]="detailsData"></app-user-header>
+                <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
+                    <div class="flex-1">
+                        <app-user-header [prop]="detailsData"></app-user-header>
+                    </div>
+                    <div class="mobile-dot d-none d-md-block">
+                        <app-forum-menu></app-forum-menu>
+                    </div>
+                </div>
+                <div class="pb-3 px-lg-4">
                     <h1
-                        class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
+                        class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 mt-0"
                         [innerHTML]="detailsData?.question"
                     ></h1>
                 </div>
