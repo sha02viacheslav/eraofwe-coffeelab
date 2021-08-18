@@ -57,34 +57,8 @@
                             <app-user-header [prop]="detailsData"></app-user-header>
                             <div class="d-flex flex-column align-items-end">
                                 <app-forum-menu></app-forum-menu>
-                                <!-- <div
-                                        class="translate-wrapper"
-                                        *ngIf="
-                                            detailsData?.allow_translation &&
-                                            detailsData?.translated_articles &&
-                                            detailsData?.translated_articles.length > 0
-                                        "
-                                    >
-                                        <app-translation-dropdown
-                                            forumType="articles"
-                                            [translatedList]="detailsData?.translated_articles"
-                                        ></app-translation-dropdown>
-                                    </div> -->
                             </div>
                         </div>
-                        <!-- <div
-                            class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
-                            *ngIf="
-                                detailsData?.allow_translation &&
-                                detailsData?.translated_articles &&
-                                detailsData?.translated_articles.length > 0
-                            "
-                        >
-                            <app-translation-dropdown
-                                forumType="articles"
-                                [translatedList]="detailsData?.translated_articles"
-                            ></app-translation-dropdown>
-                        </div> -->
                         <div class="forum-content w-100 pt-4 mb-5">
                             <div
                                 class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
@@ -270,15 +244,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <app-forum-card [data]="forum" forumType="articles"></app-forum-card> -->
             </div>
-            <!-- <div class="d-block d-lg-none pt-3">
-                <p-carousel [value]="relatedData" styleClass="p-carousel-forum" [numVisible]="1" [numScroll]="1">
-                    <ng-template let-forum pTemplate="item">
-                        <app-forum-card [data]="forum" forumType="articles"></app-forum-card>
-                    </ng-template>
-                </p-carousel>
-            </div> -->
         </div>
         <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
             <app-join-community [type]="'article'"></app-join-community>

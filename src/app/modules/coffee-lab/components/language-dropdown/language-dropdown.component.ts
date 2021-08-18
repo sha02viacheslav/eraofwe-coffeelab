@@ -17,28 +17,27 @@ export class LanguageDropdownComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.coffeeLabService.currentForumLanguage === 'en') {
-            this.selectedLanguage = this.globals.languageJson?.english;
+            this.selectedLanguage = 'English';
         } else if (this.coffeeLabService.currentForumLanguage === 'sv') {
-            this.selectedLanguage = this.globals.languageJson?.swedish;
+            this.selectedLanguage = 'Swedish';
         } else if (this.coffeeLabService.currentForumLanguage === 'Portuguese') {
-            this.selectedLanguage = this.globals.languageJson?.portuguese;
+            this.selectedLanguage = 'Portuguese';
         } else if (this.coffeeLabService.currentForumLanguage === 'Spanish') {
-            this.selectedLanguage = this.globals.languageJson?.spanish;
+            this.selectedLanguage = 'Spanish';
         }
     }
 
     onChangeLanguage(): void {
         let value: string;
-        if (this.selectedLanguage === this.globals.languageJson?.english) {
+        if (this.selectedLanguage === 'English') {
             value = 'en';
-        } else if (this.selectedLanguage === this.globals.languageJson?.swedish) {
+        } else if (this.selectedLanguage === 'Swedish') {
             value = 'sv';
-        } else if (this.selectedLanguage === this.globals.languageJson?.portuguese) {
+        } else if (this.selectedLanguage === 'Portuguese') {
             value = 'pt';
-        } else if (this.selectedLanguage === this.globals.languageJson?.spanish) {
+        } else if (this.selectedLanguage === 'Spanish') {
             value = 'es';
         }
         this.coffeeLabService.forumLanguage.next(value);
-        this.selectedLanguage = this.globals.languageJson?.english;
     }
 }
