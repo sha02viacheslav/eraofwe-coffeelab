@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -13,10 +13,20 @@ export class LikeDividerComponent implements OnInit {
     @Input() total: any;
     @Input() question: any;
     buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
+    showJoinBtn = true;
 
-    constructor(public dialogSrv: DialogService, private router: Router, private coffeeLabService: CoffeeLabService) {}
+    constructor(
+        public dialogSrv: DialogService,
+        private router: Router,
+        private activateRoute: ActivatedRoute,
+        private coffeeLabService: CoffeeLabService,
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.activateRoute.snapshot.params.idOrSlug) {
+            this.showJoinBtn = false;
+        }
+    }
 
     getLink(item: any, answer: any) {
         const url = `/${this.coffeeLabService.currentForumLanguage}/qa-forum/${item.slug}`;

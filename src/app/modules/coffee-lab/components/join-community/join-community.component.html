@@ -1,4 +1,4 @@
-<div class="question-header mb-4">
+<div class="question-header mb-4" [ngClass]="{ 'no-border': type === 'article' }">
     <p class="fnt-16 fnt-bold fnt-muli text-clr24 mt-3">Recent discussions on forum</p>
     <div class="question-list" *ngFor="let data of relatedData">
         <p class="py-3">
