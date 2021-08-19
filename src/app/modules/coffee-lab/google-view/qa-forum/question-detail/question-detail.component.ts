@@ -22,7 +22,6 @@ export class QuestionDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    addComment = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,

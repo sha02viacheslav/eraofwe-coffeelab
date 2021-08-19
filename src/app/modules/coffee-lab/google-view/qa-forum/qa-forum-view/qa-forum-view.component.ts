@@ -23,7 +23,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     viewMode = 'list';
     sortOptions = [];
     filterOptions = [];
-    sortBy = 'latest';
+    sortBy = '';
     filterBy: any;
     questions: any[] = [];
     isLoading = false;
@@ -54,6 +54,16 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     ngOnInit(): void {
         this.setSEO();
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.filterOptions = [
+                {
+                    label: this.globalsService.languageJson?.coffee_experts,
+                    value: false,
+                },
+                {
+                    label: this.globalsService.languageJson?.end_consumers,
+                    value: true,
+                },
+            ];
             this.sortOptions = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -66,16 +76,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 {
                     label: this.globalsService.languageJson?.oldest,
                     value: 'oldest',
-                },
-            ];
-            this.filterOptions = [
-                {
-                    label: this.globalsService.languageJson?.coffee_experts,
-                    value: false,
-                },
-                {
-                    label: this.globalsService.languageJson?.end_consumers,
-                    value: true,
                 },
             ];
             if (isPlatformBrowser(this.platformId)) {
@@ -99,7 +99,12 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
             query: this.keyword,
             is_consumer: this.filterBy,
             sort_by: this.sortBy === 'most_answered' ? 'most_answered' : 'posted_at',
-            sort_order: this.sortBy === 'most_answered' ? 'desc' : this.sortBy === 'latest' ? 'desc' : 'asc',
+            sort_order:
+                this.sortBy === 'most_answered'
+                    ? 'desc'
+                    : this.sortBy === 'latest' || this.sortBy === ''
+                    ? 'desc'
+                    : 'asc',
             page: this.page,
             per_page: this.rows,
         };

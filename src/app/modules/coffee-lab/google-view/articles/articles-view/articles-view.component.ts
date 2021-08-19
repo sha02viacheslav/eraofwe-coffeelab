@@ -21,7 +21,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     translationsList: any[] = [];
     orderList: any[] = [];
     isAvailableTranslation?: any;
-    selectedOrder = 'latest';
+    selectedOrder = '';
     articlesData: any[] = [];
     isLoading = false;
     totalRecords = 0;
@@ -86,7 +86,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             query: this.keyword,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
-            sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
+            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             page: this.page,
             per_page: this.rows,
         };
