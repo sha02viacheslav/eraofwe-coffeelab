@@ -18,7 +18,7 @@ import { RouterSlug } from '@enums';
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
-    rows = 8;
+    rows = 9;
     totalRecords = 0;
     page = 1;
     destroy$: Subject<boolean> = new Subject<boolean>();
@@ -144,11 +144,12 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 const joinCard = {
                     cardType: 'joinCard',
                 };
-                if (this.coffeeRecipeData.length < 3) {
-                    this.coffeeRecipeData.push(joinCard);
-                } else {
-                    this.coffeeRecipeData.splice(2, 0, joinCard);
-                }
+                // if (this.coffeeRecipeData.length < 3) {
+                //     this.coffeeRecipeData.push(joinCard);
+                // } else {
+                //     this.coffeeRecipeData.splice(2, 0, joinCard);
+                // }
+                console.log(this.coffeeRecipeData);
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');

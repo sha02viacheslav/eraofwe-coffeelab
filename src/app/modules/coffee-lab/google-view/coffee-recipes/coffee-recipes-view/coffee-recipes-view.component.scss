@@ -37,8 +37,9 @@
     }
     .coffee-item {
         img {
-            height: 243px;
-            border-radius: 4px;
+            height: 234px;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
         }
 
         &:hover {
@@ -86,7 +87,7 @@
         margin: -8px;
         .coffee-item {
             img {
-                height: 243px;
+                height: 234px;
                 object-fit: cover;
             }
             &:hover {
@@ -134,5 +135,19 @@
         .filter-dropdown {
             display: block !important;
         }
+    }
+}
+
+.br-14 {
+    border-radius: 14px;
+    border: solid 1px #d0d0d0;
+}
+
+.bookmark-icon img {
+    width: 36px !important;
+    height: 36px !important;
+    @media screen and (max-width: 767px) {
+        width: 29px !important;
+        height: 29px !important;
     }
 }

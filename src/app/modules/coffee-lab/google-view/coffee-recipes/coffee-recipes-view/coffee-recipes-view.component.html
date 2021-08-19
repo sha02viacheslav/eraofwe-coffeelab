@@ -1,12 +1,12 @@
 <div class="coffee-recipes-view-container">
-    <h1 class="fnt-18 fnt-md-24 fnt-bold text-clr334 d-md-none" *ngIf="isMobile$ | async">
+    <!-- <h1 class="fnt-18 fnt-md-24 fnt-bold text-clr334 d-md-none" *ngIf="isMobile$ | async">
         {{ 'brewing_guides_recipes' | translate }}
-    </h1>
-    <div class="row justify-content-lg-between pt-3 pt-md-0 gutter-32">
+    </h1> -->
+    <div class="row justify-content-lg-between pt-1 pt-md-0 gutter-32">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="recipe"></app-publish-forum>
         </div>
-        <div class="col-lg-4 d-block d-md-none d-lg-block d-xl-block mt-4 mt-lg-0">
+        <div class="col-12 d-md-none my-3">
             <div class="custom-search qa-forum-search d-lg-block">
                 <input
                     class="w-100 fnt-16"
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div
+    <!-- <div
         class="d-md-flex flex-column align-items-center flex-md-row justify-content-md-between pb-lg-3 pb-md-0 pt-md-4 pt-lg-45"
         *ngIf="!(isMobile$ | async)"
     >
@@ -36,36 +36,49 @@
                 [placeholder]="'search_recipes' | translate"
             />
         </span>
-    </div>
-    <div class="d-flex align-items-md-center justify-content-between py-4 pb-md-4 pb-lg-45">
+    </div> -->
+    <div class="d-flex align-items-md-center justify-content-between tb-3 pb-4 pb pt-md-4 pt-lg-45">
         <div class="d-block flex-wrap d-md-flex">
-            <div class="mt-md-4 mt-lg-0">
+            <div class="d-flex">
+                <div class="mb-25 mb-md-0">
+                    <p-dropdown
+                        [options]="levels"
+                        optionLabel="label"
+                        optionValue="value"
+                        [showClear]="true"
+                        [(ngModel)]="label"
+                        (onChange)="getData()"
+                        [placeholder]="'difficulty' | translate"
+                        styleClass="round-border"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="pl-md-3 pl-1 mb-25 mb-md-0">
+                    <p-dropdown
+                        [options]="translationsList"
+                        optionLabel="label"
+                        optionValue="value"
+                        [showClear]="true"
+                        [(ngModel)]="isAvailableTranslation"
+                        (onChange)="getData()"
+                        [placeholder]="'translation_available' | translate"
+                        styleClass="round-border"
+                    >
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="pl-md-3">
                 <p-dropdown
-                    [options]="levels"
+                    [options]="orderList"
                     optionLabel="label"
                     optionValue="value"
-                    [showClear]="true"
-                    [(ngModel)]="label"
+                    [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
-                    [placeholder]="'difficulty' | translate"
-                    styleClass="round-border"
+                    styleClass="round-border mobile-ui"
                 >
                 </p-dropdown>
             </div>
-            <div class="pl-md-3 mt-3 mt-lg-0 mt-md-4 mt-lg-0">
-                <p-dropdown
-                    [options]="translationsList"
-                    optionLabel="label"
-                    optionValue="value"
-                    [showClear]="true"
-                    [(ngModel)]="isAvailableTranslation"
-                    (onChange)="getData()"
-                    [placeholder]="'translation_available' | translate"
-                    styleClass="round-border"
-                >
-                </p-dropdown>
-            </div>
-            <div class="pl-md-3 mt-3 mt-lg-0 mt-md-4 mt-lg-0 ingredient-field">
+            <!-- <div class="pl-md-3 mt-3 mt-lg-0 mt-md-4 mt-lg-0 ingredient-field">
                 <input
                     class="w-100 fnt-16"
                     type="text"
@@ -75,18 +88,19 @@
                     styleClass="ingredient-field"
                     [placeholder]="'search_by_ingredient' | translate"
                 />
-            </div>
+            </div> -->
         </div>
-        <div class="mt-md-4 mt-lg-0">
-            <p-dropdown
-                [options]="orderList"
-                optionLabel="label"
-                optionValue="value"
-                [(ngModel)]="selectedOrder"
-                (onChange)="getData()"
-                styleClass="no-border mobile-ui"
-            >
-            </p-dropdown>
+        <div class="col-md-5 d-none d-md-block pl-md-5">
+            <div class="custom-search qa-forum-search">
+                <input
+                    class="w-100 fnt-16"
+                    type="text"
+                    pInputText
+                    [(ngModel)]="searchQuery"
+                    (ngModelChange)="getData()"
+                    [placeholder]="'search_recipes' | translate"
+                />
+            </div>
         </div>
     </div>
     <div class="coffee-wrapper" *ngIf="!isLoading">
@@ -96,41 +110,54 @@
             [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
         >
             <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
-                <div class="border-main br-4 p-3 py-md-4 px-lg-4 coffee-item" (click)="gotoDetailPage($event, coffee)">
-                    <div class="d-flex justify-content-between">
+                <div class="br-14 coffee-item" (click)="gotoDetailPage($event, coffee)">
+                    <!-- <div class="d-flex justify-content-between">
                         <div class="flex-1 overflow-hidden">
                             <app-user-header [prop]="coffee"></app-user-header>
                         </div>
                         <app-forum-menu></app-forum-menu>
-                    </div>
-                    <div class="w-100 position-relative">
-                        <img [src]="coffee.cover_image_url" class="w-100 my-3 my-md-4" [alt]="coffee?.name" />
+                    </div> -->
+                    <div class="w-100">
+                        <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
                         <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                     </div>
-                    <div class="fnt-muli fnt-lg-14 fnt-16 fnt-bold text-clr334 cursor-pointer">
-                        <div class="recipe-name">
-                            {{ coffee?.name }}
+                    <div class="m-3 m-md-4">
+                        <div class="d-flex justify-content-between">
+                            <div class="recipe-name fnt-14 fnt-md-16 fnt-bold fnt-muli text-clr334">
+                                {{ coffee?.name }}
+                            </div>
+                            <div class="bookmark-icon">
+                                <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
+                            </div>
                         </div>
-                        <div class="py-3 m-0 d-flex">
-                            <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'brew_ratio' | translate }}:</div>
-                            <span class="fnt-semi-bold"> {{ coffee.coffee_ratio }} : {{ coffee.water_ratio }} </span>
+                        <!-- <div class="fnt-muli fnt-lg-14 fnt-16 fnt-bold text-clr334 cursor-pointer">
+                            <div class="py-3 m-0 d-flex">
+                                <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'brew_ratio' | translate }}:</div>
+                                <span class="fnt-semi-bold">
+                                    {{ coffee.coffee_ratio }} : {{ coffee.water_ratio }}
+                                </span>
+                            </div>
+                            <div class="m-0 d-flex">
+                                <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'ingredients' | translate }}:</div>
+                                <span class="value fnt-muli fnt-14 fnt-semi-bold">
+                                    {{ coffee.ingredients }}
+                                </span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="coffee-content-wrapper">
+                            <p
+                                class="fnt-muli fnt-14 fnt-normal lh-15 text-clr334 mb-0"
+                                [innerHTML]="coffee.description"
+                            ></p>
+                        </div> -->
+                        <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-25 mt-2">
+                            {{ coffee?.posted_at || coffee?.created_at | date: 'longDate' }}
                         </div>
-                        <div class="m-0 d-flex">
-                            <div class="heading fnt-muli fnt-14 fnt-normal">{{ 'ingredients' | translate }}:</div>
-                            <span class="value fnt-muli fnt-14 fnt-semi-bold">
-                                {{ coffee.ingredients }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="coffee-content-wrapper">
-                        <p
-                            class="fnt-muli fnt-14 fnt-normal lh-15 text-clr334 mb-0"
-                            [innerHTML]="coffee.description"
-                        ></p>
+                        <app-user-header [prop]="coffee"></app-user-header>
                     </div>
                 </div>
             </a>
-            <app-join-community *ngIf="coffee.cardType === 'joinCard'"></app-join-community>
+            <!-- <app-join-community *ngIf="coffee.cardType === 'joinCard'"></app-join-community> -->
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>
