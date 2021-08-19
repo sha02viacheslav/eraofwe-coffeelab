@@ -149,7 +149,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 // } else {
                 //     this.coffeeRecipeData.splice(2, 0, joinCard);
                 // }
-                console.log(this.coffeeRecipeData);
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');
