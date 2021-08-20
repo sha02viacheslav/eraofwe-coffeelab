@@ -6,6 +6,8 @@ import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -16,21 +18,22 @@ export class RecipeDetailComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
+    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Brewing' }];
     infoData: any[] = [
         {
-            icon: 'assets/images/expertise-level.svg',
-            label: 'expertise_level',
+            icon: 'assets/images/aeropress.svg',
+            label: 'aeropress',
             key: 'expertise',
         },
         {
-            icon: 'assets/images/preparation-time.svg',
+            icon: 'assets/images/brew-ratio.svg',
             label: 'brew_ratio',
             key: 'coffee_ratio',
             key2: 'water_ratio',
         },
         {
-            icon: 'assets/images/servings.svg',
-            label: 'serving',
+            icon: 'assets/images/yeild.svg',
+            label: 'yeild',
             key: 'serves',
         },
     ];
@@ -49,6 +52,7 @@ export class RecipeDetailComponent implements OnInit {
         private location: Location,
         private startupService: StartupService,
         private globalsService: GlobalsService,
+        public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -75,7 +79,7 @@ export class RecipeDetailComponent implements OnInit {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 3);
+                    .slice(0, 4);
                 if (!this.idOrSlug) {
                     this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
                 }
@@ -182,5 +186,12 @@ export class RecipeDetailComponent implements OnInit {
                 },
             ],
         };
+    }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }

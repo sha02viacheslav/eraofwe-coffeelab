@@ -44,7 +44,7 @@ export class JoinCommunityComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const type = this.type === 'question' ? 'qa-forum' : 'articles';
+        const type = this.type === 'question' ? 'qa-forum' : 'articles' ? 'articles' : 'recipe';
         const url = `/${this.coffeeLabService.currentForumLanguage}/${type}/${item.slug}`;
         return {
             url,
