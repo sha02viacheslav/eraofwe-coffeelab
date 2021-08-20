@@ -41,7 +41,8 @@
                             Employee {{ data?.organization_name ? '@' + data?.organization_name : '' }}
                         </p>
                         <span class="fnt-muli fnt-14 fnt-normal text-clr588 mb-0">
-                            {{ orgName }} <img class="ml-2" src="assets/images/position.svg" />
+                            <!-- {{ orgName }}  -->
+                            <img src="assets/images/position.svg" />
                             {{ globalsService.getCountryName(data?.organization_country) }}
                         </span>
                     </div>
@@ -50,10 +51,10 @@
             </div>
             <p-divider styleClass="m-0"></p-divider>
             <div class="p-3 px-md-4 pt-md-3 pb-md-4">
-                <p class="fnt-muli fnt-14 fnt-semi-bold lh-15 text-clr588 pt-z5 mb-3" *ngIf="data?.about_me">
+                <p class="fnt-muli fnt-14 fnt-semi-bold lh-15 text-clr334 pt-z5 mb-3" *ngIf="data?.about_me">
                     {{ data?.about_me | convertToShortDescription: 13 }}
                 </p>
-                <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-25">Languages spoken:</p>
+                <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-25">{{ 'can_converse_in' | translate }} :</p>
                 <div class="language-wrapper">
                     <div class="p-1" *ngFor="let language of data?.converse_languages">
                         <div class="border-main px-25 py-1 language-item">
