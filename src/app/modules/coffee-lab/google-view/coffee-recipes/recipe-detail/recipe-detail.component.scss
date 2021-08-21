@@ -3,13 +3,8 @@
     @media screen and(max-width:767px) {
         .recipe-info-wrapper {
             background-color: $primary-bg-color;
-            border-radius: 4px;
-        }
-        .recipe-info-item {
-            border-bottom: solid 1px $primary-border-color;
-        }
-        .recipe-info-item:last-child {
-            border-bottom: none !important;
+            margin: 0 -8px;
+            padding: 0 8px;
         }
     }
     @media (min-width: 768px) {
@@ -18,8 +13,10 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin: 0 -3rem;
             padding: 1rem 3rem 1rem 5rem;
+            @media (min-width: 768px) {
+                margin: 0 -3rem;
+            }
             @media (max-width: 767px) {
                 .recipe-info-item {
                     width: 50%;
@@ -81,19 +78,25 @@
     word-break: break-all;
     img {
         width: 100%;
+        margin-top: 1rem;
     }
 }
 .recipe-content .recipe-img {
     object-fit: cover;
 }
 .user-details {
-    border: solid 1px #e5e5e5;
-    position: relative;
-    top: -4rem;
+    @media (min-width: 768px) {
+        position: relative;
+        top: -4rem;
+        border: solid 1px #e5e5e5;
+    }
 }
 .user-header {
     font-family: CormorantGaramond;
-    font-size: 48px;
+    font-size: 32px;
+    @media (min-width: 768px) {
+        font-size: 48px;
+    }
 }
 
 .p-articles img {
@@ -119,7 +122,6 @@
 
 .add-comment {
     height: 50px;
-    margin: 0 0 0 8px;
     object-fit: contain;
     border: none;
     border-radius: 25px;
@@ -170,9 +172,16 @@
     @media (min-width: 768px) {
         width: 175px;
         position: sticky;
-        top: 0%;
+        top: 40%;
         margin-top: 4rem;
         height: fit-content;
+    }
+}
+
+.icon-mob img {
+    @media (max-width: 767px) {
+        width: 29px;
+        height: 29px;
     }
 }
 
@@ -180,6 +189,20 @@
     @media (min-width: 768px) {
         width: 36px;
         height: 36px;
+    }
+}
+
+.mob-height {
+    @media screen and (max-width: 767px) {
+        height: 52px;
+    }
+}
+
+.mob-b-boder {
+    @media screen and (max-width: 767px) {
+        border-top: 1px solid #d8d8d8;
+        margin-top: 1rem;
+        margin-right: 0px;
     }
 }
 
@@ -197,7 +220,23 @@
     }
 }
 
-::ng-deep .step-wrapper img {
-    height: 276px !important;
-    object-fit: contain !important;
+// ::ng-deep .step-wrapper img {
+//     height: 276px !important;
+//     object-fit: contain !important;
+// }
+
+.recip-img {
+    height: 198px;
+    @media (min-width: 991px) {
+        height: 494px;
+    }
+}
+
+.check-icon {
+    width: 36px;
+    height: 36px;
+    margin: 0 16px 0 0;
+    border-radius: 50%;
+    border: solid 1px #d8d8d8;
+    background-color: #fff;
 }

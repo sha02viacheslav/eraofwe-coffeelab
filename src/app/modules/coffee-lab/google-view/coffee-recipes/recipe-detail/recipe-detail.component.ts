@@ -22,7 +22,7 @@ export class RecipeDetailComponent implements OnInit {
     infoData: any[] = [
         {
             icon: 'assets/images/aeropress.svg',
-            label: 'aeropress',
+            label: 'equipment',
             key: 'expertise',
         },
         {

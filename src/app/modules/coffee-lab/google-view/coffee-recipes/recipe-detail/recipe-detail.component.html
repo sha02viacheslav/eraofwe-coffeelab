@@ -1,5 +1,5 @@
 <main>
-    <div class="mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-5 mb-4 w-fit-content" *ngIf="previousUrl">
+    <div class="mt-325 mt-md-25 mt-lg-3 pb-0 pb-lg-5 mb-4 w-fit-content" *ngIf="previousUrl">
         <a class="back-page" [routerLink]="previousUrl">
             <span>{{ 'Back to forum' | translate }}</span>
         </a>
@@ -11,15 +11,14 @@
     <div class="page-wrapper" *ngIf="!loading">
         <article class="flex-1 mb-4">
             <div class="w-100">
-                <div class="recip-content pt-4 pt-lg-45">
+                <div class="recip-content pt-2 pt-lg-45">
                     <img
                         class="w-100 br-4 recip-img"
-                        height="494px"
                         [lazyLoad]="detailsData?.cover_image_url"
                         [alt]="detailsData?.name + 'cover image'"
                     />
-                    <div class="user-details p-md-45 ml-md-5 bg-white col-md-7 w-100 br-4">
-                        <div class="mb-45">
+                    <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
+                        <div class="mb-md-45 mb-3">
                             <span *ngFor="let btn of buttonList">
                                 <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
                                     {{ btn.button }}
@@ -29,8 +28,10 @@
                         <h1 class="fnt-20 fnt-bold text-clr334 mb-0 user-header mt-0">
                             Wacaco Picopresso: <br />{{ detailsData?.name | titlecase }}
                         </h1>
-                        <p class="fnt-20 fnt-600 fnt-muli text-clr334 my-4">{{ detailsData?.description }}</p>
-                        <div>
+                        <p class="fnt-20 fnt-600 fnt-muli text-clr334 mt-3 mb-md-35 mb-325 my-md-4">
+                            {{ detailsData?.description }}
+                        </p>
+                        <div class="d-md-flex mb-4 mb-md-0">
                             <div class="fnt-14 fnt-muli fnt-600 text-clr588 mb-md-45">
                                 Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
@@ -44,12 +45,46 @@
                                 ></app-translation-dropdown>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-md-end w-100">
+                        <div class="d-md-flex justify-content-md-between align-items-md-end w-100">
                             <app-user-header [prop]="detailsData"></app-user-header>
-                            <div class="row">
-                                <div class="d-flex align-items-center mr-3 mt-1"><app-forum-menu></app-forum-menu></div>
-                                <div>
-                                    <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
+                            <div class="row justify-content-between ml-1 mob-b-boder">
+                                <div class="d-flex mt-3 mb-45 d-md-none icon-mob">
+                                    <div class="d-flex">
+                                        <img
+                                            (click)="onFocus()"
+                                            class="cursor-point"
+                                            src="assets/images/thumbs-up-button.svg"
+                                            alt="thumb"
+                                        />
+                                    </div>
+                                    <div class="message-icon ml-3">
+                                        <img
+                                            (click)="onFocus()"
+                                            class="cursor-point"
+                                            src="assets/images/message-button.svg"
+                                            alt="message"
+                                        />
+                                    </div>
+                                    <div class="ml-3">
+                                        <img
+                                            (click)="onFocus()"
+                                            class="cursor-point"
+                                            src="assets/images/bookmark-button.svg"
+                                            alt="bookmark"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="d-flex mob-height align-items-center mr-3 mt-1">
+                                        <app-forum-menu></app-forum-menu>
+                                    </div>
+                                    <div class="d-none d-md-block">
+                                        <img
+                                            (click)="onFocus()"
+                                            src="assets/images/bookmark-button.svg"
+                                            alt="bookmark-button"
+                                        />
+                                    </div>
                                 </div>
 
                                 <!-- <div
@@ -65,12 +100,30 @@
                         </div>
                     </div>
                     <div class="recipe-info-wrapper">
-                        <div class="d-flex">
-                            <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
+                        <div class="d-none d-md-block">
+                            <div class="d-flex">
+                                <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
+                                    <div class="align-items-center d-flex">
+                                        <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
+                                    </div>
+                                    <div class="pl-2">
+                                        <label class="fnt-muli fnt-16 fnt-normal text-clr588 mb-0">{{
+                                            recipeInfo.label | translate
+                                        }}</label>
+                                        <p class="fnt-muli fnt-16 fnt-bold text-clr334 mb-0 pt-1" *ngIf="detailsData">
+                                            {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
+                                            }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-md-none">
+                            <div class="col-6 d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
                                 <div class="align-items-center d-flex">
                                     <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
                                 </div>
-                                <div class="pl-2 d-flex flex-column justify-content-between">
+                                <div class="pl-2">
                                     <label class="fnt-muli fnt-16 fnt-normal text-clr588 mb-0">{{
                                         recipeInfo.label | translate
                                     }}</label>
@@ -81,8 +134,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="align-items-center d-flex">
-                            <p class="fnt-20 fnt-muli fnt-600 text-clr334">Mark as brewed</p>
+                        <div class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0">
+                            <div class="align-items-center check-icon d-flex justify-content-center">
+                                <img src="assets/images/done_black_24dp.svg" alt="check" />
+                            </div>
+                            <p class="fnt-18 fnt-muli fnt-600 text-clr334">{{ 'mark_as_brewed' | translate }}</p>
                         </div>
                     </div>
                     <!-- <div class="forum-content pt-3 pt-md-4">
@@ -94,10 +150,10 @@
                     <div class="row pl-md-5">
                         <div class="col-md-5">
                             <div *ngIf="detailsData?.ingredients" class="pt-4">
-                                <h1 class="user-header mt-0 mb-45 fnt-20 fnt-bold text-clr334">
+                                <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-20 fnt-bold text-clr334">
                                     {{ 'ingredients' | translate }}
                                 </h1>
-                                <div class="py-2 ingredients-wrapper">
+                                <div class="py-md-2 ingredients-wrapper">
                                     <div
                                         class="py-3 px-0 ingredients-item"
                                         *ngFor="let ingredientsItem of detailsData.ingredients"
@@ -120,8 +176,8 @@
                             <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
                         </div>
 
-                        <div class="mt-45 col-md-7">
-                            <h2 class="user-header fnt-20 fnt-bold text-clr334 mt-0 mb-45">
+                        <div class="mt-4 mt-md-45 col-md-7">
+                            <h2 class="user-header fnt-20 fnt-bold text-clr334 mt-0 mb-4 mb-md-45">
                                 {{ 'directions' | translate }}
                             </h2>
                             <div
@@ -129,11 +185,15 @@
                                 *ngFor="let step of detailsData?.steps; let i = index"
                                 [id]="'step' + (i + 1)"
                             >
-                                <h3 class="fnt-muli fnt-24 fnt-semi-bold text-clr334 lh-157 mb-1">{{ i + 1 }}:</h3>
-                                <div
-                                    class="fnt-muli fnt-14 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
-                                    [innerHTML]="step.description"
-                                ></div>
+                                <div class="d-flex">
+                                    <span class="fnt-muli fnt-24 fnt-semi-bold text-clr334 lh-157 mb-1">{{
+                                        i + 1
+                                    }}</span>
+                                    <div
+                                        class="ml-md-3 ml-25 fnt-muli fnt-14 fnt-md-16 mt-1 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
+                                        [innerHTML]="step.description"
+                                    ></div>
+                                </div>
                                 <img
                                     *ngIf="step.image_thumb_url || step.image_url"
                                     class="w-100 stp-desc-img"
@@ -146,7 +206,7 @@
                 </div>
 
                 <!-- Question answer -->
-                <p-divider styleClass="my-5"></p-divider>
+                <p-divider class="d-none d-md-block" styleClass="my-5"></p-divider>
                 <div class="col-md-7 mx-auto">
                     <div class="recipe-answer w-100 pt-3 pb-4">
                         <div>
@@ -219,7 +279,7 @@
                                 {{ btn.button }}
                             </button>
                         </span>
-                        <div class="border-main br-4 p-4 mt-5">
+                        <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
@@ -244,24 +304,14 @@
                         </div>
                     </div>
 
-                    <div class="mt-5 mb-325 w-100">
+                    <div class="mt-md-5 mt-45 mb-325 w-100">
                         <div class="w-100"><p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">Comments</p></div>
-                        <div class="d-flex">
-                            <div class="d-flex mt-1">
-                                <app-avatar
-                                    [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                                    size="40"
-                                    [name]="detailsData?.user_name"
-                                ></app-avatar>
-                            </div>
-
-                            <button
-                                class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
-                                (click)="onFocus()"
-                            >
-                                Share your thoughts
-                            </button>
-                        </div>
+                        <button
+                            class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                            (click)="onFocus()"
+                        >
+                            Share your thoughts
+                        </button>
                     </div>
 
                     <!-- Answers -->
@@ -337,7 +387,7 @@
     </div>
     <!-- Footer -->
     <article class="row">
-        <div class="col-12 col-md-8 px-0 px-md-3">
+        <div class="col-12 col-md-8 px-md-3">
             <div class="fnt-16 fnt-muli fnt-bold text-clr334 pt-3 pb-45 background-header">
                 {{ 'popular_brewing_guides' | translate }}
             </div>
@@ -353,7 +403,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
+        <div class="col-12 col-md-4 mb-4 px-md-3">
             <app-join-community [type]="'recipe'"></app-join-community>
         </div>
         <!-- <div class="d-none d-lg-block mb-4">
