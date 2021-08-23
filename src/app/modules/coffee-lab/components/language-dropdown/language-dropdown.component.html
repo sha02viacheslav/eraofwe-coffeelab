@@ -15,7 +15,7 @@
     </ng-template>
     <ng-template let-languageItem pTemplate="item">
         <div class="d-flex align-items-center">
-            {{ languageItem.label }}
+            {{ languageItem.label[selectedLanguage] }}
         </div>
     </ng-template>
 </p-dropdown>
