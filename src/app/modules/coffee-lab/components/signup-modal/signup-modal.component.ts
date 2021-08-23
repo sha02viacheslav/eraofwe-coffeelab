@@ -76,7 +76,11 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
             if (res.success === true) {
                 window.open(`${environment.consumerWeb}/coffee-lab`, '_self');
             } else {
-                this.toastr.error(this.translator.instant('common_error'));
+                if (res.messages?.email?.includes('already_exists_in_another_app')) {
+                    this.toastr.error(this.translator.instant('email_already_exists_in_another_app'));
+                } else {
+                    this.toastr.error(this.translator.instant('common_error'));
+                }
             }
         });
     }
