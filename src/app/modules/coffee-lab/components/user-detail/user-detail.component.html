@@ -37,13 +37,16 @@
                         <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
                             {{ data?.firstname }} {{ data?.lastname }}
                         </p>
-                        <p class="fnt-muli fnt-14 fnt-normal text-clr334 mb-25">
-                            Employee {{ data?.organization_name ? '@' + data?.organization_name : '' }}
+                        <p class="fnt-muli fnt-14 fnt-normal text-clr334 mb-1">
+                            {{ data?.organization_name ? data?.organization_name : '' }}
                         </p>
-                        <span class="fnt-muli fnt-14 fnt-normal text-clr588 mb-0">
+                        <span class="fnt-muli fnt-14 fnt-600 text-clr588 mb-0">
                             <!-- {{ orgName }}  -->
-                            <img src="assets/images/position.svg" />
-                            {{ globalsService.getCountryName(data?.organization_country) }}
+                            <img class="location-image" src="assets/images/map-pin.svg" />
+                            <span class="location-align ml-2"
+                                >{{ data?.city || data?.organization_city }},
+                                {{ globalsService.getCountryName(data?.organization_country) }}</span
+                            >
                         </span>
                     </div>
                     <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="myOp.hide()"></i>
@@ -57,7 +60,7 @@
                 <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-25">{{ 'can_converse_in' | translate }} :</p>
                 <div class="language-wrapper">
                     <div class="p-1" *ngFor="let language of data?.converse_languages">
-                        <div class="border-main px-25 py-1 language-item">
+                        <div class="language-border px-25 py-1 language-item">
                             <p class="fnt-muli fnt-14 fnt-semi-bold text-clr334 mb-0">
                                 {{ globalsService.getLanguage(language) }}
                             </p>
