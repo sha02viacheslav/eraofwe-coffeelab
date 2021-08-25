@@ -18,13 +18,13 @@
                         [alt]="detailsData?.name + 'cover image'"
                     />
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
-                        <div class="mb-md-45 mb-3">
+                        <!-- <div class="mb-md-45 mb-3">
                             <span *ngFor="let btn of buttonList">
                                 <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
                                     {{ btn.button }}
                                 </button>
                             </span>
-                        </div>
+                        </div> -->
                         <h1 class="fnt-20 fnt-bold text-clr334 mb-0 user-header mt-0">
                             Wacaco Picopresso: <br />{{ detailsData?.name | titlecase }}
                         </h1>
@@ -49,14 +49,14 @@
                             <app-user-header [prop]="detailsData"></app-user-header>
                             <div class="row justify-content-between ml-1 mob-b-boder">
                                 <div class="d-flex mt-3 mb-45 d-md-none icon-mob">
-                                    <div class="d-flex">
+                                    <!-- <div class="d-flex">
                                         <img
                                             (click)="onFocus()"
                                             class="cursor-point"
                                             src="assets/images/thumbs-up-button.svg"
                                             alt="thumb"
                                         />
-                                    </div>
+                                    </div> -->
                                     <div class="message-icon ml-3">
                                         <img
                                             (click)="onFocus()"
@@ -247,7 +247,7 @@
                     <div class="w-100">
                         <div class="d-flex justify-content-between mt-3 mb-4">
                             <div class="d-flex">
-                                <div class="d-flex">
+                                <!-- <div class="d-flex">
                                     <img
                                         (click)="onFocus()"
                                         class="cursor-point"
@@ -255,7 +255,7 @@
                                         alt="thumbs-up"
                                     />
                                     <span class="d-flex align-items-end ml-1 mb-1">42</span>
-                                </div>
+                                </div> -->
                                 <div class="align-items-center ml-4">
                                     <img
                                         (click)="onFocus()"
@@ -274,11 +274,11 @@
                                 />
                             </div>
                         </div>
-                        <span *ngFor="let btn of buttonList">
+                        <!-- <span *ngFor="let btn of buttonList">
                             <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
                                 {{ btn.button }}
                             </button>
-                        </span>
+                        </span> -->
                         <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
@@ -360,10 +360,10 @@
                             </div>
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="d-flex">
-                                    <div class="d-flex">
+                                    <!-- <div class="d-flex">
                                         <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up" />
                                         <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
-                                    </div>
+                                    </div> -->
                                     <div class="align-items-center d-flex ml-4">
                                         <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
                                     </div>
@@ -467,7 +467,7 @@
             </div>
             <p-divider styleClass="m-0"></p-divider>
             <div class="d-flex my-4">
-                <div class="d-flex">
+                <!-- <div class="d-flex">
                     <img
                         (click)="onFocus()"
                         class="cursor-point"
@@ -475,7 +475,7 @@
                         alt="thumb"
                     />
                     <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
-                </div>
+                </div> -->
                 <div class="message-icon ml-3">
                     <img
                         (click)="onFocus()"
