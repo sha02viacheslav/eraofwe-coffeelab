@@ -11,33 +11,25 @@ export class LanguageDropdownComponent implements OnInit {
     readonly RouterMap = RouterMap;
     readonly ROUTER_SLUG_ITEMS = ROUTER_SLUG_ITEMS;
     languageList: any[] = APP_LANGUAGES;
-    selectedLanguage: string;
+    selectedLangCode: string;
+    selectedFullLang: string;
 
     constructor(public coffeeLabService: CoffeeLabService, private globals: GlobalsService) {}
 
     ngOnInit(): void {
-        if (this.coffeeLabService.currentForumLanguage === 'en') {
-            this.selectedLanguage = 'English';
-        } else if (this.coffeeLabService.currentForumLanguage === 'sv') {
-            this.selectedLanguage = 'Swedish';
-        } else if (this.coffeeLabService.currentForumLanguage === 'Portuguese') {
-            this.selectedLanguage = 'Portuguese';
-        } else if (this.coffeeLabService.currentForumLanguage === 'Spanish') {
-            this.selectedLanguage = 'Spanish';
-        }
+        this.getLanguageName(this.coffeeLabService.currentForumLanguage);
     }
 
     onChangeLanguage(): void {
-        let value: string;
-        if (this.selectedLanguage === 'English') {
-            value = 'en';
-        } else if (this.selectedLanguage === 'Swedish') {
-            value = 'sv';
-        } else if (this.selectedLanguage === 'Portuguese') {
-            value = 'pt';
-        } else if (this.selectedLanguage === 'Spanish') {
-            value = 'es';
-        }
-        this.coffeeLabService.forumLanguage.next(value);
+        this.getLanguageName(this.selectedLangCode);
+        this.coffeeLabService.forumLanguage.next(this.selectedLangCode);
+    }
+
+    getLanguageName(code: string) {
+        this.languageList.filter((i) => {
+            if (i.value === code) {
+                this.selectedFullLang = i.label[code];
+            }
+        });
     }
 }
