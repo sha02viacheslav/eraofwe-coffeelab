@@ -4,6 +4,7 @@
     [style.height]="size + 'px'"
     [style.border]="hasBorder ? '2px solid #fff' : 'none'"
     (mouseenter)="myOp.toggle($event)"
+    (mouseout)="myOp.hide()"
 >
     <img
         *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
@@ -49,7 +50,7 @@
                             >
                         </span>
                     </div>
-                    <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="myOp.hide()"></i>
+                    <!-- <i class="pi pi-times fnt-16 fnt-bold text-clr334 cursor-pointer" (click)="myOp.hide()"></i> -->
                 </div>
             </div>
             <p-divider styleClass="m-0"></p-divider>

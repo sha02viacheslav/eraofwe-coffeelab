@@ -103,11 +103,10 @@
                     </div>
                 </div>
             </a>
-            <!-- <app-join-community *ngIf="article.cardType === 'joinCard'"></app-join-community> -->
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
 
-        <div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
+        <div *ngIf="totalRecords && articlesData?.length" class="pt-3 pt-md-4 w-100">
             <app-paginator
                 [rows]="rows"
                 [totalRecords]="totalRecords"
@@ -116,7 +115,7 @@
             ></app-paginator>
         </div>
 
-        <div *ngIf="!articlesData?.length" class="text-center my-4 fnt-muli text-clr24">
+        <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 fnt-muli fnt-14 text-clr24">
             {{ 'no_data_is_available' | translate }}
         </div>
     </div>

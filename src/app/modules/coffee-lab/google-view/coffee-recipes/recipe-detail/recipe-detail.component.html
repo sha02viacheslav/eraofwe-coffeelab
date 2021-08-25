@@ -25,20 +25,18 @@
                                 </button>
                             </span>
                         </div> -->
-                        <h1 class="fnt-20 fnt-bold text-clr334 mb-0 user-header mt-0">
+                        <h1 class="fnt-bold text-clr334 mb-0 user-header mt-0">
                             {{ detailsData?.name | titlecase }}
                         </h1>
                         <p class="fnt-20 fnt-600 fnt-muli text-clr334 mt-3 mb-md-35 mb-325 my-md-4">
                             {{ detailsData?.description }}
                         </p>
-                        <div class="d-md-flex mb-4 mb-md-0">
-                            <div class="fnt-14 fnt-muli fnt-600 text-clr588 mb-md-45">
-                                Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
+                        <div class="d-flex mb-4 mb-md-0">
+                            <div class="fnt-14 w-50 fnt-muli fnt-600 text-clr588 mb-md-45">
+                                {{ 'published' | translate }}
+                                {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
-                            <div
-                                class="w-100 translate-mob-wrapper py-3 pr-0 border-top-main border-bottom-main"
-                                *ngIf="detailsData?.allow_translation && detailsData?.translations"
-                            >
+                            <div class="w-100 pr-0" *ngIf="detailsData?.allow_translation && detailsData?.translations">
                                 <app-translation-dropdown
                                     forumType="coffee-recipes"
                                     [translatedList]="detailsData?.translations"
@@ -150,7 +148,7 @@
                     <div class="row pl-md-5">
                         <div class="col-md-5">
                             <div *ngIf="detailsData?.ingredients" class="pt-4">
-                                <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-20 fnt-bold text-clr334">
+                                <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-bold text-clr334">
                                     {{ 'ingredients' | translate }}
                                 </h1>
                                 <div class="py-md-2 ingredients-wrapper">

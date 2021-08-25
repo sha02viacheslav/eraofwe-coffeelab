@@ -60,7 +60,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     value: false,
                 },
                 {
-                    label: this.globalsService.languageJson?.end_consumers,
+                    label: this.globalsService.languageJson?.coffee_consumer,
                     value: true,
                 },
             ];
