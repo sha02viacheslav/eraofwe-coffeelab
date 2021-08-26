@@ -138,3 +138,16 @@
     position: relative;
     bottom: 0.25rem;
 }
+
+.back-page::before {
+    top: -5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 6px !important;
+    background-repeat: no-repeat !important;
+    background-size: auto !important;
+}
+.back-page:hover::before {
+    border-radius: 50%;
+    background-color: rgba(128, 70, 11, 0.14);
+}

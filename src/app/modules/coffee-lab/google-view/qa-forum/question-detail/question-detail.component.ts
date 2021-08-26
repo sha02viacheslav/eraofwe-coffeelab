@@ -96,7 +96,7 @@ export class QuestionDetailComponent implements OnInit {
             title = this.idOrSlug.replace('-', '').concat(' - Era of We Coffee Marketplace');
         }
         if (this.globalsService.getJustText(firstAnswer?.answer)) {
-            if (this.globalsService.getJustText(firstAnswer?.answer).length < 60) {
+            if (this.globalsService.getJustText(firstAnswer?.answer).length < 100) {
                 description = this.globalsService
                     .getJustText(firstAnswer?.answer)
                     .concat(
