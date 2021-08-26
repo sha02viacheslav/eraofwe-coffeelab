@@ -363,14 +363,14 @@
             </div>
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-475">
-                    <div class="d-flex border-bottom-main pb-35">
-                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
+                    <div
+                        [routerLink]="'/' + forum.lang_code + '/coffee-recipes/' + forum.slug"
+                        class="d-flex border-bottom-main pb-35"
+                    >
+                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="image" /></div>
                         <div>
                             <p class="footer-header fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.name }}</p>
-                            <p
-                                class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point"
-                                [routerLink]="'/' + forum.lang_code + '/coffee-recipes/' + forum.slug"
-                            >
+                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point">
                                 {{ forum?.description }}
                             </p>
                         </div>

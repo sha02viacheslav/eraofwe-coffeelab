@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService, UserService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
@@ -38,7 +38,6 @@ export class ArticleDetailComponent implements OnInit {
         private startupService: StartupService,
         private globalsService: GlobalsService,
         private dialogSrv: DialogService,
-        private userService: UserService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -65,7 +64,7 @@ export class ArticleDetailComponent implements OnInit {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 3);
+                    .slice(0, 4);
             }
         });
     }
@@ -173,8 +172,8 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     getUserDetail(): void {
-        this.userService
-            .getProfileHoverInfo(this.detailsData.user_id, this.detailsData.organisation_type)
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.user_id, this.detailsData.organisation_type)
             .subscribe((res) => {
                 if (res.success) {
                     this.stickData = res.result;

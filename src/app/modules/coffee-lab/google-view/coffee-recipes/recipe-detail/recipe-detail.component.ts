@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService, UserService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
@@ -23,7 +23,7 @@ export class RecipeDetailComponent implements OnInit {
         {
             icon: 'assets/images/aeropress.svg',
             label: 'equipment',
-            key: 'expertise',
+            key: 'equipment_name',
         },
         {
             icon: 'assets/images/brew-ratio.svg',
@@ -51,7 +51,6 @@ export class RecipeDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
-        private userService: UserService,
         private startupService: StartupService,
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
@@ -85,7 +84,6 @@ export class RecipeDetailComponent implements OnInit {
                 if (!this.idOrSlug) {
                     this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
                 }
-                console.log(this.relatedData);
             }
         });
     }
@@ -112,8 +110,8 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     getUserDetail(): void {
-        this.userService
-            .getProfileHoverInfo(this.detailsData.user_id, this.detailsData.organisation_type)
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.posted_by, this.detailsData.organisation_type)
             .subscribe((res) => {
                 if (res.success) {
                     this.stickData = res.result;
@@ -125,7 +123,6 @@ export class RecipeDetailComponent implements OnInit {
         this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
                 this.commentData = res.result;
-                console.log(this.commentData);
             }
         });
     }
