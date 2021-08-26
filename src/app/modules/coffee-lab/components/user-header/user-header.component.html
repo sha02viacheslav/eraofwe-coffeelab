@@ -22,18 +22,23 @@
             <div class="fnt-14 fnt-muli text-clr588 mt-1 d-flex text-nowrap">
                 <span class="fnt-600 mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_expert' | translate }}</span>
                 <span class="fnt-600 mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
-                <span class="ellipsis" *ngIf="orgType !== 'co'"
+                <span class="ellipsis" *ngIf="orgType !== 'co' && !prop?.question"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
+                <span class="d-none d-md-block time-point"></span>
+                <span class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block">
+                    {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
+                </span>
             </div>
         </div>
     </div>
-    <div>
+    <!-- <div>
         <div *ngIf="prop?.question" class="fnt-muli fnt-14 text-clr588 d-none d-md-block time-text">
             {{ prop?.posted_at || prop?.created_at | date: 'mediumDate' }}
+            {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
         </div>
-        <!-- <div *ngIf="total">
+        <div *ngIf="total">
             <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up-button" />
-        </div> -->
-    </div>
+        </div>
+    </div> -->
 </div>

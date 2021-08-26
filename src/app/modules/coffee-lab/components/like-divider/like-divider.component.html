@@ -1,29 +1,29 @@
-<div class="mx-3 mx-md-4 mb-3 mb-md-4">
-    <!-- <span *ngFor="let btn of buttonList">
+<!-- <div class="mx-3 mx-md-4 mb-3 mb-md-4">
+    <span *ngFor="let btn of buttonList">
         <button class="button-list fnt-14 fnt-muli text-clr334 mr-2">{{ btn.button }}</button>
-    </span> -->
-</div>
+    </span>
+</div> -->
 
-<div class="like-box border-btm py-325 px-3 px-md-4" *ngIf="total < 1">
+<!-- <div class="like-box border-btm py-325 px-3 px-md-4" *ngIf="total < 1">
     <span>Be the first one to post an answer </span>
-</div>
-<div class="like-box py-2 py-md-3 px-3 px-md-4 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
+</div> -->
+<div class="like-box py-2 px-3 px-md-4 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
     <div class="d-flex">
         <!-- <div class="d-flex">
             <img (click)="onFocus()" class="cursor-point" src="assets/images/shape.svg" alt="thumbs-up" />
             <span class="d-flex align-items-end ml-md-2 ml-1 mb-05">42</span>
         </div> -->
-        <div class="align-items-center d-flex ml-3">
+        <div class="align-items-center d-flex ml-1 mt-1 hover-message-icon">
             <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
         </div>
-        <div class="align-items-center d-flex ml-4">
+        <div class="align-items-center d-flex ml-2 hover-save-icon">
             <img (click)="onFocus()" class="cursor-point" src="assets/images/bookmarks.svg" alt="bookmark" />
         </div>
     </div>
     <div class="d-flex" *ngIf="showJoinBtn">
         <p (click)="onJoin()" class="align-items-center d-flex cursor-point">
-            <span class="mr-2 d-none d-md-block fnt-600">Join the discussion</span>
+            <span class="mr-2 d-none d-md-block fnt-600 text-nowrap">Join the discussion</span>
         </p>
-        <img (click)="onFocus()" class="cursor-point" src="assets/images/right-arrow-active.svg" alt="right-arrow" />
+        <img (click)="onJoin()" class="cursor-point" src="assets/images/right-arrow-active.svg" alt="right-arrow" />
     </div>
 </div>

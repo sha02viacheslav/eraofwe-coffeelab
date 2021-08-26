@@ -1,5 +1,5 @@
 <div>
-    <div class="row gutter-32 justify-content-lg-between pt-3 pt-md-0">
+    <div class="row gutter-32 justify-content-lg-between pt-1 pb-3 pb-md-0 pt-md-0">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="article"></app-publish-forum>
         </div>
@@ -20,8 +20,8 @@
             />
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center pb-md-4 pb-lg-45">
-        <div>
+    <div class="d-flex justify-content-between align-items-center pb-3 pb-md-4 pb-lg-45">
+        <div class="d-flex">
             <p-dropdown
                 [options]="translationsList"
                 optionLabel="label"
@@ -90,12 +90,14 @@
                             <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
-                            <span>{{ article?.posted_at || article?.created_at | date: 'longDate' }}</span>
+                            <span class="fnt-14 fnt-muli fnt-600 text-clr588">{{
+                                article?.posted_at || article?.created_at | date: 'longDate'
+                            }}</span>
                         </div>
-                        <h3 class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
+                        <h3 class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text mb-0">
                             {{ article?.title }}
                         </h3>
-                        <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
+                        <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-2 mt-md-3">
                             <span class="article-title-text">
                                 {{ article?.subtitle }}
                             </span>

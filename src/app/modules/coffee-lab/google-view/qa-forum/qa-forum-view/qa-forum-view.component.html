@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 col-md-7 pr-md-0">
+    <div class="col-12 col-md-7 pt-1 pt-md-0 pb-2 pb-md-0 pr-md-0">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
 </div>
@@ -19,7 +19,7 @@
         <div class="d-flex">
             <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
                 <div class="d-flex mb-md-4">
-                    <div class="d-md-flex align-items-center pr-lg-2 flex-1">
+                    <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
                         <div class="d-flex">
                             <!-- <div class="mr-3">
                                 <p-dropdown
@@ -45,18 +45,18 @@
                                     optionValue="value"
                                 ></p-dropdown>
                             </div>
-                        </div>
-                        <div class="my-md-0 ml-0">
-                            <p-dropdown
-                                [options]="sortOptions"
-                                [(ngModel)]="sortBy"
-                                (ngModelChange)="getData()"
-                                styleClass="round-border text-clr588"
-                                optionLabel="label"
-                                optionValue="value"
-                                styleClass="round-border"
-                                [placeholder]="'sort_by' | translate"
-                            ></p-dropdown>
+                            <div>
+                                <p-dropdown
+                                    [options]="sortOptions"
+                                    [(ngModel)]="sortBy"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                    styleClass="round-border"
+                                    [placeholder]="'sort_by' | translate"
+                                ></p-dropdown>
+                            </div>
                         </div>
                     </div>
                     <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
@@ -67,7 +67,7 @@
                         [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
                     >
                         <div class="br-8 border-box mb-4 mb-md-3 mb-lg-4">
-                            <div class="px-md-4 pt-md-4 pb-md-3 p-3">
+                            <div class="p-md-4 p-3">
                                 <div class="d-flex justify-content-between">
                                     <div class="flex-1">
                                         <app-user-header [prop]="question"></app-user-header>
@@ -87,11 +87,11 @@
                             <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
                             <div
                                 *ngIf="question.total_answers > 0"
-                                class="py-md-4 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
+                                class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
                             >
                                 <div
                                     *ngFor="let answer of question?.answers; let isLast = last"
-                                    [ngClass]="{ 'border-bottom-dashed-primary': !isLast }"
+                                    [ngClass]="{ 'border-bottom-main': !isLast }"
                                     class="mb-4"
                                 >
                                     <div class="mb-4">

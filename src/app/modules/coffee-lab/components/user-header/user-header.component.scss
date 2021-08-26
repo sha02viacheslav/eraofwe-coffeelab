@@ -1,10 +1,6 @@
-.time-text {
-    position: relative;
-    right: -18px;
-    top: 24px;
-    text-align: end;
-    @media (min-width: 768px) {
-        top: 16px;
-        white-space: pre;
-    }
+.time-point {
+    width: 3px;
+    height: 3px;
+    margin: 8px 6px 8px 8px;
+    background-color: #232334;
 }

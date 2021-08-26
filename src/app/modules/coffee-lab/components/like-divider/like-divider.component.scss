@@ -29,3 +29,19 @@
         margin-bottom: 2px;
     }
 }
+
+.hover-message-icon {
+    padding: 0.625rem;
+    &:hover {
+        border-radius: 50%;
+        background-color: rgba(48, 133, 92, 0.12);
+    }
+}
+
+.hover-save-icon {
+    padding: 0.1rem 0.7rem 0.3rem 0.9rem;
+    &:hover {
+        border-radius: 50%;
+        background-color: rgba(48, 133, 92, 0.12);
+    }
+}

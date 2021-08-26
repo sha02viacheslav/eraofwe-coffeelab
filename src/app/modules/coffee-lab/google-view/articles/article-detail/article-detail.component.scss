@@ -15,10 +15,9 @@
             font-size: 3rem;
         }
     }
-    .fnt-20 {
-        font-size: 1rem;
+    .fnt-md-20 {
         @media (min-width: 768px) {
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
         }
     }
     .innter-box {
@@ -125,4 +124,10 @@
 
 .footer-border {
     border-bottom: solid 0.5px #d8d8d8;
+}
+
+.banner-image {
+    @media (min-width: 991px) {
+        height: 397px !important;
+    }
 }
