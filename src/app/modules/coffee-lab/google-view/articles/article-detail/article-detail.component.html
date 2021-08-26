@@ -49,14 +49,49 @@
                     [alt]="detailsData?.title + ' cover image'"
                 />
             </div>
+            <div class="d-flex justify-content-between mb-3 d-md-none">
+                <div class="d-flex">
+                    <!-- <div class="d-flex">
+                        <img
+                            (click)="onFocus()"
+                            class="cursor-point"
+                            src="assets/images/thumbs-up-button.svg"
+                            alt="thumb"
+                        />
+                        <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
+                    </div> -->
+                    <div class="message-icon mr-25">
+                        <img
+                            (click)="onFocus()"
+                            class="cursor-point"
+                            src="assets/images/message-button.svg"
+                            alt="message"
+                        />
+                    </div>
+                    <div class="message-icon">
+                        <img
+                            (click)="onFocus()"
+                            class="cursor-point"
+                            src="assets/images/bookmark-button.svg"
+                            alt="bookmark"
+                        />
+                    </div>
+                </div>
+                <div class="d-flex message-icon">
+                    <img (click)="onFocus()" class="cursor-point" src="assets/images/upload.svg" alt="upload" />
+                    <div class="position-mob ml-1"><app-forum-menu></app-forum-menu></div>
+                </div>
+            </div>
             <div class="d-flex">
                 <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
                 <span>
                     <div class="d-flex flex-wrap w-100 innter-box">
                         <div class="d-flex justify-content-between align-items-md-end w-100">
                             <app-user-header [prop]="detailsData"></app-user-header>
-                            <div class="d-flex flex-column align-items-end">
-                                <app-forum-menu></app-forum-menu>
+                            <div class="d-none d-md-block">
+                                <div class="d-flex flex-column align-items-end">
+                                    <app-forum-menu></app-forum-menu>
+                                </div>
                             </div>
                         </div>
                         <div class="forum-content w-100 pt-4 mb-5">
@@ -137,7 +172,7 @@
                             </span> -->
                         </div>
 
-                        <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
+                        <!-- <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
@@ -159,16 +194,20 @@
                                     >What are coffee flavour profiles? How many profiles can a coffee have?</a
                                 >
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="mt-5 mb-325 w-100">
                             <div class="w-100"><p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">Comments</p></div>
                             <div class="d-flex">
                                 <div class="d-flex mt-1">
                                     <app-avatar
-                                        [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
+                                        [src]="
+                                            stickData?.profile_image_url ||
+                                            stickData?.profile_image_thumb_url ||
+                                            stickData?.posted_user_profile_image_url
+                                        "
                                         size="40"
-                                        [name]="detailsData?.user_name"
+                                        [name]="stickData?.user_name"
                                     ></app-avatar>
                                 </div>
 
@@ -182,62 +221,24 @@
                         </div>
 
                         <!-- Answers -->
-                        <div *ngIf="detailsData?.answers">
+                        <div class="w-100" *ngIf="commentData?.length > 0">
                             <div>
-                                <p class="fnt-14 fnt-600 fnt-muli text-clr334">12 answers</p>
+                                <p class="fnt-14 fnt-600 fnt-muli text-clr334">
+                                    {{ commentData?.length }} {{ 'answers' | translate }}
+                                </p>
                             </div>
                             <div
-                                class="answer-wrapper border-bottom-primary mb-4 ml-5 mr-4"
-                                *ngFor="let postItem of detailsData.answers; let isLast = last"
+                                class="answer-wrapper border-bottom-primary mb-4"
+                                *ngFor="let postItem of commentData; let isLast = last"
                                 [id]="'answer-' + postItem.id"
                             >
                                 <div class="d-flex flex-wrap w-100 mt-3">
                                     <div class="d-flex justify-content-between align-items-md-end w-100">
                                         <app-user-header [prop]="postItem"></app-user-header>
-                                        <div class="d-flex flex-column align-items-end">
-                                            <app-forum-menu></app-forum-menu>
-                                            <div class="translate-wrapper" *ngIf="postItem.translations">
-                                                <app-translation-dropdown
-                                                    forumType="qa-forum"
-                                                    [translatedList]="postItem.translations"
-                                                ></app-translation-dropdown>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
-                                        *ngIf="postItem.translations"
-                                    >
-                                        <app-translation-dropdown
-                                            forumType="qa-forum"
-                                            [translatedList]="postItem.translations"
-                                        ></app-translation-dropdown>
                                     </div>
                                 </div>
-                                <div class="pt-4 px-0 forum-content">
-                                    <div [ngClass]="{ 'mb-2': !isLast }" [innerHTML]="postItem.answer"></div>
-                                    <ng-container *ngIf="postItem.images">
-                                        <img
-                                            class="w-100 mb-3"
-                                            *ngFor="let img of postItem.images"
-                                            [src]="img.thumb_file || img.file"
-                                            alt="answer image"
-                                        />
-                                    </ng-container>
-                                </div>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="d-flex">
-                                        <!-- <div class="d-flex">
-                                            <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up" />
-                                            <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
-                                        </div> -->
-                                        <div class="align-items-center d-flex ml-4">
-                                            <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img src="assets/images/upload.svg" alt="ubload" />
-                                    </div>
+                                <div class="mt-3 px-0 forum-content ml-md-5 mb-4">
+                                    <div [innerHTML]="postItem.comment"></div>
                                 </div>
                             </div>
                             <div class="text-center w-100">
@@ -267,7 +268,12 @@
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
                         <div>
                             <p class="fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.title }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline">{{ forum?.subtitle }}</p>
+                            <p
+                                class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point"
+                                [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug"
+                            >
+                                {{ forum?.subtitle }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -287,13 +293,27 @@
                 <div class="w-100 d-flex justify-content-between">
                     <div>
                         <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
+                            {{ stickData?.firstname }} {{ stickData?.lastname }}
+                        </p>
+                        <!-- <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
+                            {{ stickData?.about_me?.substring(0, 20) }}
+                        </p> -->
+                        <p
+                            *ngIf="stickData?.country || stickData?.city"
+                            class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
+                        >
+                            @ {{ stickData?.city || stickData?.organization_city }}, {{ stickData?.country }}
+                        </p>
+                    </div>
+                    <!-- <div>
+                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
                             {{ detailsData?.user_name }}
                         </p>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
                             {{ detailsData?.subtitle }}
                         </p>
                         <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">@ {{ detailsData?.status }}</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="pb-4">

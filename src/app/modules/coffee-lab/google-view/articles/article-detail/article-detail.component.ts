@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService, UserService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
@@ -25,6 +25,8 @@ export class ArticleDetailComponent implements OnInit {
     previousUrl: string;
     buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     addComment = false;
+    stickData: any;
+    commentData: any;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -36,6 +38,7 @@ export class ArticleDetailComponent implements OnInit {
         private startupService: StartupService,
         private globalsService: GlobalsService,
         private dialogSrv: DialogService,
+        private userService: UserService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -82,6 +85,8 @@ export class ArticleDetailComponent implements OnInit {
                 this.startupService.load(this.lang || 'en');
                 this.setSEO();
                 this.setSchemaMackup();
+                this.getUserDetail();
+                this.getCommentsData();
             } else {
                 this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);
@@ -164,6 +169,24 @@ export class ArticleDetailComponent implements OnInit {
         this.dialogSrv.open(SignupModalComponent, {
             showHeader: false,
             styleClass: 'signup-dialog',
+        });
+    }
+
+    getUserDetail(): void {
+        this.userService
+            .getProfileHoverInfo(this.detailsData.user_id, this.detailsData.organisation_type)
+            .subscribe((res) => {
+                if (res.success) {
+                    this.stickData = res.result;
+                }
+            });
+    }
+
+    getCommentsData(): void {
+        this.coffeeLabService.getCommentList('article', this.detailsData.slug).subscribe((res: any) => {
+            if (res.success) {
+                this.commentData = res.result;
+            }
         });
     }
 }

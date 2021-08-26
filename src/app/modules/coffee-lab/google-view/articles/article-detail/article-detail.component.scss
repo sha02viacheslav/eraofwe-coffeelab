@@ -1,6 +1,6 @@
-::ng-deep .forum-content > div {
-    word-break: break-all;
-}
+// ::ng-deep .forum-content > div {
+//     word-break: break-all;
+// }
 
 .article-main-block {
     padding: 0;
@@ -112,6 +112,8 @@
 }
 
 .message-icon img {
+    width: 29px;
+    height: 29px;
     @media (min-width: 768px) {
         width: 36px;
         height: 36px;
@@ -130,4 +132,9 @@
     @media (min-width: 991px) {
         height: 397px !important;
     }
+}
+
+.position-mob {
+    position: relative;
+    bottom: 0.25rem;
 }

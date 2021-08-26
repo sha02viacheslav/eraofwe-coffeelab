@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -18,5 +19,14 @@ export class UserService extends ApiService {
             data: user,
         };
         return this.http.post(this.orgPostUrl, data, { withCredentials: true });
+    }
+
+    getProfileHoverInfo(userId: any, organization: any): Observable<any> {
+        const data = {
+            api_call: `/general/${organization}/users/` + userId,
+            // token: this.getToken(),
+            method: 'GET',
+        };
+        return this.http.post(this.postUrl, data);
     }
 }

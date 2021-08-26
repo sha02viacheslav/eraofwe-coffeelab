@@ -52,9 +52,6 @@
     .ingredients-wrapper {
         .ingredients-item {
             border-bottom: 1px solid #d8d8d8;
-            label:last-child {
-                width: 80px;
-            }
         }
         @media (max-width: 767px) {
             width: 100%;
@@ -98,6 +95,16 @@
     font-size: 32px;
     @media (min-width: 768px) {
         font-size: 48px;
+    }
+}
+
+.footer-header {
+    font-family: Cormorant Garamond;
+    font-size: 20px;
+    line-height: 1.35;
+    @media (min-width: 768px) {
+        font-size: 22px;
+        line-height: 1.23;
     }
 }
 

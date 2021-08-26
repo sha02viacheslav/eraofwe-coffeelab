@@ -50,4 +50,8 @@ export class CoffeeLabService extends ApiService {
     getUserRoles() {
         return this.postWithOrg(this.postUrl, `users/roles`, 'GET');
     }
+
+    getCommentList(type: string, slug: any): any {
+        return this.post(this.postUrl, `general/${type}s/${slug}/comments`, 'GET');
+    }
 }

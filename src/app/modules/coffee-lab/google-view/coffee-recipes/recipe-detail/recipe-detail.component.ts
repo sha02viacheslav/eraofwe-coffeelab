@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService, UserService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
@@ -42,6 +42,8 @@ export class RecipeDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
+    stickData: any;
+    commentData: any[] = [];
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -49,7 +51,7 @@ export class RecipeDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
-        private location: Location,
+        private userService: UserService,
         private startupService: StartupService,
         private globalsService: GlobalsService,
         public dialogSrv: DialogService,
@@ -83,6 +85,7 @@ export class RecipeDetailComponent implements OnInit {
                 if (!this.idOrSlug) {
                     this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
                 }
+                console.log(this.relatedData);
             }
         });
     }
@@ -98,11 +101,32 @@ export class RecipeDetailComponent implements OnInit {
                 this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                 this.setSEO();
                 this.setSchemaMackup();
+                this.getUserDetail();
+                this.getCommentsData();
             } else {
                 this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+        });
+    }
+
+    getUserDetail(): void {
+        this.userService
+            .getProfileHoverInfo(this.detailsData.user_id, this.detailsData.organisation_type)
+            .subscribe((res) => {
+                if (res.success) {
+                    this.stickData = res.result;
+                }
+            });
+    }
+
+    getCommentsData(): void {
+        this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
+            if (res.success) {
+                this.commentData = res.result;
+                console.log(this.commentData);
+            }
         });
     }
 

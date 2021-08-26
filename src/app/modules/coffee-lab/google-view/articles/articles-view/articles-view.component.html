@@ -61,7 +61,7 @@
     </div>
     <div class="articles-wrapper" *ngIf="!isLoading; else loading">
         <div
-            class="col-12 col-xl-4 px-0 py-25 p-md-2 article-item-wrapper"
+            class="col-12 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of articlesData"
         >
@@ -86,7 +86,7 @@
                     </div>
                     <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
                     <div class="mx-4">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-end">
                             <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
