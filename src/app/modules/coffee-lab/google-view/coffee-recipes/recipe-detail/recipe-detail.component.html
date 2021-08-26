@@ -31,8 +31,8 @@
                         <p class="fnt-20 fnt-600 fnt-muli text-clr334 mt-3 mb-md-35 mb-325 my-md-4">
                             {{ detailsData?.description }}
                         </p>
-                        <div class="d-flex mb-4 mb-md-0">
-                            <div class="fnt-14 w-50 fnt-muli fnt-600 text-clr588 mb-md-45">
+                        <div class="d-md-flex mb-4 mb-md-0">
+                            <div class="fnt-14 w-50 fnt-muli fnt-600 text-clr588 mb-md-45 text-nowrap mb-1">
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
@@ -55,7 +55,7 @@
                                             alt="thumb"
                                         />
                                     </div> -->
-                                    <div class="message-icon ml-3">
+                                    <div class="message-icon">
                                         <img
                                             (click)="onFocus()"
                                             class="cursor-point"
@@ -179,7 +179,7 @@
                                 {{ 'directions' | translate }}
                             </h2>
                             <div
-                                class="pb-4 step-wrapper"
+                                class="step-wrapper mb-2"
                                 *ngFor="let step of detailsData?.steps; let i = index"
                                 [id]="'step' + (i + 1)"
                             >
@@ -188,6 +188,7 @@
                                         i + 1
                                     }}</span>
                                     <div
+                                        [ngClass]="{ 'last-border': detailsData?.steps.length === i + 1 }"
                                         class="ml-md-3 ml-25 fnt-muli fnt-14 fnt-md-16 mt-1 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
                                         [innerHTML]="step.description"
                                     ></div>
@@ -254,7 +255,7 @@
                                     />
                                     <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                 </div> -->
-                                <div class="align-items-center ml-4">
+                                <div class="align-items-center">
                                     <img
                                         (click)="onFocus()"
                                         class="cursor-point"
@@ -362,7 +363,7 @@
                                         <img src="assets/images/thumbs-up-button.svg" alt="thumbs-up" />
                                         <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
                                     </div> -->
-                                    <div class="align-items-center d-flex ml-4">
+                                    <div class="align-items-center d-flex">
                                         <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
                                     </div>
                                 </div>
@@ -474,7 +475,7 @@
                     />
                     <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                 </div> -->
-                <div class="message-icon ml-3">
+                <div class="message-icon">
                     <img
                         (click)="onFocus()"
                         class="cursor-point"

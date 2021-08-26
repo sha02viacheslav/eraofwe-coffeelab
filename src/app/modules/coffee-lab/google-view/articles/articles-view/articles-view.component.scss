@@ -11,7 +11,8 @@
         }
         &:hover {
             cursor: pointer;
-            box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+            box-shadow: 0 22px 34px 0 rgb(0 0 0/16%);
+            // box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
             h3.article-title-text {
                 text-decoration: underline;
             }

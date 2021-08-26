@@ -75,6 +75,8 @@
 }
 
 ::ng-deep .step-desc {
+    border-bottom: 1px solid #d8d8d8 !important;
+    padding-bottom: 1rem !important;
     word-break: break-all;
     img {
         width: 100%;
@@ -111,7 +113,7 @@
 
 .recipe-answer {
     border-top: 1px solid #232334;
-    border-bottom: 2px solid #232334;
+    border-bottom: 1px solid #232334;
 }
 
 .author-image img {
@@ -227,6 +229,7 @@
 
 .recip-img {
     height: 198px;
+    object-fit: cover;
     @media (min-width: 991px) {
         height: 494px;
     }
@@ -239,4 +242,7 @@
     border-radius: 50%;
     border: solid 1px #d8d8d8;
     background-color: #fff;
+}
+.last-border {
+    border-bottom: none !important;
 }
