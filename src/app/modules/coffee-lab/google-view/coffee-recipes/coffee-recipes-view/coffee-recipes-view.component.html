@@ -89,11 +89,11 @@
                             <div class="recipe-name fnt-14 fnt-md-16 fnt-bold fnt-muli text-clr334">
                                 {{ coffee?.name }}
                             </div>
-                            <div class="bookmark-icon">
-                                <img src="assets/images/bookmark-button.svg" alt="bookmark-button" />
+                            <div class="bookmark-icon hover-save-icon">
+                                <img src="assets/images/save.svg" alt="save" />
                             </div>
                         </div>
-                        <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-25 mt-2">
+                        <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">
                             {{ coffee?.equipment_name | titlecase }}
                         </div>
                         <app-user-header [prop]="coffee"></app-user-header>

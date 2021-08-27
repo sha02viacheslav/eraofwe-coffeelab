@@ -57,10 +57,18 @@
 }
 
 .icon-save img {
-    width: 36px !important;
-    height: 36px !important;
+    width: 19px !important;
+    height: 24px !important;
 }
 
 .cursor-point {
     cursor: pointer;
+}
+
+.hover-save-icon {
+    padding: 6px 9px 4px 12px;
+    border-radius: 50%;
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.12);
+    }
 }

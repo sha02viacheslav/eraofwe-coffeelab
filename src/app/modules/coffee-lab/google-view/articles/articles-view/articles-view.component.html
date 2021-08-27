@@ -71,15 +71,8 @@
                         <div class="flex-1 overflow-hidden">
                             <app-user-header [prop]="article"></app-user-header>
                         </div>
-                        <div class="icon-save">
-                            <img
-                                (click)="onFocus()"
-                                class="cursor-point"
-                                src="assets/images/bookmark-button.svg"
-                                width="36"
-                                height="36"
-                                alt="bookmark-button"
-                            />
+                        <div class="icon-save hover-save-icon">
+                            <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
                         </div>
 
                         <!-- <app-forum-menu></app-forum-menu> -->

@@ -90,7 +90,7 @@
                                 class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
                             >
                                 <div
-                                    *ngFor="let answer of question?.answers; let isLast = last"
+                                    *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
                                     [ngClass]="{ 'border-bottom-main': !isLast }"
                                     class="mb-4"
                                 >
@@ -100,14 +100,25 @@
                                             [prop]="answer"
                                         ></app-user-header>
                                     </div>
-                                    <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
-                                        <span
-                                            [innerHTML]="
-                                                globalsService.getJustText(answer.answer)
-                                                    | convertToShortDescription: 20
-                                            "
-                                        ></span>
-                                    </div>
+                                    <span
+                                        *ngIf="!answer?.show_full"
+                                        [innerHTML]="
+                                            globalsService.getJustText(answer?.answer) | convertToShortDescription: 25
+                                        "
+                                    ></span>
+                                    <span
+                                        *ngIf="answer?.show_full"
+                                        [innerHTML]="globalsService.getJustText(answer?.answer)"
+                                    ></span>
+                                    <a
+                                        *ngIf="
+                                            wordCount(globalsService.getJustText(answer?.answer)).split(' ').length >
+                                                25 && !answer?.show_full
+                                        "
+                                        (click)="showFullDesc(i, ansInd)"
+                                        class="brown-cta ml-1"
+                                        >{{ 'read_more' | translate }}</a
+                                    >
                                 </div>
                             </div>
                         </div>

@@ -115,8 +115,8 @@
     width: 29px;
     height: 29px;
     @media (min-width: 768px) {
-        width: 36px;
-        height: 36px;
+        width: 23px;
+        height: 32px;
     }
 }
 
@@ -150,4 +150,20 @@
 .back-page:hover::before {
     border-radius: 50%;
     background-color: rgba(128, 70, 11, 0.14);
+}
+
+.hover-message-icon {
+    padding: 2px 8px 2px 9px;
+    &:hover {
+        border-radius: 50%;
+        background-color: rgba(48, 133, 92, 0.12);
+    }
+}
+
+.hover-save-icon {
+    padding: 6px 9px 6px 12px;
+    border-radius: 50%;
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.12);
+    }
 }

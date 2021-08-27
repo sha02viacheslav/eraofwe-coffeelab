@@ -55,19 +55,19 @@
                                             alt="thumb"
                                         />
                                     </div> -->
-                                    <div class="message-icon">
+                                    <div class="message-icon hover-message-icon">
                                         <img
                                             (click)="onFocus()"
                                             class="cursor-point"
-                                            src="assets/images/message-button.svg"
+                                            src="assets/images/message.svg"
                                             alt="message"
                                         />
                                     </div>
-                                    <div class="ml-3">
+                                    <div class="ml-3 hover-save-icon">
                                         <img
                                             (click)="onFocus()"
                                             class="cursor-point"
-                                            src="assets/images/bookmark-button.svg"
+                                            src="assets/images/save.svg"
                                             alt="bookmark"
                                         />
                                     </div>
@@ -76,12 +76,8 @@
                                     <div class="d-flex mob-height align-items-center mr-3 mt-1">
                                         <app-forum-menu></app-forum-menu>
                                     </div>
-                                    <div class="d-none d-md-block">
-                                        <img
-                                            (click)="onFocus()"
-                                            src="assets/images/bookmark-button.svg"
-                                            alt="bookmark-button"
-                                        />
+                                    <div class="d-none d-md-block hover-save-icon message-top">
+                                        <img (click)="onFocus()" src="assets/images/save.svg" alt="save" />
                                     </div>
                                 </div>
 
@@ -246,11 +242,11 @@
                                     />
                                     <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                 </div> -->
-                                <div class="align-items-center">
+                                <div class="align-items-center hover-save-icon">
                                     <img
                                         (click)="onFocus()"
                                         class="cursor-point"
-                                        src="assets/images/bookmark-button.svg"
+                                        src="assets/images/save.svg"
                                         alt="bookmark"
                                     />
                                 </div>
@@ -453,21 +449,11 @@
                     />
                     <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                 </div> -->
-                <div class="message-icon">
-                    <img
-                        (click)="onFocus()"
-                        class="cursor-point"
-                        src="assets/images/message-button.svg"
-                        alt="message"
-                    />
+                <div class="message-icon hover-message-icon">
+                    <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
                 </div>
-                <div class="ml-3">
-                    <img
-                        (click)="onFocus()"
-                        class="cursor-point"
-                        src="assets/images/bookmark-button.svg"
-                        alt="bookmark"
-                    />
+                <div class="ml-3 hover-save-icon">
+                    <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
                 </div>
             </div>
         </div>

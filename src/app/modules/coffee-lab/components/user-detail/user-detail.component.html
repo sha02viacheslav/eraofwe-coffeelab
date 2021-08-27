@@ -4,8 +4,8 @@
     [style.height]="size + 'px'"
     [style.border]="hasBorder ? '2px solid #fff' : 'none'"
     (mouseenter)="myOp.toggle($event)"
-    (mouseout)="myOp.hide()"
 >
+    <!-- (mouseout)="myOp.hide()" -->
     <img
         *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
         [src]="data?.profile_image_thumb_url || data?.profile_image_url"

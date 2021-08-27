@@ -31,17 +31,21 @@
 }
 
 .hover-message-icon {
-    padding: 0.625rem;
+    padding: 10px;
+    border-radius: 50%;
     &:hover {
-        border-radius: 50%;
         background-color: rgba(48, 133, 92, 0.12);
     }
 }
 
 .hover-save-icon {
-    padding: 0.1rem 0.7rem 0.3rem 0.9rem;
+    padding: 6px 10px 8px 13px;
+    border-radius: 50%;
     &:hover {
-        border-radius: 50%;
         background-color: rgba(48, 133, 92, 0.12);
     }
+}
+.py-15 {
+    padding-top: 6px;
+    padding-bottom: 5px;
 }
