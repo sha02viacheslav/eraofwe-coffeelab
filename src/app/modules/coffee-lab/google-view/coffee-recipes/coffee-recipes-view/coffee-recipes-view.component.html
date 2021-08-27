@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-25 mt-2">
-                            {{ coffee?.posted_at || coffee?.created_at | amTimeAgo: true }}
+                            {{ coffee?.equipment_name | titlecase }}
                         </div>
                         <app-user-header [prop]="coffee"></app-user-header>
                     </div>
