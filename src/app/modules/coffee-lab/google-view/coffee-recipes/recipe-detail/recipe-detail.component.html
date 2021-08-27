@@ -219,7 +219,14 @@
                                     />
                                 </div>
                                 <div>
-                                    <p class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point mb-2">
+                                    <p
+                                        class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point mb-2 text-underline"
+                                        routerLink="/user-profile"
+                                        [queryParams]="{
+                                            user_id: stickData?.id,
+                                            organization: stickData?.organization_type
+                                        }"
+                                    >
                                         {{ stickData?.firstname }} {{ stickData?.lastname }}
                                     </p>
                                     <p class="fnt-14 fnt-600 fnt-muli text-clr334">

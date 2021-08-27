@@ -111,6 +111,11 @@
                                     <div>
                                         <p
                                             class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point mb-2 text-underline"
+                                            routerLink="/user-profile"
+                                            [queryParams]="{
+                                                user_id: stickData?.id,
+                                                organization: stickData?.organization_type
+                                            }"
                                         >
                                             {{ stickData?.firstname }} {{ stickData?.lastname }}
                                         </p>
@@ -188,7 +193,7 @@
                                 <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">{{ 'comments' | translate }}</p>
                             </div>
                             <div class="d-flex">
-                                <div class="d-flex mt-1">
+                                <!-- <div class="d-flex mt-1">
                                     <app-avatar
                                         [src]="
                                             stickData?.profile_image_url ||
@@ -198,7 +203,7 @@
                                         size="40"
                                         [name]="stickData?.user_name"
                                     ></app-avatar>
-                                </div>
+                                </div> -->
 
                                 <button
                                     class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
