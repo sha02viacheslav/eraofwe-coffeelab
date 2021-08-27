@@ -120,6 +120,10 @@
     opacity: 0;
 }
 
+.p-dropdown .p-dropdown-filter {
+    padding: 0.625rem !important;
+}
+
 .p-dropdown.p-dropdown-translate {
     border: none;
     &:not(.p-disabled).p-focus {
