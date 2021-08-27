@@ -74,7 +74,7 @@
 ::ng-deep .step-desc {
     border-bottom: 1px solid #d8d8d8 !important;
     padding-bottom: 1rem !important;
-    word-break: break-all;
+    word-break: break-word;
     img {
         width: 100%;
         margin-top: 1rem;
@@ -183,7 +183,6 @@
         position: sticky;
         top: 40%;
         margin-top: 4rem;
-        height: fit-content;
     }
 }
 
