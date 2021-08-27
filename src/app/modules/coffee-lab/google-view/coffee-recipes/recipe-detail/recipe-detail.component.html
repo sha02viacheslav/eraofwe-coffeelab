@@ -346,7 +346,7 @@
                                 <div [innerHTML]="postItem.comment"></div>
                             </div>
                         </div>
-                        <div class="text-center w-100">
+                        <div *ngIf="postItem.comment" class="text-center w-100">
                             <button
                                 class="fnt-14 fnt-bold fnt-muli text-clr60b mb-4 bg-transparent border-0 text-underline"
                             >
