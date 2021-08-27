@@ -78,7 +78,7 @@
             [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
         >
             <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
-                <div class="br-14 coffee-item" (click)="gotoDetailPage($event, coffee)">
+                <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
                     <div class="position-relative">
                         <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
                         <span class="expertise fnt-12"> {{ coffee.expertise }} </span>

@@ -35,10 +35,12 @@
         color: $muted-text-color;
     }
     .coffee-item {
+        border-radius: 14px;
+        border: solid 1px #d0d0d0;
         img {
             height: 234px;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
         &:hover {
@@ -85,33 +87,6 @@
         display: flex;
         flex-wrap: wrap;
         margin: -8px;
-        .coffee-item {
-            img {
-                height: 234px;
-                object-fit: cover;
-            }
-            &:hover {
-                cursor: pointer;
-                box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
-            }
-            .coffee-content-wrapper {
-                padding-top: 24px;
-                p {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    margin: 0 !important;
-                }
-                .red-more-text {
-                    &:hover {
-                        text-decoration: underline;
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
         .coffee-item-wrapper {
             text-decoration: none;
             @media (min-width: 992px) and (max-width: 1279px) {

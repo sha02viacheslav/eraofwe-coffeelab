@@ -100,25 +100,28 @@
                                             [prop]="answer"
                                         ></app-user-header>
                                     </div>
-                                    <span
-                                        *ngIf="!answer?.show_full"
-                                        [innerHTML]="
-                                            globalsService.getJustText(answer?.answer) | convertToShortDescription: 25
-                                        "
-                                    ></span>
-                                    <span
-                                        *ngIf="answer?.show_full"
-                                        [innerHTML]="globalsService.getJustText(answer?.answer)"
-                                    ></span>
-                                    <a
-                                        *ngIf="
-                                            wordCount(globalsService.getJustText(answer?.answer)).split(' ').length >
-                                                25 && !answer?.show_full
-                                        "
-                                        (click)="showFullDesc(i, ansInd)"
-                                        class="brown-cta ml-1"
-                                        >{{ 'read_more' | translate }}</a
-                                    >
+                                    <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
+                                        <span
+                                            *ngIf="!answer?.show_full"
+                                            [innerHTML]="
+                                                globalsService.getJustText(answer?.answer)
+                                                    | convertToShortDescription: 25
+                                            "
+                                        ></span>
+                                        <span
+                                            *ngIf="answer?.show_full"
+                                            [innerHTML]="globalsService.getJustText(answer?.answer)"
+                                        ></span>
+                                        <a
+                                            *ngIf="
+                                                wordCount(globalsService.getJustText(answer?.answer)).split(' ')
+                                                    .length > 25 && !answer?.show_full
+                                            "
+                                            (click)="showFullDesc(i, ansInd)"
+                                            class="text-clr60b fnt-600 ml-1"
+                                            >{{ 'read_more' | translate }}</a
+                                        >
+                                    </div>
                                 </div>
                             </div>
                         </div>
