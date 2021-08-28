@@ -129,8 +129,14 @@
                                         recipeInfo.label | translate
                                     }}</label>
                                     <p class="fnt-muli fnt-16 fnt-bold text-clr334 mb-0 pt-1" *ngIf="detailsData">
-                                        {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
-                                        }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}
+                                        <span *ngIf="recipeInfo.label === 'equipment'"
+                                            >{{ detailsData[recipeInfo.key] | titlecase }}{{ recipeInfo.key2 ? ':' : ''
+                                            }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
+                                        >
+                                        <span *ngIf="recipeInfo.label !== 'equipment'">
+                                            {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
+                                            }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
+                                        >
                                     </p>
                                 </div>
                             </div>
@@ -279,7 +285,7 @@
                                 {{ btn.button }}
                             </button>
                         </span> -->
-                        <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
+                        <!-- <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
@@ -301,7 +307,7 @@
                                     >What are coffee flavour profiles? How many profiles can a coffee have?</a
                                 >
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="mt-md-5 mt-45 mb-325 w-100">
@@ -366,7 +372,7 @@
         </article>
     </div>
     <!-- Footer -->
-    <article class="row">
+    <article class="row" *ngIf="!loading">
         <div class="col-12 col-md-8 px-md-3">
             <div class="fnt-16 fnt-muli fnt-bold text-clr334 pt-3 pb-35 background-header">
                 {{ 'popular_brewing_guides' | translate }}

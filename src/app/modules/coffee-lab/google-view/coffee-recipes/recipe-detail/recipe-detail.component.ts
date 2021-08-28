@@ -94,12 +94,6 @@ export class RecipeDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
-                if (this.detailsData?.steps && this.detailsData?.steps.length > 0) {
-                    this.detailsData.steps.map((item) => {
-                        item.description = this.globalsService.getJustText(item.description);
-                        return item;
-                    });
-                }
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
