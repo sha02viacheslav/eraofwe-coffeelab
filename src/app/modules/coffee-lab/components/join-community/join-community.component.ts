@@ -16,7 +16,8 @@ export class JoinCommunityComponent implements OnInit {
     readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
     @Input() pages: any;
-    @Input() type: any;
+    @Input() type: string;
+    @Input() detailType: string;
     idOrSlug: any;
     isStaging = environment.needProtect;
     relatedData = [];
