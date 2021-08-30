@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { organizationTypes } from '@constants';
 import { GlobalsService, CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
@@ -10,6 +11,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit, OnChanges {
+    @ViewChild('myOp', { static: false }) myOp: OverlayPanel;
     @Input() userId: any;
     @Input() orgType: any;
     @Input() size: any;
@@ -19,6 +21,8 @@ export class UserDetailComponent implements OnInit, OnChanges {
     orgName: any;
     data: any;
     name: any;
+    isOpened = false;
+    hiding = false;
 
     constructor(
         public globalsService: GlobalsService,
@@ -38,6 +42,25 @@ export class UserDetailComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {}
+
+    show(event) {
+        this.hiding = false;
+        if (!this.isOpened) {
+            this.myOp.show(event);
+        }
+    }
+
+    hide() {
+        if (this.isOpened) {
+            this.hiding = true;
+            setTimeout(() => {
+                if (this.hiding) {
+                    this.myOp.hide();
+                    this.hiding = false;
+                }
+            }, 300);
+        }
+    }
 
     openChat(): void {
         this.dialogSrv.open(SignupModalComponent, {

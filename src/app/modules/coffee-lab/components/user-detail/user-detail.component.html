@@ -3,9 +3,9 @@
     [style.width]="size + 'px'"
     [style.height]="size + 'px'"
     [style.border]="hasBorder ? '2px solid #fff' : 'none'"
-    (mouseenter)="myOp.toggle($event)"
+    (mouseenter)="show($event)"
+    (mouseleave)="hide()"
 >
-    <!-- (mouseout)="myOp.hide()" -->
     <img
         *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
         [src]="data?.profile_image_thumb_url || data?.profile_image_url"
@@ -19,9 +19,15 @@
         >{{ name && name.length ? name.slice(0, 1) : '' }}</span
     >
 </div>
-<p-overlayPanel #myOp styleClass="user-details-overlay" appendTo="body">
+<p-overlayPanel
+    #myOp
+    styleClass="user-details-overlay"
+    appendTo="body"
+    (onShow)="isOpened = true"
+    (onHide)="isOpened = false"
+>
     <ng-template pTemplate>
-        <div class="py-2 py-md-0 user-details-wrapper">
+        <div class="py-2 py-md-0 user-details-wrapper" (mouseenter)="show($event)" (mouseleave)="hide()">
             <div class="p-3 p-md-4 d-flex">
                 <img
                     class="user-image"
