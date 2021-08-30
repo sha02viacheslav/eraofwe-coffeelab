@@ -17,7 +17,7 @@
                     <!-- Starting your coffee tasting journey is easy! -->
                     {{ detailsData?.title }}
                 </h1>
-                <p class="fnt-md-20 fnt-16 fnt-600 fnt-muli px-lg-5 text-clr334 text-md-center">
+                <p class="fnt-sm-16 fnt-20 fnt-600 fnt-muli px-lg-5 text-clr334 text-md-center">
                     <!-- All about your first steps of coffee! -->
                     {{ detailsData?.subtitle }}
                 </p>
@@ -209,20 +209,20 @@
                                     class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
                                     (click)="onFocus()"
                                 >
-                                    Share your thoughts
+                                    {{ 'share_your_thoughts' | translate }}
                                 </button>
                             </div>
                         </div>
 
                         <!-- Answers -->
                         <div class="w-100" *ngIf="commentData?.length > 0">
-                            <div>
+                            <div class="comment-border">
                                 <p class="fnt-14 fnt-600 fnt-muli text-clr334">
                                     {{ commentData?.length }} {{ 'answers' | translate }}
                                 </p>
                             </div>
                             <div
-                                class="answer-wrapper border-bottom-primary mb-4"
+                                class="answer-wrapper border-bottom-primary my-4"
                                 *ngFor="let postItem of commentData; let isLast = last"
                                 [id]="'answer-' + postItem.id"
                             >
@@ -260,9 +260,9 @@
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-35">
                     <div (click)="onRealtedRoute(forum.language, forum.slug)" class="d-flex pb-35 footer-border">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
-                        <div class="cursor-point">
-                            <p class="fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.title }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point align-user">
+                        <div class="cursor-point d-flex flex-column">
+                            <p class="fnt-fly fnt-bold text-clr334 cust-flex-grow">{{ forum?.title }}</p>
+                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point">
                                 {{ forum?.user_name }}
                             </p>
                         </div>
@@ -327,7 +327,7 @@
                     </div>
                 </div>
             </div>
-            <p-divider styleClass="m-0"></p-divider>
+            <div class="divder"></div>
             <div class="d-flex my-4">
                 <!-- <div class="d-flex">
                     <img

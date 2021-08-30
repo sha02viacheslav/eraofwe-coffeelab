@@ -214,7 +214,7 @@
                 </div>
 
                 <!-- Question answer -->
-                <p-divider class="d-none d-md-block" styleClass="my-5"></p-divider>
+                <div class="divder"></div>
                 <div class="col-md-7 mx-auto">
                     <div class="recipe-answer w-100 pt-3 pb-4">
                         <div>
@@ -316,7 +316,7 @@
                         </div>
 
                         <div class="d-flex">
-                            <div class="d-flex mt-1">
+                            <!-- <div class="d-flex mt-1">
                                 <app-avatar
                                     [src]="
                                         stickData?.profile_image_url ||
@@ -326,27 +326,25 @@
                                     size="40"
                                     [name]="stickData?.user_name"
                                 ></app-avatar>
-                            </div>
-                            <div class="ml-2 w-100">
-                                <button
-                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
-                                    (click)="onFocus()"
-                                >
-                                    Share your thoughts
-                                </button>
-                            </div>
+                            </div> -->
+                            <button
+                                class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                                (click)="onFocus()"
+                            >
+                                {{ 'share_your_thoughts' | translate }}
+                            </button>
                         </div>
                     </div>
 
                     <!-- Answers -->
                     <div *ngIf="commentData?.length > 0" class="w-100">
-                        <div>
+                        <div class="comment-border">
                             <p class="fnt-14 fnt-600 fnt-muli text-clr334">
-                                {{ commentData.length }} {{ 'comments' | translate }}
+                                {{ commentData.length }} {{ 'answers' | translate }}
                             </p>
                         </div>
                         <div
-                            class="answer-wrapper border-bottom-primary mb-4"
+                            class="answer-wrapper border-bottom-primary my-4"
                             *ngFor="let postItem of commentData; let isLast = last"
                             [id]="'answer-' + postItem.id"
                         >
@@ -381,9 +379,9 @@
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-475">
                     <div (click)="onRealtedRoute(forum.lang_code, forum.slug)" class="d-flex border-bottom-main pb-35">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="image" /></div>
-                        <div class="cursor-point">
-                            <p class="footer-header fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.name }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point align-user">
+                        <div class="cursor-point d-flex flex-column">
+                            <p class="footer-header fnt-fly fnt-bold text-clr334 cust-flex-grow">{{ forum?.name }}</p>
+                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point">
                                 {{ forum?.posted_user }}
                             </p>
                         </div>
@@ -455,7 +453,7 @@
                     </div>
                 </div>
             </div>
-            <p-divider styleClass="m-0"></p-divider>
+            <div class="divder"></div>
             <div class="d-flex my-4">
                 <!-- <div class="d-flex">
                     <img

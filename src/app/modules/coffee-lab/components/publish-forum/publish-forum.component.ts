@@ -21,9 +21,9 @@ export class PublishForumComponent implements OnInit {
             this.secondBtnValue = this.globals.languageJson?.create_brew_guide;
             this.placeHolderValue = this.globals.languageJson?.write_post;
         } else if (this.type === 'recipe') {
-            this.firstBtnValue = this.globals.languageJson?.write_post;
-            this.secondBtnValue = this.globals.languageJson?.ask_a_question;
-            this.placeHolderValue = this.globals.languageJson?.start_making_a_recipe;
+            this.firstBtnValue = this.globals.languageJson?.ask_a_question;
+            this.secondBtnValue = this.globals.languageJson?.write_post;
+            this.placeHolderValue = this.globals.languageJson?.create_brew_guide;
         } else {
             this.firstBtnValue = this.globals.languageJson?.write_post;
             this.secondBtnValue = this.globals.languageJson?.create_brew_guide;

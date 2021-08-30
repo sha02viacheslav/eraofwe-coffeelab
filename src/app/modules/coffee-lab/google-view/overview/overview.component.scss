@@ -73,3 +73,15 @@
         }
     }
 }
+
+.quick-guide {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #80460b;
+    cursor: pointer;
+    &:hover {
+        color: #80460b !important;
+        text-decoration: underline !important;
+    }
+}

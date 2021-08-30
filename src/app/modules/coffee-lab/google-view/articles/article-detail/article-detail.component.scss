@@ -126,10 +126,7 @@
 .cursor-point {
     cursor: pointer;
 }
-.align-user {
-    position: relative;
-    top: 0.4rem;
-}
+
 .footer-border {
     border-bottom: solid 0.5px #d8d8d8;
 }
@@ -138,6 +135,14 @@
     @media (min-width: 991px) {
         height: 397px !important;
     }
+}
+
+.cust-flex-grow {
+    flex-grow: 0.9;
+}
+
+.divder {
+    border-bottom: 1px solid #232334;
 }
 
 .position-mob {
@@ -153,23 +158,24 @@
     background-repeat: no-repeat !important;
     background-size: auto !important;
 }
+
 .back-page:hover::before {
     border-radius: 50%;
     background-color: rgba(128, 70, 11, 0.14);
 }
 
+.comment-border {
+    border-bottom: solid 0.5px #d8d8d8;
+}
+
 .hover-message-icon {
     padding: 2px 8px 2px 9px;
-    &:hover {
-        border-radius: 50%;
-        background-color: rgba(48, 133, 92, 0.12);
-    }
+    border-radius: 50%;
+    background-color: rgba(48, 133, 92, 0.12);
 }
 
 .hover-save-icon {
     padding: 6px 9px 6px 12px;
     border-radius: 50%;
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.12);
-    }
+    background-color: rgba(48, 133, 92, 0.12);
 }
