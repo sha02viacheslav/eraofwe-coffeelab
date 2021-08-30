@@ -77,7 +77,7 @@
             *ngFor="let coffee of coffeeRecipeData"
             [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
         >
-            <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
+            <a (click)="openRecipe(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
                 <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
                     <div class="position-relative">
                         <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
@@ -90,7 +90,7 @@
                                 {{ coffee?.name }}
                             </div>
                             <div class="bookmark-icon hover-save-icon">
-                                <img src="assets/images/save.svg" alt="save" />
+                                <img src="assets/images/save.svg" alt="save" (click)="onFocus()" />
                             </div>
                         </div>
                         <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">

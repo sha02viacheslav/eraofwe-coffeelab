@@ -123,7 +123,10 @@
 .cursor-point {
     cursor: pointer;
 }
-
+.align-user {
+    position: absolute;
+    top: 4.5rem;
+}
 .footer-border {
     border-bottom: solid 0.5px #d8d8d8;
 }

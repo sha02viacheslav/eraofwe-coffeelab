@@ -359,13 +359,13 @@
                                 <div [innerHTML]="postItem.comment"></div>
                             </div>
                         </div>
-                        <div class="text-center w-100">
+                        <!-- <div class="text-center w-100">
                             <button
                                 class="fnt-14 fnt-bold fnt-muli text-clr60b mb-4 bg-transparent border-0 text-underline"
                             >
                                 View all comments
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -386,8 +386,8 @@
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="image" /></div>
                         <div>
                             <p class="footer-header fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.name }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point">
-                                {{ forum?.description }}
+                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point align-user">
+                                {{ forum?.posted_user }}
                             </p>
                         </div>
                     </div>

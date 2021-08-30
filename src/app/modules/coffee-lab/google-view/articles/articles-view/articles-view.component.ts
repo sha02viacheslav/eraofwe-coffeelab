@@ -28,6 +28,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     rows = 9;
     page = 1;
     jsonLD: any;
+    isSaveBtn = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
@@ -116,6 +117,12 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         });
     }
 
+    openArticle(article) {
+        if (!this.isSaveBtn) {
+            this.router.navigateByUrl(this.getLink(article));
+        }
+    }
+
     paginate(event: any) {
         if (this.page !== event.page + 1) {
             this.router.navigate([], { queryParams: { page: event.page + 1 } });
@@ -128,18 +135,20 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
+        if (!this.isSaveBtn) {
+            event.stopPropagation();
+            event.preventDefault();
+            if (this.globalsService.getLimitCounter() > 0) {
+                this.router.navigate([this.getLink(item)]);
+            } else {
+                this.dialogSrv.open(SignupModalComponent, {
+                    data: {
+                        isLimit: true,
+                    },
+                    showHeader: false,
+                    styleClass: 'signup-dialog',
+                });
+            }
         }
     }
 
@@ -191,9 +200,13 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         };
     }
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.isSaveBtn = true;
+        setTimeout(() => {
+            this.isSaveBtn = false;
+            this.dialogSrv.open(SignupModalComponent, {
+                showHeader: false,
+                styleClass: 'signup-dialog',
+            });
+        }, 100);
     }
 }

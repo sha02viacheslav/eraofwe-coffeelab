@@ -65,7 +65,7 @@
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of articlesData"
         >
-            <a [routerLink]="[getLink(article)]" class="text-non-underline" *ngIf="article.cardType === 'forum'">
+            <a (click)="openArticle(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
                 <div class="border-main br-4 py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
                     <div class="d-flex justify-content-betweenn px-4">
                         <div class="flex-1 overflow-hidden">

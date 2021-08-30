@@ -186,6 +186,11 @@
     }
 }
 
+.align-user {
+    position: absolute;
+    top: 4.5rem;
+}
+
 .icon-mob img {
     @media (max-width: 767px) {
         width: 29px;
