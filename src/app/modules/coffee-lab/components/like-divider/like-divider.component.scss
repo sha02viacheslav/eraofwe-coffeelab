@@ -33,13 +33,17 @@
 .hover-message-icon {
     padding: 10px;
     border-radius: 50%;
-    background-color: rgba(48, 133, 92, 0.12);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.12);
+    }
 }
 
 .hover-save-icon {
     padding: 6px 11px 8px 13px;
     border-radius: 50%;
-    background-color: rgba(48, 133, 92, 0.12);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.12);
+    }
 }
 
 .py-15 {
