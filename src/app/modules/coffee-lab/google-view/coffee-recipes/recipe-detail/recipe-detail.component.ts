@@ -75,6 +75,11 @@ export class RecipeDetailComponent implements OnInit {
         // this.setSEO();
     }
 
+    onRealtedRoute(langCode, slug) {
+        this.router.navigateByUrl('/' + langCode + '/coffee-recipes/' + slug);
+        window.scrollTo(0, 0);
+    }
+
     getRecipeList() {
         this.coffeeLabService.getForumList('recipe', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {

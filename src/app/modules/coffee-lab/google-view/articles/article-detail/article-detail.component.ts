@@ -69,6 +69,11 @@ export class ArticleDetailComponent implements OnInit {
         });
     }
 
+    onRealtedRoute(langCode, slug) {
+        this.router.navigateByUrl('/' + langCode + '/articles/' + slug);
+        window.scrollTo(0, 0);
+    }
+
     getDetails() {
         this.loading = true;
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {

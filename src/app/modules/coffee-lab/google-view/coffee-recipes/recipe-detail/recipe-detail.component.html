@@ -379,12 +379,9 @@
             </div>
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-475">
-                    <div
-                        [routerLink]="'/' + forum.lang_code + '/coffee-recipes/' + forum.slug"
-                        class="d-flex border-bottom-main pb-35"
-                    >
+                    <div (click)="onRealtedRoute(forum.lang_code, forum.slug)" class="d-flex border-bottom-main pb-35">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="image" /></div>
-                        <div>
+                        <div class="cursor-point">
                             <p class="footer-header fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.name }}</p>
                             <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point align-user">
                                 {{ forum?.posted_user }}
@@ -459,7 +456,7 @@
                 </div>
             </div>
             <p-divider styleClass="m-0"></p-divider>
-            <div class="d-flex justify-content-between my-4">
+            <div class="d-flex my-4">
                 <!-- <div class="d-flex">
                     <img
                         (click)="onFocus()"
