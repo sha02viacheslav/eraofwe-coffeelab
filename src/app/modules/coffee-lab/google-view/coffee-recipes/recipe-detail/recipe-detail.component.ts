@@ -44,6 +44,8 @@ export class RecipeDetailComponent implements OnInit {
     previousUrl: string;
     stickData: any;
     commentData: any[] = [];
+    allComments: any[] = [];
+    showCommentBtn = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -128,9 +130,20 @@ export class RecipeDetailComponent implements OnInit {
     getCommentsData(): void {
         this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
-                this.commentData = res.result;
+                this.allComments = res.result;
+                this.commentData = this.allComments.slice(0, 3);
+                if (this.allComments.length > 3) {
+                    this.showCommentBtn = true;
+                } else {
+                    this.showCommentBtn = false;
+                }
             }
         });
+    }
+
+    viewAllComments() {
+        this.commentData = this.allComments;
+        this.showCommentBtn = false;
     }
 
     setSEO() {

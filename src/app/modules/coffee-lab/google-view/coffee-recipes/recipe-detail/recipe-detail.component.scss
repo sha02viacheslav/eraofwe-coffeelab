@@ -281,13 +281,19 @@
 .hover-message-icon {
     padding: 2px 8px 2px 9px;
     border-radius: 50%;
-    background-color: rgba(48, 133, 92, 0.12);
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(116, 117, 136, 0.19);
+    }
 }
 
 .hover-save-icon {
     padding: 6px 9px 6px 12px;
     border-radius: 50%;
-    background-color: rgba(48, 133, 92, 0.12);
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(116, 117, 136, 0.19);
+    }
 }
 
 .message-top {

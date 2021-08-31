@@ -27,6 +27,8 @@ export class ArticleDetailComponent implements OnInit {
     addComment = false;
     stickData: any;
     commentData: any;
+    allComments: any;
+    showCommentBtn = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -72,6 +74,11 @@ export class ArticleDetailComponent implements OnInit {
     onRealtedRoute(langCode, slug) {
         this.router.navigateByUrl('/' + langCode + '/articles/' + slug);
         window.scrollTo(0, 0);
+    }
+
+    viewAllComments() {
+        this.commentData = this.allComments;
+        this.showCommentBtn = false;
     }
 
     getDetails() {
@@ -189,7 +196,13 @@ export class ArticleDetailComponent implements OnInit {
     getCommentsData(): void {
         this.coffeeLabService.getCommentList('article', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
-                this.commentData = res.result;
+                this.allComments = res.result;
+                this.commentData = this.allComments.slice(0, 3);
+                if (this.allComments.length > 3) {
+                    this.showCommentBtn = true;
+                } else {
+                    this.showCommentBtn = false;
+                }
             }
         });
     }

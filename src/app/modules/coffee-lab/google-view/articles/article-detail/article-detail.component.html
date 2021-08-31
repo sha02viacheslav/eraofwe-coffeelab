@@ -210,10 +210,10 @@
                         </div>
 
                         <!-- Answers -->
-                        <div class="w-100" *ngIf="commentData?.length > 0">
+                        <div class="w-100" *ngIf="allComments?.length > 0">
                             <div class="comment-border">
                                 <p class="fnt-14 fnt-600 fnt-muli text-clr334">
-                                    {{ commentData?.length }} {{ 'answers' | translate }}
+                                    {{ allComments?.length }} {{ 'answers' | translate }}
                                 </p>
                             </div>
                             <div
@@ -230,13 +230,14 @@
                                     <div [innerHTML]="postItem.comment"></div>
                                 </div>
                             </div>
-                            <!-- <div class="text-center w-100">
+                            <div class="text-center w-100" *ngIf="showCommentBtn">
                                 <button
-                                    class="fnt-14 fnt-bold fnt-muli text-clr60b mb-4 bg-transparent border-0 text-underline"
+                                    (click)="viewAllComments()"
+                                    class="fnt-14 fnt-bold fnt-muli cursor-point text-clr60b mb-4 bg-transparent border-0 text-underline"
                                 >
-                                    View all comments
+                                    {{ 'view_all_comments' | translate }}
                                 </button>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </span>
