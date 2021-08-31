@@ -100,6 +100,37 @@
                                 />
                             </div>
                         </div>
+                        <div
+                            *ngIf="answerDetail && answerDetail?.original_answer_state === 'ACTIVE'"
+                            class="border-main br-4 p-4 mt-5 d-none d-md-block w-100"
+                        >
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="d-flex">
+                                    <img src="assets/images/qa-forum.svg" alt="question-image" />
+                                    <p
+                                        class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
+                                    >
+                                        Read the original answer
+                                    </p>
+                                </div>
+                                <div class="bg-f8 px-25 py-2">
+                                    <p class="fnt-600 fnt-12 fnt-muli text-clr334">
+                                        {{ 'original_language' | translate }} :
+                                        {{ globalsService.getLanguage(answerDetail?.original_details?.language) }}
+                                    </p>
+                                </div>
+                            </div>
+                            <app-user-header [prop]="answerDetail"></app-user-header>
+                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                <a
+                                    class="fnt-14 fnt-600 fnt-muli"
+                                    [routerLink]="
+                                        getLink(answerDetail?.original_details.language, answerDetail?.question_slug)
+                                    "
+                                    >{{ answerDetail?.question | titlecase }}</a
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button
