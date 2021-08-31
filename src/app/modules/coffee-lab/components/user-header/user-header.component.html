@@ -25,8 +25,11 @@
                 <span class="ellipsis" *ngIf="orgType !== 'co' && !prop?.question"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
-                <span *ngIf="prop?.question" class="d-none d-md-block time-point"></span>
-                <span *ngIf="prop?.question" class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block">
+                <span *ngIf="prop?.question || prop?.answer" class="d-none d-md-block time-point"></span>
+                <span
+                    *ngIf="prop?.question || prop?.answer"
+                    class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block aling-time"
+                >
                     {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
                 </span>
             </div>
