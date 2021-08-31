@@ -87,6 +87,15 @@
     }
 }
 
+.flavour-profiles {
+    border: 1px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
+    }
+}
+
 .hover-share-icon {
     padding: 9px 11px 9px 12px;
     border-radius: 50%;

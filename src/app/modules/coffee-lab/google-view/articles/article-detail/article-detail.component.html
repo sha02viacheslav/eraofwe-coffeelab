@@ -159,29 +159,42 @@
                             </span> -->
                         </div>
 
-                        <!-- <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
+                        <div
+                            *ngIf="
+                                detailsData?.original_article_state && detailsData?.original_article_state === 'ACTIVE'
+                            "
+                            class="border-main br-4 p-4 mt-45 d-none d-md-block w-100"
+                        >
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
                                     <p
                                         class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
                                     >
-                                        Read the original guide
+                                        {{ 'read_the_guide' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
                                     <p class="fnt-600 fnt-12 fnt-muli text-clr334">
-                                        {{ 'original_language' | translate }} : {{ 'Spanish' | translate }}
+                                        {{ 'original_language' | translate }} :
+                                        {{ globalsService.getLanguage(detailsData?.original_article?.language) }}
                                     </p>
                                 </div>
                             </div>
                             <app-user-header [prop]="detailsData"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                                <a class="fnt-14 fnt-600 fnt-muli"
-                                    >What are coffee flavour profiles? How many profiles can a coffee have?</a
+                                <a
+                                    class="fnt-14 fnt-600 fnt-muli"
+                                    (click)="
+                                        onRealtedRoute(
+                                            detailsData?.original_article?.language,
+                                            detailsData?.original_article?.slug
+                                        )
+                                    "
+                                    >{{ orignalArticleName | titlecase }}</a
                                 >
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="mt-5 mb-325 w-100">
                             <div class="w-100">
@@ -316,7 +329,7 @@
                                 detailsData?.organization_type
                         }"
                     >
-                        View Profile
+                        {{ 'view_profile' | translate }}
                     </button>
                     <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli" (click)="onFocus()">
                         <img src="assets/images/message-icon-white.svg" />

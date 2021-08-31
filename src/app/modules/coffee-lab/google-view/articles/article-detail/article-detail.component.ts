@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
-import { DISCUSSIONS_FORUM } from '../../data';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -29,16 +28,15 @@ export class ArticleDetailComponent implements OnInit {
     commentData: any;
     allComments: any;
     showCommentBtn = false;
-
+    orignalArticleName: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
-        private location: Location,
         private toastService: ToastrService,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
         private dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -98,11 +96,21 @@ export class ArticleDetailComponent implements OnInit {
                 this.setSchemaMackup();
                 this.getUserDetail();
                 this.getCommentsData();
+                if (this.detailsData?.original_article_state && this.detailsData?.original_article_state === 'ACTIVE') {
+                    this.getOrginalArticleName(this.detailsData.original_article.slug);
+                }
             } else {
                 this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+        });
+    }
+
+    // This is temporary will be removed later
+    getOrginalArticleName(slug) {
+        this.coffeeLabService.getForumDetails('article', slug).subscribe((res: any) => {
+            this.orignalArticleName = res.result.title;
         });
     }
 
@@ -197,7 +205,7 @@ export class ArticleDetailComponent implements OnInit {
         this.coffeeLabService.getCommentList('article', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
                 this.allComments = res.result;
-                this.commentData = this.allComments.slice(0, 3);
+                this.commentData = this.allComments?.slice(0, 3);
                 if (this.allComments.length > 3) {
                     this.showCommentBtn = true;
                 } else {

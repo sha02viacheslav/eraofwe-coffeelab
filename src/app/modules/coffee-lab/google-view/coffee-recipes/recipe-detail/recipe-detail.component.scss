@@ -224,13 +224,6 @@
 .bg-f8 {
     background-color: #f8f8f8;
 }
-.flavour-profiles {
-    border: 1px dashed #ebebeb;
-    a {
-        color: #154faa;
-        text-decoration: underline !important;
-    }
-}
 
 // ::ng-deep .step-wrapper img {
 //     height: 276px !important;
@@ -302,6 +295,15 @@
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
         background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.flavour-profiles {
+    border: 1px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
     }
 }
 

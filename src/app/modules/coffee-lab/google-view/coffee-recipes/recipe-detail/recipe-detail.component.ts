@@ -54,7 +54,7 @@ export class RecipeDetailComponent implements OnInit {
         private seoService: SEOService,
         private toastService: ToastrService,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
