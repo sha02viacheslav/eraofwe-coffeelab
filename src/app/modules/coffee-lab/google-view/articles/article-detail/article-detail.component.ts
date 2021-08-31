@@ -96,21 +96,11 @@ export class ArticleDetailComponent implements OnInit {
                 this.setSchemaMackup();
                 this.getUserDetail();
                 this.getCommentsData();
-                if (this.detailsData?.original_article_state && this.detailsData?.original_article_state === 'ACTIVE') {
-                    this.getOrginalArticleName(this.detailsData.original_article.slug);
-                }
             } else {
                 this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
-        });
-    }
-
-    // This is temporary will be removed later
-    getOrginalArticleName(slug) {
-        this.coffeeLabService.getForumDetails('article', slug).subscribe((res: any) => {
-            this.orignalArticleName = res.result.title;
         });
     }
 
@@ -206,7 +196,7 @@ export class ArticleDetailComponent implements OnInit {
             if (res.success) {
                 this.allComments = res.result;
                 this.commentData = this.allComments?.slice(0, 3);
-                if (this.allComments.length > 3) {
+                if (this.allComments?.length > 3) {
                     this.showCommentBtn = true;
                 } else {
                     this.showCommentBtn = false;

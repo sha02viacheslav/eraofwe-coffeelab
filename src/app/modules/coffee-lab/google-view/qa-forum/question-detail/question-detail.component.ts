@@ -92,7 +92,6 @@ export class QuestionDetailComponent implements OnInit {
     getAnswerDetail(id: any) {
         this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
             this.answerDetail = res.result;
-            console.log(this.answerDetail);
         });
     }
 

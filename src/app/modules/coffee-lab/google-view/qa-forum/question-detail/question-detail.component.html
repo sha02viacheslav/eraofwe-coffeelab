@@ -110,7 +110,7 @@
                                     <p
                                         class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
                                     >
-                                        Read the original answer
+                                        {{ 'read_the_original_answer' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
@@ -125,9 +125,12 @@
                                 <a
                                     class="fnt-14 fnt-600 fnt-muli"
                                     [routerLink]="
-                                        getLink(answerDetail?.original_details.language, answerDetail?.question_slug)
+                                        getLink(
+                                            answerDetail?.original_details.language,
+                                            answerDetail?.original_details?.question_slug
+                                        )
                                     "
-                                    >{{ answerDetail?.question | titlecase }}</a
+                                    >{{ answerDetail?.original_details?.question | titlecase }}</a
                                 >
                             </div>
                         </div>
