@@ -187,7 +187,7 @@
 }
 
 .divder {
-    border-bottom: 1px solid #232334;
+    border-bottom: 1px solid #dedede;
 }
 
 .icon-mob img {
@@ -283,7 +283,7 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }
 
@@ -292,7 +292,16 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.hover-share-icon {
+    padding: 9px 11px 9px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }
 

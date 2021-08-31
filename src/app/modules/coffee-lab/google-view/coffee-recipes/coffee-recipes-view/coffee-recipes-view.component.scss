@@ -36,7 +36,7 @@
     }
     .coffee-item {
         border-radius: 14px;
-        min-height: 418px;
+        min-height: 435px;
         border: solid 1px #d0d0d0;
         img {
             height: 234px;
@@ -46,6 +46,7 @@
 
         &:hover {
             cursor: pointer;
+            border: 0px !important;
             box-shadow: 0 22px 34px 0 rgb(0 0 0 / 16%);
             // box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
             .recipe-name {
@@ -135,6 +136,6 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }

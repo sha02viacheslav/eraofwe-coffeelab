@@ -3,7 +3,8 @@
     flex-wrap: wrap;
     margin: -8px;
     .article-item {
-        border-radius: 14px !important;
+        border: solid 1px #d0d0d0;
+        border-radius: 14px;
         height: 100%;
         img {
             height: 243px;
@@ -12,6 +13,7 @@
         &:hover {
             cursor: pointer;
             box-shadow: 0 22px 34px 0 rgb(0 0 0/16%);
+            border: 0px !important;
             // box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
             h3.article-title-text {
                 text-decoration: underline;
@@ -70,6 +72,6 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }

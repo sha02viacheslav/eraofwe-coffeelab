@@ -74,7 +74,6 @@
 
 .add-comment {
     height: 50px;
-    margin: 0 0 0 8px;
     object-fit: contain;
     border: none;
     border-radius: 25px;
@@ -173,7 +172,7 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }
 
@@ -182,6 +181,6 @@
     border-radius: 50%;
     background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(116, 117, 136, 0.19);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }
