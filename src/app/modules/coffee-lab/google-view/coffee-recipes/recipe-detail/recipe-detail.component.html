@@ -323,7 +323,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-md-5 mt-45 mb-325 w-100">
+                    <div class="mt-md-5 mt-45 mb-4 w-100">
                         <div class="w-100">
                             <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">{{ 'comments' | translate }}</p>
                         </div>
@@ -357,7 +357,7 @@
                             </p>
                         </div>
                         <div
-                            class="answer-wrapper border-bottom-primary my-4"
+                            class="answer-wrapper border-bottom-primary my-45"
                             *ngFor="let postItem of commentData; let isLast = last"
                             [id]="'answer-' + postItem.id"
                         >
@@ -438,9 +438,7 @@
                         <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
                             {{ stickData?.firstname }} {{ stickData?.lastname }}
                         </p>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
-                            {{ stickData?.about_me?.substring(0, 20) }}
-                        </p>
+                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
                         <p *ngIf="stickData?.country" class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
                             @ {{ stickData?.country }}
                         </p>
