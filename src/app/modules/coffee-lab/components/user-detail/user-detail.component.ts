@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { organizationTypes } from '@constants';
+import { OrganizationType } from '@enums';
 import { GlobalsService, CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { OverlayPanel } from 'primeng/overlaypanel';
@@ -13,7 +14,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class UserDetailComponent implements OnInit, OnChanges {
     @ViewChild('myOp', { static: false }) myOp: OverlayPanel;
     @Input() userId: any;
-    @Input() orgType: any;
+    @Input() orgType: OrganizationType;
     @Input() size: any;
     @Input() imageUrl: any;
     @Input() shape: any;
