@@ -1,7 +1,8 @@
 <div class="position-relative mb-md-1">
-    <p-menu #menu [popup]="true" [model]="getMenuItemsForItem()" styleClass="left-menu-actions"> </p-menu>
+    <p-menu #menu [popup]="true" [model]="getMenuItemsForItem()" class="menu-width" styleClass="left-menu-actions">
+    </p-menu>
     <i
-        class="pi pi-ellipsis-h text-clr588 cursor-pointer"
+        class="pi pi-ellipsis-h text-clr588 cursor-pointer hover-icon"
         (click)="$event.stopPropagation(); $event.preventDefault(); menu.toggle($event)"
     ></i>
 </div>

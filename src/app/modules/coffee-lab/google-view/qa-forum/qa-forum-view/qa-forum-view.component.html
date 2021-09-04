@@ -1,29 +1,10 @@
-<h1 class="fnt-18 fnt-muli text-clr334 font-weight-bold d-block d-md-none mb-3" *ngIf="isMobile$ | async">
-    {{ 'question_answers' | translate }}
-</h1>
-
-<div class="d-flex">
-    <div class="flex-1 pr-lg-3">
+<div class="row">
+    <div class="col-12 col-md-7 pt-1 pt-md-0 pb-2 pb-md-0 pr-md-0">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
-    <div class="empty-join-wrapper pl-lg-3 d-none d-lg-block">
-        <div class="custom-search qa-forum-search d-none d-lg-block">
-            <input
-                class="w-100 fnt-16"
-                [(ngModel)]="keyword"
-                (ngModelChange)="getData()"
-                type="text"
-                pInputText
-                [placeholder]="'search_qna_forum' | translate"
-            />
-        </div>
-    </div>
 </div>
-<div class="mt-4 mt-lg-45">
+<div class="mt-2">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="fnt-18 fnt-md-24 fnt-muli text-clr334 fnt-bold d-none d-md-block" *ngIf="!(isMobile$ | async)">
-            {{ 'question_answers' | translate }}
-        </h1>
         <div class="custom-search qa-forum-search d-block d-lg-none">
             <input
                 class="w-100 fnt-16"
@@ -34,48 +15,64 @@
             />
         </div>
     </div>
-    <div class="d-flex">
-        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-45 pr-lg-2 flex-1">
-            <div>
-                <p-dropdown
-                    [options]="filterOptions"
-                    [(ngModel)]="filterBy"
-                    [showClear]="true"
-                    (ngModelChange)="getData()"
-                    styleClass="round-border text-clr588"
-                    [placeholder]="'posted_by' | translate"
-                    optionLabel="label"
-                    optionValue="value"
-                ></p-dropdown>
-            </div>
-            <div>
-                <p-dropdown
-                    [options]="sortOptions"
-                    [(ngModel)]="sortBy"
-                    (ngModelChange)="getData()"
-                    styleClass="no-border no-padding text-clr588"
-                    optionLabel="label"
-                    optionValue="value"
-                ></p-dropdown>
-            </div>
-        </div>
-        <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
-    </div>
     <div *ngIf="!isLoading">
         <div class="d-flex">
-            <div class="flex-1 pr-lg-2" [ngClass]="{ 'no-data': !questions.length }">
+            <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
+                <div class="d-flex mb-md-4">
+                    <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
+                        <div class="d-flex">
+                            <!-- <div class="mr-3">
+                                <p-dropdown
+                                    [options]="filterOptions"
+                                    [(ngModel)]="filterBy"
+                                    [showClear]="true"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    [placeholder]="'Categories'"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                ></p-dropdown>
+                            </div> -->
+                            <div class="mr-3">
+                                <p-dropdown
+                                    [options]="filterOptions"
+                                    [(ngModel)]="filterBy"
+                                    [showClear]="true"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    [placeholder]="'posted_by' | translate"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                ></p-dropdown>
+                            </div>
+                            <div>
+                                <p-dropdown
+                                    [options]="sortOptions"
+                                    [(ngModel)]="sortBy"
+                                    (ngModelChange)="getData()"
+                                    styleClass="round-border text-clr588"
+                                    optionLabel="label"
+                                    optionValue="value"
+                                    styleClass="round-border"
+                                    [placeholder]="'sort_by' | translate"
+                                ></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+                </div>
                 <div class="row gutter-24">
                     <div
                         *ngFor="let question of questions; let i = index"
                         [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
                     >
-                        <div class="br-4 border-main mb-4 mb-md-3 mb-lg-4">
+                        <div class="border-box mb-4 mb-md-3 mb-lg-4">
                             <div class="p-md-4 p-3">
                                 <div class="d-flex justify-content-between">
                                     <div class="flex-1">
                                         <app-user-header [prop]="question"></app-user-header>
                                     </div>
-                                    <div class="mobile-dot">
+                                    <div class="mobile-dot d-none d-md-block">
                                         <app-forum-menu></app-forum-menu>
                                     </div>
                                 </div>
@@ -86,43 +83,50 @@
                                         [innerHTML]="question?.question"
                                     ></div>
                                 </a>
-                                <button
-                                    *ngIf="question.total_answers > 0"
-                                    (click)="gotoDetailPage($event, question)"
-                                    class="btn-f8 w-100 d-inline-block d-md-none mt-4"
-                                >
-                                    {{ 'see_all_answers' | translate }}
-                                </button>
                             </div>
-                            <div *ngIf="question.total_answers > 0" class="py-4 px-5 border-top-main d-none d-md-block">
+                            <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
+                            <div
+                                *ngIf="question.total_answers > 0"
+                                class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
+                            >
                                 <div
-                                    *ngFor="let answer of question?.answers; let isLast = last"
-                                    [ngClass]="{ 'border-bottom-dashed-primary': !isLast }"
+                                    *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
+                                    [ngClass]="{ 'border-bottom-main': !isLast }"
                                     class="mb-4"
                                 >
                                     <div class="mb-4">
-                                        <app-user-header [prop]="answer"></app-user-header>
+                                        <app-user-header
+                                            [total]="question.total_answers"
+                                            [prop]="answer"
+                                        ></app-user-header>
                                     </div>
                                     <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
                                         <span
+                                            *ngIf="!answer?.show_full"
                                             [innerHTML]="
-                                                globalsService.getJustText(answer.answer)
-                                                    | convertToShortDescription: 20
+                                                globalsService.getJustText(answer?.answer)
+                                                    | convertToShortDescription: 25
                                             "
                                         ></span>
+                                        <span
+                                            *ngIf="answer?.show_full"
+                                            [innerHTML]="globalsService.getJustText(answer?.answer)"
+                                        ></span>
+                                        <a
+                                            *ngIf="
+                                                wordCount(globalsService.getJustText(answer?.answer)).split(' ')
+                                                    .length > 25 && !answer?.show_full
+                                            "
+                                            (click)="showFullDesc(i, ansInd)"
+                                            class="text-clr60b fnt-600 ml-1"
+                                            >{{ 'read_more' | translate }}</a
+                                        >
                                     </div>
                                 </div>
-                                <button
-                                    *ngIf="question.total_answers > 0"
-                                    (click)="gotoDetailPage($event, question)"
-                                    class="btn-f8 w-100"
-                                >
-                                    {{ 'see_all_answers' | translate }}
-                                </button>
                             </div>
                         </div>
                         <div class="d-lg-none mb-4 mb-md-3" *ngIf="i === 1">
-                            <app-join-community></app-join-community>
+                            <app-join-community [pages]="page" [type]="'question'"></app-join-community>
                         </div>
                     </div>
                     <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
@@ -139,8 +143,20 @@
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
-            <div class="pl-lg-2 w-min-content d-none d-lg-block h-fit-content">
-                <app-join-community></app-join-community>
+            <div class="col-12 col-md-4 px-0 mx-auto w-min-content d-none d-lg-block h-fit-content">
+                <div class="empty-join-wrapper d-none d-lg-block mb-4">
+                    <div class="custom-search qa-forum-search d-none d-lg-block">
+                        <input
+                            class="w-100 fnt-16"
+                            [(ngModel)]="keyword"
+                            (ngModelChange)="getData()"
+                            type="text"
+                            pInputText
+                            [placeholder]="'search_qna_forum' | translate"
+                        />
+                    </div>
+                </div>
+                <app-join-community [pages]="page" [type]="'question'"></app-join-community>
             </div>
         </div>
     </div>

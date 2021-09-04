@@ -6,13 +6,9 @@
             *ngFor="let article of data"
             [ngClass]="{ 'col-md-6': article.cardType !== 'joinCard' }"
         >
-            <a
-                class="text-non-underline"
-                [routerLink]="'/' + article.language + '/articles/' + article.slug"
-                *ngIf="article.cardType !== 'joinCard'"
-            >
-                <div class="border-main br-4 p-3 py-md-4 px-lg-4 article-item">
-                    <div class="d-flex justify-content-between">
+            <a class="text-non-underline" (click)="openArticle(article)" *ngIf="article.cardType !== 'joinCard'">
+                <div class="py-3 py-md-4 article-item">
+                    <div class="d-flex justify-content-between px-4">
                         <div class="flex-1 overflow-hidden">
                             <div class="d-flex align-items-center w-100">
                                 <app-avatar
@@ -33,24 +29,25 @@
                                 </div>
                             </div>
                         </div>
-                        <app-forum-menu></app-forum-menu>
+                        <!-- <app-forum-menu></app-forum-menu> -->
+                        <div class="icon-save hover-save-icon">
+                            <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
+                        </div>
                     </div>
-                    <img
-                        [src]="article.cover_image_url"
-                        class="br-4 w-100 my-3 my-md-4"
-                        [alt]="article?.title + ' cover image'"
-                    />
-                    <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
-                        {{ article?.title }}
-                    </div>
-                    <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
-                        <a class="article-title-text">
-                            {{ article?.subtitle }}
-                        </a>
+                    <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article?.title + ' cover image'" />
+                    <div class="mx-4">
+                        <div class="fnt-muli fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text">
+                            {{ article?.title }}
+                        </div>
+                        <div class="fnt-muli fnt-14 fnt-normal lh-143 text-clr334 mt-3">
+                            <a class="article-title-text">
+                                {{ article?.subtitle }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </a>
-            <app-join-community *ngIf="article.cardType === 'joinCard'"></app-join-community>
+            <!-- <app-join-community *ngIf="article.cardType === 'joinCard'"></app-join-community> -->
         </div>
     </div>
 </div>

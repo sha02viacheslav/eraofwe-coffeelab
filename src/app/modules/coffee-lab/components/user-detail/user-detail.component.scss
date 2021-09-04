@@ -18,15 +18,15 @@
 .user-details-wrapper {
     max-width: 100%;
     .user-image {
-        width: 44px;
-        height: 44px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
     }
     .message-button {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 11px 16px;
+        padding: 12px 16px;
         border-radius: 4px;
         border: solid 1px #747588;
         cursor: pointer;
@@ -60,4 +60,18 @@
             }
         }
     }
+}
+
+.location-image {
+    position: relative;
+    top: 1px;
+}
+
+.location-align {
+    position: relative;
+    bottom: 2px;
+}
+
+.language-border {
+    border: solid 1px #232334;
 }

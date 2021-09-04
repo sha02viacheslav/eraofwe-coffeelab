@@ -1,41 +1,43 @@
 <main>
     <div class="mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content" *ngIf="previousUrl">
         <a class="back-page" [routerLink]="previousUrl">
-            <span>{{ 'back' | translate }}</span>
+            <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
         </a>
     </div>
-    <!-- <div class="pb-3 pb-md-4 pb-lg-45" *ngIf="!loading">
-        <app-limit-banner></app-limit-banner>
-    </div> -->
-    <div class="d-lg-none mb-4">
-        <app-join-community></app-join-community>
-    </div>
-    <div class="page-wrapper d-block d-lg-flex" *ngIf="!loading">
-        <article class="pr-lg-3 flex-1 mb-4">
-            <div class="p-3 pb-md-45 pt-lg-45 px-lg-45 border-main br-4">
-                <div class="d-flex align-items-center">
-                    <app-avatar
-                        [src]="detailsData?.profile_image_url || 'assets/images/default-avatar.png'"
-                        size="40"
-                        [name]="detailsData?.user_name"
-                    ></app-avatar>
-                    <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-0 px-3">{{ detailsData?.user_name }}</p>
-                    <p class="fnt-12 fnt-muli fnt-normal text-clr588 mb-0">
-                        {{ detailsData?.posted_at || detailsData?.created_at | amTimeAgo | dateAgoReplace }}
-                    </p>
+
+    <div class="page-wrapper d-block d-lg-flex justify-content-between" *ngIf="!loading">
+        <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
+            <div class="border-question-view br-12">
+                <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
+                    <div class="flex-1">
+                        <app-user-header [prop]="detailsData"></app-user-header>
+                    </div>
+                    <div class="mobile-dot d-none d-md-block">
+                        <app-forum-menu></app-forum-menu>
+                    </div>
                 </div>
-                <h1
-                    class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 pt-4 pt-md-3"
-                    [innerHTML]="detailsData?.question"
-                ></h1>
-                <p-divider styleClass="my-3 my-md-45 my-lg-4 p-divider-primary"></p-divider>
+                <div class="pb-3 px-3 px-lg-4">
+                    <h1
+                        class="fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 mb-0 mt-0"
+                        [innerHTML]="detailsData?.question"
+                    ></h1>
+                </div>
+                <app-like-divider></app-like-divider>
+                <div class="d-flex mr-4 my-3 my-md-35 ml-md-4 pl-3">
+                    <button
+                        class="add-comment cursor-point w-100 fnt-14 fnt-600 fnt-muli text-clr588 d-flex align-items-center pl-4"
+                        (click)="onFocus()"
+                    >
+                        {{ 'add_a_comment' | translate }}
+                    </button>
+                </div>
                 <div *ngIf="detailsData?.answers">
                     <div
-                        class="answer-wrapper border-bottom-primary mb-4"
+                        class="answer-wrapper border-bottom-primary mb-4 mx-3 ml-md-5 mr-md-4"
                         *ngFor="let postItem of detailsData.answers; let isLast = last"
                         [id]="'answer-' + postItem.id"
                     >
-                        <div class="d-flex flex-wrap w-100">
+                        <div class="d-flex flex-wrap w-100 mt-3">
                             <div class="d-flex justify-content-between align-items-md-end w-100">
                                 <app-user-header [prop]="postItem"></app-user-header>
                                 <div class="d-flex flex-column align-items-end">
@@ -69,29 +71,83 @@
                                 />
                             </ng-container>
                         </div>
+                        <div class="d-flex justify-content-between my-3 my-md-4">
+                            <div class="d-flex">
+                                <!-- <div class="d-flex">
+                                    <img
+                                        (click)="onFocus()"
+                                        class="cursor-point"
+                                        src="assets/images/thumbs-up-button.svg"
+                                        alt="thumbs-up"
+                                    />
+                                    <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
+                                </div> -->
+                                <div class="align-items-center hover-save-icon d-flex">
+                                    <img
+                                        (click)="onFocus()"
+                                        class="cursor-point"
+                                        src="assets/images/save.svg"
+                                        alt="bookmark-button"
+                                    />
+                                </div>
+                            </div>
+                            <div class="d-flex hover-share-icon">
+                                <img
+                                    (click)="onFocus()"
+                                    class="cursor-point"
+                                    src="assets/images/share.svg"
+                                    alt="ubload"
+                                />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="answerDetail && answerDetail?.original_answer_state === 'ACTIVE'"
+                            class="border-main br-4 p-4 mb-4 d-none d-md-block w-100"
+                        >
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="d-flex">
+                                    <img src="assets/images/qa-forum.svg" alt="question-image" />
+                                    <p
+                                        class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
+                                    >
+                                        {{ 'read_the_original_answer' | translate }}
+                                    </p>
+                                </div>
+                                <div class="bg-f8 px-25 py-2">
+                                    <p class="fnt-600 fnt-12 fnt-muli text-clr334">
+                                        {{ 'original_language' | translate }} :
+                                        {{ globalsService.getLanguage(answerDetail?.original_details?.language) }}
+                                    </p>
+                                </div>
+                            </div>
+                            <app-user-header [prop]="answerDetail"></app-user-header>
+                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                <a
+                                    class="fnt-14 fnt-600 fnt-muli"
+                                    [routerLink]="
+                                        getLink(
+                                            answerDetail?.original_details.language,
+                                            answerDetail?.original_details?.question_slug
+                                        )
+                                    "
+                                    >{{ answerDetail?.original_details?.question | titlecase }}</a
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <button
+                    (click)="onFocus()"
+                    class="cursor-point"
+                    class="fnt-14 fnt-bold fnt-muli text-clr60b ml-md-5 ml-3 mb-4 bg-transparent border-0 text-underline cursor-point"
+                >
+                    Write a comment
+                </button>
             </div>
         </article>
-        <article class="w-tab-100 pl-lg-3 w-min-content">
+        <article class="w-tab-100 w-min-content col-md-4 col-12 px-0">
             <div class="d-none d-lg-block mb-4">
-                <app-join-community></app-join-community>
-            </div>
-            <div class="border-main br-4">
-                <div class="m-1 fnt-16 fnt-md-18 fnt-muli fnt-bold text-clr334 background-header">
-                    {{ 'recent_discussions_on_forum' | translate }}
-                </div>
-                <div>
-                    <div *ngFor="let forum of relatedData" class="forum-row pt-4 px-3 pb-0">
-                        <a [routerLink]="['/' + lang + '/qa-forum/' + forum.slug]">
-                            <h2
-                                class="fnt-14 fnt-muli fnt-semi-bold lh-normal forum-row-content border-bottom-primary pb-4 cursor-pointer"
-                                [innerHTML]="forum.question"
-                                (click)="onGoRelatedQuestion($event, forum)"
-                            ></h2>
-                        </a>
-                    </div>
-                </div>
+                <app-join-community [type]="'question'" [detailType]="'question-detail'"></app-join-community>
             </div>
         </article>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>

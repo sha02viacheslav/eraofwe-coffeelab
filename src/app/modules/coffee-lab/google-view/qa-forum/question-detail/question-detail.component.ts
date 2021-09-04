@@ -22,7 +22,7 @@ export class QuestionDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-
+    answerDetail: any;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -30,7 +30,7 @@ export class QuestionDetailComponent implements OnInit {
         private toastService: ToastrService,
         private seoService: SEOService,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -69,6 +69,13 @@ export class QuestionDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 this.lang = res.result.lang_code;
+                if (this.detailsData.parent_question_id > 0) {
+                    this.detailsData.answers.forEach((element) => {
+                        if (element.parent_answer_id > 0) {
+                            this.getAnswerDetail(element.id);
+                        }
+                    });
+                }
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
                 this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}`;
@@ -79,6 +86,12 @@ export class QuestionDetailComponent implements OnInit {
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+        });
+    }
+
+    getAnswerDetail(id: any) {
+        this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
+            this.answerDetail = res.result;
         });
     }
 
@@ -96,7 +109,7 @@ export class QuestionDetailComponent implements OnInit {
             title = this.idOrSlug.replace('-', '').concat(' - Era of We Coffee Marketplace');
         }
         if (this.globalsService.getJustText(firstAnswer?.answer)) {
-            if (this.globalsService.getJustText(firstAnswer?.answer).length < 60) {
+            if (this.globalsService.getJustText(firstAnswer?.answer).length < 100) {
                 description = this.globalsService
                     .getJustText(firstAnswer?.answer)
                     .concat(
@@ -184,5 +197,16 @@ export class QuestionDetailComponent implements OnInit {
                 styleClass: 'signup-dialog',
             });
         }
+    }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
+    }
+
+    getLink(language, slug) {
+        return `/${language}/qa-forum/${slug}`;
     }
 }

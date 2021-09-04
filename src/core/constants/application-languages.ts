@@ -1,20 +1,40 @@
 import { LabelValue } from '@models';
 
-export const APP_LANGUAGES: LabelValue[] = [
+export const APP_LANGUAGES: any[] = [
     {
-        label: 'English',
+        label: {
+            en: 'English',
+            sv: 'Engelska',
+            pt: 'Inglês',
+            es: 'Inglés',
+        },
         value: 'en',
     },
     {
-        label: 'Swedish',
+        label: {
+            en: 'Swedish',
+            sv: 'Svenska',
+            pt: 'Sueca',
+            es: 'Sueca',
+        },
         value: 'sv',
     },
     {
-        label: 'Portuguese',
+        label: {
+            en: 'Portuguese',
+            sv: 'Portugisiska',
+            pt: 'Português',
+            es: 'Portuguesa',
+        },
         value: 'pt',
     },
     {
-        label: 'Spanish',
+        label: {
+            en: 'Spanish',
+            sv: 'Spanska',
+            pt: 'Espanhola',
+            es: 'Español',
+        },
         value: 'es',
     },
 ];

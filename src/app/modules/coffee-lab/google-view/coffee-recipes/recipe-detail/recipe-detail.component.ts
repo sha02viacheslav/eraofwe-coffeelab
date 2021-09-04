@@ -2,10 +2,12 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -16,21 +18,22 @@ export class RecipeDetailComponent implements OnInit {
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
+    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Brewing' }];
     infoData: any[] = [
         {
-            icon: 'assets/images/expertise-level.svg',
-            label: 'expertise_level',
-            key: 'expertise',
+            icon: 'assets/images/aeropress.svg',
+            label: 'equipment',
+            key: 'equipment_name',
         },
         {
-            icon: 'assets/images/preparation-time.svg',
+            icon: 'assets/images/brew-ratio.svg',
             label: 'brew_ratio',
             key: 'coffee_ratio',
             key2: 'water_ratio',
         },
         {
-            icon: 'assets/images/servings.svg',
-            label: 'serving',
+            icon: 'assets/images/yeild.svg',
+            label: 'yeild',
             key: 'serves',
         },
     ];
@@ -39,6 +42,10 @@ export class RecipeDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
+    stickData: any;
+    commentData: any[] = [];
+    allComments: any[] = [];
+    showCommentBtn = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -46,9 +53,9 @@ export class RecipeDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
-        private location: Location,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
+        public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
@@ -70,12 +77,17 @@ export class RecipeDetailComponent implements OnInit {
         // this.setSEO();
     }
 
+    onRealtedRoute(langCode, slug) {
+        this.router.navigateByUrl('/' + langCode + '/coffee-recipes/' + slug);
+        window.scrollTo(0, 0);
+    }
+
     getRecipeList() {
         this.coffeeLabService.getForumList('recipe', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
                     .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 3);
+                    .slice(0, 4);
                 if (!this.idOrSlug) {
                     this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
                 }
@@ -88,18 +100,50 @@ export class RecipeDetailComponent implements OnInit {
         this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 this.detailsData = res.result;
+                this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
                 this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                 this.setSEO();
                 this.setSchemaMackup();
+                this.getUserDetail();
+                this.getCommentsData();
             } else {
                 this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
         });
+    }
+
+    getUserDetail(): void {
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.posted_by, this.detailsData.organisation_type)
+            .subscribe((res) => {
+                if (res.success) {
+                    this.stickData = res.result;
+                }
+            });
+    }
+
+    getCommentsData(): void {
+        this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
+            if (res.success) {
+                this.allComments = res.result;
+                this.commentData = this.allComments.slice(0, 3);
+                if (this.allComments.length > 3) {
+                    this.showCommentBtn = true;
+                } else {
+                    this.showCommentBtn = false;
+                }
+            }
+        });
+    }
+
+    viewAllComments() {
+        this.commentData = this.allComments;
+        this.showCommentBtn = false;
     }
 
     setSEO() {
@@ -182,5 +226,12 @@ export class RecipeDetailComponent implements OnInit {
                 },
             ],
         };
+    }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }

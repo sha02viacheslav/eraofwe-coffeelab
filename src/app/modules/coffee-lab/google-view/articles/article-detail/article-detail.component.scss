@@ -1,3 +1,202 @@
-::ng-deep .forum-content > div {
-    word-break: break-all;
+
+    word-break: break-word;
+}
+::ng-deep .forum-content img {
+    max-width: 100%;
+}
+
+.article-main-block {
+    padding: 0;
+    @media (min-width: 768px) {
+        padding: 0 10rem;
+    }
+    .main-heading {
+        font-family: Cormorant Garamond;
+        text-align: center;
+        font-size: 3rem;
+        @media (max-width: 768px) {
+            text-align: unset;
+            font-size: 2rem;
+        }
+    }
+    .fnt-20 {
+        font-size: 1rem;
+        @media (min-width: 768px) {
+            font-size: 1.25rem;
+        }
+    }
+    .innter-box {
+        @media (min-width: 768px) {
+            padding: 0 6.5rem 0 2.5rem;
+        }
+    }
+}
+
+.published {
+    color: #797a8d;
+    line-height: 1.57;
+}
+
+.button-list {
+    margin: 0 4px 5px 0;
+    padding: 7px 10px 8px;
+    border-radius: 4px;
+    background-color: #eaeaea;
+    border: none;
+    @media (min-width: 768px) {
+        margin: 0 12px 0 0;
+        padding: 10px 15px;
+    }
+}
+
+.background-header {
+    border-top: 2px solid #232334;
+}
+.p-articles img {
+    width: 89px;
+    height: 89px;
+    object-fit: cover;
+}
+.fnt-fly {
+    font-family: Cormorant Garamond;
+    font-size: 22px;
+    line-height: 1.23;
+}
+
+.articles-answer {
+    border-top: 2px solid #232334;
+    border-bottom: 2px solid #232334;
+}
+
+.author-image img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.add-comment {
+    border: 1px solid transparent !important;
+    height: 50px;
+    margin: 0 0 0 8px;
+    object-fit: contain;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.answer-wrapper {
+    border-bottom: 1px solid #d8d8d8;
+    &:first-child {
+        border-top: 1px solid #d8d8d8;
+    }
+}
+
+.comment-border {
+    border-bottom: solid 0.5px #d8d8d8;
+}
+
+.comment-hgt {
+    height: 50px !important;
+}
+
+.view-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 16px;
+    border-radius: 4px;
+    border: solid 1px #30855c;
+    cursor: pointer;
+    color: #30855c;
+    background: #ffffff;
+    &:hover {
+        background: #30855c;
+        color: #ffffff;
+    }
+}
+
+.user-wrapper {
+    @media (min-width: 768px) {
+        width: 175px;
+        position: sticky;
+        margin-left: -6rem;
+        top: 40%;
+        height: fit-content;
+    }
+}
+
+.message-icon img {
+    @media (min-width: 768px) {
+        width: 21px;
+        height: 34px;
+    }
+}
+
+.footer-border {
+    border-bottom: solid 0.5px #d8d8d8;
+}
+
+.divder {
+    border-bottom: 1px solid #232334;
+}
+
+.cursor-point {
+    cursor: pointer;
+}
+
+::ng-deep .p-inputtextarea:enabled:hover,
+::ng-deep .p-inputtextarea:enabled:focus {
+    border: 1px solid #30855c !important;
+}
+
+.back-page::before {
+    top: -7px !important;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 8px !important;
+    background-repeat: no-repeat !important;
+    background-size: auto !important;
+}
+.back-page:hover::before {
+    border-radius: 50%;
+    background-color: rgba(128, 70, 11, 0.14);
+}
+
+.flavour-profiles {
+    border: 2px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
+    }
+}
+
+.hover-share-icon {
+    padding: 9px 11px 9px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.12);
+    }
+}
+
+.hover-message-icon {
+    padding: 2px 8px 2px 9px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.hover-save-icon {
+    padding: 6px 9px 8px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.cust-flex-grow {
+    flex-grow: 0.9;
 }

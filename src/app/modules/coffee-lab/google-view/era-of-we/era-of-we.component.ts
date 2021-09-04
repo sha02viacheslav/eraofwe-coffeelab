@@ -5,7 +5,9 @@ import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { SeoDescription, SeoTitle } from '@constants';
 import { RouterSlug } from '@enums';
-import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-era-of-we',
@@ -15,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EraOfWeComponent implements OnInit {
     data: any[] = [];
     isLoading = false;
+    isSaveBtn = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -22,6 +25,8 @@ export class EraOfWeComponent implements OnInit {
         private globalsService: GlobalsService,
         private seoService: SEOService,
         private toastService: ToastrService,
+        private router: Router,
+        public dialogSrv: DialogService,
     ) {}
 
     ngOnInit(): void {
@@ -66,5 +71,27 @@ export class EraOfWeComponent implements OnInit {
         const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.EOW];
         const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.EOW];
         this.seoService.setSEO(title, description);
+    }
+
+    openArticle(article) {
+        if (!this.isSaveBtn) {
+            this.router.navigateByUrl(this.getLink(article));
+        }
+    }
+
+    getLink(item) {
+        const url = `/${item.language}/articles/${item.slug}`;
+        return item.cardType === 'forum' ? url : `/${this.coffeeLabService.currentForumLanguage}/articles`;
+    }
+
+    onFocus() {
+        this.isSaveBtn = true;
+        setTimeout(() => {
+            this.isSaveBtn = false;
+            this.dialogSrv.open(SignupModalComponent, {
+                showHeader: false,
+                styleClass: 'signup-dialog',
+            });
+        }, 100);
     }
 }

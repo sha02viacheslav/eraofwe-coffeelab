@@ -18,9 +18,9 @@ import { RouterSlug } from '@enums';
     styleUrls: ['./coffee-recipes-view.component.scss'],
 })
 export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
-    rows = 8;
+    rows = 9;
     totalRecords = 0;
-    page: number = 1;
+    page = 1;
     destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
     label?: string;
@@ -42,7 +42,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     levels: any[] = [];
     orderList: any[] = [];
-
+    isSaveBtn = false;
     selectedOrder = 'latest';
     jsonLD: any;
 
@@ -144,11 +144,11 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 const joinCard = {
                     cardType: 'joinCard',
                 };
-                if (this.coffeeRecipeData.length < 3) {
-                    this.coffeeRecipeData.push(joinCard);
-                } else {
-                    this.coffeeRecipeData.splice(2, 0, joinCard);
-                }
+                // if (this.coffeeRecipeData.length < 3) {
+                //     this.coffeeRecipeData.push(joinCard);
+                // } else {
+                //     this.coffeeRecipeData.splice(2, 0, joinCard);
+                // }
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');
@@ -169,19 +169,38 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
+        if (!this.isSaveBtn) {
+            event.stopPropagation();
+            event.preventDefault();
+            if (this.globalsService.getLimitCounter() > 0) {
+                this.router.navigate([this.getLink(item)]);
+            } else {
+                this.dialogSrv.open(SignupModalComponent, {
+                    data: {
+                        isLimit: true,
+                    },
+                    showHeader: false,
+                    styleClass: 'signup-dialog',
+                });
+            }
+        }
+    }
+
+    openRecipe(coffee) {
+        if (!this.isSaveBtn) {
+            this.router.navigateByUrl(this.getLink(coffee));
+        }
+    }
+
+    onFocus() {
+        this.isSaveBtn = true;
+        setTimeout(() => {
+            this.isSaveBtn = false;
             this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
                 showHeader: false,
                 styleClass: 'signup-dialog',
             });
-        }
+        }, 100);
     }
 
     setSEO() {

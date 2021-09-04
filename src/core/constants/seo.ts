@@ -37,32 +37,40 @@ export const SeoDescription = {
         [RouterSlug.QA]:
             'Global Coffee forum committed to the future of Coffee. Connect with coffee experts from the coffee supply chain.',
         [RouterSlug.ARTICLE]:
-            'Share knowledge with interested consumers & experts and learn about the latest industry trends.',
-        [RouterSlug.RECIPE]: 'Find and share recipes & brewing guides with the global coffee community.',
-        [RouterSlug.EOW]: 'Everything about coffee, compare brewing specs, and learn about the latest industry trends.',
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.RECIPE]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.EOW]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
     },
     sv: {
         [RouterSlug.QA]:
             'Globalt kaffeforum för att stärka framtidens kaffe. Etablera kontakt med kaffeexperter från hela världen.',
         [RouterSlug.ARTICLE]:
-            'Dela kunskap om kaffe med intresserade konsumenter & experter och lär dig om de senaste trenderna.',
-        [RouterSlug.RECIPE]: 'Hitta och dela kafferecept och byggmetoder med ett globalt kaffe community.',
-        [RouterSlug.EOW]: 'Allt of kaffe, jämför bryggmetoder och lär dig all om de senaste trenderna inom kaffe.',
+            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna.',
+        [RouterSlug.RECIPE]:
+            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna. ',
+        [RouterSlug.EOW]:
+            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna.',
     },
     pt: {
         [RouterSlug.QA]:
             'Global Coffee forum committed to the future of Coffee. Connect with coffee experts from the coffee supply chain.',
         [RouterSlug.ARTICLE]:
-            'Share knowledge with interested consumers & experts and learn about the latest industry trends.',
-        [RouterSlug.RECIPE]: 'Find and share recipes & brewing guides with the global coffee community.',
-        [RouterSlug.EOW]: 'Everything about coffee, compare brewing specs, and learn about the latest industry trends.',
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.RECIPE]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.EOW]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
     },
     es: {
         [RouterSlug.QA]:
             'Global Coffee forum committed to the future of Coffee. Connect with coffee experts from the coffee supply chain.',
         [RouterSlug.ARTICLE]:
-            'Share knowledge with interested consumers & experts and learn about the latest industry trends.',
-        [RouterSlug.RECIPE]: 'Find and share recipes & brewing guides with the global coffee community.',
-        [RouterSlug.EOW]: 'Everything about coffee, compare brewing specs, and learn about the latest industry trends.',
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.RECIPE]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+        [RouterSlug.EOW]:
+            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
     },
 };

@@ -1,0 +1,15 @@
+.hover-icon {
+    padding: 0.625rem;
+    &:hover {
+        border-radius: 50%;
+        background-color: rgba(184, 184, 184, 0.16);
+    }
+}
+
+::ng-deep .menu-width .p-menu.left-menu-actions.p-menu-overlay {
+    width: fit-content !important;
+}
+
+::ng-deep .menu-width .p-menu.left-menu-actions.p-menu-overlay a span {
+    white-space: nowrap !important;
+}

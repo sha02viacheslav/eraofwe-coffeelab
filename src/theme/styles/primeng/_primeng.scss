@@ -50,23 +50,28 @@
     .p-dropdown .p-inputtext {
         padding-right: 0;
     }
+
+    // Validation
     .p-error {
         display: none;
         font-size: 14px;
         font-weight: 600;
     }
-    .ng-dirty ~ .p-error {
-        display: block !important;
-    }
-    .ng-dirty + .p-error {
-        display: block !important;
-    }
-    .ng-touched + .p-error {
-        display: block !important;
+    .ng-invalid.ng-touched,
+    .ng-invalid.ng-dirty {
+        & + .p-error,
+        & ~ .p-error {
+            display: block !important;
+        }
     }
     .p-inputtext.ng-invalid.ng-touched,
     input.ng-invalid.ng-touched,
-    input.ng-invalid.ng-touched + .input-group-append {
+    input.ng-invalid.ng-touched + .input-group-append,
+    p-calendar.ng-invalid.ng-touched .p-calendar,
+    p-dropdown.ng-invalid.ng-touched .p-dropdown,
+    p-multiselect.ng-invalid.ng-touched .p-multiselect,
+    p-autocomplete.ng-invalid.ng-touched .p-autocomplete-input,
+    p-inputnumber.ng-invalid.ng-touched .p-inputnumber-input {
         border-color: $error-border-color !important;
     }
 

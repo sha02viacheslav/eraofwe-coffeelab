@@ -1,33 +1,16 @@
-<div class="join-wrapper px-3 py-4 p-md-45 pt-md-475 h-100">
-    <div class="logo-wrapper">
-        <img class="logo-image mt-md-2 mb-3" src="assets/images/era-we-black.svg" alt="Comany-Logo" />
+<div class="question-header mb-4" [ngClass]="{ 'no-border': type === 'article' || type === 'recipe' }">
+    <p class="fnt-16 fnt-bold fnt-muli text-clr24 mt-3">
+        <span *ngIf="detailType === 'question-detail'">{{ 'related_discussions' | translate }}</span>
+        <span *ngIf="detailType !== 'question-detail'">{{ 'recent_discussions_on_forum' | translate }}</span>
+    </p>
+    <div class="question-list" *ngFor="let data of relatedData; let ind = index">
+        <p class="py-3" [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': ind === relatedData.length }">
+            <a [routerLink]="[getLink(data, null).url]" class="fnt-14 fnt-muli fnt-600 text-clr24">{{
+                data.question ? data.question : data.title ? data.title : data.name
+            }}</a>
+        </p>
     </div>
-    <div class="content-wrapper">
-        <p class="fnt-play fnt-18 fnt-bold text-clr334 mb-3">
-            {{ 'welcome_coffee_community' | translate }}
-        </p>
-        <p class="fnt-muli fnt-16 fnt-normal text-clr334 mb-2 mb-md-3">
-            {{ 'join_community_change' | translate }}
-        </p>
-        <div class="d-flex flex-column flex-md-row align-items-center pt-z5 button-wrapper">
-            <a
-                [href]="ssoWeb + '/sign-up'"
-                class="btn-raised mr-3 mt-3 w-mob-100 ml-3 ml-lg-0"
-                [rel]="isStaging ? 'nofollow' : ''"
-            >
-                {{ 'sign_up_now' | translate }}
-            </a>
-            <p class="fnt-muli fnt-16 fnt-bold text-clr334 mb-0 mt-3">
-                {{ 'or' | translate }}
-            </p>
-            <a
-                class="fnt-muli fnt-16 fnt-bold pl-3 text-clr55c cursor-pointer text-underline mt-3"
-                routerLink="/{{ coffeeLabService.currentForumLanguage }}/{{
-                    RouterMap[coffeeLabService.currentForumLanguage][RouterSlug.QA]
-                }}"
-                [ngClass]="{ 'wrap-text': i18nService.currentLang === 'pt' || i18nService.currentLang === 'es' }"
-                >{{ 'explore_lab' | translate }}</a
-            >
-        </div>
+    <div *ngIf="!relatedData.length" class="text-center my-4 fnt-muli text-clr24">
+        {{ 'no_data_is_available' | translate }}
     </div>
 </div>

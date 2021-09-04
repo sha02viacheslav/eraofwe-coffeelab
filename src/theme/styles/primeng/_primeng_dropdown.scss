@@ -15,8 +15,12 @@
         color: $primary-color;
     }
 }
+.gray.p-dropdown {
+    background-color: $primary-bg-color;
+}
 .p-dropdown {
     border-color: $primary-border-color;
+    background: transparent;
 }
 .p-dropdown.highlight {
     border-color: $primary-color;
@@ -117,6 +121,10 @@
 }
 .p-dropdown:not(.p-dropdown-open) .p-dropdown-clear-icon + .p-dropdown-trigger {
     opacity: 0;
+}
+
+.p-dropdown .p-dropdown-filter {
+    padding: 0.625rem !important;
 }
 
 .p-dropdown.p-dropdown-translate {

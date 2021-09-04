@@ -13,9 +13,77 @@
 }
 
 .answer-wrapper {
-    border-bottom-style: dashed !important;
-    &:last-child {
-        margin-bottom: 0 !important;
-        border-bottom: none !important;
+    border-bottom: 1px solid #d8d8d8;
+    &:first-child {
+        border-top: 1px solid #d8d8d8;
     }
+}
+
+.hover-save-icon {
+    padding: 6px 9px 6px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.hover-share-icon {
+    padding: 6px 11px 7px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.flavour-profiles {
+    border: 2px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
+    }
+}
+
+.br-12 {
+    border-radius: 12px;
+}
+
+.border-question-view {
+    border: 1px solid #d0d0d0;
+}
+
+.add-comment {
+    height: 50px;
+    margin: 0 0 0 8px;
+    object-fit: contain;
+    border: 0;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.comment {
+    margin: 0 0 0 8px;
+    padding: 24px 26px 27px 24px;
+    object-fit: contain;
+    border-radius: 25px;
+    background-color: rgba(116, 117, 136, 0.08);
+}
+
+.cursor-point {
+    cursor: pointer;
+}
+
+.back-page::before {
+    top: -5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 6px !important;
+    background-repeat: no-repeat !important;
+    background-size: auto !important;
+}
+.back-page:hover::before {
+    border-radius: 50%;
+    background-color: rgba(128, 70, 11, 0.14);
 }
