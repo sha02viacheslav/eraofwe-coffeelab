@@ -75,9 +75,8 @@
                     </div>
                 </div>
                 <div class="mt-4 d-flex align-items-center">
-                    <button class="btn-raised mr-3" [routerLink]="'/profile/' + userId + '/' + orgType">
-                        View Profile
-                        class="btn-raised mr-3 fnt-muli fnt-bold fnt-14"
+                    <button
+                        class="btn-raised mr-3"
                         routerLink="/user-profile"
                         [queryParams]="{
                             user_id: userId,
