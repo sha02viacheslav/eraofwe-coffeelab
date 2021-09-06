@@ -7,6 +7,11 @@
     border-bottom: 2px solid $general-text-color;
     .question-list {
         border-bottom: 1px solid #d8d8d8;
+        p a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
     .question-list:last-child {
         border-bottom: none !important;

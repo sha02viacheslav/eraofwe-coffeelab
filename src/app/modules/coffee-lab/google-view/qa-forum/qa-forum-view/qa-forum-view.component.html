@@ -102,13 +102,12 @@
                                     </div>
                                     <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
                                         <span
-                                            *ngIf="!answer?.show_full"
                                             [innerHTML]="
                                                 globalsService.getJustText(answer?.answer)
                                                     | convertToShortDescription: 25
                                             "
                                         ></span>
-                                        <span
+                                        <!-- <span
                                             *ngIf="answer?.show_full"
                                             [innerHTML]="globalsService.getJustText(answer?.answer)"
                                         ></span>
@@ -120,7 +119,7 @@
                                             (click)="showFullDesc(i, ansInd)"
                                             class="text-clr60b fnt-600 ml-1"
                                             >{{ 'read_more' | translate }}</a
-                                        >
+                                        > -->
                                     </div>
                                 </div>
                             </div>

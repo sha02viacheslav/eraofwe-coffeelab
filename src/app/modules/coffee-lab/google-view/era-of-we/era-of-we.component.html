@@ -4,7 +4,7 @@
         <div
             class="col-12 col-xl-4 mb-3 article-item-wrapper"
             *ngFor="let article of data"
-            [ngClass]="{ 'col-md-6': article.cardType !== 'joinCard' }"
+            [ngClass]="{ 'col-md-6': article.cardType !== 'joinCard', 'd-none': !article.is_era_of_we }"
         >
             <a class="text-non-underline" (click)="openArticle(article)" *ngIf="article.cardType !== 'joinCard'">
                 <div class="py-3 py-md-4 article-item">

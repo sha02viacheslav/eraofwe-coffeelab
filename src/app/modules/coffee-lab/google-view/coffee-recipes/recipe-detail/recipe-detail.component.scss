@@ -243,6 +243,9 @@
 
 .cust-flex-grow {
     flex-grow: 0.9;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .sticky-divder {

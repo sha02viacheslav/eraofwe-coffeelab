@@ -12,7 +12,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { RouterSlug } from '@enums';
-import { getWordCount } from '@utils';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -215,23 +214,5 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
         const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
         this.seoService.setSEO(title, description);
-    }
-    wordCount(description) {
-        return getWordCount(description);
-    }
-
-    showFullDesc(quesIndex: number, index: number) {
-        const showFull = 'show_full';
-        this.questions = this.questions.map((item, qindex) => {
-            if (qindex === quesIndex && item.answers) {
-                item.answers.map((i, ind) => {
-                    if (ind === index) {
-                        i[showFull] = true;
-                    }
-                    return i;
-                });
-            }
-            return item;
-        });
     }
 }
