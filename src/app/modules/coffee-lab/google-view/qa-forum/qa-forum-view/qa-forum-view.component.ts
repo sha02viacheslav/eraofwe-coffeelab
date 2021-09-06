@@ -26,7 +26,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     sortBy = '';
     filterBy: any;
     questions: any[] = [];
-    isLoading = false;
+    isLoading = true;
     keyword = '';
     questionMenuItems: MenuItem[] = [];
     totalRecords = 0;
