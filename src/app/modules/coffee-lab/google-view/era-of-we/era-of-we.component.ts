@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { CoffeeLabService, GlobalsService, SEOService } from '@services';
+import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
@@ -8,25 +8,51 @@ import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
 import { Router } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
 
 @Component({
     selector: 'app-era-of-we',
     templateUrl: './era-of-we.component.html',
     styleUrls: ['./era-of-we.component.scss'],
 })
-export class EraOfWeComponent implements OnInit {
+export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     data: any[] = [];
     isLoading = false;
+    keyword = '';
+    isAvailableTranslation?: any;
+    selectedOrder = '';
     destroy$: Subject<boolean> = new Subject<boolean>();
+    translationsList: any[] = [
+        {
+            label: 'Yes',
+            value: true,
+        },
+        {
+            label: 'No',
+            value: false,
+        },
+    ];
+    orderList: any[] = [
+        {
+            label: 'Latest',
+            value: 'latest',
+        },
+        {
+            label: 'Oldest',
+            value: 'oldest',
+        },
+    ];
     constructor(
         @Inject(DOCUMENT) private document: Document,
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
         private seoService: SEOService,
+        protected resizeService: ResizeService,
         private toastService: ToastrService,
-        private router: Router,
         public dialogSrv: DialogService,
-    ) {}
+    ) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.setSEO();
@@ -36,6 +62,9 @@ export class EraOfWeComponent implements OnInit {
     getData(): void {
         this.isLoading = true;
         const params = {
+            query: this.keyword,
+            translations_available: this.isAvailableTranslation,
+            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             is_era_of_we: true,
         };
 

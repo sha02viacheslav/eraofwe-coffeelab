@@ -25,5 +25,6 @@ export const environment = {
     linkedinUrl: 'https://www.linkedin.com/company/eraofwe/',
     publicWeb: 'https://eraofwe.com',
     needProtect: false,
+    needBugherd: true,
     production: true,
 };
