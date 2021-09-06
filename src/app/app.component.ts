@@ -23,6 +23,7 @@ export class AppComponent {
         }
 
         this.setDynamicScripts();
+        this.setDynamicStyles();
     }
 
     setDynamicScripts() {
@@ -47,6 +48,26 @@ export class AppComponent {
                     this.document.getElementsByTagName('head')[0].appendChild(node);
                 }
             }, 5000);
+        }
+    }
+
+    setDynamicStyles() {
+        if (isPlatformBrowser(this.platformId)) {
+            const dynamicStyles = [];
+            dynamicStyles.push('primeicons');
+            dynamicStyles.push('nova');
+            dynamicStyles.push('primeng');
+            dynamicStyles.push('styles');
+
+            for (const value of dynamicStyles) {
+                if (!this.document.getElementById(`${value}-id`)) {
+                    const node = this.document.createElement('link');
+                    node.rel = 'stylesheet';
+                    node.href = `${value}.css`;
+                    node.id = `${value}-id`;
+                    this.document.getElementsByTagName('head')[0].appendChild(node);
+                }
+            }
         }
     }
 }
