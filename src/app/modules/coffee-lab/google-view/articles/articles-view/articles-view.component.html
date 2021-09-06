@@ -106,7 +106,7 @@
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
 
-        <div *ngIf="totalRecords && articlesData?.length" class="pt-3 pt-md-4 w-100">
+        <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4 w-100">
             <app-paginator
                 [rows]="rows"
                 [totalRecords]="totalRecords"

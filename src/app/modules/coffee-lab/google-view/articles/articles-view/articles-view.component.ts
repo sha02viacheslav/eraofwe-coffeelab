@@ -100,15 +100,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     item.cardType = 'forum';
                     return item;
                 });
-                // const joinCard = {
-                //     cardType: 'joinCard',
-                // };
-                // if (this.articlesData.length < 3) {
-                //     this.articlesData.push(joinCard);
-                // } else {
-                //     this.articlesData.splice(2, 0, joinCard);
-                // }
-                // this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Articles data');
             }
