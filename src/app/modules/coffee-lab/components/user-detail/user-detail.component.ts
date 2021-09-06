@@ -32,7 +32,12 @@ export class UserDetailComponent implements OnInit, OnChanges {
     ) {}
     ngOnChanges(): void {
         this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;
-        if (this.userId && this.orgType) {
+    }
+
+    ngOnInit(): void {}
+
+    getUserData() {
+        if (this.userId && this.orgType && !this.data) {
             this.orgType = this.orgType.toLowerCase() as OrganizationType;
             this.coffeeLabService.getUserDetail(this.userId, this.orgType.toLowerCase()).subscribe((res) => {
                 if (res.success) {
@@ -43,11 +48,10 @@ export class UserDetailComponent implements OnInit, OnChanges {
         }
     }
 
-    ngOnInit(): void {}
-
     show(event) {
         this.hiding = false;
         if (!this.isOpened) {
+            this.getUserData();
             this.myOp.show(event);
         }
     }

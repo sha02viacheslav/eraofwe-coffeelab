@@ -7,8 +7,8 @@
     (mouseleave)="hide()"
 >
     <img
-        *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
-        [src]="data?.profile_image_thumb_url || data?.profile_image_url"
+        *ngIf="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
+        [src]="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
         [alt]="name + 'profile image'"
         [style.borderRadius]="shape === 'rectangle' ? 'unset' : '50%'"
     />
