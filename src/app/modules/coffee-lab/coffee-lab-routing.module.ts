@@ -3,16 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
 import { OverviewComponent } from './google-view/overview/overview.component';
-import { CoffeeRecipesViewComponent } from './google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.component';
-import { RecipeDetailComponent } from './google-view/coffee-recipes/recipe-detail/recipe-detail.component';
-import { QaForumViewComponent } from './google-view/qa-forum/qa-forum-view/qa-forum-view.component';
-import { QuestionDetailComponent } from './google-view/qa-forum/question-detail/question-detail.component';
-import { ArticlesViewComponent } from './google-view/articles/articles-view/articles-view.component';
-import { ArticleDetailComponent } from './google-view/articles/article-detail/article-detail.component';
-import { EraOfWeComponent } from './google-view/era-of-we/era-of-we.component';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
-import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 const userLang = navigator.language;
 const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
@@ -23,7 +15,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'user-profile',
-                component: MyProfileComponent,
+                loadChildren: () => import('./user-profile/user-profile.module').then((m) => m.UserProfileModule),
             },
             {
                 path: '',
@@ -36,81 +28,131 @@ const routes: Routes = [
                     },
                     {
                         path: 'en/qa-forum',
-                        component: QaForumViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/qa-forum/qa-forum-view/qa-forum-view.module').then(
+                                (m) => m.QaForumViewModule,
+                            ),
                     },
                     {
                         path: 'en/articles',
-                        component: ArticlesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/articles/articles-view/articles-view.module').then(
+                                (m) => m.ArticlesViewModule,
+                            ),
                     },
                     {
                         path: 'en/coffee-recipes',
-                        component: CoffeeRecipesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
+                                (m) => m.CoffeeRecipesViewModule,
+                            ),
                     },
                     {
                         path: 'en/about-era-of-we',
-                        component: EraOfWeComponent,
+                        loadChildren: () =>
+                            import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },
                     {
                         path: `sv/${RouterMap.sv[RouterSlug.QA]}`,
-                        component: QaForumViewComponent,
+
+                        loadChildren: () =>
+                            import('./google-view/qa-forum/qa-forum-view/qa-forum-view.module').then(
+                                (m) => m.QaForumViewModule,
+                            ),
                     },
                     {
                         path: `sv/${RouterMap.sv[RouterSlug.ARTICLE]}`,
-                        component: ArticlesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/articles/articles-view/articles-view.module').then(
+                                (m) => m.ArticlesViewModule,
+                            ),
                     },
                     {
                         path: `sv/${RouterMap.sv[RouterSlug.RECIPE]}`,
-                        component: CoffeeRecipesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
+                                (m) => m.CoffeeRecipesViewModule,
+                            ),
                     },
                     {
                         path: `sv/${RouterMap.sv[RouterSlug.EOW]}`,
-                        component: EraOfWeComponent,
+                        loadChildren: () =>
+                            import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },
                     {
                         path: 'pt/qa-forum',
-                        component: QaForumViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/qa-forum/qa-forum-view/qa-forum-view.module').then(
+                                (m) => m.QaForumViewModule,
+                            ),
                     },
                     {
                         path: 'pt/articles',
-                        component: ArticlesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/articles/articles-view/articles-view.module').then(
+                                (m) => m.ArticlesViewModule,
+                            ),
                     },
                     {
                         path: 'pt/coffee-recipes',
-                        component: CoffeeRecipesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
+                                (m) => m.CoffeeRecipesViewModule,
+                            ),
                     },
                     {
                         path: 'pt/about-era-of-we',
-                        component: EraOfWeComponent,
+                        loadChildren: () =>
+                            import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },
                     {
                         path: 'es/qa-forum',
-                        component: QaForumViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/qa-forum/qa-forum-view/qa-forum-view.module').then(
+                                (m) => m.QaForumViewModule,
+                            ),
                     },
                     {
                         path: 'es/articles',
-                        component: ArticlesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/articles/articles-view/articles-view.module').then(
+                                (m) => m.ArticlesViewModule,
+                            ),
                     },
                     {
                         path: 'es/coffee-recipes',
-                        component: CoffeeRecipesViewComponent,
+                        loadChildren: () =>
+                            import('./google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
+                                (m) => m.CoffeeRecipesViewModule,
+                            ),
                     },
                     {
                         path: 'es/about-era-of-we',
-                        component: EraOfWeComponent,
+                        loadChildren: () =>
+                            import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },
                 ],
             },
             {
                 path: ':lang/qa-forum/:idOrSlug',
-                component: QuestionDetailComponent,
+                loadChildren: () =>
+                    import('./google-view/qa-forum/question-detail/question-detail.module').then(
+                        (m) => m.QuestionDetailModule,
+                    ),
             },
             {
                 path: ':lang/coffee-recipes/:idOrSlug',
-                component: RecipeDetailComponent,
+                loadChildren: () =>
+                    import('./google-view/coffee-recipes/recipe-detail/recipe-detail.module').then(
+                        (m) => m.RecipeDetailModule,
+                    ),
             },
             {
                 path: ':lang/articles/:idOrSlug',
-                component: ArticleDetailComponent,
+                loadChildren: () =>
+                    import('./google-view/articles/article-detail/article-detail.module').then(
+                        (m) => m.ArticleDetailModule,
+                    ),
             },
             { path: '**', redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar' },
         ],
