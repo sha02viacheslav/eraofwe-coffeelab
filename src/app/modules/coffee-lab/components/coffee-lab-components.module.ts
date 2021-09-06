@@ -9,7 +9,7 @@ import { JoinCommunityComponent } from './join-community/join-community.componen
 import { JsonLdComponent } from './json-ld/json-ld.component';
 import { LanguageDropdownComponent } from './language-dropdown/language-dropdown.component';
 import { LikeDividerComponent } from './like-divider/like-divider.component';
-import { LimitBannerComponent } from './limit-banner/limit-banner.component';
+// import { LimitBannerComponent } from './limit-banner/limit-banner.component';
 import { PublishForumComponent } from './publish-forum/publish-forum.component';
 import { SearchForumComponent } from './search-forum/search-forum.component';
 import { SignupModalComponent } from './signup-modal/signup-modal.component';
