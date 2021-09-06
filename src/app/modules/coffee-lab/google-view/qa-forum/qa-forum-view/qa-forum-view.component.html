@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-lg-none mb-4 mb-md-3" *ngIf="i === 1">
+                        <div *ngIf="i === 1 && !(isDesktop$ | async)" class="mb-4 mb-md-3">
                             <app-join-community [pages]="page" [type]="'question'"></app-join-community>
                         </div>
                     </div>
@@ -142,9 +142,9 @@
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
-            <div class="col-12 col-md-4 px-0 mx-auto w-min-content d-none d-lg-block h-fit-content">
-                <div class="empty-join-wrapper d-none d-lg-block mb-4">
-                    <div class="custom-search qa-forum-search d-none d-lg-block">
+            <div *ngIf="isDesktop$ | async" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content">
+                <div class="empty-join-wrapper mb-4">
+                    <div class="custom-search qa-forum-search">
                         <input
                             class="w-100 fnt-16"
                             [(ngModel)]="keyword"
