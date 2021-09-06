@@ -64,4 +64,13 @@
             }
         }
     }
+
+    .company-logo__img {
+        & > img {
+            width: 108px;
+            height: 37px;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
 }

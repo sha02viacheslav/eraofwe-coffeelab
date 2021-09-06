@@ -3,22 +3,56 @@
 .layout-wrap {
     min-height: calc(100vh + 1px);
 }
-.nav-top1 {
-    display: flex;
-    align-items: center;
-    height: $mobile-header-height;
-    @media (min-width: 768px) {
-        height: $tablet-header-height;
-    }
-    @media (min-width: 992px) {
-        height: $desktop-header-height;
-    }
-}
 
-.sidenav-hamberg {
-    img {
-        width: 24px;
-        height: 24px;
+header {
+    @media (max-width: 767px) {
+        position: relative;
+        background-color: #ffffff;
+    }
+
+    .nav-top1 {
+        display: flex;
+        align-items: center;
+        height: $mobile-header-height;
+        @media (min-width: 768px) {
+            height: $tablet-header-height;
+        }
+        @media (min-width: 992px) {
+            height: $desktop-header-height;
+        }
+
+        .sidenav-hamberg {
+            img {
+                display: block;
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .company-logo {
+            margin-left: 16px;
+            margin-right: 16px;
+
+            @media (min-width: 768px) {
+                margin-right: 24px;
+            }
+
+            @media (min-width: 992px) {
+                margin-left: 0;
+                margin-right: 40px;
+            }
+            & > img {
+                display: block;
+                width: 94px;
+                height: 32px;
+                object-fit: contain;
+                object-position: center;
+                @media (min-width: 768px) {
+                    width: 106px;
+                    height: 36px;
+                }
+            }
+        }
     }
 }
 
@@ -33,17 +67,6 @@
         padding-top: calc(#{$desktop-header-height + $desktop-page-pt});
         padding-bottom: $desktop-page-pb;
     }
-}
-
-.p-overlaypanel-content {
-    padding: 4px !important;
-}
-
-.under-mark {
-    font-size: 14px;
-    font-weight: bold;
-    color: #80460b;
-    text-decoration: underline;
 }
 
 .protect-wrapper {
