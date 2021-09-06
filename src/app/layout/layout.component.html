@@ -2,12 +2,12 @@
     <nav class="bg-white nav-top1">
         <div class="container">
             <div class="d-flex align-items-center">
-                <div class="d-md-block">
-                    <a class="sidenav-hamberg d-lg-none" (click)="openSideNav()">
+                <div class="d-flex align-items-center">
+                    <div class="sidenav-hamberg d-lg-none" (click)="openSideNav()">
                         <img src="assets/images/hamberg.svg" alt="hamberg" class="d-md-none" />
                         <img src="assets/images/hamberg-tablet.svg" alt="hamberg" class="d-none d-md-inline-block" />
-                    </a>
-                    <a class="company-logo d-inline-block" [href]="env.publicWeb + '/en/'">
+                    </div>
+                    <a class="company-logo" [href]="env.publicWeb + '/en/'">
                         <img src="assets/images/era-we-black.svg" [alt]="glogbalService.logoAlt" />
                     </a>
                 </div>
