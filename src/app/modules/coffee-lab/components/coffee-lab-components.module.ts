@@ -24,7 +24,7 @@ const COMPONENTS = [
     JsonLdComponent,
     LanguageDropdownComponent,
     LikeDividerComponent,
-    LimitBannerComponent,
+    // LimitBannerComponent,
     PublishForumComponent,
     SearchForumComponent,
     SignupModalComponent,
