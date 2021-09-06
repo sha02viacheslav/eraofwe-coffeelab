@@ -65,14 +65,19 @@
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of articlesData"
         >
-            <a (click)="openArticle(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
+            <a [routerLink]="getLink(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
                 <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
                     <div class="d-flex justify-content-betweenn px-4">
                         <div class="flex-1 overflow-hidden">
                             <app-user-header [prop]="article"></app-user-header>
                         </div>
                         <div class="icon-save hover-save-icon">
-                            <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
+                            <img
+                                (click)="onFocus($event)"
+                                class="cursor-point"
+                                src="assets/images/save.svg"
+                                alt="save"
+                            />
                         </div>
 
                         <!-- <app-forum-menu></app-forum-menu> -->
