@@ -87,12 +87,12 @@
                     <div class="m-3 m-md-4">
                         <div class="d-flex justify-content-between mb-4">
                             <div class="recipe-name fnt-14 fnt-md-16 fnt-bold fnt-muli text-clr334">
-                                <span class="mb-1">{{ coffee?.name | convertToShortDescription: 4 }}</span>
+                                <span class="mb-1 d-flex">{{ coffee?.name | convertToShortDescription: 4 }}</span>
                                 <span class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">
                                     {{ coffee?.equipment_name | titlecase | convertToShortDescription: 4 }}
                                 </span>
                             </div>
-                            <div class="bookmark-icon hover-save-icon">
+                            <div class="bookmark-icon hover-save-icon h-100">
                                 <img src="assets/images/save.svg" alt="save" (click)="onFocus($event)" />
                             </div>
                         </div>
