@@ -22,8 +22,8 @@ export class AppComponent {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
         }
 
-        this.setDynamicScripts();
         this.setDynamicStyles();
+        this.setDynamicScripts();
     }
 
     setDynamicScripts() {
@@ -52,21 +52,19 @@ export class AppComponent {
     }
 
     setDynamicStyles() {
-        if (isPlatformBrowser(this.platformId)) {
-            const dynamicStyles = [];
-            dynamicStyles.push('primeicons');
-            dynamicStyles.push('nova');
-            dynamicStyles.push('primeng');
-            dynamicStyles.push('styles');
+        const dynamicStyles = [];
+        dynamicStyles.push('primeicons');
+        dynamicStyles.push('nova');
+        dynamicStyles.push('primeng');
+        dynamicStyles.push('styles');
 
-            for (const value of dynamicStyles) {
-                if (!this.document.getElementById(`${value}-id`)) {
-                    const node = this.document.createElement('link');
-                    node.rel = 'stylesheet';
-                    node.href = `${value}.css`;
-                    node.id = `${value}-id`;
-                    this.document.getElementsByTagName('head')[0].appendChild(node);
-                }
+        for (const value of dynamicStyles) {
+            if (!this.document.getElementById(`${value}-id`)) {
+                const node = this.document.createElement('link');
+                node.rel = 'stylesheet';
+                node.href = `${value}.css`;
+                node.id = `${value}-id`;
+                this.document.getElementsByTagName('head')[0].appendChild(node);
             }
         }
     }
