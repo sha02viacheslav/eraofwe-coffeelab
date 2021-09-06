@@ -53,6 +53,8 @@
                     optionValue="value"
                     [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
+                    [showClear]="true"
+                    [placeholder]="'sort_by' | translate"
                     styleClass="round-border mobile-ui"
                 >
                 </p-dropdown>
