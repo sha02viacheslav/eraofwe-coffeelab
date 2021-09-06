@@ -25,7 +25,11 @@ export class UserDetailComponent implements OnInit, OnChanges {
     isOpened = false;
     hiding = false;
 
-    constructor(public globalsService: GlobalsService, private coffeeLabService: CoffeeLabService) {}
+    constructor(
+        public globalsService: GlobalsService,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+    ) {}
     ngOnChanges(): void {
         this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;
         if (this.userId && this.orgType) {
@@ -61,10 +65,9 @@ export class UserDetailComponent implements OnInit, OnChanges {
     }
 
     openChat(): void {
-        // this.chatHandler.openChatThread({
-        //     user_id: this.userId,
-        //     org_type: this.orgType.toLowerCase(),
-        //     org_id: this.data.organization_id,
-        // });
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }
