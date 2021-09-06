@@ -42,7 +42,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     levels: any[] = [];
     orderList: any[] = [];
-    isSaveBtn = false;
     selectedOrder = 'latest';
     jsonLD: any;
 
@@ -169,38 +168,28 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     gotoDetailPage(event, item: any) {
-        if (!this.isSaveBtn) {
-            event.stopPropagation();
-            event.preventDefault();
-            if (this.globalsService.getLimitCounter() > 0) {
-                this.router.navigate([this.getLink(item)]);
-            } else {
-                this.dialogSrv.open(SignupModalComponent, {
-                    data: {
-                        isLimit: true,
-                    },
-                    showHeader: false,
-                    styleClass: 'signup-dialog',
-                });
-            }
-        }
-    }
-
-    openRecipe(coffee) {
-        if (!this.isSaveBtn) {
-            this.router.navigateByUrl(this.getLink(coffee));
-        }
-    }
-
-    onFocus() {
-        this.isSaveBtn = true;
-        setTimeout(() => {
-            this.isSaveBtn = false;
+        event.stopPropagation();
+        event.preventDefault();
+        if (this.globalsService.getLimitCounter() > 0) {
+            this.router.navigate([this.getLink(item)]);
+        } else {
             this.dialogSrv.open(SignupModalComponent, {
+                data: {
+                    isLimit: true,
+                },
                 showHeader: false,
                 styleClass: 'signup-dialog',
             });
-        }, 100);
+        }
+    }
+
+    onFocus(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 
     setSEO() {

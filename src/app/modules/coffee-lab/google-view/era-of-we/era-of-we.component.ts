@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 export class EraOfWeComponent implements OnInit {
     data: any[] = [];
     isLoading = false;
-    isSaveBtn = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -73,25 +72,17 @@ export class EraOfWeComponent implements OnInit {
         this.seoService.setSEO(title, description);
     }
 
-    openArticle(article) {
-        if (!this.isSaveBtn) {
-            this.router.navigateByUrl(this.getLink(article));
-        }
-    }
-
     getLink(item) {
         const url = `/${item.language}/articles/${item.slug}`;
         return item.cardType === 'forum' ? url : `/${this.coffeeLabService.currentForumLanguage}/articles`;
     }
 
-    onFocus() {
-        this.isSaveBtn = true;
-        setTimeout(() => {
-            this.isSaveBtn = false;
-            this.dialogSrv.open(SignupModalComponent, {
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
-        }, 100);
+    onFocus(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 }
