@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { formatDate, Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DialogService } from 'primeng/dynamicdialog';
-import * as moment from 'moment';
 import { CoffeeLabService, GlobalsService } from '@services';
 
 @Component({
-    selector: 'app-my-profile',
-    templateUrl: './my-profile.component.html',
-    styleUrls: ['./my-profile.component.scss'],
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.scss'],
 })
-export class MyProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
     isLoading = false;
     isUpdatingProfile = false;
     previewUrl?: string;

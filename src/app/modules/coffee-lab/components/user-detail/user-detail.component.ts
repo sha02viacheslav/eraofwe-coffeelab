@@ -27,8 +27,8 @@ export class UserDetailComponent implements OnInit, OnChanges {
 
     constructor(
         public globalsService: GlobalsService,
-        public dialogSrv: DialogService,
         private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
     ) {}
     ngOnChanges(): void {
         this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;

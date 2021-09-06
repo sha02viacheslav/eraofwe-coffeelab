@@ -29,6 +29,7 @@ export const environment = {
     linkedinUrl: 'https://www.linkedin.com/company/eraofwe/',
     publicWeb: 'https://sewnstaging.com',
     needProtect: false,
+    needBugherd: false,
     production: false,
 };
 

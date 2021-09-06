@@ -30,7 +30,9 @@ export class AppComponent {
             setTimeout(() => {
                 const dynamicScripts = [];
                 if (environment.production) {
-                    dynamicScripts.push('https://www.bugherd.com/sidebarv2.js?apikey=y5kbdd1ahghgywnjmyw7lg');
+                    if (environment.needBugherd) {
+                        dynamicScripts.push('https://www.bugherd.com/sidebarv2.js?apikey=y5kbdd1ahghgywnjmyw7lg');
+                    }
                     dynamicScripts.push(
                         'https://cmp.osano.com/6olZFSThsdZWqs/d3243605-8fd0-446a-9b25-a172e9ae3d67/osano.js',
                     );
