@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '@shared';
 
-import { ForumCardComponent } from './forum-card/forum-card.component';
 import { ForumMenuComponent } from './forum-menu/forum-menu.component';
 import { JoinCommunityComponent } from './join-community/join-community.component';
 import { JsonLdComponent } from './json-ld/json-ld.component';
@@ -18,7 +17,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 
 const COMPONENTS = [
-    ForumCardComponent,
     ForumMenuComponent,
     JoinCommunityComponent,
     JsonLdComponent,
