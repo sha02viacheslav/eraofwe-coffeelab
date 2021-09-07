@@ -54,7 +54,6 @@ export class AppComponent {
 
     setDynamicStyles() {
         const dynamicStyles = [];
-        dynamicStyles.push('primeicons');
         dynamicStyles.push('primeng');
         dynamicStyles.push('styles');
 
