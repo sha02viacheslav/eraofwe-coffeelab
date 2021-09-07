@@ -8,21 +8,21 @@
         <div>
             <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
                 <span *ngFor="let btn of buttonList">
-                    <button class="button-list fnt-12 fnt-muli fnt-600 text-clr334">{{ btn.button }}</button>
+                    <button class="button-list fnt-12 fnt-600">{{ btn.button }}</button>
                 </span>
             </div> -->
             <div class="px-0 px-md-475">
-                <h1 class="main-heading bg-transparent fnt-bold text-clr334 px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                <h1 class="main-heading bg-transparent fnt-bold px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                     <!-- Starting your coffee tasting journey is easy! -->
                     {{ detailsData?.title }}
                 </h1>
-                <p class="fnt-16 fnt-md-20 fnt-600 fnt-muli text-clr334 text-md-center px-0 px-lg-5">
+                <p class="fnt-16 fnt-md-20 fnt-600 text-md-center px-0 px-lg-5">
                     <!-- All about your first steps of coffee! -->
                     {{ detailsData?.subtitle }}
                 </p>
             </div>
             <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-                <div class="published fnt-14 fnt-muli mr-3">
+                <div class="published mr-3">
                     Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                 </div>
                 <div
@@ -82,17 +82,14 @@
                             </div>
                         </div>
                         <div class="forum-content w-100 pt-4 mb-5">
-                            <div
-                                class="fnt-muli fnt-14 text-clr334 lh-157 mb-0"
-                                [innerHTML]="detailsData?.content"
-                            ></div>
+                            <div class="lh-157 mb-0" [innerHTML]="detailsData?.content"></div>
                         </div>
 
                         <!-- Question answer -->
 
                         <div class="articles-answer w-100 pt-3 pb-4">
                             <div>
-                                <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-35">
+                                <p class="fnt-16 fnt-bold mb-35">
                                     {{ 'about_the_author' | translate }}
                                 </p>
                                 <div class="d-flex">
@@ -117,11 +114,11 @@
                                                     detailsData?.organisation_type ||
                                                     detailsData?.organization_type
                                             }"
-                                            class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point text-underline mb-2"
+                                            class="fnt-bold cursor-point text-underline mb-2"
                                         >
                                             {{ stickData?.firstname }} {{ stickData?.lastname }}
                                         </p>
-                                        <p class="fnt-14 fnt-600 fnt-muli text-clr334">
+                                        <p class="fnt-600">
                                             {{ stickData?.about_me }}
                                         </p>
                                     </div>
@@ -155,7 +152,7 @@
                                 </div>
                             </div>
                             <!-- <span *ngFor="let btn of buttonList">
-                                <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
+                                <button class="p-2 button-list fnt-12 fnt-600">
                                     {{ btn.button }}
                                 </button>
                             </span> -->
@@ -170,14 +167,12 @@
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                    <p
-                                        class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
-                                    >
+                                    <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
                                         {{ 'read_the_article' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
-                                    <p class="fnt-600 fnt-12 fnt-muli text-clr334">
+                                    <p class="fnt-600 fnt-12">
                                         {{ 'original_language' | translate }} :
                                         {{ globalsService.getLanguage(detailsData?.original_article?.language) }}
                                     </p>
@@ -186,7 +181,7 @@
                             <app-user-header [prop]="detailsData?.original_article"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
-                                    class="fnt-14 fnt-600 fnt-muli"
+                                    class="fnt-600"
                                     (click)="
                                         onRealtedRoute(
                                             detailsData?.original_article?.language,
@@ -200,11 +195,11 @@
 
                         <div class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">
-                                <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">{{ 'comments' | translate }}</p>
+                                <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
                             </div>
                             <div class="d-flex">
                                 <button
-                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-600 text-clr588"
                                     (click)="onFocus()"
                                 >
                                     {{ 'share_your_thoughts' | translate }}
@@ -215,9 +210,7 @@
                         <!-- Answers -->
                         <div *ngIf="allComments?.length > 0" class="w-100">
                             <div class="comment-border pb-1">
-                                <p class="fnt-14 fnt-600 fnt-muli text-clr334">
-                                    {{ allComments?.length }} {{ 'answers' | translate }}
-                                </p>
+                                <p class="fnt-600">{{ allComments?.length }} {{ 'answers' | translate }}</p>
                             </div>
                             <div
                                 class="answer-wrapper my-45"
@@ -240,7 +233,7 @@
                             <div class="text-center w-100" *ngIf="showCommentBtn">
                                 <button
                                     (click)="viewAllComments()"
-                                    class="fnt-14 fnt-bold fnt-muli text-clr60b cursor-point mb-4 bg-transparent border-0 text-underline"
+                                    class="fnt-bold text-clr60b cursor-point mb-4 bg-transparent border-0 text-underline"
                                 >
                                     {{ 'view_all_comments' | translate }}
                                 </button>
@@ -254,7 +247,7 @@
     </div>
     <article class="w-100 row mx-0" *ngIf="!loading">
         <div class="col-12 col-md-8 px-0 px-md-3">
-            <div class="fnt-16 fnt-muli fnt-bold text-clr334 pt-3 pb-45 background-header">
+            <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
                 {{ 'recent_articles' | translate }}
             </div>
             <div class="row py-2">
@@ -264,10 +257,10 @@
                             <img [lazyLoad]="forum?.cover_image_url" alt="" />
                         </div>
                         <div class="cursor-point d-flex flex-column">
-                            <p class="fnt-fly fnt-bold text-clr334 cust-flex-grow">
+                            <p class="fnt-fly fnt-bold cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline">
+                            <p class="fnt-600 text-underline">
                                 {{ forum?.user_name }}
                             </p>
                         </div>
@@ -288,17 +281,12 @@
             <div class="pb-4 d-flex">
                 <div class="w-100 d-flex justify-content-between">
                     <div>
-                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
-                            {{ stickData?.firstname }} {{ stickData?.lastname }}
-                        </p>
-                        <!-- <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
+                        <p class="fnt-bold mb-1">{{ stickData?.firstname }} {{ stickData?.lastname }}</p>
+                        <!-- <p class="fnt-600 text-clr588 mb-1">
                             {{ stickData?.about_me?.substring(0, 20) }}
                         </p> -->
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
-                        <p
-                            *ngIf="stickData?.country || stickData?.city"
-                            class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
-                        >
+                        <p class="fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
+                        <p *ngIf="stickData?.country || stickData?.city" class="fnt-600 text-clr588 mb-1">
                             @ {{ stickData?.city || stickData?.organization_city }}, {{ stickData?.country }}
                         </p>
                     </div>
@@ -307,7 +295,7 @@
             <div class="pb-4">
                 <div class="d-flex align-items-center">
                     <button
-                        class="view-button mr-2 fnt-14 fnt-bold fnt-muli"
+                        class="view-button mr-2 fnt-bold"
                         routerLink="/user-profile"
                         [queryParams]="{
                             user_id: detailsData?.user_id || detailsData?.posted_by,
@@ -319,7 +307,7 @@
                     >
                         {{ 'view_profile' | translate }}
                     </button>
-                    <div class="btn-raised cursor-point pb-1 pt-25 fnt-14 fnt-muli" (click)="onFocus()">
+                    <div class="btn-raised cursor-point pb-1 pt-25" (click)="onFocus()">
                         <img src="assets/images/message-icon-white.svg" />
                     </div>
                 </div>

@@ -8,7 +8,7 @@
     class="mob-padd"
 >
     <ng-template pTemplate="selectedItem">
-        <span class="fnt-14 fnt-muli fnt-bold text-clr60b d-flex align-items-center">
+        <span class="fnt-bold text-clr60b d-flex align-items-center">
             <img src="assets/images/translate.svg" class="translate-icon mr-1" />
             Translated answer available
         </span>
@@ -20,14 +20,14 @@
                 [size]="40"
             ></app-avatar>
             <div class="d-flex flex-column justify-content-between pl-3">
-                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2">
+                <p class="fnt-bold mb-2">
                     {{ translateItem.user_name }}
                 </p>
                 <div class="d-flex align-items-center">
-                    <p class="fnt-12 fnt-muli fnt-bold text-clr588 mb-0 pr-2">
+                    <p class="fnt-12 fnt-bold text-clr588 mb-0 pr-2">
                         {{ globalsService.getLanguage(translateItem.language) }} Translation
                     </p>
-                    <p class="fnt-12 fnt-muli text-clr588 mb-0">
+                    <p class="fnt-12 text-clr588 mb-0">
                         {{ translateItem.created_at | amTimeAgo | dateAgoReplace }}
                     </p>
                 </div>
