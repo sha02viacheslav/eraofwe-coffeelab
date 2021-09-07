@@ -13,7 +13,7 @@
         [style.borderRadius]="shape === 'rectangle' ? 'unset' : '50%'"
     />
     <span
-        *ngIf="!data?.profile_image_thumb_url && !data?.profile_image_url"
+        *ngIf="!imageUrl && !data?.profile_image_thumb_url && !data?.profile_image_url"
         class="text-white"
         [style.font-size]="size / 1.5 + 'px'"
         >{{ name && name.length ? name.slice(0, 1) : '' }}</span

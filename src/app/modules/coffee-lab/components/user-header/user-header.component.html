@@ -5,6 +5,9 @@
                 [imageUrl]="
                     prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url
                 "
+                [name]="
+                    prop?.user_name || prop?.question_user || prop?.posted_user || prop?.first_name || 'Unknown User'
+                "
                 [userId]="prop?.user_id || prop?.posted_by"
                 [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
                 size="40"
