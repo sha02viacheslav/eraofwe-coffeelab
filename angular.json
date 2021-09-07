@@ -32,11 +32,6 @@
                                 "bundleName": "primeicons"
                             },
                             {
-                                "input": "node_modules/primeng/resources/themes/nova/theme.css",
-                                "inject": false,
-                                "bundleName": "nova"
-                            },
-                            {
                                 "input": "node_modules/primeng/resources/primeng.min.css",
                                 "inject": false,
                                 "bundleName": "primeng"
