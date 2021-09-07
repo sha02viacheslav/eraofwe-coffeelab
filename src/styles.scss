@@ -12,6 +12,10 @@
 @import 'theme/styles/_variables';
 @import 'theme/styles/toastr';
 
+#loading {
+    display: none !important;
+}
+
 .stricky {
     position: fixed;
     left: 0;
