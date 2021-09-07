@@ -15,10 +15,7 @@
         </div>
         <div class="flex-1 overflow-hidden">
             <div class="d-flex align-items-center mr-3 text-nowrap">
-                <div
-                    [ngClass]="{ ellipsis: enableEllipsis }"
-                    class="fnt-muli font-weight-bold fnt-14 text-clr334 mr-md-3 mr-1"
-                >
+                <div [ngClass]="{ ellipsis: enableEllipsis }" class="font-weight-bold fnt-14 text-clr334 mr-md-3 mr-1">
                     {{
                         prop?.user_name ||
                             prop?.question_user ||
@@ -29,7 +26,7 @@
                     {{ prop?.last_name }}
                 </div>
             </div>
-            <div class="fnt-14 fnt-muli text-clr588 mt-1 d-flex text-nowrap">
+            <div class="fnt-14 text-clr588 mt-1 d-flex text-nowrap">
                 <span class="fnt-600 mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
                 <span class="fnt-600 mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
                 <span class="ellipsis" *ngIf="orgType !== 'co' && !prop?.question"
@@ -37,7 +34,7 @@
                 >
                 <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
                     <span class="d-none d-md-block time-point"></span>
-                    <span class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block aling-time">
+                    <span class="fnt-14 fnt-600 text-clr588 d-none d-md-block aling-time">
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
                     </span>
                 </div>
@@ -45,7 +42,7 @@
         </div>
     </div>
     <!-- <div>
-        <div *ngIf="prop?.question" class="fnt-muli fnt-14 text-clr588 d-none d-md-block time-text">
+        <div *ngIf="prop?.question" class="fnt-14 text-clr588 d-none d-md-block time-text">
             {{ prop?.posted_at || prop?.created_at | date: 'mediumDate' }}
             {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
         </div>

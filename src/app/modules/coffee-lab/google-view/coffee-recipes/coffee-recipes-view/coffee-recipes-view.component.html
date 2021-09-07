@@ -88,9 +88,9 @@
 
                     <div class="m-3 m-md-4">
                         <div class="d-flex justify-content-between mb-4">
-                            <div class="recipe-name fnt-14 fnt-md-16 fnt-bold fnt-muli text-clr334">
+                            <div class="recipe-name fnt-14 fnt-md-16 fnt-bold text-clr334">
                                 <span class="mb-1 d-flex">{{ coffee?.name | convertToShortDescription: 4 }}</span>
-                                <span class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">
+                                <span class="fnt-14 fnt-600 text-clr334 mb-45 mb-md-4 mt-2">
                                     {{ coffee?.equipment_name | titlecase | convertToShortDescription: 4 }}
                                 </span>
                             </div>
@@ -114,7 +114,7 @@
         ></app-paginator>
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
-    <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 fnt-muli text-clr24">
+    <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 text-clr24">
         {{ 'no_data_is_available' | translate }}
     </div>
 </div>

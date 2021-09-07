@@ -1,16 +1,16 @@
 <div class="question-header mb-4" [ngClass]="{ 'no-border': type === 'article' || type === 'recipe' }">
-    <p class="fnt-16 fnt-bold fnt-muli text-clr24 mt-3">
+    <p class="fnt-16 fnt-bold text-clr24 mt-3">
         <span *ngIf="detailType === 'question-detail'">{{ 'related_discussions' | translate }}</span>
         <span *ngIf="detailType !== 'question-detail'">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
     <div class="question-list" *ngFor="let data of relatedData; let ind = index">
         <p class="py-3" [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': ind === relatedData.length }">
-            <a [routerLink]="[getLink(data, null).url]" class="fnt-14 fnt-muli fnt-600 text-clr24">{{
+            <a [routerLink]="[getLink(data, null).url]" class="fnt-14 fnt-600 text-clr24">{{
                 data.question ? data.question : data.title ? data.title : data.name
             }}</a>
         </p>
     </div>
-    <div *ngIf="!relatedData.length" class="text-center my-4 fnt-muli text-clr24">
+    <div *ngIf="!relatedData.length" class="text-center my-4 text-clr24">
         {{ 'no_data_is_available' | translate }}
     </div>
 </div>

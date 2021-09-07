@@ -78,7 +78,7 @@
                                 </div>
                                 <a [routerLink]="[getLink(question, null).url]">
                                     <div
-                                        class="fnt-muli fnt-16 fnt-md-18 font-weight-bold text-clr24 mt-4 cursor-pointer hover-underline"
+                                        class="fnt-16 fnt-md-18 font-weight-bold text-clr24 mt-4 cursor-pointer hover-underline"
                                         (click)="gotoDetailPage($event, question)"
                                         [innerHTML]="question?.question"
                                     ></div>
@@ -100,7 +100,7 @@
                                             [prop]="answer"
                                         ></app-user-header>
                                     </div>
-                                    <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
+                                    <div class="fnt-14 text-clr24 mb-4 lh-15">
                                         <span
                                             [innerHTML]="
                                                 globalsService.getJustText(answer?.answer)
@@ -138,7 +138,7 @@
                         (onPageChange)="paginate($event)"
                     ></app-paginator>
                 </div>
-                <div *ngIf="!isLoading && !questions.length" class="text-center my-4 fnt-muli text-clr24">
+                <div *ngIf="!isLoading && !questions.length" class="text-center my-4 text-clr24">
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
