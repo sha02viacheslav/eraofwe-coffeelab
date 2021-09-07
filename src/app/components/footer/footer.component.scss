@@ -3,16 +3,19 @@
 .footer-container {
     background-color: #f8f8f8;
     .text-content {
-        font-family: Muli;
-        font-size: 14px;
         font-weight: 600;
-        font-stretch: normal;
         color: $general-text-color;
         line-height: 2;
         & > a {
             display: block;
             color: $muted-text-color;
             font-weight: normal;
+            line-height: normal;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            &:last-child {
+                margin-bottom: 5px;
+            }
 
             &:hover {
                 color: $general-text-color;
