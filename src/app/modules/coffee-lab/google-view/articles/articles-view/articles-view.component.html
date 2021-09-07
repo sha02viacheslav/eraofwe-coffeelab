@@ -89,14 +89,14 @@
                             <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
-                            <span class="fnt-14 fnt-600 text-clr588">{{
+                            <span class="fnt-600 text-clr588">{{
                                 article?.posted_at || article?.created_at | date: 'longDate'
                             }}</span>
                         </div>
-                        <h3 class="fnt-14 fnt-bold lh-157 text-clr334 cursor-pointer article-title-text mb-0">
+                        <h3 class="fnt-bold lh-157 cursor-pointer article-title-text mb-0">
                             {{ article?.title }}
                         </h3>
-                        <div class="fnt-14 fnt-normal lh-143 text-clr334 mt-2 mt-md-3">
+                        <div class="fnt-normal lh-143 mt-2 mt-md-3">
                             <span class="article-title-text">
                                 {{ article?.subtitle }}
                             </span>
@@ -116,7 +116,7 @@
             ></app-paginator>
         </div>
 
-        <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 fnt-14 text-clr24">
+        <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 text-clr24">
             {{ 'no_data_is_available' | translate }}
         </div>
     </div>

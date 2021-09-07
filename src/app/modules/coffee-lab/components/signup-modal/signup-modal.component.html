@@ -3,10 +3,10 @@
         <i class="pi pi-times fnt-18 text-clr588 cursor-pointer" (click)="close()"></i>
     </div>
     <div class="text-center">
-        <p class="fnt-play fnt-28 fnt-bold text-clr334 mb-2">
+        <p class="fnt-play fnt-28 fnt-bold mb-2">
             {{ config.data?.isLimit ? ('you_read_posts' | translate: { count: 3 }) : ('hi_there' | translate) }}
         </p>
-        <div class="fnt-14 lh-157 text-clr588 mb-475 mt-z5">
+        <div class="lh-157 text-clr588 mb-475 mt-z5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_part_community') | translate }}
         </div>
         <div class="pr-2 w-100">
@@ -15,7 +15,7 @@
                 (click)="signInWithGoogle()"
             >
                 <img src="assets/images/google.svg" />
-                <span class="fnt-semi-bold text-clr334 ml-3">
+                <span class="fnt-semi-bold ml-3">
                     {{ 'signup_with_google' | translate }}
                 </span>
             </div>
@@ -24,7 +24,7 @@
                 (click)="signInWithFacebook()"
             >
                 <img src="assets/images/facebook-color.svg" />
-                <span class="fnt-semi-bold text-clr334 ml-3">
+                <span class="fnt-semi-bold ml-3">
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
@@ -33,7 +33,7 @@
                     class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-4"
                 >
                     <img src="assets/images/email.svg" />
-                    <span class="fnt-semi-bold text-clr334 ml-3">
+                    <span class="fnt-semi-bold ml-3">
                         {{ 'signup_with_email' | translate }}
                     </span>
                 </div>

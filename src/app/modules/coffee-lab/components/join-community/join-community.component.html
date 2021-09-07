@@ -5,7 +5,7 @@
     </p>
     <div class="question-list" *ngFor="let data of relatedData; let ind = index">
         <p class="py-3" [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': ind === relatedData.length }">
-            <a [routerLink]="[getLink(data, null).url]" class="fnt-14 fnt-600 text-clr24">{{
+            <a [routerLink]="[getLink(data, null).url]" class="fnt-600 text-clr24">{{
                 data.question ? data.question : data.title ? data.title : data.name
             }}</a>
         </p>

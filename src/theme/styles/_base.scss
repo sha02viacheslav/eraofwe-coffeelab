@@ -34,6 +34,11 @@ body {
     background-color: $body-bg-color;
 }
 
+* {
+    font-family: $general-font-family;
+    font-size: inherit;
+}
+
 a {
     text-decoration: none;
     color: inherit;
