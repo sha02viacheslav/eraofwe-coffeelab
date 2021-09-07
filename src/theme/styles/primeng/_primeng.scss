@@ -1,6 +1,7 @@
 // Custom Theming for Prime Ng
 
 @import '../variables';
+@import 'nova.scss';
 @import 'primeng_dialog';
 @import 'primeng_divider';
 @import 'primeng_dropdown';
@@ -39,7 +40,6 @@
         padding-right: 0;
     }
 
-    .p-autocomplete,
     .p-dropdown {
         width: 100%;
     }
