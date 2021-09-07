@@ -17,11 +17,11 @@ export class UserDetailComponent implements OnInit, OnChanges {
     @Input() orgType: OrganizationType;
     @Input() size: any;
     @Input() imageUrl: any;
+    @Input() name: string;
     @Input() shape: any;
     @Input() hasBorder: any;
     orgName: any;
     data: any;
-    name: any;
     isOpened = false;
     hiding = false;
 
