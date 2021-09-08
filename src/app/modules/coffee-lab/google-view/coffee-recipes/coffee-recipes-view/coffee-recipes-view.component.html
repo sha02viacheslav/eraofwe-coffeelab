@@ -89,7 +89,9 @@
                     <div class="m-3 m-md-4">
                         <div class="d-flex justify-content-between mb-4">
                             <div class="recipe-name fnt-md-16 fnt-bold">
-                                <span class="mb-1 d-flex">{{ coffee?.name | convertToShortDescription: 4 }}</span>
+                                <span class="mb-1 d-flex recipe-title">{{
+                                    coffee?.name | convertToShortDescription: 4
+                                }}</span>
                                 <span class="fnt-600 mb-45 mb-md-4 mt-2">
                                     {{ coffee?.equipment_name | titlecase | convertToShortDescription: 4 }}
                                 </span>

@@ -68,6 +68,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.getRecipeList();
             }
         });
+        console.log(this.coffeeLabService.currentForumLanguage);
     }
 
     ngOnInit(): void {
@@ -103,6 +104,12 @@ export class RecipeDetailComponent implements OnInit {
                 this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
+                if (this.lang !== this.coffeeLabService.currentForumLanguage) {
+                    this.router.navigateByUrl(
+                        `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}/${this.detailsData.slug}`,
+                    );
+                    this.coffeeLabService.forumLanguage.next(this.lang);
+                }
                 this.startupService.load(this.lang || 'en');
                 this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                 this.setSEO();
@@ -131,8 +138,8 @@ export class RecipeDetailComponent implements OnInit {
         this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
                 this.allComments = res.result;
-                this.commentData = this.allComments.slice(0, 3);
-                if (this.allComments.length > 3) {
+                this.commentData = this.allComments?.slice(0, 3);
+                if (this.allComments?.length > 3) {
                     this.showCommentBtn = true;
                 } else {
                     this.showCommentBtn = false;

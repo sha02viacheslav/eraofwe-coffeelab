@@ -8,15 +8,17 @@
         border-radius: 14px;
         min-height: 487px;
         height: 100%;
+        box-shadow: 0 0 2rem rgb(0 0 0 / 10%);
+        transition: transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
         img {
             height: 243px;
             object-fit: cover;
         }
 
         &:hover {
-            // border: 0px !important;
+            transform: scale(1.05);
+            box-shadow: 0 0 2rem rgb(0 0 0 / 20%);
             border-color: white;
-            box-shadow: 0 22px 34px 0 rgb(0 0 0 / 16%);
             cursor: pointer;
             h3.article-title-text {
                 text-decoration: underline;
