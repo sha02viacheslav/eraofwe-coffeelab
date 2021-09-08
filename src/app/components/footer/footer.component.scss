@@ -1,21 +1,22 @@
 @import 'variables';
 
 .footer-container {
-    background-color: #f8f8f8;
+    background-color: $primary-bg-color;
     .text-content {
-        font-family: Muli;
-        font-size: 14px;
         font-weight: 600;
         font-stretch: normal;
         color: $general-text-color;
         line-height: 2;
-        & > a {
-            display: block;
-            color: $muted-text-color;
-            font-weight: normal;
+        & > ul {
+            padding: 0;
+            list-style-type: none;
+            & > li > a {
+                color: $muted-text-color;
+                font-weight: normal;
 
-            &:hover {
-                color: $general-text-color;
+                &:hover {
+                    color: $general-text-color;
+                }
             }
         }
     }

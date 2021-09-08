@@ -38,6 +38,7 @@ export class AppComponent {
                         'https://cmp.osano.com/6olZFSThsdZWqs/d3243605-8fd0-446a-9b25-a172e9ae3d67/osano.js',
                     );
                     dynamicScripts.push('https://jscloud.net/x/13391/inlinks.js');
+                    dynamicScripts.push('https://www.googletagmanager.com/gtm.js?id=GTM-KZWL6RR');
                 }
 
                 for (const value of dynamicScripts) {
@@ -53,7 +54,6 @@ export class AppComponent {
 
     setDynamicStyles() {
         const dynamicStyles = [];
-        dynamicStyles.push('primeicons');
         dynamicStyles.push('primeng');
         dynamicStyles.push('styles');
 

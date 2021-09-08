@@ -5,38 +5,50 @@
                 <img src="assets/images/era-we-black.svg" alt="Comany-Logo" />
             </a>
             <div class="d-flex flex-column flex-md-row">
-                <span class="text-content pr-0 pr-md-6 my-3 my-md-0">
-                    {{ 'about_us' | translate }}
-                    <a class="footer-link" href="{{ env.publicWeb }}/en/terms-and-condition/" target="_blank">
-                        {{ 'terms_and_condition_user' | translate }}
-                    </a>
-                    <a href="{{ env.publicWeb }}/en/privacy-policy/" target="_blank">
-                        {{ 'privacy_policy' | translate }}
-                    </a>
-                    <a href="{{ env.publicWeb }}/en/cookie-policy/" target="_blank">
-                        {{ 'cookie_policy' | translate }}
-                    </a>
-                </span>
-                <span class="text-content pl-0 pl-md-5 my-3 my-md-0">
-                    {{ 'help_and_support' | translate }}:
-                    <a [href]="'mailto:' + env.supportEmailAddress">{{ env.supportEmailAddress }}</a>
-                </span>
+                <div class="text-content pr-0 pr-md-6 my-3 my-md-0">
+                    <div>{{ 'about_us' | translate }}</div>
+                    <ul>
+                        <li>
+                            <a href="{{ env.publicWeb }}/en/terms-and-condition/" target="_blank">
+                                {{ 'terms_and_condition_user' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ env.publicWeb }}/en/privacy-policy/" target="_blank">
+                                {{ 'privacy_policy' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ env.publicWeb }}/en/cookie-policy/" target="_blank">
+                                {{ 'cookie_policy' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-content pl-0 pl-md-5 my-3 my-md-0">
+                    <div>{{ 'help_and_support' | translate }}:</div>
+                    <ul>
+                        <li>
+                            <a [href]="'mailto:' + env.supportEmailAddress">{{ env.supportEmailAddress }}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="d-flex flex-column align-items-start align-items-sm-end">
                 <a class="company-logo__img d-none d-sm-inline-block mb-3" [href]="env.publicWeb + '/en/'">
                     <img src="assets/images/era-we-black.svg" alt="Comany-Logo" />
                 </a>
                 <div class="d-flex mt-3">
-                    <a class="social-logo" [href]="env.facebookUrl" target="_blank">
+                    <a class="social-logo" [href]="env.facebookUrl" target="_blank" rel="noopener noreferrer">
                         <img src="assets/images/facebook.svg" alt="social-Logo" />
                     </a>
-                    <a class="social-logo" [href]="env.twitterUrl" target="_blank">
+                    <a class="social-logo" [href]="env.twitterUrl" target="_blank" rel="noopener noreferrer">
                         <img src="assets/images/twitter.svg" alt="social-Logo" />
                     </a>
-                    <a class="social-logo" [href]="env.instagramUrl" target="_blank">
+                    <a class="social-logo" [href]="env.instagramUrl" target="_blank" rel="noopener noreferrer">
                         <img src="assets/images/instagram.svg" alt="social-Logo" />
                     </a>
-                    <a class="social-logo" [href]="env.linkedinUrl" target="_blank">
+                    <a class="social-logo" [href]="env.linkedinUrl" target="_blank" rel="noopener noreferrer">
                         <img src="assets/images/linkedin.svg" alt="social-Logo" />
                     </a>
                 </div>

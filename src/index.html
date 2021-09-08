@@ -34,20 +34,26 @@
                     dl = l != 'dataLayer' ? '&l=' + l : '';
                 j.async = true;
                 j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
+                // f.parentNode.insertBefore(j, f);
             })(window, document, 'script', 'dataLayer', 'GTM-KZWL6RR');
         </script>
         <!-- End Google Tag Manager -->
     </head>
     <body>
-        <noscript
+        <!-- <noscript
             ><iframe
                 src="https://www.googletagmanager.com/ns.html?id=GTM-KZWL6RR"
                 height="0"
                 width="0"
                 style="display: none; visibility: hidden"
             ></iframe
-        ></noscript>
+        ></noscript> -->
+        <div
+            id="loading"
+            style="background-color: #f1f1f1; color: #f1f1f1; width: 100vw; height: 100vh; margin: 0; padding: 0"
+        >
+            Loading ...
+        </div>
         <app-root></app-root>
     </body>
 </html>

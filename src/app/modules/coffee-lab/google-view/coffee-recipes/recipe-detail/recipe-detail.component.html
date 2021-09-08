@@ -16,19 +16,19 @@
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
                         <!-- <div class="mb-md-45 mb-3">
                             <span *ngFor="let btn of buttonList">
-                                <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
+                                <button class="p-2 button-list fnt-12 fnt-600">
                                     {{ btn.button }}
                                 </button>
                             </span>
                         </div> -->
-                        <h1 class="fnt-bold text-clr334 mb-0 user-header mt-0">
+                        <h1 class="fnt-bold mb-0 user-header mt-0">
                             {{ detailsData?.name | titlecase }}
                         </h1>
-                        <p class="fnt-20 fnt-600 fnt-muli text-clr334 mt-3 mb-md-35 mb-35 my-md-4">
+                        <p class="fnt-20 fnt-600 mt-3 mb-md-35 mb-35 my-md-4">
                             {{ detailsData?.description }}
                         </p>
                         <div class="d-md-flex mb-4 mb-md-0">
-                            <div class="fnt-14 fnt-muli fnt-600 text-clr588 mb-md-45">
+                            <div class="fnt-600 text-clr588 mb-md-45">
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
@@ -90,10 +90,10 @@
                                         <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
                                     </div>
                                     <div class="pl-2">
-                                        <label class="fnt-muli fnt-16 fnt-normal text-clr588 mb-0">{{
+                                        <label class="fnt-16 fnt-normal text-clr588 mb-0">{{
                                             recipeInfo.label | translate
                                         }}</label>
-                                        <p class="fnt-muli fnt-16 fnt-bold text-clr334 mb-0 pt-1" *ngIf="detailsData">
+                                        <p class="fnt-16 fnt-bold mb-0 pt-1" *ngIf="detailsData">
                                             <span *ngIf="recipeInfo.label === 'equipment'"
                                                 >{{ detailsData[recipeInfo.key] | titlecase
                                                 }}{{ recipeInfo.key2 ? ':' : ''
@@ -114,10 +114,10 @@
                                     <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
                                 </div>
                                 <div class="pl-2">
-                                    <label class="fnt-muli fnt-16 fnt-normal text-clr588 mb-0">{{
+                                    <label class="fnt-16 fnt-normal text-clr588 mb-0">{{
                                         recipeInfo.label | translate
                                     }}</label>
-                                    <p class="fnt-muli fnt-16 fnt-bold text-clr334 mb-0 pt-1" *ngIf="detailsData">
+                                    <p class="fnt-16 fnt-bold mb-0 pt-1" *ngIf="detailsData">
                                         <span *ngIf="recipeInfo.label === 'equipment'"
                                             >{{ detailsData[recipeInfo.key] | titlecase }}{{ recipeInfo.key2 ? ':' : ''
                                             }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
@@ -134,13 +134,13 @@
                             <div class="align-items-center check-icon d-flex justify-content-center">
                                 <img src="assets/images/done_black_24dp.svg" alt="check" />
                             </div>
-                            <p class="fnt-18 fnt-muli fnt-600 text-clr334">{{ 'mark_as_brewed' | translate }}</p>
+                            <p class="fnt-18 fnt-600">{{ 'mark_as_brewed' | translate }}</p>
                         </div> -->
                     </div>
                     <div class="row pl-md-5">
                         <div class="col-md-5">
                             <div *ngIf="detailsData?.ingredients" class="mt-45">
-                                <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-bold text-clr334">
+                                <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-bold">
                                     {{ 'ingredients' | translate }}
                                 </h1>
                                 <div class="ingredients-wrapper">
@@ -148,20 +148,15 @@
                                         class="py-3 px-0 ingredients-item"
                                         *ngFor="let ingredientsItem of detailsData.ingredients"
                                     >
-                                        <label
-                                            class="fnt-muli fnt-14 fnt-bold text-clr334 mb-0 pr-3"
-                                            *ngIf="ingredientsItem.quantity !== '-'"
-                                        >
+                                        <label class="fnt-bold mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
                                             {{ ingredientsItem.quantity }} {{ ingredientsItem.quantity_unit }}
                                         </label>
-                                        <label class="fnt-muli fnt-14 fnt-600 text-clr334 mb-0">{{
-                                            ingredientsItem.name
-                                        }}</label>
+                                        <label class="fnt-600 mb-0">{{ ingredientsItem.name }}</label>
                                     </div>
                                 </div>
                             </div>
                             <!-- <div *ngIf="detailsData?.video_url" class="pt-3 pt-md-4 pt-lg-45">
-                                <div class="fnt-14 fnt-muli fnt-bold text-clr334 mb-3">
+                                <div class="fnt-bold mb-3">
                                     {{ 'see_recipe_video' | translate }}
                                 </div>
                                 <video class="w-100" [src]="detailsData?.video_url" controls></video>
@@ -170,7 +165,7 @@
                         </div>
 
                         <div class="mt-4 mt-md-45 col-md-7">
-                            <h2 class="user-header fnt-bold text-clr334 mt-0 mb-4 mb-md-45">
+                            <h2 class="user-header fnt-bold mt-0 mb-4 mb-md-45">
                                 {{ 'directions' | translate }}
                             </h2>
                             <div
@@ -179,11 +174,9 @@
                                 [id]="'step' + (i + 1)"
                             >
                                 <div class="d-flex">
-                                    <span class="fnt-muli fnt-24 fnt-semi-bold text-clr334 lh-157 mb-1">{{
-                                        i + 1
-                                    }}</span>
+                                    <span class="fnt-24 fnt-semi-bold lh-157 mb-1">{{ i + 1 }}</span>
                                     <div
-                                        class="ml-md-3 ml-25 fnt-muli fnt-14 fnt-md-16 fnt-semi-bold text-clr334 lh-157 mb-0 step-desc"
+                                        class="ml-md-3 ml-25 fnt-md-16 fnt-semi-bold lh-157 mb-0 step-desc"
                                         [ngClass]="{ 'remove-border': last }"
                                         [innerHTML]="step.description"
                                     ></div>
@@ -202,7 +195,7 @@
                 <div class="col-md-7 mx-auto mt-5">
                     <div class="recipe-answer w-100 pt-3 pb-4">
                         <div>
-                            <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-35">
+                            <p class="fnt-16 fnt-bold mb-35">
                                 {{ 'about_the_author' | translate }}
                             </p>
                             <div class="d-flex">
@@ -221,7 +214,7 @@
                                 </div>
                                 <div>
                                     <p
-                                        class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point text-underline mb-2"
+                                        class="fnt-bold cursor-point text-underline mb-2"
                                         routerLink="/user-profile"
                                         [queryParams]="{
                                             user_id: detailsData?.user_id || detailsData?.posted_by,
@@ -234,7 +227,7 @@
                                         {{ detailsData?.original_details?.firstname || stickData?.firstname }}
                                         {{ detailsData?.original_details?.lastname || stickData?.lastname }}
                                     </p>
-                                    <p class="fnt-14 fnt-600 fnt-muli text-clr334">
+                                    <p class="fnt-600">
                                         {{ stickData?.about_me }}
                                     </p>
                                 </div>
@@ -273,7 +266,7 @@
                             </div>
                         </div>
                         <!-- <span *ngFor="let btn of buttonList">
-                            <button class="p-2 button-list fnt-12 fnt-muli fnt-600 text-clr334">
+                            <button class="p-2 button-list fnt-12 fnt-600">
                                 {{ btn.button }}
                             </button>
                         </span> -->
@@ -286,14 +279,12 @@
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                    <p
-                                        class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
-                                    >
+                                    <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
                                         {{ 'read_the_guide' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
-                                    <p class="fnt-600 fnt-12 fnt-muli text-clr334">
+                                    <p class="fnt-600 fnt-12">
                                         {{ 'original_language' | translate }} :
                                         {{ globalsService.getLanguage(detailsData?.original_details?.language) }}
                                     </p>
@@ -302,7 +293,7 @@
                             <app-user-header [prop]="detailsData"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
-                                    class="fnt-14 fnt-600 fnt-muli"
+                                    class="fnt-600"
                                     (click)="
                                         onRealtedRoute(
                                             detailsData?.original_details?.language,
@@ -317,11 +308,11 @@
 
                     <div class="mt-md-5 mt-45 mb-4 w-100">
                         <div class="w-100">
-                            <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">{{ 'comments' | translate }}</p>
+                            <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
                         </div>
                         <div class="d-flex">
                             <button
-                                class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
+                                class="add-comment d-flex align-items-center pl-4 w-100 fnt-600 text-clr588"
                                 (click)="onFocus()"
                             >
                                 {{ 'share_your_thoughts' | translate }}
@@ -330,9 +321,7 @@
                     </div>
                     <div *ngIf="allComments?.length > 0">
                         <div class="comment-border">
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334">
-                                {{ allComments.length }} {{ 'answers' | translate }}
-                            </p>
+                            <p class="fnt-600">{{ allComments.length }} {{ 'answers' | translate }}</p>
                         </div>
                         <div
                             class="answer-wrapper my-45"
@@ -364,7 +353,7 @@
                         <div class="text-center w-100" *ngIf="showCommentBtn">
                             <button
                                 (click)="viewAllComments()"
-                                class="fnt-14 fnt-bold fnt-muli text-clr60b mb-4 bg-transparent border-0 text-underline"
+                                class="fnt-bold text-clr60b mb-4 bg-transparent border-0 text-underline"
                             >
                                 {{ 'view_all_comments' | translate }}
                             </button>
@@ -379,7 +368,7 @@
     </div>
     <article class="row" *ngIf="!loading">
         <div class="col-12 col-md-8 px-md-3">
-            <div class="fnt-16 fnt-muli fnt-bold text-clr334 pt-3 pb-45 background-header">
+            <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
                 {{ 'popular_brewing_guides' | translate }}
             </div>
             <div class="row py-2">
@@ -387,8 +376,8 @@
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
                         <div class="cursor-point d-flex flex-column">
-                            <p class="fnt-fly fnt-bold text-clr334 cust-flex-grow">{{ forum?.name }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline">
+                            <p class="fnt-fly fnt-bold cust-flex-grow">{{ forum?.name }}</p>
+                            <p class="fnt-600 text-underline">
                                 {{ forum?.posted_user }}
                             </p>
                         </div>
@@ -410,14 +399,9 @@
             <div class="pb-4 d-flex">
                 <div class="w-100 d-flex justify-content-between">
                     <div>
-                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
-                            {{ stickData?.firstname }} {{ stickData?.lastname }}
-                        </p>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
-                        <p
-                            *ngIf="stickData?.country || stickData?.city"
-                            class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
-                        >
+                        <p class="fnt-bold mb-1">{{ stickData?.firstname }} {{ stickData?.lastname }}</p>
+                        <p class="fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
+                        <p *ngIf="stickData?.country || stickData?.city" class="fnt-600 text-clr588 mb-1">
                             @ {{ stickData?.city || stickData?.organization_city }}, {{ stickData?.country }}
                         </p>
                     </div>
@@ -426,7 +410,7 @@
             <div class="pb-4">
                 <div class="d-flex align-items-center">
                     <button
-                        class="view-button mr-2 fnt-14 fnt-bold fnt-muli"
+                        class="view-button mr-2 fnt-bold"
                         routerLink="/user-profile"
                         [queryParams]="{
                             user_id: detailsData?.user_id || detailsData?.posted_by,
@@ -438,7 +422,7 @@
                     >
                         {{ 'view_profile' | translate }}
                     </button>
-                    <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli">
+                    <div class="btn-raised pb-1 pt-25">
                         <img (click)="onFocus()" class="cursor-point" src="assets/images/message-icon-white.svg" />
                     </div>
                 </div>

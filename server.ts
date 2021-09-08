@@ -1,8 +1,5 @@
 import 'zone.js/dist/zone-node';
-const domino = require('domino');
-const MockBrowser = require('mock-browser').mocks.MockBrowser;
-const mock = new MockBrowser();
-global['navigator'] = mock.getNavigator();
+
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
@@ -10,16 +7,6 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-
-const templateA = existsSync(join('dist/coffee-lab/browser', 'index.html')).toString();
-const win = domino.createWindow(templateA);
-win.Object = Object;
-win.Math = Math;
-
-global['window'] = win;
-global['document'] = win.document;
-global['branch'] = null;
-global['object'] = win.object;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
