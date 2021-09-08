@@ -111,7 +111,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         this.isLoading = true;
         this.coffeeLabService.getForumList('question', params).subscribe((res: any) => {
             if (res.success) {
-                this.questions = res.result?.questions;
+                this.questions = res.result?.questions || [];
                 this.totalRecords = res.result_info.total_count;
                 this.setSchemaMackup();
             } else {
