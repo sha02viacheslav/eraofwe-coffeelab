@@ -176,7 +176,7 @@
                                 <div class="d-flex">
                                     <span class="fnt-24 fnt-semi-bold lh-157 mb-1">{{ i + 1 }}</span>
                                     <div
-                                        class="ml-md-3 ml-25 fnt-md-16 fnt-semi-bold lh-157 mb-0 step-desc"
+                                        class="activate-link ml-md-3 ml-25 fnt-md-16 fnt-semi-bold lh-157 mb-0 step-desc"
                                         [ngClass]="{ 'remove-border': last }"
                                         [innerHTML]="step.description"
                                     ></div>
@@ -338,7 +338,7 @@
                                 </div>
                             </div>
                             <div class="mt-3 px-0 forum-content mb-4 ml-md-5 pl-md-1">
-                                <div [innerHTML]="postItem.comment"></div>
+                                <div class="activate-link" [innerHTML]="postItem.comment"></div>
                                 <!-- Remove after API is confirmed -->
                                 <!-- <ng-container *ngIf="postItem.images">
                                     <img
