@@ -6,8 +6,6 @@ import { OverviewComponent } from './google-view/overview/overview.component';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
 
-const userLang = navigator.language;
-const lang = userLang.indexOf('sv') > -1 || userLang.indexOf('SV') > -1 ? 'sv' : 'en';
 const routes: Routes = [
     {
         path: '',
@@ -23,7 +21,7 @@ const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar',
+                        redirectTo: 'en/qa-forum',
                         pathMatch: 'full',
                     },
                     {
@@ -154,7 +152,7 @@ const routes: Routes = [
                         (m) => m.ArticleDetailModule,
                     ),
             },
-            { path: '**', redirectTo: lang === 'en' ? 'en/qa-forum' : 'sv/fragor-och-svar' },
+            { path: '**', redirectTo: 'en/qa-forum' },
         ],
     },
 ];
