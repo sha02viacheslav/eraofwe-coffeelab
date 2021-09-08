@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="forum-content w-100 pt-4 mb-5">
-                            <div class="lh-157 mb-0" [innerHTML]="detailsData?.content"></div>
+                            <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content"></div>
                         </div>
 
                         <!-- Question answer -->
@@ -227,7 +227,7 @@
                                     </div>
                                 </div>
                                 <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
-                                    <div [innerHTML]="postItem.comment"></div>
+                                    <div class="activate-link" [innerHTML]="postItem.comment"></div>
                                 </div>
                             </div>
                             <div class="text-center w-100" *ngIf="showCommentBtn">

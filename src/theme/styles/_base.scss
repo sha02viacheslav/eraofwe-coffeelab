@@ -48,6 +48,14 @@ a {
     }
 }
 
+.activate-link a,
+a.activate-link {
+    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 input:focus,
 select:focus,
 textarea:focus,
