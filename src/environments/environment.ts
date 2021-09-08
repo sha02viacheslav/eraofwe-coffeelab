@@ -31,6 +31,7 @@ export const environment = {
     needProtect: false,
     needBugherd: false,
     production: false,
+    version: 'v1.0',
 };
 
 /*

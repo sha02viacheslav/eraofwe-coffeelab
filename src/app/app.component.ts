@@ -61,7 +61,7 @@ export class AppComponent {
             if (!this.document.getElementById(`${value}-id`)) {
                 const node = this.document.createElement('link');
                 node.rel = 'stylesheet';
-                node.href = `${value}.css`;
+                node.href = `${value}.css?version=${environment.version}`;
                 node.id = `${value}-id`;
                 this.document.getElementsByTagName('head')[0].appendChild(node);
             }
