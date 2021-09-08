@@ -105,10 +105,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 if (this.lang !== this.coffeeLabService.currentForumLanguage) {
-                    this.router.navigateByUrl(
-                        `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}/${this.detailsData.slug}`,
-                    );
-                    this.coffeeLabService.forumLanguage.next(this.lang);
+                    this.router.navigateByUrl('/error');
                 }
                 this.startupService.load(this.lang || 'en');
                 this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;

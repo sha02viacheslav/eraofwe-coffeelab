@@ -86,10 +86,7 @@ export class ArticleDetailComponent implements OnInit {
                 this.detailsData = res.result;
                 this.lang = res.result.language;
                 if (this.lang !== this.coffeeLabService.currentForumLanguage) {
-                    this.router.navigateByUrl(
-                        `/${this.lang}/${RouterMap[this.lang][RouterSlug.ARTICLE]}/${this.detailsData.slug}`,
-                    );
-                    this.coffeeLabService.forumLanguage.next(this.lang);
+                    this.router.navigateByUrl('/error');
                 }
                 if (res.result?.is_era_of_we) {
                     this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;

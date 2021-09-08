@@ -77,10 +77,7 @@ export class QuestionDetailComponent implements OnInit {
                     });
                 }
                 if (this.lang !== this.coffeeLabService.currentForumLanguage) {
-                    this.router.navigateByUrl(
-                        `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}/${this.detailsData.slug}`,
-                    );
-                    this.coffeeLabService.forumLanguage.next(this.lang);
+                    this.router.navigateByUrl('/error');
                 }
                 this.globalsService.setLimitCounter();
                 this.startupService.load(this.lang || 'en');
