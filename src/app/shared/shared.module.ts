@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
@@ -19,7 +18,6 @@ import { MomentModule } from 'ngx-moment';
 import { TranslateModule } from '@ngx-translate/core';
 
 const THIRDMODULES = [
-    CarouselModule,
     DividerModule,
     DropdownModule,
     DynamicDialogModule,

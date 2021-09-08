@@ -10,6 +10,8 @@ export class UserHeaderComponent implements OnInit {
     @Input() prop: any;
     @Input() total: any;
     @Input() enableEllipsis = true;
+    @Input() isArticleDetail = false;
+    @Input() isRecipeDetail = false;
     orgType: string;
 
     constructor(public route: ActivatedRoute) {}

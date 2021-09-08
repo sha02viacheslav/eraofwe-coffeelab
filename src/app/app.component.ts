@@ -22,6 +22,7 @@ export class AppComponent {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
         }
 
+        this.setDynamicStyles();
         this.setDynamicScripts();
     }
 
@@ -30,7 +31,9 @@ export class AppComponent {
             setTimeout(() => {
                 const dynamicScripts = [];
                 if (environment.production) {
-                    dynamicScripts.push('https://www.bugherd.com/sidebarv2.js?apikey=y5kbdd1ahghgywnjmyw7lg');
+                    if (environment.needBugherd) {
+                        dynamicScripts.push('https://www.bugherd.com/sidebarv2.js?apikey=y5kbdd1ahghgywnjmyw7lg');
+                    }
                     dynamicScripts.push(
                         'https://cmp.osano.com/6olZFSThsdZWqs/d3243605-8fd0-446a-9b25-a172e9ae3d67/osano.js',
                     );
@@ -45,6 +48,23 @@ export class AppComponent {
                     this.document.getElementsByTagName('head')[0].appendChild(node);
                 }
             }, 5000);
+        }
+    }
+
+    setDynamicStyles() {
+        const dynamicStyles = [];
+        dynamicStyles.push('primeicons');
+        dynamicStyles.push('primeng');
+        dynamicStyles.push('styles');
+
+        for (const value of dynamicStyles) {
+            if (!this.document.getElementById(`${value}-id`)) {
+                const node = this.document.createElement('link');
+                node.rel = 'stylesheet';
+                node.href = `${value}.css`;
+                node.id = `${value}-id`;
+                this.document.getElementsByTagName('head')[0].appendChild(node);
+            }
         }
     }
 }

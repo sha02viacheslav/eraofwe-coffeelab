@@ -1,5 +1,5 @@
 <div>
-    <div class="row gutter-32 justify-content-lg-between pt-1 pb-3 pb-md-0 pt-md-0">
+    <div class="row justify-content-lg-between pt-1 pb-3 pb-md-0 pt-md-0">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="article"></app-publish-forum>
         </div>
@@ -41,11 +41,12 @@
                 optionValue="value"
                 [(ngModel)]="selectedOrder"
                 (onChange)="getData()"
+                [showClear]="true"
                 styleClass="round-border"
             >
             </p-dropdown>
         </div>
-        <div class="col-12 col-lg-4 d-none d-lg-block">
+        <div class="col-12 col-lg-5 d-none d-lg-block">
             <div class="custom-search h-fit-content mt-3 mt-md-0">
                 <input
                     class="w-100 fnt-16"
@@ -65,21 +66,26 @@
             [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
             *ngFor="let article of articlesData"
         >
-            <a [routerLink]="[getLink(article)]" class="text-non-underline" *ngIf="article.cardType === 'forum'">
-                <div class="border-main br-4 py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
+            <a [routerLink]="getLink(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
+                <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
                     <div class="d-flex justify-content-betweenn px-4">
                         <div class="flex-1 overflow-hidden">
                             <app-user-header [prop]="article"></app-user-header>
                         </div>
                         <div class="icon-save hover-save-icon">
-                            <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
+                            <img
+                                (click)="onFocus($event)"
+                                class="cursor-point"
+                                src="assets/images/save.svg"
+                                alt="save"
+                            />
                         </div>
 
                         <!-- <app-forum-menu></app-forum-menu> -->
                     </div>
                     <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
                     <div class="mx-4">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex">
                             <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
@@ -101,7 +107,7 @@
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
 
-        <div *ngIf="totalRecords && articlesData?.length" class="pt-3 pt-md-4 w-100">
+        <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4 w-100">
             <app-paginator
                 [rows]="rows"
                 [totalRecords]="totalRecords"

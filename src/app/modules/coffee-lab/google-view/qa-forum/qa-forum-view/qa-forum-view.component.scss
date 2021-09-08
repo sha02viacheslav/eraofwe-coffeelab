@@ -15,14 +15,9 @@
     }
 }
 
-.no-data {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .border-box {
     border: solid 1px #d0d0d0 !important;
+    border-radius: 14px;
 }
 
 .border-btm {
@@ -44,4 +39,8 @@
 
 .like-box {
     background-color: #f1f1f1;
+}
+
+.fnt-24 {
+    font-size: 24px;
 }

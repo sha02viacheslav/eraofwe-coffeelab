@@ -15,7 +15,7 @@
             />
         </div>
     </div>
-    <div *ngIf="!isLoading">
+    <div>
         <div class="d-flex">
             <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
                 <div class="d-flex mb-md-4">
@@ -66,7 +66,7 @@
                         *ngFor="let question of questions; let i = index"
                         [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
                     >
-                        <div class="br-8 border-box mb-4 mb-md-3 mb-lg-4">
+                        <div class="border-box mb-4 mb-md-3 mb-lg-4">
                             <div class="p-md-4 p-3">
                                 <div class="d-flex justify-content-between">
                                     <div class="flex-1">
@@ -100,29 +100,31 @@
                                             [prop]="answer"
                                         ></app-user-header>
                                     </div>
-                                    <span
-                                        *ngIf="!answer?.show_full"
-                                        [innerHTML]="
-                                            globalsService.getJustText(answer?.answer) | convertToShortDescription: 25
-                                        "
-                                    ></span>
-                                    <span
-                                        *ngIf="answer?.show_full"
-                                        [innerHTML]="globalsService.getJustText(answer?.answer)"
-                                    ></span>
-                                    <a
-                                        *ngIf="
-                                            wordCount(globalsService.getJustText(answer?.answer)).split(' ').length >
-                                                25 && !answer?.show_full
-                                        "
-                                        (click)="showFullDesc(i, ansInd)"
-                                        class="brown-cta ml-1"
-                                        >{{ 'read_more' | translate }}</a
-                                    >
+                                    <div class="fnt-muli fnt-14 text-clr24 mb-4 lh-15">
+                                        <span
+                                            [innerHTML]="
+                                                globalsService.getJustText(answer?.answer)
+                                                    | convertToShortDescription: 25
+                                            "
+                                        ></span>
+                                        <!-- <span
+                                            *ngIf="answer?.show_full"
+                                            [innerHTML]="globalsService.getJustText(answer?.answer)"
+                                        ></span>
+                                        <a
+                                            *ngIf="
+                                                wordCount(globalsService.getJustText(answer?.answer)).split(' ')
+                                                    .length > 25 && !answer?.show_full
+                                            "
+                                            (click)="showFullDesc(i, ansInd)"
+                                            class="text-clr60b fnt-600 ml-1"
+                                            >{{ 'read_more' | translate }}</a
+                                        > -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-lg-none mb-4 mb-md-3" *ngIf="i === 1">
+                        <div *ngIf="i === 1 && !(isDesktop$ | async)" class="mb-4 mb-md-3">
                             <app-join-community [pages]="page" [type]="'question'"></app-join-community>
                         </div>
                     </div>
@@ -140,9 +142,9 @@
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
-            <div class="col-12 col-md-4 px-0 mx-auto w-min-content d-none d-lg-block h-fit-content">
-                <div class="empty-join-wrapper d-none d-lg-block mb-4">
-                    <div class="custom-search qa-forum-search d-none d-lg-block">
+            <div *ngIf="isDesktop$ | async" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content">
+                <div class="empty-join-wrapper mb-4">
+                    <div class="custom-search qa-forum-search">
                         <input
                             class="w-100 fnt-16"
                             [(ngModel)]="keyword"
@@ -157,7 +159,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="isLoading">
+    <!-- <div *ngIf="isLoading">
         <app-loading></app-loading>
-    </div>
+    </div> -->
 </div>

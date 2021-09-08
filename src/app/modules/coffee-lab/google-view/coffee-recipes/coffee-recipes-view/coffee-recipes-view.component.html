@@ -1,5 +1,5 @@
 <div class="coffee-recipes-view-container">
-    <div class="row justify-content-lg-between pt-1 pt-md-0 gutter-32">
+    <div class="row justify-content-lg-between pt-1 pt-md-0">
         <div class="col-12 col-md-7 pr-md-0">
             <app-publish-forum type="recipe"></app-publish-forum>
         </div>
@@ -53,6 +53,8 @@
                     optionValue="value"
                     [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
+                    [showClear]="true"
+                    [placeholder]="'sort_by' | translate"
                     styleClass="round-border mobile-ui"
                 >
                 </p-dropdown>
@@ -78,23 +80,23 @@
             [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
         >
             <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
-                <div class="br-14 coffee-item" (click)="gotoDetailPage($event, coffee)">
+                <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
                     <div class="position-relative">
                         <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
                         <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                     </div>
 
                     <div class="m-3 m-md-4">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mb-4">
                             <div class="recipe-name fnt-14 fnt-md-16 fnt-bold fnt-muli text-clr334">
-                                {{ coffee?.name }}
+                                <span class="mb-1 d-flex">{{ coffee?.name | convertToShortDescription: 4 }}</span>
+                                <span class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">
+                                    {{ coffee?.equipment_name | titlecase | convertToShortDescription: 4 }}
+                                </span>
                             </div>
-                            <div class="bookmark-icon hover-save-icon">
-                                <img src="assets/images/save.svg" alt="save" />
+                            <div class="bookmark-icon hover-save-icon h-100">
+                                <img src="assets/images/save.svg" alt="save" (click)="onFocus($event)" />
                             </div>
-                        </div>
-                        <div class="fnt-14 fnt-600 fnt-muli text-clr334 mb-45 mb-md-4 mt-2">
-                            {{ coffee?.equipment_name | titlecase }}
                         </div>
                         <app-user-header [prop]="coffee"></app-user-header>
                     </div>

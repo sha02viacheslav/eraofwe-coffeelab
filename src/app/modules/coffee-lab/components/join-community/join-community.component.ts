@@ -16,7 +16,8 @@ export class JoinCommunityComponent implements OnInit {
     readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
     @Input() pages: any;
-    @Input() type: any;
+    @Input() type: string;
+    @Input() detailType: string;
     idOrSlug: any;
     isStaging = environment.needProtect;
     relatedData = [];
@@ -44,7 +45,14 @@ export class JoinCommunityComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const type = this.type === 'question' ? 'qa-forum' : 'articles' ? 'articles' : 'recipe';
+        let type: string;
+        if (this.type === 'question') {
+            type = 'qa-forum';
+        } else if (this.type === 'articles') {
+            type = 'articles';
+        } else if (this.type === 'recipe') {
+            type = 'coffee-recipes';
+        }
         const url = `/${this.coffeeLabService.currentForumLanguage}/${type}/${item.slug}`;
         return {
             url,

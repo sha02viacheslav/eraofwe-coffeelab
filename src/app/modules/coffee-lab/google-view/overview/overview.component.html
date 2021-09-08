@@ -9,6 +9,7 @@
             </p>
             <p class="fnt-14 fnt-muli fnt-normal text-clr588 mb-0">
                 {{ 'coffee_lab_sub_description' | translate }}
+                <!-- <span class="quick-guide">{{ 'quick_guide' | translate }}</span> -->
             </p>
         </div>
         <app-search-forum></app-search-forum>
@@ -22,8 +23,8 @@
     <div class="">
         <p-tabMenu [model]="menuItems" styleClass="tabmenu-coffee-lab">
             <ng-template pTemplate="item" let-item let-i="index">
-                <img [src]="item.icon" alt="icon" />
-                <img [src]="item.activeIcon" alt="icon" class="active-icon" />
+                <img [src]="item.icon" alt="icon" width="32" height="32" />
+                <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
                 <span class="pl-1 d-none d-md-block">{{ item.label | translate }}</span>
             </ng-template>
         </p-tabMenu>

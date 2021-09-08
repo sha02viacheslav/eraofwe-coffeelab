@@ -50,6 +50,7 @@
     }
 
     .ingredients-wrapper {
+        width: 313px;
         .ingredients-item {
             border-bottom: 1px solid #d8d8d8;
         }
@@ -71,12 +72,19 @@
     }
 }
 
+::ng-deep .remove-border {
+    border: 0px !important;
+}
+
 ::ng-deep .step-desc {
-    border-bottom: 1px solid #d8d8d8 !important;
+    border-bottom: 1px solid #d8d8d8;
     padding-bottom: 1rem !important;
     word-break: break-word;
+    p {
+        font-weight: 500 !important;
+    }
     img {
-        width: 100%;
+        max-width: 100%;
         margin-top: 1rem;
     }
 }
@@ -92,19 +100,9 @@
 }
 .user-header {
     font-family: Cormorant Garamond;
-    font-size: 32px;
-    @media (min-width: 768px) {
-        font-size: 48px;
-    }
-}
-
-.footer-header {
-    font-family: Cormorant Garamond;
-    font-size: 20px;
-    line-height: 1.35;
-    @media (min-width: 768px) {
-        font-size: 22px;
-        line-height: 1.23;
+    font-size: 48px;
+    @media (max-width: 768px) {
+        font-size: 32px;
     }
 }
 
@@ -120,7 +118,7 @@
 
 .recipe-answer {
     border-top: 1px solid #232334;
-    border-bottom: 1px solid #232334;
+    border-bottom: 2px solid #232334;
 }
 
 .author-image img {
@@ -132,7 +130,7 @@
 .add-comment {
     height: 50px;
     object-fit: contain;
-    border: none;
+    border: 1px solid transparent !important;
     border-radius: 25px;
     background-color: rgba(116, 117, 136, 0.08);
 }
@@ -183,6 +181,7 @@
         position: sticky;
         top: 40%;
         margin-top: 4rem;
+        height: fit-content;
     }
 }
 
@@ -193,10 +192,18 @@
     }
 }
 
+.comment-hgt {
+    height: 50px !important;
+}
+
+.comment-border {
+    border-bottom: solid 0.5px #d8d8d8;
+}
+
 .message-icon img {
     @media (min-width: 768px) {
-        width: 23px;
-        height: 32px;
+        width: 21px;
+        height: 34px;
     }
 }
 
@@ -217,9 +224,11 @@
 .cursor-point {
     cursor: pointer;
 }
+
 .bg-f8 {
     background-color: #f8f8f8;
 }
+
 .flavour-profiles {
     border: 1px dashed #ebebeb;
     a {
@@ -228,14 +237,27 @@
     }
 }
 
-// ::ng-deep .step-wrapper img {
-//     height: 276px !important;
-//     object-fit: contain !important;
-// }
+.footer-border {
+    border-bottom: solid 0.5px #d8d8d8;
+}
+
+.cust-flex-grow {
+    flex-grow: 0.9;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.sticky-divder {
+    border-bottom: 1px solid #232334;
+}
+
+.divder {
+    border-bottom: 1px solid #dedede;
+}
 
 .recip-img {
     height: 198px;
-    object-fit: cover;
     @media (min-width: 991px) {
         height: 494px;
     }
@@ -249,18 +271,21 @@
     border: solid 1px #d8d8d8;
     background-color: #fff;
 }
-.last-border {
-    border-bottom: none !important;
+
+::ng-deep .p-inputtextarea:enabled:hover,
+::ng-deep .p-inputtextarea:enabled:focus {
+    border: 1px solid #30855c !important;
 }
 
 .back-page::before {
-    top: -5px !important;
+    top: -7px !important;
     width: 20px !important;
     height: 20px !important;
-    padding: 6px !important;
+    padding: 8px !important;
     background-repeat: no-repeat !important;
     background-size: auto !important;
 }
+
 .back-page:hover::before {
     border-radius: 50%;
     background-color: rgba(128, 70, 11, 0.14);
@@ -268,20 +293,44 @@
 
 .hover-message-icon {
     padding: 2px 8px 2px 9px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        border-radius: 50%;
-        background-color: rgba(48, 133, 92, 0.12);
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }
 
 .hover-save-icon {
-    padding: 6px 9px 6px 12px;
+    padding: 6px 9px 8px 12px;
     border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
     &:hover {
-        background-color: rgba(48, 133, 92, 0.12);
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.hover-share-icon {
+    padding: 9px 11px 9px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.flavour-profiles {
+    border: 2px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
     }
 }
 
 .message-top {
     margin-top: 6px;
+}
+
+.fnt-24 {
+    font-size: 24px;
 }

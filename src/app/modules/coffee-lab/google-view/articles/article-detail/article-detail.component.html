@@ -1,10 +1,9 @@
 <div>
-    <div class="mt-325 mt-md-25 mt-lg-3 pb-4 pb-lg-45 w-fit-content" *ngIf="previousUrl">
+    <div class="mt-1 mt-lg-3 pb-35 pb-lg-45 w-fit-content" *ngIf="previousUrl">
         <a class="back-page" [routerLink]="previousUrl">
-            <span class="ml-2">Back to forum</span>
+            <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
         </a>
     </div>
-
     <div class="container article-main-block" *ngIf="!loading">
         <div>
             <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
@@ -12,17 +11,17 @@
                     <button class="button-list fnt-12 fnt-muli fnt-600 text-clr334">{{ btn.button }}</button>
                 </span>
             </div> -->
-            <div>
-                <h1 class="main-heading fnt-bold text-clr334 px-lg-5 mt-md-4 mt-325 mb-md-3 mb-2">
+            <div class="px-0 px-md-475">
+                <h1 class="main-heading bg-transparent fnt-bold text-clr334 px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                     <!-- Starting your coffee tasting journey is easy! -->
                     {{ detailsData?.title }}
                 </h1>
-                <p class="fnt-md-20 fnt-16 fnt-600 fnt-muli px-lg-5 text-clr334 text-md-center">
+                <p class="fnt-16 fnt-md-20 fnt-600 fnt-muli text-clr334 text-md-center px-0 px-lg-5">
                     <!-- All about your first steps of coffee! -->
                     {{ detailsData?.subtitle }}
                 </p>
             </div>
-            <div class="d-md-flex justify-content-md-center mt-325 mt-md-4 mb-4">
+            <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
                 <div class="published fnt-14 fnt-muli mr-3">
                     Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                 </div>
@@ -60,15 +59,15 @@
                         />
                         <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                     </div> -->
-                    <div class="message-icon hover-message-icon mr-25">
-                        <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
+                    <div class="message-icon hover-message-icon cursor-point mr-25" (click)="onFocus()">
+                        <img src="assets/images/message.svg" alt="message" />
                     </div>
-                    <div class="message-icon hover-save-icon">
-                        <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
+                    <div class="message-icon hover-save-icon cursor-point" (click)="onFocus()">
+                        <img src="assets/images/save.svg" alt="save" />
                     </div>
                 </div>
-                <div class="d-flex message-icon">
-                    <img (click)="onFocus()" class="cursor-point" src="assets/images/upload.svg" alt="upload" />
+                <div class="d-flex hover-share-icon">
+                    <img (click)="onFocus()" class="cursor-point" src="assets/images/share.svg" alt="upload" />
                     <div class="position-mob ml-1"><app-forum-menu></app-forum-menu></div>
                 </div>
             </div>
@@ -78,15 +77,13 @@
                     <div class="d-flex flex-wrap w-100 innter-box">
                         <div class="d-flex justify-content-between align-items-md-end w-100">
                             <app-user-header [prop]="detailsData"></app-user-header>
-                            <div class="d-none d-md-block">
-                                <div class="d-flex flex-column align-items-end">
-                                    <app-forum-menu></app-forum-menu>
-                                </div>
+                            <div class="d-flex flex-column align-items-end">
+                                <app-forum-menu></app-forum-menu>
                             </div>
                         </div>
                         <div class="forum-content w-100 pt-4 mb-5">
                             <div
-                                class="fnt-muli fnt-14 fnt-normal text-clr334 lh-157 mb-0"
+                                class="fnt-muli fnt-14 text-clr334 lh-157 mb-0"
                                 [innerHTML]="detailsData?.content"
                             ></div>
                         </div>
@@ -95,7 +92,9 @@
 
                         <div class="articles-answer w-100 pt-3 pb-4">
                             <div>
-                                <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-325">About the Author</p>
+                                <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-35">
+                                    {{ 'about_the_author' | translate }}
+                                </p>
                                 <div class="d-flex">
                                     <div class="author-image mr-3">
                                         <img
@@ -110,12 +109,15 @@
                                     </div>
                                     <div>
                                         <p
-                                            class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point mb-2 text-underline"
                                             routerLink="/user-profile"
                                             [queryParams]="{
-                                                user_id: stickData?.id,
-                                                organization: stickData?.organization_type
+                                                user_id: detailsData?.user_id || detailsData?.posted_by,
+                                                organization:
+                                                    detailsData?.org_type ||
+                                                    detailsData?.organisation_type ||
+                                                    detailsData?.organization_type
                                             }"
+                                            class="fnt-14 fnt-bold fnt-muli text-clr334 cursor-point text-underline mb-2"
                                         >
                                             {{ stickData?.firstname }} {{ stickData?.lastname }}
                                         </p>
@@ -139,20 +141,15 @@
                                         />
                                         <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                     </div> -->
-                                    <div class="align-items-center hover-save-icon">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-point"
-                                            src="assets/images/save.svg"
-                                            alt="save"
-                                        />
+                                    <div class="align-items-center hover-save-icon cursor-point" (click)="onFocus()">
+                                        <img src="assets/images/save.svg" alt="save" />
                                     </div>
                                 </div>
-                                <div>
+                                <div class="d-flex hover-share-icon">
                                     <img
                                         (click)="onFocus()"
                                         class="cursor-point"
-                                        src="assets/images/upload.svg"
+                                        src="assets/images/share.svg"
                                         alt="upload"
                                     />
                                 </div>
@@ -164,82 +161,92 @@
                             </span> -->
                         </div>
 
-                        <!-- <div class="border-main br-4 p-4 mt-5 d-none d-md-block">
+                        <div
+                            *ngIf="
+                                detailsData?.original_article_state && detailsData?.original_article_state === 'ACTIVE'
+                            "
+                            class="border-main br-4 p-4 mt-45 d-none d-md-block w-100"
+                        >
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
                                     <p
                                         class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
                                     >
-                                        Read the original guide
+                                        {{ 'read_the_article' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
                                     <p class="fnt-600 fnt-12 fnt-muli text-clr334">
-                                        {{ 'original_language' | translate }} : {{ 'Spanish' | translate }}
+                                        {{ 'original_language' | translate }} :
+                                        {{ globalsService.getLanguage(detailsData?.original_article?.language) }}
                                     </p>
                                 </div>
                             </div>
-                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <app-user-header [prop]="detailsData?.original_article"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                                <a class="fnt-14 fnt-600 fnt-muli"
-                                    >What are coffee flavour profiles? How many profiles can a coffee have?</a
+                                <a
+                                    class="fnt-14 fnt-600 fnt-muli"
+                                    (click)="
+                                        onRealtedRoute(
+                                            detailsData?.original_article?.language,
+                                            detailsData?.original_article?.slug
+                                        )
+                                    "
+                                    >{{ detailsData?.original_article?.name | titlecase }}</a
                                 >
                             </div>
-                        </div> -->
+                        </div>
 
-                        <div class="mt-5 mb-325 w-100">
+                        <div class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">
                                 <p class="fnt-16 fnt-bold fnt-muli text-clr334 mb-25">{{ 'comments' | translate }}</p>
                             </div>
                             <div class="d-flex">
-                                <!-- <div class="d-flex mt-1">
-                                    <app-avatar
-                                        [src]="
-                                            stickData?.profile_image_url ||
-                                            stickData?.profile_image_thumb_url ||
-                                            stickData?.posted_user_profile_image_url
-                                        "
-                                        size="40"
-                                        [name]="stickData?.user_name"
-                                    ></app-avatar>
-                                </div> -->
-
                                 <button
                                     class="add-comment d-flex align-items-center pl-4 w-100 fnt-14 fnt-600 fnt-muli text-clr588"
                                     (click)="onFocus()"
                                 >
-                                    Share your thoughts
+                                    {{ 'share_your_thoughts' | translate }}
                                 </button>
                             </div>
                         </div>
 
                         <!-- Answers -->
-                        <div class="w-100" *ngIf="commentData?.length > 0">
-                            <div>
+                        <div *ngIf="allComments?.length > 0" class="w-100">
+                            <div class="comment-border pb-1">
                                 <p class="fnt-14 fnt-600 fnt-muli text-clr334">
-                                    {{ commentData?.length }} {{ 'answers' | translate }}
+                                    {{ allComments?.length }} {{ 'answers' | translate }}
                                 </p>
                             </div>
                             <div
-                                class="answer-wrapper border-bottom-primary mb-4"
+                                class="answer-wrapper my-45"
                                 *ngFor="let postItem of commentData; let isLast = last"
+                                [ngClass]="{
+                                    'border-bottom-0': isLast && !showCommentBtn,
+                                    'border-bottom-primary': !isLast && showCommentBtn
+                                }"
                                 [id]="'answer-' + postItem.id"
                             >
                                 <div class="d-flex flex-wrap w-100 mt-3">
                                     <div class="d-flex justify-content-between align-items-md-end w-100">
-                                        <app-user-header [prop]="postItem"></app-user-header>
+                                        <app-user-header [prop]="postItem" [isArticleDetail]="true"></app-user-header>
                                     </div>
                                 </div>
-                                <div class="mt-3 px-0 forum-content ml-md-5 mb-4">
+                                <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
                                     <div [innerHTML]="postItem.comment"></div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div *ngIf="postItem.comment" class="text-center w-100">
+=======
+                            <div class="text-center w-100" *ngIf="showCommentBtn">
+>>>>>>> c68b0cf140aae022481d1e09353cca38d03fed91
                                 <button
-                                    class="fnt-14 fnt-bold fnt-muli text-clr60b mb-4 bg-transparent border-0 text-underline"
+                                    (click)="viewAllComments()"
+                                    class="fnt-14 fnt-bold fnt-muli text-clr60b cursor-point mb-4 bg-transparent border-0 text-underline"
                                 >
-                                    View all comments
+                                    {{ 'view_all_comments' | translate }}
                                 </button>
                             </div>
                         </div>
@@ -249,23 +256,22 @@
         </div>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
     </div>
-
-    <!-- Footer -->
     <article class="w-100 row mx-0" *ngIf="!loading">
         <div class="col-12 col-md-8 px-0 px-md-3">
             <div class="fnt-16 fnt-muli fnt-bold text-clr334 pt-3 pb-45 background-header">
                 {{ 'recent_articles' | translate }}
             </div>
             <div class="row py-2">
-                <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-35">
-                    <div
-                        [routerLink]="'/' + forum.language + '/articles/' + forum.slug"
-                        class="d-flex pb-35 footer-border"
-                    >
-                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
-                        <div>
-                            <p class="fnt-fly fnt-bold text-clr334 pb-25">{{ forum?.title }}</p>
-                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline cursor-point">
+                <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
+                    <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.language, forum.slug)">
+                        <div class="p-articles pr-2 cursor-point">
+                            <img [lazyLoad]="forum?.cover_image_url" alt="" />
+                        </div>
+                        <div class="cursor-point d-flex flex-column">
+                            <p class="fnt-fly fnt-bold text-clr334 cust-flex-grow">
+                                {{ forum?.title | convertToShortDescription: 6 }}
+                            </p>
+                            <p class="fnt-14 fnt-600 fnt-muli text-clr334 text-underline">
                                 {{ forum?.user_name }}
                             </p>
                         </div>
@@ -292,6 +298,7 @@
                         <!-- <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
                             {{ stickData?.about_me?.substring(0, 20) }}
                         </p> -->
+                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
                         <p
                             *ngIf="stickData?.country || stickData?.city"
                             class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
@@ -299,15 +306,6 @@
                             @ {{ stickData?.city || stickData?.organization_city }}, {{ stickData?.country }}
                         </p>
                     </div>
-                    <!-- <div>
-                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
-                            {{ detailsData?.user_name }}
-                        </p>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">
-                            {{ detailsData?.subtitle }}
-                        </p>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">@ {{ detailsData?.status }}</p>
-                    </div> -->
                 </div>
             </div>
             <div class="pb-4">
@@ -323,29 +321,20 @@
                                 detailsData?.organization_type
                         }"
                     >
-                        View Profile
+                        {{ 'view_profile' | translate }}
                     </button>
-                    <div class="btn-raised pb-1 pt-25 fnt-14 fnt-muli">
-                        <img (click)="onFocus()" class="cursor-point" src="assets/images/message-icon-white.svg" />
+                    <div class="btn-raised cursor-point pb-1 pt-25 fnt-14 fnt-muli" (click)="onFocus()">
+                        <img src="assets/images/message-icon-white.svg" />
                     </div>
                 </div>
             </div>
-            <p-divider styleClass="m-0"></p-divider>
-            <div class="d-flex justify-content-between my-4">
-                <!-- <div class="d-flex">
-                    <img
-                        (click)="onFocus()"
-                        class="cursor-point"
-                        src="assets/images/thumbs-up-button.svg"
-                        alt="thumb"
-                    />
-                    <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
-                </div> -->
-                <div class="message-icon hover-message-icon">
-                    <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
+            <div class="divder"></div>
+            <div class="d-flex my-4">
+                <div class="message-icon hover-message-icon cursor-point" (click)="onFocus()">
+                    <img src="assets/images/message.svg" alt="message" />
                 </div>
-                <div class="ml-3 hover-save-icon">
-                    <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
+                <div class="ml-3 hover-save-icon cursor-point" (click)="onFocus()">
+                    <img src="assets/images/save.svg" alt="save" />
                 </div>
             </div>
         </div>

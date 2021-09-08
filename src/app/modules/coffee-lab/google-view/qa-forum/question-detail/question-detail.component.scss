@@ -19,6 +19,33 @@
     }
 }
 
+.hover-save-icon {
+    padding: 6px 9px 6px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.hover-share-icon {
+    padding: 6px 11px 7px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
+    }
+}
+
+.flavour-profiles {
+    border: 2px dashed #d6d6d6;
+    a {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #154faa;
+    }
+}
+
 .br-12 {
     border-radius: 12px;
 }

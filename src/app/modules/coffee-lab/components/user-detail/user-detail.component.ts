@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { organizationTypes } from '@constants';
+import { OrganizationType } from '@enums';
 import { GlobalsService, CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
@@ -10,24 +12,33 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit, OnChanges {
+    @ViewChild('myOp', { static: false }) myOp: OverlayPanel;
     @Input() userId: any;
-    @Input() orgType: any;
+    @Input() orgType: OrganizationType;
     @Input() size: any;
     @Input() imageUrl: any;
+    @Input() name: string;
     @Input() shape: any;
     @Input() hasBorder: any;
     orgName: any;
     data: any;
-    name: any;
+    isOpened = false;
+    hiding = false;
 
     constructor(
         public globalsService: GlobalsService,
-        public dialogSrv: DialogService,
         private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
     ) {}
     ngOnChanges(): void {
         this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;
-        if (this.userId && this.orgType) {
+    }
+
+    ngOnInit(): void {}
+
+    getUserData() {
+        if (this.userId && this.orgType && !this.data) {
+            this.orgType = this.orgType.toLowerCase() as OrganizationType;
             this.coffeeLabService.getUserDetail(this.userId, this.orgType.toLowerCase()).subscribe((res) => {
                 if (res.success) {
                     this.data = res.result;
@@ -37,7 +48,25 @@ export class UserDetailComponent implements OnInit, OnChanges {
         }
     }
 
-    ngOnInit(): void {}
+    show(event) {
+        this.hiding = false;
+        if (!this.isOpened) {
+            this.getUserData();
+            this.myOp.show(event);
+        }
+    }
+
+    hide() {
+        if (this.isOpened) {
+            this.hiding = true;
+            setTimeout(() => {
+                if (this.hiding) {
+                    this.myOp.hide();
+                    this.hiding = false;
+                }
+            }, 300);
+        }
+    }
 
     openChat(): void {
         this.dialogSrv.open(SignupModalComponent, {

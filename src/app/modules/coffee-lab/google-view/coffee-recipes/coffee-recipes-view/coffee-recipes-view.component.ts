@@ -42,7 +42,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     levels: any[] = [];
     orderList: any[] = [];
-
     selectedOrder = 'latest';
     jsonLD: any;
 
@@ -182,6 +181,15 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 styleClass: 'signup-dialog',
             });
         }
+    }
+
+    onFocus(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        this.dialogSrv.open(SignupModalComponent, {
+            showHeader: false,
+            styleClass: 'signup-dialog',
+        });
     }
 
     setSEO() {

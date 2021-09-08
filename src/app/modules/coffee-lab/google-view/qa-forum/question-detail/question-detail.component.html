@@ -82,22 +82,56 @@
                                     />
                                     <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
                                 </div> -->
-                                <div class="align-items-center d-flex">
+                                <div class="align-items-center hover-save-icon d-flex">
                                     <img
                                         (click)="onFocus()"
                                         class="cursor-point"
-                                        src="assets/images/bookmark-button.svg"
+                                        src="assets/images/save.svg"
                                         alt="bookmark-button"
                                     />
                                 </div>
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex hover-share-icon">
                                 <img
                                     (click)="onFocus()"
                                     class="cursor-point"
-                                    src="assets/images/upload.svg"
+                                    src="assets/images/share.svg"
                                     alt="ubload"
                                 />
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="answerDetail && answerDetail?.original_answer_state === 'ACTIVE'"
+                            class="border-main br-4 p-4 mb-4 d-none d-md-block w-100"
+                        >
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="d-flex">
+                                    <img src="assets/images/qa-forum.svg" alt="question-image" />
+                                    <p
+                                        class="align-items-center d-flex text-nowrap fnt-muli fnt-bold fnt-14 text-clr334 ml-2"
+                                    >
+                                        {{ 'read_the_original_answer' | translate }}
+                                    </p>
+                                </div>
+                                <div class="bg-f8 px-25 py-2">
+                                    <p class="fnt-600 fnt-12 fnt-muli text-clr334">
+                                        {{ 'original_language' | translate }} :
+                                        {{ globalsService.getLanguage(answerDetail?.original_details?.language) }}
+                                    </p>
+                                </div>
+                            </div>
+                            <app-user-header [prop]="answerDetail"></app-user-header>
+                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                <a
+                                    class="fnt-14 fnt-600 fnt-muli"
+                                    [routerLink]="
+                                        getLink(
+                                            answerDetail?.original_details.language,
+                                            answerDetail?.original_details?.question_slug
+                                        )
+                                    "
+                                    >{{ answerDetail?.original_details?.question | titlecase }}</a
+                                >
                             </div>
                         </div>
                     </div>
@@ -113,7 +147,7 @@
         </article>
         <article class="w-tab-100 w-min-content col-md-4 col-12 px-0">
             <div class="d-none d-lg-block mb-4">
-                <app-join-community [type]="'question'"></app-join-community>
+                <app-join-community [type]="'question'" [detailType]="'question-detail'"></app-join-community>
             </div>
         </article>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>

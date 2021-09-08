@@ -1,4 +1,6 @@
 .article-item {
+    border: solid 1px #d0d0d0;
+    border-radius: 14px;
     height: 100%;
     img {
         height: 243px;
@@ -6,7 +8,12 @@
     }
     &:hover {
         cursor: pointer;
-        box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 22px 34px 0 rgb(0 0 0/16%);
+        border: 0px !important;
+        // box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
+        h3.article-title-text {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -28,5 +35,19 @@
     @media (min-width: 992px) and (max-width: 1279px) {
         flex: 0 0 50%;
         max-width: 50%;
+    }
+}
+
+.icon-save img {
+    width: 19px !important;
+    height: 24px !important;
+}
+
+.hover-save-icon {
+    padding: 6px 9px 4px 12px;
+    border-radius: 50%;
+    background-color: rgba(116, 117, 136, 0.08);
+    &:hover {
+        background-color: rgba(48, 133, 92, 0.16);
     }
 }

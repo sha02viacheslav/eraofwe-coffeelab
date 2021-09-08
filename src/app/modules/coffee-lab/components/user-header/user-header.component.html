@@ -5,6 +5,9 @@
                 [imageUrl]="
                     prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url
                 "
+                [name]="
+                    prop?.user_name || prop?.question_user || prop?.posted_user || prop?.first_name || 'Unknown User'
+                "
                 [userId]="prop?.user_id || prop?.posted_by"
                 [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
                 size="40"
@@ -16,19 +19,28 @@
                     [ngClass]="{ ellipsis: enableEllipsis }"
                     class="fnt-muli font-weight-bold fnt-14 text-clr334 mr-md-3 mr-1"
                 >
-                    {{ prop?.user_name || prop?.question_user || prop?.posted_user || 'Unknown User' }}
+                    {{
+                        prop?.user_name ||
+                            prop?.question_user ||
+                            prop?.posted_user ||
+                            prop?.first_name ||
+                            'Unknown User'
+                    }}
+                    {{ prop?.last_name }}
                 </div>
             </div>
             <div class="fnt-14 fnt-muli text-clr588 mt-1 d-flex text-nowrap">
-                <span class="fnt-600 mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_expert' | translate }}</span>
+                <span class="fnt-600 mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
                 <span class="fnt-600 mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
                 <span class="ellipsis" *ngIf="orgType !== 'co' && !prop?.question"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
-                <span *ngIf="prop?.question" class="d-none d-md-block time-point"></span>
-                <span *ngIf="prop?.question" class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block">
-                    {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
-                </span>
+                <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
+                    <span class="d-none d-md-block time-point"></span>
+                    <span class="fnt-muli fnt-14 fnt-600 text-clr588 d-none d-md-block aling-time">
+                        {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
+                    </span>
+                </div>
             </div>
         </div>
     </div>

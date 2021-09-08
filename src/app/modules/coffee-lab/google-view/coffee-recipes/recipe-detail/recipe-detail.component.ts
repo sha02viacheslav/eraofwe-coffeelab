@@ -44,6 +44,8 @@ export class RecipeDetailComponent implements OnInit {
     previousUrl: string;
     stickData: any;
     commentData: any[] = [];
+    allComments: any[] = [];
+    showCommentBtn = false;
 
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -52,7 +54,7 @@ export class RecipeDetailComponent implements OnInit {
         private seoService: SEOService,
         private toastService: ToastrService,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -75,6 +77,11 @@ export class RecipeDetailComponent implements OnInit {
         // this.setSEO();
     }
 
+    onRealtedRoute(langCode, slug) {
+        this.router.navigateByUrl('/' + langCode + '/coffee-recipes/' + slug);
+        window.scrollTo(0, 0);
+    }
+
     getRecipeList() {
         this.coffeeLabService.getForumList('recipe', { page: 1, per_page: 4 }).subscribe((res: any) => {
             if (res.success) {
@@ -94,12 +101,6 @@ export class RecipeDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
-                if (this.detailsData?.steps && this.detailsData?.steps.length > 0) {
-                    this.detailsData.steps.map((item) => {
-                        item.description = this.globalsService.getJustText(item.description);
-                        return item;
-                    });
-                }
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
                 this.startupService.load(this.lang || 'en');
@@ -129,9 +130,20 @@ export class RecipeDetailComponent implements OnInit {
     getCommentsData(): void {
         this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
-                this.commentData = res.result;
+                this.allComments = res.result;
+                this.commentData = this.allComments.slice(0, 3);
+                if (this.allComments.length > 3) {
+                    this.showCommentBtn = true;
+                } else {
+                    this.showCommentBtn = false;
+                }
             }
         });
+    }
+
+    viewAllComments() {
+        this.commentData = this.allComments;
+        this.showCommentBtn = false;
     }
 
     setSEO() {

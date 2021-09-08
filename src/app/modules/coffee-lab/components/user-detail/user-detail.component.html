@@ -3,25 +3,31 @@
     [style.width]="size + 'px'"
     [style.height]="size + 'px'"
     [style.border]="hasBorder ? '2px solid #fff' : 'none'"
-    (mouseenter)="myOp.toggle($event)"
+    (mouseenter)="show($event)"
+    (mouseleave)="hide()"
 >
-    <!-- (mouseout)="myOp.hide()" -->
     <img
-        *ngIf="data?.profile_image_thumb_url || data?.profile_image_url"
-        [src]="data?.profile_image_thumb_url || data?.profile_image_url"
+        *ngIf="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
+        [src]="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
         [alt]="name + 'profile image'"
         [style.borderRadius]="shape === 'rectangle' ? 'unset' : '50%'"
     />
     <span
-        *ngIf="!data?.profile_image_thumb_url && !data?.profile_image_url"
+        *ngIf="!imageUrl && !data?.profile_image_thumb_url && !data?.profile_image_url"
         class="text-white"
         [style.font-size]="size / 1.5 + 'px'"
         >{{ name && name.length ? name.slice(0, 1) : '' }}</span
     >
 </div>
-<p-overlayPanel #myOp styleClass="user-details-overlay" appendTo="body">
+<p-overlayPanel
+    #myOp
+    styleClass="user-details-overlay"
+    appendTo="body"
+    (onShow)="isOpened = true"
+    (onHide)="isOpened = false"
+>
     <ng-template pTemplate>
-        <div class="py-2 py-md-0 user-details-wrapper">
+        <div class="py-2 py-md-0 user-details-wrapper" (mouseenter)="show($event)" (mouseleave)="hide()">
             <div class="p-3 p-md-4 d-flex">
                 <img
                     class="user-image"
@@ -38,7 +44,7 @@
                         <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
                             {{ data?.firstname }} {{ data?.lastname }}
                         </p>
-                        <p class="fnt-muli fnt-14 fnt-normal text-clr334 mb-1">
+                        <p class="fnt-muli fnt-14 text-clr334 mb-1">
                             {{ data?.organization_name ? data?.organization_name : '' }}
                         </p>
                         <span class="fnt-muli fnt-14 fnt-600 text-clr588 mb-0">
@@ -77,7 +83,7 @@
                             organization: orgType
                         }"
                     >
-                        View Profile
+                        {{ 'view_profile' | translate }}
                     </button>
                     <div class="message-button fnt-14 fnt-muli" (click)="myOp.hide(); openChat()">
                         <img src="assets/images/message-icon.svg" />

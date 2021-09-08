@@ -3,8 +3,8 @@
 }
 
 .border-l8 {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
 
 .button-list {
@@ -39,12 +39,13 @@
 }
 
 .hover-save-icon {
-    padding: 6px 10px 8px 13px;
+    padding: 6px 11px 8px 13px;
     border-radius: 50%;
     &:hover {
         background-color: rgba(48, 133, 92, 0.12);
     }
 }
+
 .py-15 {
     padding-top: 6px;
     padding-bottom: 5px;

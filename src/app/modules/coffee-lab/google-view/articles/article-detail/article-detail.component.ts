@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
-import { DISCUSSIONS_FORUM } from '../../data';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -27,16 +26,17 @@ export class ArticleDetailComponent implements OnInit {
     addComment = false;
     stickData: any;
     commentData: any;
-
+    allComments: any;
+    showCommentBtn = false;
+    orignalArticleName: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
         private activatedRoute: ActivatedRoute,
         private seoService: SEOService,
-        private location: Location,
         private toastService: ToastrService,
         private startupService: StartupService,
-        private globalsService: GlobalsService,
+        public globalsService: GlobalsService,
         private dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -67,6 +67,16 @@ export class ArticleDetailComponent implements OnInit {
                     .slice(0, 4);
             }
         });
+    }
+
+    onRealtedRoute(langCode, slug) {
+        this.router.navigateByUrl('/' + langCode + '/articles/' + slug);
+        window.scrollTo(0, 0);
+    }
+
+    viewAllComments() {
+        this.commentData = this.allComments;
+        this.showCommentBtn = false;
     }
 
     getDetails() {
@@ -184,7 +194,13 @@ export class ArticleDetailComponent implements OnInit {
     getCommentsData(): void {
         this.coffeeLabService.getCommentList('article', this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
-                this.commentData = res.result;
+                this.allComments = res.result;
+                this.commentData = this.allComments?.slice(0, 3);
+                if (this.allComments?.length > 3) {
+                    this.showCommentBtn = true;
+                } else {
+                    this.showCommentBtn = false;
+                }
             }
         });
     }
