@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import {
@@ -34,6 +35,7 @@ export function StartupServiceFactory(startupService: StartupService) {
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
         AppRoutingModule,
+        TransferHttpCacheModule,
         HttpClientModule,
         FormsModule,
         ToastrModule.forRoot({
