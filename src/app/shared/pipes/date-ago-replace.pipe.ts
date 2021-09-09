@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DateAgoReplacePipe implements PipeTransform {
     constructor(private translateService: TranslateService) {}
-    transform(value: string): string {
+    transform(value: string, isAgo?: boolean): string {
         if (!value) {
             return '';
         }
@@ -15,6 +15,8 @@ export class DateAgoReplacePipe implements PipeTransform {
         if (isNaN(+amount)) {
             suffix = this.translateService.instant(amount);
         }
-        return `${suffix ?? amount} ${this.translateService.instant(unit)} ${this.translateService.instant('ago')}`;
+        return `${suffix ?? amount} ${this.translateService.instant(unit)} ${
+            !isAgo ? this.translateService.instant('ago') : ''
+        }`;
     }
 }

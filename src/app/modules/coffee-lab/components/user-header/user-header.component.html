@@ -35,7 +35,7 @@
                 <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
                     <span class="d-none d-md-block time-point"></span>
                     <span class="fnt-600 text-clr588 d-none d-md-block aling-time">
-                        {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
+                        {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}
                     </span>
                 </div>
             </div>
