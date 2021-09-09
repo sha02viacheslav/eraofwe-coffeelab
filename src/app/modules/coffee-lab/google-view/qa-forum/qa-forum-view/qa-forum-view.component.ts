@@ -12,6 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { RouterSlug } from '@enums';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -128,7 +129,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     }
 
     getLink(item: any, answer: any) {
-        const url = `/${this.coffeeLabService.currentForumLanguage}/qa-forum/${item.slug}`;
+        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
         return {
             url,
             queryParmas: {
@@ -175,7 +176,10 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                             '@type': 'Answer',
                             text: this.globalsService.getJustText(answer.answer),
                             dateCreated: answer.created_at,
-                            url: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}/qa-forum/${forum.slug}?#answer-${answer.id}`,
+
+                            url: `${environment.coffeeLabWeb}/${getLangRoute(
+                                this.coffeeLabService.currentForumLanguage,
+                            )}/qa-forum/${forum.slug}?#answer-${answer.id}`,
                             author: {
                                 '@type': 'Person',
                                 name: answer.user_name,

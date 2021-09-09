@@ -11,6 +11,7 @@ import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { RouterSlug } from '@enums';
+import { getLangRoute } from '@utils';
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -114,8 +115,10 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     getLink(item) {
-        const url = `/${item.language}/articles/${item.slug}`;
-        return item.cardType === 'forum' ? url : `/${this.coffeeLabService.currentForumLanguage}/articles`;
+        const url = `/${getLangRoute(item.language)}/articles/${item.slug}`;
+        return item.cardType === 'forum'
+            ? url
+            : `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/articles`;
     }
 
     gotoDetailPage(event, item: any) {
@@ -145,7 +148,9 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         for (const forum of this.articlesData) {
             const itemData = {
                 '@type': 'Article',
-                '@id': `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}/articles/${forum.slug}`,
+                '@id': `${environment.coffeeLabWeb}/${getLangRoute(
+                    this.coffeeLabService.currentForumLanguage,
+                )}/articles/${forum.slug}`,
                 headline: forum.title,
                 description: this.globalsService.getJustText(forum.content),
                 image: forum.cover_image_url,

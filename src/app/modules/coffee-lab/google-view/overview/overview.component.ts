@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { RouterMap, SlugMap } from '@constants';
 import { MenuItem } from 'primeng/api';
 import { RouterSlug } from '@enums';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-overview',
@@ -32,9 +33,12 @@ export class OverviewComponent implements OnInit {
                 if (this.globalsService.currentUrl) {
                     currentRouter = this.globalsService.currentUrl.split('/')[2].split('?')[0];
                 }
-                this.router.navigate([`/${language}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`], {
-                    queryParamsHandling: 'merge',
-                });
+                this.router.navigate(
+                    [`/${getLangRoute(language)}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`],
+                    {
+                        queryParamsHandling: 'merge',
+                    },
+                );
             });
         });
     }
@@ -43,25 +47,25 @@ export class OverviewComponent implements OnInit {
         return [
             {
                 label: 'question_answers',
-                routerLink: `/${language}/${RouterMap[language][RouterSlug.QA]}`,
+                routerLink: `/${getLangRoute(language)}/${RouterMap[language][RouterSlug.QA]}`,
                 icon: 'assets/images/qa-forum.svg',
                 activeIcon: 'assets/images/qa-forum-active.svg',
             },
             {
                 label: 'posts',
-                routerLink: `/${language}/${RouterMap[language][RouterSlug.ARTICLE]}`,
+                routerLink: `/${getLangRoute(language)}/${RouterMap[language][RouterSlug.ARTICLE]}`,
                 icon: 'assets/images/article.svg',
                 activeIcon: 'assets/images/article-active.svg',
             },
             {
                 label: 'brewing_guides',
-                routerLink: `/${language}/${RouterMap[language][RouterSlug.RECIPE]}`,
+                routerLink: `/${getLangRoute(language)}/${RouterMap[language][RouterSlug.RECIPE]}`,
                 icon: 'assets/images/coffee-recipe.svg',
                 activeIcon: 'assets/images/coffee-recipe-active.svg',
             },
             {
                 label: 'about_era_of_we',
-                routerLink: `/${language}/${RouterMap[language][RouterSlug.EOW]}`,
+                routerLink: `/${getLangRoute(language)}/${RouterMap[language][RouterSlug.EOW]}`,
                 icon: 'assets/images/era-of-we.svg',
                 activeIcon: 'assets/images/era-of-we-active.svg',
             },

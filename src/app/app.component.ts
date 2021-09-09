@@ -2,6 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { I18NService, SEOService } from '@services';
 import { environment } from '@env/environment';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.seoService.createLinkForCanonicalURL();
-        this.document.documentElement.lang = this.i8nService.currentLang;
+        this.document.documentElement.lang = getLangRoute(this.i8nService.currentLang);
         if (this.isStaging) {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
         }

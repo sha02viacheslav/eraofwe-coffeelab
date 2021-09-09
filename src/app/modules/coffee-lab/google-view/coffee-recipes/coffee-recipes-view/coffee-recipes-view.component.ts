@@ -11,6 +11,7 @@ import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
 import { RouterSlug } from '@enums';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -163,7 +164,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     getLink(item) {
-        const url = `/${item.lang_code}/coffee-recipes/${item.slug}`;
+        const url = `/${getLangRoute(item.lang_code)}/coffee-recipes/${item.slug}`;
         return url;
     }
 
@@ -224,7 +225,9 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(
+                                this.coffeeLabService.currentForumLanguage,
+                            )}`,
                         },
                         {
                             '@type': 'ListItem',

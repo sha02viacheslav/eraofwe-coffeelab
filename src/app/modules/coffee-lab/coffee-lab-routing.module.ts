@@ -78,28 +78,28 @@ const routes: Routes = [
                             import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },
                     {
-                        path: 'pt/qa-forum',
+                        path: 'pt-br/qa-forum',
                         loadChildren: () =>
                             import('./google-view/qa-forum/qa-forum-view/qa-forum-view.module').then(
                                 (m) => m.QaForumViewModule,
                             ),
                     },
                     {
-                        path: 'pt/articles',
+                        path: 'pt-br/articles',
                         loadChildren: () =>
                             import('./google-view/articles/articles-view/articles-view.module').then(
                                 (m) => m.ArticlesViewModule,
                             ),
                     },
                     {
-                        path: 'pt/coffee-recipes',
+                        path: 'pt-br/coffee-recipes',
                         loadChildren: () =>
                             import('./google-view/coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
                                 (m) => m.CoffeeRecipesViewModule,
                             ),
                     },
                     {
-                        path: 'pt/about-era-of-we',
+                        path: 'pt-br/about-era-of-we',
                         loadChildren: () =>
                             import('./google-view/era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
                     },

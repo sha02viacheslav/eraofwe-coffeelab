@@ -9,6 +9,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
 import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-era-of-we',
@@ -102,8 +103,10 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     }
 
     getLink(item) {
-        const url = `/${item.language}/articles/${item.slug}`;
-        return item.cardType === 'forum' ? url : `/${this.coffeeLabService.currentForumLanguage}/articles`;
+        const url = `/${getLangRoute(item.language)}/articles/${item.slug}`;
+        return item.cardType === 'forum'
+            ? url
+            : `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/articles`;
     }
 
     onFocus(event) {

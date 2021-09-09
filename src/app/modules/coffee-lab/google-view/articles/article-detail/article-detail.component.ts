@@ -8,6 +8,7 @@ import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-article-detail',
@@ -85,22 +86,24 @@ export class ArticleDetailComponent implements OnInit {
         this.loading = true;
         this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
-                this.detailsData = res.result;
-                this.lang = res.result.language;
-                if (this.lang !== this.urlLang) {
+                if (getLangRoute(res.result.language) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
-                }
-                if (res.result?.is_era_of_we) {
-                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;
                 } else {
-                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
-                    this.globalsService.setLimitCounter();
+                    this.detailsData = res.result;
+                    this.lang = res.result.language;
+
+                    if (res.result?.is_era_of_we) {
+                        this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;
+                    } else {
+                        this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
+                        this.globalsService.setLimitCounter();
+                    }
+                    this.startupService.load(this.lang || 'en');
+                    this.setSEO();
+                    this.setSchemaMackup();
+                    this.getUserDetail();
+                    this.getCommentsData();
                 }
-                this.startupService.load(this.lang || 'en');
-                this.setSEO();
-                this.setSchemaMackup();
-                this.getUserDetail();
-                this.getCommentsData();
             } else {
                 this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);

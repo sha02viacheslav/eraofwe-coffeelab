@@ -8,6 +8,7 @@ import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -101,19 +102,20 @@ export class RecipeDetailComponent implements OnInit {
         this.loading = true;
         this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
-                this.detailsData = res.result;
-                this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
-                this.globalsService.setLimitCounter();
-                this.lang = res.result.lang_code;
-                if (this.lang !== this.urlLang) {
+                if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
+                } else {
+                    this.detailsData = res.result;
+                    this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
+                    this.globalsService.setLimitCounter();
+                    this.lang = res.result.lang_code;
+                    this.startupService.load(this.lang || 'en');
+                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
+                    this.setSEO();
+                    this.setSchemaMackup();
+                    this.getUserDetail();
+                    this.getCommentsData();
                 }
-                this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
-                this.setSEO();
-                this.setSchemaMackup();
-                this.getUserDetail();
-                this.getCommentsData();
             } else {
                 this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);

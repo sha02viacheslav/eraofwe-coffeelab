@@ -8,6 +8,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-question-detail',
@@ -69,23 +70,24 @@ export class QuestionDetailComponent implements OnInit {
         this.loading = true;
         this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
-                this.detailsData = res.result;
-                this.lang = res.result.lang_code;
-                if (this.detailsData.parent_question_id > 0) {
-                    this.detailsData.answers.forEach((element) => {
-                        if (element.parent_answer_id > 0) {
-                            this.getAnswerDetail(element.id);
-                        }
-                    });
-                }
-                if (this.lang !== this.urlLang) {
+                if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
+                } else {
+                    this.detailsData = res.result;
+                    this.lang = res.result.lang_code;
+                    if (this.detailsData.parent_question_id > 0) {
+                        this.detailsData.answers.forEach((element) => {
+                            if (element.parent_answer_id > 0) {
+                                this.getAnswerDetail(element.id);
+                            }
+                        });
+                    }
+                    this.globalsService.setLimitCounter();
+                    this.startupService.load(this.lang || 'en');
+                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}`;
+                    this.setSEO();
+                    this.setSchemaMackup();
                 }
-                this.globalsService.setLimitCounter();
-                this.startupService.load(this.lang || 'en');
-                this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}`;
-                this.setSEO();
-                this.setSchemaMackup();
             } else {
                 this.toastService.error('The question is not exist.');
                 this.router.navigate(['/error']);
