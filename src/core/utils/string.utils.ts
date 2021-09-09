@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export const trimCharRight = (str: string, char: string): string => {
     const regex = new RegExp(`${char}+$`, 'gi');
     return str.replace(regex, '');
@@ -21,3 +23,8 @@ export function getWordCount(description: string) {
     plainString = plainString.trim();
     return plainString;
 }
+
+export const toSentenceCase = (str: string = '', decodeSnake: boolean = true): any => {
+    // decodeSnake: To remove special characters(undersocre and dash)
+    return decodeSnake ? _.upperFirst(_.lowerCase(str)) : _.upperFirst(str.toLocaleLowerCase());
+};

@@ -114,8 +114,12 @@ export class GlobalsService {
     }
 
     getJustText(content: any) {
-        const contentElement = this.document.createElement('div');
-        contentElement.innerHTML = content;
-        return contentElement.textContent;
+        if (content) {
+            const contentElement = this.document.createElement('div');
+            contentElement.innerHTML = content;
+            return contentElement.textContent;
+        } else {
+            return '';
+        }
     }
 }

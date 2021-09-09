@@ -8,7 +8,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { RouterSlug } from '@enums';
-import { getLangRoute } from '@utils';
+import { getLangRoute, toSentenceCase } from '@utils';
 
 @Component({
     selector: 'app-question-detail',
@@ -126,8 +126,9 @@ export class QuestionDetailComponent implements OnInit {
                 description = this.globalsService.getJustText(firstAnswer?.answer);
             }
         } else {
-            description =
-                'Era of We A global coffee marketplace and community that brings together all members of the supply chain';
+            description = toSentenceCase(this.idOrSlug).concat(
+                ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+            );
         }
         const imageUrl = firstAnswer?.images?.[0] || seoVariables.image;
 
