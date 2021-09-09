@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService } from '@services';
+import { getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
@@ -29,7 +30,7 @@ export class LikeDividerComponent implements OnInit {
     }
 
     getLink(item: any, answer: any) {
-        const url = `/${this.coffeeLabService.currentForumLanguage}/qa-forum/${item.slug}`;
+        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
         return {
             url,
             queryParmas: {

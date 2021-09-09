@@ -5,6 +5,7 @@ import { CoffeeLabService, I18NService } from '@services';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
 import { ActivatedRoute } from '@angular/router';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-join-community',
@@ -53,7 +54,7 @@ export class JoinCommunityComponent implements OnInit {
         } else if (this.type === 'recipe') {
             type = 'coffee-recipes';
         }
-        const url = `/${this.coffeeLabService.currentForumLanguage}/${type}/${item.slug}`;
+        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${type}/${item.slug}`;
         return {
             url,
             queryParmas: {
