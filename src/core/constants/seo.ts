@@ -39,38 +39,38 @@ export const SeoDescription = {
         [RouterSlug.ARTICLE]:
             'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
         [RouterSlug.RECIPE]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+            'Explore brewing guides and recipes on The Coffee Lab, a space for coffee drinkers to share news and knowledge about coffee.',
         [RouterSlug.EOW]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
+            'Check out The Coffee Lab to exchange brewing trips, share knowledge, and learn the latest trends about the coffee industry.',
     },
     sv: {
         [RouterSlug.QA]:
             'Globalt kaffeforum för att stärka framtidens kaffe. Etablera kontakt med kaffeexperter från hela världen.',
         [RouterSlug.ARTICLE]:
-            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna.',
+            'Utforska bryggguider och recept på The Coffee Lab, ett utrymme för kaffedrickare att dela nyheter och kunskap om kaffe.',
         [RouterSlug.RECIPE]:
-            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna. ',
+            'Kolla in The Coffee Lab för att utbyta bryggningsresor, dela kunskap och lära dig de senaste trenderna om kaffebranschen.',
         [RouterSlug.EOW]:
-            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna.',
+            'The Coffee Lab är ett kaffeinlärningsforum för experter och kaffedrickare att lära sig om de senaste branschtrenderna',
     },
     pt: {
         [RouterSlug.QA]:
-            'Global Coffee forum committed to the future of Coffee. Connect with coffee experts from the coffee supply chain.',
+            'Fórum Global do Café comprometido com o futuro do café. Conecte-se com especialistas em café da cadeia de fornecimento de café.',
         [RouterSlug.ARTICLE]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+            'Confira o The Coffee Lab para trocar viagens de cerveja, compartilhar conhecimento e aprender as últimas tendências sobre a indústria do café.',
         [RouterSlug.RECIPE]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+            'O Coffee Lab é um fórum de aprendizagem de café para que especialistas e bebedores de café aprendam sobre as últimas tendências do setor.',
         [RouterSlug.EOW]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
+            'Explore guias de cerveja e receitas no The Coffee Lab, um espaço para os bebedores de café compartilharem novidades e conhecimentos sobre o café.',
     },
     es: {
         [RouterSlug.QA]:
-            'Global Coffee forum committed to the future of Coffee. Connect with coffee experts from the coffee supply chain.',
+            'Foro Global del Café comprometido con el futuro del Café. Conéctese con expertos en café de la cadena de suministro de café.',
         [RouterSlug.ARTICLE]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+            'Visite The Coffee Lab para intercambiar viajes de preparación, compartir conocimientos y conocer las últimas tendencias sobre la industria del café.',
         [RouterSlug.RECIPE]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends.',
+            'Obtenga, comparta y cree recetas y guías de preparación para los mejores cafés con la comunidad global del café.',
         [RouterSlug.EOW]:
-            'The Coffee Lab is a coffee learning forum for experts and coffee drinkers to learn about the latest industry trends. ',
+            'El Laboratorio de Café es un foro de aprendizaje del café para que los expertos y los bebedores de café conozcan las últimas tendencias de la industria.',
     },
 };
