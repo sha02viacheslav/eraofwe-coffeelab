@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalsService } from '@services';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -15,6 +16,6 @@ export class TranslationDropdownComponent implements OnInit {
     ngOnInit(): void {}
 
     getLink(item) {
-        return `/${item.language}/${this.forumType ?? 'articles'}/${item.slug || item.question_slug}`;
+        return `/${getLangRoute(item.language)}/${this.forumType ?? 'articles'}/${item.slug || item.question_slug}`;
     }
 }
