@@ -19,6 +19,7 @@ export class StartupService {
     ) {}
 
     load(language?): Promise<any> {
+        console.log(language);
         const oldLanguage = this.i18n.currentLang;
         if (language) {
             this.i18n.use(language);

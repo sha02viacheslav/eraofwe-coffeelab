@@ -13,10 +13,14 @@ export class LangPrefixService {
             const lang = this.injector.get('lang', defaultLang);
             return `${lang}`;
         } else {
-            const supportedLangs = ['en', 'sv', 'pt', 'es'];
-            const matches = window.location.href.match(/\/([a-z]{2})(\/|$)/);
-            const lang = matches && supportedLangs.indexOf(matches[1]) !== -1 ? matches[1] : defaultLang;
-            return lang;
+            const supportedLangs = ['/en/', '/sv/', '/pt-br/', '/es/'];
+            let language = defaultLang;
+            supportedLangs.forEach((item) => {
+                if (window.location.href.includes(item)) {
+                    language = item.replace('/', '').replace('/', '');
+                }
+            });
+            return language;
         }
     }
 }

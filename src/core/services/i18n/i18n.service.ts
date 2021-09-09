@@ -31,7 +31,7 @@ const LANGS: { [key: string]: LangData } = {
         locale: 'pt',
     },
     es: {
-        text: 'Portuguese',
+        text: 'Spanish',
         ng: ngEs,
         locale: 'es',
     },
@@ -55,7 +55,7 @@ export class I18NService {
             this.default = defaultLan;
         }
         const lang = this.langPrefixService.langPrefix();
-        this.updateLangData(lang || this.default);
+        this.updateLangData(lang === 'pt-br' ? 'pt' : lang || this.default);
     }
 
     private getDefaultLang(): string | undefined {
