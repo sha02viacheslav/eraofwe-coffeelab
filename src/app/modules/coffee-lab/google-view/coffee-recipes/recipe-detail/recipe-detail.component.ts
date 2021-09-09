@@ -46,7 +46,7 @@ export class RecipeDetailComponent implements OnInit {
     commentData: any[] = [];
     allComments: any[] = [];
     showCommentBtn = false;
-
+    urlLang: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -60,6 +60,7 @@ export class RecipeDetailComponent implements OnInit {
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.activatedRoute.params.subscribe((params) => {
+            this.urlLang = params?.lang;
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
@@ -104,7 +105,7 @@ export class RecipeDetailComponent implements OnInit {
                 this.detailsData.description = this.globalsService.getJustText(this.detailsData.description);
                 this.globalsService.setLimitCounter();
                 this.lang = res.result.lang_code;
-                if (this.lang !== this.coffeeLabService.currentForumLanguage) {
+                if (this.lang !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 }
                 this.startupService.load(this.lang || 'en');

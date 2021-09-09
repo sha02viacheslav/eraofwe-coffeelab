@@ -32,10 +32,7 @@
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
-                            <div
-                                class="translate-mob-wrapper pl-2"
-                                *ngIf="detailsData?.allow_translation && detailsData?.translations"
-                            >
+                            <div class="pl-2" *ngIf="detailsData?.allow_translation && detailsData?.translations">
                                 <app-translation-dropdown
                                     forumType="coffee-recipes"
                                     [translatedList]="detailsData?.translations"

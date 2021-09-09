@@ -23,6 +23,7 @@ export class QuestionDetailComponent implements OnInit {
     lang: any;
     previousUrl: string;
     answerDetail: any;
+    urlLang: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -36,6 +37,7 @@ export class QuestionDetailComponent implements OnInit {
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.activatedRoute.params.subscribe((params) => {
+            this.urlLang = params?.lang;
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 // this.setSEO();
@@ -76,7 +78,7 @@ export class QuestionDetailComponent implements OnInit {
                         }
                     });
                 }
-                if (this.lang !== this.coffeeLabService.currentForumLanguage) {
+                if (this.lang !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 }
                 this.globalsService.setLimitCounter();

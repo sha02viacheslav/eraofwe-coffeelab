@@ -29,6 +29,7 @@ export class ArticleDetailComponent implements OnInit {
     allComments: any;
     showCommentBtn = false;
     orignalArticleName: string;
+    urlLang: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -43,6 +44,7 @@ export class ArticleDetailComponent implements OnInit {
     ) {
         // this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
+            this.urlLang = params?.lang;
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
@@ -85,7 +87,7 @@ export class ArticleDetailComponent implements OnInit {
             if (res.success) {
                 this.detailsData = res.result;
                 this.lang = res.result.language;
-                if (this.lang !== this.coffeeLabService.currentForumLanguage) {
+                if (this.lang !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 }
                 if (res.result?.is_era_of_we) {
