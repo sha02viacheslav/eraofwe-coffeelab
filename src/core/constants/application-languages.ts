@@ -38,3 +38,5 @@ export const APP_LANGUAGES: any[] = [
         value: 'es',
     },
 ];
+
+export const LANGUAGE_PREFIXES: string[] = ['en', 'sv', 'pt-br', 'es'];

@@ -1,5 +1,6 @@
 import { isPlatformServer } from '@angular/common';
 import { Inject, Injectable, Injector, PLATFORM_ID } from '@angular/core';
+import { extractLangPrefix } from '@utils';
 
 @Injectable({
     providedIn: 'root',
@@ -10,17 +11,10 @@ export class LangPrefixService {
     langPrefix() {
         const defaultLang = 'en';
         if (isPlatformServer(this.platformId)) {
-            const lang = this.injector.get('lang', defaultLang);
-            return `${lang}`;
+            const langPrefix = this.injector.get('langPrefix', defaultLang);
+            return langPrefix || defaultLang;
         } else {
-            const supportedLangs = ['/en/', '/sv/', '/pt-br/', '/es/'];
-            let language = defaultLang;
-            supportedLangs.forEach((item) => {
-                if (window.location.href.includes(item)) {
-                    language = item.replace('/', '').replace('/', '');
-                }
-            });
-            return language;
+            return extractLangPrefix(window.location.href) || defaultLang;
         }
     }
 }
