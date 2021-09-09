@@ -33,10 +33,6 @@ export class OverviewComponent implements OnInit {
                 if (this.globalsService.currentUrl) {
                     currentRouter = this.globalsService.currentUrl.split('/')[2].split('?')[0];
                 }
-                console.log(
-                    language,
-                    `/${getLangRoute(language)}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`,
-                );
                 this.router.navigate(
                     [`/${getLangRoute(language)}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`],
                     {
