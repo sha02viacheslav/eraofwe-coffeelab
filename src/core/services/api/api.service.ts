@@ -33,6 +33,10 @@ export class ApiService {
         this.generalUrl = `${environment.apiURL}/${this.orgType}/general`;
     }
 
+    protected get(url: string, apiCall: string, options?: object): Observable<ApiResponse<any>> {
+        return this.http.get<ApiResponse<any>>(`${url}?api_call=${encodeURIComponent(`/${apiCall}`)}`, options);
+    }
+
     protected post(
         url: string,
         apiCall: string,
@@ -98,7 +102,9 @@ export class ApiService {
                 obj.hasOwnProperty(prop) &&
                 !_.isNull(obj[prop]) &&
                 !_.isUndefined(obj[prop]) &&
-                !(_.isArray(obj[prop]) && _.isEmpty(obj[prop]))
+                !(_.isArray(obj[prop]) && _.isEmpty(obj[prop])) &&
+                obj[prop] !== undefined &&
+                obj[prop] !== ''
             ) {
                 str.push(
                     encodeURIComponent(prop) +

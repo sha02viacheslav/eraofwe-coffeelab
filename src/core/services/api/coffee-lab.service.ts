@@ -25,33 +25,21 @@ export class CoffeeLabService extends ApiService {
     }
 
     getForumList(type: string, options?: any, language = this.currentForumLanguage): Observable<any> {
-        const data = {
-            api_call: `/general/${type}s?${this.serializeParams(options)}`,
-            method: 'GET',
-        };
         const httpOptions = {
             headers: new HttpHeaders({ 'Accept-Language': language }),
         };
-        return this.http.post(this.generalUrl, data, httpOptions);
+        return this.get(this.orgPostUrl, `general/${type}s?${this.serializeParams(options)}`, httpOptions);
     }
 
     getForumDetails(type: string, idOrSlug: string) {
-        return this.post(this.generalUrl, `general/${type}s/${idOrSlug}`, 'GET');
-    }
-
-    healthCheck() {
-        return this.post(this.postUrl, `health-check`, 'GET');
+        return this.get(this.orgPostUrl, `general/${type}s/${idOrSlug}`);
     }
 
     getUserDetail(userId: string | number, orgType: string) {
-        return this.post(this.generalUrl, `general/${orgType}/users/${userId}`, 'GET');
-    }
-
-    getUserRoles() {
-        return this.postWithOrg(this.postUrl, `users/roles`, 'GET');
+        return this.get(this.orgPostUrl, `general/${orgType}/users/${userId}`);
     }
 
     getCommentList(type: string, slug: any): any {
-        return this.post(this.postUrl, `general/${type}s/${slug}/comments`, 'GET');
+        return this.get(this.orgPostUrl, `general/${type}s/${slug}/comments`);
     }
 }
