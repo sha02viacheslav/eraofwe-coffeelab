@@ -58,7 +58,11 @@
                             </div>
                         </div>
                         <div class="pt-4 px-0 forum-content">
-                            <div [ngClass]="{ 'mb-2': !isLast }" [innerHTML]="postItem.answer"></div>
+                            <div
+                                [ngClass]="{ 'mb-2': !isLast }"
+                                class="activate-link"
+                                [innerHTML]="postItem.answer"
+                            ></div>
                             <ng-container *ngIf="postItem.images">
                                 <img
                                     class="w-100 mb-3"
