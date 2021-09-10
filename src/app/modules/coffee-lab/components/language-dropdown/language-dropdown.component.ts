@@ -12,6 +12,7 @@ import { getLangRoute } from '@utils';
 export class LanguageDropdownComponent implements OnInit {
     readonly RouterMap = RouterMap;
     readonly ROUTER_SLUG_ITEMS = ROUTER_SLUG_ITEMS;
+    readonly getLangRoute = getLangRoute;
     languageList: any[] = APP_LANGUAGES;
     selectedLangCode: string;
     selectedFullLang: string;
