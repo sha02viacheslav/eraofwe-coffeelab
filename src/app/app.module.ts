@@ -39,8 +39,11 @@ export function StartupServiceFactory(startupService: StartupService) {
         HttpClientModule,
         FormsModule,
         ToastrModule.forRoot({
+            timeOut: 3000,
             preventDuplicates: true,
             positionClass: 'toast-bottom-right',
+            closeButton: true,
+            tapToDismiss: false,
         }),
         TranslateModule.forRoot(),
         InputTextModule,

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>E5CC5460-272F-4173-946D-7F7AB6955F16</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Toaster-design" transform="translate(-1037.000000, -811.000000)">
+            <g id="Group-29-Copy" transform="translate(1021.000000, 795.000000)">
+                <g id="Group-32" transform="translate(16.000000, 16.000000)">
+                    <circle id="Oval" fill="#D50000" cx="15" cy="15" r="15"></circle>
+                    <g id="Group-31" transform="translate(7.000000, 6.000000)" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+                        <path d="M7.10882718,0.744550995 L0.218047179,11.6799097 C-0.0710551067,12.1558373 -0.0727812137,12.7418513 0.213512867,13.2193104 C0.499806949,13.6967695 1.03112018,13.9939599 1.60922,14 L15.39078,14 C15.9688798,13.9939599 16.5001931,13.6967695 16.7864871,13.2193104 C17.0727812,12.7418513 17.0710551,12.1558373 16.7819528,11.6799097 L9.89117282,0.744550995 C9.59620703,0.282297234 9.06874251,0 8.5,0 C7.93125749,0 7.40379297,0.282297234 7.10882718,0.744550995 Z" id="Path"></path>
+                        <g id="alert-triangle">
+                            <line x1="8.5" y1="4.71963897" x2="8.5" y2="7.81309265" id="Path"></line>
+                            <line x1="8.5" y1="10.9065463" x2="8.50813551" y2="10.9065463" id="Path"></line>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
