@@ -5,11 +5,12 @@ import { environment } from '@env/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
+import { OrganizationType } from '@enums';
 
 type HttpMethod = '' | 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export class ApiService {
-    protected orgType: string;
+    readonly orgType = OrganizationType.CONSUMER;
     protected postUrl: string;
     protected deleteUrl: string;
     protected orgPostUrl: string;
@@ -21,7 +22,6 @@ export class ApiService {
     protected generalUrl: string;
 
     constructor(protected cookieSrv: CookieService, protected http: HttpClient) {
-        this.orgType = 'co';
         this.postUrl = `${environment.apiURL}/api`;
         this.deleteUrl = `${environment.apiURL}/deleteapi`;
         this.orgPostUrl = `${environment.apiURL}/${this.orgType}/api`;
