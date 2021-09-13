@@ -5,20 +5,34 @@
     [style.border]="hasBorder ? '2px solid #fff' : 'none'"
     (mouseenter)="show($event)"
     (mouseleave)="hide()"
+    *ngIf="type !== 'text'"
 >
     <img
-        *ngIf="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
-        [src]="imageUrl || data?.profile_image_thumb_url || data?.profile_image_url"
-        [alt]="name + 'profile image'"
-        [style.borderRadius]="shape === 'rectangle' ? 'unset' : '50%'"
+        *ngIf="imageUrl; else placeholder"
+        [src]="imageUrl"
+        [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
+        [style.borderRadius]="shape === 'rectangle' ? '2px' : '50%'"
     />
-    <span
-        *ngIf="!imageUrl && !data?.profile_image_thumb_url && !data?.profile_image_url"
-        class="text-white"
-        [style.font-size]="size / 1.5 + 'px'"
-        >{{ name && name.length ? name.slice(0, 1) : '' }}</span
-    >
+    <ng-template #placeholder>
+        <div *ngIf="type == 'contact'; else noContact" class="contact-img-wrap">
+            <img class="placeholder" src="assets/images/contact-placeholder.svg" />
+        </div>
+        <ng-template #noContact>
+            <img
+                class="placeholder"
+                src="assets/images/avatar-placeholder.svg"
+                [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
+            />
+        </ng-template>
+    </ng-template>
 </div>
+<span
+    class="text-underline cursor-pointer user-name-text"
+    *ngIf="type === 'text'"
+    (mouseenter)="show($event)"
+    (mouseleave)="hide()"
+    >{{ name }}</span
+>
 <p-overlayPanel
     #myOp
     styleClass="user-details-overlay"
@@ -27,8 +41,8 @@
     (onHide)="isOpened = false"
 >
     <ng-template pTemplate>
-        <div class="py-2 py-md-0 user-details-wrapper" (mouseenter)="show($event)" (mouseleave)="hide()">
-            <div class="p-3 p-md-4 d-flex">
+        <div class="py-4 px-3 px-md-4 user-details-wrapper" (mouseenter)="show($event)" (mouseleave)="hide()">
+            <div class="d-flex justify-content-between align-items-start">
                 <img
                     class="user-image"
                     [src]="
@@ -39,53 +53,72 @@
                     "
                     [alt]="name + 'profile image'"
                 />
-                <div class="pl-4 w-100 d-flex justify-content-between">
-                    <div>
-                        <p class="fnt-bold mb-1">{{ data?.firstname }} {{ data?.lastname }}</p>
-                        <p class="mb-1">
-                            {{ data?.organization_name ? data?.organization_name : '' }}
-                        </p>
-                        <span class="fnt-600 text-clr588 mb-0">
-                            <!-- {{ orgName }}  -->
-                            <img class="location-image" src="assets/images/map-pin.svg" />
-                            <span class="location-align ml-2"
-                                >{{ data?.city || data?.organization_city }},
-                                {{ globalsService.getCountryName(data?.organization_country) }}</span
-                            >
-                        </span>
-                    </div>
-                    <!-- <i class="pi pi-times fnt-16 fnt-bold cursor-pointer" (click)="myOp.hide()"></i> -->
+                <div *ngIf="!isMessage" class="btn-trans-icon message-icon mt-25" (click)="myOp.hide(); openChat()">
+                    {{ 'message' | translate }}
                 </div>
             </div>
-            <p-divider styleClass="m-0"></p-divider>
-            <div class="p-3 px-md-4 pt-md-3 pb-md-4">
-                <p class="fnt-semi-bold lh-15 pt-z5 mb-3" *ngIf="data?.about_me">
-                    {{ data?.about_me | convertToShortDescription: 13 }}
-                </p>
-                <p class="fnt-semi-bold text-clr588 mb-25">{{ 'can_converse_in' | translate }} :</p>
-                <div class="language-wrapper">
-                    <div class="p-1" *ngFor="let language of data?.converse_languages">
-                        <div class="language-border px-25 py-1 language-item">
-                            <p class="fnt-semi-bold mb-0">
-                                {{ globalsService.getLanguage(language) }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4 d-flex align-items-center">
-                    <button
-                        class="btn-raised mr-3"
+
+            <div class="mt-2">
+                <ng-container *ngIf="data; else noName">
+                    <div
+                        class="fnt-16 fnt-bold text-underline cursor-pointer"
                         routerLink="/user-profile"
                         [queryParams]="{
                             user_id: userId,
-                            organization: orgType
+                            organization: orgType,
+                            organization_id: data?.organization_id
                         }"
                     >
-                        {{ 'view_profile' | translate }}
-                    </button>
-                    <div class="message-button" (click)="myOp.hide(); openChat()">
-                        <img src="assets/images/message-icon.svg" alt="message-icon" />
+                        {{ name }}
                     </div>
+                    <div class="fnt-semi-bold mt-2">
+                        {{ data?.organization_type === OrgType.SEWN_ADMIN ? ('Era of We' | translate) : '' }}
+                        {{ data?.organization_name ? data?.organization_name : '' }}
+                    </div>
+                    <div class="d-flex align-items-center fnt-semi-bold mt-1">
+                        <i class="pi pi-map-marker fnt-16"></i>
+                        <span class="location-align ml-2"
+                            >{{ data?.city || data?.organization_city }},
+                            {{ data?.organization_country | country }}</span
+                        >
+                    </div>
+                </ng-container>
+                <ng-template #noName>
+                    <p-skeleton width="100px" height="20px"></p-skeleton>
+                    <p-skeleton width="80px" height="18px" styleClass="mt-2"></p-skeleton>
+                    <p-skeleton width="120px" height="18px" styleClass="mt-1"></p-skeleton>
+                </ng-template>
+            </div>
+
+            <div *ngIf="showMore" class="mx-n3 mx-md-n4 mt-3">
+                <p-divider></p-divider>
+            </div>
+
+            <div class="detail-slide-down" [class.fadeIn]="showMore">
+                <div>
+                    <div *ngIf="data; else noAboutMe">
+                        <div *ngIf="data?.about_me" class="fnt-600 pb-3">
+                            {{ data?.about_me | convertToShortDescription: 13 }}
+                        </div>
+                    </div>
+                    <ng-template #noAboutMe>
+                        <div class="pb-3">
+                            <p-skeleton width="100%" height="18px"></p-skeleton>
+                        </div>
+                    </ng-template>
+                    <div *ngIf="data; else noConverse" class="d-flex flex-wrap mb-n1">
+                        <div class="mr-1 mb-1" *ngFor="let language of data?.converse_languages">
+                            <div class="border-main bg-f8 fnt-12 fnt-600 text-clr588 px-2 py-1 language-item-br">
+                                {{ language | language }}
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #noConverse>
+                        <div class="d-flex">
+                            <p-skeleton width="80px" height="25px" styleClass="language-item-br"></p-skeleton>
+                            <p-skeleton width="80px" height="25px" styleClass="language-item-br ml-1"></p-skeleton>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

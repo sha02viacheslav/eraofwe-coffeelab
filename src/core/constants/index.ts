@@ -2,6 +2,7 @@ export * from './application-languages';
 export * from './country-list';
 export * from './languages';
 export * from './org-list';
+export * from './organization';
 export * from './router-map';
 export * from './seo';
 

@@ -44,3 +44,41 @@
         opacity: 0.8;
     }
 }
+
+.btn-trans-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500 !important;
+    color: $general-text-color;
+    border-radius: 2px;
+    border: solid 1px $muted-text-color;
+    padding: 7px 12px 7px 12px;
+    vertical-align: middle;
+    margin: 0;
+    cursor: pointer;
+    transition: box-shadow all 300ms border-color all 300ms;
+    &::before {
+        content: '';
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-top: -1px;
+        margin-right: 8px;
+        font-family: 'primeicons';
+        font-size: 17px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    &.message-icon::before {
+        background-image: url(assets/images/message-icon.svg);
+        width: 17px;
+        height: 17px;
+    }
+
+    &:hover {
+        color: $general-text-color;
+        text-decoration: none;
+    }
+}

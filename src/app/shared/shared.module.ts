@@ -42,10 +42,9 @@ const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
 import { AppShellNoRenderDirective } from './directives';
 const DIRECTIVES = [AppShellNoRenderDirective];
 
-import { ConvertToShortDescriptionPipe } from './pipes/convert-to-short-description.pipe';
-import { DateAgoReplacePipe } from './pipes/date-ago-replace.pipe';
+import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe } from './pipes';
 
-const PIPES = [ConvertToShortDescriptionPipe, DateAgoReplacePipe];
+const PIPES = [ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe];
 
 @NgModule({
     imports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES],

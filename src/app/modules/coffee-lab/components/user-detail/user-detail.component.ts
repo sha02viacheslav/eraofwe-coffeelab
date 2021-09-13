@@ -11,37 +11,39 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     templateUrl: './user-detail.component.html',
     styleUrls: ['./user-detail.component.scss'],
 })
-export class UserDetailComponent implements OnInit, OnChanges {
+export class UserDetailComponent implements OnInit {
+    readonly OrgType = OrganizationType;
     @ViewChild('myOp', { static: false }) myOp: OverlayPanel;
-    @Input() userId: any;
+    @Input() userId: number;
     @Input() orgType: OrganizationType;
-    @Input() size: any;
-    @Input() imageUrl: any;
+    @Input() size: number;
+    @Input() imageUrl: string;
     @Input() name: string;
-    @Input() shape: any;
-    @Input() hasBorder: any;
-    orgName: any;
+    @Input() shape: 'rectangle' | 'circle' = 'circle';
+    @Input() type: 'text' | 'contact' | 'atatar' = 'atatar';
+    @Input() hasBorder: boolean;
+    @Input() isMessage: boolean;
     data: any;
     isOpened = false;
     hiding = false;
+    showMore: boolean;
+    public defaultProfileImage = 'assets/images/profile.svg';
 
     constructor(
         public globalsService: GlobalsService,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
     ) {}
-    ngOnChanges(): void {
-        this.orgName = organizationTypes.find((item) => item.value === this.orgType?.toUpperCase())?.title;
-    }
 
     ngOnInit(): void {}
 
     getUserData() {
         if (this.userId && this.orgType && !this.data) {
             this.orgType = this.orgType.toLowerCase() as OrganizationType;
-            this.coffeeLabService.getUserDetail(this.userId, this.orgType.toLowerCase()).subscribe((res) => {
+            this.coffeeLabService.getUserDetail(this.userId, this.orgType).subscribe((res) => {
                 if (res.success) {
                     this.data = res.result;
+                    this.imageUrl = this.imageUrl || this.data?.profile_image_thumb_url || this.data?.profile_image_url;
                     this.name = `${this.data?.firstname} ${this.data?.lastname}`;
                 }
             });
@@ -50,9 +52,11 @@ export class UserDetailComponent implements OnInit, OnChanges {
 
     show(event) {
         this.hiding = false;
-        if (!this.isOpened) {
+        if (!this.isOpened && this.userId) {
             this.getUserData();
             this.myOp.show(event);
+            this.showMore = false;
+            setTimeout(() => (this.showMore = true), 800);
         }
     }
 
