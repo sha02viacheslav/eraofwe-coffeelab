@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
-import { RouterSlug } from '@enums';
+import { PostType, RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
@@ -16,6 +16,7 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./article-detail.component.scss'],
 })
 export class ArticleDetailComponent implements OnInit {
+    readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;

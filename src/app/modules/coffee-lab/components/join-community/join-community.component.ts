@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { CoffeeLabService, I18NService } from '@services';
 import { RouterMap } from '@constants';
-import { RouterSlug } from '@enums';
+import { PostType, RouterSlug } from '@enums';
 import { ActivatedRoute } from '@angular/router';
 import { getLangRoute } from '@utils';
 
@@ -16,8 +16,8 @@ export class JoinCommunityComponent implements OnInit {
     readonly RouterMap = RouterMap;
     readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
-    @Input() pages: any;
-    @Input() type: string;
+    @Input() pages: number;
+    @Input() type: PostType;
     @Input() detailType: string;
     idOrSlug: any;
     isStaging = environment.needProtect;
@@ -36,7 +36,7 @@ export class JoinCommunityComponent implements OnInit {
             })
             .subscribe((res: any) => {
                 if (res.success) {
-                    if (this.type === 'question') {
+                    if (this.type === PostType.QA) {
                         this.relatedData = res.result.questions;
                     } else {
                         this.relatedData = res.result;
@@ -47,11 +47,11 @@ export class JoinCommunityComponent implements OnInit {
 
     getLink(item: any, answer: any) {
         let type: string;
-        if (this.type === 'question') {
+        if (this.type === PostType.QA) {
             type = 'qa-forum';
-        } else if (this.type === 'articles') {
+        } else if (this.type === PostType.ARTICLE) {
             type = 'articles';
-        } else if (this.type === 'recipe') {
+        } else if (this.type === PostType.RECIPE) {
             type = 'coffee-recipes';
         }
         const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${type}/${item.slug}`;

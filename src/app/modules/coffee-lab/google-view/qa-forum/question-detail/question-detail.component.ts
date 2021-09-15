@@ -7,7 +7,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
-import { RouterSlug } from '@enums';
+import { PostType, RouterSlug } from '@enums';
 import { getLangRoute, toSentenceCase } from '@utils';
 
 @Component({
@@ -16,6 +16,7 @@ import { getLangRoute, toSentenceCase } from '@utils';
     styleUrls: ['./question-detail.component.scss'],
 })
 export class QuestionDetailComponent implements OnInit {
+    readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;

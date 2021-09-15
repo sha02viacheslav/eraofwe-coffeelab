@@ -11,7 +11,7 @@ import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
-import { RouterSlug } from '@enums';
+import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -20,6 +20,7 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./qa-forum-view.component.scss'],
 })
 export class QaForumViewComponent extends ResizeableComponent implements OnInit {
+    readonly PostType = PostType;
     viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
     viewMode = 'list';
     sortOptions = [];
