@@ -1,6 +1,6 @@
 <div class="question-header mb-4" [ngClass]="{ 'no-border': type === 'article' || type === 'recipe' }">
     <p class="fnt-16 fnt-bold text-clr24 mt-3">
-        <span *ngIf="detailType === 'question-detail'">{{ 'related_discussions' | translate }}</span>
+        <span *ngIf="detailType === 'question-detail'">{{ 'related_discussions_on_the_forum' | translate }}</span>
         <span *ngIf="detailType !== 'question-detail'">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
     <div class="question-list" *ngFor="let data of relatedData; let ind = index">
