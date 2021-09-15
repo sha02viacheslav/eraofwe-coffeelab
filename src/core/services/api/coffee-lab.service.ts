@@ -24,10 +24,11 @@ export class CoffeeLabService extends ApiService {
         this.forumLanguage.next(this.langPrefixService.langPrefix());
     }
 
-    getForumList(type: string, options?: any, language = this.currentForumLanguage): Observable<any> {
+    getForumList(type: string, options: any = {}, language = this.currentForumLanguage): Observable<any> {
         const httpOptions = {
             headers: new HttpHeaders({ 'Accept-Language': language }),
         };
+        options.language = language;
         return this.get(this.orgPostUrl, `general/${type}s?${this.serializeParams(options)}`, httpOptions);
     }
 
