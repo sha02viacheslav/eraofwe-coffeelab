@@ -200,7 +200,9 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(
+                                this.coffeeLabService.currentForumLanguage,
+                            )}`,
                         },
                         {
                             '@type': 'ListItem',

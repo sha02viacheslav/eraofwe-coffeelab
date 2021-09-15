@@ -84,7 +84,7 @@ export class QuestionDetailComponent implements OnInit {
                     }
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
-                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.QA]}`;
+                    this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.QA]}`;
                     this.setSEO();
                     this.setSchemaMackup();
                 }
@@ -146,13 +146,13 @@ export class QuestionDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.lang}`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Q+A Forum',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/qa-forum`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/qa-forum`,
                         },
                         {
                             '@type': 'ListItem',
@@ -195,7 +195,7 @@ export class QuestionDetailComponent implements OnInit {
         event.stopPropagation();
         event.preventDefault();
         if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([`/${this.lang}/qa-forum/${item.slug}`]);
+            this.router.navigate([`/${getLangRoute(this.lang)}/qa-forum/${item.slug}`]);
         } else {
             this.dialogSrv.open(SignupModalComponent, {
                 data: {
@@ -215,6 +215,6 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     getLink(language, slug) {
-        return `/${language}/qa-forum/${slug}`;
+        return `/${getLangRoute(language)}/qa-forum/${slug}`;
     }
 }

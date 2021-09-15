@@ -73,7 +73,7 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     onRealtedRoute(langCode, slug) {
-        this.router.navigateByUrl('/' + langCode + '/articles/' + slug);
+        this.router.navigateByUrl(`/${getLangRoute(langCode)}/articles/${slug}`);
         window.scrollTo(0, 0);
     }
 
@@ -93,9 +93,9 @@ export class ArticleDetailComponent implements OnInit {
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
-                        this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.EOW]}`;
+                        this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.EOW]}`;
                     } else {
-                        this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
+                        this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
                         this.globalsService.setLimitCounter();
                     }
                     this.startupService.load(this.lang || 'en');
@@ -152,13 +152,13 @@ export class ArticleDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.lang}`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Posts',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/articles`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/articles`,
                         },
                         {
                             '@type': 'ListItem',

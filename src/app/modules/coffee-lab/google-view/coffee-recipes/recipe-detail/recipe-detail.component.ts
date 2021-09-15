@@ -81,7 +81,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     onRealtedRoute(langCode, slug) {
-        this.router.navigateByUrl('/' + langCode + '/coffee-recipes/' + slug);
+        this.router.navigateByUrl(`/${getLangRoute(langCode)}/coffee-recipes/${slug}`);
         window.scrollTo(0, 0);
     }
 
@@ -110,7 +110,7 @@ export class RecipeDetailComponent implements OnInit {
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    this.previousUrl = `/${this.lang}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
+                    this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                     this.setSEO();
                     this.setSchemaMackup();
                     this.getUserDetail();
@@ -193,13 +193,13 @@ export class RecipeDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.lang}`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Brewing guides',
-                            item: `${environment.coffeeLabWeb}/${this.lang}/coffee-recipes`,
+                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/coffee-recipes`,
                         },
                         {
                             '@type': 'ListItem',
