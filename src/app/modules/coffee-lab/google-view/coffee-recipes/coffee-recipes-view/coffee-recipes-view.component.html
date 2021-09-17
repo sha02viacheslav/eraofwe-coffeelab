@@ -24,7 +24,6 @@
                         [options]="levels"
                         optionLabel="label"
                         optionValue="value"
-                        [showClear]="true"
                         [(ngModel)]="label"
                         (onChange)="getData()"
                         [placeholder]="'difficulty' | translate"
@@ -37,7 +36,6 @@
                         [options]="translationsList"
                         optionLabel="label"
                         optionValue="value"
-                        [showClear]="true"
                         [(ngModel)]="isAvailableTranslation"
                         (onChange)="getData()"
                         [placeholder]="'translation_available' | translate"
@@ -53,7 +51,6 @@
                     optionValue="value"
                     [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
-                    [showClear]="true"
                     [placeholder]="'sort_by' | translate"
                     styleClass="round-border mobile-ui"
                 >
@@ -89,11 +86,9 @@
                     <div class="m-3 m-md-4">
                         <div class="d-flex justify-content-between mb-4">
                             <div class="recipe-name fnt-md-16 fnt-bold">
-                                <span class="mb-1 d-flex recipe-title">{{
-                                    coffee?.name | convertToShortDescription: 4
-                                }}</span>
+                                <span class="mb-1 d-flex recipe-title">{{ coffee?.name }}</span>
                                 <span class="fnt-600 mb-45 mb-md-4 mt-2">
-                                    {{ coffee?.equipment_name | titlecase | convertToShortDescription: 4 }}
+                                    {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1 }}
                                 </span>
                             </div>
                             <div class="bookmark-icon hover-save-icon h-100">

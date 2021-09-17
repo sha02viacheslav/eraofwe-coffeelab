@@ -4,11 +4,10 @@
     margin: -8px;
 
     .article-item {
-        border: solid 1px #d0d0d0;
         border-radius: 14px;
-        min-height: 487px;
+        min-height: 485px;
         height: 100%;
-        box-shadow: 0 0 2rem rgb(0 0 0 / 10%);
+        border: 1px solid #d0d0d0;
         transition: transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
         img {
             height: 243px;
@@ -18,7 +17,7 @@
         &:hover {
             transform: scale(1.05);
             box-shadow: 0 0 2rem rgb(0 0 0 / 20%);
-            border-color: white;
+            border: 0px !important;
             cursor: pointer;
             h3.article-title-text {
                 text-decoration: underline;

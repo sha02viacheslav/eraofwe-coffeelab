@@ -26,7 +26,8 @@ export class ArticleDetailComponent implements OnInit {
     previousUrl: string;
     buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     addComment = false;
-    stickData: any;
+    stickySecData: any;
+    orginalUserData: any;
     commentData: any;
     allComments: any;
     showCommentBtn = false;
@@ -100,9 +101,15 @@ export class ArticleDetailComponent implements OnInit {
                         this.globalsService.setLimitCounter();
                     }
                     this.startupService.load(this.lang || 'en');
+                    if (
+                        this.detailsData?.original_article_state &&
+                        this.detailsData?.original_article_state === 'ACTIVE'
+                    ) {
+                        this.getOriginalUserDetail(this.detailsData.original_article);
+                    }
+                    this.getUserDetail(this.detailsData);
                     this.setSEO();
                     this.setSchemaMackup();
-                    this.getUserDetail();
                     this.getCommentsData();
                 }
             } else {
@@ -190,14 +197,20 @@ export class ArticleDetailComponent implements OnInit {
         });
     }
 
-    getUserDetail(): void {
-        this.coffeeLabService
-            .getUserDetail(this.detailsData.user_id, this.detailsData.organisation_type)
-            .subscribe((res) => {
-                if (res.success) {
-                    this.stickData = res.result;
-                }
-            });
+    getOriginalUserDetail(userDetails: any): void {
+        this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
+            if (res.success) {
+                this.orginalUserData = res.result;
+            }
+        });
+    }
+
+    getUserDetail(userDetails: any): void {
+        this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
+            if (res.success) {
+                this.stickySecData = res.result;
+            }
+        });
     }
 
     getCommentsData(): void {

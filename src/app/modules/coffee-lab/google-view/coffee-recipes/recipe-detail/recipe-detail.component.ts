@@ -44,7 +44,8 @@ export class RecipeDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    stickData: any;
+    stickySecData: any;
+    orginalUserData: any;
     commentData: any[] = [];
     allComments: any[] = [];
     showCommentBtn = false;
@@ -114,7 +115,13 @@ export class RecipeDetailComponent implements OnInit {
                     this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.RECIPE]}`;
                     this.setSEO();
                     this.setSchemaMackup();
-                    this.getUserDetail();
+                    if (
+                        this.detailsData?.original_recipe_state &&
+                        this.detailsData?.original_recipe_state === 'ACTIVE'
+                    ) {
+                        this.getOriginalUserDetail(this.detailsData.original_details);
+                    }
+                    this.getUserDetail(this.detailsData);
                     this.getCommentsData();
                 }
             } else {
@@ -125,14 +132,20 @@ export class RecipeDetailComponent implements OnInit {
         });
     }
 
-    getUserDetail(): void {
-        this.coffeeLabService
-            .getUserDetail(this.detailsData.posted_by, this.detailsData.organisation_type)
-            .subscribe((res) => {
-                if (res.success) {
-                    this.stickData = res.result;
-                }
-            });
+    getUserDetail(userDatils: any): void {
+        this.coffeeLabService.getUserDetail(userDatils.user_id, userDatils.organisation_type).subscribe((res) => {
+            if (res.success) {
+                this.stickySecData = res.result;
+            }
+        });
+    }
+
+    getOriginalUserDetail(userDetails: any): void {
+        this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
+            if (res.success) {
+                this.orginalUserData = res.result;
+            }
+        });
     }
 
     getCommentsData(): void {

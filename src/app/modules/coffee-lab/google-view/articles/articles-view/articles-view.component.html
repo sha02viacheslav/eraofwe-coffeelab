@@ -26,7 +26,6 @@
                 [options]="translationsList"
                 optionLabel="label"
                 optionValue="value"
-                [showClear]="true"
                 [(ngModel)]="isAvailableTranslation"
                 (onChange)="getData()"
                 placeholder="{{ 'translations_available' | translate }}"
@@ -41,7 +40,6 @@
                 optionValue="value"
                 [(ngModel)]="selectedOrder"
                 (onChange)="getData()"
-                [showClear]="true"
                 styleClass="round-border"
             >
             </p-dropdown>

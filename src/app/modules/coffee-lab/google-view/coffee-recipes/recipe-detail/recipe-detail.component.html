@@ -200,11 +200,9 @@
                                     <img
                                         class="br-4"
                                         [src]="
-                                            detailsData?.original_details?.profile_image_url ||
-                                            detailsData?.original_details?.profile_image_thumb_url ||
-                                            stickData?.profile_image_url ||
-                                            stickData?.profile_image_thumb_url ||
-                                            stickData?.posted_user_profile_image_url
+                                            stickySecData?.profile_image_url ||
+                                            stickySecData?.profile_image_thumb_url ||
+                                            stickySecData?.posted_user_profile_image_url
                                         "
                                         alt="Author-image"
                                     />
@@ -216,16 +214,16 @@
                                         [queryParams]="{
                                             user_id: detailsData?.user_id || detailsData?.posted_by,
                                             organization:
-                                                detailsData?.org_type ||
-                                                detailsData?.organisation_type ||
-                                                detailsData?.organization_type
+                                                stickySecData?.org_type ||
+                                                stickySecData?.organisation_type ||
+                                                stickySecData?.organization_type
                                         }"
                                     >
-                                        {{ detailsData?.original_details?.firstname || stickData?.firstname }}
-                                        {{ detailsData?.original_details?.lastname || stickData?.lastname }}
+                                        {{ stickySecData?.firstname }}
+                                        {{ stickySecData?.lastname }}
                                     </p>
                                     <p class="fnt-600">
-                                        {{ stickData?.about_me }}
+                                        {{ stickySecData?.about_me }}
                                     </p>
                                 </div>
                             </div>
@@ -287,7 +285,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <app-user-header [prop]="orginalUserData"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
                                     class="fnt-600"
@@ -396,10 +394,17 @@
             <div class="pb-4 d-flex">
                 <div class="w-100 d-flex justify-content-between">
                     <div>
-                        <p class="fnt-bold mb-1">{{ stickData?.firstname }} {{ stickData?.lastname }}</p>
-                        <p class="fnt-600 text-clr588 mb-1">{{ detailsData?.organisation_name }}</p>
-                        <p *ngIf="stickData?.country || stickData?.city" class="fnt-600 text-clr588 mb-1">
-                            @ {{ stickData?.city || stickData?.organization_city }}, {{ stickData?.country }}
+                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
+                            {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
+                        </p>
+                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ stickySecData?.organisation_name }}</p>
+                        <p
+                            *ngIf="stickySecData?.country || stickySecData?.city"
+                            class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
+                        >
+                            <span *ngIf="stickySecData?.organisation_name">@</span>
+                            {{ stickySecData?.city || stickySecData?.organization_city }},
+                            {{ stickySecData?.country }}
                         </p>
                     </div>
                 </div>

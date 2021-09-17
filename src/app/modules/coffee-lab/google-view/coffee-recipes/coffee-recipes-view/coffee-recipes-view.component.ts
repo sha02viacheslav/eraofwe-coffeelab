@@ -43,7 +43,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     levels: any[] = [];
     orderList: any[] = [];
-    selectedOrder = 'latest';
+    selectedOrder = '';
     jsonLD: any;
 
     constructor(
@@ -127,7 +127,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             ingredient: this.searchIngredient,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
-            sort_order: this.selectedOrder === 'latest' ? 'desc' : 'asc',
+            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             level: this.label?.toLowerCase(),
             page: this.page,
             per_page: this.rows,
