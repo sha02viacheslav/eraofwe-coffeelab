@@ -91,14 +91,7 @@
                             </div>
                         </div>
                         <!-- <app-forum-menu></app-forum-menu> -->
-                        <div class="icon-save hover-save-icon">
-                            <img
-                                (click)="onFocus($event)"
-                                class="cursor-point"
-                                src="assets/images/save.svg"
-                                alt="save"
-                            />
-                        </div>
+                        <div class="btn-icon save" (click)="onFocus($event)"></div>
                     </div>
                     <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article?.title + ' cover image'" />
                     <div class="mx-4">

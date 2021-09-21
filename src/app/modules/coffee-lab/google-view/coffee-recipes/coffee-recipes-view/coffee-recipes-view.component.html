@@ -92,9 +92,7 @@
                                         {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1 }}
                                     </span>
                                 </div>
-                                <div class="bookmark-icon hover-save-icon h-100">
-                                    <img src="assets/images/save.svg" alt="save" (click)="onFocus($event)" />
-                                </div>
+                                <div class="btn-icon save" (click)="onFocus($event)"></div>
                             </div>
                             <app-user-header [prop]="coffee"></app-user-header>
                         </div>

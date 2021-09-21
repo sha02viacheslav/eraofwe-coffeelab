@@ -51,30 +51,14 @@
                                             alt="thumb"
                                         />
                                     </div> -->
-                                    <div class="message-icon hover-message-icon">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-point"
-                                            src="assets/images/message.svg"
-                                            alt="message"
-                                        />
-                                    </div>
-                                    <div class="ml-3 hover-save-icon">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-point"
-                                            src="assets/images/save.svg"
-                                            alt="bookmark"
-                                        />
-                                    </div>
+                                    <div class="btn-icon message" (click)="onFocus()"></div>
+                                    <div class="btn-icon save ml-3" (click)="onFocus()"></div>
                                 </div>
                                 <div class="d-flex">
                                     <div class="d-flex mob-height align-items-center mr-3 mt-1">
                                         <app-forum-menu></app-forum-menu>
                                     </div>
-                                    <div class="d-none d-md-block hover-save-icon message-top">
-                                        <img (click)="onFocus()" src="assets/images/save.svg" alt="save" />
-                                    </div>
+                                    <div class="btn-icon save message-top" (click)="onFocus()"></div>
                                 </div>
                             </div>
                         </div>
@@ -242,23 +226,9 @@
                                     />
                                     <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                 </div> -->
-                                <div class="align-items-center hover-save-icon">
-                                    <img
-                                        (click)="onFocus()"
-                                        class="cursor-point"
-                                        src="assets/images/save.svg"
-                                        alt="bookmark"
-                                    />
-                                </div>
+                                <div class="btn-icon save" (click)="onFocus()"></div>
                             </div>
-                            <div class="d-flex hover-share-icon">
-                                <img
-                                    (click)="onFocus()"
-                                    class="cursor-point"
-                                    src="assets/images/share.svg"
-                                    alt="upload"
-                                />
-                            </div>
+                            <div class="btn-icon share" (click)="onFocus()"></div>
                         </div>
                         <!-- <span *ngFor="let btn of buttonList">
                             <button class="p-2 button-list fnt-12 fnt-600">
@@ -446,12 +416,8 @@
                     />
                     <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                 </div> -->
-                <div class="message-icon hover-message-icon">
-                    <img (click)="onFocus()" class="cursor-point" src="assets/images/message.svg" alt="message" />
-                </div>
-                <div class="ml-3 hover-save-icon">
-                    <img (click)="onFocus()" class="cursor-point" src="assets/images/save.svg" alt="save" />
-                </div>
+                <div class="btn-icon message" (click)="onFocus()"></div>
+                <div class="btn-icon save ml-3"></div>
             </div>
         </div>
     </span>

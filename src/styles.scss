@@ -11,32 +11,3 @@
 @import 'theme/styles/common';
 @import 'theme/styles/_variables';
 @import 'theme/styles/toastr';
-
-#loading {
-    display: none !important;
-}
-
-.stricky {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0px;
-    z-index: 99;
-    box-shadow: 0 12px 44px -10px rgb(143 51 11 / 10%);
-}
-
-.cursor-pointer {
-    cursor: pointer;
-}
-
-button.osano-cm-widget {
-    display: none;
-}
-
-.action-icon {
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.12);
-    }
-}

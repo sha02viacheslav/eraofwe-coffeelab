@@ -71,16 +71,7 @@
                             <div class="flex-1 overflow-hidden">
                                 <app-user-header [prop]="article"></app-user-header>
                             </div>
-                            <div class="action-icon hover-save-icon">
-                                <img
-                                    (click)="onFocus($event)"
-                                    class="cursor-pointer"
-                                    src="assets/images/save.svg"
-                                    alt="save"
-                                    width="19"
-                                    height="24"
-                                />
-                            </div>
+                            <div class="btn-icon save" (click)="onFocus($event)"></div>
 
                             <!-- <app-forum-menu></app-forum-menu> -->
                         </div>

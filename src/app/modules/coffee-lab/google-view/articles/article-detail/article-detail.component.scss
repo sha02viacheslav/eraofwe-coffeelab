@@ -157,24 +157,6 @@
     }
 }
 
-.hover-share-icon {
-    padding: 9px 11px 9px 12px;
-}
-
-.hover-message-icon {
-    padding: 2px 8px 2px 9px;
-    img {
-        @media (min-width: 768px) {
-            width: 21px;
-            height: 34px;
-        }
-    }
-}
-
-.hover-save-icon {
-    padding: 6px 9px 0px 12px;
-}
-
 .cust-flex-grow {
     flex-grow: 0.9;
     &:hover {

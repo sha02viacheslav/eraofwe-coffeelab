@@ -83,23 +83,9 @@
                                     />
                                     <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
                                 </div> -->
-                                <div class="align-items-center hover-save-icon d-flex">
-                                    <img
-                                        (click)="onFocus()"
-                                        class="cursor-point"
-                                        src="assets/images/save.svg"
-                                        alt="bookmark-button"
-                                    />
-                                </div>
+                                <div class="btn-icon save" (click)="onFocus()"></div>
                             </div>
-                            <div class="d-flex hover-share-icon">
-                                <img
-                                    (click)="onFocus()"
-                                    class="cursor-point"
-                                    src="assets/images/share.svg"
-                                    alt="ubload"
-                                />
-                            </div>
+                            <div class="btn-icon share" (click)="onFocus()"></div>
                         </div>
                         <div
                             *ngIf="answerDetail && answerDetail?.original_answer_state === 'ACTIVE'"

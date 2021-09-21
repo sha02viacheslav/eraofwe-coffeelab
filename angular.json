@@ -35,7 +35,8 @@
                                 "input": "src/styles.scss",
                                 "inject": false,
                                 "bundleName": "styles"
-                            }
+                            },
+                            "src/styles-inject.scss"
                         ],
                         "scripts": []
                     },

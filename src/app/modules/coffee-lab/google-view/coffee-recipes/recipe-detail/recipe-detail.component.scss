@@ -291,33 +291,6 @@
     background-color: rgba(128, 70, 11, 0.14);
 }
 
-.hover-message-icon {
-    padding: 2px 8px 2px 9px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.16);
-    }
-}
-
-.hover-save-icon {
-    padding: 6px 9px 8px 12px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.16);
-    }
-}
-
-.hover-share-icon {
-    padding: 9px 11px 9px 12px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.16);
-    }
-}
-
 .flavour-profiles {
     border: 2px dashed #d6d6d6;
     a {

@@ -60,23 +60,12 @@
                         />
                         <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
                     </div> -->
-                        <div class="action-icon hover-message-icon cursor-pointer mr-25" (click)="onFocus()">
-                            <img src="assets/images/message.svg" alt="message" width="22" height="22" />
-                        </div>
-                        <div class="action-icon hover-save-icon cursor-pointer" (click)="onFocus()">
-                            <img src="assets/images/save.svg" alt="save" width="19" height="24" />
-                        </div>
+                        <div class="btn-icon message mr-25" (click)="onFocus()"></div>
+                        <div class="btn-icon save" (click)="onFocus()"></div>
                     </div>
-                    <div class="d-flex action-icon hover-share-icon">
-                        <img
-                            (click)="onFocus()"
-                            class="cursor-pointer"
-                            src="assets/images/share.svg"
-                            alt="upload"
-                            width="18"
-                            height="24"
-                        />
-                        <div class="position-mob ml-1"><app-forum-menu></app-forum-menu></div>
+                    <div class="d-flex">
+                        <div class="btn-icon share"></div>
+                        <div class="ml-1"><app-forum-menu></app-forum-menu></div>
                     </div>
                 </div>
                 <div class="d-flex">
@@ -159,23 +148,9 @@
                                         />
                                         <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                     </div> -->
-                                        <div
-                                            class="align-items-center action-icon hover-save-icon cursor-pointer"
-                                            (click)="onFocus()"
-                                        >
-                                            <img src="assets/images/save.svg" alt="save" width="19" height="24" />
-                                        </div>
+                                        <div class="btn-icon save" (click)="onFocus()"></div>
                                     </div>
-                                    <div class="d-flex action-icon hover-share-icon">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-pointer"
-                                            src="assets/images/share.svg"
-                                            alt="upload"
-                                            width="18"
-                                            height="24"
-                                        />
-                                    </div>
+                                    <div class="btn-icon share"></div>
                                 </div>
                                 <!-- <span *ngFor="let btn of buttonList">
                                 <button class="p-2 button-list fnt-12 fnt-600">
@@ -354,12 +329,8 @@
             </div>
             <div class="divder"></div>
             <div class="d-flex my-4">
-                <div class="action-icon hover-message-icon cursor-pointer" (click)="onFocus()">
-                    <img src="assets/images/message.svg" alt="message" width="22" height="22" />
-                </div>
-                <div class="ml-3 action-icon hover-save-icon cursor-pointer" (click)="onFocus()">
-                    <img src="assets/images/save.svg" alt="save" width="19" height="24" />
-                </div>
+                <div class="btn-icon message" (click)="onFocus()"></div>
+                <div class="ml-3 btn-icon save" (click)="onFocus()"></div>
             </div>
         </div>
     </span>
