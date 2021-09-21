@@ -1,3 +1,5 @@
+@import 'variables';
+
 ::ng-deep .forum-content > div {
     word-break: break-word;
 }
@@ -19,31 +21,23 @@
             font-size: 2rem;
         }
     }
-    .fnt-20 {
-        font-size: 1rem;
-        @media (min-width: 768px) {
-            font-size: 1.25rem;
-        }
-    }
     .innter-box {
         @media (min-width: 768px) {
             padding: 0 6.5rem 0 2.5rem;
         }
     }
-}
-
-.banner-image {
-    height: 276px;
-    min-height: 276px;
-    object-fit: cover;
-    @media (max-width: 767px) {
-        height: 256px;
+    .banner-image {
+        height: 276px;
+        min-height: 276px;
+        object-fit: cover;
+        @media (max-width: 767px) {
+            height: 256px;
+        }
     }
-}
-
-.published {
-    color: #797a8d;
-    line-height: 1.57;
+    .published {
+        color: #797a8d;
+        line-height: 1.57;
+    }
 }
 
 .button-list {
@@ -59,7 +53,7 @@
 }
 
 .background-header {
-    border-top: 2px solid #232334;
+    border-top: 2px solid $dark-color;
 }
 .p-articles img {
     width: 89px;
@@ -73,8 +67,8 @@
 }
 
 .articles-answer {
-    border-top: 2px solid #232334;
-    border-bottom: 2px solid #232334;
+    border-top: 2px solid $dark-color;
+    border-bottom: 2px solid $dark-color;
 }
 
 .author-image img {
@@ -102,23 +96,19 @@
     border-bottom: solid 0.5px #d8d8d8;
 }
 
-.comment-hgt {
-    height: 50px !important;
-}
-
 .view-button {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 11px 16px;
     border-radius: 4px;
-    border: solid 1px #30855c;
+    border: solid 1px $primary-color;
     cursor: pointer;
-    color: #30855c;
-    background: #ffffff;
+    color: $primary-color;
+    background: $white;
     &:hover {
-        background: #30855c;
-        color: #ffffff;
+        background: $primary-color;
+        color: $white;
     }
 }
 
@@ -132,28 +122,17 @@
     }
 }
 
-.message-icon img {
-    @media (min-width: 768px) {
-        width: 21px;
-        height: 34px;
-    }
-}
-
 .footer-border {
     border-bottom: solid 0.5px #d8d8d8;
 }
 
 .divder {
-    border-bottom: 1px solid #232334;
-}
-
-.cursor-point {
-    cursor: pointer;
+    border-bottom: 1px solid $dark-color;
 }
 
 ::ng-deep .p-inputtextarea:enabled:hover,
 ::ng-deep .p-inputtextarea:enabled:focus {
-    border: 1px solid #30855c !important;
+    border: 1px solid $primary-color !important;
 }
 
 .back-page::before {
@@ -170,7 +149,7 @@
 }
 
 .flavour-profiles {
-    border: 2px dashed #d6d6d6;
+    border: 2px dashed $primary-border-color;
     a {
         cursor: pointer;
         text-decoration: underline;
@@ -180,29 +159,20 @@
 
 .hover-share-icon {
     padding: 9px 11px 9px 12px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.12);
-    }
 }
 
 .hover-message-icon {
     padding: 2px 8px 2px 9px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.16);
+    img {
+        @media (min-width: 768px) {
+            width: 21px;
+            height: 34px;
+        }
     }
 }
 
 .hover-save-icon {
-    padding: 6px 9px 8px 12px;
-    border-radius: 50%;
-    background-color: rgba(116, 117, 136, 0.08);
-    &:hover {
-        background-color: rgba(48, 133, 92, 0.16);
-    }
+    padding: 6px 9px 0px 12px;
 }
 
 .cust-flex-grow {
