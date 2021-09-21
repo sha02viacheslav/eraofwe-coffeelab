@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="forum-content w-100 pt-4 mb-5">
-                                <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content"></div>
+                                <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content || '--'"></div>
                             </div>
 
                             <!-- Question answer -->
@@ -126,10 +126,10 @@
                                                 }"
                                                 class="fnt-bold cursor-pointer text-underline mb-2"
                                             >
-                                                {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
+                                                {{ stickySecData?.firstname || '--' }} {{ stickySecData?.lastname }}
                                             </p>
                                             <p class="fnt-600">
-                                                {{ stickySecData?.about_me }}
+                                                {{ stickySecData?.about_me || '--' }}
                                             </p>
                                         </div>
                                     </div>
