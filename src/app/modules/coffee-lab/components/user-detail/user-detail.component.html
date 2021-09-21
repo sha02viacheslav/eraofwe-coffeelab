@@ -9,7 +9,7 @@
 >
     <img
         *ngIf="imageUrl; else placeholder"
-        [src]="imageUrl"
+        [lazyLoad]="imageUrl"
         [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
         [style.borderRadius]="shape === 'rectangle' ? '2px' : '50%'"
     />

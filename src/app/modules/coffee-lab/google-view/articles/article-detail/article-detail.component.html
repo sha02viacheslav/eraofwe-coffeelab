@@ -93,15 +93,15 @@
                                         <div class="author-image mr-3">
                                             <img
                                                 *ngIf="
-                                                    stickySecData?.profile_image_url ||
-                                                        stickySecData?.profile_image_thumb_url ||
+                                                    stickySecData?.profile_image_thumb_url ||
+                                                        stickySecData?.profile_image_url ||
                                                         stickySecData?.posted_user_profile_image_url;
                                                     else placeholder
                                                 "
                                                 class="br-4"
-                                                [src]="
-                                                    stickySecData?.profile_image_url ||
+                                                [lazyLoad]="
                                                     stickySecData?.profile_image_thumb_url ||
+                                                    stickySecData?.profile_image_url ||
                                                     stickySecData?.posted_user_profile_image_url
                                                 "
                                                 alt="Author-image"
@@ -109,7 +109,7 @@
                                             <ng-template #placeholder>
                                                 <img
                                                     class="placeholder"
-                                                    src="assets/images/avatar-placeholder.svg"
+                                                    lazyLoad="assets/images/avatar-placeholder.svg"
                                                     [alt]="stickySecData?.firstname"
                                                 />
                                             </ng-template>

@@ -3,7 +3,7 @@
         <div class="mr-25">
             <app-user-detail
                 [imageUrl]="
-                    prop?.profile_image_url || prop?.profile_image_thumb_url || prop?.posted_user_profile_image_url
+                    prop?.profile_image_thumb_url || prop?.profile_image_url || prop?.posted_user_profile_image_url
                 "
                 [name]="
                     prop?.user_name || prop?.question_user || prop?.posted_user || prop?.first_name || 'Unknown User'
