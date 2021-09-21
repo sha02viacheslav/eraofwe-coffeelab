@@ -1,12 +1,5 @@
 @import 'variables';
 
-::ng-deep .forum-content > div {
-    word-break: break-word;
-}
-::ng-deep .forum-content img {
-    max-width: 100%;
-}
-
 .article-main-block {
     padding: 0;
     @media (min-width: 768px) {
@@ -64,6 +57,13 @@
     font-family: Cormorant Garamond;
     font-size: 22px;
     line-height: 1.23;
+}
+
+::ng-deep .forum-content > div {
+    word-break: break-word;
+}
+::ng-deep .forum-content img {
+    max-width: 100%;
 }
 
 .articles-answer {
