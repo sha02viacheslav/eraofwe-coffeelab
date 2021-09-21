@@ -27,7 +27,7 @@ export class StartupService {
         }
         if (!language || oldLanguage !== this.i18n.currentLang) {
             return new Promise((resolve) => {
-                zip(this.httpClient.get(`${environment.apiURL}/translations/${this.i18n.currentLang}/common?default=1`))
+                zip(this.httpClient.get(`${environment.apiURL}/translations/${this.i18n.currentLang}/tcl?default=1`))
                     .pipe(
                         catchError((res) => {
                             console.warn(`StartupService.load: Network request failed`, res);
