@@ -35,30 +35,21 @@ span.star {
         position: absolute;
         width: 20px;
         height: 20px;
+        padding: 8px !important;
         left: 0;
-        top: 0;
+        top: -7px;
         background-image: url('assets/images/back-arrow1.svg');
-        background-size: cover;
         background-position: center;
+        background-repeat: no-repeat !important;
         transition: all 0.6s cubic-bezier(0.2, 0.59, 0.21, 0.6);
-        @media (min-width: 768px) {
-            top: 0;
-            width: 20px;
-            height: 20px;
-        }
+        border-radius: 50%;
     }
+
     &:hover {
         color: $brown-color !important;
         text-decoration: underline !important;
-    }
-
-    &.white {
-        color: #fff !important;
         &::before {
-            background-image: url('/assets/images/popup-back-arrow.svg');
-        }
-        &:hover {
-            color: #fff !important;
+            background-color: rgba(128, 70, 11, 0.14);
         }
     }
 }

@@ -277,20 +277,6 @@
     border: 1px solid #30855c !important;
 }
 
-.back-page::before {
-    top: -7px !important;
-    width: 20px !important;
-    height: 20px !important;
-    padding: 8px !important;
-    background-repeat: no-repeat !important;
-    background-size: auto !important;
-}
-
-.back-page:hover::before {
-    border-radius: 50%;
-    background-color: rgba(128, 70, 11, 0.14);
-}
-
 .flavour-profiles {
     border: 2px dashed #d6d6d6;
     a {
