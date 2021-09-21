@@ -23,12 +23,6 @@ span.star {
     cursor: pointer;
     line-height: 20px;
     text-decoration: none !important;
-    @media (min-width: 768px) {
-        padding-left: 32px;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 20px;
-    }
 
     &::before {
         content: '';
