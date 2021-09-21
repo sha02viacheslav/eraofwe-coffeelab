@@ -22,10 +22,10 @@
                             </span>
                         </div> -->
                         <h1 class="fnt-bold mb-0 user-header mt-0">
-                            {{ detailsData?.name | titlecase }}
+                            {{ detailsData?.name || '--' | titlecase }}
                         </h1>
                         <p class="fnt-20 fnt-600 mt-3 mb-md-35 mb-35 my-md-4">
-                            {{ detailsData?.description }}
+                            {{ detailsData?.description || '--' }}
                         </p>
                         <div class="d-md-flex mb-4 mb-md-0">
                             <div class="fnt-600 text-clr588 mb-md-45">
