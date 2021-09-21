@@ -71,12 +71,14 @@
                             <div class="flex-1 overflow-hidden">
                                 <app-user-header [prop]="article"></app-user-header>
                             </div>
-                            <div class="icon-save hover-save-icon">
+                            <div class="action-icon hover-save-icon">
                                 <img
                                     (click)="onFocus($event)"
-                                    class="cursor-point"
+                                    class="cursor-pointer"
                                     src="assets/images/save.svg"
                                     alt="save"
+                                    width="19"
+                                    height="24"
                                 />
                             </div>
 
@@ -92,7 +94,7 @@
                                     article?.posted_at || article?.created_at | date: 'longDate'
                                 }}</span>
                             </div>
-                            <h3 class="fnt-bold lh-157 cursor-pointer article-title-text mb-0">
+                            <h3 class="fnt-bold lh-157 cursor-pointerer article-title-text mb-0">
                                 {{ article?.title }}
                             </h3>
                             <div class="fnt-normal lh-143 mt-2 mt-md-3">
