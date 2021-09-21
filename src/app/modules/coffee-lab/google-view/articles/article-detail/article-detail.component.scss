@@ -1,5 +1,9 @@
 @import 'variables';
 
+.loader-wrap {
+    height: 100vh;
+}
+
 .article-main-block {
     padding: 0;
     @media (min-width: 768px) {

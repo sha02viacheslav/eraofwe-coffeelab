@@ -1,10 +1,13 @@
+<div class="loader-wrap">
+    <app-loading type="overlay"></app-loading>
+</div>
 <div>
     <div class="mt-1 mt-lg-3 pb-35 pb-lg-45 w-fit-content">
         <a class="back-page" [routerLink]="previousUrl">
             <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
         </a>
     </div>
-    <div class="position-relative">
+    <div>
         <div class="container article-main-block">
             <div>
                 <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
@@ -277,7 +280,6 @@
                 <app-join-community [type]="PostType.ARTICLE"></app-join-community>
             </div>
         </article>
-        <app-loading *ngIf="loading" type="overlay"></app-loading>
     </div>
 </div>
 
