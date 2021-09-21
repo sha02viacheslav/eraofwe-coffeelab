@@ -258,8 +258,10 @@
 
 .recip-img {
     height: 198px;
+    min-height: 198px;
     @media (min-width: 991px) {
         height: 494px;
+        min-height: 494px;
     }
 }
 
