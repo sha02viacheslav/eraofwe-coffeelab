@@ -36,7 +36,11 @@
                                 "inject": false,
                                 "bundleName": "styles"
                             },
-                            "src/styles-inject.scss"
+                             {
+                                "input": "src/styles-inject.scss",
+                                "inject": true,
+                                "bundleName": "styles-inject"
+                            }
                         ],
                         "scripts": []
                     },
