@@ -92,14 +92,6 @@ span.star {
     }
 }
 
-.banner-image {
-    height: 276px;
-    object-fit: cover;
-    @media (max-width: 767px) {
-        height: 256px;
-    }
-}
-
 .forum-content > div {
     p {
         margin-bottom: 0;
