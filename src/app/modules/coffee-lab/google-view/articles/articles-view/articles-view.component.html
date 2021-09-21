@@ -58,68 +58,68 @@
             </div>
         </div>
     </div>
-    <div class="articles-wrapper" *ngIf="!isLoading; else loading">
-        <div
-            class="col-12 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
-            [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
-            *ngFor="let article of articlesData"
-        >
-            <a [routerLink]="getLink(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
-                <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
-                    <div class="d-flex justify-content-betweenn px-4">
-                        <div class="flex-1 overflow-hidden">
-                            <app-user-header [prop]="article"></app-user-header>
-                        </div>
-                        <div class="icon-save hover-save-icon">
-                            <img
-                                (click)="onFocus($event)"
-                                class="cursor-point"
-                                src="assets/images/save.svg"
-                                alt="save"
-                            />
-                        </div>
+    <div class="position-relative">
+        <div class="articles-wrapper">
+            <div
+                class="col-12 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
+                [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
+                *ngFor="let article of articlesData"
+            >
+                <a [routerLink]="getLink(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
+                    <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
+                        <div class="d-flex justify-content-betweenn px-4">
+                            <div class="flex-1 overflow-hidden">
+                                <app-user-header [prop]="article"></app-user-header>
+                            </div>
+                            <div class="icon-save hover-save-icon">
+                                <img
+                                    (click)="onFocus($event)"
+                                    class="cursor-point"
+                                    src="assets/images/save.svg"
+                                    alt="save"
+                                />
+                            </div>
 
-                        <!-- <app-forum-menu></app-forum-menu> -->
-                    </div>
-                    <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
-                    <div class="mx-4">
-                        <div class="d-flex">
-                            <!-- <div class="thumb-icon">
+                            <!-- <app-forum-menu></app-forum-menu> -->
+                        </div>
+                        <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
+                        <div class="mx-4">
+                            <div class="d-flex">
+                                <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
-                            <span class="fnt-600 text-clr588">{{
-                                article?.posted_at || article?.created_at | date: 'longDate'
-                            }}</span>
-                        </div>
-                        <h3 class="fnt-bold lh-157 cursor-pointer article-title-text mb-0">
-                            {{ article?.title }}
-                        </h3>
-                        <div class="fnt-normal lh-143 mt-2 mt-md-3">
-                            <span class="article-title-text">
-                                {{ article?.subtitle }}
-                            </span>
+                                <span class="fnt-600 text-clr588">{{
+                                    article?.posted_at || article?.created_at | date: 'longDate'
+                                }}</span>
+                            </div>
+                            <h3 class="fnt-bold lh-157 cursor-pointer article-title-text mb-0">
+                                {{ article?.title }}
+                            </h3>
+                            <div class="fnt-normal lh-143 mt-2 mt-md-3">
+                                <span class="article-title-text">
+                                    {{ article?.subtitle }}
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+                </a>
+            </div>
+            <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
 
-        <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4 w-100">
-            <app-paginator
-                [rows]="rows"
-                [totalRecords]="totalRecords"
-                [page]="page"
-                (onPageChange)="paginate($event)"
-            ></app-paginator>
+            <div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
+                <app-paginator
+                    [rows]="rows"
+                    [totalRecords]="totalRecords"
+                    [page]="page"
+                    (onPageChange)="paginate($event)"
+                ></app-paginator>
+            </div>
+
+            <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 text-clr24">
+                {{ 'no_data_is_available' | translate }}
+            </div>
         </div>
 
-        <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 text-clr24">
-            {{ 'no_data_is_available' | translate }}
-        </div>
+        <app-loading *ngIf="isLoading" type="overlay"></app-loading>
     </div>
 </div>
-
-<ng-template #loading>
-    <app-loading></app-loading>
-</ng-template>

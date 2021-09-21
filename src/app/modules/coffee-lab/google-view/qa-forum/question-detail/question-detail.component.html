@@ -5,7 +5,7 @@
         </a>
     </div>
 
-    <div class="page-wrapper d-block d-lg-flex justify-content-between" *ngIf="!loading">
+    <div class="page-wrapper d-block d-lg-flex justify-content-between position-relative">
         <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
             <div class="border-question-view br-12">
                 <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
@@ -150,6 +150,7 @@
             </div>
         </article>
         <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+
+        <app-loading *ngIf="loading" type="overlay"></app-loading>
     </div>
 </main>
-<app-loading *ngIf="loading"></app-loading>

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div>
-        <div class="d-flex">
+        <div class="d-flex position-relative">
             <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
                 <div class="d-flex mb-md-4">
                     <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
@@ -130,7 +130,7 @@
                     </div>
                     <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
                 </div>
-                <div *ngIf="!isLoading && totalRecords" class="pt-3 pt-md-4 text-center">
+                <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
                     <app-paginator
                         [rows]="rows"
                         [totalRecords]="totalRecords"
@@ -157,9 +157,7 @@
                 </div>
                 <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
             </div>
+            <app-loading *ngIf="isLoading" type="overlay"></app-loading>
         </div>
     </div>
-    <!-- <div *ngIf="isLoading">
-        <app-loading></app-loading>
-    </div> -->
 </div>

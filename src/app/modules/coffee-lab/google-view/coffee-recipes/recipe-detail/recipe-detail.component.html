@@ -1,4 +1,4 @@
-<main *ngIf="!loading">
+<main class="position-relative">
     <div class="mt-325 mt-md-25 mt-lg-3 pb-0 pb-lg-5 mb-4 w-fit-content" *ngIf="previousUrl">
         <a class="back-page" [routerLink]="previousUrl">
             <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
@@ -361,7 +361,7 @@
             </div>
         </article>
     </div>
-    <article class="row" *ngIf="!loading">
+    <article class="row">
         <div class="col-12 col-md-8 px-md-3">
             <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
                 {{ 'popular_brewing_guides' | translate }}
@@ -385,8 +385,9 @@
         </div>
     </article>
     <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+
+    <app-loading *ngIf="loading" type="overlay"></app-loading>
 </main>
-<app-loading *ngIf="loading"></app-loading>
 
 <ng-template #userWrapper>
     <span>

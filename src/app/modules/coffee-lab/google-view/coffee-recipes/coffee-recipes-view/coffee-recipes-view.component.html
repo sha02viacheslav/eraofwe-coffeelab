@@ -70,48 +70,50 @@
             </div>
         </div>
     </div>
-    <div class="coffee-wrapper" *ngIf="!isLoading">
-        <div
-            class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
-            *ngFor="let coffee of coffeeRecipeData"
-            [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
-        >
-            <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
-                <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
-                    <div class="position-relative">
-                        <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
-                        <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
-                    </div>
-
-                    <div class="m-3 m-md-4">
-                        <div class="d-flex justify-content-between mb-4">
-                            <div class="recipe-name fnt-md-16 fnt-bold">
-                                <span class="mb-1 d-flex recipe-title">{{ coffee?.name }}</span>
-                                <span class="fnt-600 mb-45 mb-md-4 mt-2">
-                                    {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1 }}
-                                </span>
-                            </div>
-                            <div class="bookmark-icon hover-save-icon h-100">
-                                <img src="assets/images/save.svg" alt="save" (click)="onFocus($event)" />
-                            </div>
+    <div class="position-relative">
+        <div class="coffee-wrapper">
+            <div
+                class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
+                *ngFor="let coffee of coffeeRecipeData"
+                [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
+            >
+                <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
+                    <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
+                        <div class="position-relative">
+                            <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
+                            <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                         </div>
-                        <app-user-header [prop]="coffee"></app-user-header>
+
+                        <div class="m-3 m-md-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="recipe-name fnt-md-16 fnt-bold">
+                                    <span class="mb-1 d-flex recipe-title">{{ coffee?.name }}</span>
+                                    <span class="fnt-600 mb-45 mb-md-4 mt-2">
+                                        {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1 }}
+                                    </span>
+                                </div>
+                                <div class="bookmark-icon hover-save-icon h-100">
+                                    <img src="assets/images/save.svg" alt="save" (click)="onFocus($event)" />
+                                </div>
+                            </div>
+                            <app-user-header [prop]="coffee"></app-user-header>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
         </div>
-        <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
-    </div>
-    <div class="w-100 mt-45" *ngIf="!isLoading && totalRecords">
-        <app-paginator
-            [rows]="rows"
-            [totalRecords]="totalRecords"
-            [page]="page"
-            (onPageChange)="paginate($event)"
-        ></app-paginator>
-    </div>
-    <app-loading *ngIf="isLoading"></app-loading>
-    <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 text-clr24">
-        {{ 'no_data_is_available' | translate }}
+        <div class="w-100 mt-45" *ngIf="totalRecords">
+            <app-paginator
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+                [page]="page"
+                (onPageChange)="paginate($event)"
+            ></app-paginator>
+        </div>
+        <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 text-clr24">
+            {{ 'no_data_is_available' | translate }}
+        </div>
+        <app-loading *ngIf="isLoading" type="overlay"></app-loading>
     </div>
 </div>

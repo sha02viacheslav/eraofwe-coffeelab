@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent implements OnInit {
-    @Input() type: 'main' | 'header' | 'dashboard';
+    @Input() type: 'main' | 'overlay';
 
     constructor() {}
 
