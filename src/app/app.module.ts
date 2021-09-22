@@ -31,6 +31,7 @@ export function StartupServiceFactory(startupService: StartupService) {
     declarations: [AppComponent, LayoutComponent, HealthCheckComponent, FooterComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserAnimationsModule,
         AppRoutingModule,
         TransferHttpCacheModule,
         HttpClientModule,
