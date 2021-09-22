@@ -91,7 +91,10 @@ export class ArticleDetailComponent implements OnInit {
                 if (getLangRoute(res.result.language) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    this.detailsData = res.result;
+                    this.detailsData = {
+                        ...res.result,
+                        articleContentText: this.globalsService.getJustText(res.result?.content),
+                    };
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
@@ -133,18 +136,17 @@ export class ArticleDetailComponent implements OnInit {
             title = 'Era of We Coffee Marketplace';
         }
         if (this.detailsData?.content) {
-            if (this.globalsService.getJustText(this.detailsData?.content).length < 60) {
+            if (this.detailsData?.articleContentText.length < 60) {
                 description = this.detailsData?.content.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.globalsService.getJustText(this.detailsData?.content);
+                description = this.detailsData?.articleContentText;
             }
         } else {
             description =
                 'Era of We A global coffee marketplace and community that brings together all members of the supply chain';
         }
-        const imageUrl = this.detailsData?.cover_image_url || seoVariables.image;
 
         this.seoService.setSEO(title, description);
     }
@@ -179,7 +181,7 @@ export class ArticleDetailComponent implements OnInit {
                     '@type': 'Article',
                     '@id': this.doc.URL,
                     headline: this.seoService.getPageTitle(),
-                    description: this.globalsService.getJustText(this.detailsData?.content),
+                    description: this.detailsData?.articleContentText.substr(0, 160),
                     image: this.detailsData?.cover_image_url,
                     datePublished: this.detailsData?.created_at,
                     author: {

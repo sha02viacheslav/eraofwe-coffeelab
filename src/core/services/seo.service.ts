@@ -18,7 +18,7 @@ export class SEOService {
     setMetaData(type, name, content) {
         const metaData: any = {
             [type]: name,
-            content: name === 'description' ? content?.substr(0, 160) : content,
+            content: name === content?.substr(0, 160),
         };
         this.meta.updateTag(metaData);
     }
