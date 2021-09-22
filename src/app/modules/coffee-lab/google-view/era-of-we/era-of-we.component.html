@@ -93,7 +93,11 @@
                         <!-- <app-forum-menu></app-forum-menu> -->
                         <div class="btn-icon save" (click)="onFocus($event)"></div>
                     </div>
-                    <img [src]="article.cover_image_url" class="w-100 my-3" [alt]="article?.title + ' cover image'" />
+                    <img
+                        [lazyLoad]="article.cover_image_url"
+                        class="w-100 my-3"
+                        [alt]="article?.title + ' cover image'"
+                    />
                     <div class="mx-4">
                         <div class="fnt-bold lh-157 cursor-pointer article-title-text">
                             {{ article?.title }}

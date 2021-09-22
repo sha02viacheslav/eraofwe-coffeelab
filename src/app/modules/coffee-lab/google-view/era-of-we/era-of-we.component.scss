@@ -4,6 +4,7 @@
     height: 100%;
     img {
         height: 243px;
+        min-height: 243px;
         object-fit: cover;
     }
     &:hover {

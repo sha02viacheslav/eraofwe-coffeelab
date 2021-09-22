@@ -80,7 +80,7 @@
                 <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
                     <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
                         <div class="position-relative">
-                            <img [src]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
+                            <img [lazyLoad]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
                             <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                         </div>
 
