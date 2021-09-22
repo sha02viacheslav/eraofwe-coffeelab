@@ -36,7 +36,7 @@
                                 "inject": false,
                                 "bundleName": "styles"
                             },
-                             {
+                            {
                                 "input": "src/styles-inject.scss",
                                 "inject": true,
                                 "bundleName": "styles-inject"

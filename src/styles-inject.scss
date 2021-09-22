@@ -1,6 +1,7 @@
 /* This style is inected without lazy loading */
 
 @import 'theme/styles/_variables';
+@import 'assets/css/custom-bootstrap';
 
 #loading {
     display: none !important;
@@ -122,4 +123,10 @@ $font-sizes: (
             font-size: $value !important;
         }
     }
+}
+
+.seo-hidden {
+    height: 0;
+    width: 0;
+    overflow: hidden;
 }

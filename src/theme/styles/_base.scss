@@ -1,18 +1,5 @@
 @import 'variables';
 
-// Layout style
-.container {
-    @media (min-width: 768px) and (max-width: 992px) {
-        max-width: 734px;
-    }
-    @media (min-width: 992px) and (max-width: 1280px) {
-        max-width: 990px;
-    }
-    @media (min-width: 1280px) {
-        max-width: 1270px !important;
-    }
-}
-
 div[class^='col-'] {
     // For pMenu Please don't remove
     position: unset;
