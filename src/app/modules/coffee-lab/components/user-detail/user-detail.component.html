@@ -15,12 +15,12 @@
     />
     <ng-template #placeholder>
         <div *ngIf="type == 'contact'; else noContact" class="contact-img-wrap">
-            <img class="placeholder" src="assets/images/contact-placeholder.svg" />
+            <img class="placeholder" lazyLoad="assets/images/contact-placeholder.svg" />
         </div>
         <ng-template #noContact>
             <img
                 class="placeholder"
-                src="assets/images/avatar-placeholder.svg"
+                lazyLoad="assets/images/avatar-placeholder.svg"
                 [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
             />
         </ng-template>
