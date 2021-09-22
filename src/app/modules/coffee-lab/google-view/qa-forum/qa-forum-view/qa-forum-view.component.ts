@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
-import { SeoDescription, SeoTitle, seoVariables } from '@constants';
+import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MenuItem } from 'primeng/api';
@@ -36,26 +36,24 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     page = 1;
     jsonLD: any;
     buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
-    destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
-        @Inject(DOCUMENT) private document: Document,
+        @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
         private route: ActivatedRoute,
         private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         protected resizeService: ResizeService,
-        public dialogSrv: DialogService,
         public globalsService: GlobalsService,
-        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         super(resizeService);
     }
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.filterOptions = [
                 {
                     label: this.globalsService.languageJson?.coffee_experts,
@@ -80,9 +78,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     value: 'oldest',
                 },
             ];
-            if (isPlatformBrowser(this.platformId)) {
-                window.scrollTo(0, 0);
-            }
         });
 
         this.route.queryParamMap.subscribe((params) => {
@@ -93,6 +88,9 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 }
             }
             this.getData();
+            if (isPlatformBrowser(this.platformId)) {
+                window.scrollTo(0, 0);
+            }
         });
     }
 
@@ -157,6 +155,12 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         }
     }
 
+    setSEO() {
+        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
+        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
+        this.seoService.setSEO(title, description);
+    }
+
     setSchemaMackup() {
         const forumList: any[] = [];
         for (const forum of this.questions) {
@@ -215,11 +219,5 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 ...forumList,
             ],
         };
-    }
-
-    setSEO() {
-        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
-        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
-        this.seoService.setSEO(title, description);
     }
 }

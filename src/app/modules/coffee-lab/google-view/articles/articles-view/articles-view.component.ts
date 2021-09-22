@@ -1,17 +1,18 @@
-import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
-import { DOCUMENT } from '@angular/common';
+import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
+import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
+
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
@@ -24,15 +25,15 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     isAvailableTranslation?: any;
     selectedOrder = '';
     articlesData: any[] = [];
-    isLoading = false;
+    isLoading = true;
     totalRecords = 0;
     rows = 9;
     page = 1;
     jsonLD: any;
-    destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(
-        @Inject(DOCUMENT) private document: Document,
+        @Inject(PLATFORM_ID) private platformId: object,
+        private dialogSrv: DialogService,
         private globalsService: GlobalsService,
         private route: ActivatedRoute,
         private router: Router,
@@ -40,14 +41,13 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         private toastService: ToastrService,
         protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
-        public dialogSrv: DialogService,
     ) {
         super(resizeService);
     }
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.orderList = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -78,11 +78,13 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 }
             }
             this.getData();
+            if (isPlatformBrowser(this.platformId)) {
+                window.scrollTo(0, 0);
+            }
         });
     }
 
     getData(): void {
-        this.isLoading = true;
         const params: any = {
             query: this.keyword,
             translations_available: this.isAvailableTranslation,
@@ -91,7 +93,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             page: this.page,
             per_page: this.rows,
         };
-
+        this.isLoading = true;
         this.coffeeLabService.getForumList('article', params).subscribe((res) => {
             if (res.success) {
                 this.articlesData = res.result ?? [];
@@ -186,6 +188,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             ],
         };
     }
+
     onFocus(event) {
         event.stopPropagation();
         event.preventDefault();
