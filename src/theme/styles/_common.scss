@@ -5,14 +5,6 @@
         min-height: calc(100vh - (#{$mobile-header-height} + #{$mobile-page-pt} + #{$mobile-page-pb}));
     }
 }
-.fa-star.checked {
-    color: #ffc107;
-}
-
-span.star {
-    margin-left: 2px;
-    color: $invalid-color;
-}
 
 .flex-1 {
     flex: 1;

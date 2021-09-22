@@ -1,9 +1,5 @@
 import * as _ from 'lodash';
 
-export const trimCharRight = (str: string, char: string): string => {
-    const regex = new RegExp(`${char}+$`, 'gi');
-    return str.replace(regex, '');
-};
 export function getWordCount(description: string) {
     description = description.trim();
     const regex = />([^<]+)</g;

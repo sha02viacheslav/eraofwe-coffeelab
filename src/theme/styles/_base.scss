@@ -104,6 +104,22 @@ input[type='number'] {
     }
 }
 
+// brown CTA
+.brown-cta {
+    color: $brown-color !important;
+    font-weight: 700;
+
+    &:hover {
+        color: $brown-color !important;
+        cursor: pointer;
+        text-decoration: underline !important;
+    }
+
+    @media (max-width: 767px) {
+        text-decoration: underline !important;
+    }
+}
+
 //  Text styles
 .text-underline {
     text-decoration: underline;

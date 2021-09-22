@@ -21,6 +21,12 @@
         }
     }
 
+    .about-wrap {
+        @media (min-width: 768px) {
+            padding-right: 4rem;
+        }
+    }
+
     .footer-content {
         display: flex;
         justify-content: space-between;

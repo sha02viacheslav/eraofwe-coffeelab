@@ -9,7 +9,7 @@
             <div>
                 <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
                 <span *ngFor="let btn of buttonList">
-                    <button class="button-list fnt-12 fnt-600">{{ btn.button }}</button>
+                    <button class="button-list fnt-12 fnt-semi-bold">{{ btn.button }}</button>
                 </span>
             </div> -->
                 <div class="px-0 px-md-475">
@@ -17,7 +17,7 @@
                         <!-- Starting your coffee tasting journey is easy! -->
                         {{ detailsData?.title || '--' }}
                     </h1>
-                    <p class="fnt-16 fnt-md-20 fnt-600 text-md-center px-0 px-lg-5">
+                    <p class="fnt-16 fnt-md-20 fnt-semi-bold text-md-center px-0 px-lg-5">
                         <!-- All about your first steps of coffee! -->
                         {{ detailsData?.subtitle || '--' }}
                     </p>
@@ -128,7 +128,7 @@
                                             >
                                                 {{ stickySecData?.firstname || '--' }} {{ stickySecData?.lastname }}
                                             </p>
-                                            <p class="fnt-600">
+                                            <p class="fnt-semi-bold">
                                                 {{ stickySecData?.about_me || '--' }}
                                             </p>
                                         </div>
@@ -153,7 +153,7 @@
                                     <div class="btn-icon share"></div>
                                 </div>
                                 <!-- <span *ngFor="let btn of buttonList">
-                                <button class="p-2 button-list fnt-12 fnt-600">
+                                <button class="p-2 button-list fnt-12 fnt-semi-bold">
                                     {{ btn.button }}
                                 </button>
                             </span> -->
@@ -174,7 +174,7 @@
                                         </p>
                                     </div>
                                     <div class="bg-f8 px-25 py-2">
-                                        <p class="fnt-600 fnt-12">
+                                        <p class="fnt-semi-bold fnt-12">
                                             {{ 'original_language' | translate }} :
                                             {{ detailsData?.original_article?.language | language }}
                                         </p>
@@ -183,7 +183,7 @@
                                 <app-user-header [prop]="orginalUserData"></app-user-header>
                                 <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                     <a
-                                        class="fnt-600"
+                                        class="fnt-semi-bold"
                                         (click)="
                                             onRealtedRoute(
                                                 detailsData?.original_article?.language,
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <button
-                                        class="add-comment d-flex align-items-center pl-4 w-100 fnt-600 text-clr588"
+                                        class="add-comment d-flex align-items-center pl-4 w-100 fnt-semi-bold text-clr588"
                                         (click)="onFocus()"
                                     >
                                         {{ 'share_your_thoughts' | translate }}
@@ -212,7 +212,7 @@
                             <!-- Answers -->
                             <div *ngIf="allComments?.length > 0" class="w-100">
                                 <div class="comment-border pb-1">
-                                    <p class="fnt-600">{{ allComments?.length }} {{ 'answers' | translate }}</p>
+                                    <p class="fnt-semi-bold">{{ allComments?.length }} {{ 'answers' | translate }}</p>
                                 </div>
                                 <div
                                     class="answer-wrapper my-45"
@@ -236,12 +236,9 @@
                                     </div>
                                 </div>
                                 <div class="text-center w-100" *ngIf="showCommentBtn">
-                                    <button
-                                        (click)="viewAllComments()"
-                                        class="fnt-bold text-clr60b cursor-pointer mb-4 bg-transparent border-0 text-underline"
-                                    >
+                                    <div (click)="viewAllComments()" class="brown-cta">
                                         {{ 'view_all_comments' | translate }}
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +262,7 @@
                                 <p class="fnt-fly fnt-bold cust-flex-grow">
                                     {{ forum?.title | convertToShortDescription: 6 }}
                                 </p>
-                                <p class="fnt-600 text-underline">
+                                <p class="fnt-semi-bold text-underline">
                                     {{ forum?.user_name }}
                                 </p>
                             </div>
@@ -290,10 +287,12 @@
                         <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
                             {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                         </p>
-                        <p class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1">{{ stickySecData?.organisation_name }}</p>
+                        <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1">
+                            {{ stickySecData?.organisation_name }}
+                        </p>
                         <p
                             *ngIf="stickySecData?.country || stickySecData?.city"
-                            class="fnt-muli fnt-14 fnt-600 text-clr588 mb-1"
+                            class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1"
                         >
                             <span *ngIf="stickySecData?.organisation_name">@</span>
                             {{ stickySecData?.city || stickySecData?.organization_city }},

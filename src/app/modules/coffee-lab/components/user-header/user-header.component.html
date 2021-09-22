@@ -27,14 +27,14 @@
                 </div>
             </div>
             <div class="text-clr588 mt-1 d-flex text-nowrap">
-                <span class="fnt-600 mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
-                <span class="fnt-600 mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
+                <span class="fnt-semi-bold mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
+                <span class="fnt-semi-bold mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
                 <span class="ellipsis" *ngIf="orgType !== 'co' && !prop?.question"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
                 <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
                     <span class="d-none d-md-block time-point"></span>
-                    <span class="fnt-600 text-clr588 d-none d-md-block aling-time">
+                    <span class="fnt-semi-bold text-clr588 d-none d-md-block aling-time">
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}
                     </span>
                 </div>

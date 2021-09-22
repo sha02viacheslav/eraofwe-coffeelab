@@ -97,7 +97,7 @@
             <div class="detail-slide-down" [class.fadeIn]="showMore">
                 <div>
                     <div *ngIf="data; else noAboutMe">
-                        <div *ngIf="data?.about_me" class="fnt-600 pb-3">
+                        <div *ngIf="data?.about_me" class="fnt-semi-bold pb-3">
                             {{ data?.about_me | convertToShortDescription: 13 }}
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     </ng-template>
                     <div *ngIf="data; else noConverse" class="d-flex flex-wrap mb-n1">
                         <div class="mr-1 mb-1" *ngFor="let language of data?.converse_languages">
-                            <div class="border-main bg-f8 fnt-12 fnt-600 text-clr588 px-2 py-1 language-item-br">
+                            <div class="border-main bg-f8 fnt-12 fnt-semi-bold text-clr588 px-2 py-1 language-item-br">
                                 {{ language | language }}
                             </div>
                         </div>

@@ -91,3 +91,35 @@ button.osano-cm-widget {
         }
     }
 }
+
+// line height
+.lh-143 {
+    line-height: 1.43;
+}
+.lh-15 {
+    line-height: 1.5;
+}
+.lh-157 {
+    line-height: 1.57;
+}
+
+// Font size
+$font-sizes: (
+    12: 12px,
+    14: 14px,
+    16: 16px,
+    18: 18px,
+    20: 20px,
+);
+@each $size, $value in $font-sizes {
+    .fnt-#{$size} {
+        font-size: $value !important;
+    }
+}
+@media (min-width: 768px) {
+    @each $size, $value in $font-sizes {
+        .fnt-md-#{$size} {
+            font-size: $value !important;
+        }
+    }
+}

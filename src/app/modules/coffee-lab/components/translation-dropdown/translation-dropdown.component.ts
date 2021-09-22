@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GlobalsService } from '@services';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -11,7 +10,7 @@ export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;
     @Input() forumType;
 
-    constructor(public globalsService: GlobalsService) {}
+    constructor() {}
 
     ngOnInit(): void {}
 

@@ -21,9 +21,6 @@ $spacers: () !default;
 $spacers: map-merge(
     (
         0: 0,
-        z5: (
-            $spacer * 0.125,
-        ),
         1: (
             $spacer * 0.25,
         ),
@@ -55,9 +52,6 @@ $spacers: map-merge(
         5: (
             $spacer * 3,
         ),
-        6: (
-            $spacer * 4,
-        ),
     ),
     $spacers
 );
@@ -74,43 +68,21 @@ $gutters: (
 );
 
 // Custom font size
-$font-sizes: (
-    12: 12px,
-    14: 14px,
-    16: 16px,
-    18: 18px,
-);
-
-// Custom font size
 $font-weights: (
     normal: 400,
     semi-bold: 600,
     bold: 700,
 );
 
-// line-height
-$line-heights: (
-    1: 1,
-    15: 1.5,
-    157: 1.57,
-);
-
 // border radius
 $border-radiuses: (
     2: 2px,
     4: 4px,
+    12: 12px,
 );
 
 // border
 $borders: (
-    main: $secondary-border-color,
-    primary: $primary-border-color,
-);
-$border-lefts: (
-    main: $secondary-border-color,
-    primary: $primary-border-color,
-);
-$border-rights: (
     main: $secondary-border-color,
     primary: $primary-border-color,
 );
@@ -123,125 +95,62 @@ $border-bottoms: (
     primary: $primary-border-color,
 );
 
-$border-widths: (
-    0: 0,
-);
+// Font weight
+@each $size, $value in $font-weights {
+    .fnt-#{$size} {
+        font-weight: $value !important;
+    }
+}
 
-@each $breakpoint in map-keys($grid-breakpoints) {
-    @include media-breakpoint-up($breakpoint) {
-        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-        @each $size, $value in $gutters {
-            .row.gutter#{$infix}-#{$size} {
-                margin-right: -$value / 2;
-                margin-left: -$value / 2;
+// Border
+@each $size, $value in $borders {
+    .border-#{$size} {
+        border: solid 1px $value !important;
+    }
+}
+@each $size, $value in $border-tops {
+    .border-top-#{$size} {
+        border-top: solid 1px $value !important;
+    }
+    .border-top-dashed-#{$size} {
+        border-top: dashed 1px $value !important;
+    }
+}
+@each $size, $value in $border-bottoms {
+    .border-bottom-#{$size} {
+        border-bottom: solid 1px $value !important;
+    }
+    .border-bottom-dashed-#{$size} {
+        border-bottom: dashed 1px $value !important;
+    }
+}
 
-                > .col,
-                > [class*='col-'] {
-                    padding-right: $value / 2;
-                    padding-left: $value / 2;
-                }
-            }
-            .row.v-gutter#{$infix}-#{$size} {
-                margin-top: -$value / 2;
-                margin-bottom: -$value / 2;
+// Border radius
+@each $size, $value in $border-radiuses {
+    .br-#{$size} {
+        border-radius: $value !important;
+    }
+}
 
-                > .col,
-                > [class*='col-'] {
-                    padding-top: $value / 2;
-                    padding-bottom: $value / 2;
-                }
-            }
-        }
-        @each $size, $value in $font-sizes {
-            .fnt#{$infix}-#{$size} {
-                font-size: $value !important;
-            }
-        }
-        @each $size, $value in $font-weights {
-            .fnt#{$infix}-#{$size} {
-                font-weight: $value !important;
-            }
-        }
-        @each $size, $value in $line-heights {
-            .lh#{$infix}-#{$size} {
-                line-height: $value !important;
-            }
-        }
-        // Border radius
-        @each $size, $value in $border-radiuses {
-            .br#{$infix}-#{$size} {
-                border-radius: $value !important;
-            }
-        }
-        // Disable border radius
-        .br-left#{$infix}-0 {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .br-right#{$infix}-0 {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
+@each $size, $value in $gutters {
+    .row.gutter-#{$size} {
+        margin-right: -$value / 2;
+        margin-left: -$value / 2;
 
-        @each $size, $value in $borders {
-            .border#{$infix}-#{$size} {
-                border: solid 1px $value !important;
-            }
-            .border-dashed#{$infix}-#{$size} {
-                border: dashed 1px $value !important;
-            }
-            .border#{$infix}-none {
-                border: none !important;
-            }
+        > .col,
+        > [class*='col-'] {
+            padding-right: $value / 2;
+            padding-left: $value / 2;
         }
-        @each $size, $value in $border-lefts {
-            .border-left#{$infix}-#{$size} {
-                border-left: solid 1px $value !important;
-            }
-            .border-left-dashed#{$infix}-#{$size} {
-                border-left: dashed 1px $value !important;
-            }
-            .border-left#{$infix}-none {
-                border-left: none !important;
-            }
-        }
-        @each $size, $value in $border-rights {
-            .border-right#{$infix}-#{$size} {
-                border-right: solid 1px $value !important;
-            }
-            .border-right-dashed#{$infix}-#{$size} {
-                border-right: dashed 1px $value !important;
-            }
-            .border-right#{$infix}-none {
-                border-right: none !important;
-            }
-        }
-        @each $size, $value in $border-tops {
-            .border-top#{$infix}-#{$size} {
-                border-top: solid 1px $value !important;
-            }
-            .border-top-dashed#{$infix}-#{$size} {
-                border-top: dashed 1px $value !important;
-            }
-            .border-top#{$infix}-none {
-                border-top: none !important;
-            }
-        }
-        @each $size, $value in $border-bottoms {
-            .border-bottom#{$infix}-#{$size} {
-                border-bottom: solid 1px $value !important;
-            }
-            .border-bottom-dashed#{$infix}-#{$size} {
-                border-bottom: dashed 1px $value !important;
-            }
-            .border-bottom#{$infix}-none {
-                border-bottom: none !important;
-            }
-        }
-        @each $size, $value in $border-widths {
-            .border#{$infix}-#{$size} {
-                border-width: $value !important;
-            }
+    }
+    .row.v-gutter-#{$size} {
+        margin-top: -$value / 2;
+        margin-bottom: -$value / 2;
+
+        > .col,
+        > [class*='col-'] {
+            padding-top: $value / 2;
+            padding-bottom: $value / 2;
         }
     }
 }
