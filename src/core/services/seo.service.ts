@@ -18,17 +18,17 @@ export class SEOService {
     setMetaData(type, name, content) {
         const metaData: any = {
             [type]: name,
-            content: name === content?.substr(0, 160),
+            content,
         };
         this.meta.updateTag(metaData);
     }
 
     setSEO(title: string, description: string) {
         this.setPageTitle(title);
-        this.setMetaData('name', 'description', description);
+        this.setMetaData('name', 'description', description.substr(0, 160));
 
         this.setMetaData('property', 'og:title', title);
-        this.setMetaData('property', 'og:description', description);
+        this.setMetaData('property', 'og:description', description.substr(0, 160));
         this.setMetaData('property', 'og:url', this.doc.URL);
         this.setMetaData('property', 'og:image', `${seoVariables.image}?v=${Date.now()}`);
 
@@ -36,7 +36,7 @@ export class SEOService {
         this.setMetaData('name', 'twitter:creator', seoVariables.author);
         this.setMetaData('name', 'twitter:site', this.doc.URL);
         this.setMetaData('name', 'twitter:title', title);
-        this.setMetaData('name', 'twitter:description', description);
+        this.setMetaData('name', 'twitter:description', description.substr(0, 160));
 
         this.createLinkForCanonicalURL();
     }
