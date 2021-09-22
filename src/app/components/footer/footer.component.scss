@@ -80,4 +80,19 @@
             object-position: center;
         }
     }
+
+    @media (min-width: 576px) {
+        .flex-sm-row {
+            flex-direction: row !important;
+        }
+        .d-sm-none {
+            display: none !important;
+        }
+        .d-sm-inline-block {
+            display: inline-block !important;
+        }
+        .align-items-sm-end {
+            align-items: flex-end !important;
+        }
+    }
 }
