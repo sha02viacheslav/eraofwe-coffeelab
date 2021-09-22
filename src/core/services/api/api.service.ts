@@ -1,98 +1,21 @@
 export class Api {}
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApiResponse, RequestDto } from '@models';
+import { HttpClient } from '@angular/common/http';
+import { ApiResponse } from '@models';
 import { environment } from '@env/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import * as _ from 'lodash';
 import { OrganizationType } from '@enums';
-
-type HttpMethod = '' | 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export class ApiService {
     readonly orgType = OrganizationType.CONSUMER;
-    protected postUrl: string;
-    protected deleteUrl: string;
     protected orgPostUrl: string;
-    protected orgPutUrl: string;
-    protected orgDeleteUrl: string;
-    protected fileUploadUrl: string;
-    protected putFileUploadUrl: string;
-    protected sendEmailUrl: string;
-    protected generalUrl: string;
 
     constructor(protected cookieSrv: CookieService, protected http: HttpClient) {
-        this.postUrl = `${environment.apiURL}/api`;
-        this.deleteUrl = `${environment.apiURL}/deleteapi`;
         this.orgPostUrl = `${environment.apiURL}/${this.orgType}/api`;
-        this.orgPutUrl = `${environment.apiURL}/${this.orgType}/putapi`;
-        this.orgDeleteUrl = `${environment.apiURL}/${this.orgType}/deleteapi`;
-        this.fileUploadUrl = `${environment.apiURL}/${this.orgType}/filesfolders`;
-        this.putFileUploadUrl = `${environment.apiURL}/${this.orgType}/putfilesfolders`;
-        this.sendEmailUrl = `${environment.apiURL}/sendemail`;
-        this.generalUrl = `${environment.apiURL}/${this.orgType}/general`;
     }
 
     protected get(url: string, apiCall: string, options?: object): Observable<ApiResponse<any>> {
         return this.http.get<ApiResponse<any>>(`${url}?api_call=${encodeURIComponent(`/${apiCall}`)}`, options);
-    }
-
-    protected post(
-        url: string,
-        apiCall: string,
-        method: HttpMethod = 'GET',
-        data?: object,
-    ): Observable<ApiResponse<any>> {
-        const dto = this.getDto(apiCall, method, data);
-
-        return this.http.post<ApiResponse<any>>(`${url}`, dto);
-    }
-
-    protected postWithOrg(
-        url: string,
-        apiCall: string,
-        method: HttpMethod = 'GET',
-        data?: object,
-    ): Observable<ApiResponse<any>> {
-        const dto = this.getDtoWithOrg(apiCall, method, data);
-
-        return this.http.post<ApiResponse<any>>(`${url}`, dto);
-    }
-
-    protected putWithOrg(
-        url: string,
-        apiCall: string,
-        method: HttpMethod = '',
-        data?: object,
-    ): Observable<ApiResponse<any>> {
-        const dto = this.getDtoWithOrg(apiCall, method, data);
-
-        return this.http.put<ApiResponse<any>>(`${url}`, dto);
-    }
-
-    protected getDtoWithOrg(apiCall: string, method: string, data?: object): RequestDto {
-        const orgId = this.cookieSrv.get('roaster_id');
-        const dto: RequestDto = {
-            api_call: `/${this.orgType}/${orgId}/${apiCall}`,
-            method,
-            token: this.cookieSrv.get('Auth'),
-        };
-        if (data) {
-            dto.data = data;
-        }
-        return dto;
-    }
-
-    protected getDto(apiCall: string, method: string, data?: object): RequestDto {
-        const dto: RequestDto = {
-            api_call: `/${apiCall}`,
-            method,
-            token: this.cookieSrv.get('Auth'),
-        };
-        if (data) {
-            dto.data = data;
-        }
-        return dto;
     }
 
     protected serializeParams(obj: object): string {
@@ -100,16 +23,15 @@ export class ApiService {
         for (const prop in obj) {
             if (
                 obj.hasOwnProperty(prop) &&
-                !_.isNull(obj[prop]) &&
-                !_.isUndefined(obj[prop]) &&
-                !(_.isArray(obj[prop]) && _.isEmpty(obj[prop])) &&
+                obj[prop] !== null &&
                 obj[prop] !== undefined &&
-                obj[prop] !== ''
+                obj[prop] !== '' &&
+                !(Array.isArray(obj[prop]) && !obj[prop].length)
             ) {
                 str.push(
                     encodeURIComponent(prop) +
                         '=' +
-                        encodeURIComponent(_.isArray(obj[prop]) ? obj[prop].join(',') : obj[prop]),
+                        encodeURIComponent(Array.isArray(obj[prop]) ? obj[prop].join(',') : obj[prop]),
                 );
             }
         }

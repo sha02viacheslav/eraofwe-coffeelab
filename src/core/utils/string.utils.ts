@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 export function getWordCount(description: string) {
     description = description.trim();
     const regex = />([^<]+)</g;
@@ -20,7 +18,12 @@ export function getWordCount(description: string) {
     return plainString;
 }
 
-export const toSentenceCase = (str: string = '', decodeSnake: boolean = true): any => {
+export const upperFirst = (str: string = ''): string => {
+    return str?.length ? str[0].toUpperCase() + str.slice(1) : '';
+};
+
+export const toSentenceCase = (str: string = '', decodeSnake: boolean = true): string => {
     // decodeSnake: To remove special characters(undersocre and dash)
-    return decodeSnake ? _.upperFirst(_.lowerCase(str)) : _.upperFirst(str.toLocaleLowerCase());
+    const lowerCaseStr: any = str.toLowerCase();
+    return decodeSnake ? upperFirst(lowerCaseStr.replaceAll('_', ' ').replaceAll('-', ' ')) : upperFirst(lowerCaseStr);
 };
