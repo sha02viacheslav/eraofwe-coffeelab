@@ -26,21 +26,9 @@
                         "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
                         "extractCss": true,
                         "styles": [
-                            {
-                                "input": "node_modules/primeng/resources/primeng.min.css",
-                                "inject": false,
-                                "bundleName": "primeng"
-                            },
-                            {
-                                "input": "src/styles.scss",
-                                "inject": false,
-                                "bundleName": "styles"
-                            },
-                            {
-                                "input": "src/styles-inject.scss",
-                                "inject": true,
-                                "bundleName": "styles-inject"
-                            }
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "src/styles.scss",
+                            "src/styles-inject.scss"
                         ],
                         "scripts": []
                     },
