@@ -23,7 +23,7 @@ export class AppComponent {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
         }
 
-        this.setDynamicStyles();
+        // this.setDynamicStyles();
         this.setDynamicScripts();
     }
 

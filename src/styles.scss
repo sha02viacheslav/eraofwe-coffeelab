@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'assets/css/custom-bootstrap';
+@import 'theme/styles/variables';
 @import 'theme/styles/base';
 @import 'theme/styles/primeng/primeng';
 @import 'theme/styles/fonts';
 @import 'theme/styles/buttons';
 @import 'theme/styles/common';
-@import 'theme/styles/_variables';
 @import 'theme/styles/toastr';

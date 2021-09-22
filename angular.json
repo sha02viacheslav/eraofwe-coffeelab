@@ -27,8 +27,7 @@
                         "extractCss": true,
                         "styles": [
                             "node_modules/primeng/resources/primeng.min.css",
-                            "src/styles.scss",
-                            "src/styles-inject.scss"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },
