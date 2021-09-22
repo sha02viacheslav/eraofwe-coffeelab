@@ -22,8 +22,6 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HealthCheckComponent, FooterComponent } from '@components';
 
-import { environment } from '@env/environment';
-
 import { StartupService } from '@services';
 export function StartupServiceFactory(startupService: StartupService) {
     return () => startupService.load();
@@ -33,7 +31,6 @@ export function StartupServiceFactory(startupService: StartupService) {
     declarations: [AppComponent, LayoutComponent, HealthCheckComponent, FooterComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        BrowserAnimationsModule,
         AppRoutingModule,
         TransferHttpCacheModule,
         HttpClientModule,
