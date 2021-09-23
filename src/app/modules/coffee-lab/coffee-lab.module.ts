@@ -5,10 +5,9 @@ import { SharedModule } from '@shared';
 import { CoffeeLabComponentsModule } from './components/coffee-lab-components.module';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
-import { OverviewComponent } from './google-view/overview/overview.component';
 
 @NgModule({
-    declarations: [CoffeeLabComponent, OverviewComponent],
+    declarations: [CoffeeLabComponent],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule, CoffeeLabComponentsModule],
 })
 export class CoffeeLabModule {}
