@@ -32,11 +32,10 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
     }
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {});
         this.authService.authState.pipe(takeUntil(this.unsubscribeAll$)).subscribe((socialRes) => {
             this.socialLogin(socialRes);
         });
-        this.authService.initState.subscribe((res) => {
+        this.authService.initState.pipe(takeUntil(this.unsubscribeAll$)).subscribe((res) => {
             this.isReady = res;
         });
     }

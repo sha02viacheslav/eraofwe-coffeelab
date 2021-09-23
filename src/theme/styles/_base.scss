@@ -140,6 +140,11 @@ input[type='number'] {
     }
 }
 
+// Cursor
+.cursor-pointer {
+    cursor: pointer;
+}
+
 // Scroll style
 ::-webkit-scrollbar {
     width: 3px;

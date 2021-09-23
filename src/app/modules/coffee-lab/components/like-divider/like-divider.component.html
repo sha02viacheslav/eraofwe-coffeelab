@@ -10,19 +10,19 @@
 <div class="like-box py-15 px-3 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
     <div class="d-flex">
         <!-- <div class="d-flex">
-            <img (click)="onFocus()" class="cursor-point" src="assets/images/like.svg" alt="thumbs-up" />
+            <img (click)="onFocus()" class="cursor-pointer" src="assets/images/like.svg" alt="thumbs-up" />
             <span class="d-flex align-items-end ml-md-2 ml-1 mb-05">42</span>
         </div> -->
         <div (click)="onFocus()" class="btn-icon message transparent"></div>
         <div (click)="onFocus()" class="btn-icon save transparent ml-1"></div>
     </div>
     <div class="d-flex align-items-center" *ngIf="showJoinBtn">
-        <div (click)="onJoin()" class="cursor-point p-1 mr-2 d-none d-md-block fnt-semi-bold text-nowrap">
+        <div (click)="onJoin()" class="cursor-pointer p-1 mr-2 d-none d-md-block fnt-semi-bold text-nowrap">
             {{ 'join_the_discussion' | translate }}
         </div>
         <img
             (click)="onJoin()"
-            class="cursor-point"
+            class="cursor-pointer"
             src="assets/images/right-arrow-active.svg"
             alt="right-arrow"
             width="30"

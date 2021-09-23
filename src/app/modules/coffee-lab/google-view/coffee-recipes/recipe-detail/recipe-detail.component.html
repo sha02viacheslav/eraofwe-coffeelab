@@ -46,7 +46,7 @@
                                     <!-- <div class="d-flex">
                                         <img
                                             (click)="onFocus()"
-                                            class="cursor-point"
+                                            class="cursor-pointer"
                                             src="assets/images/thumbsup.svg"
                                             alt="thumb"
                                         />
@@ -193,7 +193,7 @@
                                 </div>
                                 <div>
                                     <p
-                                        class="fnt-bold cursor-point text-underline mb-2"
+                                        class="fnt-bold cursor-pointer text-underline mb-2"
                                         routerLink="/user-profile"
                                         [queryParams]="{
                                             user_id: detailsData?.user_id || detailsData?.posted_by,
@@ -220,7 +220,7 @@
                                 <!-- <div class="d-flex">
                                      <img
                                         (click)="onFocus()"
-                                        class="cursor-point"
+                                        class="cursor-pointer"
                                         src="assets/images/thumbsup.svg"
                                         alt="thumbs-up"
                                     />
@@ -337,7 +337,7 @@
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
-                        <div class="cursor-point d-flex flex-column">
+                        <div class="cursor-pointer d-flex flex-column">
                             <p class="fnt-fly fnt-bold cust-flex-grow">{{ forum?.name }}</p>
                             <p class="fnt-semi-bold text-underline">
                                 {{ forum?.posted_user }}
@@ -397,7 +397,7 @@
                     <div class="btn-raised pb-1 pt-25">
                         <img
                             (click)="onFocus()"
-                            class="cursor-point"
+                            class="cursor-pointer"
                             src="assets/images/message-icon-white.svg"
                             alt="message-icon-white"
                         />
@@ -409,7 +409,7 @@
                 <!-- <div class="d-flex">
                     <img
                         (click)="onFocus()"
-                        class="cursor-point"
+                        class="cursor-pointer"
                         src="assets/images/thumbs-up-button.svg"
                         alt="thumb"
                     />
