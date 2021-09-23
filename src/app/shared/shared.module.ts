@@ -14,7 +14,6 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { TabMenuModule } from 'primeng/tabmenu';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MomentModule } from 'ngx-moment';
 import { TranslateModule } from '@ngx-translate/core';
 
 const THIRDMODULES = [
@@ -24,7 +23,6 @@ const THIRDMODULES = [
     InputTextModule,
     LazyLoadImageModule,
     MenuModule,
-    MomentModule,
     OverlayPanelModule,
     PaginatorModule,
     SkeletonModule,
@@ -42,9 +40,9 @@ const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
 import { AppShellNoRenderDirective } from './directives';
 const DIRECTIVES = [AppShellNoRenderDirective];
 
-import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe } from './pipes';
+import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe } from './pipes';
 
-const PIPES = [ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe];
+const PIPES = [ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe];
 
 @NgModule({
     imports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES],
