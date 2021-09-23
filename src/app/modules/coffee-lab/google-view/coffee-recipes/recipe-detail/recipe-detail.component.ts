@@ -71,16 +71,13 @@ export class RecipeDetailComponent implements OnInit {
             if (!this.relatedData?.length) {
                 this.getRecipeList();
             }
+            if (isPlatformBrowser(this.platformId)) {
+                window.scrollTo(0, 0);
+            }
         });
-        console.log(this.coffeeLabService.currentForumLanguage);
     }
 
-    ngOnInit(): void {
-        if (isPlatformBrowser(this.platformId)) {
-            window.scrollTo(0, 0);
-        }
-        // this.setSEO();
-    }
+    ngOnInit(): void {}
 
     onRealtedRoute(langCode, slug) {
         this.router.navigateByUrl(`/${getLangRoute(langCode)}/coffee-recipes/${slug}`);
