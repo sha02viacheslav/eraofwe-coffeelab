@@ -380,9 +380,9 @@
                 </div>
             </div>
             <div class="pb-4">
-                <div class="d-flex align-items-center">
+                <div class="d-flex">
                     <button
-                        class="view-button mr-2 fnt-bold"
+                        class="btn-stroked mr-2"
                         routerLink="/user-profile"
                         [queryParams]="{
                             user_id: detailsData?.user_id || detailsData?.posted_by,
@@ -394,7 +394,7 @@
                     >
                         {{ 'view_profile' | translate }}
                     </button>
-                    <div class="btn-raised pb-1 pt-25">
+                    <div class="btn-raised">
                         <img
                             (click)="onFocus()"
                             class="cursor-pointer"

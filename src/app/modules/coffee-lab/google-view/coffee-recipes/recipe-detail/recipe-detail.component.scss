@@ -159,22 +159,6 @@
     }
 }
 
-.view-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 11px 16px;
-    border-radius: 4px;
-    border: solid 1px #30855c;
-    cursor: pointer;
-    color: #30855c;
-    background: #ffffff;
-    &:hover {
-        background: #30855c;
-        color: #ffffff;
-    }
-}
-
 .user-wrapper {
     @media (min-width: 768px) {
         width: 175px;

@@ -1,16 +1,18 @@
 @import 'variables';
 
-.btn-raised {
-    display: inline-block;
-    padding: 11px 16px;
+.btn-raised,
+.btn-stroked {
+    display: inline-flex;
+    align-items: center;
+    height: 46px;
+    padding: 8px 16px;
     border: solid 1px $primary-color;
     border-radius: 4px;
     font-size: 14px;
-    line-height: 22px;
     font-weight: bold;
     text-align: center;
+    white-space: nowrap;
     transition: all 300ms;
-    text-decoration: none;
     &:hover {
         color: $white !important;
         text-decoration: none;
@@ -23,6 +25,14 @@
 
     &:hover {
         box-shadow: 0 0 7px 1px rgba(67, 146, 108, 0.5);
+    }
+}
+.btn-stroked {
+    color: $primary-color;
+    background-color: $white;
+
+    &:hover {
+        background-color: $primary-color;
     }
 }
 
