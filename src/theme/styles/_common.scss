@@ -89,28 +89,6 @@
     width: 374px;
 }
 
-.text-no-underline {
-    text-decoration: none;
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-.translate-wrapper {
-    @media (max-width: 767px) {
-        display: none;
-    }
-    @media (min-width: 992px) and (max-width: 1280px) {
-        display: none;
-    }
-}
-
-.translate-mob-wrapper {
+button.osano-cm-widget {
     display: none;
-    @media (max-width: 767px) {
-        display: block;
-    }
-    @media (min-width: 992px) and (max-width: 1280px) {
-        display: block;
-    }
 }

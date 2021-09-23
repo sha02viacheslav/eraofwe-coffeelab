@@ -27,6 +27,8 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
         public ref: DynamicDialogRef,
     ) {
         super();
+        this.config.showHeader = false;
+        this.config.styleClass = 'signup-dialog';
     }
 
     ngOnInit(): void {

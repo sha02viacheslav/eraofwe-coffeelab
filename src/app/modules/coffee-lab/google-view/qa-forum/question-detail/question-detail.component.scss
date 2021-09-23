@@ -52,3 +52,22 @@
 .cursor-point {
     cursor: pointer;
 }
+
+.translate-wrapper {
+    @media (max-width: 767px) {
+        display: none;
+    }
+    @media (min-width: 992px) and (max-width: 1280px) {
+        display: none;
+    }
+}
+
+.translate-mob-wrapper {
+    display: none;
+    @media (max-width: 767px) {
+        display: block;
+    }
+    @media (min-width: 992px) and (max-width: 1280px) {
+        display: block;
+    }
+}

@@ -129,13 +129,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([this.getLink(item)]);
         } else {
-            this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
+            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
         }
     }
 
@@ -192,9 +186,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     onFocus(event) {
         event.stopPropagation();
         event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

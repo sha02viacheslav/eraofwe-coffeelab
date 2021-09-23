@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, GlobalsService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { RouterMap, SlugMap } from '@constants';
 import { MenuItem } from 'primeng/api';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
+import { DestroyableComponent } from '@base-components';
 
 @Component({
     selector: 'app-overview',
     templateUrl: './overview.component.html',
     styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent implements OnInit {
-    destroy$: Subject<boolean> = new Subject<boolean>();
+export class OverviewComponent extends DestroyableComponent implements OnInit {
     menuItems: MenuItem[] = [];
     constructor(
         private coffeeLabService: CoffeeLabService,
@@ -22,11 +21,13 @@ export class OverviewComponent implements OnInit {
         private startupService: StartupService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
-            this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
                 this.menuItems = this.getMenuItems(language);
                 this.startupService.load(language);
                 let currentRouter = this.globalsService.currentUrl;

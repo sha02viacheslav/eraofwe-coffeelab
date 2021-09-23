@@ -28,7 +28,7 @@
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
-            <a [href]="ssoWeb + '/email-signup'" class="text-no-underline" [rel]="isStaging ? 'nofollow' : ''">
+            <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''">
                 <div
                     class="d-flex justify-content-center align-items-center br-2 border-primary p-3 cursor-pointer mb-4"
                 >

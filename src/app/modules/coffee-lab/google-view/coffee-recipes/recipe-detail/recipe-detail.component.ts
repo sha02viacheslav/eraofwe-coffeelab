@@ -250,9 +250,6 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

@@ -193,10 +193,7 @@ export class ArticleDetailComponent implements OnInit {
         };
     }
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 
     getOriginalUserDetail(userDetails: any): void {

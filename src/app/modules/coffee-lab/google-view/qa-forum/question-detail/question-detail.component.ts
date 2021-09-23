@@ -198,21 +198,12 @@ export class QuestionDetailComponent implements OnInit {
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([`/${getLangRoute(this.lang)}/qa-forum/${item.slug}`]);
         } else {
-            this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
+            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
         }
     }
 
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 
     getLink(language, slug) {

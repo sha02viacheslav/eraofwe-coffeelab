@@ -145,13 +145,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 queryParams: this.getLink(item, answer).queryParmas,
             });
         } else {
-            this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
+            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
         }
     }
 

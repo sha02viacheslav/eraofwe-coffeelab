@@ -40,15 +40,6 @@ export class ForumMenuComponent implements OnInit {
     }
 
     showModal(event) {
-        this.dialogSrv
-            .open(SignupModalComponent, {
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            })
-            .onClose.subscribe((action: any) => {
-                if (action === 'yes') {
-                    this.document.location.href = `${environment.ssoWeb}/sign-up`;
-                }
-            });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

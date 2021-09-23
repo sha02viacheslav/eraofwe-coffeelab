@@ -17,9 +17,6 @@ export class SearchForumComponent implements OnInit {
     ngOnInit(): void {}
 
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

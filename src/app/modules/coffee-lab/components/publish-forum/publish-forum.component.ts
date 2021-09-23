@@ -4,26 +4,28 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { DestroyableComponent } from '@base-components';
 
 @Component({
     selector: 'app-publish-forum',
     templateUrl: './publish-forum.component.html',
     styleUrls: ['./publish-forum.component.scss'],
 })
-export class PublishForumComponent implements OnInit {
+export class PublishForumComponent extends DestroyableComponent implements OnInit {
     @Input() type: string;
     firstBtnValue: string;
     secondBtnValue: string;
     placeHolderValue: string;
-    destroy$: Subject<boolean> = new Subject<boolean>();
     constructor(
         public dialogSrv: DialogService,
         private globals: GlobalsService,
         private coffeeLabService: CoffeeLabService,
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             if (this.type === 'article') {
                 this.firstBtnValue = this.globals.languageJson?.ask_a_question;
                 this.secondBtnValue = this.globals.languageJson?.create_brew_guide;
@@ -41,9 +43,6 @@ export class PublishForumComponent implements OnInit {
     }
 
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

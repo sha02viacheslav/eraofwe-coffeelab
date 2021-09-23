@@ -22,9 +22,6 @@ export class LimitBannerComponent implements OnInit {
     }
 
     onSignup() {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

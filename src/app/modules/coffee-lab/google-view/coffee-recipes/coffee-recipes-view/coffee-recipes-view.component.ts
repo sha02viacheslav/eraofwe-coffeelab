@@ -22,7 +22,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     rows = 9;
     totalRecords = 0;
     page = 1;
-    destroy$: Subject<boolean> = new Subject<boolean>();
     isAvailableTranslation?: string;
     label?: string;
     ingredientValue?: string;
@@ -47,7 +46,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     jsonLD: any;
 
     constructor(
-        @Inject(DOCUMENT) private document: Document,
         private globalsService: GlobalsService,
         private route: ActivatedRoute,
         private router: Router,
@@ -62,7 +60,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.orderList = [
                 {
                     label: this.globalsService.languageJson?.latest,
@@ -175,23 +173,14 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         if (this.globalsService.getLimitCounter() > 0) {
             this.router.navigate([this.getLink(item)]);
         } else {
-            this.dialogSrv.open(SignupModalComponent, {
-                data: {
-                    isLimit: true,
-                },
-                showHeader: false,
-                styleClass: 'signup-dialog',
-            });
+            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
         }
     }
 
     onFocus(event) {
         event.stopPropagation();
         event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 
     setSEO() {

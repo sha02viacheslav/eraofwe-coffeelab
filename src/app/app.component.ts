@@ -23,7 +23,6 @@ export class AppComponent {
             this.seoService.setMetaData('name', 'robots', 'noindex, nofollow');
         }
 
-        // this.setDynamicStyles();
         this.setDynamicScripts();
     }
 
@@ -49,23 +48,7 @@ export class AppComponent {
                     node.async = true;
                     this.document.getElementsByTagName('head')[0].appendChild(node);
                 }
-            }, 5000);
-        }
-    }
-
-    setDynamicStyles() {
-        const dynamicStyles = [];
-        dynamicStyles.push('primeng');
-        dynamicStyles.push('styles');
-
-        for (const value of dynamicStyles) {
-            if (!this.document.getElementById(`${value}-id`)) {
-                const node = this.document.createElement('link');
-                node.rel = 'stylesheet';
-                node.href = `${value}.css?version=${environment.version}`;
-                node.id = `${value}-id`;
-                this.document.getElementsByTagName('head')[0].appendChild(node);
-            }
+            }, 7000);
         }
     }
 }

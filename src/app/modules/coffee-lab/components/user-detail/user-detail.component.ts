@@ -73,9 +73,6 @@ export class UserDetailComponent implements OnInit {
     }
 
     openChat(): void {
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

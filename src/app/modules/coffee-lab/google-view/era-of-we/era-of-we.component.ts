@@ -1,13 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { DOCUMENT } from '@angular/common';
-import { Subject } from 'rxjs';
 import { SeoDescription, SeoTitle } from '@constants';
 import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
-import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { getLangRoute } from '@utils';
 
@@ -22,7 +19,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     keyword = '';
     isAvailableTranslation?: any;
     selectedOrder = '';
-    destroy$: Subject<boolean> = new Subject<boolean>();
     translationsList: any[] = [
         {
             label: 'Yes',
@@ -44,7 +40,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
         },
     ];
     constructor(
-        @Inject(DOCUMENT) private document: Document,
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
         private seoService: SEOService,
@@ -112,9 +107,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     onFocus(event) {
         event.stopPropagation();
         event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {
-            showHeader: false,
-            styleClass: 'signup-dialog',
-        });
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }
