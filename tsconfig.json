@@ -54,6 +54,9 @@
       ],
       "@utils": [
         "src/core/utils/index"
+      ],
+      "moment": [
+        "node_modules/moment/min/moment.min.js"
       ]
     }
   },
