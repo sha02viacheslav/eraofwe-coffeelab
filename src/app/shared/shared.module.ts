@@ -34,8 +34,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 
 const COMPONENTS = [LoadingComponent, PaginatorComponent];
 
-import { AppShellNoRenderDirective } from './directives';
-const DIRECTIVES = [AppShellNoRenderDirective];
+const DIRECTIVES = [];
 
 import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe } from './pipes';
 
