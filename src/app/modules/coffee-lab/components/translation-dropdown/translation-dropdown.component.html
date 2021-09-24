@@ -15,10 +15,18 @@
     </ng-template>
     <ng-template let-translateItem pTemplate="item">
         <a class="d-flex align-items-center" [routerLink]="[getLink(translateItem)]">
-            <app-avatar
-                [src]="translateItem?.profile_image_thumb_url || translateItem?.profile_image_url"
-                [size]="40"
-            ></app-avatar>
+            <app-user-detail
+                [imageUrl]="
+                    translateItem?.profile_image_thumb_url ||
+                    translateItem?.profile_image_url ||
+                    translateItem?.posted_user_profile_image_url
+                "
+                [userId]="translateItem?.user_id || translateItem?.posted_by"
+                [orgType]="
+                    translateItem?.org_type || translateItem?.organisation_type || translateItem?.organization_type
+                "
+                size="40"
+            ></app-user-detail>
             <div class="d-flex flex-column justify-content-between pl-3">
                 <p class="fnt-bold mb-2">
                     {{ translateItem.user_name }}

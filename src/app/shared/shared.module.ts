@@ -29,11 +29,10 @@ const THIRDMODULES = [
 ];
 // #endregion
 
-import { AvatarComponent } from './components/avatar/avatar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 
-const COMPONENTS = [AvatarComponent, LoadingComponent, PaginatorComponent];
+const COMPONENTS = [LoadingComponent, PaginatorComponent];
 
 import { AppShellNoRenderDirective } from './directives';
 const DIRECTIVES = [AppShellNoRenderDirective];
