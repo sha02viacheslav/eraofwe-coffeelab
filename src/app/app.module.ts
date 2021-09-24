@@ -1,6 +1,5 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { APP_BASE_HREF, registerLocaleData } from '@angular/common';
-import localeSe from '@angular/common/locales/se';
+import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +16,8 @@ import {
     GoogleLoginProvider,
     FacebookLoginProvider,
 } from 'angularx-social-login';
+
+import { SharedModule } from '@shared';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -44,7 +45,7 @@ export function StartupServiceFactory(startupService: StartupService) {
             tapToDismiss: false,
         }),
         TranslateModule.forRoot(),
-        InputTextModule,
+        SharedModule,
         SocialLoginModule,
     ],
     providers: [
@@ -78,5 +79,3 @@ export function StartupServiceFactory(startupService: StartupService) {
     bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-registerLocaleData(localeSe);
