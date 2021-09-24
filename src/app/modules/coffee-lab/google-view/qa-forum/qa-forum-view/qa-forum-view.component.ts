@@ -6,13 +6,13 @@ import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -47,6 +47,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         private toastService: ToastrService,
         protected resizeService: ResizeService,
         public globalsService: GlobalsService,
+        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -56,25 +57,25 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.filterOptions = [
                 {
-                    label: this.globalsService.languageJson?.coffee_experts,
+                    label: this.translator.instant('coffee_experts'),
                     value: false,
                 },
                 {
-                    label: this.globalsService.languageJson?.coffee_consumer,
+                    label: this.translator.instant('coffee_consumer'),
                     value: true,
                 },
             ];
             this.sortOptions = [
                 {
-                    label: this.globalsService.languageJson?.latest,
+                    label: this.translator.instant('latest'),
                     value: 'latest',
                 },
                 {
-                    label: this.globalsService.languageJson?.most_answered,
+                    label: this.translator.instant('most_answered'),
                     value: 'most_answered',
                 },
                 {
-                    label: this.globalsService.languageJson?.oldest,
+                    label: this.translator.instant('oldest'),
                     value: 'oldest',
                 },
             ];

@@ -1,9 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
-import { environment } from '@env/environment';
-import { GlobalsService } from '@services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-forum-menu',
@@ -11,25 +9,21 @@ import { GlobalsService } from '@services';
     styleUrls: ['./forum-menu.component.scss'],
 })
 export class ForumMenuComponent implements OnInit {
-    constructor(
-        public dialogSrv: DialogService,
-        @Inject(DOCUMENT) private document: Document,
-        private globalsService: GlobalsService,
-    ) {}
+    constructor(public dialogSrv: DialogService, private translator: TranslateService) {}
 
     ngOnInit(): void {}
 
     getMenuItemsForItem() {
         const items = [
             {
-                label: this.globalsService.languageJson?.share,
+                label: this.translator.instant('share'),
                 command: (event) => {
                     event.originalEvent.stopPropagation();
                     this.showModal(event);
                 },
             },
             {
-                label: this.globalsService.languageJson?.save_post,
+                label: this.translator.instant('save_post'),
                 command: (event) => {
                     event.originalEvent.stopPropagation();
                     this.showModal(event);

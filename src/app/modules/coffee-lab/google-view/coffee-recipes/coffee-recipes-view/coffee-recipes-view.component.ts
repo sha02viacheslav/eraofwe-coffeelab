@@ -1,9 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
@@ -12,6 +10,7 @@ import { SeoDescription, SeoTitle } from '@constants';
 import { takeUntil } from 'rxjs/operators';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -54,6 +53,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
         public dialogSrv: DialogService,
+        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -63,45 +63,45 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.orderList = [
                 {
-                    label: this.globalsService.languageJson?.latest,
+                    label: this.translator.instant('latest'),
                     value: 'latest',
                 },
                 {
-                    label: this.globalsService.languageJson?.oldest,
+                    label: this.translator.instant('oldest'),
                     value: 'oldest',
                 },
             ];
             this.levels = [
                 {
-                    label: this.globalsService.languageJson?.easy,
+                    label: this.translator.instant('easy'),
                     value: 'easy',
                 },
                 {
-                    label: this.globalsService.languageJson?.intermediate,
+                    label: this.translator.instant('intermediate'),
                     value: 'intermediate',
                 },
                 {
-                    label: this.globalsService.languageJson?.hard,
+                    label: this.translator.instant('hard'),
                     value: 'hard',
                 },
             ];
             this.translationsList = [
                 {
-                    label: this.globalsService.languageJson?.yes,
+                    label: this.translator.instant('yes'),
                     value: true,
                 },
                 {
-                    label: this.globalsService.languageJson?.no,
+                    label: this.translator.instant('no'),
                     value: false,
                 },
             ];
             this.orderList = [
                 {
-                    label: this.globalsService.languageJson?.latest,
+                    label: this.translator.instant('latest'),
                     value: 'latest',
                 },
                 {
-                    label: this.globalsService.languageJson?.oldest,
+                    label: this.translator.instant('oldest'),
                     value: 'oldest',
                 },
             ];

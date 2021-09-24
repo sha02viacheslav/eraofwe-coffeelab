@@ -2,7 +2,6 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
@@ -12,6 +11,7 @@ import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-articles-view',
@@ -41,6 +41,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         private toastService: ToastrService,
         protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
+        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -50,21 +51,21 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.orderList = [
                 {
-                    label: this.globalsService.languageJson?.latest,
+                    label: this.translator.instant('latest'),
                     value: 'latest',
                 },
                 {
-                    label: this.globalsService.languageJson?.oldest,
+                    label: this.translator.instant('oldest'),
                     value: 'oldest',
                 },
             ];
             this.translationsList = [
                 {
-                    label: this.globalsService.languageJson?.yes,
+                    label: this.translator.instant('yes'),
                     value: true,
                 },
                 {
-                    label: this.globalsService.languageJson?.no,
+                    label: this.translator.instant('no'),
                     value: false,
                 },
             ];

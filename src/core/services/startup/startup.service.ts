@@ -38,7 +38,6 @@ export class StartupService {
                     .subscribe(
                         ([langData]) => {
                             this.translate.setTranslation(this.i18n.currentLang, langData);
-                            this.globals.languageJson = langData;
                             this.coffeeLabService.gotTranslations.next({});
                         },
                         () => {},

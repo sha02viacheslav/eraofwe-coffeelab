@@ -7,7 +7,6 @@ import { DOCUMENT } from '@angular/common';
     providedIn: 'root',
 })
 export class GlobalsService {
-    languageJson: any;
     previousUrl: string;
     currentUrl: string;
     logoAlt: string;
