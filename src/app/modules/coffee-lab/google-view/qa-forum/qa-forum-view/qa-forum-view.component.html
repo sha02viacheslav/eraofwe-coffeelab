@@ -1,27 +1,25 @@
 <div class="row">
-    <div class="col-12 col-md-7 pt-1 pt-md-0 pb-2 pb-md-0 pr-md-0">
+    <div class="col-12 col-md-7 pt-1 pt-md-0 pb-2 pb-md-0 pr-md-0 mb-2 mb-md-4">
         <app-publish-forum type="qa"></app-publish-forum>
     </div>
 </div>
-<div class="mt-2">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="custom-search qa-forum-search d-block d-lg-none">
-            <input
-                class="w-100 fnt-16"
-                [(ngModel)]="keyword"
-                type="text"
-                pInputText
-                [placeholder]="'search_qna_forum' | translate"
-            />
-        </div>
-    </div>
-    <div>
-        <div class="d-flex position-relative">
-            <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
-                <div class="d-flex mb-md-4">
-                    <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
-                        <div class="d-flex">
-                            <!-- <div class="mr-3">
+
+<div class="custom-search qa-forum-search d-block d-lg-none mb-3">
+    <input
+        class="w-100 fnt-16"
+        [(ngModel)]="keyword"
+        type="text"
+        pInputText
+        [placeholder]="'search_qna_forum' | translate"
+    />
+</div>
+
+<div class="d-flex position-relative">
+    <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
+        <div class="d-flex mb-md-4">
+            <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
+                <div class="d-flex">
+                    <!-- <div class="mr-3">
                                 <p-dropdown
                                     [options]="filterOptions"
                                     [(ngModel)]="filterBy"
@@ -33,81 +31,77 @@
                                     optionValue="value"
                                 ></p-dropdown>
                             </div> -->
-                            <div class="mr-3">
-                                <p-dropdown
-                                    [options]="filterOptions"
-                                    [(ngModel)]="filterBy"
-                                    [showClear]="true"
-                                    (ngModelChange)="getData()"
-                                    styleClass="round-border text-clr588"
-                                    [placeholder]="'posted_by' | translate"
-                                    optionLabel="label"
-                                    optionValue="value"
-                                ></p-dropdown>
+                    <div class="mr-3">
+                        <p-dropdown
+                            [options]="filterOptions"
+                            [(ngModel)]="filterBy"
+                            [showClear]="true"
+                            (ngModelChange)="getData()"
+                            styleClass="round-border text-clr588"
+                            [placeholder]="'posted_by' | translate"
+                            optionLabel="label"
+                            optionValue="value"
+                        ></p-dropdown>
+                    </div>
+                    <div>
+                        <p-dropdown
+                            [options]="sortOptions"
+                            [(ngModel)]="sortBy"
+                            (ngModelChange)="getData()"
+                            styleClass="round-border text-clr588"
+                            optionLabel="label"
+                            optionValue="value"
+                            styleClass="round-border"
+                            [placeholder]="'sort_by' | translate"
+                        ></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+        </div>
+        <div class="row gutter-24">
+            <div
+                *ngFor="let question of questions; let i = index"
+                [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
+            >
+                <div class="border-box mb-4 mb-md-3 mb-lg-4">
+                    <div class="p-md-4 p-3">
+                        <div class="d-flex justify-content-between">
+                            <div class="flex-1">
+                                <app-user-header [prop]="question"></app-user-header>
                             </div>
-                            <div>
-                                <p-dropdown
-                                    [options]="sortOptions"
-                                    [(ngModel)]="sortBy"
-                                    (ngModelChange)="getData()"
-                                    styleClass="round-border text-clr588"
-                                    optionLabel="label"
-                                    optionValue="value"
-                                    styleClass="round-border"
-                                    [placeholder]="'sort_by' | translate"
-                                ></p-dropdown>
+                            <div class="mobile-dot d-none d-md-block">
+                                <app-forum-menu></app-forum-menu>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
-                </div>
-                <div class="row gutter-24">
-                    <div
-                        *ngFor="let question of questions; let i = index"
-                        [ngClass]="{ 'col-12': viewMode === 'list', 'col-lg-6': viewMode === 'grid' }"
-                    >
-                        <div class="border-box mb-4 mb-md-3 mb-lg-4">
-                            <div class="p-md-4 p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="flex-1">
-                                        <app-user-header [prop]="question"></app-user-header>
-                                    </div>
-                                    <div class="mobile-dot d-none d-md-block">
-                                        <app-forum-menu></app-forum-menu>
-                                    </div>
-                                </div>
-                                <a [routerLink]="[getLink(question, null).url]">
-                                    <div
-                                        class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
-                                        (click)="gotoDetailPage($event, question)"
-                                        [innerHTML]="question?.question"
-                                    ></div>
-                                </a>
-                            </div>
-                            <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
+                        <a [routerLink]="[getLink(question, null).url]">
                             <div
-                                *ngIf="question.total_answers > 0"
-                                class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
-                            >
-                                <div
-                                    *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
-                                    [ngClass]="{ 'border-bottom-main': !isLast }"
-                                    class="mb-4"
-                                >
-                                    <div class="mb-4">
-                                        <app-user-header
-                                            [total]="question.total_answers"
-                                            [prop]="answer"
-                                        ></app-user-header>
-                                    </div>
-                                    <div class="text-clr24 mb-4 lh-15">
-                                        <span
-                                            [innerHTML]="
-                                                globalsService.getJustText(answer?.answer)
-                                                    | convertToShortDescription: 25
-                                            "
-                                        ></span>
-                                        <!-- <span
+                                class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
+                                (click)="gotoDetailPage($event, question)"
+                                [innerHTML]="question?.question"
+                            ></div>
+                        </a>
+                    </div>
+                    <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
+                    <div
+                        *ngIf="question.total_answers > 0"
+                        class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main"
+                    >
+                        <div
+                            *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
+                            [ngClass]="{ 'border-bottom-main': !isLast }"
+                            class="mb-4"
+                        >
+                            <div class="mb-4">
+                                <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
+                            </div>
+                            <div class="text-clr24 mb-4 lh-15">
+                                <span
+                                    [innerHTML]="
+                                        globalsService.getJustText(answer?.answer) | convertToShortDescription: 25
+                                    "
+                                ></span>
+                                <!-- <span
                                             *ngIf="answer?.show_full"
                                             [innerHTML]="globalsService.getJustText(answer?.answer)"
                                         ></span>
@@ -120,44 +114,43 @@
                                             class="text-clr60b fnt-semi-bold ml-1"
                                             >{{ 'read_more' | translate }}</a
                                         > -->
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div *ngIf="i === 1 && !(isDesktop$ | async)" class="mb-4 mb-md-3">
-                            <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
-                        </div>
-                    </div>
-                    <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
-                </div>
-                <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
-                    <app-paginator
-                        [rows]="rows"
-                        [totalRecords]="totalRecords"
-                        [page]="page"
-                        (onPageChange)="paginate($event)"
-                    ></app-paginator>
-                </div>
-                <div *ngIf="!isLoading && !questions.length" class="text-center my-4 text-clr24">
-                    {{ 'no_data_is_available' | translate }}
-                </div>
-            </div>
-            <div *ngIf="isDesktop$ | async" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content">
-                <div class="empty-join-wrapper mb-4">
-                    <div class="custom-search qa-forum-search">
-                        <input
-                            class="w-100 fnt-16"
-                            [(ngModel)]="keyword"
-                            (ngModelChange)="getData()"
-                            type="text"
-                            pInputText
-                            [placeholder]="'search_qna_forum' | translate"
-                        />
                     </div>
                 </div>
-                <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
+                <div *ngIf="i === 1 && !(isDesktop$ | async)" class="mb-4 mb-md-3">
+                    <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
+                </div>
             </div>
-            <app-loading *ngIf="isLoading" type="overlay"></app-loading>
+            <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
+        </div>
+        <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
+            <app-paginator
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+                [page]="page"
+                (onPageChange)="paginate($event)"
+            ></app-paginator>
+        </div>
+        <div *ngIf="!isLoading && !questions.length" class="text-center my-4 text-clr24">
+            {{ 'no_data_is_available' | translate }}
         </div>
     </div>
+
+    <div *ngIf="isDesktop$ | async" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content">
+        <div class="empty-join-wrapper mb-4">
+            <div class="custom-search qa-forum-search">
+                <input
+                    class="w-100 fnt-16"
+                    [(ngModel)]="keyword"
+                    (ngModelChange)="getData()"
+                    type="text"
+                    pInputText
+                    [placeholder]="'search_qna_forum' | translate"
+                />
+            </div>
+        </div>
+        <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
+    </div>
+    <app-loading *ngIf="isLoading" type="overlay"></app-loading>
 </div>
