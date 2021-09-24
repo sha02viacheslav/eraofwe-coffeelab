@@ -15,7 +15,7 @@
     <div data-aos="fade-up">
         <div *ngIf="!queryUserId" class="row">
             <div class="col-md-6 mb-4">
-                <div class="text-clr24 mb-2 mb-md-25 fnt-16 fnt-md-18 font-weight-bold">
+                <div class="text-clr24 mb-2 mb-md-25 fnt-16 fnt-md-18 fnt-bold">
                     {{ 'my_profile' | translate }}
                 </div>
                 <div class="text-clr588 fnt-semi-bold fnt-md-500">
@@ -40,7 +40,7 @@
                                     />
                                     <img *ngIf="previewUrl" [src]="previewUrl" alt="icon" width="90" height="90" />
                                 </div>
-                                <div class="text-clr24 fnt-16 font-weight-bold profile-name">
+                                <div class="text-clr24 fnt-16 fnt-bold profile-name">
                                     {{ profileInfo?.firstname + ' ' + profileInfo?.lastname }}
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                         <div class="right-container">
                             <div class="d-none d-md-block">
                                 <div>
-                                    <div class="text-clr24 fnt-18 font-weight-bold mb-2">About</div>
+                                    <div class="text-clr24 fnt-18 fnt-bold mb-2">About</div>
                                     <div *ngIf="profileInfo?.about_me" class="text-clr24 fnt-16">
                                         {{ profileInfo?.about_me }}
                                     </div>
@@ -105,13 +105,13 @@
                     />
                     <img *ngIf="previewUrl" [src]="previewUrl" class="avatar-img" alt="icon" width="90" height="90" />
                 </div>
-                <div class="text-clr24 fnt-16 font-weight-bold profile-name">
+                <div class="text-clr24 fnt-16 fnt-bold profile-name">
                     {{ profileInfo?.firstname + ' ' + profileInfo?.lastname }}
                 </div>
             </div>
 
             <div class="py-4 text-clr588 border-bottom-dashed-primary">
-                <div class="text-clr24 mb-2 font-weight-bold">About</div>
+                <div class="text-clr24 mb-2 fnt-bold">About</div>
                 <div *ngIf="profileInfo?.about_me" class="text-clr588">
                     {{ profileInfo?.about_me }}
                 </div>
@@ -124,7 +124,7 @@
                 <div class="px-0 px-md-3">
                     <div class="d-flex align-items-center px-0 px-md-1">
                         <img class="mr-4" src="assets/images/icon-email.svg" alt="icon" />
-                        <div class="w-100 text-clr24 py-3 font-weight-bold">
+                        <div class="w-100 text-clr24 py-3 fnt-bold">
                             {{ profileInfo?.email || 'Not provided' }}
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                 <div class="px-0 px-md-3">
                     <div class="d-flex align-items-center px-0 px-md-1">
                         <img class="mr-4" src="assets/images/icon-phone.svg" alt="icon" />
-                        <div class="w-100 text-clr24 py-3 font-weight-bold">
+                        <div class="w-100 text-clr24 py-3 fnt-bold">
                             {{ profileInfo?.phone || 'Not provided' }}
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                 <div class="px-0 px-md-3">
                     <div class="d-flex align-items-center px-0 px-md-1">
                         <img class="mr-4" src="assets/images/icon-birthday.svg" alt="icon" />
-                        <div class="w-100 text-clr24 py-3 font-weight-bold">
+                        <div class="w-100 text-clr24 py-3 fnt-bold">
                             {{ (profileInfo?.date_of_birth | date: 'dd/MM/yyyy') || 'Not provided' }}
                         </div>
                     </div>
