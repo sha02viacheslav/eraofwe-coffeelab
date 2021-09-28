@@ -17,7 +17,6 @@ import { getLangRoute, toSentenceCase } from '@utils';
 })
 export class QuestionDetailComponent implements OnInit {
     readonly PostType = PostType;
-    relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
     loading = true;
@@ -44,9 +43,6 @@ export class QuestionDetailComponent implements OnInit {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
             }
-            if (!this.relatedData?.length) {
-                this.getQaList();
-            }
         });
     }
 
@@ -54,16 +50,6 @@ export class QuestionDetailComponent implements OnInit {
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
         }
-    }
-
-    getQaList() {
-        this.coffeeLabService.getForumList('question', { page: 1, per_page: 4 }).subscribe((res: any) => {
-            if (res.success) {
-                this.relatedData = res.result.questions
-                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 3);
-            }
-        });
     }
 
     getDetails() {
