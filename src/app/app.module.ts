@@ -3,7 +3,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -33,7 +32,6 @@ export function StartupServiceFactory(startupService: StartupService) {
         AppRoutingModule,
         TransferHttpCacheModule,
         HttpClientModule,
-        FormsModule,
         ToastrModule.forRoot({
             timeOut: 3000,
             preventDuplicates: true,
