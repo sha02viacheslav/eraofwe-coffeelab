@@ -48,28 +48,26 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            this.orderList = [
-                {
-                    label: this.translator.instant('latest'),
-                    value: 'latest',
-                },
-                {
-                    label: this.translator.instant('oldest'),
-                    value: 'oldest',
-                },
-            ];
-            this.translationsList = [
-                {
-                    label: this.translator.instant('yes'),
-                    value: true,
-                },
-                {
-                    label: this.translator.instant('no'),
-                    value: false,
-                },
-            ];
-        });
+        this.orderList = [
+            {
+                label: this.translator.instant('latest'),
+                value: 'latest',
+            },
+            {
+                label: this.translator.instant('oldest'),
+                value: 'oldest',
+            },
+        ];
+        this.translationsList = [
+            {
+                label: this.translator.instant('yes'),
+                value: true,
+            },
+            {
+                label: this.translator.instant('no'),
+                value: false,
+            },
+        ];
 
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {

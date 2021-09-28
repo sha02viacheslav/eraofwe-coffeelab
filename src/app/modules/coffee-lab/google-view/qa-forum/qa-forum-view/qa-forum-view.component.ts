@@ -54,32 +54,30 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            this.filterOptions = [
-                {
-                    label: this.translator.instant('coffee_experts'),
-                    value: false,
-                },
-                {
-                    label: this.translator.instant('coffee_consumer'),
-                    value: true,
-                },
-            ];
-            this.sortOptions = [
-                {
-                    label: this.translator.instant('latest'),
-                    value: 'latest',
-                },
-                {
-                    label: this.translator.instant('most_answered'),
-                    value: 'most_answered',
-                },
-                {
-                    label: this.translator.instant('oldest'),
-                    value: 'oldest',
-                },
-            ];
-        });
+        this.filterOptions = [
+            {
+                label: this.translator.instant('coffee_experts'),
+                value: false,
+            },
+            {
+                label: this.translator.instant('coffee_consumer'),
+                value: true,
+            },
+        ];
+        this.sortOptions = [
+            {
+                label: this.translator.instant('latest'),
+                value: 'latest',
+            },
+            {
+                label: this.translator.instant('most_answered'),
+                value: 'most_answered',
+            },
+            {
+                label: this.translator.instant('oldest'),
+                value: 'oldest',
+            },
+        ];
 
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {

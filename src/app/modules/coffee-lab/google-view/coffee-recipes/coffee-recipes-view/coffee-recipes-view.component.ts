@@ -60,52 +60,50 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     ngOnInit(): void {
         this.setSEO();
-        this.coffeeLabService.gotTranslations.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            this.orderList = [
-                {
-                    label: this.translator.instant('latest'),
-                    value: 'latest',
-                },
-                {
-                    label: this.translator.instant('oldest'),
-                    value: 'oldest',
-                },
-            ];
-            this.levels = [
-                {
-                    label: this.translator.instant('easy'),
-                    value: 'easy',
-                },
-                {
-                    label: this.translator.instant('intermediate'),
-                    value: 'intermediate',
-                },
-                {
-                    label: this.translator.instant('hard'),
-                    value: 'hard',
-                },
-            ];
-            this.translationsList = [
-                {
-                    label: this.translator.instant('yes'),
-                    value: true,
-                },
-                {
-                    label: this.translator.instant('no'),
-                    value: false,
-                },
-            ];
-            this.orderList = [
-                {
-                    label: this.translator.instant('latest'),
-                    value: 'latest',
-                },
-                {
-                    label: this.translator.instant('oldest'),
-                    value: 'oldest',
-                },
-            ];
-        });
+        this.orderList = [
+            {
+                label: this.translator.instant('latest'),
+                value: 'latest',
+            },
+            {
+                label: this.translator.instant('oldest'),
+                value: 'oldest',
+            },
+        ];
+        this.levels = [
+            {
+                label: this.translator.instant('easy'),
+                value: 'easy',
+            },
+            {
+                label: this.translator.instant('intermediate'),
+                value: 'intermediate',
+            },
+            {
+                label: this.translator.instant('hard'),
+                value: 'hard',
+            },
+        ];
+        this.translationsList = [
+            {
+                label: this.translator.instant('yes'),
+                value: true,
+            },
+            {
+                label: this.translator.instant('no'),
+                value: false,
+            },
+        ];
+        this.orderList = [
+            {
+                label: this.translator.instant('latest'),
+                value: 'latest',
+            },
+            {
+                label: this.translator.instant('oldest'),
+                value: 'oldest',
+            },
+        ];
 
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {

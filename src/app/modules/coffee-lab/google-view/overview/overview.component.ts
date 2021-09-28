@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CoffeeLabService, GlobalsService, StartupService } from '@services';
+import { Router } from '@angular/router';
+import { CoffeeLabService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { RouterMap, SlugMap } from '@constants';
 import { MenuItem } from 'primeng/api';
@@ -15,32 +15,29 @@ import { DestroyableComponent } from '@base-components';
 })
 export class OverviewComponent extends DestroyableComponent implements OnInit {
     menuItems: MenuItem[] = [];
+
     constructor(
         private coffeeLabService: CoffeeLabService,
-        private globalsService: GlobalsService,
-        private startupService: StartupService,
         private router: Router,
-        private activatedRoute: ActivatedRoute,
+        private startupService: StartupService,
     ) {
         super();
     }
 
     ngOnInit(): void {
-        this.activatedRoute.params.subscribe((params) => {
-            this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-                this.menuItems = this.getMenuItems(language);
-                this.startupService.load(language);
-                let currentRouter = this.globalsService.currentUrl;
-                if (this.globalsService.currentUrl) {
-                    currentRouter = this.globalsService.currentUrl.split('/')[2].split('?')[0];
-                }
-                this.router.navigate(
-                    [`/${getLangRoute(language)}/${RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]}`],
-                    {
-                        queryParamsHandling: 'merge',
-                    },
-                );
-            });
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            this.menuItems = this.getMenuItems(language);
+            this.startupService.load(language);
+            let currentRouter = this.router.url;
+            if (currentRouter) {
+                currentRouter = currentRouter.split('/')[2].split('?')[0];
+            }
+            const destinationRouter = `/${getLangRoute(language)}/${
+                RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]
+            }`;
+            if (this.router.url !== destinationRouter) {
+                this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
+            }
         });
     }
 
