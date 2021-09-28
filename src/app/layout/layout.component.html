@@ -33,14 +33,10 @@
 <ng-template #protectWrapper>
     <div class="protect-wrapper">
         <input
-            pInputText
             type="password"
             [(ngModel)]="password"
             (ngModelChange)="onCheckPassword()"
             placeholder="Please input password"
         />
-        <div class="d-none">
-            <router-outlet></router-outlet>
-        </div>
     </div>
 </ng-template>

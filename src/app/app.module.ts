@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -16,8 +15,6 @@ import {
     GoogleLoginProvider,
     FacebookLoginProvider,
 } from 'angularx-social-login';
-
-import { SharedModule } from '@shared';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -45,7 +42,6 @@ export function StartupServiceFactory(startupService: StartupService) {
             tapToDismiss: false,
         }),
         TranslateModule.forRoot(),
-        SharedModule,
         SocialLoginModule,
     ],
     providers: [
