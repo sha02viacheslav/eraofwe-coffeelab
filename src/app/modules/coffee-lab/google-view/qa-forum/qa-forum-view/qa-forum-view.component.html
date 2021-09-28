@@ -16,10 +16,8 @@
 
 <div class="d-flex position-relative">
     <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
-        <div class="d-flex mb-md-4">
-            <div class="d-md-flex align-items-center pr-lg-2 flex-1 mb-4 mb-md-0">
-                <div class="d-flex">
-                    <!-- <div class="mr-3">
+        <div class="d-flex pr-lg-2 mb-4">
+            <!-- <div class="mr-3">
                                 <p-dropdown
                                     [options]="filterOptions"
                                     [(ngModel)]="filterBy"
@@ -31,33 +29,26 @@
                                     optionValue="value"
                                 ></p-dropdown>
                             </div> -->
-                    <div class="mr-3">
-                        <p-dropdown
-                            [options]="filterOptions"
-                            [(ngModel)]="filterBy"
-                            [showClear]="true"
-                            (ngModelChange)="getData()"
-                            styleClass="round-border text-clr588"
-                            [placeholder]="'posted_by' | translate"
-                            optionLabel="label"
-                            optionValue="value"
-                        ></p-dropdown>
-                    </div>
-                    <div>
-                        <p-dropdown
-                            [options]="sortOptions"
-                            [(ngModel)]="sortBy"
-                            (ngModelChange)="getData()"
-                            styleClass="round-border text-clr588"
-                            optionLabel="label"
-                            optionValue="value"
-                            styleClass="round-border"
-                            [placeholder]="'sort_by' | translate"
-                        ></p-dropdown>
-                    </div>
-                </div>
-            </div>
-            <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+            <p-dropdown
+                [options]="filterOptions"
+                [(ngModel)]="filterBy"
+                [showClear]="true"
+                (ngModelChange)="getData()"
+                styleClass="round-border text-clr588 mr-3"
+                [placeholder]="'posted_by' | translate"
+                optionLabel="label"
+                optionValue="value"
+            ></p-dropdown>
+            <p-dropdown
+                [options]="sortOptions"
+                [(ngModel)]="sortBy"
+                (ngModelChange)="getData()"
+                styleClass="round-border text-clr588"
+                optionLabel="label"
+                optionValue="value"
+                styleClass="round-border"
+                [placeholder]="'sort_by' | translate"
+            ></p-dropdown>
         </div>
         <div class="row gutter-24">
             <div
@@ -78,8 +69,9 @@
                             <div
                                 class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
                                 (click)="gotoDetailPage($event, question)"
-                                [innerHTML]="question?.question"
-                            ></div>
+                            >
+                                {{ question?.question }}
+                            </div>
                         </a>
                     </div>
                     <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
@@ -96,11 +88,7 @@
                                 <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
                             </div>
                             <div class="text-clr24 mb-4 lh-15">
-                                <span
-                                    [innerHTML]="
-                                        globalsService.getJustText(answer?.answer) | convertToShortDescription: 25
-                                    "
-                                ></span>
+                                <span>{{ answer?.answer | convertToShortDescription: 25 }}</span>
                                 <!-- <span
                                             *ngIf="answer?.show_full"
                                             [innerHTML]="globalsService.getJustText(answer?.answer)"

@@ -42,7 +42,6 @@ export class QuestionDetailComponent implements OnInit {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
-                // this.setSEO();
                 this.getDetails();
             }
             if (!this.relatedData?.length) {
@@ -116,15 +115,14 @@ export class QuestionDetailComponent implements OnInit {
         } else {
             title = this.idOrSlug.replace('-', '').concat(' - Era of We Coffee Marketplace');
         }
-        if (this.globalsService.getJustText(firstAnswer?.answer)) {
-            if (this.globalsService.getJustText(firstAnswer?.answer).length < 100) {
-                description = this.globalsService
-                    .getJustText(firstAnswer?.answer)
-                    .concat(
-                        ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
-                    );
+        const firstAnswerContent = this.globalsService.getJustText(firstAnswer?.answer);
+        if (firstAnswerContent) {
+            if (firstAnswerContent.length < 100) {
+                description = firstAnswerContent.concat(
+                    ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
+                );
             } else {
-                description = this.globalsService.getJustText(firstAnswer?.answer);
+                description = firstAnswerContent;
             }
         } else {
             description = toSentenceCase(this.idOrSlug).concat(

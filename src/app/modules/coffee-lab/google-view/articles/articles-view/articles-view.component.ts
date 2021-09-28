@@ -100,7 +100,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 this.articlesData = res.result ?? [];
                 this.totalRecords = res.result_info.total_count;
                 this.articlesData.map((item) => {
-                    item.content = this.globalsService.getJustText(item.content);
                     item.cardType = 'forum';
                     return item;
                 });
@@ -149,7 +148,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     this.coffeeLabService.currentForumLanguage,
                 )}/articles/${forum.slug}`,
                 headline: forum.title,
-                description: this.globalsService.getJustText(forum.content),
+                description: forum.content,
                 image: forum.cover_image_url,
                 datePublished: forum.created_at,
                 author: {

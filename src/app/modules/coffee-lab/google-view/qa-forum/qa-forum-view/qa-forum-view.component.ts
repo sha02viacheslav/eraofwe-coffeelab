@@ -41,13 +41,13 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
+        private globalsService: GlobalsService,
         private route: ActivatedRoute,
         private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
-        protected resizeService: ResizeService,
-        public globalsService: GlobalsService,
         private translator: TranslateService,
+        protected resizeService: ResizeService,
     ) {
         super(resizeService);
     }
@@ -174,7 +174,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     suggestedAnswer: forum.answers?.map((answer, index) => {
                         return {
                             '@type': 'Answer',
-                            text: this.globalsService.getJustText(answer.answer),
+                            text: answer.answer,
                             dateCreated: answer.created_at,
 
                             url: `${environment.coffeeLabWeb}/${getLangRoute(

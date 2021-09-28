@@ -136,7 +136,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 this.coffeeRecipeData[0].equipment_name = '1 medium pot, mesh or cloth strainer';
                 this.totalRecords = res.result_info.total_count;
                 this.coffeeRecipeData.map((item) => {
-                    item.description = this.globalsService.getJustText(item.description);
                     item.cardType = 'forum';
                     return item;
                 });
@@ -197,7 +196,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 author: forum.posted_user,
                 cookTime: forum.cooking_time,
                 datePublished: forum.posted_at,
-                description: this.globalsService.getJustText(forum.description),
+                description: forum.description,
                 image: forum.cover_image_url,
                 name: forum.name,
                 prepTime: forum.preparation_time,
