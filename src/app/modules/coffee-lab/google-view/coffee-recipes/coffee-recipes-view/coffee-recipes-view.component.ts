@@ -135,18 +135,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
                 this.coffeeRecipeData[0].equipment_name = '1 medium pot, mesh or cloth strainer';
                 this.totalRecords = res.result_info.total_count;
-                this.coffeeRecipeData.map((item) => {
-                    item.cardType = 'forum';
-                    return item;
-                });
-                const joinCard = {
-                    cardType: 'joinCard',
-                };
-                // if (this.coffeeRecipeData.length < 3) {
-                //     this.coffeeRecipeData.push(joinCard);
-                // } else {
-                //     this.coffeeRecipeData.splice(2, 0, joinCard);
-                // }
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');

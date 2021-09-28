@@ -75,12 +75,11 @@
             <div
                 class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
                 *ngFor="let coffee of coffeeRecipeData"
-                [ngClass]="{ 'col-md-6': coffee.cardType === 'forum' }"
             >
-                <a [routerLink]="getLink(coffee)" class="text-non-underline" *ngIf="coffee.cardType === 'forum'">
+                <a [routerLink]="getLink(coffee)" class="text-non-underline">
                     <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
                         <div class="position-relative">
-                            <img [lazyLoad]="coffee.cover_image_url" class="w-100" [alt]="coffee?.name" />
+                            <img [lazyLoad]="coffee.cover_image_thumb_url" class="w-100" [alt]="coffee?.name" />
                             <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
                         </div>
 

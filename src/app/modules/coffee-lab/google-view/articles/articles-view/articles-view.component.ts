@@ -99,10 +99,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             if (res.success) {
                 this.articlesData = res.result ?? [];
                 this.totalRecords = res.result_info.total_count;
-                this.articlesData.map((item) => {
-                    item.cardType = 'forum';
-                    return item;
-                });
             } else {
                 this.toastService.error('Cannot get Articles data');
             }
@@ -117,10 +113,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     getLink(item) {
-        const url = `/${getLangRoute(item.language)}/articles/${item.slug}`;
-        return item.cardType === 'forum'
-            ? url
-            : `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/articles`;
+        return `/${getLangRoute(item.language)}/articles/${item.slug}`;
     }
 
     gotoDetailPage(event, item: any) {

@@ -61,11 +61,10 @@
     <div class="position-relative">
         <div class="articles-wrapper">
             <div
-                class="col-12 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
-                [ngClass]="{ 'col-md-6': article.cardType === 'forum' }"
+                class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
                 *ngFor="let article of articlesData"
             >
-                <a [routerLink]="getLink(article)" class="text-non-underline" *ngIf="article.cardType === 'forum'">
+                <a [routerLink]="getLink(article)" class="text-non-underline">
                     <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
                         <div class="d-flex justify-content-betweenn px-4">
                             <div class="flex-1 overflow-hidden">
@@ -75,7 +74,7 @@
 
                             <!-- <app-forum-menu></app-forum-menu> -->
                         </div>
-                        <img [lazyLoad]="article.cover_image_url" class="w-100 my-3" [alt]="article.title" />
+                        <img [lazyLoad]="article.cover_image_thumb_url" class="w-100 my-3" [alt]="article.title" />
                         <div class="mx-4">
                             <div class="d-flex">
                                 <!-- <div class="thumb-icon">
