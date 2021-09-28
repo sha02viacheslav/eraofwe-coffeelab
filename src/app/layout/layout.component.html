@@ -32,11 +32,6 @@
 
 <ng-template #protectWrapper>
     <div class="protect-wrapper">
-        <input
-            type="password"
-            [(ngModel)]="password"
-            (ngModelChange)="onCheckPassword()"
-            placeholder="Please input password"
-        />
+        <input type="password" (change)="onCheckPassword($event.target.value)" placeholder="Please input password" />
     </div>
 </ng-template>

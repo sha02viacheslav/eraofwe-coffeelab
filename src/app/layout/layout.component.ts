@@ -10,7 +10,6 @@ import { protectPassword } from '@constants';
 })
 export class LayoutComponent implements OnInit {
     readonly env = environment;
-    password = '';
     isMatched = !environment.needProtect;
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
@@ -21,7 +20,7 @@ export class LayoutComponent implements OnInit {
 
     openSideNav() {}
 
-    onCheckPassword() {
-        this.isMatched = this.password === protectPassword || !environment.needProtect;
+    onCheckPassword(password: string) {
+        this.isMatched = password === protectPassword || !environment.needProtect;
     }
 }
