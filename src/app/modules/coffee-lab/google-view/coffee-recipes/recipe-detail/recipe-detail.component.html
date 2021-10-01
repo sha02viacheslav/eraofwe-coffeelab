@@ -333,7 +333,7 @@
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
-                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_url" alt="" /></div>
+                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_thumb_url" alt="" /></div>
                         <div class="cursor-pointer d-flex flex-column">
                             <p class="fnt-fly fnt-bold cust-flex-grow">{{ forum?.name }}</p>
                             <p class="fnt-semi-bold text-underline">
