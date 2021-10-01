@@ -53,6 +53,12 @@
     }
     .btn-trans-icon.message-icon {
         border-radius: 19px;
+        &:hover {
+            background-color: #f7f7f7;
+        }
+        &:active {
+            background-color: #eff5f2;
+        }
     }
     @media (min-width: 356px) {
         width: 322px;
