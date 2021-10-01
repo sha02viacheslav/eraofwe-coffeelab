@@ -25,5 +25,5 @@ export const upperFirst = (str: string = ''): string => {
 export const toSentenceCase = (str: string = '', decodeSnake: boolean = true): string => {
     // decodeSnake: To remove special characters(undersocre and dash)
     const lowerCaseStr: any = str.toLowerCase();
-    return decodeSnake ? upperFirst(lowerCaseStr.replaceAll('_', ' ').replaceAll('-', ' ')) : upperFirst(lowerCaseStr);
+    return decodeSnake ? upperFirst(lowerCaseStr.replace(/_/g, ' ').replace(/-/g, ' ')) : upperFirst(lowerCaseStr);
 };
