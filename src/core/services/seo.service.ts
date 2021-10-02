@@ -9,8 +9,9 @@ import { seoVariables } from '@constants';
 })
 export class SEOService {
     constructor(private title: Title, @Inject(DOCUMENT) private doc, private meta: Meta) {}
-    setPageTitle(title: string) {
-        this.title.setTitle(title?.substr(0, 60));
+    setPageTitle(title = '') {
+        // Have to add ... to prevent duplicated title and h1 issue
+        this.title.setTitle(title.length > 60 ? title.substr(0, 60) + '...' : title);
     }
     getPageTitle() {
         return this.title.getTitle();

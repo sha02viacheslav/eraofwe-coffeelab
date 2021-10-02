@@ -127,11 +127,7 @@ export class ArticleDetailComponent implements OnInit {
         let title: string;
         let description: string;
         if (this.detailsData?.title) {
-            if (this.detailsData?.title.length < 40) {
-                title = this.detailsData?.title.concat(' - Era of We Coffee Marketplace');
-            } else {
-                title = this.detailsData?.title;
-            }
+            title = this.detailsData?.title.concat(' - Era of We Coffee Marketplace');
         } else {
             title = 'Era of We Coffee Marketplace';
         }

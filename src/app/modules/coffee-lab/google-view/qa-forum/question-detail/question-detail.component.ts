@@ -93,13 +93,9 @@ export class QuestionDetailComponent implements OnInit {
         let description: string;
         const firstAnswer = this.detailsData?.answers[0];
         if (this.detailsData?.question) {
-            if (this.detailsData?.question.length < 40) {
-                title = this.detailsData?.question.concat(' - Era of We Coffee Marketplace');
-            } else {
-                title = this.detailsData?.question;
-            }
+            title = this.detailsData?.question.concat(' - Era of We Coffee Marketplace');
         } else {
-            title = this.idOrSlug.replace('-', '').concat(' - Era of We Coffee Marketplace');
+            title = toSentenceCase(this.idOrSlug).concat(' - Era of We Coffee Marketplace');
         }
         const firstAnswerContent = this.globalsService.getJustText(firstAnswer?.answer);
         if (firstAnswerContent) {
