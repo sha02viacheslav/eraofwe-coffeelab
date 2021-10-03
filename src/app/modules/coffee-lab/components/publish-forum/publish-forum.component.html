@@ -1,13 +1,19 @@
 <div class="p-3 p-md-4 bg-f34 br-4 d-flex">
     <div class="w-100">
         <div class="sewn-form-field ask-question w-100 mb-0">
-            <input type="text" pInputText [placeholder]="placeHolderValue" class="cursor-pointer" (focus)="onFocus()" />
+            <input
+                type="text"
+                pInputText
+                [placeholder]="placeHolderValue | translate"
+                class="cursor-pointer"
+                (focus)="onFocus()"
+            />
         </div>
         <div class="d-none d-md-block">
             <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">
-                {{ firstBtnValue }}
+                {{ firstBtnValue | translate }}
             </button>
-            <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">{{ secondBtnValue }}</button>
+            <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">{{ secondBtnValue | translate }}</button>
         </div>
     </div>
 </div>
