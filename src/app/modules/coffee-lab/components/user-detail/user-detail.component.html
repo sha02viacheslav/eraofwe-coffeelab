@@ -2,37 +2,24 @@
     class="avatar"
     [style.width]="size + 'px'"
     [style.height]="size + 'px'"
-    [style.border]="hasBorder ? '2px solid #fff' : 'none'"
     (mouseenter)="show($event)"
     (mouseleave)="hide()"
-    *ngIf="type !== 'text'"
 >
     <img
         *ngIf="imageUrl; else placeholder"
         [lazyLoad]="imageUrl"
         [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
-        [style.borderRadius]="shape === 'rectangle' ? '2px' : '50%'"
+        [style.borderRadius]="'50%'"
     />
     <ng-template #placeholder>
-        <div *ngIf="type == 'contact'; else noContact" class="contact-img-wrap">
-            <img class="placeholder" lazyLoad="assets/images/contact-placeholder.svg" />
-        </div>
-        <ng-template #noContact>
-            <img
-                class="placeholder"
-                lazyLoad="assets/images/avatar-placeholder.svg"
-                [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
-            />
-        </ng-template>
+        <img
+            class="placeholder"
+            lazyLoad="assets/images/avatar-placeholder.svg"
+            [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
+        />
     </ng-template>
 </div>
-<span
-    class="text-underline cursor-pointer user-name-text"
-    *ngIf="type === 'text'"
-    (mouseenter)="show($event)"
-    (mouseleave)="hide()"
-    >{{ name }}</span
->
+
 <p-overlayPanel
     #myOp
     styleClass="user-details-overlay"
@@ -53,7 +40,7 @@
                     "
                     [alt]="name + 'profile image'"
                 />
-                <div *ngIf="!isMessage" class="btn-trans-icon message-icon mt-25" (click)="myOp.hide(); openChat()">
+                <div class="btn-trans-icon message-icon mt-25" (click)="myOp.hide(); openChat()">
                     {{ 'message' | translate }}
                 </div>
             </div>

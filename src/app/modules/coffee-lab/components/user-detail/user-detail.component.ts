@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
-import { organizationTypes } from '@constants';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { OrganizationType } from '@enums';
 import { GlobalsService, CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -19,10 +18,6 @@ export class UserDetailComponent implements OnInit {
     @Input() size: number;
     @Input() imageUrl: string;
     @Input() name: string;
-    @Input() shape: 'rectangle' | 'circle' = 'circle';
-    @Input() type: 'text' | 'contact' | 'atatar' = 'atatar';
-    @Input() hasBorder: boolean;
-    @Input() isMessage: boolean;
     data: any;
     isOpened = false;
     hiding = false;

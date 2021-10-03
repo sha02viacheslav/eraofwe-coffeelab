@@ -25,25 +25,6 @@
     }
 }
 
-.contact-img-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: #eeeeee;
-    border-radius: 2px;
-
-    .placeholder {
-        width: 38px;
-        height: 38px;
-    }
-}
-
-.user-name-text {
-    font-weight: 700;
-}
-
 .user-details-wrapper {
     max-width: 100%;
     .user-image {

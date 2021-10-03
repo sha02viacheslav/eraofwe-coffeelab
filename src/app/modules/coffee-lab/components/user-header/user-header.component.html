@@ -1,19 +1,13 @@
 <div class="d-flex justify-content-between">
     <div class="d-flex align-items-center w-100">
-        <div class="mr-25">
-            <app-user-detail
-                [imageUrl]="
-                    prop?.profile_image_thumb_url || prop?.profile_image_url || prop?.posted_user_profile_image_url
-                "
-                [name]="
-                    prop?.user_name || prop?.question_user || prop?.posted_user || prop?.first_name || 'Unknown User'
-                "
-                [userId]="prop?.user_id || prop?.posted_by"
-                [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
-                size="40"
-            ></app-user-detail>
-        </div>
-        <div class="flex-1 overflow-hidden">
+        <app-user-detail
+            [imageUrl]="prop?.profile_image_thumb_url || prop?.profile_image_url || prop?.posted_user_profile_image_url"
+            [name]="prop?.user_name || prop?.question_user || prop?.posted_user || prop?.first_name || 'Unknown User'"
+            [userId]="prop?.user_id || prop?.posted_by"
+            [orgType]="prop?.org_type || prop?.organisation_type || prop?.organization_type"
+            size="40"
+        ></app-user-detail>
+        <div class="ml-25 flex-1 overflow-hidden">
             <div class="d-flex align-items-center mr-3 text-nowrap">
                 <div [ngClass]="{ ellipsis: enableEllipsis }" class="fnt-bold mr-md-3 mr-1">
                     {{
