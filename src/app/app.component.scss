@@ -1,17 +1,24 @@
 @import 'variables';
 
 ::ng-deep {
-    #loading {
-        display: none !important;
+    html,
+    body {
+        height: 100%;
     }
 
-    .stricky {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0px;
-        z-index: 99;
-        box-shadow: 0 12px 44px -10px rgb(143 51 11 / 10%);
+    body {
+        margin: 0;
+        font-family: $general-font-family;
+        font-size: 0.875rem;
+        font-weight: normal;
+        line-height: normal;
+        color: $general-text-color;
+        text-align: left;
+        background-color: $body-bg-color;
+    }
+
+    #loading {
+        display: none !important;
     }
 
     // line height

@@ -5,22 +5,6 @@ div[class^='col-'] {
     position: unset;
 }
 
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: $general-font-family;
-    font-size: 0.875rem;
-    font-weight: normal;
-    line-height: normal;
-    color: $general-text-color;
-    text-align: left;
-    background-color: $body-bg-color;
-}
-
 * {
     font-family: $general-font-family;
     font-size: inherit;

@@ -1,15 +1,14 @@
 @import 'variables';
 
-.layout-wrap {
-    min-height: calc(100vh + 1px);
-}
-
 header {
-    @media (max-width: 767px) {
-        background-color: $white;
-    }
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    box-shadow: 0 12px 44px -10px rgb(143 51 11 / 10%);
 
     .nav-top1 {
+        background-color: $white;
         display: flex;
         align-items: center;
         height: $mobile-header-height;
@@ -20,26 +19,7 @@ header {
             height: $desktop-header-height;
         }
 
-        .sidenav-hamberg {
-            img {
-                display: block;
-                width: 24px;
-                height: 24px;
-            }
-        }
-
         .company-logo {
-            margin-left: 16px;
-            margin-right: 16px;
-
-            @media (min-width: 768px) {
-                margin-right: 24px;
-            }
-
-            @media (min-width: 992px) {
-                margin-left: 0;
-                margin-right: 40px;
-            }
             & > img {
                 display: block;
                 width: 94px;
@@ -56,7 +36,7 @@ header {
 }
 
 .router-design {
-    background-color: #f1f1f1;
+    min-height: calc(100vh + 1px);
     padding-top: calc(#{$mobile-header-height + $mobile-page-pt});
     padding-bottom: 16px;
     @media (min-width: 768px) {
@@ -66,9 +46,4 @@ header {
         padding-top: calc(#{$desktop-header-height + $desktop-page-pt});
         padding-bottom: $desktop-page-pb;
     }
-}
-
-.protect-wrapper {
-    margin-top: 100px;
-    margin-left: 32px;
 }

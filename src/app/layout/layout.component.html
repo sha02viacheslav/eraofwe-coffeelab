@@ -1,37 +1,30 @@
-<header class="stricky">
-    <nav class="bg-white nav-top1">
+<header>
+    <nav class="nav-top1">
         <div class="container">
             <div class="d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="sidenav-hamberg d-lg-none" (click)="openSideNav()">
-                        <img src="assets/images/hamberg.svg" alt="hamberg" class="d-md-none" />
-                        <img src="assets/images/hamberg-tablet.svg" alt="hamberg" class="d-none d-md-inline-block" />
-                    </div>
-                    <a class="company-logo" [href]="env.publicWeb + '/en/'">
-                        <img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab" />
-                    </a>
-                </div>
-                <a [href]="ssoWeb + '/login'" class="btn-raised ml-auto" [rel]="isStaging ? 'nofollow' : ''">{{
-                    'login' | translate
-                }}</a>
+                <a class="company-logo" [href]="env.publicWeb + '/en/'">
+                    <img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab" />
+                </a>
+                <a
+                    [href]="env.ssoWeb + '/login'"
+                    class="btn-raised ml-auto"
+                    [rel]="env.needProtect ? 'nofollow' : ''"
+                    >{{ 'login' | translate }}</a
+                >
             </div>
         </div>
     </nav>
 </header>
 
 <ng-container *ngIf="isMatched; else protectWrapper">
-    <div class="layout-wrap">
-        <div class="container">
-            <div class="router-design">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-        <app-footer></app-footer>
+    <div class="container router-design">
+        <router-outlet></router-outlet>
     </div>
+    <app-footer></app-footer>
 </ng-container>
 
 <ng-template #protectWrapper>
-    <div class="protect-wrapper">
+    <div class="container router-design">
         <input type="password" (change)="onCheckPassword($event.target.value)" placeholder="Please input password" />
     </div>
 </ng-template>
