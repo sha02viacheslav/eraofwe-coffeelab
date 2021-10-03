@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoffeeLabService, StartupService } from '@services';
+import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { RouterMap, SlugMap } from '@constants';
 import { MenuItem } from 'primeng/api';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
-import { DestroyableComponent } from '@base-components';
+import { ResizeableComponent } from '@base-components';
 
 @Component({
     selector: 'app-overview',
     templateUrl: './overview.component.html',
     styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent extends DestroyableComponent implements OnInit {
+export class OverviewComponent extends ResizeableComponent implements OnInit {
     menuItems: MenuItem[] = [];
 
     constructor(
         private coffeeLabService: CoffeeLabService,
         private router: Router,
         private startupService: StartupService,
+        protected resizeService: ResizeService,
     ) {
-        super();
+        super(resizeService);
     }
 
     ngOnInit(): void {

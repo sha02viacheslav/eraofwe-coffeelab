@@ -1,37 +1,26 @@
-<div class="language-wrapper d-md-none mb-3">
+<div *ngIf="isMobile$ | async" class="language-wrapper mb-3">
     <app-language-dropdown></app-language-dropdown>
 </div>
+
 <div class="d-flex flex-column flex-md-row justify-content-between w-100 pb-4">
     <div class="mb-3 mb-md-0 flex-1 pr-md-3">
-        <h1 class="fnt-16 fnt-md-18 fnt-bold mt-0 mb-2 mb-md-25">
-            {{ 'the_coffee_lab' | translate }}
-        </h1>
-        <p class="fnt-normal text-clr588 mb-0">
-            {{ 'coffee_lab_sub_description' | translate }}
-            <!-- <span class="quick-guide">{{ 'quick_guide' | translate }}</span> -->
-        </p>
+        <h1 class="fnt-16 fnt-md-18 fnt-bold mt-0 mb-2 mb-md-25">{{ 'the_coffee_lab' | translate }}</h1>
+        <p class="text-clr588">{{ 'coffee_lab_sub_description' | translate }}</p>
     </div>
     <app-search-forum></app-search-forum>
 </div>
-<div class="d-none d-md-flex justify-content-between align-items-center pt-2 pb-45">
-    <p class="fnt-semi-bold mb-0">{{ 'discussions_knowledge_language' | translate }}</p>
-    <div>
-        <app-language-dropdown></app-language-dropdown>
-    </div>
+
+<div *ngIf="isDesktop$ | async" class="d-flex justify-content-between align-items-center pt-2 pb-45">
+    <p class="fnt-semi-bold">{{ 'discussions_knowledge_language' | translate }}</p>
+    <app-language-dropdown></app-language-dropdown>
 </div>
-<div class="">
-    <p-tabMenu [model]="menuItems" styleClass="tabmenu-coffee-lab">
-        <ng-template pTemplate="item" let-item let-i="index">
-            <img [src]="item.icon" alt="icon" width="32" height="32" />
-            <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
-            <span class="pl-1 d-none d-md-block">{{ item.label | translate }}</span>
-        </ng-template>
-    </p-tabMenu>
-    <!-- <div class="py-4 py-lg-45">
-            <app-limit-banner></app-limit-banner>
-        </div> -->
-    <div class="mt-4">
-        <router-outlet></router-outlet>
-    </div>
-</div>
-<!-- <app-bottom-banner></app-bottom-banner> -->
+
+<p-tabMenu [model]="menuItems" styleClass="mb-4">
+    <ng-template pTemplate="item" let-item let-i="index">
+        <img [src]="item.icon" alt="icon" width="32" height="32" />
+        <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
+        <span *ngIf="isDesktop$ | async" class="pl-1">{{ item.label | translate }}</span>
+    </ng-template>
+</p-tabMenu>
+
+<router-outlet></router-outlet>
