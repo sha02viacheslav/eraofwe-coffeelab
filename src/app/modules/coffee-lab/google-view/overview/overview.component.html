@@ -1,4 +1,4 @@
-<div *ngIf="isMobile$ | async" class="language-wrapper mb-3">
+<div *ngIf="isMobile$" class="language-wrapper mb-3">
     <app-language-dropdown></app-language-dropdown>
 </div>
 
@@ -10,7 +10,7 @@
     <app-search-forum></app-search-forum>
 </div>
 
-<div *ngIf="isDesktop$ | async" class="d-flex justify-content-between align-items-center pt-2 pb-45">
+<div *ngIf="isDesktop$" class="d-flex justify-content-between align-items-center pt-2 pb-45">
     <p class="fnt-semi-bold">{{ 'discussions_knowledge_language' | translate }}</p>
     <app-language-dropdown></app-language-dropdown>
 </div>
@@ -19,7 +19,7 @@
     <ng-template pTemplate="item" let-item let-i="index">
         <img [src]="item.icon" alt="icon" width="32" height="32" />
         <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
-        <span *ngIf="isDesktop$ | async" class="pl-1">{{ item.label | translate }}</span>
+        <span *ngIf="isDesktop$" class="pl-1">{{ item.label | translate }}</span>
     </ng-template>
 </p-tabMenu>
 
