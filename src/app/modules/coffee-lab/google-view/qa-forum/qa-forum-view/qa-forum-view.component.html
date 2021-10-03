@@ -84,24 +84,22 @@
                             [ngClass]="{ 'border-bottom-main': !isLast }"
                             class="mb-4"
                         >
-                            <div class="mb-4">
-                                <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
-                            </div>
-                            <div class="text-clr24 mb-4 lh-15">
-                                <span>{{ answer?.answer | convertToShortDescription: 25 }}</span>
+                            <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
+                            <div class="text-clr24 my-4 lh-15">
+                                {{ answer?.answer | convertToShortDescription: 25 }}
                                 <!-- <span
-                                            *ngIf="answer?.show_full"
-                                            [innerHTML]="globalsService.getJustText(answer?.answer)"
-                                        ></span>
-                                        <a
-                                            *ngIf="
-                                                wordCount(globalsService.getJustText(answer?.answer)).split(' ')
-                                                    .length > 25 && !answer?.show_full
-                                            "
-                                            (click)="showFullDesc(i, ansInd)"
-                                            class="text-clr60b fnt-semi-bold ml-1"
-                                            >{{ 'read_more' | translate }}</a
-                                        > -->
+                                    *ngIf="answer?.show_full"
+                                    [innerHTML]="globalsService.getJustText(answer?.answer)"
+                                ></span>
+                                <a
+                                    *ngIf="
+                                        wordCount(globalsService.getJustText(answer?.answer)).split(' ').length > 25 &&
+                                        !answer?.show_full
+                                    "
+                                    (click)="showFullDesc(i, ansInd)"
+                                    class="text-clr60b fnt-semi-bold ml-1"
+                                    >{{ 'read_more' | translate }}</a
+                                > -->
                             </div>
                         </div>
                     </div>
