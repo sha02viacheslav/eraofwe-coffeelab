@@ -11,15 +11,15 @@ export class ResizeService {
     private readonly desktopMinWidth = 992;
 
     private readonly isMobileSubject = new BehaviorSubject<boolean>(
-        isPlatformBrowser(this.platformId) ? window.innerWidth < this.tabletMinWidth : false,
+        isPlatformBrowser(this.platformId) ? window.innerWidth < this.tabletMinWidth : true,
     );
     private readonly isTabletSubject = new BehaviorSubject<boolean>(
         isPlatformBrowser(this.platformId)
             ? window.innerWidth < this.desktopMinWidth && window.innerWidth >= this.tabletMinWidth
-            : false,
+            : true,
     );
     private readonly isDesktopSubject = new BehaviorSubject<boolean>(
-        isPlatformBrowser(this.platformId) ? window.innerWidth >= this.desktopMinWidth : true,
+        isPlatformBrowser(this.platformId) ? window.innerWidth >= this.desktopMinWidth : false,
     );
 
     get isMobile$(): Observable<boolean> {
