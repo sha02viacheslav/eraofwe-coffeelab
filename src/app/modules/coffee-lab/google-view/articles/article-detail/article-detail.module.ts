@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ArticleDetailRoutingModule } from './article-detail-routing.module';
 import { SharedModule } from '@shared';
-import { CoffeeLabComponentsModule } from '@modules/coffee-lab/components/coffee-lab-components.module';
 import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
 import { TranslationDropdownModule } from '@modules/coffee-lab/components/translation-dropdown/translation-dropdown.module';
+import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
+import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
 
 import { ArticleDetailComponent } from './article-detail.component';
 
@@ -15,9 +16,10 @@ import { ArticleDetailComponent } from './article-detail.component';
         CommonModule,
         ArticleDetailRoutingModule,
         SharedModule,
-        CoffeeLabComponentsModule,
         UserHeaderModule,
         TranslationDropdownModule,
+        JoinCommunityModule,
+        ForumMenuModule,
     ],
 })
 export class ArticleDetailModule {}

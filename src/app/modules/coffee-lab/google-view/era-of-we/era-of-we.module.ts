@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { EraOfWeRoutingModule } from './era-of-we-routing.module';
 import { SharedModule } from '@shared';
-import { CoffeeLabComponentsModule } from '../../components/coffee-lab-components.module';
 import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
+import { PublishForumModule } from '@modules/coffee-lab/components/publish-forum/publish-forum.module';
 
 import { EraOfWeComponent } from './era-of-we.component';
 
 @NgModule({
     declarations: [EraOfWeComponent],
-    imports: [CommonModule, EraOfWeRoutingModule, SharedModule, CoffeeLabComponentsModule, UserHeaderModule],
+    imports: [CommonModule, EraOfWeRoutingModule, SharedModule, UserHeaderModule, PublishForumModule],
 })
 export class EraOfWeModule {}

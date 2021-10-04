@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
-import { CoffeeLabService, I18NService } from '@services';
+import { CoffeeLabService } from '@services';
 import { RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
-import { ActivatedRoute } from '@angular/router';
 import { getLangRoute } from '@utils';
 
 @Component({
