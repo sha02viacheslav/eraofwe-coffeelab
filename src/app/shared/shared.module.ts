@@ -14,6 +14,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxJsonLdModule } from 'ngx-json-ld';
 
 const THIRDMODULES = [
     DividerModule,
@@ -22,6 +23,7 @@ const THIRDMODULES = [
     InputTextModule,
     LazyLoadImageModule,
     MenuModule,
+    NgxJsonLdModule,
     OverlayPanelModule,
     PaginatorModule,
     SkeletonModule,

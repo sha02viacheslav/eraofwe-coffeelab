@@ -1,41 +1,37 @@
 <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
 <div class="position-relative loader-wrap mt-4 pb-mt-45">
-    <div *ngIf="detailsData">
-        <div class="container article-main-block">
-            <div>
-                <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
+    <ng-container *ngIf="detailsData">
+        <div class="article-main-block">
+            <!-- <div class="mx-md-4 mb-0 mb-md-4 text-md-center">
                 <span *ngFor="let btn of buttonList">
                     <button class="button-list fnt-12 fnt-semi-bold">{{ btn.button }}</button>
                 </span>
             </div> -->
-                <div class="px-0 px-md-475">
-                    <h1 class="main-heading bg-transparent fnt-bold px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
-                        <!-- Starting your coffee tasting journey is easy! -->
-                        {{ detailsData?.title || '--' }}
-                    </h1>
-                    <p class="fnt-16 fnt-md-20 fnt-semi-bold text-md-center px-0 px-lg-5">
-                        <!-- All about your first steps of coffee! -->
-                        {{ detailsData?.subtitle || '--' }}
-                    </p>
+            <div class="px-0 px-md-475">
+                <h1 class="main-heading fnt-bold px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                    {{ detailsData?.title || '--' }}
+                </h1>
+                <p class="fnt-16 fnt-md-20 fnt-semi-bold text-md-center px-0 px-lg-5">
+                    {{ detailsData?.subtitle || '--' }}
+                </p>
+            </div>
+            <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
+                <div class="published mr-3">
+                    Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                 </div>
-                <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-                    <div class="published mr-3">
-                        Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
-                    </div>
-                    <div
-                        class="mt-2 mt-md-0"
-                        *ngIf="
-                            detailsData?.allow_translation &&
-                            detailsData?.translated_articles &&
-                            detailsData?.translated_articles.length > 0
-                        "
-                    >
-                        <app-translation-dropdown
-                            forumType="articles"
-                            [translatedList]="detailsData?.translated_articles"
-                        ></app-translation-dropdown>
-                    </div>
+                <div
+                    class="mt-2 mt-md-0"
+                    *ngIf="
+                        detailsData?.allow_translation &&
+                        detailsData?.translated_articles &&
+                        detailsData?.translated_articles.length > 0
+                    "
+                >
+                    <app-translation-dropdown
+                        forumType="articles"
+                        [translatedList]="detailsData?.translated_articles"
+                    ></app-translation-dropdown>
                 </div>
             </div>
             <div class="flex-1 my-4">
@@ -242,15 +238,16 @@
                     </span>
                 </div>
             </div>
-            <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+            <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
         </div>
-        <article class="w-100 row mx-0">
-            <div class="col-12 col-md-8 px-0 px-md-3">
+
+        <article class="row mx-0">
+            <div class="col-md-8 px-0 px-md-3">
                 <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
                     {{ 'recent_articles' | translate }}
                 </div>
                 <div class="row py-2">
-                    <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
+                    <div *ngFor="let forum of relatedData" class="col-md-6 pb-4">
                         <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.language, forum.slug)">
                             <div class="p-articles pr-2 cursor-pointer">
                                 <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
@@ -271,7 +268,7 @@
                 <app-join-community [type]="PostType.ARTICLE"></app-join-community>
             </div>
         </article>
-    </div>
+    </ng-container>
     <app-loading *ngIf="loading" type="overlay"></app-loading>
 </div>
 

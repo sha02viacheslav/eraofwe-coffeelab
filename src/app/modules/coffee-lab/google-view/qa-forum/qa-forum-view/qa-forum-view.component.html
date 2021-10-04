@@ -108,7 +108,7 @@
                     <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
                 </div>
             </div>
-            <app-json-ld [jsonLD]="jsonLD" *ngIf="jsonLD"></app-json-ld>
+            <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
         </div>
         <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
             <app-paginator

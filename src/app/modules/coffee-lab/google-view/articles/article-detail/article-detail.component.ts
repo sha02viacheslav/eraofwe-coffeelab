@@ -24,7 +24,7 @@ export class ArticleDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
+    // buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     addComment = false;
     stickySecData: any;
     orginalUserData: any;

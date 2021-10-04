@@ -35,6 +35,7 @@
     "moment-timezone": "^0.5.33",
     "ng-lazyload-image": "^9.1.0",
     "ngx-cookie-service": "^11.0.2",
+    "ngx-json-ld": "^0.3.1",
     "ngx-moment": "^5.0.0",
     "ngx-toastr": "^13.2.1",
     "primeicons": "^4.1.0",

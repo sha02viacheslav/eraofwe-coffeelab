@@ -62,11 +62,13 @@
     .step-wrapper {
         img {
             height: 276px;
+            min-height: 276px;
             object-fit: cover;
         }
         @media (max-width: 767px) {
             img {
                 height: 256px;
+                min-height: 256px;
             }
         }
     }
@@ -169,26 +171,12 @@
     }
 }
 
-.icon-mob img {
-    @media (max-width: 767px) {
-        width: 29px;
-        height: 29px;
-    }
-}
-
 .comment-hgt {
     height: 50px !important;
 }
 
 .comment-border {
     border-bottom: solid 0.5px #d8d8d8;
-}
-
-.message-icon img {
-    @media (min-width: 768px) {
-        width: 21px;
-        height: 34px;
-    }
 }
 
 .mob-height {

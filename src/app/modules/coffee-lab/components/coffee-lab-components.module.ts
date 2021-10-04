@@ -16,7 +16,7 @@ import { UserHeaderComponent } from './user-header/user-header.component';
 const COMPONENTS = [
     ForumMenuComponent,
     JoinCommunityComponent,
-    JsonLdComponent,
+    // JsonLdComponent,
     LikeDividerComponent,
     PublishForumComponent,
     SignupModalComponent,

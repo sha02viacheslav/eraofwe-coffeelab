@@ -120,7 +120,7 @@
             <app-join-community [type]="PostType.QA" [detailType]="'question-detail'"></app-join-community>
         </div>
     </article>
-    <app-json-ld [jsonLD]="jsonLD"></app-json-ld>
+    <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
     <app-loading *ngIf="loading" type="overlay"></app-loading>
 </div>
