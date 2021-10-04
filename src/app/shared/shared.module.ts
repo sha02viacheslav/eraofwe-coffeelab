@@ -9,7 +9,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PaginatorModule } from 'primeng/paginator';
-import { SkeletonModule } from 'primeng/skeleton';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TranslateModule } from '@ngx-translate/core';
@@ -24,7 +23,6 @@ const THIRDMODULES = [
     NgxJsonLdModule,
     OverlayPanelModule,
     PaginatorModule,
-    SkeletonModule,
     TranslateModule,
 ];
 // #endregion

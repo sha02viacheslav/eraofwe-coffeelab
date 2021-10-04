@@ -7,7 +7,7 @@ import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
 
 @Component({

@@ -5,10 +5,9 @@ import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@se
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
-import { takeUntil } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';

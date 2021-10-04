@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
-import { SignupModalComponent } from '@app/modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
