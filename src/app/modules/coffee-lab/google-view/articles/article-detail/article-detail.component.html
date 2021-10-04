@@ -17,11 +17,11 @@
                 </p>
             </div>
             <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-                <div class="published mr-3">
+                <div class="published">
                     Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                 </div>
                 <div
-                    class="mt-2 mt-md-0"
+                    class="mt-2 mt-md-0 ml-3"
                     *ngIf="
                         detailsData?.allow_translation &&
                         detailsData?.translated_articles &&
