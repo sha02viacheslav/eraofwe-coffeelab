@@ -1,11 +1,10 @@
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformServer } from '@angular/common';
 import {
     AfterViewInit,
     Component,
     EventEmitter,
     Inject,
     Input,
-    OnChanges,
     OnInit,
     Output,
     PLATFORM_ID,
@@ -24,7 +23,7 @@ export class PaginatorComponent implements OnInit, AfterViewInit {
     @Input() totalRecords;
     @Input() rows;
     @Input() page = 0;
-    @Output() onPageChange = new EventEmitter();
+    @Output() pageChange = new EventEmitter();
     isServer = false;
 
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
@@ -52,6 +51,6 @@ export class PaginatorComponent implements OnInit, AfterViewInit {
     }
 
     onPaginate(event: any) {
-        this.onPageChange.emit(event);
+        this.pageChange.emit(event);
     }
 }

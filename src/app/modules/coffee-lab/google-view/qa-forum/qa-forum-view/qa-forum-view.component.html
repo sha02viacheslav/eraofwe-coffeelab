@@ -115,7 +115,7 @@
                 [rows]="rows"
                 [totalRecords]="totalRecords"
                 [page]="page"
-                (onPageChange)="paginate($event)"
+                (pageChange)="paginate($event)"
             ></app-paginator>
         </div>
         <div *ngIf="!isLoading && !questions.length" class="text-center my-4 text-clr24">
