@@ -130,7 +130,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     getUserDetail(userDatils: any): void {
-        this.coffeeLabService.getUserDetail(userDatils.user_id, userDatils.organisation_type).subscribe((res) => {
+        this.coffeeLabService.getUserDetail(userDatils.posted_by, userDatils.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.stickySecData = res.result;
             }

@@ -87,15 +87,13 @@
                                             <img
                                                 *ngIf="
                                                     stickySecData?.profile_image_url ||
-                                                        stickySecData?.profile_image_thumb_url ||
-                                                        stickySecData?.posted_user_profile_image_url;
+                                                        stickySecData?.profile_image_thumb_url;
                                                     else placeholder
                                                 "
                                                 class="br-4"
                                                 [lazyLoad]="
                                                     stickySecData?.profile_image_url ||
-                                                    stickySecData?.profile_image_thumb_url ||
-                                                    stickySecData?.posted_user_profile_image_url
+                                                    stickySecData?.profile_image_thumb_url
                                                 "
                                                 alt="Author-image"
                                             />
