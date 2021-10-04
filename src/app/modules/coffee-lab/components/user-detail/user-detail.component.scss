@@ -44,6 +44,9 @@
     @media (min-width: 356px) {
         width: 322px;
     }
+    .divider {
+        border-bottom: solid 1px #c8c8c8;
+    }
 }
 
 ::ng-deep {
