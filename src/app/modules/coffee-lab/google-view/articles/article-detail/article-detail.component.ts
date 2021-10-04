@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -52,7 +52,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         public router: Router,
     ) {
         super(resizeService);
-        // this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
@@ -66,22 +65,20 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
             this.showAll = false;
-        }
-    }
-
-    ngOnInit(): void {
-        if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
         }
     }
 
+    ngOnInit(): void {}
+
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
-            fromEvent(window, 'scroll')
+            const scrollEvent = fromEvent(window, 'scroll')
                 .pipe(debounceTime(100))
                 .pipe(takeUntil(this.unsubscribeAll$))
                 .subscribe((res) => {
                     if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
                         this.showAll = true;
                     }
                 });
@@ -100,7 +97,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
     onRealtedRoute(langCode, slug) {
         this.router.navigateByUrl(`/${getLangRoute(langCode)}/articles/${slug}`);
-        window.scrollTo(0, 0);
     }
 
     viewAllComments() {
@@ -136,8 +132,10 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     }
                     this.getUserDetail(this.detailsData);
                     this.setSEO();
-                    this.setSchemaMackup();
                     this.getCommentsData();
+                    if (isPlatformServer(this.platformId)) {
+                        this.setSchemaMackup();
+                    }
                 }
             } else {
                 this.toastService.error('The article is not exist.');
@@ -212,6 +210,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             ],
         };
     }
+
     onFocus() {
         this.dialogSrv.open(SignupModalComponent, {});
     }
