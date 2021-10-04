@@ -1,26 +1,10 @@
-<ng-template #ring>
+<div class="overlay-loader">
     <div class="ring-wrap">
         <div class="lds-ring">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
-        </div>
-    </div>
-</ng-template>
-
-<div [ngSwitch]="type">
-    <div *ngSwitchCase="'overlay'" class="overlay-loader">
-        <ng-container *ngTemplateOutlet="ring"></ng-container>
-    </div>
-
-    <div *ngSwitchDefault>
-        <div class="position-relative">
-            <p-skeleton width="10%" styleClass="mb-2"></p-skeleton>
-            <p-skeleton width="20%" styleClass="mb-2"></p-skeleton>
-            <p-skeleton width="50%" styleClass="mb-2"></p-skeleton>
-            <p-skeleton width="100%" height="4rem"></p-skeleton>
-            <ng-container *ngTemplateOutlet="ring"></ng-container>
         </div>
     </div>
 </div>

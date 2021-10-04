@@ -1,11 +1,5 @@
 @import 'variables';
 
-:host ::ng-deep {
-    .p-skeleton {
-        background-color: $primary-bg-color;
-    }
-}
-
 .ring-wrap {
     position: absolute;
     top: 0;
