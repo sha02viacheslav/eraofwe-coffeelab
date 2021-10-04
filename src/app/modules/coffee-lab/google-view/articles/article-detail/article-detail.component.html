@@ -62,75 +62,127 @@
                     </div>
                 </div>
                 <div class="d-flex">
-                    <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
-                    <span>
-                        <div class="d-flex flex-wrap w-100 innter-box">
-                            <div class="d-flex justify-content-between align-items-md-end w-100">
-                                <app-user-header [prop]="detailsData"></app-user-header>
-                                <div class="d-flex flex-column align-items-end">
-                                    <app-forum-menu></app-forum-menu>
+                    <div *ngIf="!isMobile$" class="py-2 py-md-0 user-wrapper">
+                        <div class="pb-4 d-flex">
+                            <div class="w-100 d-flex justify-content-between">
+                                <div>
+                                    <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
+                                        {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
+                                    </p>
+                                    <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1">
+                                        {{ stickySecData?.organisation_name }}
+                                    </p>
+                                    <p
+                                        *ngIf="stickySecData?.country || stickySecData?.city"
+                                        class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1"
+                                    >
+                                        <span *ngIf="stickySecData?.organisation_name">@</span>
+                                        {{ stickySecData?.city || stickySecData?.organization_city }},
+                                        {{ stickySecData?.country }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="forum-content w-100 pt-4 mb-5">
-                                <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content || '--'"></div>
+                        </div>
+                        <div class="d-flex pb-4">
+                            <button
+                                class="btn-stroked mr-2"
+                                routerLink="/user-profile"
+                                [queryParams]="{
+                                    user_id: detailsData?.user_id || detailsData?.posted_by,
+                                    organization:
+                                        detailsData?.org_type ||
+                                        detailsData?.organisation_type ||
+                                        detailsData?.organization_type
+                                }"
+                            >
+                                {{ 'view_profile' | translate }}
+                            </button>
+                            <div class="btn-raised" (click)="onFocus()">
+                                <img
+                                    src="assets/images/message-icon-white.svg"
+                                    alt="message-icon-white"
+                                    width="18"
+                                    height="18"
+                                />
                             </div>
+                        </div>
+                        <div class="divder"></div>
+                        <div class="d-flex my-4">
+                            <div class="btn-icon message" (click)="onFocus()"></div>
+                            <div class="ml-3 btn-icon save" (click)="onFocus()"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap w-100 innter-box">
+                        <div class="d-flex justify-content-between align-items-md-end w-100">
+                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <div class="d-flex flex-column align-items-end">
+                                <app-forum-menu></app-forum-menu>
+                            </div>
+                        </div>
+                        <div class="forum-content w-100 pt-4 mb-5">
+                            <div
+                                *ngIf="showAll"
+                                class="activate-link lh-157 mb-0"
+                                [innerHTML]="detailsData?.content || '--'"
+                            ></div>
+                        </div>
 
-                            <!-- Question answer -->
+                        <!-- Question answer -->
 
-                            <div class="articles-answer w-100 pt-3 pb-4">
-                                <div>
-                                    <p class="fnt-16 fnt-bold mb-35">
-                                        {{ 'about_the_author' | translate }}
-                                    </p>
-                                    <div class="d-flex">
-                                        <div class="author-image mr-3">
+                        <div class="articles-answer w-100 pt-3 pb-4">
+                            <div>
+                                <p class="fnt-16 fnt-bold mb-35">
+                                    {{ 'about_the_author' | translate }}
+                                </p>
+                                <div class="d-flex">
+                                    <div class="author-image mr-3">
+                                        <img
+                                            *ngIf="
+                                                stickySecData?.profile_image_url ||
+                                                    stickySecData?.profile_image_thumb_url;
+                                                else placeholder
+                                            "
+                                            class="br-4"
+                                            [lazyLoad]="
+                                                stickySecData?.profile_image_url ||
+                                                stickySecData?.profile_image_thumb_url
+                                            "
+                                            alt="Author-image"
+                                        />
+                                        <ng-template #placeholder>
                                             <img
-                                                *ngIf="
-                                                    stickySecData?.profile_image_url ||
-                                                        stickySecData?.profile_image_thumb_url;
-                                                    else placeholder
-                                                "
-                                                class="br-4"
-                                                [lazyLoad]="
-                                                    stickySecData?.profile_image_url ||
-                                                    stickySecData?.profile_image_thumb_url
-                                                "
-                                                alt="Author-image"
+                                                class="placeholder"
+                                                lazyLoad="assets/images/avatar-placeholder.svg"
+                                                [alt]="stickySecData?.firstname"
                                             />
-                                            <ng-template #placeholder>
-                                                <img
-                                                    class="placeholder"
-                                                    lazyLoad="assets/images/avatar-placeholder.svg"
-                                                    [alt]="stickySecData?.firstname"
-                                                />
-                                            </ng-template>
-                                        </div>
-                                        <div>
-                                            <p
-                                                routerLink="/user-profile"
-                                                [queryParams]="{
-                                                    user_id: detailsData?.user_id || detailsData?.posted_by,
-                                                    organization:
-                                                        stickySecData?.org_type ||
-                                                        stickySecData?.organisation_type ||
-                                                        stickySecData?.organization_type
-                                                }"
-                                                class="fnt-bold cursor-pointer text-underline mb-2"
-                                            >
-                                                {{ stickySecData?.firstname || '--' }} {{ stickySecData?.lastname }}
-                                            </p>
-                                            <p class="fnt-semi-bold">
-                                                {{ stickySecData?.about_me || '--' }}
-                                            </p>
-                                        </div>
+                                        </ng-template>
+                                    </div>
+                                    <div>
+                                        <p
+                                            routerLink="/user-profile"
+                                            [queryParams]="{
+                                                user_id: detailsData?.user_id || detailsData?.posted_by,
+                                                organization:
+                                                    stickySecData?.org_type ||
+                                                    stickySecData?.organisation_type ||
+                                                    stickySecData?.organization_type
+                                            }"
+                                            class="fnt-bold cursor-pointer text-underline mb-2"
+                                        >
+                                            {{ stickySecData?.firstname || '--' }} {{ stickySecData?.lastname }}
+                                        </p>
+                                        <p class="fnt-semi-bold">
+                                            {{ stickySecData?.about_me || '--' }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="w-100">
-                                <div class="d-flex justify-content-between mt-3 mb-4">
-                                    <div class="d-flex">
-                                        <!-- <div class="d-flex">
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between mt-3 mb-4">
+                                <div class="d-flex">
+                                    <!-- <div class="d-flex">
                                         <img
                                             (click)="onFocus()"
                                             class="cursor-pointer"
@@ -139,102 +191,98 @@
                                         />
                                         <span class="d-flex align-items-end ml-1 mb-1">42</span>
                                     </div> -->
-                                        <div class="btn-icon save" (click)="onFocus()"></div>
-                                    </div>
-                                    <div class="btn-icon share"></div>
+                                    <div class="btn-icon save" (click)="onFocus()"></div>
                                 </div>
-                                <!-- <span *ngFor="let btn of buttonList">
+                                <div class="btn-icon share"></div>
+                            </div>
+                            <!-- <span *ngFor="let btn of buttonList">
                                 <button class="p-2 button-list fnt-12 fnt-semi-bold">
                                     {{ btn.button }}
                                 </button>
                             </span> -->
-                            </div>
+                        </div>
 
-                            <div
-                                *ngIf="
-                                    !isMobile$ &&
-                                    detailsData?.original_article_state &&
-                                    detailsData?.original_article_state === 'ACTIVE'
-                                "
-                                class="border-main br-4 p-4 mt-45 w-100"
-                            >
-                                <div class="d-flex justify-content-between mb-4">
-                                    <div class="d-flex">
-                                        <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                        <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
-                                            {{ 'read_the_article' | translate }}
-                                        </p>
-                                    </div>
-                                    <div class="bg-f8 px-25 py-2">
-                                        <p class="fnt-semi-bold fnt-12">
-                                            {{ 'original_language' | translate }} :
-                                            {{ detailsData?.original_article?.language | language }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <app-user-header [prop]="orginalUserData"></app-user-header>
-                                <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                                    <a
-                                        class="fnt-semi-bold"
-                                        (click)="
-                                            onRealtedRoute(
-                                                detailsData?.original_article?.language,
-                                                detailsData?.original_article?.slug
-                                            )
-                                        "
-                                        >{{ detailsData?.original_article?.name | titlecase }}</a
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="mt-md-5 mt-45 mb-4 w-100">
-                                <div class="w-100">
-                                    <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
-                                </div>
+                        <div
+                            *ngIf="
+                                !isMobile$ &&
+                                detailsData?.original_article_state &&
+                                detailsData?.original_article_state === 'ACTIVE'
+                            "
+                            class="border-main br-4 p-4 mt-45 w-100"
+                        >
+                            <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
-                                    <button
-                                        class="add-comment d-flex align-items-center pl-4 w-100 fnt-semi-bold text-clr588"
-                                        (click)="onFocus()"
-                                    >
-                                        {{ 'share_your_thoughts' | translate }}
-                                    </button>
+                                    <img src="assets/images/noun-questions.svg" alt="file-imag" />
+                                    <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
+                                        {{ 'read_the_article' | translate }}
+                                    </p>
+                                </div>
+                                <div class="bg-f8 px-25 py-2">
+                                    <p class="fnt-semi-bold fnt-12">
+                                        {{ 'original_language' | translate }} :
+                                        {{ detailsData?.original_article?.language | language }}
+                                    </p>
                                 </div>
                             </div>
-
-                            <!-- Answers -->
-                            <div *ngIf="allComments?.length > 0" class="w-100">
-                                <div class="comment-border pb-1">
-                                    <p class="fnt-semi-bold">{{ allComments?.length }} {{ 'answers' | translate }}</p>
-                                </div>
-                                <div
-                                    class="answer-wrapper my-45"
-                                    *ngFor="let postItem of commentData; let isLast = last"
-                                    [ngClass]="{
-                                        'border-bottom-0': isLast && !showCommentBtn,
-                                        'border-bottom-primary': !isLast && showCommentBtn
-                                    }"
-                                    [id]="'answer-' + postItem.id"
+                            <app-user-header [prop]="orginalUserData"></app-user-header>
+                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                <a
+                                    class="fnt-semi-bold"
+                                    (click)="
+                                        onRealtedRoute(
+                                            detailsData?.original_article?.language,
+                                            detailsData?.original_article?.slug
+                                        )
+                                    "
+                                    >{{ detailsData?.original_article?.name | titlecase }}</a
                                 >
-                                    <div class="d-flex flex-wrap w-100 mt-3">
-                                        <div class="d-flex justify-content-between align-items-md-end w-100">
-                                            <app-user-header
-                                                [prop]="postItem"
-                                                [isArticleDetail]="true"
-                                            ></app-user-header>
-                                        </div>
-                                    </div>
-                                    <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
-                                        <div class="activate-link" [innerHTML]="postItem.comment"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-md-5 mt-45 mb-4 w-100">
+                            <div class="w-100">
+                                <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
+                            </div>
+                            <div class="d-flex">
+                                <button
+                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-semi-bold text-clr588"
+                                    (click)="onFocus()"
+                                >
+                                    {{ 'share_your_thoughts' | translate }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Answers -->
+                        <div *ngIf="allComments?.length > 0" class="w-100">
+                            <div class="comment-border pb-1">
+                                <p class="fnt-semi-bold">{{ allComments?.length }} {{ 'answers' | translate }}</p>
+                            </div>
+                            <div
+                                class="answer-wrapper my-45"
+                                *ngFor="let postItem of commentData; let isLast = last"
+                                [ngClass]="{
+                                    'border-bottom-0': isLast && !showCommentBtn,
+                                    'border-bottom-primary': !isLast && showCommentBtn
+                                }"
+                                [id]="'answer-' + postItem.id"
+                            >
+                                <div class="d-flex flex-wrap w-100 mt-3">
+                                    <div class="d-flex justify-content-between align-items-md-end w-100">
+                                        <app-user-header [prop]="postItem" [isArticleDetail]="true"></app-user-header>
                                     </div>
                                 </div>
-                                <div class="text-center w-100" *ngIf="showCommentBtn">
-                                    <div (click)="viewAllComments()" class="brown-cta">
-                                        {{ 'view_all_comments' | translate }}
-                                    </div>
+                                <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
+                                    <div class="activate-link" [innerHTML]="postItem.comment"></div>
+                                </div>
+                            </div>
+                            <div class="text-center w-100" *ngIf="showCommentBtn">
+                                <div (click)="viewAllComments()" class="brown-cta">
+                                    {{ 'view_all_comments' | translate }}
                                 </div>
                             </div>
                         </div>
-                    </span>
+                    </div>
                 </div>
             </div>
             <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
@@ -270,51 +318,3 @@
     </ng-container>
     <app-loading *ngIf="loading" type="overlay"></app-loading>
 </div>
-
-<ng-template #userWrapper>
-    <span class="d-flex">
-        <div *ngIf="!isMobile$" class="py-2 py-md-0 user-wrapper">
-            <div class="pb-4 d-flex">
-                <div class="w-100 d-flex justify-content-between">
-                    <div>
-                        <p class="fnt-muli fnt-14 fnt-bold text-clr334 mb-1">
-                            {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
-                        </p>
-                        <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1">
-                            {{ stickySecData?.organisation_name }}
-                        </p>
-                        <p
-                            *ngIf="stickySecData?.country || stickySecData?.city"
-                            class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1"
-                        >
-                            <span *ngIf="stickySecData?.organisation_name">@</span>
-                            {{ stickySecData?.city || stickySecData?.organization_city }},
-                            {{ stickySecData?.country }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex pb-4">
-                <button
-                    class="btn-stroked mr-2"
-                    routerLink="/user-profile"
-                    [queryParams]="{
-                        user_id: detailsData?.user_id || detailsData?.posted_by,
-                        organization:
-                            detailsData?.org_type || detailsData?.organisation_type || detailsData?.organization_type
-                    }"
-                >
-                    {{ 'view_profile' | translate }}
-                </button>
-                <div class="btn-raised" (click)="onFocus()">
-                    <img src="assets/images/message-icon-white.svg" alt="message-icon-white" width="18" height="18" />
-                </div>
-            </div>
-            <div class="divder"></div>
-            <div class="d-flex my-4">
-                <div class="btn-icon message" (click)="onFocus()"></div>
-                <div class="ml-3 btn-icon save" (click)="onFocus()"></div>
-            </div>
-        </div>
-    </span>
-</ng-template>

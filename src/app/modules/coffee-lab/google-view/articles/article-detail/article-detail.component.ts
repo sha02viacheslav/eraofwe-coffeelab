@@ -1,10 +1,12 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
-import { RouterMap, seoVariables } from '@constants';
+import { RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
@@ -16,7 +18,7 @@ import { ResizeableComponent } from '@base-components';
     templateUrl: './article-detail.component.html',
     styleUrls: ['./article-detail.component.scss'],
 })
-export class ArticleDetailComponent extends ResizeableComponent implements OnInit {
+export class ArticleDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
@@ -34,6 +36,8 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     showCommentBtn = false;
     orignalArticleName: string;
     urlLang: string;
+    showAll = true;
+
     constructor(
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -59,11 +63,28 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.getArticleList();
             }
         });
+
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            this.showAll = false;
+        }
     }
 
     ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
+        }
+    }
+
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        this.showAll = true;
+                    }
+                });
         }
     }
 
