@@ -38,11 +38,11 @@
                 <div class="pb-45">
                     <img
                         class="w-100 banner-image"
-                        [lazyLoad]="detailsData?.cover_image_url"
+                        [lazyLoad]="isMobile$ ? detailsData?.cover_image_thumb_url : detailsData?.cover_image_url"
                         [alt]="detailsData?.title + ' cover image'"
                     />
                 </div>
-                <div class="d-flex justify-content-between mb-3 d-md-none">
+                <div *ngIf="isMobile$" class="d-flex justify-content-between mb-3">
                     <div class="d-flex">
                         <!-- <div class="d-flex">
                         <img
@@ -152,10 +152,11 @@
 
                             <div
                                 *ngIf="
+                                    !isMobile$ &&
                                     detailsData?.original_article_state &&
                                     detailsData?.original_article_state === 'ACTIVE'
                                 "
-                                class="border-main br-4 p-4 mt-45 d-none d-md-block w-100"
+                                class="border-main br-4 p-4 mt-45 w-100"
                             >
                                 <div class="d-flex justify-content-between mb-4">
                                     <div class="d-flex">
@@ -251,7 +252,7 @@
                                 <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
                             </div>
                             <div class="cursor-pointer d-flex flex-column">
-                                <p class="fnt-fly fnt-bold cust-flex-grow">
+                                <p class="fnt-fly fnt-bold cust-flex-grow text-break">
                                     {{ forum?.title | convertToShortDescription: 6 }}
                                 </p>
                                 <p class="fnt-semi-bold text-underline">
@@ -272,7 +273,7 @@
 
 <ng-template #userWrapper>
     <span class="d-flex">
-        <div class="py-2 py-md-0 user-wrapper d-none d-md-block">
+        <div *ngIf="!isMobile$" class="py-2 py-md-0 user-wrapper">
             <div class="pb-4 d-flex">
                 <div class="w-100 d-flex justify-content-between">
                     <div>

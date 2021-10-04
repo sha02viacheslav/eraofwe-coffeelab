@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '@env/environment';
@@ -9,13 +9,14 @@ import { PostType, RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
+import { ResizeableComponent } from '@base-components';
 
 @Component({
     selector: 'app-article-detail',
     templateUrl: './article-detail.component.html',
     styleUrls: ['./article-detail.component.scss'],
 })
-export class ArticleDetailComponent implements OnInit {
+export class ArticleDetailComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
@@ -34,17 +35,19 @@ export class ArticleDetailComponent implements OnInit {
     orignalArticleName: string;
     urlLang: string;
     constructor(
-        private coffeeLabService: CoffeeLabService,
-        public router: Router,
-        private activatedRoute: ActivatedRoute,
-        private seoService: SEOService,
-        private toastService: ToastrService,
-        private startupService: StartupService,
-        public globalsService: GlobalsService,
-        private dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
+        private activatedRoute: ActivatedRoute,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+        private seoService: SEOService,
+        private startupService: StartupService,
+        private toastService: ToastrService,
+        protected resizeService: ResizeService,
+        public globalsService: GlobalsService,
+        public router: Router,
     ) {
+        super(resizeService);
         // this.setSEO();
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
