@@ -119,6 +119,11 @@
         max-width: 50%;
     }
 
+    .col-lg-7 {
+        flex: 0 0 58.3333333333%;
+        max-width: 58.3333333333%;
+    }
+
     .col-lg-8 {
         flex: 0 0 66.6666666667%;
         max-width: 66.6666666667%;
@@ -2215,13 +2220,4 @@
 .row.gutter-16 > [class*='col-'] {
     padding-right: 8px;
     padding-left: 8px;
-}
-.row.gutter-24 {
-    margin-right: -12px;
-    margin-left: -12px;
-}
-.row.gutter-24 > .col,
-.row.gutter-24 > [class*='col-'] {
-    padding-right: 12px;
-    padding-left: 12px;
 }

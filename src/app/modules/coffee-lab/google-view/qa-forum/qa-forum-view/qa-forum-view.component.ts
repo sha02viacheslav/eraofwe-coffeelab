@@ -20,8 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class QaForumViewComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
-    viewModeItems: any[] = [{ value: 'list' }, { value: 'grid' }];
-    viewMode = 'list';
     sortOptions = [];
     filterOptions = [];
     sortBy = '';
@@ -29,12 +27,11 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     questions: any[] = [];
     isLoading = true;
     keyword = '';
-    questionMenuItems: MenuItem[] = [];
     totalRecords = 0;
     rows = 10;
     page = 1;
     jsonLD: any;
-    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
+    // buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
