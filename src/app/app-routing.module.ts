@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HealthCheckComponent } from '@components';
 
 const routes: Routes = [
-    { path: 'health-check', component: HealthCheckComponent },
+    {
+        path: 'health-check',
+        loadChildren: () => import('./modules/health-check/health-check.module').then((m) => m.HealthCheckModule),
+    },
     {
         path: 'error',
         loadChildren: () => import('./modules/error-module/error-module.module').then((m) => m.ErrorModuleModule),

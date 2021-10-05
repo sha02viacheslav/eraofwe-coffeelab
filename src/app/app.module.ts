@@ -16,7 +16,6 @@ import {
 } from 'angularx-social-login';
 
 import { AppComponent } from './app.component';
-import { HealthCheckComponent } from '@components';
 
 import { StartupService } from '@services';
 export function StartupServiceFactory(startupService: StartupService) {
@@ -24,7 +23,7 @@ export function StartupServiceFactory(startupService: StartupService) {
 }
 
 @NgModule({
-    declarations: [AppComponent, HealthCheckComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
