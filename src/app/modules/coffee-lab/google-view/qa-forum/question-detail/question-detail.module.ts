@@ -8,6 +8,7 @@ import { TranslationDropdownModule } from '@modules/coffee-lab/components/transl
 import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
 import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
 import { LikeDividerModule } from '@modules/coffee-lab/components/like-divider/like-divider.module';
+import { NgxJsonLdModule } from 'ngx-json-ld';
 
 import { QuestionDetailComponent } from './question-detail.component';
 
@@ -22,6 +23,7 @@ import { QuestionDetailComponent } from './question-detail.component';
         JoinCommunityModule,
         ForumMenuModule,
         LikeDividerModule,
+        NgxJsonLdModule,
     ],
 })
 export class QuestionDetailModule {}

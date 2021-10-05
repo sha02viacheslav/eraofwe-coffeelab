@@ -1,14 +1,42 @@
-<div>
-    <div class="row justify-content-lg-between pt-1 pb-3 pb-md-0 pt-md-0">
-        <div class="col-12 col-md-7 pr-md-0">
-            <app-publish-forum type="article"></app-publish-forum>
-        </div>
+<div class="d-md-flex flex-column flex-md-row justify-content-md-between align-items-center" *ngIf="!isMobile$">
+    <div class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
+        <input
+            class="w-100 fnt-16"
+            type="text"
+            pInputText
+            #searchInput
+            [(ngModel)]="keyword"
+            placeholder="{{ 'search_posts' | translate }}"
+            (ngModelChange)="getData()"
+        />
     </div>
-    <div
-        class="d-md-flex flex-column flex-md-row justify-content-md-between pt-md-4 align-items-center"
-        *ngIf="!isMobile$"
-    >
-        <div class="custom-search h-fit-content mt-3 mt-md-0 d-lg-none">
+</div>
+<div class="d-flex justify-content-between align-items-center pb-3 pb-md-4 pb-lg-45">
+    <div class="d-flex">
+        <p-dropdown
+            [options]="translationsList"
+            optionLabel="label"
+            optionValue="value"
+            [(ngModel)]="isAvailableTranslation"
+            (onChange)="getData()"
+            placeholder="{{ 'translations_available' | translate }}"
+            styleClass="round-border"
+        >
+        </p-dropdown>
+        <p-dropdown
+            class="pl-md-3 pl-25"
+            [options]="orderList"
+            optionLabel="label"
+            [placeholder]="'sort_by' | translate"
+            optionValue="value"
+            [(ngModel)]="selectedOrder"
+            (onChange)="getData()"
+            styleClass="round-border"
+        >
+        </p-dropdown>
+    </div>
+    <div class="col-12 col-lg-5 d-none d-lg-block">
+        <div class="custom-search h-fit-content mt-3 mt-md-0">
             <input
                 class="w-100 fnt-16"
                 type="text"
@@ -20,96 +48,58 @@
             />
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center pb-3 pb-md-4 pb-lg-45">
-        <div class="d-flex">
-            <p-dropdown
-                [options]="translationsList"
-                optionLabel="label"
-                optionValue="value"
-                [(ngModel)]="isAvailableTranslation"
-                (onChange)="getData()"
-                placeholder="{{ 'translations_available' | translate }}"
-                styleClass="round-border"
-            >
-            </p-dropdown>
-            <p-dropdown
-                class="pl-md-3 pl-25"
-                [options]="orderList"
-                optionLabel="label"
-                [placeholder]="'sort_by' | translate"
-                optionValue="value"
-                [(ngModel)]="selectedOrder"
-                (onChange)="getData()"
-                styleClass="round-border"
-            >
-            </p-dropdown>
-        </div>
-        <div class="col-12 col-lg-5 d-none d-lg-block">
-            <div class="custom-search h-fit-content mt-3 mt-md-0">
-                <input
-                    class="w-100 fnt-16"
-                    type="text"
-                    pInputText
-                    #searchInput
-                    [(ngModel)]="keyword"
-                    placeholder="{{ 'search_posts' | translate }}"
-                    (ngModelChange)="getData()"
-                />
-            </div>
-        </div>
-    </div>
-    <div class="position-relative">
-        <div class="articles-wrapper">
-            <div
-                class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
-                *ngFor="let article of articlesData"
-            >
-                <a [routerLink]="getLink(article)" class="text-non-underline">
-                    <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
-                        <div class="d-flex justify-content-betweenn px-4">
-                            <div class="flex-1 overflow-hidden">
-                                <app-user-header [prop]="article"></app-user-header>
-                            </div>
-                            <div class="btn-icon save" (click)="onFocus($event)"></div>
+</div>
+<div class="position-relative">
+    <div class="articles-wrapper">
+        <div
+            class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
+            *ngFor="let article of articlesData"
+        >
+            <a [routerLink]="getLink(article)" class="text-non-underline">
+                <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
+                    <div class="d-flex justify-content-betweenn px-4">
+                        <div class="flex-1 overflow-hidden">
+                            <app-user-header [prop]="article"></app-user-header>
                         </div>
-                        <img [lazyLoad]="article.cover_image_thumb_url" class="w-100 my-3" [alt]="article.title" />
-                        <div class="mx-4">
-                            <div class="d-flex">
-                                <!-- <div class="thumb-icon">
+                        <div class="btn-icon save" (click)="onFocus($event)"></div>
+                    </div>
+                    <img [lazyLoad]="article.cover_image_thumb_url" class="w-100 my-3" [alt]="article.title" />
+                    <div class="mx-4">
+                        <div class="d-flex">
+                            <!-- <div class="thumb-icon">
                                 <img src="assets/images/shape.svg" alt="thumbs" />
                             </div> -->
-                                <span class="fnt-semi-bold text-clr588">{{
-                                    article?.posted_at || article?.created_at | date: 'longDate'
-                                }}</span>
-                            </div>
-                            <h3 class="fnt-bold lh-157 cursor-pointerer article-title-text mb-0">
-                                {{ article?.title }}
-                            </h3>
-                            <div class="fnt-normal lh-143 mt-2 mt-md-3">
-                                <span class="article-title-text">
-                                    {{ article?.subtitle }}
-                                </span>
-                            </div>
+                            <span class="fnt-semi-bold text-clr588">{{
+                                article?.posted_at || article?.created_at | date: 'longDate'
+                            }}</span>
+                        </div>
+                        <h3 class="fnt-bold lh-157 cursor-pointerer article-title-text mb-0">
+                            {{ article?.title }}
+                        </h3>
+                        <div class="fnt-normal lh-143 mt-2 mt-md-3">
+                            <span class="article-title-text">
+                                {{ article?.subtitle }}
+                            </span>
                         </div>
                     </div>
-                </a>
-            </div>
-            <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+                </div>
+            </a>
+        </div>
+        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
-            <div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
-                <app-paginator
-                    [rows]="rows"
-                    [totalRecords]="totalRecords"
-                    [page]="page"
-                    (pageChange)="paginate($event)"
-                ></app-paginator>
-            </div>
-
-            <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 text-clr24">
-                {{ 'no_data_is_available' | translate }}
-            </div>
+        <div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
+            <app-paginator
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+                [page]="page"
+                (pageChange)="paginate($event)"
+            ></app-paginator>
         </div>
 
-        <app-loading *ngIf="isLoading"></app-loading>
+        <div *ngIf="!articlesData?.length" class="w-100 text-center my-4 text-clr24">
+            {{ 'no_data_is_available' | translate }}
+        </div>
     </div>
+
+    <app-loading *ngIf="isLoading"></app-loading>
 </div>

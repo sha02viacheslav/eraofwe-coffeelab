@@ -19,8 +19,12 @@
     <ng-template pTemplate="item" let-item let-i="index">
         <img [src]="item.icon" alt="icon" width="32" height="32" />
         <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
-        <span *ngIf="isDesktop$" class="pl-1">{{ item.label | translate }}</span>
+        <span *ngIf="!isMobile$" class="pl-1">{{ item.label | translate }}</span>
     </ng-template>
 </p-tabMenu>
+
+<div class="col-lg-7 px-0 pb-3 pb-md-4">
+    <app-publish-forum [type]="postType"></app-publish-forum>
+</div>
 
 <router-outlet></router-outlet>

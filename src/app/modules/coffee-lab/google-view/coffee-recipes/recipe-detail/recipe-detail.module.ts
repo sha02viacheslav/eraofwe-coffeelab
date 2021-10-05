@@ -7,6 +7,7 @@ import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/use
 import { TranslationDropdownModule } from '@modules/coffee-lab/components/translation-dropdown/translation-dropdown.module';
 import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
 import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
+import { NgxJsonLdModule } from 'ngx-json-ld';
 
 import { RecipeDetailComponent } from './recipe-detail.component';
 
@@ -20,6 +21,7 @@ import { RecipeDetailComponent } from './recipe-detail.component';
         TranslationDropdownModule,
         JoinCommunityModule,
         ForumMenuModule,
+        NgxJsonLdModule,
     ],
 })
 export class RecipeDetailModule {}

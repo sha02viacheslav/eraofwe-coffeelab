@@ -3,15 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
-
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgxJsonLdModule } from 'ngx-json-ld';
 
-const THIRDMODULES = [DropdownModule, InputTextModule, LazyLoadImageModule, NgxJsonLdModule, TranslateModule];
-// #endregion
+const THIRDMODULES = [LazyLoadImageModule, TranslateModule];
 
 import { LoadingComponent } from './components/loading/loading.component';
 

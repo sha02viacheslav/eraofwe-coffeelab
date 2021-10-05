@@ -4,16 +4,18 @@
             <input
                 type="text"
                 pInputText
-                [placeholder]="placeHolderValue | translate"
+                [placeholder]="btnValues[type].placeHolderValue | translate"
                 class="cursor-pointer"
                 (focus)="onFocus()"
             />
         </div>
         <div class="d-none d-md-block">
             <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">
-                {{ firstBtnValue | translate }}
+                {{ btnValues[type].firstBtnValue | translate }}
             </button>
-            <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">{{ secondBtnValue | translate }}</button>
+            <button (focus)="onFocus()" class="post-btn fnt-semi-bold fnt-16">
+                {{ btnValues[type].secondBtnValue | translate }}
+            </button>
         </div>
     </div>
 </div>

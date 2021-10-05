@@ -1,116 +1,110 @@
-<div class="coffee-recipes-view-container">
-    <div class="row justify-content-lg-between pt-1 pt-md-0">
-        <div class="col-12 col-md-7 pr-md-0">
-            <app-publish-forum type="recipe"></app-publish-forum>
-        </div>
-        <div class="col-12 d-md-none my-3">
-            <div class="custom-search qa-forum-search d-lg-block">
-                <input
-                    class="w-100 fnt-16"
-                    type="text"
-                    pInputText
-                    [(ngModel)]="searchQuery"
-                    (ngModelChange)="getData()"
-                    [placeholder]="'search_for_guides' | translate"
-                />
-            </div>
-        </div>
+<div class="col-12 d-md-none px-0 mb-3">
+    <div class="custom-search qa-forum-search d-lg-block">
+        <input
+            class="w-100 fnt-16"
+            type="text"
+            pInputText
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="getData()"
+            [placeholder]="'search_for_guides' | translate"
+        />
     </div>
-    <div class="d-flex align-items-md-center justify-content-between pb-3 pb-4 pb pt-md-4 pt-lg-45">
-        <div class="d-block flex-wrap d-md-flex">
-            <div class="d-flex">
-                <div class="mb-25 mb-md-0">
-                    <p-dropdown
-                        [options]="levels"
-                        optionLabel="label"
-                        optionValue="value"
-                        [(ngModel)]="label"
-                        (onChange)="getData()"
-                        [placeholder]="'difficulty' | translate"
-                        styleClass="round-border"
-                    >
-                    </p-dropdown>
-                </div>
-                <div class="pl-md-3 pl-1 mb-25 mb-md-0">
-                    <p-dropdown
-                        [options]="translationsList"
-                        optionLabel="label"
-                        optionValue="value"
-                        [(ngModel)]="isAvailableTranslation"
-                        (onChange)="getData()"
-                        [placeholder]="'translation_available' | translate"
-                        styleClass="round-border"
-                    >
-                    </p-dropdown>
-                </div>
-            </div>
-            <div class="pl-md-3">
+</div>
+
+<div class="d-flex align-items-md-center justify-content-between pb-3 pb-md-4">
+    <div class="d-block flex-wrap d-md-flex">
+        <div class="d-flex">
+            <div class="mb-25 mb-md-0">
                 <p-dropdown
-                    [options]="orderList"
+                    [options]="levels"
                     optionLabel="label"
                     optionValue="value"
-                    [(ngModel)]="selectedOrder"
+                    [(ngModel)]="label"
                     (onChange)="getData()"
-                    [placeholder]="'sort_by' | translate"
-                    styleClass="round-border mobile-ui"
+                    [placeholder]="'difficulty' | translate"
+                    styleClass="round-border"
+                >
+                </p-dropdown>
+            </div>
+            <div class="pl-md-3 pl-1 mb-25 mb-md-0">
+                <p-dropdown
+                    [options]="translationsList"
+                    optionLabel="label"
+                    optionValue="value"
+                    [(ngModel)]="isAvailableTranslation"
+                    (onChange)="getData()"
+                    [placeholder]="'translation_available' | translate"
+                    styleClass="round-border"
                 >
                 </p-dropdown>
             </div>
         </div>
-        <div class="col-md-5 d-none d-md-block pl-md-5">
-            <div class="custom-search qa-forum-search">
-                <input
-                    class="w-100 fnt-16"
-                    type="text"
-                    pInputText
-                    [(ngModel)]="searchQuery"
-                    (ngModelChange)="getData()"
-                    [placeholder]="'search_for_guides' | translate"
-                />
-            </div>
-        </div>
-    </div>
-    <div class="position-relative">
-        <div class="coffee-wrapper">
-            <div
-                class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
-                *ngFor="let coffee of coffeeRecipeData"
+        <div class="pl-md-3">
+            <p-dropdown
+                [options]="orderList"
+                optionLabel="label"
+                optionValue="value"
+                [(ngModel)]="selectedOrder"
+                (onChange)="getData()"
+                [placeholder]="'sort_by' | translate"
+                styleClass="round-border mobile-ui"
             >
-                <a [routerLink]="getLink(coffee)" class="text-non-underline">
-                    <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
-                        <div class="position-relative">
-                            <img [lazyLoad]="coffee.cover_image_thumb_url" class="w-100" [alt]="coffee?.name" />
-                            <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
-                        </div>
-
-                        <div class="m-3 m-md-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="flex-1 fnt-md-16 fnt-bold">
-                                    <span class="mb-1 d-flex recipe-title">{{ coffee?.name }}</span>
-                                    <span class="fnt-semi-bold mb-45 mb-md-4 mt-2">
-                                        {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1:',' }}
-                                    </span>
-                                </div>
-                                <div class="btn-icon save" (click)="onFocus($event)"></div>
-                            </div>
-                            <app-user-header [prop]="coffee"></app-user-header>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+            </p-dropdown>
         </div>
-        <div class="w-100 mt-45" *ngIf="totalRecords">
-            <app-paginator
-                [rows]="rows"
-                [totalRecords]="totalRecords"
-                [page]="page"
-                (pageChange)="paginate($event)"
-            ></app-paginator>
-        </div>
-        <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 text-clr24">
-            {{ 'no_data_is_available' | translate }}
-        </div>
-        <app-loading *ngIf="isLoading"></app-loading>
     </div>
+    <div class="col-md-5 d-none d-md-block pl-md-5">
+        <div class="custom-search qa-forum-search">
+            <input
+                class="w-100 fnt-16"
+                type="text"
+                pInputText
+                [(ngModel)]="searchQuery"
+                (ngModelChange)="getData()"
+                [placeholder]="'search_for_guides' | translate"
+            />
+        </div>
+    </div>
+</div>
+<div class="position-relative">
+    <div class="coffee-wrapper">
+        <div
+            class="col-12 col-md-6 col-lg-4 px-0 py-2 p-md-2 coffee-item-wrapper"
+            *ngFor="let coffee of coffeeRecipeData"
+        >
+            <a [routerLink]="getLink(coffee)" class="text-non-underline">
+                <div class="coffee-item" (click)="gotoDetailPage($event, coffee)">
+                    <div class="position-relative">
+                        <img [lazyLoad]="coffee.cover_image_thumb_url" class="w-100" [alt]="coffee?.name" />
+                        <span class="expertise fnt-12"> {{ coffee.expertise }} </span>
+                    </div>
+
+                    <div class="m-3 m-md-4">
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="flex-1 fnt-md-16 fnt-bold">
+                                <span class="mb-1 d-flex recipe-title">{{ coffee?.name }}</span>
+                                <span class="fnt-semi-bold mb-45 mb-md-4 mt-2">
+                                    {{ coffee?.equipment_name | titlecase | convertToShortDescription: 1:',' }}
+                                </span>
+                            </div>
+                            <div class="btn-icon save" (click)="onFocus($event)"></div>
+                        </div>
+                        <app-user-header [prop]="coffee"></app-user-header>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+    </div>
+    <div class="w-100 mt-45" *ngIf="totalRecords">
+        <app-paginator
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+            [page]="page"
+            (pageChange)="paginate($event)"
+        ></app-paginator>
+    </div>
+    <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4 text-clr24">
+        {{ 'no_data_is_available' | translate }}
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
 </div>

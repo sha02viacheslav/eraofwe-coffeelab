@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ArticlesViewRoutingModule } from './articles-view-routing.module';
 import { SharedModule } from '@shared';
 import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
-import { PublishForumModule } from '@modules/coffee-lab/components/publish-forum/publish-forum.module';
 import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
+import { NgxJsonLdModule } from 'ngx-json-ld';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { ArticlesViewComponent } from './articles-view.component';
 
@@ -16,8 +18,10 @@ import { ArticlesViewComponent } from './articles-view.component';
         ArticlesViewRoutingModule,
         SharedModule,
         UserHeaderModule,
-        PublishForumModule,
         SeoPaginatorModule,
+        NgxJsonLdModule,
+        InputTextModule,
+        DropdownModule,
     ],
 })
 export class ArticlesViewModule {}
