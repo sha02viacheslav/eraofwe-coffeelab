@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
-import { CoffeeLabService } from '../../../core/services/api/coffee-lab.service';
 
 @Component({
     selector: 'app-footer',
@@ -9,7 +8,7 @@ import { CoffeeLabService } from '../../../core/services/api/coffee-lab.service'
 })
 export class FooterComponent implements OnInit {
     readonly env = environment;
-    constructor(public coffeeLabService: CoffeeLabService) {}
+    constructor() {}
 
     ngOnInit(): void {}
 }
