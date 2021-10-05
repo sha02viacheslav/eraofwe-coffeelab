@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { OverviewRoutingModule } from './overview-routing.module';
 import { SharedModule } from '@shared';
@@ -18,6 +19,7 @@ import { SearchForumComponent } from '../../components/search-forum/search-forum
     declarations: [OverviewComponent, LanguageDropdownComponent, SearchForumComponent],
     imports: [
         CommonModule,
+        FormsModule,
         OverviewRoutingModule,
         SharedModule,
         TabMenuModule,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { QaForumViewRoutingModule } from './qa-forum-view-routing.module';
 import { SharedModule } from '@shared';
@@ -18,6 +19,7 @@ import { QaForumViewComponent } from './qa-forum-view.component';
     declarations: [QaForumViewComponent],
     imports: [
         CommonModule,
+        FormsModule,
         QaForumViewRoutingModule,
         SharedModule,
         UserHeaderModule,

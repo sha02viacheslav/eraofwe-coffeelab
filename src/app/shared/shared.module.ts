@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -19,9 +18,8 @@ import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, Languag
 const PIPES = [ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES],
+    imports: [CommonModule, RouterModule, ...THIRDMODULES],
     declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
-
-    exports: [CommonModule, FormsModule, RouterModule, ...THIRDMODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
+    exports: [CommonModule, RouterModule, ...THIRDMODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
 })
 export class SharedModule {}

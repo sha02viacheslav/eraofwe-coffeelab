@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ArticlesViewRoutingModule } from './articles-view-routing.module';
 import { SharedModule } from '@shared';
@@ -15,6 +16,7 @@ import { ArticlesViewComponent } from './articles-view.component';
     declarations: [ArticlesViewComponent],
     imports: [
         CommonModule,
+        FormsModule,
         ArticlesViewRoutingModule,
         SharedModule,
         UserHeaderModule,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CoffeeRecipesViewRoutingModule } from './coffee-recipes-view-routing.module';
 import { SharedModule } from '@shared';
@@ -15,6 +16,7 @@ import { CoffeeRecipesViewComponent } from './coffee-recipes-view.component';
     declarations: [CoffeeRecipesViewComponent],
     imports: [
         CommonModule,
+        FormsModule,
         CoffeeRecipesViewRoutingModule,
         SharedModule,
         UserHeaderModule,
