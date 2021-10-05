@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
-import { OverviewComponent } from './google-view/overview/overview.component';
-import { RouterMap } from '@constants';
-import { RouterSlug } from '@enums';
 
 const routes: Routes = [
     {
