@@ -38,7 +38,7 @@ export class UserDetailComponent implements OnInit {
             this.coffeeLabService.getUserDetail(this.userId, this.orgType).subscribe((res) => {
                 if (res.success) {
                     this.data = res.result;
-                    this.imageUrl = this.imageUrl || this.data?.profile_image_thumb_url || this.data?.profile_image_url;
+                    this.imageUrl = this.data?.profile_image_url || this.data?.profile_image_thumb_url || this.imageUrl;
                     this.name = `${this.data?.firstname} ${this.data?.lastname}`;
                 }
             });
