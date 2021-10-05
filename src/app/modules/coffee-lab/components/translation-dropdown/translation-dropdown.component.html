@@ -44,7 +44,7 @@
     </ng-template>
 </p-dropdown>
 
-<div class="seo-hidden">
+<div *ngIf="!isBrower" class="seo-hidden">
     <a *ngFor="let translateItem of translatedList" [routerLink]="[getLink(translateItem)]"
         >{{ translateItem.language | language }} Translation</a
     >

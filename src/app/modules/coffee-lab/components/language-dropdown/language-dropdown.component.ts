@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { APP_LANGUAGES, RouterMap, ROUTER_SLUG_ITEMS } from '@constants';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -16,8 +16,15 @@ export class LanguageDropdownComponent implements OnInit {
     languageList: any[] = APP_LANGUAGES;
     selectedLangCode: string;
     selectedFullLang: string;
+    isBrower = false;
 
-    constructor(public coffeeLabService: CoffeeLabService, @Inject(DOCUMENT) private document: Document) {}
+    constructor(
+        @Inject(DOCUMENT) private document: Document,
+        @Inject(PLATFORM_ID) private platformId: object,
+        public coffeeLabService: CoffeeLabService,
+    ) {
+        this.isBrower = isPlatformBrowser(this.platformId);
+    }
 
     ngOnInit(): void {
         this.selectedLangCode = this.coffeeLabService.currentForumLanguage;

@@ -17,7 +17,7 @@
     </ng-template>
 </p-dropdown>
 
-<div class="seo-hidden">
+<div *ngIf="!isBrower" class="seo-hidden">
     <div *ngFor="let slug of ROUTER_SLUG_ITEMS">
         <a
             *ngFor="let lang of languageList"

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, Input, PLATFORM_ID, Inject } from '@angular/core';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -9,8 +10,11 @@ import { getLangRoute } from '@utils';
 export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;
     @Input() forumType;
+    isBrower = false;
 
-    constructor() {}
+    constructor(@Inject(PLATFORM_ID) private platformId: object) {
+        this.isBrower = isPlatformBrowser(this.platformId);
+    }
 
     ngOnInit(): void {}
 
