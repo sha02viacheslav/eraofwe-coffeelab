@@ -1,0 +1,16 @@
+<div class="row gutter-24 v-gutter-24 position-relative">
+    <div *ngFor="let item of posts" [ngClass]="postType === PostType.QA ? 'col-12' : 'col-md-6'">
+        <app-question-card *ngIf="postType === PostType.QA" [question]="item"></app-question-card>
+        <app-article-card *ngIf="postType === PostType.ARTICLE" [article]="item"></app-article-card>
+        <app-recipe-card *ngIf="postType === PostType.RECIPE" [recipe]="item"></app-recipe-card>
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
+</div>
+
+<div *ngIf="totalRecords > this.rows" class="pt-3 pt-md-4 text-center">
+    <app-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></app-paginator>
+</div>
+
+<div *ngIf="!isLoading && !posts.length" class="text-center my-4 fnt-muli text-clr24">
+    {{ 'no_data_is_available' | translate }}
+</div>

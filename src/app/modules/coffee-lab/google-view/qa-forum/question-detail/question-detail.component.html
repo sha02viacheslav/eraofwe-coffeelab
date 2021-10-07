@@ -2,7 +2,7 @@
 
 <div class="page-wrapper d-block d-lg-flex justify-content-between position-relative mt-4 pb-mt-45">
     <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
-        <div class="border-question-view br-12">
+        <div class="border-question-view">
             <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
                 <div class="flex-1">
                     <app-user-header [prop]="detailsData"></app-user-header>
@@ -11,7 +11,7 @@
                     <app-forum-menu></app-forum-menu>
                 </div>
             </div>
-            <div class="pb-3 px-3 px-lg-4">
+            <div class="px-3 px-lg-4">
                 <h1 class="fnt-16 fnt-md-18 fnt-bold mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
             </div>
             <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
@@ -68,15 +68,12 @@
                     </div>
                     <div class="d-flex justify-content-between my-3 my-md-4">
                         <div class="d-flex">
-                            <!-- <div class="d-flex">
-                                    <img
-                                        (click)="onFocus()"
-                                        class="cursor-pointer"
-                                        src="assets/images/thumbs-up-button.svg"
-                                        alt="thumbs-up"
-                                    />
-                                    <span class="d-flex align-items-lg-end ml-3 mb-1">2</span>
-                                </div> -->
+                            <div class="d-flex align-like">
+                                <div class="like-int" (click)="onFocus()">
+                                    <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
+                                </div>
+                                <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ postItem.likes }}</span>
+                            </div>
                             <div class="btn-icon save" (click)="onFocus()"></div>
                         </div>
                         <div class="btn-icon share" (click)="onFocus()"></div>
@@ -99,13 +96,13 @@
                                 </p>
                             </div>
                         </div>
-                        <app-user-header [prop]="answerDetail"></app-user-header>
+                        <app-user-header [prop]="answerDetail?.original_details"></app-user-header>
                         <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                             <a
                                 class="fnt-semi-bold"
                                 [routerLink]="
                                     getLink(
-                                        answerDetail?.original_details.language,
+                                        answerDetail?.original_details?.language,
                                         answerDetail?.original_details?.question_slug
                                     )
                                 "
@@ -115,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div (click)="onFocus()" class="brown-cta ml-md-5 ml-3 mb-4">Write a comment</div>
+            <div (click)="onFocus()" class="brown-cta ml-md-5 ml-3 mb-4">{{ 'write_comment' | translate }}</div>
         </div>
     </article>
     <article class="w-tab-100 w-min-content col-md-4 col-12 px-0">

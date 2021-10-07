@@ -1,73 +1,122 @@
 @import 'variables';
 
-.avatar-name-container {
+.banner-overlay {
+    margin-top: -70px;
+    z-index: 1;
+    @media (min-width: 992px) {
+        margin-top: -170px;
+    }
+}
+
+.coffee-lab-menu {
     width: 100%;
-    height: 94px;
-    background-color: #faf8f4;
-    padding: 0 20px;
-    display: flex;
-    border-radius: 6px;
+    height: 54px;
+}
+
+.avatar-name-container {
     img {
-        margin-top: 22px;
-        margin-right: 20px;
         border-radius: 50%;
     }
-
-    .profile-name {
-        margin-top: 31px;
+    .pi-map-marker {
+        color: #a88057;
     }
 }
 
-.right-container {
-    padding: 32px;
-    border-radius: 4px;
-    border: solid 1px $secondary-border-color;
-    min-height: 300px;
+::ng-deep {
+    .p-tabview {
+        &.tabview-coffee-lab {
+            .p-tabview-nav {
+                background: $primary-bg-color;
+                border: none !important;
+                li {
+                    margin-right: 0;
+                    .p-tabview-nav-link {
+                        padding: 11px 16px !important;
+                        img {
+                            display: inline-block;
+                            &.active-icon {
+                                display: none;
+                            }
+                        }
+                    }
+                    &.p-highlight .p-tabview-nav-link,
+                    &:hover .p-tabview-nav-link {
+                        img {
+                            display: none;
+                            &.active-icon {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        flex: 1;
+                        border-top: solid 1px #d6d6d6;
+                        border-bottom: solid 1px #d6d6d6;
+                        border-right: solid 1px #d6d6d6;
+                        .p-tabview-nav-link {
+                            padding: 10px !important;
+                            justify-content: center;
+                        }
+                        &:first-child {
+                            border-left: solid 1px #d6d6d6;
+                            border-top-left-radius: 4px;
+                            border-bottom-left-radius: 4px;
+                        }
+                        &:nth-child(6) {
+                            border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;
+                        }
+                    }
+                }
+                @media (max-width: 767px) {
+                    border-bottom: none;
+                }
+            }
+            .p-tabview-panel {
+                padding-top: 24px;
+                @media (min-width: 758px) {
+                    padding-top: 32px;
+                }
+            }
+        }
+    }
 }
 
-.avatar-img {
-    border-radius: 50%;
-}
-
-.upload-picture-container {
-    border: 1px dashed $secondary-border-color;
-    padding: 44px;
-    border-radius: 4px;
-
-    .camera {
+.banner-container {
+    position: relative;
+    height: 160px;
+    @media (min-width: 768px) {
+        height: 274px;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    .edit-btn-group {
         position: absolute;
-        right: -3px;
-        bottom: -3px;
-        cursor: pointer;
-    }
-    .avatar {
-        border-radius: 50%;
+        right: 16px;
+        bottom: 16px;
     }
 }
 
-.about-text-box {
-    min-height: 106px;
+.btn-trans-icon.message-icon {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 10px 10px 7px 10px;
+    border: solid 1px $general-text-color;
+    border-radius: 8px;
+    background: $white;
+    &::before {
+        margin-right: 0;
+    }
 }
 
-@media (max-width: 991px) {
-    .upload-picture-container {
-        padding: 44px 14px;
-    }
-    .right-container {
-        padding: 24px 16px;
-    }
-}
-
-@media (max-width: 767px) {
-    .upload-picture-container {
-        border-left-width: 0;
-        border-right-width: 0;
-        border-bottom-width: 0;
-        padding: 32px;
-    }
-    .right-container {
-        padding: 0;
-        border-width: 0;
-        min-height: auto;
+.write-post-btn {
+    @media (min-width: 768px) {
+        position: absolute;
+        right: 0;
+        top: 4px;
     }
 }

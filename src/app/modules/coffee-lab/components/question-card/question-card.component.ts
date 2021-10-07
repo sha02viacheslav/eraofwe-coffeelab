@@ -50,4 +50,8 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
             this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
         }
     }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {});
+    }
 }

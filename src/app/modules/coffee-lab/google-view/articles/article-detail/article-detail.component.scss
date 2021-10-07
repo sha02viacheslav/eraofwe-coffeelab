@@ -39,21 +39,6 @@
     }
 }
 
-.button-list {
-    margin: 0 4px 5px 0;
-    padding: 7px 10px 8px;
-    border-radius: 4px;
-    background-color: #eaeaea;
-    border: none;
-    @media (min-width: 768px) {
-        margin: 0 12px 0 0;
-        padding: 10px 15px;
-    }
-}
-
-.background-header {
-    border-top: 2px solid $dark-color;
-}
 .p-articles img {
     width: 89px;
     height: 89px;
@@ -91,7 +76,7 @@
     background-color: rgba(116, 117, 136, 0.08);
 }
 
-.answer-wrapper {
+.article-wrapper {
     border-bottom: 1px solid #d8d8d8;
     &:first-child {
         border-top: 1px solid #d8d8d8;
@@ -138,5 +123,27 @@
     flex-grow: 0.9;
     &:hover {
         text-decoration: underline;
+    }
+}
+
+.align-like {
+    .like-int {
+        cursor: pointer;
+        padding: 0 10.5px;
+        border-radius: 50%;
+        @media (min-width: 992px) {
+            &:hover {
+                background-color: rgba(48, 133, 92, 0.12);
+            }
+        }
+
+        .like {
+            position: relative;
+            top: 6px;
+            height: 22px;
+        }
+    }
+    span {
+        margin-top: 0.8rem;
     }
 }

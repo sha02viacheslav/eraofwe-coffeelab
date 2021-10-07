@@ -10,13 +10,15 @@
         object-fit: cover;
     }
 
-    &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 2rem rgb(0 0 0 / 20%);
-        border: 0px !important;
-        cursor: pointer;
-        h3.article-title-text {
-            text-decoration: underline;
+    @media (min-width: 992px) {
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 2rem rgb(0 0 0 / 20%);
+            border: 0px !important;
+            cursor: pointer;
+            h3.article-title-text {
+                text-decoration: underline;
+            }
         }
     }
 }

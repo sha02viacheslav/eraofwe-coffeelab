@@ -85,14 +85,18 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     getRecipeList() {
-        this.coffeeLabService.getForumList('recipe', { page: 1, per_page: 4 }).subscribe((res: any) => {
+        const params = {
+            sort_by: 'created_at',
+            sort_order: 'desc',
+            publish: true,
+        };
+        this.coffeeLabService.getPopularList('recipe', params).subscribe((res) => {
             if (res.success) {
-                this.relatedData = res.result
-                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
-                    .slice(0, 4);
-                if (!this.idOrSlug) {
-                    this.router.navigate([`/coffee-recipes/${this.relatedData[0].slug}`]);
-                }
+                this.relatedData = res.result.filter((item: any) => item.slug !== this.idOrSlug).slice(0, 4);
+                this.relatedData.map((item) => {
+                    item.description = this.globalsService.getJustText(item.description);
+                    return item;
+                });
             }
         });
     }

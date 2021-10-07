@@ -40,6 +40,13 @@
     }
 }
 
+.full-width {
+    margin: 0 -1rem;
+    @media (min-width: 992px) {
+        margin: 0 -3rem;
+    }
+}
+
 .flex-1 {
     flex: 1;
 }

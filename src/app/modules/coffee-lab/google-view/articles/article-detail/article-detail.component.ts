@@ -85,11 +85,16 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         }
     }
 
-    getArticleList() {
-        this.coffeeLabService.getForumList('article', { page: 1, per_page: 4 }).subscribe((res: any) => {
+    getArticleList(): any {
+        const params = {
+            sort_by: 'created_at',
+            sort_order: 'desc',
+            publish: true,
+        };
+        this.coffeeLabService.getPopularList('article', params).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result
-                    .filter((item) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
+                    .filter((item: any) => item.id !== this.idOrSlug && item.slug !== this.idOrSlug)
                     .slice(0, 4);
             }
         });

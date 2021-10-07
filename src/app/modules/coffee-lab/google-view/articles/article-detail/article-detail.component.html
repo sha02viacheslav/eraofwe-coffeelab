@@ -16,7 +16,8 @@
             </div>
             <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
                 <div class="published">
-                    Published {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
+                    {{ 'published' | translate }}
+                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                 </div>
                 <div
                     class="mt-2 mt-md-0 ml-3"
@@ -42,15 +43,12 @@
                 </div>
                 <div *ngIf="isMobile$" class="d-flex justify-content-between mb-3">
                     <div class="d-flex">
-                        <!-- <div class="d-flex">
-                        <img
-                            (click)="onFocus()"
-                            class="cursor-pointer"
-                            src="assets/images/thumbs-up-button.svg"
-                            alt="thumb"
-                        />
-                        <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
-                    </div> -->
+                        <div class="d-flex align-like mr-1">
+                            <div class="like-int" (click)="onFocus()">
+                                <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
+                            </div>
+                            <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                        </div>
                         <div class="btn-icon message mr-25" (click)="onFocus()"></div>
                         <div class="btn-icon save" (click)="onFocus()"></div>
                     </div>
@@ -68,15 +66,18 @@
                                         {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                                     </p>
                                     <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1">
-                                        {{ stickySecData?.organisation_name }}
+                                        {{ stickySecData?.organisation_name || stickySecData?.organization_name }}
                                     </p>
                                     <p
                                         *ngIf="stickySecData?.country || stickySecData?.city"
                                         class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1"
                                     >
-                                        <span *ngIf="stickySecData?.organisation_name">@</span>
+                                        <span
+                                            *ngIf="stickySecData?.organisation_name || stickySecData?.organization_name"
+                                            >@</span
+                                        >
                                         {{ stickySecData?.city || stickySecData?.organization_city }},
-                                        {{ stickySecData?.country }}
+                                        {{ stickySecData?.country | country }}
                                     </p>
                                 </div>
                             </div>
@@ -106,13 +107,19 @@
                         </div>
                         <div class="divder"></div>
                         <div class="d-flex my-4">
+                            <div class="d-flex align-like mr-1">
+                                <div class="like-int" (click)="onFocus()">
+                                    <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
+                                </div>
+                                <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                            </div>
                             <div class="btn-icon message" (click)="onFocus()"></div>
                             <div class="ml-3 btn-icon save" (click)="onFocus()"></div>
                         </div>
                     </div>
                     <div class="d-flex flex-wrap w-100 innter-box">
                         <div class="d-flex justify-content-between align-items-md-end w-100">
-                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <app-user-header [prop]="stickySecData"></app-user-header>
                             <div class="d-flex flex-column align-items-end">
                                 <app-forum-menu></app-forum-menu>
                             </div>
@@ -122,8 +129,6 @@
                             <div class="forum-content w-100 pt-4 mb-5">
                                 <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content || '--'"></div>
                             </div>
-
-                            <!-- Question answer -->
 
                             <div class="articles-answer w-100 pt-3 pb-4">
                                 <div>
@@ -135,14 +140,16 @@
                                             <img
                                                 *ngIf="
                                                     stickySecData?.profile_image_url ||
-                                                        stickySecData?.profile_image_thumb_url;
+                                                        stickySecData?.profile_image_thumb_url ||
+                                                        stickySecData?.posted_user_profile_image_url;
                                                     else placeholder
                                                 "
                                                 class="br-4"
                                                 src="assets/images/empty.svg"
                                                 [lazyLoad]="
                                                     stickySecData?.profile_image_url ||
-                                                    stickySecData?.profile_image_thumb_url
+                                                    stickySecData?.profile_image_thumb_url ||
+                                                    stickySecData?.posted_user_profile_image_url
                                                 "
                                                 alt="Author-image"
                                             />
@@ -158,7 +165,7 @@
                                             <p
                                                 routerLink="/user-profile"
                                                 [queryParams]="{
-                                                    user_id: detailsData?.user_id || detailsData?.posted_by,
+                                                    user_id: stickySecData?.id,
                                                     organization:
                                                         stickySecData?.org_type ||
                                                         stickySecData?.organisation_type ||
@@ -179,26 +186,23 @@
                             <div class="w-100">
                                 <div class="d-flex justify-content-between mt-3 mb-4">
                                     <div class="d-flex">
-                                        <!-- <div class="d-flex">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-pointer"
-                                            src="assets/images/thumbs-up-button.svg"
-                                            alt="thumbs-up"
-                                        />
-                                        <span class="d-flex align-items-end ml-1 mb-1">42</span>
-                                    </div> -->
+                                        <div class="d-flex align-like mr-1">
+                                            <div class="like-int" (click)="onFocus()">
+                                                <img
+                                                    class="cursor-point like"
+                                                    src="assets/images/thumbsup.svg"
+                                                    alt="thumbs-up"
+                                                />
+                                            </div>
+                                            <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{
+                                                detailsData.likes
+                                            }}</span>
+                                        </div>
                                         <div class="btn-icon save" (click)="onFocus()"></div>
                                     </div>
-                                    <div class="btn-icon share"></div>
+                                    <div class="btn-icon share" (click)="onFocus()"></div>
                                 </div>
-                                <!-- <span *ngFor="let btn of buttonList">
-                                <button class="p-2 button-list fnt-12 fnt-semi-bold">
-                                    {{ btn.button }}
-                                </button>
-                            </span> -->
                             </div>
-
                             <div
                                 *ngIf="
                                     !isMobile$ &&
@@ -235,7 +239,9 @@
                                     >
                                 </div>
                             </div>
-
+                            <div *ngIf="detailsData?.categories" class="row mx-0">
+                                <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+                            </div>
                             <div class="mt-md-5 mt-45 mb-4 w-100">
                                 <div class="w-100">
                                     <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
@@ -249,14 +255,12 @@
                                     </button>
                                 </div>
                             </div>
-
-                            <!-- Answers -->
                             <div *ngIf="allComments?.length > 0" class="w-100">
                                 <div class="comment-border pb-1">
                                     <p class="fnt-semi-bold">{{ allComments?.length }} {{ 'answers' | translate }}</p>
                                 </div>
                                 <div
-                                    class="answer-wrapper my-45"
+                                    class="article-wrapper my-45"
                                     *ngFor="let postItem of commentData; let isLast = last"
                                     [ngClass]="{
                                         'border-bottom-0': isLast && !showCommentBtn,

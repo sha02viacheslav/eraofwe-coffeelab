@@ -33,17 +33,21 @@
                             </div>
                         </div>
                         <div class="d-md-flex justify-content-md-between align-items-md-end w-100">
-                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <app-user-header [prop]="stickySecData"></app-user-header>
                             <div class="row justify-content-between ml-1 mob-b-boder">
                                 <div class="d-flex mt-3 mb-45 d-md-none icon-mob">
-                                    <!-- <div class="d-flex">
-                                        <img
-                                            (click)="onFocus()"
-                                            class="cursor-pointer"
-                                            src="assets/images/thumbsup.svg"
-                                            alt="thumb"
-                                        />
-                                    </div> -->
+                                    <div class="d-flex align-like mr-1">
+                                        <div class="like-int" (click)="onFocus()">
+                                            <img
+                                                class="cursor-point like"
+                                                src="assets/images/thumbsup.svg"
+                                                alt="thumbs-up"
+                                            />
+                                        </div>
+                                        <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{
+                                            detailsData.likes
+                                        }}</span>
+                                    </div>
                                     <div class="btn-icon message" (click)="onFocus()"></div>
                                     <div class="btn-icon save ml-3" (click)="onFocus()"></div>
                                 </div>
@@ -112,7 +116,7 @@
                                 class="align-items-center d-flex justify-content-center"
                                 [ngClass]="detailsData.is_brewed ? 'active-check-icon' : 'check-icon'"
                             >
-                                <i class="pi pi-check"></i>
+                                <i class="pi custom-check pi-check"></i>
                             </div>
                             <p class="fnt-18 fnt-muli fnt-600 text-clr334">{{ 'mark_as_brewed' | translate }}</p>
                         </div>
@@ -135,12 +139,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div *ngIf="detailsData?.video_url" class="pt-3 pt-md-4 pt-lg-45">
-                                <div class="fnt-bold mb-3">
-                                    {{ 'see_recipe_video' | translate }}
-                                </div>
-                                <video class="w-100" [src]="detailsData?.video_url" controls></video>
-                            </div> -->
                             <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
                         </div>
 
@@ -184,7 +182,9 @@
                                     <img
                                         class="br-4"
                                         [src]="
-                                            stickySecData?.profile_image_url || stickySecData?.profile_image_thumb_url
+                                            stickySecData?.profile_image_url ||
+                                            stickySecData?.profile_image_thumb_url ||
+                                            stickySecData?.posted_user_profile_image_url
                                         "
                                         alt="Author-image"
                                     />
@@ -194,7 +194,7 @@
                                         class="fnt-bold cursor-pointer text-underline mb-2"
                                         routerLink="/user-profile"
                                         [queryParams]="{
-                                            user_id: detailsData?.user_id || detailsData?.posted_by,
+                                            user_id: stickySecData?.id,
                                             organization:
                                                 stickySecData?.org_type ||
                                                 stickySecData?.organisation_type ||
@@ -215,24 +215,23 @@
                     <div class="w-100">
                         <div class="d-flex justify-content-between mt-3 mb-4">
                             <div class="d-flex">
-                                <!-- <div class="d-flex">
-                                     <img
-                                        (click)="onFocus()"
-                                        class="cursor-pointer"
-                                        src="assets/images/thumbsup.svg"
-                                        alt="thumbs-up"
-                                    />
-                                    <span class="d-flex align-items-end ml-1 mb-1">42</span>
-                                </div> -->
+                                <div class="d-flex align-like">
+                                    <div class="like-int" (click)="onFocus()">
+                                        <img
+                                            class="cursor-point like"
+                                            src="assets/images/thumbsup.svg"
+                                            alt="thumbs-up"
+                                        />
+                                    </div>
+                                    <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                                </div>
                                 <div class="btn-icon save" (click)="onFocus()"></div>
                             </div>
                             <div class="btn-icon share" (click)="onFocus()"></div>
                         </div>
-                        <!-- <span *ngFor="let btn of buttonList">
-                            <button class="p-2 button-list fnt-12 fnt-semi-bold">
-                                {{ btn.button }}
-                            </button>
-                        </span> -->
+                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
+                            <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+                        </div>
                         <div
                             *ngIf="
                                 detailsData?.original_recipe_state && detailsData?.original_recipe_state === 'ACTIVE'
@@ -302,15 +301,6 @@
                             </div>
                             <div class="mt-3 px-0 forum-content mb-4 ml-md-5 pl-md-1">
                                 <div class="activate-link" [innerHTML]="postItem.comment"></div>
-                                <!-- Remove after API is confirmed -->
-                                <!-- <ng-container *ngIf="postItem.images">
-                                    <img
-                                        class="w-100 mb-3"
-                                        *ngFor="let img of postItem.images"
-                                        [src]="img.thumb_file || img.file"
-                                        alt="answer image"
-                                    />
-                                </ng-container> -->
                             </div>
                         </div>
                         <div class="text-center w-100" *ngIf="showCommentBtn">
@@ -320,9 +310,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="pt-4" *ngIf="detailsData?.original_details?.id">
-                    <app-original-view [detailsData]="detailsData" forumType="recipe"></app-original-view>
-                </div> -->
             </div>
         </article>
     </div>
@@ -336,9 +323,11 @@
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_thumb_url" alt="" /></div>
                         <div class="cursor-pointer d-flex flex-column">
-                            <p class="fnt-fly fnt-bold cust-flex-grow">{{ forum?.name }}</p>
+                            <p class="fnt-fly fnt-bold cust-flex-grow">
+                                {{ forum?.title | convertToShortDescription: 6 }}
+                            </p>
                             <p class="fnt-semi-bold text-underline">
-                                {{ forum?.posted_user }}
+                                {{ forum?.user_name }}
                             </p>
                         </div>
                     </div>
@@ -364,15 +353,15 @@
                             {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                         </p>
                         <p class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1">
-                            {{ stickySecData?.organisation_name }}
+                            {{ stickySecData?.organisation_name || stickySecData?.organization_name }}
                         </p>
                         <p
                             *ngIf="stickySecData?.country || stickySecData?.city"
                             class="fnt-muli fnt-14 fnt-semi-bold text-clr588 mb-1"
                         >
-                            <span *ngIf="stickySecData?.organisation_name">@</span>
+                            <span *ngIf="stickySecData?.organisation_name || stickySecData?.organization_name">@</span>
                             {{ stickySecData?.city || stickySecData?.organization_city }},
-                            {{ stickySecData?.country }}
+                            {{ stickySecData?.country | country }}
                         </p>
                     </div>
                 </div>
@@ -402,19 +391,16 @@
                     </div>
                 </div>
             </div>
-            <div class="sticky-divder"></div>
+            <div class="divder"></div>
             <div class="d-flex my-4">
-                <!-- <div class="d-flex">
-                    <img
-                        (click)="onFocus()"
-                        class="cursor-pointer"
-                        src="assets/images/thumbs-up-button.svg"
-                        alt="thumb"
-                    />
-                    <span class="d-flex align-items-lg-end ml-1 mb-1">2</span>
-                </div> -->
+                <div class="d-flex align-like mr-1">
+                    <div class="like-int" (click)="onFocus()">
+                        <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
+                    </div>
+                    <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                </div>
                 <div class="btn-icon message" (click)="onFocus()"></div>
-                <div class="btn-icon save ml-3"></div>
+                <div class="btn-icon save ml-3" (click)="onFocus()"></div>
             </div>
         </div>
     </span>

@@ -25,7 +25,7 @@
                 }}</span>
             </div>
             <h3 class="fnt-bold lh-157 cursor-pointerer article-title-text mb-0">
-                {{ article?.title }}
+                {{ article?.title.length < 65 ? article?.title : article?.title.slice(0, 65).concat('...') }}
             </h3>
             <div class="fnt-normal lh-143 mt-2 mt-md-3">
                 <span class="article-title-text">

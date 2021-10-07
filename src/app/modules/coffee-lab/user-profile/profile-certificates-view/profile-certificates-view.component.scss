@@ -1,0 +1,17 @@
+@import 'variables';
+
+.header {
+    border-radius: 4px;
+    background-color: $primary-bg-color;
+    padding: 1rem 0.75rem;
+}
+
+.border-top-dashed-main {
+    border-top: 1px dashed #ebebeb !important;
+}
+
+.no-bullet-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

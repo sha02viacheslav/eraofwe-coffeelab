@@ -14,8 +14,16 @@ const COMPONENTS = [LoadingComponent];
 const DIRECTIVES = [];
 
 import { ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe } from './pipes';
+import { OrgTypePipe } from './pipes/org-type.pipe';
 
-const PIPES = [ConvertToShortDescriptionPipe, CountryPipe, DateAgoReplacePipe, LanguagePipe, AmTimeAgoPipe];
+const PIPES = [
+    ConvertToShortDescriptionPipe,
+    CountryPipe,
+    DateAgoReplacePipe,
+    LanguagePipe,
+    OrgTypePipe,
+    AmTimeAgoPipe,
+];
 
 @NgModule({
     imports: [CommonModule, RouterModule, ...THIRDMODULES],

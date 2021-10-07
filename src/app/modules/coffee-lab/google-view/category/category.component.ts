@@ -73,7 +73,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     jsonLD: any;
 
     constructor(
-        @Inject(PLATFORM_ID) private platformId: object,
         public coffeeLabService: CoffeeLabService,
         private activateRoute: ActivatedRoute,
         private router: Router,
@@ -90,20 +89,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
                 this.getCategories(false);
             }
             this.isCategoryCalled++;
-        });
-
-        this.activateRoute.queryParamMap.subscribe((queryParams) => {
-            if (queryParams.has('page')) {
-                this.page = +queryParams.get('page');
-                if (this.page < 1) {
-                    this.page = 1;
-                }
-                this.onChangeTab(this.selectedTab);
-            }
-
-            if (isPlatformBrowser(this.platformId)) {
-                window.scrollTo(0, 0);
-            }
         });
     }
 

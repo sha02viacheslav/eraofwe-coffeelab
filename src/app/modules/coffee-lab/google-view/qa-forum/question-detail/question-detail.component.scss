@@ -30,6 +30,7 @@
 
 .border-question-view {
     border: 1px solid #d0d0d0;
+    border-radius: 14px;
 }
 
 .add-comment {
@@ -65,5 +66,27 @@
     }
     @media (min-width: 992px) and (max-width: 1280px) {
         display: block;
+    }
+}
+
+.align-like {
+    .like-int {
+        cursor: pointer;
+        padding: 0 10.5px;
+        border-radius: 50%;
+        @media (min-width: 992px) {
+            &:hover {
+                background-color: rgba(48, 133, 92, 0.12);
+            }
+        }
+
+        .like {
+            position: relative;
+            top: 6px;
+            height: 22px;
+        }
+    }
+    span {
+        margin-top: 0.8rem;
     }
 }

@@ -4,6 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService } from '@services';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SignupModalComponent } from '../components/signup-modal/signup-modal.component';
+import { OrganizationType, PostType } from '@enums';
 
 @Component({
     selector: 'app-user-profile',
@@ -11,14 +14,39 @@ import { CoffeeLabService, GlobalsService } from '@services';
     styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
+    readonly postType = PostType;
+    readonly OrgType = OrganizationType;
+
     isLoading = false;
     isUpdatingProfile = false;
-    previewUrl?: string;
+    bannerUrl: string;
+    profileUrl: string;
     profileInfo?: any;
     infoForm: FormGroup;
-
+    certificationArray: any[] = [];
     queryUserId: any;
     queryOrganization: any;
+    orgType: OrganizationType;
+    menuItems = [
+        {
+            label: 'question_answers',
+            postType: PostType.QA,
+            icon: 'assets/images/qa-forum.svg',
+            activeIcon: 'assets/images/qa-forum-active.svg',
+        },
+        {
+            label: 'posts',
+            postType: PostType.ARTICLE,
+            icon: 'assets/images/article.svg',
+            activeIcon: 'assets/images/article-active.svg',
+        },
+        {
+            label: 'brewing_guides',
+            postType: PostType.RECIPE,
+            icon: 'assets/images/coffee-recipe.svg',
+            activeIcon: 'assets/images/coffee-recipe-active.svg',
+        },
+    ];
 
     constructor(
         private activateRoute: ActivatedRoute,
@@ -27,6 +55,7 @@ export class UserProfileComponent implements OnInit {
         private coffeeLabService: CoffeeLabService,
         public globals: GlobalsService,
         public location: Location,
+        private dialogSrv: DialogService,
     ) {
         this.queryUserId = this.activateRoute.snapshot.queryParamMap.get('user_id');
         this.queryOrganization = this.activateRoute.snapshot.queryParamMap.get('organization') || 'sa';
@@ -40,12 +69,20 @@ export class UserProfileComponent implements OnInit {
         this.coffeeLabService.getUserDetail(this.queryUserId, this.queryOrganization).subscribe((res: any) => {
             if (res.success) {
                 this.profileInfo = res.result;
-                this.previewUrl = this.profileInfo.profile_image_url;
+                this.bannerUrl = this.profileInfo.banner_url;
+                this.profileUrl = this.profileInfo.profile_image_url;
+                if (this.queryUserId) {
+                    this.certificationArray = res.result?.certificates || [];
+                }
                 this.isLoading = false;
             } else {
                 this.toastr.error('Error while fetching profile');
                 this.router.navigate(['/']);
             }
         });
+    }
+
+    onFocus() {
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }
