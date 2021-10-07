@@ -36,7 +36,7 @@ export class JoinCommunityComponent implements OnInit {
             .subscribe((res: any) => {
                 if (res.success) {
                     if (this.type === PostType.QA) {
-                        this.relatedData = res.result.questions;
+                        this.relatedData = res.result?.questions;
                     } else {
                         this.relatedData = res.result;
                     }
