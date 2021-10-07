@@ -29,31 +29,20 @@ export class JoinCommunityComponent implements OnInit {
 
     getQaList() {
         this.coffeeLabService
-            .getForumList(this.type, {
+            .getForumList('question', {
                 page: this.pages ? this.pages + 1 : 2,
                 per_page: 5,
+                // category_slug: this.coffeeLabService.qaForumViewCategory,
             })
             .subscribe((res: any) => {
                 if (res.success) {
-                    if (this.type === PostType.QA) {
-                        this.relatedData = res.result.questions;
-                    } else {
-                        this.relatedData = res.result;
-                    }
+                    this.relatedData = res.result.questions;
                 }
             });
     }
 
     getLink(item: any, answer: any) {
-        let type: string;
-        if (this.type === PostType.QA) {
-            type = 'qa-forum';
-        } else if (this.type === PostType.ARTICLE) {
-            type = 'articles';
-        } else if (this.type === PostType.RECIPE) {
-            type = 'coffee-recipes';
-        }
-        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${type}/${item.slug}`;
+        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
         return {
             url,
             queryParmas: {

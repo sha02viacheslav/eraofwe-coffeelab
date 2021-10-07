@@ -162,6 +162,7 @@
                                 <img
                                     *ngIf="step.image_thumb_url || step.image_url"
                                     class="w-100 stp-desc-img"
+                                    src="assets/images/empty.svg"
                                     [lazyLoad]="step.image_url || step.image_thumb_url"
                                     [alt]="detailsData?.name + ' step image'"
                                 />

@@ -43,4 +43,13 @@ export class CoffeeLabService extends ApiService {
     getCommentList(type: string, slug: any): any {
         return this.get(this.orgPostUrl, `general/${type}s/${slug}/comments`);
     }
+
+    getCategory(langCode: string): Observable<any> {
+        const language = { language: langCode };
+        return this.get(this.orgPostUrl, `general/categories?${this.serializeParams(language)}`);
+    }
+
+    getTopWriters(options): Observable<any> {
+        return this.get(this.orgPostUrl, `general/coffee-lab/top-writers?${this.serializeParams(options)}`);
+    }
 }

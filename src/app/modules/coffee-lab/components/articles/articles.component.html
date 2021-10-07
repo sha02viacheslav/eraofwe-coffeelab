@@ -1,0 +1,53 @@
+<div class="row mx-0">
+    <div
+        class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
+        *ngFor="let article of articles"
+        [ngClass]="{ 'col-md-6': article.cardType !== 'joinCard', 'd-none': isEraofWe && !article.is_era_of_we }"
+    >
+        <a [routerLink]="getLink(article)" class="text-non-underline">
+            <div class="py-3 py-md-4 article-item" (click)="gotoDetailPage($event, article)">
+                <div class="d-flex justify-content-betweenn px-4">
+                    <div class="flex-1 overflow-hidden">
+                        <app-user-header [prop]="article"></app-user-header>
+                    </div>
+                    <div class="btn-icon save" (click)="onFocus($event)"></div>
+                </div>
+                <img
+                    [lazyLoad]="article.cover_image_thumb_url"
+                    src="assets/images/empty.svg"
+                    class="w-100 my-3"
+                    [alt]="article.title"
+                />
+                <div class="mx-4">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-like">
+                            <div class="like-int" (click)="onFocus($event)">
+                                <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
+                            </div>
+                            <span class="d-flex mb-05 fnt-300 text-clr334 mt-2 mr-2">{{ article?.likes }}</span>
+                        </div>
+                        <span class="fnt-semi-bold text-clr588 mt-2">{{
+                            article?.posted_at || article?.created_at | date: 'longDate'
+                        }}</span>
+                    </div>
+                    <h3 class="fnt-bold lh-157 cursor-pointerer article-title-text mb-0">
+                        {{ article?.title }}
+                    </h3>
+                    <div class="fnt-normal lh-143 mt-2 mt-md-3">
+                        <span class="article-title-text">
+                            {{ article?.subtitle }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
+    <app-paginator
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [page]="page"
+        (pageChange)="paginate($event)"
+    ></app-paginator>
+</div>

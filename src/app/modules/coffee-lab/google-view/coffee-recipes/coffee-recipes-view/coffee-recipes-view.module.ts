@@ -4,13 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { CoffeeRecipesViewRoutingModule } from './coffee-recipes-view-routing.module';
 import { SharedModule } from '@shared';
-import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
-import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { CoffeeRecipesViewComponent } from './coffee-recipes-view.component';
+import { RecipesModule } from '@modules/coffee-lab/components/recipes/recipes.module';
 
 @NgModule({
     declarations: [CoffeeRecipesViewComponent],
@@ -19,11 +18,10 @@ import { CoffeeRecipesViewComponent } from './coffee-recipes-view.component';
         FormsModule,
         CoffeeRecipesViewRoutingModule,
         SharedModule,
-        UserHeaderModule,
-        SeoPaginatorModule,
         NgxJsonLdModule,
         InputTextModule,
         DropdownModule,
+        RecipesModule,
     ],
 })
 export class CoffeeRecipesViewModule {}

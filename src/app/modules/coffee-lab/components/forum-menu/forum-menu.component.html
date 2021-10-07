@@ -2,6 +2,7 @@
     <p-menu #menu [popup]="true" [model]="getMenuItemsForItem()" class="menu-width" styleClass="left-menu-actions">
     </p-menu>
     <i
+        tabindex="0"
         class="pi pi-ellipsis-h text-clr588 cursor-pointer hover-icon"
         (click)="$event.stopPropagation(); $event.preventDefault(); menu.toggle($event)"
     ></i>

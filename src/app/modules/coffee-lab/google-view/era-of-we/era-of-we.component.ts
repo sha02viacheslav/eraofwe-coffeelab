@@ -19,6 +19,7 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     keyword = '';
     isAvailableTranslation?: any;
     selectedOrder = '';
+    totalRecords = 0;
     translationsList: any[] = [
         {
             label: 'Yes',
@@ -69,7 +70,7 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
             .subscribe((res) => {
                 if (res.success) {
                     this.data = res.result ? res.result : [];
-
+                    this.totalRecords = res.result_info.total_count;
                     this.data = res.result ?? [];
                     this.data.map((item) => {
                         item.content = this.globalsService.getJustText(item.content);

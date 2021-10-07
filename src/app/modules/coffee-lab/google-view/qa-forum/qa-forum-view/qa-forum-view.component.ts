@@ -1,13 +1,10 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoffeeLabService, SEOService, GlobalsService, ResizeService } from '@services';
+import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
-import { MenuItem } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
@@ -31,13 +28,10 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     rows = 10;
     page = 1;
     jsonLD: any;
-    // buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
-        private dialogSrv: DialogService,
-        private globalsService: GlobalsService,
         private route: ActivatedRoute,
         private router: Router,
         private seoService: SEOService,
@@ -114,34 +108,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
             }
             this.isLoading = false;
         });
-    }
-
-    paginate(event: any) {
-        if (this.page !== event.page + 1) {
-            this.router.navigate([], { queryParams: { page: event.page + 1 } });
-        }
-    }
-
-    getLink(item: any, answer: any) {
-        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
-        return {
-            url,
-            queryParmas: {
-                answer: answer?.id,
-            },
-        };
-    }
-
-    gotoDetailPage(event, item: any, answer?: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item, answer).url], {
-                queryParams: this.getLink(item, answer).queryParmas,
-            });
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
     }
 
     setSEO() {

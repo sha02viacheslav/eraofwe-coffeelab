@@ -8,6 +8,7 @@
     <img
         *ngIf="imageUrl; else placeholder"
         [lazyLoad]="imageUrl"
+        src="assets/images/empty.svg"
         [alt]="name && name.length ? name.slice(0, 1) : 'AV'"
         [style.borderRadius]="'50%'"
     />

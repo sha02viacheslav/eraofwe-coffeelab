@@ -12,11 +12,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabMenuModule } from 'primeng/tabmenu';
 
 import { OverviewComponent } from './overview.component';
-import { LanguageDropdownComponent } from '../../components/language-dropdown/language-dropdown.component';
 import { SearchForumComponent } from '../../components/search-forum/search-forum.component';
+import { LanguageDropdownModule } from '@modules/coffee-lab/components/language-dropdown/language-dropdown.module';
 
 @NgModule({
-    declarations: [OverviewComponent, LanguageDropdownComponent, SearchForumComponent],
+    declarations: [OverviewComponent, SearchForumComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -27,6 +27,7 @@ import { SearchForumComponent } from '../../components/search-forum/search-forum
         PublishForumModule,
         InputTextModule,
         DropdownModule,
+        LanguageDropdownModule,
     ],
 })
 export class OverviewModule {}

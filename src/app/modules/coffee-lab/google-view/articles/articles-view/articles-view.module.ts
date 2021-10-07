@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { ArticlesViewComponent } from './articles-view.component';
+import { ArticlesModule } from '@modules/coffee-lab/components/articles/articles.module';
 
 @NgModule({
     declarations: [ArticlesViewComponent],
@@ -24,6 +25,7 @@ import { ArticlesViewComponent } from './articles-view.component';
         NgxJsonLdModule,
         InputTextModule,
         DropdownModule,
+        ArticlesModule,
     ],
 })
 export class ArticlesViewModule {}

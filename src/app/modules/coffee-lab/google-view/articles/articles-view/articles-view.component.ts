@@ -1,10 +1,8 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DialogService } from 'primeng/dynamicdialog';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
-import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
@@ -32,10 +30,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
-        private dialogSrv: DialogService,
-        private globalsService: GlobalsService,
         private route: ActivatedRoute,
-        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         protected resizeService: ResizeService,
@@ -103,26 +98,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         });
     }
 
-    paginate(event: any) {
-        if (this.page !== event.page + 1) {
-            this.router.navigate([], { queryParams: { page: event.page + 1 } });
-        }
-    }
-
-    getLink(item) {
-        return `/${getLangRoute(item.language)}/articles/${item.slug}`;
-    }
-
-    gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
-    }
-
     setSEO() {
         const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE];
         const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE];
@@ -171,11 +146,5 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 ...forumList,
             ],
         };
-    }
-
-    onFocus(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

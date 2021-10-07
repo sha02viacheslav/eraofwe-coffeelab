@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { EraOfWeComponent } from './era-of-we.component';
+import { ArticlesModule } from '@modules/coffee-lab/components/articles/articles.module';
 
 @NgModule({
     declarations: [EraOfWeComponent],
@@ -17,9 +18,9 @@ import { EraOfWeComponent } from './era-of-we.component';
         FormsModule,
         EraOfWeRoutingModule,
         SharedModule,
-        UserHeaderModule,
         InputTextModule,
         DropdownModule,
+        ArticlesModule,
     ],
 })
 export class EraOfWeModule {}

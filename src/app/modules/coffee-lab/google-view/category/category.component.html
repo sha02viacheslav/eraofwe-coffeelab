@@ -1,0 +1,160 @@
+<div class="main-block">
+    <div class="mt-1 mt-lg-3 w-fit-content" (click)="onBack()">
+        <a class="back-page">
+            <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
+        </a>
+    </div>
+    <div class="d-block d-md-flex">
+        <div class="mt-1 mt-md-2 mb-4 mb-lg-5 pb-1">
+            <h1 class="title-header text-clr334 fnt-700">{{ currentCategory?.name | titlecase }}</h1>
+            <p class="text-clr334 col-md-8 pl-1 col-12">
+                {{ 'coffee_roasting_is_the_process' | translate }}
+            </p>
+        </div>
+        <div class="d-flex align-items-center align-items-lg-end language-drop mb-4 mb-md-0 mr-lg-4">
+            <app-language-dropdown></app-language-dropdown>
+        </div>
+    </div>
+
+    <p-tabView [(activeIndex)]="selectedTab" (onChange)="onChangeTab($event.index)">
+        <p-tabPanel *ngFor="let menu of menuItems; let i = index" [selected]="selectedTab === i">
+            <ng-template pTemplate="header">
+                <img [ngClass]="{ 'd-block': selectedTab !== i }" [src]="menu.icon" alt="icon" class="d-none" />
+                <img [ngClass]="{ 'd-block': selectedTab === i }" [src]="menu.activeIcon" alt="icon" class="d-none" />
+                <span>{{ menu.label | translate }}</span>
+            </ng-template>
+            <div class="mt-45" *ngIf="selectedTab === 0">
+                <div class="row mb-475 mb-md-0">
+                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
+                </div>
+                <div class="row" *ngIf="!isLoading">
+                    <div class="col-12 col-md-7 px-0">
+                        <div class="d-block ml-25 mr-25 ml-md-3 mr-md-0">
+                            <app-questions [questions]="questions" [totalRecords]="totalRecords"></app-questions>
+                        </div>
+                        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+                    </div>
+                    <div *ngIf="!isLoading && questions?.length < 0" class="text-center my-4 fnt-muli text-clr24">
+                        {{ 'no_data_is_available' | translate }}
+                    </div>
+                    <div
+                        *ngIf="!isLoading"
+                        class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0"
+                    >
+                        <div class="other-category pt-4 mx-3 mx-md-0">
+                            <div class="row mx-0 fnt-16 fnt-bold fnt-muli">
+                                {{ 'other_categories' | translate }}
+                            </div>
+                            <div class="mt-4">
+                                <app-category-list [categoryList]="otherCategories"></app-category-list>
+                            </div>
+                        </div>
+                        <div class="top-writer mt-4 mx-md-0 mx-3">
+                            <div class="fnt-muli fnt-16 fnt-bold mb-2 mt-3">{{ 'top_writers' | translate }}</div>
+                            <div
+                                *ngFor="let user of topWriters; let isLast = last"
+                                [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"
+                                class="border-bottom mt-3 pb-3"
+                            >
+                                <app-user-header [isTopWriters]="true" [prop]="user"></app-user-header>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-45" *ngIf="selectedTab === 1">
+                <div class="row mb-475 mb-md-0">
+                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
+                </div>
+                <div *ngIf="!isLoading">
+                    <app-articles [articles]="articles" [totalRecords]="totalRecords"></app-articles>
+                </div>
+
+                <div *ngIf="!isLoading && !articles?.length" class="text-center my-4 fnt-muli text-clr334">
+                    {{ 'no_data_is_available' | translate }}
+                </div>
+            </div>
+            <div class="mt-45" *ngIf="selectedTab === 2">
+                <div class="row mb-475 mb-md-0">
+                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
+                </div>
+                <div *ngIf="!isLoading">
+                    <app-recipes [recipes]="recipes" [totalRecords]="totalRecords"></app-recipes>
+                </div>
+
+                <div *ngIf="!isLoading && !recipes?.length" class="text-center my-4 fnt-muli text-clr24">
+                    {{ 'no_data_is_available' | translate }}
+                </div>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+<div *ngIf="isLoading">
+    <app-loading></app-loading>
+</div>
+<!-- </ng-template> -->
+
+<ng-template #filterDropdowns>
+    <div class="d-flex mb-md-4 ml-3">
+        <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
+            <div class="d-flex flex-md-row" [ngClass]="{ 'flex-column': selectedTab !== 0 }">
+                <div class="mb-md-0 mb-3" *ngIf="selectedTab === 1">
+                    <p-dropdown
+                        [options]="translationsList"
+                        optionLabel="label"
+                        optionValue="value"
+                        [(ngModel)]="isAvailableTranslation"
+                        (onChange)="getArticles()"
+                        placeholder="{{ 'translations_available' | translate }}"
+                        styleClass="round-border"
+                        [showClear]="true"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="mb-md-0 mb-3" *ngIf="selectedTab === 2">
+                    <p-dropdown
+                        [options]="translationsList"
+                        optionLabel="label"
+                        optionValue="value"
+                        [(ngModel)]="isAvailableRecipeTranslation"
+                        (onChange)="getRecipes()"
+                        [placeholder]="'translation_available' | translate"
+                        styleClass="round-border"
+                        [showClear]="true"
+                    >
+                    </p-dropdown>
+                </div>
+                <div *ngIf="selectedTab === 0">
+                    <p-dropdown
+                        [options]="filterPostedByOptions"
+                        optionLabel="label"
+                        optionValue="value"
+                        [(ngModel)]="filterBy"
+                        (onChange)="getQuestions()"
+                        styleClass="round-border text-clr588"
+                        [placeholder]="'posted_by' | translate"
+                        [showClear]="true"
+                    ></p-dropdown>
+                </div>
+                <div class="ml-md-3" [ngClass]="{ 'ml-3': selectedTab === 0 }">
+                    <p-dropdown
+                        [options]="sortOptions"
+                        [(ngModel)]="
+                            selectedTab === 0 ? sortBy : selectedTab === 1 ? selectedOrder : selectedRecipeOrder
+                        "
+                        (onChange)="
+                            selectedTab === 0 ? getQuestions() : selectedTab === 1 ? getArticles() : getRecipes()
+                        "
+                        [placeholder]="'sort_by' | translate"
+                        styleClass="round-border text-clr588"
+                        optionLabel="label"
+                        optionValue="value"
+                        [showClear]="true"
+                    ></p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
+    </div>
+</ng-template>

@@ -6,6 +6,11 @@
     }
 }
 
+[tabindex]:focus {
+    border-radius: 50% !important;
+    background-color: #e4e4e4 !important;
+}
+
 ::ng-deep .menu-width .p-menu.left-menu-actions.p-menu-overlay {
     width: fit-content !important;
 }

@@ -1,0 +1,7 @@
+<div class="row mx-0">
+    <div *ngFor="let item of categoryList" class="mr-md-25 mb-4">
+        <a class="category-btn fnt-600 text-clr334 mb-2" [routerLink]="'/coffee-lab/category/' + item.slug">
+            {{ item.name }}
+        </a>
+    </div>
+</div>

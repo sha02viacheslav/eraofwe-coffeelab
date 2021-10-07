@@ -25,7 +25,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     label?: string;
     ingredientValue?: string;
     searchQuery = '';
-    searchIngredient = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
     translationsList: any[] = [
@@ -45,14 +44,11 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     jsonLD: any;
 
     constructor(
-        private globalsService: GlobalsService,
         private route: ActivatedRoute,
-        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         protected resizeService: ResizeService,
-        public coffeeLabService: CoffeeLabService,
-        public dialogSrv: DialogService,
+        private coffeeLabService: CoffeeLabService,
         private translator: TranslateService,
     ) {
         super(resizeService);
@@ -120,7 +116,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         this.isLoading = true;
         const params = {
             query: this.searchQuery,
-            ingredient: this.searchIngredient,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
@@ -139,33 +134,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             }
             this.isLoading = false;
         });
-    }
-
-    paginate(event: any) {
-        if (this.page !== event.page + 1) {
-            this.router.navigate([], { queryParams: { page: event.page + 1 } });
-        }
-    }
-
-    getLink(item) {
-        const url = `/${getLangRoute(item.lang_code)}/coffee-recipes/${item.slug}`;
-        return url;
-    }
-
-    gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
-    }
-
-    onFocus(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {});
     }
 
     setSEO() {

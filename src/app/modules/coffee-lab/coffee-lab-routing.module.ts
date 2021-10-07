@@ -37,6 +37,10 @@ const routes: Routes = [
                         (m) => m.ArticleDetailModule,
                     ),
             },
+            {
+                path: ':lang/:category',
+                loadChildren: () => import('./google-view/category/category.module').then((m) => m.CategoryModule),
+            },
             { path: '**', redirectTo: 'en/qa-forum' },
         ],
     },

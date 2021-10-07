@@ -1,0 +1,47 @@
+<div *ngFor="let question of questions; let i = index">
+    <div class="border-box mb-4 mb-md-3 mb-lg-4">
+        <div class="p-md-4 p-3">
+            <div class="d-flex justify-content-between">
+                <div class="flex-1">
+                    <app-user-header [prop]="question"></app-user-header>
+                </div>
+                <div class="mobile-dot d-none d-md-block">
+                    <app-forum-menu></app-forum-menu>
+                </div>
+            </div>
+            <a [routerLink]="[getLink(question, null).url]">
+                <div
+                    class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
+                    (click)="gotoDetailPage($event, question)"
+                >
+                    {{ question?.question }}
+                </div>
+            </a>
+        </div>
+        <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
+        <div *ngIf="question.total_answers > 0" class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main">
+            <div
+                *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
+                [ngClass]="{ 'border-bottom-main': !isLast }"
+                class="mb-4"
+            >
+                <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
+                <div class="text-clr24 my-4 lh-15">
+                    {{ answer?.answer | convertToShortDescription: 25 }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="i === 1 && !isDesktop$" class="mb-4 mb-md-3">
+        <app-join-community [pages]="pages" [type]="PostType.QA"></app-join-community>
+    </div>
+</div>
+
+<div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">
+    <app-paginator
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [page]="pages"
+        (pageChange)="paginate($event)"
+    ></app-paginator>
+</div>

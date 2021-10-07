@@ -4,16 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { QaForumViewRoutingModule } from './qa-forum-view-routing.module';
 import { SharedModule } from '@shared';
-import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
-import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
-import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
-import { LikeDividerModule } from '@modules/coffee-lab/components/like-divider/like-divider.module';
-import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
-import { NgxJsonLdModule } from 'ngx-json-ld';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { QaForumViewComponent } from './qa-forum-view.component';
+import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
+import { NgxJsonLdModule } from 'ngx-json-ld';
+import { QuestionsModule } from '../../../components/questions/questions.module';
+import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
 
 @NgModule({
     declarations: [QaForumViewComponent],
@@ -22,14 +21,12 @@ import { QaForumViewComponent } from './qa-forum-view.component';
         FormsModule,
         QaForumViewRoutingModule,
         SharedModule,
-        UserHeaderModule,
-        JoinCommunityModule,
-        ForumMenuModule,
-        LikeDividerModule,
-        SeoPaginatorModule,
-        NgxJsonLdModule,
         InputTextModule,
         DropdownModule,
+        SeoPaginatorModule,
+        JoinCommunityModule,
+        NgxJsonLdModule,
+        QuestionsModule,
     ],
 })
 export class QaForumViewModule {}
