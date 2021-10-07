@@ -11,13 +11,9 @@
                         [alt]="detailsData?.name + ' cover image'"
                     />
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
-                        <!-- <div class="mb-md-45 mb-3">
-                            <span *ngFor="let btn of buttonList">
-                                <button class="p-2 button-list fnt-12 fnt-semi-bold">
-                                    {{ btn.button }}
-                                </button>
-                            </span>
-                        </div> -->
+                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
+                            <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+                        </div>
                         <h1 class="fnt-bold mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
@@ -108,12 +104,18 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0">
-                            <div class="align-items-center check-icon d-flex justify-content-center">
-                                <img src="assets/images/done_black_24dp.svg" alt="check" />
+                        <div
+                            class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0 cursor-pointer"
+                            (click)="onFocus()"
+                        >
+                            <div
+                                class="align-items-center d-flex justify-content-center"
+                                [ngClass]="detailsData.is_brewed ? 'active-check-icon' : 'check-icon'"
+                            >
+                                <i class="pi pi-check"></i>
                             </div>
-                            <p class="fnt-18 fnt-semi-bold">{{ 'mark_as_brewed' | translate }}</p>
-                        </div> -->
+                            <p class="fnt-18 fnt-muli fnt-600 text-clr334">{{ 'mark_as_brewed' | translate }}</p>
+                        </div>
                     </div>
                     <div class="row pl-md-5">
                         <div class="col-md-5">

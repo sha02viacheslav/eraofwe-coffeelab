@@ -1,0 +1,26 @@
+<a [routerLink]="getLink(recipe)" class="text-non-underline">
+    <div class="coffee-item" (click)="gotoDetailPage($event, recipe)">
+        <div class="position-relative">
+            <img
+                [lazyLoad]="recipe.cover_image_thumb_url"
+                src="assets/images/empty.svg"
+                class="w-100"
+                [alt]="recipe?.name"
+            />
+            <span class="expertise fnt-12"> {{ recipe.expertise }} </span>
+        </div>
+
+        <div class="m-3 m-md-4">
+            <div class="d-flex justify-content-between mb-4">
+                <div class="flex-1 fnt-md-16 fnt-bold">
+                    <span class="mb-1 d-flex recipe-title">{{ recipe?.name }}</span>
+                    <span class="fnt-semi-bold mb-45 mb-md-4 mt-2">
+                        {{ recipe?.equipment_name | titlecase | convertToShortDescription: 1:',' }}
+                    </span>
+                </div>
+                <div class="btn-icon save" (click)="onFocus($event)"></div>
+            </div>
+            <app-user-header [prop]="recipe"></app-user-header>
+        </div>
+    </div>
+</a>

@@ -16,12 +16,7 @@ export class RecipesComponent implements OnInit {
     page = 1;
     rows = 10;
 
-    constructor(
-        private route: ActivatedRoute,
-        private dialogSrv: DialogService,
-        private globalsService: GlobalsService,
-        private router: Router,
-    ) {}
+    constructor(private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe((params) => {
@@ -32,27 +27,6 @@ export class RecipesComponent implements OnInit {
                 }
             }
         });
-    }
-
-    getLink(item) {
-        const url = `/${getLangRoute(item.lang_code)}/coffee-recipes/${item.slug}`;
-        return url;
-    }
-
-    gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
-    }
-
-    onFocus(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {});
     }
 
     paginate(event: any) {

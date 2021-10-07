@@ -11,6 +11,7 @@ import { LikeDividerModule } from '@modules/coffee-lab/components/like-divider/l
 import { NgxJsonLdModule } from 'ngx-json-ld';
 
 import { QuestionDetailComponent } from './question-detail.component';
+import { CategoryListModule } from '@modules/coffee-lab/components/category-list/category-list.module';
 
 @NgModule({
     declarations: [QuestionDetailComponent],
@@ -24,6 +25,7 @@ import { QuestionDetailComponent } from './question-detail.component';
         ForumMenuModule,
         LikeDividerModule,
         NgxJsonLdModule,
+        CategoryListModule,
     ],
 })
 export class QuestionDetailModule {}

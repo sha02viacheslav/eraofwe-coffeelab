@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, Location } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
     templateUrl: './category.component.html',
     styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent extends ResizeableComponent implements OnInit {
+export class CategoryComponent extends ResizeableComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     isLoading = false;
     questions: any[] = [];
@@ -25,8 +25,8 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     slug: string;
     currentCategory: any;
     otherCategories: any[] = [];
-    isCategoryCall = 0;
-    cuurentLangCode: string;
+    isCategoryCalled = 0;
+    currentLangCode: string;
     topWriters: any[] = [];
     filterBy: any;
     isAvailableTranslation?: any;
@@ -85,20 +85,22 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         super(resizeService);
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
-            this.cuurentLangCode = params.lang;
-            if (this.isCategoryCall !== 1) {
-                this.getCategories(this.cuurentLangCode !== this.coffeeLabService.currentForumLanguage);
+            this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
+            if (this.isCategoryCalled !== 1) {
+                this.getCategories(false);
             }
-            this.isCategoryCall++;
+            this.isCategoryCalled++;
         });
+
         this.activateRoute.queryParamMap.subscribe((queryParams) => {
             if (queryParams.has('page')) {
                 this.page = +queryParams.get('page');
                 if (this.page < 1) {
                     this.page = 1;
                 }
+                this.onChangeTab(this.selectedTab);
             }
-            this.getQuestions();
+
             if (isPlatformBrowser(this.platformId)) {
                 window.scrollTo(0, 0);
             }
@@ -106,33 +108,15 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            // this.menuItems = this.getMenuItems(language);
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
+            this.currentLangCode = language;
             this.startupService.load(language);
-            // if (this.cuurentLangCode === 'pt') {
-            //     this.cuurentLangCode = 'pt-br';
-            // }
-            if (this.isCategoryCall !== 1) {
-                this.getCategories(this.cuurentLangCode !== language);
+            if (this.isCategoryCalled !== 1) {
+                this.getCategories(true);
             }
-            this.isCategoryCall++;
-            // if (currentRouter) {
-            //     currentRouter = currentRouter.split('/')[2].split('?')[0];
-            // }
-            // this.setPostType(SlugMap[currentRouter] || RouterSlug.QA);
-            // const destinationRouter = `/${getLangRoute(language)}/${
-            //     RouterMap[language][SlugMap[currentRouter] || RouterSlug.QA]
-            // }`;
-            // if (this.router.url !== destinationRouter) {
-            //     this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
-            // }
+            this.isCategoryCalled++;
         });
-        // this.coffeeLabService.forumLanguage.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-        //     if (this.isCategoryCall !== 1) {
-        //         this.getCategories(this.cuurentLangCode !== language);
-        //     }
-        //     this.isCategoryCall++;
-        // });
+        this.getAllTopWriters();
     }
 
     setMenItems() {
@@ -152,13 +136,41 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         this.selectedTab = index;
         if (this.selectedTab === 0) {
             this.getQuestions();
-            this.getAllTopWriters();
         } else if (this.selectedTab === 1) {
             this.getArticles();
         } else if (this.selectedTab === 2) {
             this.getRecipes();
         }
         window.scroll(0, 0);
+    }
+
+    getCategories(isLangChanged: boolean) {
+        this.otherCategories = [];
+        this.coffeeLabService.getCategory(this.currentLangCode).subscribe((res) => {
+            if (res.success) {
+                if (isLangChanged) {
+                    const isCategory = res.result.find(
+                        (element) => element.parent_id === this.currentCategory?.parent_id,
+                    );
+                    if (isCategory) {
+                        this.router.navigateByUrl(getLangRoute(this.currentLangCode) + '/' + isCategory.slug);
+                        this.currentCategory = isCategory;
+                        this.slug = this.currentCategory.slug;
+                        this.asssignCategories(res.result);
+                    } else {
+                        this.asssignCategories(res.result);
+                    }
+                } else {
+                    this.asssignCategories(res.result);
+                }
+            }
+        });
+    }
+
+    asssignCategories(data: any) {
+        this.otherCategories = data.filter((element) => element.slug !== this.slug);
+        this.currentCategory = data.find((item) => item.slug === this.slug);
+        this.onChangeTab(this.selectedTab);
     }
 
     getQuestions(): void {
@@ -172,6 +184,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                     ? 'desc'
                     : 'asc',
             page: this.page,
+            category_slug: this.slug,
             per_page: this.rows,
         };
         this.isLoading = true;
@@ -229,33 +242,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             }
             this.isLoading = false;
         });
-    }
-
-    getCategories(isLangChanged: boolean) {
-        this.otherCategories = [];
-        this.coffeeLabService.getCategory(this.coffeeLabService.currentForumLanguage).subscribe((res) => {
-            if (res.success) {
-                if (isLangChanged) {
-                    const isCategory = res.result.find(
-                        (element) => element.parent_id === this.currentCategory?.parent_id,
-                    );
-                    if (isCategory) {
-                        this.router.navigateByUrl(this.cuurentLangCode + '/' + isCategory.slug);
-                        this.currentCategory = isCategory;
-                    } else {
-                        this.asssignCategories(res.result);
-                    }
-                } else {
-                    this.asssignCategories(res.result);
-                }
-            }
-        });
-    }
-
-    asssignCategories(data: any) {
-        this.otherCategories = data.filter((element) => element.slug !== this.slug);
-        this.currentCategory = data.find((item) => item.slug === this.slug);
-        this.onChangeTab(this.selectedTab);
     }
 
     getAllTopWriters() {
@@ -340,5 +326,10 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 ...forumList,
             ],
         };
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     }
 }

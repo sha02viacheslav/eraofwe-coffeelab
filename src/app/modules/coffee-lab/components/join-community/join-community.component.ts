@@ -32,7 +32,6 @@ export class JoinCommunityComponent implements OnInit {
             .getForumList('question', {
                 page: this.pages ? this.pages + 1 : 2,
                 per_page: 5,
-                // category_slug: this.coffeeLabService.qaForumViewCategory,
             })
             .subscribe((res: any) => {
                 if (res.success) {

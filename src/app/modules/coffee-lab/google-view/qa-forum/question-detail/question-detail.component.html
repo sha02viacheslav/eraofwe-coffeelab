@@ -14,7 +14,10 @@
             <div class="pb-3 px-3 px-lg-4">
                 <h1 class="fnt-16 fnt-md-18 fnt-bold mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
             </div>
-            <app-like-divider></app-like-divider>
+            <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
+                <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+            </div>
+            <app-like-divider [question]="detailsData"></app-like-divider>
             <div class="d-flex mr-4 my-3 my-md-35 ml-md-4 pl-3">
                 <button
                     class="add-comment cursor-pointer w-100 fnt-semi-bold text-clr588 d-flex align-items-center pl-4"

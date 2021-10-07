@@ -1,33 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResizeableComponent } from '@base-components';
-import { PostType } from '@enums';
-import { CoffeeLabService, GlobalsService, ResizeService } from '@services';
-import { getLangRoute } from '@utils';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-questions',
     templateUrl: './questions.component.html',
     styleUrls: ['./questions.component.scss'],
 })
-export class QuestionsComponent extends ResizeableComponent implements OnInit {
-    readonly PostType = PostType;
+export class QuestionsComponent implements OnInit {
     @Input() questions: any[] = [];
     @Input() totalRecords = 0;
     pages = 1;
     rows = 10;
-    constructor(
-        private globalsService: GlobalsService,
-        private coffeeLabService: CoffeeLabService,
-        private dialogSrv: DialogService,
-        private router: Router,
-        private route: ActivatedRoute,
-        protected resizeService: ResizeService,
-    ) {
-        super(resizeService);
-    }
+    constructor(private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe((params) => {
@@ -38,28 +22,6 @@ export class QuestionsComponent extends ResizeableComponent implements OnInit {
                 }
             }
         });
-    }
-
-    getLink(item: any, answer: any) {
-        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
-        return {
-            url,
-            queryParmas: {
-                answer: answer?.id,
-            },
-        };
-    }
-
-    gotoDetailPage(event, item: any, answer?: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item, answer).url], {
-                queryParams: this.getLink(item, answer).queryParmas,
-            });
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
     }
 
     paginate(event: any) {

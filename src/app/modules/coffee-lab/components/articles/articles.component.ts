@@ -16,12 +16,7 @@ export class ArticlesComponent implements OnInit {
     @Input() totalRecords = 0;
     page = 1;
     rows = 10;
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private globalsService: GlobalsService,
-        private dialogSrv: DialogService,
-    ) {}
+    constructor(private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe((params) => {
@@ -38,25 +33,5 @@ export class ArticlesComponent implements OnInit {
         if (this.page !== event.page + 1) {
             this.router.navigate([], { queryParams: { page: event.page + 1 } });
         }
-    }
-
-    getLink(item) {
-        return `/${getLangRoute(item.language)}/articles/${item.slug}`;
-    }
-
-    gotoDetailPage(event, item: any) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
-    }
-
-    onFocus(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

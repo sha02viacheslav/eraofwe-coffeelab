@@ -10,6 +10,7 @@ import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum
 import { NgxJsonLdModule } from 'ngx-json-ld';
 
 import { RecipeDetailComponent } from './recipe-detail.component';
+import { CategoryListModule } from '@modules/coffee-lab/components/category-list/category-list.module';
 
 @NgModule({
     declarations: [RecipeDetailComponent],
@@ -22,6 +23,7 @@ import { RecipeDetailComponent } from './recipe-detail.component';
         JoinCommunityModule,
         ForumMenuModule,
         NgxJsonLdModule,
+        CategoryListModule,
     ],
 })
 export class RecipeDetailModule {}

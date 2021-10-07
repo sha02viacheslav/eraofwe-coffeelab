@@ -1,0 +1,11 @@
+.border-box {
+    border: solid 1px #d0d0d0 !important;
+    border-radius: 14px;
+}
+
+.mobile-dot {
+    @media (max-width: 480px) {
+        display: flex;
+        align-items: center;
+    }
+}

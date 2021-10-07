@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CoffeeLabService } from '@services';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-category-list',
@@ -8,7 +10,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CategoryListComponent implements OnInit {
     @Input() categoryList: any[] = [];
 
-    constructor() {}
+    constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {}
+
+    getLink(slug: string) {
+        return '/' + getLangRoute(this.coffeeLabService.currentForumLanguage) + '/' + slug;
+    }
 }
