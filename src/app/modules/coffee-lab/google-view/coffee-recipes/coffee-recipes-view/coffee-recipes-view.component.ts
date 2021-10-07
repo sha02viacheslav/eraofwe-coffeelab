@@ -131,7 +131,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
             if (res.success) {
                 this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
-                this.coffeeRecipeData[0].equipment_name = '1 medium pot, mesh or cloth strainer';
                 this.totalRecords = res.result_info.total_count;
                 this.setSchemaMackup();
             } else {
