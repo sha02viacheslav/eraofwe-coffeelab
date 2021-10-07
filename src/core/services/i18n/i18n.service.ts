@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import ngEn from '@angular/common/locales/en';
-import ngSe from '@angular/common/locales/se';
+import ngSv from '@angular/common/locales/sv';
 import ngPt from '@angular/common/locales/pt';
 import ngEs from '@angular/common/locales/es';
 import { Injectable } from '@angular/core';
@@ -22,8 +22,8 @@ const LANGS: { [key: string]: LangData } = {
     },
     sv: {
         text: 'Swedish',
-        ng: ngSe,
-        locale: 'se',
+        ng: ngSv,
+        locale: 'sv',
     },
     pt: {
         text: 'Portuguese',
