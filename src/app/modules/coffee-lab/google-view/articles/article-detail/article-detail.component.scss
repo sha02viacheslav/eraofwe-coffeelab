@@ -126,11 +126,20 @@
     }
 }
 
+.background-header {
+    border-top: 2px solid #232334;
+}
+
+.border-bottom-0 {
+    border-bottom: 0 !important;
+}
+
 .align-like {
     .like-int {
         cursor: pointer;
-        padding: 0 10.5px;
+        padding: 0.4px 8px;
         border-radius: 50%;
+        background-color: rgba(116, 117, 136, 0.08);
         @media (min-width: 992px) {
             &:hover {
                 background-color: rgba(48, 133, 92, 0.12);

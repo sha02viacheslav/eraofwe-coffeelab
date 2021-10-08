@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, Input, PLATFORM_ID, Inject } from '@angular/core';
+import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -12,7 +13,7 @@ export class TranslationDropdownComponent implements OnInit {
     @Input() forumType;
     isBrower = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    constructor(@Inject(PLATFORM_ID) private platformId: object, private coffeeLabService: CoffeeLabService) {
         this.isBrower = isPlatformBrowser(this.platformId);
     }
 
@@ -20,5 +21,9 @@ export class TranslationDropdownComponent implements OnInit {
 
     getLink(item) {
         return `/${getLangRoute(item.language)}/${this.forumType ?? 'articles'}/${item.slug || item.question_slug}`;
+    }
+
+    updateLang(item) {
+        this.coffeeLabService.forumLanguage.next(item.language);
     }
 }

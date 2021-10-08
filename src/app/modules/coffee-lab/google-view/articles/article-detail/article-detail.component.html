@@ -21,11 +21,7 @@
                 </div>
                 <div
                     class="mt-2 mt-md-0 ml-3"
-                    *ngIf="
-                        detailsData?.allow_translation &&
-                        detailsData?.translated_articles &&
-                        detailsData?.translated_articles.length > 0
-                    "
+                    *ngIf="detailsData?.translated_articles && detailsData?.translated_articles.length > 0"
                 >
                     <app-translation-dropdown
                         forumType="articles"
@@ -47,7 +43,7 @@
                             <div class="like-int" (click)="onFocus()">
                                 <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
                             </div>
-                            <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                            <span class="d-flex mb-05 fnt-300 ml-1 text-clr334 mr-2">{{ detailsData.likes }}</span>
                         </div>
                         <div class="btn-icon message mr-25" (click)="onFocus()"></div>
                         <div class="btn-icon save" (click)="onFocus()"></div>
@@ -111,7 +107,7 @@
                                 <div class="like-int" (click)="onFocus()">
                                     <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
                                 </div>
-                                <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                                <span class="d-flex ml-1 mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
                             </div>
                             <div class="btn-icon message" (click)="onFocus()"></div>
                             <div class="ml-3 btn-icon save" (click)="onFocus()"></div>
@@ -173,10 +169,10 @@
                                                 }"
                                                 class="fnt-bold cursor-pointer text-underline mb-2"
                                             >
-                                                {{ stickySecData?.firstname || '--' }} {{ stickySecData?.lastname }}
+                                                {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                                             </p>
                                             <p class="fnt-semi-bold">
-                                                {{ stickySecData?.about_me || '--' }}
+                                                {{ stickySecData?.about_me }}
                                             </p>
                                         </div>
                                     </div>
@@ -194,7 +190,7 @@
                                                     alt="thumbs-up"
                                                 />
                                             </div>
-                                            <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{
+                                            <span class="d-flex mb-05 ml-1 fnt-300 text-clr334 mr-2">{{
                                                 detailsData.likes
                                             }}</span>
                                         </div>
@@ -209,7 +205,7 @@
                                     detailsData?.original_article_state &&
                                     detailsData?.original_article_state === 'ACTIVE'
                                 "
-                                class="border-main br-4 p-4 mt-45 w-100"
+                                class="border-main br-4 p-4 mt-45 w-100 mb-475"
                             >
                                 <div class="d-flex justify-content-between mb-4">
                                     <div class="d-flex">

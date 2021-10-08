@@ -25,7 +25,7 @@
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
                             </div>
-                            <div class="pl-2" *ngIf="detailsData?.allow_translation && detailsData?.translations">
+                            <div class="pl-2" *ngIf="detailsData?.translations">
                                 <app-translation-dropdown
                                     forumType="coffee-recipes"
                                     [translatedList]="detailsData?.translations"
@@ -44,8 +44,8 @@
                                                 alt="thumbs-up"
                                             />
                                         </div>
-                                        <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{
-                                            detailsData.likes
+                                        <span class="d-flex mb-05 ml-1 fnt-300 text-clr334 mr-2">{{
+                                            detailsData?.likes
                                         }}</span>
                                     </div>
                                     <div class="btn-icon message" (click)="onFocus()"></div>
@@ -114,7 +114,7 @@
                         >
                             <div
                                 class="align-items-center d-flex justify-content-center"
-                                [ngClass]="detailsData.is_brewed ? 'active-check-icon' : 'check-icon'"
+                                [ngClass]="detailsData?.is_brewed ? 'active-check-icon' : 'check-icon'"
                             >
                                 <i class="pi custom-check pi-check"></i>
                             </div>
@@ -130,7 +130,7 @@
                                 <div class="ingredients-wrapper">
                                     <div
                                         class="py-3 px-0 ingredients-item"
-                                        *ngFor="let ingredientsItem of detailsData.ingredients"
+                                        *ngFor="let ingredientsItem of detailsData?.ingredients"
                                     >
                                         <label class="fnt-bold mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
                                             {{ ingredientsItem.quantity }} {{ ingredientsItem.quantity_unit }}
@@ -151,11 +151,10 @@
                                 *ngFor="let step of detailsData?.steps; let i = index; let last = last"
                                 [id]="'step' + (i + 1)"
                             >
-                                <div class="d-flex">
+                                <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
                                     <span class="fnt-24 fnt-semi-bold lh-157 mb-1">{{ i + 1 }}</span>
                                     <div
                                         class="activate-link ml-md-3 ml-25 fnt-md-16 fnt-semi-bold lh-157 mb-0 step-desc"
-                                        [ngClass]="{ 'remove-border': last }"
                                         [innerHTML]="step.description"
                                     ></div>
                                 </div>
@@ -223,7 +222,9 @@
                                             alt="thumbs-up"
                                         />
                                     </div>
-                                    <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                                    <span class="d-flex mb-05 ml-1 fnt-300 text-clr334 mr-2">{{
+                                        detailsData?.likes
+                                    }}</span>
                                 </div>
                                 <div class="btn-icon save" (click)="onFocus()"></div>
                             </div>
@@ -391,13 +392,13 @@
                     </div>
                 </div>
             </div>
-            <div class="divder"></div>
+            <div class="sticky-divder"></div>
             <div class="d-flex my-4">
                 <div class="d-flex align-like mr-1">
                     <div class="like-int" (click)="onFocus()">
                         <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
                     </div>
-                    <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ detailsData.likes }}</span>
+                    <span class="d-flex mb-05 fnt-300 text-clr334 ml-1 mr-2">{{ detailsData?.likes }}</span>
                 </div>
                 <div class="btn-icon message" (click)="onFocus()"></div>
                 <div class="btn-icon save ml-3" (click)="onFocus()"></div>

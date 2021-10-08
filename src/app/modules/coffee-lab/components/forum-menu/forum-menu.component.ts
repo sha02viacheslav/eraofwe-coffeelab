@@ -22,13 +22,13 @@ export class ForumMenuComponent implements OnInit {
                     this.showModal(event);
                 },
             },
-            {
-                label: this.translator.instant('save_post'),
-                command: (event) => {
-                    event.originalEvent.stopPropagation();
-                    this.showModal(event);
-                },
-            },
+            // {
+            //     label: this.translator.instant('save_post'),
+            //     command: (event) => {
+            //         event.originalEvent.stopPropagation();
+            //         this.showModal(event);
+            //     },
+            // },
         ];
         return [{ items }];
     }

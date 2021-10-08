@@ -12,11 +12,21 @@
     <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
         <div class="d-flex pr-lg-2 mb-4">
             <p-dropdown
+                [options]="categoryList"
+                (onChange)="getData()"
+                [(ngModel)]="selectedCategory"
+                styleClass="round-border text-clr588"
+                [placeholder]="'categories' | translate"
+                optionLabel="name"
+                optionValue="slug"
+                [showClear]="true"
+            ></p-dropdown>
+            <p-dropdown
                 [options]="filterOptions"
                 [(ngModel)]="filterBy"
                 [showClear]="true"
                 (ngModelChange)="getData()"
-                styleClass="round-border text-clr588 mr-3"
+                styleClass="round-border text-clr588 ml-3 mr-3"
                 [placeholder]="'posted_by' | translate"
                 optionLabel="label"
                 optionValue="value"
@@ -48,7 +58,7 @@
         <div class="empty-join-wrapper mb-4">
             <div class="custom-search qa-forum-search">
                 <input
-                    class="w-100 fnt-16"
+                    class="w-100"
                     [(ngModel)]="keyword"
                     (ngModelChange)="getData()"
                     type="text"

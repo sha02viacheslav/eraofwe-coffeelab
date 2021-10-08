@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -42,8 +43,11 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     orderList: any[] = [];
     selectedOrder = '';
     jsonLD: any;
+    categoryList: any[] = [];
+    selectedCategory: string;
 
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
         private route: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
@@ -109,6 +113,10 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 }
             }
             this.getData();
+            this.getCategory();
+            if (isPlatformBrowser(this.platformId)) {
+                window.scrollTo(0, 0);
+            }
         });
     }
 
@@ -120,6 +128,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             level: this.label?.toLowerCase(),
+            category_slug: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };
@@ -132,6 +141,14 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 this.toastService.error('Cannot get Recipes data');
             }
             this.isLoading = false;
+        });
+    }
+
+    getCategory() {
+        this.coffeeLabService.getCategory(this.coffeeLabService.currentForumLanguage).subscribe((category) => {
+            if (category.success) {
+                this.categoryList = category.result;
+            }
         });
     }
 

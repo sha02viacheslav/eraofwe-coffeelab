@@ -13,6 +13,9 @@
             }
         }
     }
+    .remove-border {
+        border-bottom: none !important;
+    }
     .question-list:last-child {
         border-bottom: none !important;
     }

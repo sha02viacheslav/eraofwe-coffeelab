@@ -78,10 +78,14 @@
     border: 0px !important;
 }
 
-::ng-deep .step-desc {
+.desc-bord {
     border-bottom: 1px solid #d8d8d8;
+}
+
+::ng-deep .step-desc {
     padding-bottom: 1rem !important;
     word-break: break-word;
+    margin-top: 0.4rem;
     p {
         font-weight: 500 !important;
     }
@@ -212,8 +216,12 @@
     }
 }
 
-.divder {
+.sticky-divder {
     border-bottom: 1px solid #232334;
+}
+
+.divder {
+    border-bottom: 1px solid #dedede;
 }
 
 .recip-img {
@@ -265,11 +273,16 @@
     font-size: 24px;
 }
 
+.border-bottom-0 {
+    border-bottom: 0 !important;
+}
+
 .align-like {
     .like-int {
         cursor: pointer;
-        padding: 0 10.5px;
+        padding: 0.4px 8px;
         border-radius: 50%;
+        background-color: rgba(116, 117, 136, 0.08);
         @media (min-width: 992px) {
             &:hover {
                 background-color: rgba(48, 133, 92, 0.12);

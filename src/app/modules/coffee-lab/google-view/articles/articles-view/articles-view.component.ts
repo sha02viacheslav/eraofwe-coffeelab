@@ -27,6 +27,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     rows = 9;
     page = 1;
     jsonLD: any;
+    categoryList: any[] = [];
+    selectedCategory: string;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -71,6 +73,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 }
             }
             this.getData();
+            this.getCategory();
             if (isPlatformBrowser(this.platformId)) {
                 window.scrollTo(0, 0);
             }
@@ -83,6 +86,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
+            category_slug: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };
@@ -95,6 +99,14 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 this.toastService.error('Cannot get Articles data');
             }
             this.isLoading = false;
+        });
+    }
+
+    getCategory() {
+        this.coffeeLabService.getCategory(this.coffeeLabService.currentForumLanguage).subscribe((category) => {
+            if (category.success) {
+                this.categoryList = category.result;
+            }
         });
     }
 

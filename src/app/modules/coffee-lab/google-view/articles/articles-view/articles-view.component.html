@@ -11,8 +11,21 @@
         />
     </div>
 </div>
-<div class="d-flex justify-content-between align-items-center pb-3 pb-md-4 pb-lg-45">
-    <div class="d-flex">
+<div class="d-flex justify-content-between align-items-center pb-3 pb-md-4">
+    <div class="d-md-flex">
+        <div class="mb-25 mb-md-0">
+            <p-dropdown
+                [options]="categoryList"
+                (onChange)="getData()"
+                [(ngModel)]="selectedCategory"
+                styleClass="round-border text-clr588"
+                [placeholder]="'categories' | translate"
+                optionLabel="name"
+                optionValue="slug"
+                class="ml-0 mr-3"
+                [showClear]="true"
+            ></p-dropdown>
+        </div>
         <p-dropdown
             [options]="translationsList"
             optionLabel="label"
@@ -23,22 +36,24 @@
             styleClass="round-border"
         >
         </p-dropdown>
-        <p-dropdown
-            class="pl-md-3 pl-25"
-            [options]="orderList"
-            optionLabel="label"
-            [placeholder]="'sort_by' | translate"
-            optionValue="value"
-            [(ngModel)]="selectedOrder"
-            (onChange)="getData()"
-            styleClass="round-border"
-        >
-        </p-dropdown>
+        <div class="mt-25 mt-md-0">
+            <p-dropdown
+                class="pl-md-3 pl-25"
+                [options]="orderList"
+                optionLabel="label"
+                [placeholder]="'sort_by' | translate"
+                optionValue="value"
+                [(ngModel)]="selectedOrder"
+                (onChange)="getData()"
+                styleClass="round-border"
+            >
+            </p-dropdown>
+        </div>
     </div>
     <div class="col-12 col-lg-5 d-none d-lg-block">
         <div class="custom-search h-fit-content mt-3 mt-md-0">
             <input
-                class="w-100 fnt-16"
+                class="w-100"
                 type="text"
                 pInputText
                 #searchInput
