@@ -38,6 +38,7 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
         this.authService.initState.pipe(takeUntil(this.unsubscribeAll$)).subscribe((res) => {
             this.isReady = res;
         });
+        console.log(this.config);
     }
 
     close(value = null) {

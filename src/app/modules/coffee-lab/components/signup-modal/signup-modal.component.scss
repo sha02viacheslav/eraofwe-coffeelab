@@ -1,7 +1,7 @@
 ::ng-deep {
     .p-dialog.signup-dialog {
         padding: 0;
-        max-width: 536px;
+        max-width: 685px;
         .p-dialog-content {
             padding: 0;
             border-radius: 4px;
@@ -9,6 +9,36 @@
     }
 }
 
-.fnt-28 {
-    font-size: 28px;
+.cross-icon {
+    border: solid 1.4px #232334;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.join-head {
+    font-family: 'Cormorant Garamond';
+}
+
+.signup-btn {
+    border: solid 1px #d0d0d0;
+    border-radius: 6px;
+    width: 53%;
+    padding-left: 3.5rem !important;
+    &:hover {
+        border: solid 1px #30855c !important;
+    }
+}
+
+.email-btn {
+    border: solid 1px #d0d0d0;
+    border-radius: 6px;
+    width: 53%;
+    padding-left: 2.5rem !important;
+    &:hover {
+        border: solid 1px #30855c !important;
+    }
+}
+
+.fnt-36 {
+    font-size: 36px;
 }
