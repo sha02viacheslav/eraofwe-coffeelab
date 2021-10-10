@@ -14,7 +14,7 @@
             <div class="d-flex justify-content-between mb-4">
                 <div class="recipe-name flex-1 fnt-md-16 fnt-bold">
                     <span class="mb-1 d-flex recipe-title text-break">{{
-                        recipe?.name.length < 65 ? recipe?.name : recipe?.name.slice(0, 65).concat('...')
+                        recipe?.name.length < 60 ? recipe?.name : recipe?.name.slice(0, 60).concat('...')
                     }}</span>
                     <span class="fnt-semi-bold mb-45 mb-md-4 mt-2">
                         {{ recipe?.equipment_name | titlecase | convertToShortDescription: 1 }}
