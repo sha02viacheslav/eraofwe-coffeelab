@@ -80,7 +80,7 @@ export class RecipeDetailComponent implements OnInit {
     ngOnInit(): void {}
 
     onRealtedRoute(langCode, slug) {
-        this.router.navigateByUrl(`/${getLangRoute(langCode)}/coffee-recipes/${slug}`);
+        this.router.navigateByUrl(`/en/coffee-recipes/${slug}`);
         window.scrollTo(0, 0);
     }
 

@@ -32,8 +32,14 @@
                 size="40"
             ></app-user-detail>
             <div class="d-flex flex-column justify-content-between pl-3">
-                <p class="fnt-bold mb-2">
+                <p
+                    class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2"
+                    *ngIf="forumType === 'articles' || forumType === 'qa-forum'"
+                >
                     {{ translateItem.user_name }}
+                </p>
+                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2" *ngIf="forumType === 'recipes'">
+                    {{ translateItem.first_name }}
                 </p>
                 <div class="d-flex align-items-center">
                     <p class="fnt-12 fnt-bold text-clr588 mb-0 pr-2">

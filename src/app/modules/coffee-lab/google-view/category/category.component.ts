@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, ResizeService, StartupService } from '@services';
+import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -80,6 +80,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         private startupService: StartupService,
         protected resizeService: ResizeService,
         private translator: TranslateService,
+        private seoService: SEOService,
     ) {
         super(resizeService);
         this.activateRoute.params.subscribe((params) => {
@@ -126,6 +127,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         } else if (this.selectedTab === 2) {
             this.getRecipes();
         }
+
         window.scroll(0, 0);
     }
 
@@ -155,6 +157,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     asssignCategories(data: any) {
         this.otherCategories = data.filter((element) => element.slug !== this.slug);
         this.currentCategory = data.find((item) => item.slug === this.slug);
+        this.setSEO();
         this.onChangeTab(this.selectedTab);
     }
 
@@ -247,11 +250,13 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         }
     }
 
-    // paginate(event: any) {
-    //     if (this.page !== event.page + 1) {
-    //         this.router.navigate([], { queryParams: { page: event.page + 1 } });
-    //     }
-    // }
+    setSEO() {
+        const title = this.currentCategory.name + ' - A Global Coffee Community';
+        const description =
+            this.currentCategory.name +
+            ' - A global coffee marketplace that brings together all members of the supply chain and shifts the value of the coffee brand back to the growers';
+        this.seoService.setSEO(title, description);
+    }
 
     setSchemaMackup() {
         const forumList: any[] = [];
