@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { takeUntil } from 'rxjs/operators';
 import { RouterMap, SlugMap } from '@constants';
@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 import { ResizeableComponent } from '@base-components';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-overview',
@@ -16,11 +17,12 @@ import { ResizeableComponent } from '@base-components';
 export class OverviewComponent extends ResizeableComponent implements OnInit {
     menuItems: MenuItem[] = [];
     postType: PostType;
-
+    h1Title: string;
     constructor(
         private coffeeLabService: CoffeeLabService,
         private router: Router,
         private startupService: StartupService,
+        private translator: TranslateService,
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
@@ -48,18 +50,22 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         switch (routerSlug) {
             case RouterSlug.QA: {
                 this.postType = PostType.QA;
+                this.h1Title = this.translator.instant('qa_h1_title');
                 break;
             }
             case RouterSlug.ARTICLE: {
                 this.postType = PostType.ARTICLE;
+                this.h1Title = this.translator.instant('article_h1_title');
                 break;
             }
             case RouterSlug.RECIPE: {
                 this.postType = PostType.RECIPE;
+                this.h1Title = this.translator.instant('recipe_h1_title');
                 break;
             }
             case RouterSlug.EOW: {
                 this.postType = PostType.ARTICLE;
+                this.h1Title = this.translator.instant('about_h1_title');
                 break;
             }
         }

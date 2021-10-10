@@ -1,13 +1,10 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { CoffeeLabService, SEOService, ResizeService } from '@services';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { SeoDescription, SeoTitle } from '@constants';
-import { takeUntil } from 'rxjs/operators';
 import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
