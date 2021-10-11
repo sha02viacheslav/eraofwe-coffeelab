@@ -74,7 +74,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
                     this.data = res.result ?? [];
                     this.data.map((item) => {
                         item.content = this.globalsService.getJustText(item.content);
-
                         return item;
                     });
                 } else {
