@@ -4,8 +4,7 @@
         <span *ngIf="detailType !== 'question-detail'">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
     <div
-        class="question-list"
-        [ngClass]="{ 'remove-border': !data.question }"
+        [ngClass]="{ 'border-none': !data?.question, 'question-list': data?.question }"
         *ngFor="let data of relatedData; let ind = index"
     >
         <p

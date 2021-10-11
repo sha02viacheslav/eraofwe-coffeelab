@@ -74,17 +74,9 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
                     this.data = res.result ?? [];
                     this.data.map((item) => {
                         item.content = this.globalsService.getJustText(item.content);
-                        item.cardType = 'forum';
+
                         return item;
                     });
-                    const joinCard = {
-                        cardType: 'joinCard',
-                    };
-                    if (this.data.length < 3) {
-                        this.data.push(joinCard);
-                    } else {
-                        this.data.splice(2, 0, joinCard);
-                    }
                 } else {
                     this.toastService.error('Cannot get Articles data');
                 }

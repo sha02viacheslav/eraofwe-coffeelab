@@ -1,9 +1,9 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
 import { environment } from '@env/environment';
 import { getLangRoute } from '@utils';
@@ -73,6 +73,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     jsonLD: any;
 
     constructor(
+        public location: Location,
         public coffeeLabService: CoffeeLabService,
         private activateRoute: ActivatedRoute,
         private router: Router,
@@ -238,16 +239,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
                 this.topWriters = res.result;
             }
         });
-    }
-
-    onBack() {
-        if (this.selectedTab === 0) {
-            this.router.navigateByUrl('coffee-lab/overview/qa-forum');
-        } else if (this.selectedTab === 1) {
-            this.router.navigateByUrl('coffee-lab/overview/articles');
-        } else if (this.selectedTab === 2) {
-            this.router.navigateByUrl('coffee-lab/overview/coffee-recipes');
-        }
     }
 
     setSEO() {
