@@ -1,8 +1,13 @@
 <div class="row mx-0">
     <div
-        class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
-        *ngFor="let article of articles"
-        [ngClass]="{ 'col-md-6': article.cardType !== 'joinCard', 'd-none': isEraofWe && !article.is_era_of_we }"
+        class="col-12 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
+        *ngFor="let article of articles; let i = index; let isLast = last"
+        [ngClass]="{
+            'col-md-6': article.cardType !== 'joinCard' || articles.length === 2,
+            'd-none': isEraofWe && !article.is_era_of_we,
+            'col-xl-4': articles.length > 2 && isEraofWe && !article.is_era_of_we,
+            'col-md-12': isLast
+        }"
     >
         <app-article-card [article]="article"></app-article-card>
     </div>

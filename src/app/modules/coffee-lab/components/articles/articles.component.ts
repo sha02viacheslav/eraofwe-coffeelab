@@ -27,6 +27,7 @@ export class ArticlesComponent implements OnInit {
                 }
             }
         });
+        console.log(this.articles.length);
     }
 
     paginate(event: any) {
