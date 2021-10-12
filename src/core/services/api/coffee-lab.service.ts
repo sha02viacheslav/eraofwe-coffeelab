@@ -50,6 +50,10 @@ export class CoffeeLabService extends ApiService {
         return this.get(this.orgPostUrl, `general/${orgType}/users/${userId}`);
     }
 
+    getUserFromSlug(slug: string): Observable<any> {
+        return this.get(this.orgPostUrl, `general/users/${slug}`);
+    }
+
     getCommentList(type: string, slug: any): any {
         return this.get(this.orgPostUrl, `general/${type}s/${slug}/comments`);
     }

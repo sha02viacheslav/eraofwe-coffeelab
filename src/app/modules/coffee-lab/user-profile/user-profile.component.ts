@@ -24,8 +24,8 @@ export class UserProfileComponent implements OnInit {
     profileInfo?: any;
     infoForm: FormGroup;
     certificationArray: any[] = [];
-    queryUserId: any;
-    queryOrganization: any;
+    userSlug: any;
+    // queryOrganization: any;
     orgType: OrganizationType;
     menuItems = [
         {
@@ -57,8 +57,9 @@ export class UserProfileComponent implements OnInit {
         public location: Location,
         private dialogSrv: DialogService,
     ) {
-        this.queryUserId = this.activateRoute.snapshot.queryParamMap.get('user_id');
-        this.queryOrganization = this.activateRoute.snapshot.queryParamMap.get('organization') || 'sa';
+        this.activateRoute.params.subscribe((res) => {
+            this.userSlug = res.user_slug;
+        });
         this.getUserInfo();
     }
 
@@ -66,14 +67,12 @@ export class UserProfileComponent implements OnInit {
 
     getUserInfo(): void {
         this.isLoading = true;
-        this.coffeeLabService.getUserDetail(this.queryUserId, this.queryOrganization).subscribe((res: any) => {
+        this.coffeeLabService.getUserFromSlug(this.userSlug).subscribe((res: any) => {
             if (res.success) {
                 this.profileInfo = res.result;
                 this.bannerUrl = this.profileInfo.banner_url;
                 this.profileUrl = this.profileInfo.profile_image_url;
-                if (this.queryUserId) {
-                    this.certificationArray = res.result?.certificates || [];
-                }
+                this.certificationArray = res.result?.certificates || [];
                 this.isLoading = false;
             } else {
                 this.toastr.error('Error while fetching profile');
