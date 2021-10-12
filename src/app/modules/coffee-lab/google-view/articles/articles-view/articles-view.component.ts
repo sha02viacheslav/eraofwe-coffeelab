@@ -2,13 +2,12 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService, SEOService, ResizeService } from '@services';
+import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
-import { SeoDescription, SeoTitle } from '@constants';
-import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-articles-view',
@@ -111,9 +110,12 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     }
 
     setSEO() {
-        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE];
-        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE];
-        this.seoService.setSEO(title, description);
+        this.translator
+            .getStreamOnTranslationChange(['tcl_seo_meta_title_article', 'tcl_seo_meta_description_article'])
+            .pipe(takeUntil(this.unsubscribeAll$))
+            .subscribe((res) => {
+                this.seoService.setSEO(res.tcl_seo_meta_title_article, res.tcl_seo_meta_description_article);
+            });
     }
 
     setSchemaMackup() {

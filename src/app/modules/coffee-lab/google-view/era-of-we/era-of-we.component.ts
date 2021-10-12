@@ -1,12 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { SeoDescription, SeoTitle } from '@constants';
-import { RouterSlug } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
 import { ResizeableComponent } from '@base-components';
 import { getLangRoute } from '@utils';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-era-of-we',
@@ -44,8 +44,9 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
         private seoService: SEOService,
-        protected resizeService: ResizeService,
         private toastService: ToastrService,
+        private translator: TranslateService,
+        protected resizeService: ResizeService,
         public dialogSrv: DialogService,
     ) {
         super(resizeService);
@@ -83,9 +84,12 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     }
 
     setSEO() {
-        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.EOW];
-        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.EOW];
-        this.seoService.setSEO(title, description);
+        this.translator
+            .getStreamOnTranslationChange(['tcl_seo_meta_title_eow', 'tcl_seo_meta_description_eow'])
+            .pipe(takeUntil(this.unsubscribeAll$))
+            .subscribe((res) => {
+                this.seoService.setSEO(res.tcl_seo_meta_title_eow, res.tcl_seo_meta_description_eow);
+            });
     }
 
     getLink(item) {

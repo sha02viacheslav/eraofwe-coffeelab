@@ -4,11 +4,10 @@ import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
-import { SeoDescription, SeoTitle } from '@constants';
-import { RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-coffee-recipes-view',
@@ -150,9 +149,12 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     setSEO() {
-        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
-        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE];
-        this.seoService.setSEO(title, description);
+        this.translator
+            .getStreamOnTranslationChange(['tcl_seo_meta_title_recipe', 'tcl_seo_meta_description_recipe'])
+            .pipe(takeUntil(this.unsubscribeAll$))
+            .subscribe((res) => {
+                this.seoService.setSEO(res.tcl_seo_meta_title_recipe, res.tcl_seo_meta_description_recipe);
+            });
     }
 
     setSchemaMackup() {

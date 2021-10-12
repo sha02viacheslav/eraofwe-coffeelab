@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
-import { SeoDescription, SeoTitle } from '@constants';
 import { environment } from '@env/environment';
-import { PostType, RouterSlug } from '@enums';
+import { PostType } from '@enums';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-qa-forum-view',
@@ -122,9 +122,12 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     }
 
     setSEO() {
-        const title = SeoTitle[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
-        const description = SeoDescription[this.coffeeLabService.currentForumLanguage][RouterSlug.QA];
-        this.seoService.setSEO(title, description);
+        this.translator
+            .getStreamOnTranslationChange(['tcl_seo_meta_title_qa', 'tcl_seo_meta_description_qa'])
+            .pipe(takeUntil(this.unsubscribeAll$))
+            .subscribe((res) => {
+                this.seoService.setSEO(res.tcl_seo_meta_title_qa, res.tcl_seo_meta_description_qa);
+            });
     }
 
     setSchemaMackup() {
