@@ -123,9 +123,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.EOW]}`;
+                        this.previousUrl = `/${getLangRoute(this.lang)}/${
+                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
+                        }`;
                     } else {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.ARTICLE]}`;
+                        this.previousUrl = `/${getLangRoute(this.lang)}/${
+                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
+                        }`;
                         this.globalsService.setLimitCounter();
                     }
                     this.startupService.load(this.lang || 'en');

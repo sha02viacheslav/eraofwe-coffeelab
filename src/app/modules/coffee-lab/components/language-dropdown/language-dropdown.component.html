@@ -7,12 +7,13 @@
     <ng-template pTemplate="selectedItem">
         <span class="fnt-bold text-clr60b pr-2">
             <i class="pi pi-globe pr-1 align-middle"></i>
-            {{ 'language' | translate }} : {{ selectedFullLang | titlecase }}
+            {{ 'language' | translate }} :
+            {{ selectedFullLang ? (selectedFullLang | titlecase) : (selectedLangCode | language) }}
         </span>
     </ng-template>
     <ng-template let-languageItem pTemplate="item">
         <div class="d-flex align-items-center">
-            {{ languageItem.label[coffeeLabService.currentForumLanguage] }}
+            {{ languageItem.label[coffeeLabService.currentForumLanguage] || languageItem.label.en }}
         </div>
     </ng-template>
 </p-dropdown>
@@ -21,9 +22,9 @@
     <div *ngFor="let slug of ROUTER_SLUG_ITEMS">
         <a
             *ngFor="let lang of languageList"
-            routerLink="/{{ getLangRoute(lang.value) }}/{{ RouterMap[lang.value][slug] }}"
+            routerLink="/{{ getLangRoute(lang.value) }}/{{ (RouterMap[lang.value] || RouterMap.en)[slug] }}"
         >
-            {{ RouterMap[lang.value][slug] }}
+            {{ (RouterMap[lang.value] || RouterMap.en)[slug] }}
         </a>
     </div>
 </div>

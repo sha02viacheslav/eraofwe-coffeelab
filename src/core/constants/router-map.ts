@@ -15,18 +15,6 @@ export const RouterMap = {
         [RouterSlug.RECIPE]: 'recept-och-bryggningsmetoder',
         [RouterSlug.EOW]: 'om-era-of-we',
     },
-    pt: {
-        [RouterSlug.QA]: 'qa-forum',
-        [RouterSlug.ARTICLE]: 'articles',
-        [RouterSlug.RECIPE]: 'coffee-recipes',
-        [RouterSlug.EOW]: 'about-era-of-we',
-    },
-    es: {
-        [RouterSlug.QA]: 'qa-forum',
-        [RouterSlug.ARTICLE]: 'articles',
-        [RouterSlug.RECIPE]: 'coffee-recipes',
-        [RouterSlug.EOW]: 'about-era-of-we',
-    },
 };
 
 export const SlugMap = {

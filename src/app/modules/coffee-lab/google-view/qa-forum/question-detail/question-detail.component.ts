@@ -70,7 +70,9 @@ export class QuestionDetailComponent implements OnInit {
                     }
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
-                    this.previousUrl = `/${getLangRoute(this.lang)}/${RouterMap[this.lang][RouterSlug.QA]}`;
+                    this.previousUrl = `/${getLangRoute(this.lang)}/${
+                        (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
+                    }`;
                     this.setSEO();
                     this.setSchemaMackup();
                 }

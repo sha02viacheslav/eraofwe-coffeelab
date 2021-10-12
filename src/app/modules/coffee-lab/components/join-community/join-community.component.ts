@@ -35,7 +35,7 @@ export class JoinCommunityComponent implements OnInit {
             })
             .subscribe((res: any) => {
                 if (res.success) {
-                    this.relatedData = res.result.questions;
+                    this.relatedData = res.result?.questions || [];
                 }
             });
     }
