@@ -24,16 +24,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
-    translationsList: any[] = [
-        {
-            label: 'Yes',
-            value: true,
-        },
-        {
-            label: 'No',
-            value: false,
-        },
-    ];
+    translationsList: any[] = [];
 
     levels: any[] = [];
     orderList: any[] = [];
@@ -57,49 +48,18 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     ngOnInit(): void {
         this.setSEO();
-        this.orderList = [
-            {
-                label: this.translator.instant('latest'),
-                value: 'latest',
-            },
-            {
-                label: this.translator.instant('oldest'),
-                value: 'oldest',
-            },
-        ];
         this.levels = [
-            {
-                label: this.translator.instant('easy'),
-                value: 'easy',
-            },
-            {
-                label: this.translator.instant('intermediate'),
-                value: 'intermediate',
-            },
-            {
-                label: this.translator.instant('hard'),
-                value: 'hard',
-            },
+            { label: 'easy', value: 'easy' },
+            { label: 'intermediate', value: 'intermediate' },
+            { label: 'hard', value: 'hard' },
         ];
         this.translationsList = [
-            {
-                label: this.translator.instant('yes'),
-                value: true,
-            },
-            {
-                label: this.translator.instant('no'),
-                value: false,
-            },
+            { label: 'yes', value: true },
+            { label: 'no', value: false },
         ];
         this.orderList = [
-            {
-                label: this.translator.instant('latest'),
-                value: 'latest',
-            },
-            {
-                label: this.translator.instant('oldest'),
-                value: 'oldest',
-            },
+            { label: 'latest', value: 'latest' },
+            { label: 'oldest', value: 'oldest' },
         ];
 
         this.route.queryParamMap.subscribe((params) => {
@@ -109,13 +69,26 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     this.page = 1;
                 }
             }
-            this.getData();
-            this.getCategory();
-            if (isPlatformBrowser(this.platformId)) {
-                window.scrollTo(0, 0);
+            this.refreshData();
+        });
+
+        let langPrefix = '';
+        this.route.paramMap.subscribe((params) => {
+            if (params.has('lang')) {
+                if (langPrefix) {
+                    this.refreshData();
+                }
+                langPrefix = params.get('lang');
             }
         });
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
+
+    refreshData() {
+        this.getData();
+        this.getCategory();
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getData(): void {

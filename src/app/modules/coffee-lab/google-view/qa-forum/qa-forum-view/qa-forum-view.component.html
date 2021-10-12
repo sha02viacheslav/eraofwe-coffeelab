@@ -20,7 +20,8 @@
                 optionLabel="name"
                 optionValue="slug"
                 [showClear]="true"
-            ></p-dropdown>
+            >
+            </p-dropdown>
             <p-dropdown
                 [options]="filterOptions"
                 [(ngModel)]="filterBy"
@@ -28,19 +29,19 @@
                 (ngModelChange)="getData()"
                 styleClass="round-border text-clr588 ml-3 mr-3"
                 [placeholder]="'posted_by' | translate"
-                optionLabel="label"
-                optionValue="value"
-            ></p-dropdown>
+            >
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
             <p-dropdown
                 [options]="sortOptions"
                 [(ngModel)]="sortBy"
                 (ngModelChange)="getData()"
                 styleClass="round-border text-clr588"
-                optionLabel="label"
-                optionValue="value"
                 styleClass="round-border"
                 [placeholder]="'sort_by' | translate"
-            ></p-dropdown>
+            >
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
         </div>
 
         <div *ngIf="!isLoading">

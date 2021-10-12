@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { environment } from '@env/environment';
@@ -32,7 +32,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
         private route: ActivatedRoute,
-        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
@@ -45,24 +44,12 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     ngOnInit(): void {
         this.setSEO();
         this.orderList = [
-            {
-                label: this.translator.instant('latest'),
-                value: 'latest',
-            },
-            {
-                label: this.translator.instant('oldest'),
-                value: 'oldest',
-            },
+            { label: 'latest', value: 'latest' },
+            { label: 'oldest', value: 'oldest' },
         ];
         this.translationsList = [
-            {
-                label: this.translator.instant('yes'),
-                value: true,
-            },
-            {
-                label: this.translator.instant('no'),
-                value: false,
-            },
+            { label: 'yes', value: true },
+            { label: 'no', value: false },
         ];
 
         this.route.queryParamMap.subscribe((params) => {
@@ -72,13 +59,26 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     this.page = 1;
                 }
             }
-            this.getData();
-            this.getCategory();
-            if (isPlatformBrowser(this.platformId)) {
-                window.scrollTo(0, 0);
+            this.refreshData();
+        });
+
+        let langPrefix = '';
+        this.route.paramMap.subscribe((params) => {
+            if (params.has('lang')) {
+                if (langPrefix) {
+                    this.refreshData();
+                }
+                langPrefix = params.get('lang');
             }
         });
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
+
+    refreshData() {
+        this.getData();
+        this.getCategory();
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getData(): void {

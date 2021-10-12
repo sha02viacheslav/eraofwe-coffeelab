@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
@@ -35,7 +35,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
-        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
@@ -47,28 +46,13 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     ngOnInit(): void {
         this.setSEO();
         this.filterOptions = [
-            {
-                label: this.translator.instant('coffee_experts'),
-                value: false,
-            },
-            {
-                label: this.translator.instant('coffee_consumer'),
-                value: true,
-            },
+            { label: 'coffee_experts', value: false },
+            { label: 'coffee_consumer', value: true },
         ];
         this.sortOptions = [
-            {
-                label: this.translator.instant('latest'),
-                value: 'latest',
-            },
-            {
-                label: this.translator.instant('most_answered'),
-                value: 'most_answered',
-            },
-            {
-                label: this.translator.instant('oldest'),
-                value: 'oldest',
-            },
+            { label: 'latest', value: 'latest' },
+            { label: 'most_answered', value: 'most_answered' },
+            { label: 'oldest', value: 'oldest' },
         ];
 
         this.route.queryParamMap.subscribe((params) => {
@@ -78,13 +62,25 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     this.page = 1;
                 }
             }
-            this.getData();
-            this.getCategory();
-            if (isPlatformBrowser(this.platformId)) {
-                window.scrollTo(0, 0);
+            this.refreshData();
+        });
+        let langPrefix = '';
+        this.route.paramMap.subscribe((params) => {
+            if (params.has('lang')) {
+                if (langPrefix) {
+                    this.refreshData();
+                }
+                langPrefix = params.get('lang');
             }
         });
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
+
+    refreshData() {
+        this.getData();
+        this.getCategory();
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getData(): void {

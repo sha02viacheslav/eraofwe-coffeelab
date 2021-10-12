@@ -28,25 +28,23 @@
         </div>
         <p-dropdown
             [options]="translationsList"
-            optionLabel="label"
-            optionValue="value"
             [(ngModel)]="isAvailableTranslation"
             (onChange)="getData()"
             placeholder="{{ 'translations_available' | translate }}"
             styleClass="round-border"
         >
+            <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
         </p-dropdown>
         <div class="mt-25 mt-md-0">
             <p-dropdown
                 class="pl-md-3 pl-25"
                 [options]="orderList"
-                optionLabel="label"
                 [placeholder]="'sort_by' | translate"
-                optionValue="value"
                 [(ngModel)]="selectedOrder"
                 (onChange)="getData()"
                 styleClass="round-border"
             >
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
         </div>
     </div>

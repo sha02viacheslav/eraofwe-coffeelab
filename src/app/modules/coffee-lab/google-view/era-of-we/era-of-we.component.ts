@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../../components/signup-modal/signup-modal.component';
 import { ResizeableComponent } from '@base-components';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-era-of-we',
@@ -21,30 +19,12 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     isAvailableTranslation?: any;
     selectedOrder = '';
     totalRecords = 0;
-    translationsList: any[] = [
-        {
-            label: 'Yes',
-            value: true,
-        },
-        {
-            label: 'No',
-            value: false,
-        },
-    ];
-    orderList: any[] = [
-        {
-            label: 'Latest',
-            value: 'latest',
-        },
-        {
-            label: 'Oldest',
-            value: 'oldest',
-        },
-    ];
+    translationsList: any[] = [];
+    orderList: any[] = [];
     constructor(
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
-        private router: Router,
+        private route: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
@@ -55,8 +35,19 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
 
     ngOnInit(): void {
         this.setSEO();
-        this.getData();
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.orderList = [
+            { label: 'latest', value: 'latest' },
+            { label: 'oldest', value: 'oldest' },
+        ];
+        this.translationsList = [
+            { label: 'yes', value: true },
+            { label: 'no', value: false },
+        ];
+        this.route.paramMap.subscribe((params) => {
+            if (params.has('lang')) {
+                this.getData();
+            }
+        });
     }
 
     getData(): void {

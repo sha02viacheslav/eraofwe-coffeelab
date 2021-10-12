@@ -37,6 +37,7 @@
                     [placeholder]="'difficulty' | translate"
                     styleClass="round-border"
                 >
+                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div> -->
             <div class="pl-md-3 pl-1 mb-25 mb-md-0">
@@ -49,6 +50,7 @@
                     [placeholder]="'translation_available' | translate"
                     styleClass="round-border"
                 >
+                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>
         </div>
@@ -62,6 +64,7 @@
                 [placeholder]="'sort_by' | translate"
                 styleClass="round-border mobile-ui"
             >
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
         </div>
     </div>
