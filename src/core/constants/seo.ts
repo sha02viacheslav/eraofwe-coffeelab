@@ -19,15 +19,15 @@ export const SeoTitle = {
         [RouterSlug.EOW]: 'Om Era of We - The Coffee Lab',
     },
     pt: {
-        [RouterSlug.QA]: 'Coffee Questions & Answer Forum',
-        [RouterSlug.ARTICLE]: 'Coffee Articles Shared by Knowledgeable Coffee Experts',
-        [RouterSlug.RECIPE]: 'Coffee Recipes & Brewing Guides for consumers and experts',
+        [RouterSlug.QA]: 'Fórum de perguntas e respostas sobre café',
+        [RouterSlug.ARTICLE]: 'Artigos de café compartilhados por especialistas em café',
+        [RouterSlug.RECIPE]: 'Receitas & Guias de Preparo de Café para consumidores e especialistas',
         [RouterSlug.EOW]: 'Sobre a Era of We - O Coffee Lab',
     },
     es: {
-        [RouterSlug.QA]: 'Coffee Questions & Answer Forum',
-        [RouterSlug.ARTICLE]: 'Coffee Articles Shared by Knowledgeable Coffee Experts',
-        [RouterSlug.RECIPE]: 'Coffee Recipes & Brewing Guides for consumers and experts',
+        [RouterSlug.QA]: 'Foro de preguntas y respuestas sobre café',
+        [RouterSlug.ARTICLE]: 'Artículos de café compartidos por expertos expertos en café',
+        [RouterSlug.RECIPE]: 'Recetas de café y guías de preparación para consumidores y expertos',
         [RouterSlug.EOW]: 'Sobre Era of We - El laboratorio de café',
     },
 };
