@@ -7,6 +7,7 @@ import { ResizeableComponent } from '@base-components';
 import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-era-of-we',
@@ -43,11 +44,11 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     constructor(
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
+        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
         protected resizeService: ResizeService,
-        public dialogSrv: DialogService,
     ) {
         super(resizeService);
     }
@@ -55,6 +56,7 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     ngOnInit(): void {
         this.setSEO();
         this.getData();
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     getData(): void {
@@ -97,11 +99,5 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
         return item.cardType === 'forum'
             ? url
             : `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/articles`;
-    }
-
-    onFocus(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

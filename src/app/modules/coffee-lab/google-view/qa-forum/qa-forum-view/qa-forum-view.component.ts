@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
@@ -35,6 +35,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
+        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
@@ -83,6 +84,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                 window.scrollTo(0, 0);
             }
         });
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     getData(): void {

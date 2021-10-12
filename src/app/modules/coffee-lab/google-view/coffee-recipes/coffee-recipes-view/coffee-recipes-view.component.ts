@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
 import { getLangRoute } from '@utils';
@@ -44,12 +44,13 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
+        private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
+        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
-        protected resizeService: ResizeService,
-        private coffeeLabService: CoffeeLabService,
         private translator: TranslateService,
+        protected resizeService: ResizeService,
     ) {
         super(resizeService);
     }
@@ -114,6 +115,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 window.scrollTo(0, 0);
             }
         });
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     getData(): void {

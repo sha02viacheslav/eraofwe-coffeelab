@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CoffeeLabService, SEOService, ResizeService } from '@services';
 import { environment } from '@env/environment';
@@ -32,11 +32,12 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
         private route: ActivatedRoute,
+        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
+        private translator: TranslateService,
         protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
-        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -77,6 +78,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 window.scrollTo(0, 0);
             }
         });
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     getData(): void {
