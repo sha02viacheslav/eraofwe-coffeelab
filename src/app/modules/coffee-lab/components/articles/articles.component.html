@@ -1,11 +1,9 @@
 <div class="row mx-0">
     <div
-        class="col-12 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
+        class="col-12 col-md-6 col-xl-4 px-0 py-2 py-md-25 p-md-2 article-item-wrapper"
         *ngFor="let article of articles; let i = index; let isLast = last"
         [ngClass]="{
-            'col-md-6': articles.length === 2,
-            'd-none': isEraofWe && !article.is_era_of_we,
-            'col-xl-4': articles.length > 2
+            'd-none': isEraofWe && !article.is_era_of_we
         }"
     >
         <app-article-card [article]="article"></app-article-card>
