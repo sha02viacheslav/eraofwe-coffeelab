@@ -9,6 +9,8 @@ import { environment } from '@env/environment';
 import { getLangRoute } from '@utils';
 import { ResizeableComponent } from '@base-components';
 import { TranslateService } from '@ngx-translate/core';
+import { RouterMap } from '@constants';
+import { RouterSlug } from '@enums';
 
 @Component({
     selector: 'app-category',
@@ -26,6 +28,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     currentCategory: any;
     otherCategories: any[] = [];
     isCategoryCalled = 0;
+    previousUrl: string;
     currentLangCode: string;
     topWriters: any[] = [];
     filterBy: any;
@@ -123,10 +126,19 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         this.selectedTab = index;
         if (this.selectedTab === 0) {
             this.getQuestions();
+            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
+                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]
+            }`;
         } else if (this.selectedTab === 1) {
             this.getArticles();
+            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
+                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.ARTICLE]
+            }`;
         } else if (this.selectedTab === 2) {
             this.getRecipes();
+            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
+                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.RECIPE]
+            }`;
         }
 
         window.scroll(0, 0);
@@ -307,6 +319,19 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
                 ...forumList,
             ],
         };
+    }
+
+    onBack() {
+        if (this.selectedTab === 0) {
+            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
+                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]
+            }`;
+            // this.router.navigateByUrl('coffee-lab/overview/qa-forum');
+        } else if (this.selectedTab === 1) {
+            this.router.navigateByUrl('coffee-lab/overview/articles');
+        } else if (this.selectedTab === 2) {
+            this.router.navigateByUrl('coffee-lab/overview/coffee-recipes');
+        }
     }
 
     ngOnDestroy() {

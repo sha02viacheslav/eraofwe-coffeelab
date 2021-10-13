@@ -1,6 +1,6 @@
 <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div class="position-relative loader-wrap mt-4 pb-mt-45">
+<div class="position-relative loader-wrap mt-4 pb-mt-45" *ngIf="!loading">
     <ng-container *ngIf="detailsData">
         <div class="article-main-block">
             <div *ngIf="detailsData?.categories" class="row mx-0 mx-md-5 px-md-5 justify-content-lg-center">
