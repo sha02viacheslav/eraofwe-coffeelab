@@ -6,6 +6,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
@@ -14,6 +15,7 @@ import { getLangRoute } from '@utils';
     selector: 'app-recipe-detail',
     templateUrl: './recipe-detail.component.html',
     styleUrls: ['./recipe-detail.component.scss'],
+    providers: [MessageService],
 })
 export class RecipeDetailComponent implements OnInit {
     readonly PostType = PostType;
@@ -58,6 +60,7 @@ export class RecipeDetailComponent implements OnInit {
         private toastService: ToastrService,
         private startupService: StartupService,
         public globalsService: GlobalsService,
+        private messageService: MessageService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -126,6 +129,12 @@ export class RecipeDetailComponent implements OnInit {
                     }
                     this.getUserDetail(this.detailsData);
                     this.getCommentsData();
+                    this.messageService.clear();
+                    this.messageService.add({
+                        key: 'translate',
+                        severity: 'success',
+                        closable: false,
+                    });
                 }
             } else {
                 this.toastService.error('The recipe is not exist.');

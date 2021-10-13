@@ -11,6 +11,7 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
 
 import { ArticleDetailComponent } from './article-detail.component';
 import { CategoryListModule } from '@modules/coffee-lab/components/category-list/category-list.module';
+import { TranslateTostModule } from '@modules/coffee-lab/components/translate-toast/translate-toast.module';
 
 @NgModule({
     declarations: [ArticleDetailComponent],
@@ -24,6 +25,7 @@ import { CategoryListModule } from '@modules/coffee-lab/components/category-list
         ForumMenuModule,
         NgxJsonLdModule,
         CategoryListModule,
+        TranslateTostModule,
     ],
 })
 export class ArticleDetailModule {}

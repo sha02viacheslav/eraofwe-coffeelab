@@ -7,6 +7,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
+import { MessageService } from 'primeng/api';
 import { PostType, RouterSlug } from '@enums';
 import { getLangRoute, toSentenceCase } from '@utils';
 
@@ -14,6 +15,7 @@ import { getLangRoute, toSentenceCase } from '@utils';
     selector: 'app-question-detail',
     templateUrl: './question-detail.component.html',
     styleUrls: ['./question-detail.component.scss'],
+    providers: [MessageService],
 })
 export class QuestionDetailComponent implements OnInit {
     readonly PostType = PostType;
@@ -32,6 +34,7 @@ export class QuestionDetailComponent implements OnInit {
         private toastService: ToastrService,
         private seoService: SEOService,
         private startupService: StartupService,
+        private messageService: MessageService,
         public globalsService: GlobalsService,
         public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
@@ -77,6 +80,12 @@ export class QuestionDetailComponent implements OnInit {
                     }`;
                     this.setSEO();
                     this.setSchemaMackup();
+                    this.messageService.clear();
+                    this.messageService.add({
+                        key: 'translate',
+                        severity: 'success',
+                        closable: false,
+                    });
                 }
             } else {
                 this.toastService.error('The question is not exist.');

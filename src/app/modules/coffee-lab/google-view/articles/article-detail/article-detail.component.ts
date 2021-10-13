@@ -12,11 +12,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
 import { ResizeableComponent } from '@base-components';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-article-detail',
     templateUrl: './article-detail.component.html',
     styleUrls: ['./article-detail.component.scss'],
+    providers: [MessageService],
 })
 export class ArticleDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
@@ -46,6 +48,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private dialogSrv: DialogService,
         private seoService: SEOService,
         private startupService: StartupService,
+        private messageService: MessageService,
         private toastService: ToastrService,
         protected resizeService: ResizeService,
         public globalsService: GlobalsService,
@@ -143,6 +146,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.getUserDetail(this.detailsData);
                     this.setSEO();
                     this.getCommentsData();
+                    this.messageService.clear();
+                    this.messageService.add({
+                        key: 'translate',
+                        severity: 'success',
+                        closable: false,
+                    });
+
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();
                     }

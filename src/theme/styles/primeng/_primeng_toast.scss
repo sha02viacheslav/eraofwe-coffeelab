@@ -1,0 +1,25 @@
+.p-toast {
+    &.translate-toast {
+        width: 742px;
+        left: calc(50% - 371px);
+        margin-left: 0;
+        opacity: 1;
+        .p-toast-message {
+            background: #ffffff !important;
+            border-radius: 4px;
+            box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.07);
+        }
+        @media (max-width: 991px) {
+            width: 704px;
+            left: calc(50% - 352px);
+        }
+        @media (max-width: 767px) {
+            width: 510px;
+            left: calc(50% - 255px);
+        }
+        @media (max-width: 540px) {
+            width: calc(100% - 30px);
+            left: 15px;
+        }
+    }
+}
