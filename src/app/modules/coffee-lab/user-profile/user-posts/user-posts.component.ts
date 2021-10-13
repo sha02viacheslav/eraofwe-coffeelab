@@ -50,6 +50,7 @@ export class UserPostsComponent implements OnInit {
                         return item;
                     },
                 );
+                window.scroll(0, 0);
                 this.totalRecords = res.result_info.total_count;
             }
             this.isLoading = false;

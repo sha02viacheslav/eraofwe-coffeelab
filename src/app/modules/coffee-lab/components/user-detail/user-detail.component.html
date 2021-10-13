@@ -50,12 +50,7 @@
                 <ng-container *ngIf="data; else noName">
                     <div
                         class="fnt-16 fnt-bold text-underline cursor-pointer"
-                        routerLink="/user-profile"
-                        [queryParams]="{
-                            user_id: userId,
-                            organization: orgType,
-                            organization_id: data?.organization_id
-                        }"
+                        [routerLink]="'/user-profile/' + data?.slug"
                     >
                         {{ name }}
                     </div>
