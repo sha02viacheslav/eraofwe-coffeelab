@@ -67,6 +67,8 @@ export class QuestionDetailComponent implements OnInit {
                                 this.getAnswerDetail(element.id);
                             }
                         });
+                    } else {
+                        this.answerDetail = {};
                     }
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');

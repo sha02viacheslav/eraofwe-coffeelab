@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GlobalsService } from '@services';
+import { ResizeableComponent } from '@base-components';
+import { GlobalsService, ResizeService } from '@services';
 import { getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -10,13 +11,15 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     templateUrl: './articles.component.html',
     styleUrls: ['./articles.component.scss'],
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent extends ResizeableComponent implements OnInit {
     @Input() articles: any[] = [];
     @Input() isEraofWe = false;
     @Input() totalRecords = 0;
     page = 1;
     rows = 10;
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(private route: ActivatedRoute, private router: Router, protected resizeService: ResizeService) {
+        super(resizeService);
+    }
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe((params) => {

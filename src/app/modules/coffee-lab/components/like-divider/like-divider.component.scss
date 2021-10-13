@@ -22,7 +22,7 @@
 .align-like {
     .like-int {
         cursor: pointer;
-        padding: 0 10.5px;
+        padding: 0 9px;
         border-radius: 50%;
         @media (min-width: 992px) {
             &:hover {
@@ -43,12 +43,9 @@
 
 .divider-box {
     background-color: #f1f1f1;
+    padding-top: 8.5px;
+    padding-bottom: 8.5px;
     .mb-05 {
         margin-bottom: 2px;
     }
-}
-
-.py-15 {
-    padding-top: 6px;
-    padding-bottom: 5px;
 }

@@ -1,4 +1,4 @@
-<div class="divider-box py-15 px-3 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
+<div class="divider-box px-3 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
     <div class="d-flex">
         <div class="d-flex align-like">
             <div class="like-int" (click)="onFocus()">
@@ -13,13 +13,6 @@
         <div (click)="onJoin()" class="cursor-pointer p-1 mr-2 d-none d-md-block fnt-semi-bold text-nowrap">
             {{ 'join_the_discussion' | translate }}
         </div>
-        <img
-            (click)="onJoin()"
-            class="cursor-pointer"
-            src="assets/images/right-arrow-active.svg"
-            alt="right-arrow"
-            width="30"
-            height="30"
-        />
+        <img (click)="onJoin()" class="cursor-pointer" src="assets/images/right-arrow-active.svg" alt="right-arrow" />
     </div>
 </div>

@@ -102,6 +102,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
     onRealtedRoute(langCode, slug) {
         this.router.navigateByUrl(`/en/articles/${slug}`);
+        window.scrollTo(0, 0);
     }
 
     viewAllComments() {

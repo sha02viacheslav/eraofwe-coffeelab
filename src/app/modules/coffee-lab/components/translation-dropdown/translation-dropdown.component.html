@@ -10,7 +10,7 @@
     <ng-template pTemplate="selectedItem">
         <span class="fnt-bold text-clr60b d-flex align-items-center">
             <img src="assets/images/translate.svg" class="translate-icon mr-1" />
-            Translated answer available
+            {{ 'select_language' | translate }}
         </span>
     </ng-template>
     <ng-template let-translateItem pTemplate="item">
@@ -38,7 +38,7 @@
                 >
                     {{ translateItem.user_name }}
                 </p>
-                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2" *ngIf="forumType === 'recipes'">
+                <p class="fnt-14 fnt-muli fnt-bold text-clr334 mb-2" *ngIf="forumType === 'coffee-recipes'">
                     {{ translateItem.first_name }}
                 </p>
                 <div class="d-flex align-items-center">
