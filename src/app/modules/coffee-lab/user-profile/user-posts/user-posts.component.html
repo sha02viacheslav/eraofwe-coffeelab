@@ -8,7 +8,7 @@
 </div>
 
 <div *ngIf="totalRecords > this.rows" class="pt-3 pt-md-4 text-center">
-    <app-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></app-paginator>
+    <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
 </div>
 
 <div *ngIf="!isLoading && !posts.length" class="text-center my-4 fnt-muli text-clr24">

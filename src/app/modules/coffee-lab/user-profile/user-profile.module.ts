@@ -11,6 +11,7 @@ import { SeoPaginatorModule } from '../components/paginator/paginator.module';
 import { QuestionsCardModule } from '../components/question-card/question-card.module';
 import { ArticleCardModule } from '../components/article-card/article-card.module';
 import { RecipeCardModule } from '../components/recipe-card/recipe-card.module';
+import { PaginatorModule } from 'primeng/paginator';
 import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { TabViewModule } from 'primeng/tabview';
         ArticleCardModule,
         RecipeCardModule,
         TabViewModule,
+        PaginatorModule,
     ],
 })
 export class UserProfileModule {}
