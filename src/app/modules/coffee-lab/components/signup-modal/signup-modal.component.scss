@@ -42,3 +42,12 @@
 .fnt-36 {
     font-size: 36px;
 }
+
+.login-link {
+    color: #80460b !important;
+    font-weight: 600;
+    position: relative;
+    &:hover {
+        text-decoration: underline;
+    }
+}

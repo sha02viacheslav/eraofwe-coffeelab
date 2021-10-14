@@ -1,6 +1,6 @@
 <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div class="page-wrapper d-block d-lg-flex justify-content-between position-relative mt-4 pb-mt-45">
+<div class="page-wrapper d-block d-lg-flex justify-content-between position-relative mt-4 pb-mt-45" *ngIf="!loading">
     <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
         <div class="border-question-view">
             <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
@@ -121,8 +121,6 @@
         </div>
     </article>
     <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
-
-    <app-loading *ngIf="loading"></app-loading>
 </div>
-
+<app-loading *ngIf="loading"></app-loading>
 <app-translate-toast [language]="detailsData?.lang_code"></app-translate-toast>
