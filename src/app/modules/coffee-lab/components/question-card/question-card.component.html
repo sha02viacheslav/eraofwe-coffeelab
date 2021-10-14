@@ -12,9 +12,8 @@
             <div
                 class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
                 (click)="gotoDetailPage($event, question)"
-            >
-                {{ question?.question }}
-            </div>
+                [innerHTML]="question?.question"
+            ></div>
         </a>
         <div *ngIf="question?.categories" class="row mx-0 pt-4">
             <app-category-list [categoryList]="question?.categories"></app-category-list>
