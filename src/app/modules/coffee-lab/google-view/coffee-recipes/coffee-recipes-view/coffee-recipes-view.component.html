@@ -13,7 +13,7 @@
 
 <div class="d-flex align-items-md-center justify-content-between pb-3 pb-md-4">
     <div class="d-block flex-wrap d-md-flex">
-        <div class="d-flex">
+        <div class="d-flex flex-md-row flex-column">
             <div class="mb-25 mb-md-0">
                 <p-dropdown
                     [options]="categoryList"
@@ -53,19 +53,19 @@
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>
-        </div>
-        <div class="pl-md-3">
-            <p-dropdown
-                [options]="orderList"
-                optionLabel="label"
-                optionValue="value"
-                [(ngModel)]="selectedOrder"
-                (onChange)="getData()"
-                [placeholder]="'sort_by' | translate"
-                styleClass="round-border mobile-ui"
-            >
-                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-            </p-dropdown>
+            <div class="pl-md-3">
+                <p-dropdown
+                    [options]="orderList"
+                    optionLabel="label"
+                    optionValue="value"
+                    [(ngModel)]="selectedOrder"
+                    (onChange)="getData()"
+                    [placeholder]="'sort_by' | translate"
+                    styleClass="round-border mobile-ui"
+                >
+                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                </p-dropdown>
+            </div>
         </div>
     </div>
     <div class="col-md-5 d-none d-md-block pl-md-3">
