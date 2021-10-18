@@ -27,6 +27,9 @@
     &:hover {
         border: solid 1px #30855c !important;
     }
+    @media (max-width: 480px) {
+        width: 108%;
+    }
 }
 
 .email-btn {
@@ -36,6 +39,9 @@
     padding-left: 2.5rem !important;
     &:hover {
         border: solid 1px #30855c !important;
+    }
+    @media (max-width: 480px) {
+        width: 108%;
     }
 }
 

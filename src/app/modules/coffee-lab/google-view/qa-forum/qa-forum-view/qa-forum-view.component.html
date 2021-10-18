@@ -10,12 +10,12 @@
 
 <div class="d-flex position-relative">
     <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
-        <div class="d-flex pr-lg-2 mb-4">
+        <div class="d-flex flex-md-row flex-column pr-lg-2 mb-4">
             <p-dropdown
                 [options]="categoryList"
                 (onChange)="getData()"
                 [(ngModel)]="selectedCategory"
-                styleClass="round-border text-clr588"
+                styleClass="round-border text-clr588 mb-25 mb-md-0"
                 [placeholder]="'categories' | translate"
                 optionLabel="name"
                 optionValue="slug"
@@ -27,7 +27,7 @@
                 [(ngModel)]="filterBy"
                 [showClear]="true"
                 (ngModelChange)="getData()"
-                styleClass="round-border text-clr588 ml-3 mr-3"
+                styleClass="round-border text-clr588 ml-0 ml-md-3 mr-3 mb-25 mb-md-0"
                 [placeholder]="'posted_by' | translate"
             >
                 <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
@@ -36,7 +36,7 @@
                 [options]="sortOptions"
                 [(ngModel)]="sortBy"
                 (ngModelChange)="getData()"
-                styleClass="round-border text-clr588"
+                styleClass="round-border text-clr588 mb-25 mb-md-0"
                 styleClass="round-border"
                 [placeholder]="'sort_by' | translate"
             >

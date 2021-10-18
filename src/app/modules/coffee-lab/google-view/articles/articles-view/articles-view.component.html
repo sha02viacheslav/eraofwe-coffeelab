@@ -37,7 +37,7 @@
         </p-dropdown>
         <div class="mt-25 mt-md-0">
             <p-dropdown
-                class="pl-md-3 pl-25"
+                class="pl-md-3 pl-0"
                 [options]="orderList"
                 [placeholder]="'sort_by' | translate"
                 [(ngModel)]="selectedOrder"
@@ -64,7 +64,7 @@
 </div>
 <div class="position-relative">
     <div class="articles-wrapper">
-        <div *ngIf="!isLoading">
+        <div *ngIf="!isLoading" class="mr-2 ml-2 mr-md-0 ml-md-0">
             <app-articles [articles]="articlesData" [totalRecords]="totalRecords"></app-articles>
         </div>
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
