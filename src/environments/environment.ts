@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    apiURL: 'https://fed-api.sewnstaging.com',
+    apiURL: 'https://fed-api-go.sewnstaging.com',
     wsEndpoint: 'wss://messaging.sewnstaging.com/v1',
     encryptionKey: 'sewen_secrete_key',
     ssoWeb: 'http://localhost:4300',
