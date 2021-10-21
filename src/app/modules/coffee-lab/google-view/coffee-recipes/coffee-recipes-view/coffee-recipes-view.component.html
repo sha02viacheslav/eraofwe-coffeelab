@@ -83,7 +83,12 @@
 </div>
 <div class="position-relative">
     <div>
-        <app-recipes [recipes]="coffeeRecipeData" [totalRecords]="totalRecords"></app-recipes>
+        <app-recipes
+            [recipes]="coffeeRecipeData"
+            [pages]="page"
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+        ></app-recipes>
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
     </div>
 

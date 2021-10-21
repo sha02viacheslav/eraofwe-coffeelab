@@ -45,7 +45,12 @@
         </div>
 
         <div *ngIf="!isLoading">
-            <app-questions [questions]="questions" [totalRecords]="totalRecords"></app-questions>
+            <app-questions
+                [questions]="questions"
+                [pages]="page"
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+            ></app-questions>
         </div>
 
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
