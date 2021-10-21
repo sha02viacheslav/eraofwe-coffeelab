@@ -33,12 +33,7 @@
             <div class="d-flex justify-content-between align-items-start">
                 <img
                     class="user-image"
-                    [src]="
-                        imageUrl ||
-                        data?.profile_image_thumb_url ||
-                        data?.profile_image_url ||
-                        'assets/images/default-avatar.png'
-                    "
+                    [src]="originalImageUrl || 'assets/images/default-avatar.png'"
                     [alt]="name + 'profile image'"
                 />
                 <div class="btn-trans-icon message-icon mt-25" (click)="myOp.hide(); openChat()">
