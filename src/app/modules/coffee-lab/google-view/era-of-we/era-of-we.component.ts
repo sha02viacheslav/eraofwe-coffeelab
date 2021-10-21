@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
@@ -6,6 +6,7 @@ import { getLangRoute } from '@utils';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-era-of-we',
@@ -19,9 +20,13 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     isAvailableTranslation?: any;
     selectedOrder = '';
     totalRecords = 0;
+    rows = 9;
+    page = 1;
     translationsList: any[] = [];
     orderList: any[] = [];
+
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private globalsService: GlobalsService,
         private route: ActivatedRoute,
@@ -43,11 +48,33 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
             { label: 'yes', value: true },
             { label: 'no', value: false },
         ];
+
+        this.route.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                this.page = +params.get('page');
+                if (this.page < 1) {
+                    this.page = 1;
+                }
+            }
+            this.refreshData();
+        });
+
+        let langPrefix = '';
         this.route.paramMap.subscribe((params) => {
             if (params.has('lang')) {
-                this.getData();
+                if (langPrefix) {
+                    this.refreshData();
+                }
+                langPrefix = params.get('lang');
             }
         });
+    }
+
+    refreshData() {
+        this.getData();
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     getData(): void {
@@ -57,6 +84,8 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
             translations_available: this.isAvailableTranslation,
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             is_era_of_we: true,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService
