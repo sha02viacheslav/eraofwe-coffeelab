@@ -65,7 +65,12 @@
 <div class="position-relative">
     <div class="articles-wrapper">
         <div *ngIf="!isLoading" class="mr-2 ml-2 mr-md-0 ml-md-0">
-            <app-articles [articles]="articlesData" [totalRecords]="totalRecords"></app-articles>
+            <app-articles
+                [articles]="articlesData"
+                [pages]="page"
+                [rows]="rows"
+                [totalRecords]="totalRecords"
+            ></app-articles>
         </div>
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
