@@ -13,24 +13,24 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class RecipesComponent implements OnInit {
     @Input() recipes: any[] = [];
     @Input() totalRecords = 0;
-    page = 1;
-    rows = 10;
+    @Input() pages: number;
+    @Input() rows: number;
 
     constructor(private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {
-                this.page = +params.get('page');
-                if (this.page < 1) {
-                    this.page = 1;
+                this.pages = +params.get('page');
+                if (this.pages < 1) {
+                    this.pages = 1;
                 }
             }
         });
     }
 
     paginate(event: any) {
-        if (this.page !== event.page + 1) {
+        if (this.pages !== event.page + 1) {
             this.router.navigate([], { queryParams: { page: event.page + 1 } });
         }
     }

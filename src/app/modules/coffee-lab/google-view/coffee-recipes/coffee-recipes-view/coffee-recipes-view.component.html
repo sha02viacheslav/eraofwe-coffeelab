@@ -40,7 +40,7 @@
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>
-            <div class="pl-md-3 pl-1 mb-25 mb-md-0">
+            <div class="pl-md-3 pl-0 mb-25 mb-md-0">
                 <p-dropdown
                     [options]="translationsList"
                     optionLabel="label"
@@ -83,7 +83,12 @@
 </div>
 <div class="position-relative">
     <div>
-        <app-recipes [recipes]="coffeeRecipeData" [totalRecords]="totalRecords"></app-recipes>
+        <app-recipes
+            [recipes]="coffeeRecipeData"
+            [pages]="page"
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+        ></app-recipes>
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
     </div>
 

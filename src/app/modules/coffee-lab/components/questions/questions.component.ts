@@ -9,8 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuestionsComponent implements OnInit {
     @Input() questions: any[] = [];
     @Input() totalRecords = 0;
-    pages = 1;
-    rows = 10;
+    @Input() pages: number;
+    @Input() rows: number;
     constructor(private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
