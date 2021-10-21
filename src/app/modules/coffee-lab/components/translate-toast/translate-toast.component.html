@@ -1,7 +1,7 @@
 <p-toast position="bottom-center" key="translate" [baseZIndex]="5000" life="1000000" styleClass="translate-toast">
     <ng-template pTemplate="message">
         <div class="d-flex align-items-center p-md-45">
-            <img [src]="'assets/images/' + language + '-flag.svg'" class="flag-image" />
+            <img [src]="'assets/images/' + language + '-flag.svg'" class="flag-image" alt="flag-image" />
             <div class="pl-25 pl-md-4">
                 <p class="fnt-18 fnt-md-24 fnt-bold lh-142 text-clr334 mb-2">
                     {{ 'you_now' | translate }} {{ language | language }} {{ 'coffee_lab' | translate }}
