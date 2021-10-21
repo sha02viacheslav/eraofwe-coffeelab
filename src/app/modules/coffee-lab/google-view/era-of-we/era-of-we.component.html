@@ -53,5 +53,11 @@
 </div>
 
 <div class="gutter-16" *ngIf="!isLoading">
-    <app-articles [articles]="data" [isEraofWe]="true" [totalRecords]="totalRecords"></app-articles>
+    <app-articles
+        [articles]="data"
+        [isEraofWe]="true"
+        [pages]="page"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+    ></app-articles>
 </div>
