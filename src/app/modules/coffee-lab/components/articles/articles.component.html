@@ -9,7 +9,7 @@
         <app-article-card [article]="article"></app-article-card>
     </div>
 </div>
-<div *ngIf="totalRecords" class="pt-3 pt-md-4 w-100">
+<div *ngIf="totalRecords && totalRecords > rows" class="pt-3 pt-md-4 w-100">
     <app-paginator
         [rows]="rows"
         [totalRecords]="totalRecords"
