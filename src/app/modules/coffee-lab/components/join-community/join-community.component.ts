@@ -31,7 +31,7 @@ export class JoinCommunityComponent implements OnInit {
         this.coffeeLabService
             .getForumList('question', {
                 page: this.pages ? this.pages + 1 : 2,
-                per_page: 5,
+                per_page: 15,
             })
             .subscribe((res: any) => {
                 if (res.success) {
