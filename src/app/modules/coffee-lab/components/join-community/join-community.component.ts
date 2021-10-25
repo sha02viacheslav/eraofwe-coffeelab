@@ -21,6 +21,7 @@ export class JoinCommunityComponent implements OnInit {
     idOrSlug: any;
     isStaging = environment.needProtect;
     relatedData = [];
+    isLoading = false;
     constructor(@Inject(DOCUMENT) private document: Document, public coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {
@@ -28,6 +29,7 @@ export class JoinCommunityComponent implements OnInit {
     }
 
     getQaList() {
+        this.isLoading = true;
         this.coffeeLabService
             .getForumList('question', {
                 page: this.pages ? this.pages + 1 : 2,
@@ -36,6 +38,7 @@ export class JoinCommunityComponent implements OnInit {
             .subscribe((res: any) => {
                 if (res.success) {
                     this.relatedData = res.result?.questions || [];
+                    this.isLoading = false;
                 }
             });
     }

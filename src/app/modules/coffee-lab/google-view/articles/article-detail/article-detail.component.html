@@ -3,7 +3,7 @@
 <div class="position-relative loader-wrap mt-4 pb-mt-45" *ngIf="!loading">
     <ng-container *ngIf="detailsData">
         <div class="article-main-block">
-            <div *ngIf="detailsData?.categories" class="row mx-0 mx-md-5 px-md-5 justify-content-lg-center">
+            <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-center">
                 <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
             </div>
             <div class="px-0 px-md-475">
@@ -79,17 +79,7 @@
                             </div>
                         </div>
                         <div class="d-flex pb-4">
-                            <button
-                                class="btn-stroked mr-2"
-                                routerLink="/user-profile"
-                                [queryParams]="{
-                                    user_id: detailsData?.user_id || detailsData?.posted_by,
-                                    organization:
-                                        detailsData?.org_type ||
-                                        detailsData?.organisation_type ||
-                                        detailsData?.organization_type
-                                }"
-                            >
+                            <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + stickySecData?.slug">
                                 {{ 'view_profile' | translate }}
                             </button>
                             <div class="btn-raised" (click)="onFocus()">
@@ -158,20 +148,13 @@
                                             </ng-template>
                                         </div>
                                         <div>
-                                            <p
-                                                routerLink="/user-profile"
-                                                [queryParams]="{
-                                                    user_id: stickySecData?.id,
-                                                    organization:
-                                                        stickySecData?.org_type ||
-                                                        stickySecData?.organisation_type ||
-                                                        stickySecData?.organization_type
-                                                }"
-                                                class="fnt-bold cursor-pointer text-underline mb-2"
+                                            <a
+                                                [routerLink]="'/user-profile/' + stickySecData?.slug"
+                                                class="fnt-bold cursor-pointer text-underline"
                                             >
                                                 {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
-                                            </p>
-                                            <p class="fnt-semi-bold">
+                                            </a>
+                                            <p class="fnt-semi-bold mt-2">
                                                 {{ stickySecData?.about_me }}
                                             </p>
                                         </div>

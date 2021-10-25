@@ -189,21 +189,14 @@
                                     />
                                 </div>
                                 <div>
-                                    <p
-                                        class="fnt-bold cursor-pointer text-underline mb-2"
-                                        routerLink="/user-profile"
-                                        [queryParams]="{
-                                            user_id: stickySecData?.id,
-                                            organization:
-                                                stickySecData?.org_type ||
-                                                stickySecData?.organisation_type ||
-                                                stickySecData?.organization_type
-                                        }"
+                                    <a
+                                        class="fnt-bold cursor-pointer text-underline"
+                                        [routerLink]="'/user-profile/' + stickySecData?.slug"
                                     >
                                         {{ stickySecData?.firstname }}
                                         {{ stickySecData?.lastname }}
-                                    </p>
-                                    <p class="fnt-semi-bold">
+                                    </a>
+                                    <p class="fnt-semi-bold mt-2">
                                         {{ stickySecData?.about_me }}
                                     </p>
                                 </div>
@@ -369,17 +362,7 @@
             </div>
             <div class="pb-4">
                 <div class="d-flex">
-                    <button
-                        class="btn-stroked mr-2"
-                        routerLink="/user-profile"
-                        [queryParams]="{
-                            user_id: detailsData?.user_id || detailsData?.posted_by,
-                            organization:
-                                detailsData?.org_type ||
-                                detailsData?.organisation_type ||
-                                detailsData?.organization_type
-                        }"
-                    >
+                    <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + stickySecData?.slug">
                         {{ 'view_profile' | translate }}
                     </button>
                     <div class="btn-raised">

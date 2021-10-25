@@ -1,14 +1,13 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, SEOService, ResizeService } from '@services';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from '@env/environment';
-import { ResizeableComponent } from '@base-components';
-import { getLangRoute } from '@utils';
-import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
+import { environment } from '@env/environment';
+import { TranslateService } from '@ngx-translate/core';
+import { CoffeeLabService, ResizeService, SEOService } from '@services';
+import { getLangRoute } from '@utils';
+import { ToastrService } from 'ngx-toastr';
 import { takeUntil } from 'rxjs/operators';
-
 @Component({
     selector: 'app-coffee-recipes-view',
     templateUrl: './coffee-recipes-view.component.html',
@@ -19,7 +18,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     totalRecords = 0;
     page = 1;
     isAvailableTranslation?: string;
-    label?: string;
+    level?: string;
     ingredientValue?: string;
     searchQuery = '';
     coffeeRecipeData: any[] = [];
@@ -37,7 +36,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
-        private router: Router,
         private seoService: SEOService,
         private toastService: ToastrService,
         private translator: TranslateService,
@@ -98,7 +96,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
-            level: this.label?.toLowerCase(),
+            level: this.level?.toLowerCase(),
             category_slug: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
