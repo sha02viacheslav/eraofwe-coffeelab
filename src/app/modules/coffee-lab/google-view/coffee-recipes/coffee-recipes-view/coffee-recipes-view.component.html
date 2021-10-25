@@ -32,9 +32,9 @@
                     [options]="levels"
                     optionLabel="label"
                     optionValue="value"
-                    [(ngModel)]="label"
+                    [(ngModel)]="level"
                     (onChange)="getData()"
-                    [placeholder]="'difficulty' | translate"
+                    [placeholder]="'levels' | translate"
                     styleClass="round-border"
                 >
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
