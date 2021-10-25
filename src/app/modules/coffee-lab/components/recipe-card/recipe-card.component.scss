@@ -13,6 +13,20 @@
         object-fit: cover;
     }
 
+    .ng-lazyloaded {
+        height: 234px;
+        min-height: 234px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        object-fit: cover;
+        width: 100%;
+    }
+    .ng-lazyloading {
+        height: 234px;
+        min-height: 234px;
+        object-fit: cover;
+        width: unset;
+    }
     .recipe-name {
         .recipe-title {
             height: 40px;

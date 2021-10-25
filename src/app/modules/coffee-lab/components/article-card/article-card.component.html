@@ -6,12 +6,14 @@
             </div>
             <div class="btn-icon save" (click)="onFocus($event)"></div>
         </div>
-        <img
-            [lazyLoad]="article.cover_image_thumb_url"
-            src="assets/images/empty.svg"
-            class="w-100 my-3"
-            [alt]="article.title"
-        />
+        <div class="d-flex justify-content-center">
+            <img
+                [lazyLoad]="article.cover_image_thumb_url"
+                src="assets/images/empty.svg"
+                class="my-3"
+                [alt]="article.title"
+            />
+        </div>
         <div class="mx-4">
             <div class="d-flex justify-content-between">
                 <div class="d-flex align-like">
