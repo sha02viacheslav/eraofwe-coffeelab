@@ -9,7 +9,7 @@ import { getLangRoute } from '@utils';
 })
 export class CategoryListComponent implements OnInit {
     @Input() categoryList: any[] = [];
-
+    @Input() isArticlePage: boolean;
     constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {}

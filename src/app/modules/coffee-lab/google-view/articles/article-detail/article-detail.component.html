@@ -3,10 +3,10 @@
 <div class="position-relative loader-wrap mt-4 pb-mt-45" *ngIf="!loading">
     <ng-container *ngIf="detailsData">
         <div class="article-main-block">
-            <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-center">
-                <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+            <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
+                <app-category-list [isArticlePage]="true" [categoryList]="detailsData?.categories"></app-category-list>
             </div>
-            <div class="px-0 px-md-475">
+            <div class="px-0">
                 <h1 class="main-heading fnt-bold px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                     {{ detailsData?.title || '--' }}
                 </h1>

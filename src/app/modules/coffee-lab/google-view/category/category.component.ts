@@ -33,8 +33,8 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     topWriters: any[] = [];
     filterBy: any;
     isAvailableTranslation?: any;
-    selectedOrder = '';
-    selectedRecipeOrder = '';
+    selectedOrder: string;
+    selectedRecipeOrder: string;
     isAvailableRecipeTranslation?: any;
     page = 1;
     menuItems = [
@@ -70,7 +70,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         },
     ];
     translationsList: any[] = [];
-    sortBy = '';
+    sortBy: string;
     rows = 10;
     totalRecords = 0;
     jsonLD: any;

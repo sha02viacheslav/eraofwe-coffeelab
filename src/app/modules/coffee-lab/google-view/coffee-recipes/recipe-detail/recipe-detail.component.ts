@@ -183,9 +183,9 @@ export class RecipeDetailComponent implements OnInit {
         let title: string;
         let description: string;
         if (this.detailsData?.name) {
-            title = this.detailsData?.name.concat(' - Era of We Coffee Marketplace');
+            title = this.detailsData?.name.concat(' - Era of We Coffee Forum');
         } else {
-            title = 'Era of We Coffee Marketplace';
+            title = 'Era of We Coffee Forum';
         }
         if (this.detailsData?.description) {
             if (this.globalsService.getJustText(this.detailsData?.description).length < 60) {

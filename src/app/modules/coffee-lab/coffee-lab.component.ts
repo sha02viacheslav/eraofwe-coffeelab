@@ -1,12 +1,10 @@
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { environment } from '@env/environment';
-import { protectPassword } from '@constants';
 import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { DestroyableComponent } from '@base-components';
+import { protectPassword } from '@constants';
+import { environment } from '@env/environment';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { DestroyableComponent } from '@base-components';
-import { getLangRoute } from '@utils';
-import { CoffeeLabService } from '@services';
 @Component({
     selector: 'app-coffee-lab',
     templateUrl: './coffee-lab.component.html',
@@ -17,7 +15,7 @@ export class CoffeeLabComponent extends DestroyableComponent implements OnInit, 
     isMatched = !environment.needProtect;
     showAll = true;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: object, private coffeeLabService: CoffeeLabService) {
+    constructor(@Inject(PLATFORM_ID) private platformId: object) {
         super();
         if (isPlatformBrowser(this.platformId)) {
             this.showAll = false;
@@ -42,9 +40,5 @@ export class CoffeeLabComponent extends DestroyableComponent implements OnInit, 
 
     onCheckPassword(password: string) {
         this.isMatched = password === protectPassword || !environment.needProtect;
-    }
-
-    getLang() {
-        return getLangRoute(this.coffeeLabService.currentForumLanguage);
     }
 }

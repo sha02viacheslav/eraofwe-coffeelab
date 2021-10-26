@@ -66,8 +66,10 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             }
         });
 
-        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
-            this.showAll = false;
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
             window.scrollTo(0, 0);
         }
     }
@@ -165,9 +167,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         let title: string;
         let description: string;
         if (this.detailsData?.title) {
-            title = this.detailsData?.title.concat(' - Era of We Coffee Marketplace');
+            title = this.detailsData?.title.concat(' - Era of We Coffee Forum');
         } else {
-            title = 'Era of We Coffee Marketplace';
+            title = 'Era of We Coffee Forum';
         }
         if (this.detailsData?.content) {
             if (this.detailsData?.articleContentText.length < 60) {

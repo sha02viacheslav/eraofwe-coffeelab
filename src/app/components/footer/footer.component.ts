@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
-import { CoffeeLabService } from '@services';
-import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-footer',
@@ -11,11 +9,7 @@ import { getLangRoute } from '@utils';
 export class FooterComponent implements OnInit {
     readonly env = environment;
     language: string;
-    constructor(private coffeeLabService: CoffeeLabService) {}
+    constructor() {}
 
     ngOnInit(): void {}
-
-    getLang() {
-        return getLangRoute(this.coffeeLabService.currentForumLanguage);
-    }
 }
