@@ -89,13 +89,11 @@ export class RecipeDetailComponent implements OnInit {
 
     getRecipeList() {
         const params = {
-            sort_by: 'created_at',
-            sort_order: 'desc',
-            publish: true,
+            count: 10,
         };
         this.coffeeLabService.getPopularList('recipe', params).subscribe((res) => {
             if (res.success) {
-                this.relatedData = res.result.filter((item: any) => item.slug !== this.idOrSlug).slice(0, 4);
+                this.relatedData = res.result;
                 this.relatedData.map((item) => {
                     item.description = this.globalsService.getJustText(item.description);
                     return item;

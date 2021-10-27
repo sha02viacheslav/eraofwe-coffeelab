@@ -30,7 +30,12 @@
                 <div class="row" *ngIf="!isLoading">
                     <div class="col-12 col-md-7 px-0">
                         <div class="d-block ml-25 mr-25 ml-md-3 mr-md-0">
-                            <app-questions [questions]="questions" [totalRecords]="totalRecords"></app-questions>
+                            <app-questions
+                                [pages]="page"
+                                [rows]="rows"
+                                [questions]="questions"
+                                [totalRecords]="totalRecords"
+                            ></app-questions>
                         </div>
                         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
                     </div>
@@ -67,7 +72,12 @@
                     <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                 </div>
                 <div *ngIf="!isLoading">
-                    <app-articles [articles]="articles" [totalRecords]="totalRecords"></app-articles>
+                    <app-articles
+                        [pages]="page"
+                        [rows]="rows"
+                        [articles]="articles"
+                        [totalRecords]="totalRecords"
+                    ></app-articles>
                 </div>
 
                 <div *ngIf="!isLoading && !articles?.length" class="text-center my-4 fnt-muli text-clr334">
@@ -79,7 +89,12 @@
                     <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                 </div>
                 <div *ngIf="!isLoading">
-                    <app-recipes [recipes]="recipes" [totalRecords]="totalRecords"></app-recipes>
+                    <app-recipes
+                        [pages]="page"
+                        [rows]="rows"
+                        [recipes]="recipes"
+                        [totalRecords]="totalRecords"
+                    ></app-recipes>
                 </div>
 
                 <div *ngIf="!isLoading && !recipes?.length" class="text-center my-4 fnt-muli text-clr24">

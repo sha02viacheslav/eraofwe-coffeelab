@@ -37,6 +37,11 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     selectedRecipeOrder: string;
     isAvailableRecipeTranslation?: any;
     page = 1;
+    translationsList: any[] = [];
+    sortBy: string;
+    rows = 10;
+    totalRecords = 0;
+    jsonLD: any;
     menuItems = [
         {
             label: 'question_answers',
@@ -69,11 +74,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
             value: true,
         },
     ];
-    translationsList: any[] = [];
-    sortBy: string;
-    rows = 10;
-    totalRecords = 0;
-    jsonLD: any;
 
     constructor(
         public location: Location,
@@ -94,6 +94,15 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
                 this.getCategories(false);
             }
             this.isCategoryCalled++;
+        });
+        this.activateRoute.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                this.page = +params.get('page');
+                if (this.page < 1) {
+                    this.page = 1;
+                }
+            }
+            this.onChangeTab(this.selectedTab);
         });
     }
 
@@ -208,8 +217,8 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
             translations_available: this.isAvailableTranslation,
             publish: true,
             category_slug: this.slug,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: 9,
         };
         this.isLoading = true;
         this.coffeeLabService.getForumList('article', params).subscribe((res) => {
@@ -230,8 +239,8 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
             publish: true,
             translations_available: this.isAvailableRecipeTranslation,
             category_slug: this.slug,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: 9,
         };
         this.isLoading = true;
         this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
