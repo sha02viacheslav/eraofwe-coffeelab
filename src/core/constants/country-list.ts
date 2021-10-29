@@ -343,7 +343,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Glorioso Islands',
-        isoCode: 'TF',
+        isoCode: 'FR-GI',
     },
     {
         name: 'Greece',
@@ -463,7 +463,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Jarvis Island',
-        isoCode: 'UM',
+        isoCode: 'UM-1',
     },
     {
         name: 'Jersey',
@@ -471,7 +471,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Johnston Atoll',
-        isoCode: 'UM',
+        isoCode: 'UM-2',
     },
     {
         name: 'Jordan',
@@ -551,7 +551,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Macedonia, Former Yugoslav Republic',
-        isoCode: 'MK',
+        isoCode: 'MK-1',
     },
     {
         name: 'Madagascar',
@@ -611,7 +611,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Midway Islands',
-        isoCode: 'UM',
+        isoCode: 'UM-2',
     },
     {
         name: 'Moldova',
@@ -783,7 +783,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Scotland',
-        isoCode: 'GB',
+        isoCode: 'GB-SCT',
     },
     {
         name: 'Senegal',
@@ -883,7 +883,7 @@ export const COUNTRY_LIST: Country[] = [
     },
     {
         name: 'Tobago',
-        isoCode: 'TT',
+        isoCode: 'TT-1',
     },
     {
         name: 'Toga',
