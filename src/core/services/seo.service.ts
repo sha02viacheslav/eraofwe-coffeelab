@@ -3,12 +3,18 @@ import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
 import { seoVariables } from '@constants';
+import { GlobalsService } from './globals.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SEOService {
-    constructor(private title: Title, @Inject(DOCUMENT) private doc, private meta: Meta) {}
+    constructor(
+        private title: Title,
+        @Inject(DOCUMENT) private doc,
+        private meta: Meta,
+        private globalsService: GlobalsService,
+    ) {}
     setPageTitle(title = '') {
         // Have to add ... to prevent duplicated title and h1 issue
         this.title.setTitle(title.length > 60 ? title.substr(0, 60) + '...' : title);
@@ -25,6 +31,8 @@ export class SEOService {
     }
 
     setSEO(title: string, description: string) {
+        title = this.globalsService.getJustText(title);
+        description = this.globalsService.getJustText(description);
         this.setPageTitle(title);
         this.setMetaData('name', 'description', description.substr(0, 160));
 

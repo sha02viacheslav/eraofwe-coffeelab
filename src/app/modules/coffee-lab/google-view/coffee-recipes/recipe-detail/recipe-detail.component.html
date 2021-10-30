@@ -27,6 +27,7 @@
                             </div>
                             <div class="pl-2" *ngIf="detailsData?.translations">
                                 <app-translation-dropdown
+                                    (isToastCalled)="toastCalled($event)"
                                     forumType="coffee-recipes"
                                     [translatedList]="detailsData?.translations"
                                 ></app-translation-dropdown>
@@ -390,4 +391,4 @@
     </span>
 </ng-template>
 
-<app-translate-toast [language]="detailsData?.lang_code"></app-translate-toast>
+<app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>

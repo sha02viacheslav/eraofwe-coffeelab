@@ -39,6 +39,7 @@
                                 <app-forum-menu></app-forum-menu>
                                 <div class="translate-wrapper" *ngIf="postItem.translations">
                                     <app-translation-dropdown
+                                        (isToastCalled)="toastCalled($event)"
                                         forumType="qa-forum"
                                         [translatedList]="postItem.translations"
                                     ></app-translation-dropdown>
@@ -50,6 +51,7 @@
                             *ngIf="postItem.translations"
                         >
                             <app-translation-dropdown
+                                (isToastCalled)="toastCalled($event)"
                                 forumType="qa-forum"
                                 [translatedList]="postItem.translations"
                             ></app-translation-dropdown>
@@ -74,7 +76,7 @@
                                 </div>
                                 <!-- <span class="d-flex mb-05 fnt-300 text-clr334 mr-2">{{ postItem.likes }}</span> -->
                             </div>
-                            <div class="btn-icon save" (click)="onFocus()"></div>
+                            <div class="btn-icon save ml-25" (click)="onFocus()"></div>
                         </div>
                         <div class="btn-icon share" (click)="onFocus()"></div>
                     </div>
@@ -106,8 +108,8 @@
                                         answerDetail?.original_details?.question_slug
                                     )
                                 "
-                                >{{ answerDetail?.original_details?.question | titlecase }}</a
-                            >
+                                [innerHTML]="answerDetail?.original_details?.question | titlecase"
+                            ></a>
                         </div>
                     </div>
                 </div>
@@ -123,4 +125,4 @@
     <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 </div>
 <app-loading *ngIf="loading"></app-loading>
-<app-translate-toast [language]="detailsData?.lang_code"></app-translate-toast>
+<app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>

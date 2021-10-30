@@ -27,6 +27,7 @@ export class QuestionDetailComponent implements OnInit {
     previousUrl: string;
     answerDetail: any;
     urlLang: string;
+    showToaster = false;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -201,5 +202,11 @@ export class QuestionDetailComponent implements OnInit {
 
     getLink(language, slug) {
         return `/${getLangRoute(language)}/qa-forum/${slug}`;
+    }
+
+    toastCalled(event) {
+        if (event) {
+            this.showToaster = true;
+        }
     }
 }

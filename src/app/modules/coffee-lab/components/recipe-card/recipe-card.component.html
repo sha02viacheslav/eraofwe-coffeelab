@@ -1,7 +1,7 @@
 <a [routerLink]="getLink(recipe)" class="text-non-underline">
     <div class="coffee-item" (click)="gotoDetailPage($event, recipe)">
         <div class="position-relative">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center card-hght">
                 <img [lazyLoad]="recipe.cover_image_thumb_url" src="assets/images/empty.svg" [alt]="recipe?.name" />
             </div>
             <span class="expertise fnt-12"> {{ recipe.expertise }} </span>

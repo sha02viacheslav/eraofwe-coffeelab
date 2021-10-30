@@ -39,6 +39,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     orignalArticleName: string;
     urlLang: string;
     showAll = true;
+    showToaster = false;
 
     constructor(
         @Inject(DOCUMENT) private doc,
@@ -261,5 +262,11 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 }
             }
         });
+    }
+
+    toastCalled(event) {
+        if (event) {
+            this.showToaster = true;
+        }
     }
 }

@@ -52,6 +52,7 @@ export class RecipeDetailComponent implements OnInit {
     allComments: any[] = [];
     showCommentBtn = false;
     urlLang: string;
+    showToaster = false;
     constructor(
         private coffeeLabService: CoffeeLabService,
         public router: Router,
@@ -257,5 +258,11 @@ export class RecipeDetailComponent implements OnInit {
 
     onFocus() {
         this.dialogSrv.open(SignupModalComponent, {});
+    }
+
+    toastCalled(event) {
+        if (event) {
+            this.showToaster = true;
+        }
     }
 }

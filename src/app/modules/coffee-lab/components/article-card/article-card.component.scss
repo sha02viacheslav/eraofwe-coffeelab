@@ -4,6 +4,13 @@
     height: 100%;
     border: 1px solid #d0d0d0;
     transition: transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    .card-hght {
+        background-color: #f8f8f8;
+        height: 234px;
+        min-height: 234px;
+        border-radius: 14px;
+        align-items: center;
+    }
     .ng-lazyloaded {
         height: 243px;
         min-height: 243px;
@@ -11,9 +18,10 @@
         width: 100%;
     }
     .ng-lazyloading {
-        height: 243px;
-        min-height: 243px;
+        height: 64px;
+        min-height: 64px;
         object-fit: cover;
+        border-radius: 0px;
         width: unset;
     }
     @media (min-width: 992px) {
