@@ -46,10 +46,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'AW',
     },
     {
-        name: 'Ashmore and Cartier Island',
-        isoCode: 'AUS',
-    },
-    {
         name: 'Australia',
         isoCode: 'AU',
     },
@@ -342,10 +338,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'GI',
     },
     {
-        name: 'Glorioso Islands',
-        isoCode: 'FR-GI',
-    },
-    {
         name: 'Greece',
         isoCode: 'GR',
     },
@@ -406,10 +398,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'HK',
     },
     {
-        name: 'Howland Island',
-        isoCode: 'UM',
-    },
-    {
         name: 'Hungary',
         isoCode: 'HU',
     },
@@ -454,24 +442,12 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'JM',
     },
     {
-        name: 'Jan Mayen',
-        isoCode: 'SJ',
-    },
-    {
         name: 'Japan',
         isoCode: 'JP',
     },
     {
-        name: 'Jarvis Island',
-        isoCode: 'UM-1',
-    },
-    {
         name: 'Jersey',
         isoCode: 'JE',
-    },
-    {
-        name: 'Johnston Atoll',
-        isoCode: 'UM-2',
     },
     {
         name: 'Jordan',
@@ -550,10 +526,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'MO',
     },
     {
-        name: 'Macedonia, Former Yugoslav Republic',
-        isoCode: 'MK-1',
-    },
-    {
         name: 'Madagascar',
         isoCode: 'MG',
     },
@@ -608,10 +580,6 @@ export const COUNTRY_LIST: Country[] = [
     {
         name: 'Federated States of Micronesia',
         isoCode: 'FM',
-    },
-    {
-        name: 'Midway Islands',
-        isoCode: 'UM-2',
     },
     {
         name: 'Moldova',
@@ -782,10 +750,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'SA',
     },
     {
-        name: 'Scotland',
-        isoCode: 'GB-SCT',
-    },
-    {
         name: 'Senegal',
         isoCode: 'SN',
     },
@@ -846,7 +810,7 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'SR',
     },
     {
-        name: 'Svalbard',
+        name: 'Svalbard and Jan Mayen',
         isoCode: 'SJ',
     },
     {
@@ -882,10 +846,6 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'TH',
     },
     {
-        name: 'Tobago',
-        isoCode: 'TT-1',
-    },
-    {
         name: 'Toga',
         isoCode: 'TG',
     },
@@ -898,7 +858,7 @@ export const COUNTRY_LIST: Country[] = [
         isoCode: 'TO',
     },
     {
-        name: 'Trinidad',
+        name: 'Trinidad and Tobago',
         isoCode: 'TT',
     },
     {
@@ -932,6 +892,10 @@ export const COUNTRY_LIST: Country[] = [
     {
         name: 'United Kingdom',
         isoCode: 'GB',
+    },
+    {
+        name: 'United States Minor Outlying Islands',
+        isoCode: 'UM',
     },
     {
         name: 'Uruguay',
