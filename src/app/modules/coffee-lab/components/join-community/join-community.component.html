@@ -16,7 +16,11 @@
             class="py-3"
             [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': ind === relatedData.length }"
         >
-            <a [routerLink]="[getLink(data, null).url]" class="fnt-semi-bold text-clr24">{{ data.question }}</a>
+            <a
+                [routerLink]="[getLink(data, null).url]"
+                class="fnt-semi-bold text-clr24"
+                [innerHTML]="data.question"
+            ></a>
         </p>
     </div>
     <div *ngIf="!relatedData.length" class="text-center my-4 text-clr24">
