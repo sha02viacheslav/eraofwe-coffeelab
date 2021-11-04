@@ -135,7 +135,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
-                    this.detailsData.description = this.detailsData.description.match(/.{1,50}/g);
+                    this.detailsData.description = (this.detailsData?.description || '').match(/.{1,50}/g);
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
