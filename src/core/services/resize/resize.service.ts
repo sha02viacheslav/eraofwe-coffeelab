@@ -8,11 +8,11 @@ export class ResizeService {
     private readonly tabletMinWidth = 768;
     private readonly desktopMinWidth = 992;
 
-    isMobile$ = isPlatformBrowser(this.platformId) ? window.innerWidth < this.tabletMinWidth : false;
+    isMobile$ = isPlatformBrowser(this.platformId) ? window.innerWidth < this.tabletMinWidth : true;
     isTablet$ = isPlatformBrowser(this.platformId)
         ? window.innerWidth < this.desktopMinWidth && window.innerWidth >= this.tabletMinWidth
         : false;
-    isDesktop$ = isPlatformBrowser(this.platformId) ? window.innerWidth >= this.desktopMinWidth : true;
+    isDesktop$ = isPlatformBrowser(this.platformId) ? window.innerWidth >= this.desktopMinWidth : false;
 
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
         if (isPlatformBrowser(this.platformId)) {
