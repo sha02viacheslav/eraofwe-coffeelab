@@ -134,8 +134,12 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    this.detailsData = res.result;
-                    this.detailsData.descriptionArray = (this.detailsData?.description || '').match(/.{1,50}/g);
+                    const textContent = this.globalsService.getJustText(res.result?.description);
+                    this.detailsData = {
+                        ...res.result,
+                        descriptionText: textContent,
+                        descriptionArray: textContent.match(/.{1,50}/g),
+                    };
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
@@ -210,13 +214,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.description) {
-            if (this.detailsData?.description.length < 60) {
-                description = this.detailsData?.description.concat(
+        if (this.detailsData?.descriptionText) {
+            if (this.detailsData?.descriptionText.length < 60) {
+                description = this.detailsData?.descriptionText.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.description;
+                description = this.detailsData?.descriptionText;
             }
         } else {
             description =
@@ -258,7 +262,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     author: this.detailsData?.posted_user,
                     cookTime: this.detailsData?.cooking_time,
                     datePublished: this.detailsData?.posted_at,
-                    description: this.detailsData?.description,
+                    description: this.detailsData?.descriptionText,
                     image: this.detailsData?.cover_image_url,
                     recipeIngredient: this.detailsData?.ingredients?.map((item) => {
                         return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
