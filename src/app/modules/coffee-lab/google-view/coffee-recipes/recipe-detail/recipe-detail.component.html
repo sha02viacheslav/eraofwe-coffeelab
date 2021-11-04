@@ -7,7 +7,7 @@
                 <div class="recip-content pt-2 pt-lg-45">
                     <img
                         class="w-100 br-4 recip-img"
-                        [src]="detailsData?.cover_image_url"
+                        [src]="isMobile$ ? detailsData?.cover_image_thumb_url : detailsData?.cover_image_url"
                         [alt]="detailsData?.name + ' cover image'"
                     />
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
