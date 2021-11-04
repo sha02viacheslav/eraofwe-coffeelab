@@ -17,8 +17,8 @@
                         <h1 class="fnt-bold mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
-                        <p class="fnt-20 fnt-semi-bold mt-3 mb-md-35 mb-35 my-md-4">
-                            {{ detailsData?.description || '--' }}
+                        <p class="fnt-20 fnt-semi-bold mt-3 mt-md-4 mb-35 mb-md-4">
+                            <span *ngFor="let item of detailsData?.description">{{ item }}</span>
                         </p>
                         <div class="d-md-flex mb-4 mb-md-0">
                             <div class="fnt-semi-bold text-clr588 mb-md-45">
