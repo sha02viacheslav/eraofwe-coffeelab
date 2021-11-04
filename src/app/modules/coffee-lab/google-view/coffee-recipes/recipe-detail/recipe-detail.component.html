@@ -7,7 +7,7 @@
                 <div class="recip-content pt-2 pt-lg-45">
                     <img
                         class="w-100 br-4 recip-img"
-                        [src]="isMobile$ ? detailsData?.cover_image_thumb_url : detailsData?.cover_image_url"
+                        [src]="detailsData?.cover_image_url"
                         [alt]="detailsData?.name + ' cover image'"
                     />
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
@@ -17,9 +17,9 @@
                         <h1 class="fnt-bold mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
-                        <p class="fnt-20 fnt-semi-bold mt-3 mt-md-4 mb-35 mb-md-4">
+                        <div class="fnt-20 fnt-semi-bold mt-3 mt-md-4 mb-35 mb-md-4">
                             <span *ngFor="let item of detailsData?.descriptionArray">{{ item }}</span>
-                        </p>
+                        </div>
                         <div class="d-md-flex mb-4 mb-md-0">
                             <div class="fnt-semi-bold text-clr588 mb-md-45">
                                 {{ 'published' | translate }}
