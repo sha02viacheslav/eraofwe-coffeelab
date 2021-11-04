@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
+import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
@@ -10,6 +10,9 @@ import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { getLangRoute } from '@utils';
+import { ResizeableComponent } from '@base-components';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -17,7 +20,7 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./recipe-detail.component.scss'],
     providers: [MessageService],
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
@@ -53,19 +56,23 @@ export class RecipeDetailComponent implements OnInit {
     showCommentBtn = false;
     urlLang: string;
     showToaster = false;
+    showAll = true;
+
     constructor(
-        private coffeeLabService: CoffeeLabService,
-        public router: Router,
-        private activatedRoute: ActivatedRoute,
-        private seoService: SEOService,
-        private toastService: ToastrService,
-        private startupService: StartupService,
-        public globalsService: GlobalsService,
-        private messageService: MessageService,
-        public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
+        private activatedRoute: ActivatedRoute,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+        private globalsService: GlobalsService,
+        private messageService: MessageService,
+        private router: Router,
+        private seoService: SEOService,
+        private startupService: StartupService,
+        private toastService: ToastrService,
+        protected resizeService: ResizeService,
     ) {
+        super(resizeService);
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
@@ -79,9 +86,30 @@ export class RecipeDetailComponent implements OnInit {
                 window.scrollTo(0, 0);
             }
         });
+
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
+            window.scrollTo(0, 0);
+        }
     }
 
     ngOnInit(): void {}
+
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                    }
+                });
+        }
+    }
 
     onRealtedRoute(langCode, slug) {
         this.router.navigateByUrl(`/en/coffee-recipes/${slug}`);
