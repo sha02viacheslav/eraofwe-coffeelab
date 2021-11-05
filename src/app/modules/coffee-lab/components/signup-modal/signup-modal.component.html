@@ -25,7 +25,7 @@
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
-            <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''" class="email-btn">
+            <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''" class="signup-btn email-btn">
                 <div class="d-flex fnt-16 align-items-center p-3 cursor-pointer">
                     <img src="assets/images/email.svg" />
                     <span class="fnt-semi-bold ml-3">
@@ -33,9 +33,9 @@
                     </span>
                 </div>
             </a>
-            <div class="mt-5 fnt-16">
+            <div class="mt-5 fnt-16 fnt-semi-bold">
                 {{ 'already_have_account' | translate }}
-                <a [href]="ssoWeb + '/login'" class="login-link text-center" [rel]="isStaging ? 'nofollow' : ''">{{
+                <a [href]="ssoWeb + '/login'" class="brown-cta" [rel]="isStaging ? 'nofollow' : ''">{{
                     'login' | translate
                 }}</a>
             </div>
