@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/
 import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { environment } from '@env/environment';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
@@ -147,7 +147,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.RECIPE]
                     }`;
                     this.setSEO();
-                    this.setSchemaMackup();
+                    if (isPlatformServer(this.platformId)) {
+                        this.setSchemaMackup();
+                    }
                     if (
                         this.detailsData?.original_recipe_state &&
                         this.detailsData?.original_recipe_state === 'ACTIVE'
