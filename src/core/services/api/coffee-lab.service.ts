@@ -36,14 +36,14 @@ export class CoffeeLabService extends ApiService {
     }
 
     getPopularList(type: string, options?: any, language = this.currentForumLanguage): Observable<any> {
-        const data = {
-            api_call: `/general/coffee-lab/popular-posts/${type}s?${this.serializeParams(options)}`,
-            method: 'GET',
-        };
         const httpOptions = {
             headers: new HttpHeaders({ 'Accept-Language': language }),
         };
-        return this.http.post(this.orgPostUrl, data, httpOptions);
+        return this.get(
+            this.orgPostUrl,
+            `general/coffee-lab/popular-posts/${type}s?${this.serializeParams(options)}`,
+            httpOptions,
+        );
     }
 
     getUserDetail(userId: string | number, orgType: string) {
