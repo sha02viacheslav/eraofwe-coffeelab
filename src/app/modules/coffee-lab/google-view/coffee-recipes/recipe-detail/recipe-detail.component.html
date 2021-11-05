@@ -18,7 +18,12 @@
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
                         <div class="fnt-20 fnt-semi-bold mt-3 mt-md-4 mb-35 mb-md-4">
-                            <p *ngFor="let item of detailsData?.descriptionArray" class="d-inline">{{ item }}</p>
+                            <p
+                                *ngFor="let item of (detailsData?.descriptionArray).slice(0, showAll ? 1000 : 3)"
+                                class="d-inline"
+                            >
+                                {{ item }}
+                            </p>
                         </div>
                         <div class="d-md-flex mb-4 mb-md-0">
                             <div class="fnt-semi-bold text-clr588 mb-md-45">

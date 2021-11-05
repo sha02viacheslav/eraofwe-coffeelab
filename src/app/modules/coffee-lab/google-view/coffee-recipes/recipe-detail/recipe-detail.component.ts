@@ -100,7 +100,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
             const scrollEvent = fromEvent(window, 'scroll')
-                .pipe(debounceTime(100))
                 .pipe(takeUntil(this.unsubscribeAll$))
                 .subscribe((res) => {
                     if (window.scrollY > 10) {
