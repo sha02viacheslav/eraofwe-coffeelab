@@ -10,7 +10,7 @@
         padding: 0 10rem;
     }
     .main-heading {
-        font-family: Cormorant Garamond;
+        font-family: $secondary-font-family;
         text-align: center;
         font-size: 3rem;
         word-break: break-word;
@@ -45,7 +45,7 @@
     object-fit: cover;
 }
 .fnt-fly {
-    font-family: Cormorant Garamond;
+    font-family: $secondary-font-family;
     font-size: 22px;
     line-height: 1.23;
 }
