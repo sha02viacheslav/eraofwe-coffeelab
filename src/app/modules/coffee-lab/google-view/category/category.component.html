@@ -6,8 +6,8 @@
     </div>
     <div class="d-block d-md-flex">
         <div class="mt-1 mt-md-2 mb-4 mb-lg-5 pb-1">
-            <h1 class="title-header text-clr334 fnt-700">{{ currentCategory?.name | titlecase }}</h1>
-            <p class="text-clr334 col-md-8 pl-1 col-12">
+            <h1 class="title-header fnt-700">{{ currentCategory?.name | titlecase }}</h1>
+            <p class="col-md-8 pl-1 col-12">
                 {{ 'coffee_roasting_is_the_process' | translate }}
             </p>
         </div>
@@ -80,7 +80,7 @@
                     ></app-articles>
                 </div>
 
-                <div *ngIf="!isLoading && !articles?.length" class="text-center my-4 text-clr334">
+                <div *ngIf="!isLoading && !articles?.length" class="text-center my-4">
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>

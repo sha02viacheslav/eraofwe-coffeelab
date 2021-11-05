@@ -3,7 +3,7 @@
         <i class="pi pi-times fnt-18 text-clr588 cross-icon cursor-pointer" (click)="close()"></i>
     </div>
     <div class="text-center pb-5">
-        <div class="lh-157 fnt-36 mt-5 pt-1 text-clr334 fnt-semi-bold join-head mb-475 pl-4 pr-5">
+        <div class="lh-157 fnt-36 mt-5 pt-1 fnt-semi-bold join-head mb-475 pl-4 pr-5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_now_coffee_lab') | translate }}
         </div>
         <div class="pr-2 w-100 align-items-center d-flex flex-column">
@@ -33,7 +33,7 @@
                     </span>
                 </div>
             </a>
-            <div class="mt-5 fnt-16 text-clr334">
+            <div class="mt-5 fnt-16">
                 {{ 'already_have_account' | translate }}
                 <a [href]="ssoWeb + '/login'" class="login-link text-center" [rel]="isStaging ? 'nofollow' : ''">{{
                     'login' | translate
