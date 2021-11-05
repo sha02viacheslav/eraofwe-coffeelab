@@ -137,7 +137,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.detailsData = {
                         ...res.result,
                         descriptionText: textContent,
-                        descriptionArray: textContent.match(/.{1,50}/g),
                     };
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
