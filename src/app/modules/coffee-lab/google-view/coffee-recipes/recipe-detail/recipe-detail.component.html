@@ -127,6 +127,9 @@
                                 <p class="fnt-18 fnt-600">{{ 'mark_as_brewed' | translate }}</p>
                             </div>
                         </div>
+                        <div *ngIf="detailsData?.introduction" class="mx-md-5 mx-0 mt-425 row step-desc border-0">
+                            <div [innerHTML]="detailsData?.introduction"></div>
+                        </div>
                         <div class="row pl-md-5">
                             <div class="col-md-5">
                                 <div *ngIf="detailsData?.ingredients" class="mt-45">

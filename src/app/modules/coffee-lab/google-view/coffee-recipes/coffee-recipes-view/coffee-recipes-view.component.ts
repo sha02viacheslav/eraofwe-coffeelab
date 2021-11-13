@@ -46,11 +46,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     ngOnInit(): void {
         this.setSEO();
-        this.levels = [
-            { label: 'easy', value: 'easy' },
-            { label: 'intermediate', value: 'intermediate' },
-            { label: 'hard', value: 'hard' },
-        ];
         this.translationsList = [
             { label: 'yes', value: true },
             { label: 'no', value: false },
@@ -105,6 +100,67 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             if (res.success) {
                 this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
                 this.totalRecords = res.result_info.total_count;
+                if (this.coffeeLabService.currentForumLanguage === 'en') {
+                    this.levels = [
+                        {
+                            label: 'Easy',
+                            value: 'Easy',
+                        },
+                        {
+                            label: 'Intermediate',
+                            value: 'Intermediate',
+                        },
+                        {
+                            label: 'Hard',
+                            value: 'Hard',
+                        },
+                    ];
+                } else if (this.coffeeLabService.currentForumLanguage === 'sv') {
+                    this.levels = [
+                        {
+                            label: 'Lätt',
+                            value: 'lätt',
+                        },
+                        {
+                            label: 'Mellanliggande',
+                            value: 'Mellanliggande',
+                        },
+                        {
+                            label: 'Hård',
+                            value: 'Hård',
+                        },
+                    ];
+                } else if (this.coffeeLabService.currentForumLanguage === 'pt') {
+                    this.levels = [
+                        {
+                            label: 'Fácil',
+                            value: 'Fácil',
+                        },
+                        {
+                            label: 'Intermediário',
+                            value: 'Intermediário',
+                        },
+                        {
+                            label: 'Duro',
+                            value: 'Duro',
+                        },
+                    ];
+                } else if (this.coffeeLabService.currentForumLanguage === 'es') {
+                    this.levels = [
+                        {
+                            label: 'Fácil',
+                            value: 'Fácil',
+                        },
+                        {
+                            label: 'Intermedio',
+                            value: 'Intermedio',
+                        },
+                        {
+                            label: 'Duro',
+                            value: 'Duro',
+                        },
+                    ];
+                }
                 this.setSchemaMackup();
             } else {
                 this.toastService.error('Cannot get Recipes data');
