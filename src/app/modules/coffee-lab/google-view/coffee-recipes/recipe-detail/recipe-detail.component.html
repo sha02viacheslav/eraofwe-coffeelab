@@ -142,7 +142,8 @@
                                             *ngFor="let ingredientsItem of detailsData?.ingredients"
                                         >
                                             <label class="fnt-bold mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
-                                                {{ ingredientsItem.quantity }} {{ ingredientsItem.quantity_unit }}
+                                                {{ ingredientsItem.quantity }}
+                                                {{ ingredientsItem.quantity_unit | translate }}
                                             </label>
                                             <label class="fnt-semi-bold mb-0">{{ ingredientsItem.name }}</label>
                                         </div>

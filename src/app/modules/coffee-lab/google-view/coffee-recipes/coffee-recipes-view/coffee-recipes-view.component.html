@@ -37,6 +37,7 @@
                     [placeholder]="'levels' | translate"
                     styleClass="round-border"
                 >
+                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>

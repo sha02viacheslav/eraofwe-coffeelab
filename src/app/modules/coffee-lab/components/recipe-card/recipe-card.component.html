@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-center card-hght">
                 <img [lazyLoad]="recipe.cover_image_thumb_url" src="assets/images/empty.svg" [alt]="recipe?.name" />
             </div>
-            <span class="expertise fnt-12"> {{ recipe.expertise }} </span>
+            <span class="expertise fnt-12"> {{ recipe.expertise | translate }} </span>
         </div>
 
         <div class="m-3 m-md-4">
