@@ -17,8 +17,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class QaForumViewComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
-    sortOptions = [];
-    filterOptions = [];
     sortBy = '';
     filterBy: any;
     questions: any[] = [];
@@ -30,6 +28,15 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     jsonLD: any;
     categoryList: any;
     selectedCategory = null;
+    sortOptions = [
+        { label: 'latest', value: 'latest' },
+        { label: 'most_answered', value: 'most_answered' },
+        { label: 'oldest', value: 'oldest' },
+    ];
+    filterOptions = [
+        { label: 'coffee_experts', value: false },
+        { label: 'coffee_consumer', value: true },
+    ];
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -45,16 +52,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
 
     ngOnInit(): void {
         this.setSEO();
-        this.filterOptions = [
-            { label: 'coffee_experts', value: false },
-            { label: 'coffee_consumer', value: true },
-        ];
-        this.sortOptions = [
-            { label: 'latest', value: 'latest' },
-            { label: 'most_answered', value: 'most_answered' },
-            { label: 'oldest', value: 'oldest' },
-        ];
-
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {
                 this.page = +params.get('page');

@@ -23,14 +23,23 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
-    translationsList: any[] = [];
-
-    levels: any[] = [];
-    orderList: any[] = [];
     selectedOrder = '';
     jsonLD: any;
     categoryList: any[] = [];
     selectedCategory = null;
+    translationsList: any[] = [
+        { label: 'yes', value: true },
+        { label: 'no', value: false },
+    ];
+    levels = [
+        { label: 'expertise_easy', value: 'expertise_easy' },
+        { label: 'expertise_intermediate', value: 'expertise_intermediate' },
+        { label: 'expertise_hard', value: 'expertise_hard' },
+    ];
+    orderList: any[] = [
+        { label: 'latest', value: 'latest' },
+        { label: 'oldest', value: 'oldest' },
+    ];
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -46,19 +55,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     ngOnInit(): void {
         this.setSEO();
-        this.translationsList = [
-            { label: 'yes', value: true },
-            { label: 'no', value: false },
-        ];
-        this.orderList = [
-            { label: 'latest', value: 'latest' },
-            { label: 'oldest', value: 'oldest' },
-        ];
-        this.levels = [
-            { label: 'expertise_easy', value: 'expertise_easy' },
-            { label: 'expertise_intermediate', value: 'expertise_intermediate' },
-            { label: 'expertise_hard', value: 'expertise_hard' },
-        ];
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {
                 this.page = +params.get('page');

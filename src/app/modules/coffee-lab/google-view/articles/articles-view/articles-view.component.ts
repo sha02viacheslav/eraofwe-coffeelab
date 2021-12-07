@@ -16,8 +16,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ArticlesViewComponent extends ResizeableComponent implements OnInit {
     keyword?: string;
-    translationsList: any[] = [];
-    orderList: any[] = [];
     isAvailableTranslation?: any;
     selectedOrder = '';
     articlesData: any[] = [];
@@ -28,6 +26,14 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     jsonLD: any;
     categoryList: any[] = [];
     selectedCategory = null;
+    translationsList: any[] = [
+        { label: 'yes', value: true },
+        { label: 'no', value: false },
+    ];
+    orderList: any[] = [
+        { label: 'latest', value: 'latest' },
+        { label: 'oldest', value: 'oldest' },
+    ];
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -43,15 +49,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     ngOnInit(): void {
         this.setSEO();
-        this.orderList = [
-            { label: 'latest', value: 'latest' },
-            { label: 'oldest', value: 'oldest' },
-        ];
-        this.translationsList = [
-            { label: 'yes', value: true },
-            { label: 'no', value: false },
-        ];
-
         this.route.queryParamMap.subscribe((params) => {
             if (params.has('page')) {
                 this.page = +params.get('page');
@@ -61,7 +58,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             }
             this.refreshData();
         });
-
         let langPrefix = '';
         this.route.paramMap.subscribe((params) => {
             if (params.has('lang')) {

@@ -37,7 +37,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
     selectedRecipeOrder: string;
     isAvailableRecipeTranslation?: any;
     page = 1;
-    translationsList: any[] = [];
     sortBy: string;
     rows = 10;
     totalRecords = 0;
@@ -60,19 +59,17 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         },
     ];
     sortOptions = [
-        { label: 'Latest', value: 'latest' },
-        { label: 'Most answered', value: 'most_answered' },
-        { label: 'Oldest', value: 'oldest' },
+        { label: 'latest', value: 'latest' },
+        { label: 'most_answered', value: 'most_answered' },
+        { label: 'oldest', value: 'oldest' },
     ];
     filterPostedByOptions = [
-        {
-            label: 'Coffee experts',
-            value: false,
-        },
-        {
-            label: 'End consumers',
-            value: true,
-        },
+        { label: 'coffee_experts', value: false },
+        { label: 'coffee_consumer', value: true },
+    ];
+    translationsList: any[] = [
+        { label: 'yes', value: true },
+        { label: 'no', value: false },
     ];
 
     constructor(
@@ -116,19 +113,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
             this.isCategoryCalled++;
         });
         this.getAllTopWriters();
-    }
-
-    setMenItems() {
-        this.translationsList = [
-            {
-                label: this.translator.instant('yes'),
-                value: true,
-            },
-            {
-                label: this.translator.instant('no'),
-                value: false,
-            },
-        ];
     }
 
     onChangeTab(index: number) {

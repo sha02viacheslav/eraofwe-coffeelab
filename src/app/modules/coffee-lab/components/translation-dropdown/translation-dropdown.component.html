@@ -36,7 +36,9 @@
                     {{ translateItem.user_name || translateItem.first_name }}
                 </p>
                 <div class="d-flex align-items-center">
-                    <p class="fnt-12 fnt-bold text-clr588 pr-2">{{ translateItem.language | language }} Translation</p>
+                    <p class="fnt-12 fnt-bold text-clr588 pr-2">
+                        {{ translateItem.language | language }} {{ 'translation' | translate }}
+                    </p>
                     <p class="fnt-12 text-clr588">
                         {{ translateItem.created_at | amTimeAgo | dateAgoReplace }}
                     </p>

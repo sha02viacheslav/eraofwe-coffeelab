@@ -125,6 +125,8 @@
                         styleClass="round-border"
                         [showClear]="true"
                     >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
                 <div class="mb-md-0 mb-3" *ngIf="selectedTab === 2">
@@ -138,6 +140,8 @@
                         styleClass="round-border"
                         [showClear]="true"
                     >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
                 <div *ngIf="selectedTab === 0">
@@ -150,7 +154,10 @@
                         styleClass="round-border text-clr588"
                         [placeholder]="'posted_by' | translate"
                         [showClear]="true"
-                    ></p-dropdown>
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
                 </div>
                 <div class="ml-md-3" [ngClass]="{ 'ml-3': selectedTab === 0 }">
                     <p-dropdown
@@ -166,7 +173,10 @@
                         optionLabel="label"
                         optionValue="value"
                         [showClear]="true"
-                    ></p-dropdown>
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
                 </div>
             </div>
         </div>

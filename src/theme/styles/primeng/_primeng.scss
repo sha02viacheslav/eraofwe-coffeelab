@@ -5,6 +5,7 @@
 @import 'nova';
 @import 'primeng_dialog';
 @import 'primeng_dropdown';
+@import 'primeng_checkbox';
 @import 'primeng_inputtext';
 @import 'primeng_menu';
 @import 'primeng_overlaypanel';
@@ -70,4 +71,8 @@
     & > .p-inputtext {
         padding-left: 3.125rem;
     }
+}
+
+.pi-check:before {
+    content: '\e909';
 }
