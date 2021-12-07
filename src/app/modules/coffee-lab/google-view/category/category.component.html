@@ -1,4 +1,4 @@
-<div class="main-block">
+<div *ngIf="!isLoading" class="main-block">
     <div class="mt-1 mt-lg-3 w-fit-content">
         <a class="back-page" [routerLink]="previousUrl">
             <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
@@ -27,7 +27,7 @@
                 <div class="row mb-475 mb-md-0">
                     <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                 </div>
-                <div class="row" *ngIf="!isLoading">
+                <div class="row">
                     <div class="col-12 col-md-7 px-0">
                         <div class="d-block ml-25 mr-25 ml-md-3 mr-md-0">
                             <app-questions
@@ -39,13 +39,10 @@
                         </div>
                         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
                     </div>
-                    <div *ngIf="!isLoading && questions?.length < 0" class="text-center my-4 text-clr24">
+                    <div *ngIf="questions?.length < 0" class="text-center my-4 text-clr24">
                         {{ 'no_data_is_available' | translate }}
                     </div>
-                    <div
-                        *ngIf="!isLoading"
-                        class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0"
-                    >
+                    <div class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0">
                         <div class="other-category pt-4 mx-3 mx-md-0">
                             <div class="row mx-0 fnt-16 fnt-bold">
                                 {{ 'other_categories' | translate }}
@@ -71,7 +68,7 @@
                 <div class="row mb-475 mb-md-0">
                     <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                 </div>
-                <div *ngIf="!isLoading">
+                <div>
                     <app-articles
                         [pages]="page"
                         [rows]="rows"
@@ -80,7 +77,7 @@
                     ></app-articles>
                 </div>
 
-                <div *ngIf="!isLoading && !articles?.length" class="text-center my-4">
+                <div *ngIf="!articles?.length" class="text-center my-4">
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
@@ -88,7 +85,7 @@
                 <div class="row mb-475 mb-md-0">
                     <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                 </div>
-                <div *ngIf="!isLoading">
+                <div>
                     <app-recipes
                         [pages]="page"
                         [rows]="rows"
@@ -97,7 +94,7 @@
                     ></app-recipes>
                 </div>
 
-                <div *ngIf="!isLoading && !recipes?.length" class="text-center my-4 text-clr24">
+                <div *ngIf="!recipes?.length" class="text-center my-4 text-clr24">
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>

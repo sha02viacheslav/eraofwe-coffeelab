@@ -1,16 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
-import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
 import { Location } from '@angular/common';
-import { Subject } from 'rxjs';
-import { environment } from '@env/environment';
-import { getLangRoute } from '@utils';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { TranslateService } from '@ngx-translate/core';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
+import { environment } from '@env/environment';
+import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
+import { getLangRoute } from '@utils';
+import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-category',
@@ -80,7 +79,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, On
         private toastService: ToastrService,
         private startupService: StartupService,
         protected resizeService: ResizeService,
-        private translator: TranslateService,
         private seoService: SEOService,
     ) {
         super(resizeService);
