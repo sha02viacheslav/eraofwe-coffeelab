@@ -11,17 +11,17 @@
 <div class="d-flex position-relative">
     <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
         <div class="d-flex flex-md-row flex-column pr-lg-2 mb-4">
-            <p-dropdown
+            <p-multiSelect
                 [options]="categoryList"
                 (onChange)="getData()"
                 [(ngModel)]="selectedCategory"
                 styleClass="round-border text-clr588 mb-25 mb-md-0"
                 [placeholder]="'categories' | translate"
+                [maxSelectedLabels]="1"
+                selectedItemsLabel="{0} {{ 'categories' | translate }}"
                 optionLabel="name"
-                optionValue="slug"
-                [showClear]="true"
-            >
-            </p-dropdown>
+                optionValue="parent_id"
+            ></p-multiSelect>
             <p-dropdown
                 [options]="filterOptions"
                 [(ngModel)]="filterBy"
@@ -30,6 +30,7 @@
                 styleClass="round-border text-clr588 ml-0 ml-md-3 mr-3 mb-25 mb-md-0"
                 [placeholder]="'posted_by' | translate"
             >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                 <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
             <p-dropdown
@@ -40,6 +41,7 @@
                 styleClass="round-border"
                 [placeholder]="'sort_by' | translate"
             >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                 <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
         </div>
@@ -73,7 +75,7 @@
                 />
             </div>
         </div>
-        <app-join-community [pages]="page" [type]="PostType.QA"></app-join-community>
+        <app-join-community [pages]="page" [type]="PostType.ARTICLE"></app-join-community>
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
 </div>

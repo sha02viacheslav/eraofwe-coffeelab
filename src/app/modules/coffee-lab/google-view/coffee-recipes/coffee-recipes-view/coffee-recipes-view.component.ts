@@ -30,7 +30,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     selectedOrder = '';
     jsonLD: any;
     categoryList: any[] = [];
-    selectedCategory: string;
+    selectedCategory = null;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -96,7 +96,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
             level: this.level?.toLowerCase(),
-            category_slug: this.selectedCategory,
+            category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };

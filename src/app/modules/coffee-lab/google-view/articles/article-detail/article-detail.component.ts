@@ -93,11 +93,14 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
     getArticleList(): any {
         const params = {
-            count: 10,
+            count: 11,
         };
+        this.relatedData = [];
         this.coffeeLabService.getPopularList('article', params).subscribe((res: any) => {
             if (res.success) {
                 this.relatedData = res.result;
+                this.relatedData = res.result.filter((item) => item.id !== this.detailsData.id);
+                this.relatedData = this.relatedData.slice(0, 10);
             }
         });
     }

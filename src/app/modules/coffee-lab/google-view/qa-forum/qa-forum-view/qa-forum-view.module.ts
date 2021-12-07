@@ -7,7 +7,7 @@ import { SharedModule } from '@shared';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 import { QaForumViewComponent } from './qa-forum-view.component';
 import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
 import { NgxJsonLdModule } from 'ngx-json-ld';
@@ -23,6 +23,7 @@ import { JoinCommunityModule } from '@modules/coffee-lab/components/join-communi
         SharedModule,
         InputTextModule,
         DropdownModule,
+        MultiSelectModule,
         SeoPaginatorModule,
         JoinCommunityModule,
         NgxJsonLdModule,

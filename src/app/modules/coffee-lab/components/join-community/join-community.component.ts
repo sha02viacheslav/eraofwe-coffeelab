@@ -1,9 +1,8 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
-import { RouterMap } from '@constants';
-import { PostType, RouterSlug } from '@enums';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -12,14 +11,13 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./join-community.component.scss'],
 })
 export class JoinCommunityComponent implements OnInit {
-    readonly RouterMap = RouterMap;
-    readonly RouterSlug = RouterSlug;
     ssoWeb = environment.ssoWeb;
+    readonly PostType = PostType;
     @Input() pages: number;
     @Input() type: PostType;
-    @Input() detailType: string;
-    idOrSlug: any;
-    isStaging = environment.needProtect;
+    @Input() categories: any[] = [];
+    @Input() related = false;
+    @Input() showBorderBottom = true;
     relatedData = [];
     isLoading = false;
     constructor(@Inject(DOCUMENT) private document: Document, public coffeeLabService: CoffeeLabService) {}
@@ -30,27 +28,26 @@ export class JoinCommunityComponent implements OnInit {
 
     getQaList() {
         this.isLoading = true;
+        const categories = [];
+        this.categories?.filter((item: any) => categories.push(item.parent_id));
         this.coffeeLabService
-            .getForumList('question', {
-                page: this.pages ? this.pages + 1 : 2,
+            .getForumList(this.type, {
+                page: 1,
                 per_page: 15,
+                category_id: categories,
+                sort_by: 'posted_at',
+                sort_order: 'desc',
             })
             .subscribe((res: any) => {
                 if (res.success) {
-                    this.relatedData = res.result?.questions || [];
+                    this.relatedData = this.type === PostType.QA ? res.result?.questions : res.result;
                     this.isLoading = false;
                 }
             });
     }
 
-    getLink(item: any, answer: any) {
-        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
-        return {
-            url,
-            queryParmas: {
-                answer: answer?.id,
-            },
-        };
+    getLink(item: any) {
+        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
     }
 
     gotoSignup() {

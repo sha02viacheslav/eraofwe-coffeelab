@@ -7,7 +7,7 @@ import { SharedModule } from '@shared';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 import { CoffeeRecipesViewComponent } from './coffee-recipes-view.component';
 import { RecipesModule } from '@modules/coffee-lab/components/recipes/recipes.module';
 
@@ -21,6 +21,7 @@ import { RecipesModule } from '@modules/coffee-lab/components/recipes/recipes.mo
         NgxJsonLdModule,
         InputTextModule,
         DropdownModule,
+        MultiSelectModule,
         RecipesModule,
     ],
 })

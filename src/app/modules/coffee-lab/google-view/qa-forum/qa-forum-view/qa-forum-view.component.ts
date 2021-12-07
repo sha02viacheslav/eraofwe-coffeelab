@@ -29,7 +29,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
     page = 1;
     jsonLD: any;
     categoryList: any;
-    selectedCategory: string;
+    selectedCategory = null;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -94,7 +94,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
                     : this.sortBy === 'latest' || this.sortBy === ''
                     ? 'desc'
                     : 'asc',
-            category_slug: this.selectedCategory,
+            category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };

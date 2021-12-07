@@ -17,7 +17,8 @@
             <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
                 <div class="published">
                     {{ 'published' | translate }}
-                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'longDate' }}
+                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
+                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
                 </div>
                 <div
                     class="mt-2 mt-md-0 ml-3"
@@ -195,7 +196,7 @@
                                     <div class="d-flex">
                                         <img src="assets/images/noun-questions.svg" alt="file-imag" />
                                         <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
-                                            {{ 'read_the_article' | translate }}
+                                            {{ 'read_the_original_article' | translate }}
                                         </p>
                                     </div>
                                     <div class="bg-f8 px-25 py-2">
@@ -301,7 +302,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
-                <app-join-community [type]="PostType.ARTICLE"></app-join-community>
+                <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
             </div>
         </article>
     </ng-container>

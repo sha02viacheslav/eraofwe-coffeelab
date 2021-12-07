@@ -52,6 +52,9 @@
 
 ::ng-deep .forum-content > div {
     word-break: break-word;
+    a:hover {
+        text-decoration: underline !important;
+    }
 }
 ::ng-deep .forum-content img {
     max-width: 100%;

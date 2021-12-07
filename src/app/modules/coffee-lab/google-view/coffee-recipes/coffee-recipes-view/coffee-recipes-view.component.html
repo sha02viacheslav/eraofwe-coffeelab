@@ -15,17 +15,17 @@
     <div class="d-block flex-wrap d-md-flex">
         <div class="d-flex flex-md-row flex-column">
             <div class="mb-25 mb-md-0">
-                <p-dropdown
+                <p-multiSelect
                     [options]="categoryList"
                     (onChange)="getData()"
                     [(ngModel)]="selectedCategory"
-                    styleClass="round-border text-clr588"
+                    styleClass="round-border text-clr588 ml-0 mr-3"
                     [placeholder]="'categories' | translate"
+                    [maxSelectedLabels]="1"
+                    selectedItemsLabel="{0} {{ 'categories' | translate }}"
                     optionLabel="name"
-                    optionValue="slug"
-                    class="ml-0 mr-3"
-                    [showClear]="true"
-                ></p-dropdown>
+                    optionValue="parent_id"
+                ></p-multiSelect>
             </div>
             <div class="mb-25 mb-md-0">
                 <p-dropdown
@@ -51,6 +51,7 @@
                     [placeholder]="'translation_available' | translate"
                     styleClass="round-border"
                 >
+                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>

@@ -24,7 +24,7 @@ export class PublishForumComponent implements OnInit {
         [PostType.QA]: {
             firstBtnValue: 'write_post',
             secondBtnValue: 'create_brew_guide',
-            placeHolderValue: 'ask_your_question',
+            placeHolderValue: 'ask_a_question',
         },
     };
     constructor(public dialogSrv: DialogService) {}

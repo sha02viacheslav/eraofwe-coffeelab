@@ -9,7 +9,7 @@ import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/pag
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 import { ArticlesViewComponent } from './articles-view.component';
 import { ArticlesModule } from '@modules/coffee-lab/components/articles/articles.module';
 
@@ -25,6 +25,7 @@ import { ArticlesModule } from '@modules/coffee-lab/components/articles/articles
         NgxJsonLdModule,
         InputTextModule,
         DropdownModule,
+        MultiSelectModule,
         ArticlesModule,
     ],
 })

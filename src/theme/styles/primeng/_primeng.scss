@@ -8,6 +8,7 @@
 @import 'primeng_inputtext';
 @import 'primeng_menu';
 @import 'primeng_overlaypanel';
+@import 'primeng_multiselect';
 @import 'primeng_paginator';
 @import 'primeng_tabview';
 @import 'primeng_toast';
@@ -40,8 +41,16 @@
     .p-dropdown .p-inputtext {
         padding-right: 0;
     }
+    .p-multiselect-label {
+        padding: 0.9375rem 0.75rem;
+        padding-right: 0;
+    }
 
     .p-dropdown {
+        width: 100%;
+    }
+
+    .p-multiselect {
         width: 100%;
     }
 }

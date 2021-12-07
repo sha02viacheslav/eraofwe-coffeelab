@@ -27,7 +27,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
     page = 1;
     jsonLD: any;
     categoryList: any[] = [];
-    selectedCategory: string;
+    selectedCategory = null;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -87,7 +87,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
-            category_slug: this.selectedCategory,
+            category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };
