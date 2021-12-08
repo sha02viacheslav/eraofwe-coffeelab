@@ -18,12 +18,12 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     totalRecords = 0;
     page = 1;
     isAvailableTranslation?: string;
-    level?: string;
+    level: string;
     ingredientValue?: string;
     searchQuery = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
-    selectedOrder = '';
+    selectedOrder: string;
     jsonLD: any;
     categoryList: any[] = [];
     selectedCategory = null;

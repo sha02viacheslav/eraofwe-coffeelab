@@ -31,6 +31,7 @@
             [(ngModel)]="isAvailableTranslation"
             (ngModelChange)="getData()"
             placeholder="{{ 'translations_available' | translate }}"
+            [showClear]="true"
             styleClass="round-border"
         >
             <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
@@ -43,6 +44,7 @@
                 [placeholder]="'sort_by' | translate"
                 [(ngModel)]="selectedOrder"
                 (ngModelChange)="getData()"
+                [showClear]="true"
                 styleClass="round-border"
             >
                 <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>

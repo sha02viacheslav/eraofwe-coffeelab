@@ -35,6 +35,7 @@
                     [(ngModel)]="level"
                     (onChange)="getData()"
                     [placeholder]="'levels' | translate"
+                    [showClear]="true"
                     styleClass="round-border"
                 >
                     <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
@@ -49,6 +50,7 @@
                     [(ngModel)]="isAvailableTranslation"
                     (onChange)="getData()"
                     [placeholder]="'translation_available' | translate"
+                    [showClear]="true"
                     styleClass="round-border"
                 >
                     <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
@@ -63,6 +65,7 @@
                     [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
                     [placeholder]="'sort_by' | translate"
+                    [showClear]="true"
                     styleClass="round-border mobile-ui"
                 >
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>

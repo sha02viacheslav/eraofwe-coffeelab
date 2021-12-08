@@ -28,6 +28,7 @@
                 [showClear]="true"
                 (ngModelChange)="getData()"
                 styleClass="round-border text-clr588 ml-0 ml-md-3 mr-3 mb-25 mb-md-0"
+                [showClear]="true"
                 [placeholder]="'posted_by' | translate"
             >
                 <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
@@ -38,7 +39,7 @@
                 [(ngModel)]="sortBy"
                 (ngModelChange)="getData()"
                 styleClass="round-border text-clr588 mb-25 mb-md-0"
-                styleClass="round-border"
+                [showClear]="true"
                 [placeholder]="'sort_by' | translate"
             >
                 <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
