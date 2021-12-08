@@ -90,7 +90,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             query: this.searchQuery,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
-            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
+            sort_order: this.selectedOrder === 'latest' || !this.selectedOrder ? 'desc' : 'asc',
             level: this.level?.toLowerCase(),
             category_id: this.selectedCategory,
             page: this.page,

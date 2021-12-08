@@ -82,7 +82,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             query: this.keyword,
             translations_available: this.isAvailableTranslation,
             sort_by: 'created_at',
-            sort_order: this.selectedOrder === 'latest' || this.selectedOrder === '' ? 'desc' : 'asc',
+            sort_order: this.selectedOrder === 'latest' || !this.selectedOrder ? 'desc' : 'asc',
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,

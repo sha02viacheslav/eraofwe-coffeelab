@@ -14,7 +14,7 @@
                         recipe?.name.length < 60 ? recipe?.name : recipe?.name.slice(0, 60).concat('...')
                     }}</span>
                     <span class="fnt-semi-bold mb-45 mb-md-4 mt-2">
-                        {{ recipe?.equipment_name | titlecase | convertToShortDescription: 1 }}
+                        {{ recipe?.equipment_name | titlecase | convertToShortDescription: 2 }}
                     </span>
                 </div>
                 <div class="btn-icon save ml-1" (click)="onFocus($event)"></div>

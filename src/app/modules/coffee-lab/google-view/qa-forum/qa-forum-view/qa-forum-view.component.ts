@@ -86,11 +86,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
             is_consumer: this.filterBy,
             sort_by: this.sortBy === 'most_answered' ? 'most_answered' : 'posted_at',
             sort_order:
-                this.sortBy === 'most_answered'
-                    ? 'desc'
-                    : this.sortBy === 'latest' || this.sortBy === ''
-                    ? 'desc'
-                    : 'asc',
+                this.sortBy === 'most_answered' ? 'desc' : this.sortBy === 'latest' || !this.sortBy ? 'desc' : 'asc',
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,

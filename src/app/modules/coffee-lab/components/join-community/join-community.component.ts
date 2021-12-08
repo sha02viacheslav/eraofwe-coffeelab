@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
@@ -20,7 +21,21 @@ export class JoinCommunityComponent implements OnInit {
     @Input() showBorderBottom = true;
     relatedData = [];
     isLoading = false;
-    constructor(@Inject(DOCUMENT) private document: Document, public coffeeLabService: CoffeeLabService) {}
+    constructor(
+        @Inject(DOCUMENT) private document: Document,
+        public coffeeLabService: CoffeeLabService,
+        private route: ActivatedRoute,
+    ) {
+        let langPrefix = '';
+        this.route.paramMap.subscribe((params) => {
+            if (params.has('lang')) {
+                if (langPrefix) {
+                    this.getQaList();
+                }
+                langPrefix = params.get('lang');
+            }
+        });
+    }
 
     ngOnInit(): void {
         this.getQaList();
