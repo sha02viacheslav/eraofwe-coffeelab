@@ -47,7 +47,9 @@ export class JoinCommunityComponent implements OnInit {
     }
 
     getLink(item: any) {
-        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
+        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+            this.type === 'question' ? 'qa-forum' : 'articles'
+        }/${item.slug}`;
     }
 
     gotoSignup() {
