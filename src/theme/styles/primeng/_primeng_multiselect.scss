@@ -8,10 +8,6 @@
 }
 .p-multiselect {
     border-color: $primary-border-color;
-    background: #fff;
-    border: 1px solid #a6a6a6;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: 3px;
 }
 .p-multiselect.highlight {
     border-color: $primary-color;
