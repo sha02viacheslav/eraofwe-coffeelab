@@ -25,11 +25,7 @@
                         },
                         "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
                         "extractCss": true,
-                        "styles": [
-                            "node_modules/primeng/resources/primeng.min.css",
-                            "node_modules/primeng/resources/themes/nova/theme.css",
-                            "src/styles.scss"
-                        ],
+                        "styles": ["node_modules/primeng/resources/primeng.min.css", "src/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
