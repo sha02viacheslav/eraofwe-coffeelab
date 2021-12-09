@@ -3,7 +3,7 @@
     height: 21px;
 }
 
-::ng-deep .mob-padd .p-dropdown.p-dropdown-translate .p-dropdown-label.p-placeholder {
+:host ::ng-deep .p-dropdown.p-dropdown-translate .p-dropdown-label.p-placeholder {
     @media screen and (max-width: 767px) {
         padding-left: 0px !important;
     }

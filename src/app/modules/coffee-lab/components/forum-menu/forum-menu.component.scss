@@ -1,3 +1,5 @@
+@import 'variables';
+
 .hover-icon {
     padding: 0.625rem;
     &:hover {
@@ -17,4 +19,52 @@
 
 ::ng-deep .menu-width .p-menu.left-menu-actions.p-menu-overlay a span {
     white-space: nowrap !important;
+}
+
+:host ::ng-deep .p-menu {
+    &.p-menu-overlay {
+        padding: 4px;
+        border-radius: 4px;
+        box-shadow: 0 0 17px 2px rgba(27, 27, 27, 0.08);
+    }
+    .p-menuitem-link {
+        padding: 0.75rem 2rem 0.75rem 0.75rem;
+        color: $muted-text-color;
+        border-radius: 4px;
+        transition: background-color 0.2s, box-shadow 0.2s;
+        user-select: none;
+        font-weight: 600;
+    }
+    .p-menuitem-link .p-menuitem-text {
+        color: $muted-text-color;
+        line-height: normal;
+    }
+    .p-menuitem-link:not(.p-disabled):hover {
+        color: $general-text-color;
+        background: $primary-bg-color;
+    }
+    .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+        color: $general-text-color;
+    }
+    &.left-menu-actions.p-menu-overlay {
+        top: calc(50% - 24px) !important;
+        right: 46px !important;
+        left: unset !important;
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            right: -12px;
+            top: 34px;
+            box-sizing: border-box;
+            border: 0.5em solid rgba(0, 0, 0, 0.25);
+            border-color: transparent transparent #fff #fff;
+
+            transform-origin: 0 0;
+            transform: rotate(-135deg);
+
+            box-shadow: -3px 3px 3px 0 rgb(0 0 0 / 8%);
+        }
+    }
 }

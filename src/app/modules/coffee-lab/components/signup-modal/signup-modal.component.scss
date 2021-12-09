@@ -3,7 +3,11 @@
 ::ng-deep {
     .p-dialog.signup-dialog {
         padding: 0;
+        width: 90vw;
         max-width: 685px;
+        @media (min-width: 768px) {
+            width: 75vw;
+        }
         .p-dialog-content {
             padding: 0;
             border-radius: 4px;

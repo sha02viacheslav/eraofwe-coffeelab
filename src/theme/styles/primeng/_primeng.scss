@@ -3,58 +3,8 @@
 @import '../variables';
 @import 'primeicons';
 @import 'nova';
-@import 'primeng_dialog';
 @import 'primeng_dropdown';
-@import 'primeng_checkbox';
-@import 'primeng_inputtext';
-@import 'primeng_menu';
-@import 'primeng_overlaypanel';
-@import 'primeng_multiselect';
-@import 'primeng_paginator';
 @import 'primeng_tabview';
-@import 'primeng_toast';
-
-// global
-.p-component {
-    font-family: $general-font-family;
-    font-size: $general-font-size;
-}
-
-// sewn-form-field
-.sewn-form-field {
-    margin-bottom: 1rem;
-    display: inline-flex;
-    flex-direction: column;
-    @media (min-width: 768px) {
-        margin-bottom: 1.5rem;
-    }
-    label {
-        color: $general-text-color;
-        line-height: normal;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-    }
-    .p-inputtext {
-        padding: 0.9375rem 0.75rem;
-        border-radius: 4px;
-        width: 100%;
-    }
-    .p-dropdown .p-inputtext {
-        padding-right: 0;
-    }
-    .p-multiselect-label {
-        padding: 0.9375rem 0.75rem;
-        padding-right: 0;
-    }
-
-    .p-dropdown {
-        width: 100%;
-    }
-
-    .p-multiselect {
-        width: 100%;
-    }
-}
 
 .custom-search {
     position: relative;
@@ -71,8 +21,4 @@
     & > .p-inputtext {
         padding-left: 3.125rem;
     }
-}
-
-.pi-check:before {
-    content: '\e909';
 }

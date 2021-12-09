@@ -18,3 +18,15 @@
         background-color: rgba(116, 117, 136, 0.39);
     }
 }
+
+:host ::ng-deep {
+    .sewn-form-field {
+        display: inline-flex;
+        flex-direction: column;
+        .p-inputtext {
+            padding: 0.9375rem 0.75rem;
+            border-radius: 4px;
+            width: 100%;
+        }
+    }
+}

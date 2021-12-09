@@ -13,17 +13,14 @@
                 border-bottom: none;
             }
             .p-tabmenuitem {
-                margin-right: 0;
                 .p-menuitem-link {
                     position: relative;
                     flex: inherit !important;
                     justify-content: center;
-                    margin-right: 0px;
-                    border: none;
-                    background-color: transparent;
-                    color: $general-text-color;
+                    margin: 0 0 -1px 0;
                     font-weight: 600;
                     padding: 0 16px 4px 16px;
+                    transition: background-color 0.2s, box-shadow 0.2s;
                     @media (max-width: 991px) {
                         padding: 0 10px 4px 16px;
                     }
@@ -44,9 +41,6 @@
                         background-color: $primary-color;
                         opacity: 0;
                         transition: 0.4s ease-in-out;
-                    }
-                    &:focus {
-                        box-shadow: none !important;
                     }
 
                     img {
@@ -76,7 +70,6 @@
                 &:not(.p-highlight):not(.p-disabled):hover .p-menuitem-link,
                 & .p-menuitem-link.p-menuitem-link-active,
                 &.p-highlight .p-menuitem-link {
-                    background: transparent;
                     color: $primary-color;
                     &::before {
                         width: 100%;
