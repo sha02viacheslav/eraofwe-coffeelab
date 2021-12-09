@@ -10,27 +10,7 @@
         <div class="ml-25 flex-1 overflow-hidden">
             <div class="d-flex align-items-center mr-3 text-nowrap">
                 <div [ngClass]="{ ellipsis: enableEllipsis }" class="fnt-bold mr-md-3 mr-1">
-                    <a
-                        *ngIf="isTopWriters"
-                        routerLink="/user-profile"
-                        [queryParams]="{
-                            user_id: prop?.user_id,
-                            organization: prop?.org_type,
-                            organization_id: prop?.org_id
-                        }"
-                    >
-                        {{
-                            prop?.user_name ||
-                                prop?.question_user ||
-                                prop?.posted_user ||
-                                prop?.first_name ||
-                                prop?.firstname ||
-                                prop?.lastname ||
-                                'Unknown User'
-                        }}
-                        {{ prop?.last_name }}</a
-                    >
-                    <span *ngIf="!isTopWriters">
+                    <span>
                         {{
                             prop?.user_name ||
                                 prop?.question_user ||
