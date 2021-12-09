@@ -18,7 +18,7 @@ import { takeUntil } from 'rxjs/operators';
 export class QaForumViewComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     sortBy: string;
-    filterBy: string;
+    filterBy: boolean = null;
     questions: any[] = [];
     isLoading = true;
     keyword = '';

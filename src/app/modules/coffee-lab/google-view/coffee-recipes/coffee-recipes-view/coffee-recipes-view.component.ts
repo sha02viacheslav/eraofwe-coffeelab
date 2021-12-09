@@ -17,7 +17,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     rows = 9;
     totalRecords = 0;
     page = 1;
-    isAvailableTranslation?: string;
+    isAvailableTranslation: boolean = null;
     level: string;
     ingredientValue?: string;
     searchQuery = '';

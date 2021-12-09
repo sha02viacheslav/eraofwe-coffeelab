@@ -15,7 +15,7 @@
                 [options]="categoryList"
                 (onChange)="getData()"
                 [(ngModel)]="selectedCategory"
-                styleClass="round-border text-clr588 mb-25 mb-md-0"
+                styleClass="round-border mb-25 mb-md-0 {{ selectedCategory?.length ? 'highlight' : '' }}"
                 [placeholder]="'categories' | translate"
                 [maxSelectedLabels]="1"
                 selectedItemsLabel="{0} {{ 'categories' | translate }}"
@@ -27,7 +27,7 @@
                 [(ngModel)]="filterBy"
                 [showClear]="true"
                 (ngModelChange)="getData()"
-                styleClass="round-border text-clr588 ml-0 ml-md-3 mr-3 mb-25 mb-md-0"
+                styleClass="round-border ml-0 ml-md-3 mr-3 mb-25 mb-md-0 {{ filterBy !== null ? 'highlight' : '' }}"
                 [showClear]="true"
                 [placeholder]="'posted_by' | translate"
             >
@@ -38,7 +38,7 @@
                 [options]="sortOptions"
                 [(ngModel)]="sortBy"
                 (ngModelChange)="getData()"
-                styleClass="round-border text-clr588 mb-25 mb-md-0"
+                styleClass="round-border mb-25 mb-md-0 {{ sortBy ? 'highlight' : '' }}"
                 [showClear]="true"
                 [placeholder]="'sort_by' | translate"
             >

@@ -16,25 +16,26 @@
     <div class="d-flex">
         <p-dropdown
             [options]="translationsList"
-            optionLabel="label"
-            optionValue="value"
             [showClear]="true"
             [(ngModel)]="isAvailableTranslation"
             (onChange)="getData()"
             placeholder="{{ 'translations_available' | translate }}"
-            styleClass="round-border"
+            styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
         >
+            <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+            <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
         </p-dropdown>
         <p-dropdown
             class="pl-md-3 pl-25"
             [options]="orderList"
-            optionLabel="label"
             [placeholder]="'sort_by' | translate"
-            optionValue="value"
+            [showClear]="true"
             [(ngModel)]="selectedOrder"
             (onChange)="getData()"
-            styleClass="round-border"
+            styleClass="round-border {{ selectedOrder ? 'highlight' : '' }}"
         >
+            <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+            <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
         </p-dropdown>
     </div>
     <div class="col-12 col-lg-5 d-none d-lg-block">
