@@ -107,4 +107,7 @@
     &.share::before {
         background-image: url(assets/images/share.svg);
     }
+    &.thumbsup::before {
+        background-image: url(assets/images/thumbsup.svg);
+    }
 }
