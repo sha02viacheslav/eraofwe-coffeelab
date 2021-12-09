@@ -1,5 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    OnInit,
+    Output,
+    PLATFORM_ID,
+} from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
 
@@ -7,6 +16,7 @@ import { getLangRoute } from '@utils';
     selector: 'app-translation-dropdown',
     templateUrl: './translation-dropdown.component.html',
     styleUrls: ['./translation-dropdown.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslationDropdownComponent implements OnInit {
     @Input() translatedList;

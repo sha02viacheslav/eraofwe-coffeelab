@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { OrganizationType } from '@enums';
-import { GlobalsService, CoffeeLabService } from '@services';
+import { CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -9,6 +9,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     selector: 'app-user-detail',
     templateUrl: './user-detail.component.html',
     styleUrls: ['./user-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailComponent implements OnInit {
     readonly OrgType = OrganizationType;
@@ -26,7 +27,7 @@ export class UserDetailComponent implements OnInit {
     public defaultProfileImage = 'assets/images/profile.svg';
 
     constructor(
-        public globalsService: GlobalsService,
+        private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
     ) {}
@@ -45,6 +46,7 @@ export class UserDetailComponent implements OnInit {
                         this.data?.profile_image_url || this.data?.profile_image_thumb_url || this.imageUrl;
                     this.name = `${this.data?.firstname} ${this.data?.lastname}`;
                 }
+                this.cdr.detectChanges();
             });
         }
     }

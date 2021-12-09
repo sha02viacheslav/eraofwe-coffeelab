@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
 
@@ -6,10 +6,12 @@ import { getLangRoute } from '@utils';
     selector: 'app-category-list',
     templateUrl: './category-list.component.html',
     styleUrls: ['./category-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryListComponent implements OnInit {
     @Input() categoryList: any[] = [];
     @Input() isArticlePage: boolean;
+
     constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {}

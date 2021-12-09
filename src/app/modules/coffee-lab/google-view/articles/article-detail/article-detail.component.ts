@@ -1,5 +1,13 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap } from '@constants';
@@ -19,6 +27,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
     templateUrl: './article-detail.component.html',
     styleUrls: ['./article-detail.component.scss'],
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
@@ -29,7 +38,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    // buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     addComment = false;
     stickySecData: any;
     orginalUserData: any;
@@ -45,15 +53,16 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
         private activatedRoute: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
+        private globalsService: GlobalsService,
+        private messageService: MessageService,
+        private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
-        private messageService: MessageService,
         private toastService: ToastrService,
         protected resizeService: ResizeService,
-        public globalsService: GlobalsService,
-        public router: Router,
     ) {
         super(resizeService);
         this.activatedRoute.params.subscribe((params) => {
@@ -86,21 +95,25 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     if (window.scrollY > 10) {
                         scrollEvent.unsubscribe();
                         this.showAll = true;
+                        this.cdr.detectChanges();
                     }
                 });
         }
     }
 
     getArticleList(): any {
-        const params = {
-            count: 11,
-        };
         this.relatedData = [];
-        this.coffeeLabService.getPopularList('article', params).subscribe((res: any) => {
-            if (res.success) {
-                this.relatedData = (res.result || []).filter((item) => item.id !== this.detailsData.id).slice(0, 10);
-            }
-        });
+        this.coffeeLabService
+            .getPopularList(PostType.ARTICLE, {
+                count: 11,
+            })
+            .subscribe((res: any) => {
+                if (res.success) {
+                    this.relatedData = (res.result || [])
+                        .filter((item) => item && item?.slug !== this.idOrSlug)
+                        .slice(0, 10);
+                }
+            });
     }
 
     onRealtedRoute(langCode, slug) {
@@ -115,7 +128,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
     getDetails() {
         this.loading = true;
-        this.coffeeLabService.getForumDetails('article', this.idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails(PostType.ARTICLE, this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 if (getLangRoute(res.result.language) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
@@ -137,22 +150,11 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         this.globalsService.setLimitCounter();
                     }
                     this.startupService.load(this.lang || 'en');
-                    if (
-                        this.detailsData?.original_article_state &&
-                        this.detailsData?.original_article_state === 'ACTIVE'
-                    ) {
-                        this.getOriginalUserDetail(this.detailsData.original_article);
-                    }
-                    this.getUserDetail(this.detailsData);
-                    this.setSEO();
-                    this.getCommentsData();
                     this.messageService.clear();
-                    this.messageService.add({
-                        key: 'translate',
-                        severity: 'success',
-                        closable: false,
-                    });
+                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
+                    this.getAllData();
 
+                    this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();
                     }
@@ -162,7 +164,22 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+            this.cdr.detectChanges();
         });
+    }
+
+    getAllData() {
+        const promises = [];
+        if (this.detailsData?.original_article_state && this.detailsData?.original_article_state === 'ACTIVE') {
+            promises.push(
+                new Promise((resolve) => this.getOriginalUserDetail(this.detailsData.original_article, resolve)),
+            );
+        }
+        promises.push(new Promise((resolve) => this.getUserDetail(this.detailsData, resolve)));
+        promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
+        Promise.all(promises)
+            .then(() => this.cdr.detectChanges())
+            .catch(() => this.cdr.detectChanges());
     }
 
     setSEO() {
@@ -235,24 +252,26 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         this.dialogSrv.open(SignupModalComponent, {});
     }
 
-    getOriginalUserDetail(userDetails: any): void {
+    getOriginalUserDetail(userDetails: any, resolve): void {
         this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.orginalUserData = res.result;
             }
+            resolve();
         });
     }
 
-    getUserDetail(userDetails: any): void {
+    getUserDetail(userDetails: any, resolve): void {
         this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.stickySecData = res.result;
             }
+            resolve();
         });
     }
 
-    getCommentsData(): void {
-        this.coffeeLabService.getCommentList('article', this.detailsData.slug).subscribe((res: any) => {
+    getCommentsData(resolve): void {
+        this.coffeeLabService.getCommentList(PostType.ARTICLE, this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
                 this.allComments = res.result;
                 this.commentData = this.allComments?.slice(0, 3);
@@ -262,6 +281,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.showCommentBtn = false;
                 }
             }
+            resolve();
         });
     }
 

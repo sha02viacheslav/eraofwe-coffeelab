@@ -22,9 +22,9 @@ export class JoinCommunityComponent implements OnInit {
     isLoading = false;
 
     constructor(
-        public coffeeLabService: CoffeeLabService,
-        private route: ActivatedRoute,
         private cdr: ChangeDetectorRef,
+        private route: ActivatedRoute,
+        public coffeeLabService: CoffeeLabService,
     ) {
         let langPrefix = '';
         this.route.paramMap.subscribe((params) => {
