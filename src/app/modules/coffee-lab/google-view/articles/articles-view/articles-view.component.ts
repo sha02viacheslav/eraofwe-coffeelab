@@ -16,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ArticlesViewComponent extends ResizeableComponent implements OnInit {
     keyword?: string;
-    isAvailableTranslation: any;
+    isAvailableTranslation: boolean = null;
     selectedOrder: string;
     articlesData: any[] = [];
     isLoading = true;

@@ -17,8 +17,8 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     data: any[] = [];
     isLoading = false;
     keyword = '';
-    isAvailableTranslation?: any;
-    selectedOrder = '';
+    isAvailableTranslation: boolean = null;
+    selectedOrder: string;
     totalRecords = 0;
     rows = 9;
     page = 1;

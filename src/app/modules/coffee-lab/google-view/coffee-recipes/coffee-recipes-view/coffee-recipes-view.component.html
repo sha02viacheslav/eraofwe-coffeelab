@@ -19,7 +19,7 @@
                     [options]="categoryList"
                     (onChange)="getData()"
                     [(ngModel)]="selectedCategory"
-                    styleClass="round-border text-clr588 ml-0 mr-3"
+                    styleClass="round-border ml-0 mr-3 {{ selectedCategory?.length ? 'highlight' : '' }}"
                     [placeholder]="'categories' | translate"
                     [maxSelectedLabels]="1"
                     selectedItemsLabel="{0} {{ 'categories' | translate }}"
@@ -30,13 +30,11 @@
             <div class="mb-25 mb-md-0">
                 <p-dropdown
                     [options]="levels"
-                    optionLabel="label"
-                    optionValue="value"
                     [(ngModel)]="level"
                     (onChange)="getData()"
                     [placeholder]="'levels' | translate"
                     [showClear]="true"
-                    styleClass="round-border"
+                    styleClass="round-border {{ level ? 'highlight' : '' }}"
                 >
                     <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
@@ -45,13 +43,11 @@
             <div class="pl-md-3 pl-0 mb-25 mb-md-0">
                 <p-dropdown
                     [options]="translationsList"
-                    optionLabel="label"
-                    optionValue="value"
                     [(ngModel)]="isAvailableTranslation"
                     (onChange)="getData()"
                     [placeholder]="'translation_available' | translate"
                     [showClear]="true"
-                    styleClass="round-border"
+                    styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
                 >
                     <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
@@ -60,14 +56,13 @@
             <div class="pl-md-3">
                 <p-dropdown
                     [options]="orderList"
-                    optionLabel="label"
-                    optionValue="value"
                     [(ngModel)]="selectedOrder"
                     (onChange)="getData()"
                     [placeholder]="'sort_by' | translate"
                     [showClear]="true"
-                    styleClass="round-border mobile-ui"
+                    styleClass="round-border mobile-ui {{ selectedOrder ? 'highlight' : '' }}"
                 >
+                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
                     <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                 </p-dropdown>
             </div>
