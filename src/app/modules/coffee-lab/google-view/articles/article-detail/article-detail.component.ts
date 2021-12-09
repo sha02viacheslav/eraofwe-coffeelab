@@ -1,18 +1,18 @@
-import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
-import { fromEvent } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-import { environment } from '@env/environment';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
 import { RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
+import { environment } from '@env/environment';
+import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
-import { ResizeableComponent } from '@base-components';
+import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-article-detail',
@@ -98,9 +98,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         this.relatedData = [];
         this.coffeeLabService.getPopularList('article', params).subscribe((res: any) => {
             if (res.success) {
-                this.relatedData = res.result;
-                this.relatedData = res.result.filter((item) => item.id !== this.detailsData.id);
-                this.relatedData = this.relatedData.slice(0, 10);
+                this.relatedData = (res.result || []).filter((item) => item.id !== this.detailsData.id).slice(0, 10);
             }
         });
     }

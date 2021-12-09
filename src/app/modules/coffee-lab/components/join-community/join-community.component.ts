@@ -1,8 +1,7 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RouterMap } from '@constants';
 import { PostType } from '@enums';
-import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
 
@@ -10,9 +9,9 @@ import { getLangRoute } from '@utils';
     selector: 'app-join-community',
     templateUrl: './join-community.component.html',
     styleUrls: ['./join-community.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JoinCommunityComponent implements OnInit {
-    ssoWeb = environment.ssoWeb;
     readonly PostType = PostType;
     @Input() pages: number;
     @Input() type: PostType;
@@ -21,10 +20,11 @@ export class JoinCommunityComponent implements OnInit {
     @Input() showBorderBottom = true;
     relatedData = [];
     isLoading = false;
+
     constructor(
-        @Inject(DOCUMENT) private document: Document,
         public coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
     ) {
         let langPrefix = '';
         this.route.paramMap.subscribe((params) => {
@@ -43,8 +43,7 @@ export class JoinCommunityComponent implements OnInit {
 
     getQaList() {
         this.isLoading = true;
-        const categories = [];
-        this.categories?.filter((item: any) => categories.push(item.parent_id));
+        const categories = (this.categories || [])?.map((item: any) => item.parent_id);
         this.coffeeLabService
             .getForumList(this.type, {
                 page: 1,
@@ -57,17 +56,14 @@ export class JoinCommunityComponent implements OnInit {
                 if (res.success) {
                     this.relatedData = this.type === PostType.QA ? res.result?.questions : res.result;
                     this.isLoading = false;
+                    this.cdr.detectChanges();
                 }
             });
     }
 
-    getLink(item: any) {
+    getLink(slug: string) {
         return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
-            this.type === 'question' ? 'qa-forum' : 'articles'
-        }/${item.slug}`;
-    }
-
-    gotoSignup() {
-        this.document.location.href = `${environment.ssoWeb}/sign-up`;
+            this.type === PostType.QA ? RouterMap.en.QA : RouterMap.en.ARTICLE
+        }/${slug}`;
     }
 }
