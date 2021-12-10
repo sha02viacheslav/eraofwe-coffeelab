@@ -10,7 +10,7 @@
         </div>
         <a [routerLink]="[getLink(question, null).url]">
             <div
-                class="fnt-16 fnt-md-18 fw-b text-clr24 mt-4 cursor-pointer hover-underline"
+                class="fnt-16 fnt-md-18 fw-b mt-4 cursor-pointer hover-underline"
                 (click)="gotoDetailPage($event, question)"
                 [innerHTML]="question?.question"
             ></div>
@@ -35,7 +35,7 @@
                     <!-- <span class="d-flex mb-05 fnt-300 mr-2">{{ answer?.likes }}</span> -->
                 </div>
             </div>
-            <div class="text-clr24 my-4 lh-15" [ngClass]="{ 'mb-3': !isLast }">
+            <div class="my-4 lh-15" [ngClass]="{ 'mb-3': !isLast }">
                 <span [innerHTML]="answer?.answer | convertToShortDescription: 25"></span>
             </div>
         </div>

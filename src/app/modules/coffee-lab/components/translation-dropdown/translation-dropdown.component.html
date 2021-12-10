@@ -7,7 +7,7 @@
     [dropdownIcon]="false"
 >
     <ng-template pTemplate="selectedItem">
-        <span class="fw-b text-clr60b d-flex align-items-center">
+        <span class="fw-b tc-b d-flex align-items-center">
             <img src="assets/images/translate.svg" class="translate-icon mr-1" />
             {{ 'select_language' | translate }}
         </span>
@@ -31,14 +31,14 @@
                 size="40"
             ></app-user-detail>
             <div class="d-flex flex-column justify-content-between pl-3">
-                <p class="fw-b text-clr334 mb-2">
+                <p class="fw-b tc-d mb-2">
                     {{ translateItem.user_name || translateItem.first_name }}
                 </p>
                 <div class="d-flex align-items-center">
-                    <p class="fnt-12 fw-b text-clr588 pr-2">
+                    <p class="fnt-12 fw-b tc-m pr-2">
                         {{ translateItem.language | language }} {{ 'translation' | translate }}
                     </p>
-                    <p class="fnt-12 text-clr588">
+                    <p class="fnt-12 tc-m">
                         {{ translateItem.created_at | amTimeAgo | dateAgoReplace }}
                     </p>
                 </div>

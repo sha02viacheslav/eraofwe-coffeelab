@@ -39,7 +39,7 @@
                         </div>
                         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
                     </div>
-                    <div *ngIf="questions?.length <= 0" class="col-12 col-md-7 text-center my-4 text-clr24">
+                    <div *ngIf="questions?.length <= 0" class="col-12 col-md-7 text-center my-4">
                         {{ 'no_data_is_available' | translate }}
                     </div>
                     <div class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0">
@@ -94,7 +94,7 @@
                     ></app-recipes>
                 </div>
 
-                <div *ngIf="!recipes?.length" class="text-center my-4 text-clr24">
+                <div *ngIf="!recipes?.length" class="text-center my-4">
                     {{ 'no_data_is_available' | translate }}
                 </div>
             </div>
@@ -148,7 +148,7 @@
                         optionValue="value"
                         [(ngModel)]="filterBy"
                         (onChange)="getQuestions()"
-                        styleClass="round-border text-clr588"
+                        styleClass="round-border tc-m"
                         [placeholder]="'posted_by' | translate"
                         [showClear]="true"
                     >
@@ -166,7 +166,7 @@
                             selectedTab === 0 ? getQuestions() : selectedTab === 1 ? getArticles() : getRecipes()
                         "
                         [placeholder]="'sort_by' | translate"
-                        styleClass="round-border text-clr588"
+                        styleClass="round-border tc-m"
                         optionLabel="label"
                         optionValue="value"
                         [showClear]="true"

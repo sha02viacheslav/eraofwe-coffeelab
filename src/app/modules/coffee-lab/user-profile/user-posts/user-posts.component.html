@@ -11,6 +11,6 @@
     <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
 </div>
 
-<div *ngIf="!isLoading && !posts.length" class="text-center my-4 text-clr24">
+<div *ngIf="!isLoading && !posts.length" class="text-center my-4">
     {{ 'no_data_is_available' | translate }}
 </div>
