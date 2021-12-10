@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="px-3 px-lg-4" [ngClass]="{ 'mb-4': !detailsData?.categories }">
-                <h1 class="fnt-16 fnt-md-18 fnt-bold mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
+                <h1 class="fnt-16 fnt-md-18 fw-b mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
             </div>
             <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
                 <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
@@ -20,7 +20,7 @@
             <app-like-divider [question]="detailsData"></app-like-divider>
             <div class="d-flex mr-4 my-3 my-md-35 ml-md-4 pl-3">
                 <button
-                    class="add-comment cursor-pointer w-100 fnt-semi-bold text-clr588 d-flex align-items-center pl-4"
+                    class="add-comment cursor-pointer w-100 fw-sb text-clr588 d-flex align-items-center pl-4"
                     (click)="onFocus()"
                 >
                     {{ 'add_a_comment' | translate }}
@@ -87,12 +87,12 @@
                         <div class="d-flex justify-content-between mb-4">
                             <div class="d-flex">
                                 <img src="assets/images/qa-forum.svg" alt="question-image" />
-                                <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
+                                <p class="align-items-center d-flex text-nowrap fw-b ml-2">
                                     {{ 'read_the_original_answer' | translate }}
                                 </p>
                             </div>
                             <div class="bg-f8 px-25 py-2">
-                                <p class="fnt-semi-bold fnt-12">
+                                <p class="fw-sb fnt-12">
                                     {{ 'original_language' | translate }} :
                                     {{ answerDetail?.original_details?.language | language }}
                                 </p>
@@ -101,7 +101,7 @@
                         <app-user-header [prop]="answerDetail?.original_details"></app-user-header>
                         <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                             <a
-                                class="fnt-semi-bold"
+                                class="fw-sb"
                                 [routerLink]="
                                     getLink(
                                         answerDetail?.original_details?.language,

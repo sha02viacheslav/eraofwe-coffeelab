@@ -10,7 +10,7 @@
         </div>
         <a [routerLink]="[getLink(question, null).url]">
             <div
-                class="fnt-16 fnt-md-18 fnt-bold text-clr24 mt-4 cursor-pointer hover-underline"
+                class="fnt-16 fnt-md-18 fw-b text-clr24 mt-4 cursor-pointer hover-underline"
                 (click)="gotoDetailPage($event, question)"
                 [innerHTML]="question?.question"
             ></div>

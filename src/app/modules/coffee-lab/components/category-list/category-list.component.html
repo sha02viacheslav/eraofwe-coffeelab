@@ -1,6 +1,6 @@
 <div class="row mx-0" [ngClass]="{ 'justify-content-md-center': isArticlePage }">
     <div *ngFor="let item of categoryList" class="mr-md-25 mb-4">
-        <a class="category-btn fnt-semi-bold mb-2" [routerLink]="getLink(item.slug)">
+        <a class="category-btn fw-sb mb-2" [routerLink]="getLink(item.slug)">
             {{ item.name }}
         </a>
     </div>

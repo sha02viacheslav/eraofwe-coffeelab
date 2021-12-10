@@ -23,20 +23,18 @@
                         <div class="btn-trans-icon message-icon" (click)="onFocus()"></div>
                     </div>
                 </div>
-                <h1 class="fnt-16 fnt-bold mt-4">
+                <h1 class="fnt-16 fw-b mt-4">
                     {{ profileInfo?.firstname + ' ' + profileInfo?.lastname }}
                 </h1>
-                <div class="fnt-semi-bold text-clr588">{{ orgType | orgType }}</div>
+                <div class="fw-sb text-clr588">{{ orgType | orgType }}</div>
                 <div class="d-flex align-items-center justify-content-center mt-4">
                     <i class="pi pi-map-marker fnt-22"></i>
-                    <span class="fnt-semi-bold ml-2"
-                        >{{ profileInfo?.city }}, {{ profileInfo?.country | country }}</span
-                    >
+                    <span class="fw-sb ml-2">{{ profileInfo?.city }}, {{ profileInfo?.country | country }}</span>
                 </div>
             </div>
 
             <div class="border-main br-4 p-4 mt-3">
-                <div class="fnt-18 fnt-bold mb-25">About</div>
+                <div class="fnt-18 fw-b mb-25">About</div>
                 <div *ngIf="profileInfo?.about_me" class="lh-15">
                     {{ profileInfo?.about_me }}
                 </div>

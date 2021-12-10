@@ -1,5 +1,5 @@
 <div *ngIf="!isLoading" class="question-header mb-4" [class.no-border]="!showBorderBottom">
-    <p class="fnt-16 fnt-bold text-clr24 mt-3">
+    <p class="fnt-16 fw-b text-clr24 mt-3">
         <span *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>
         <span *ngIf="!related">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>

@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0">
                         <div class="other-category pt-4 mx-3 mx-md-0">
-                            <div class="row mx-0 fnt-16 fnt-bold">
+                            <div class="row mx-0 fnt-16 fw-b">
                                 {{ 'other_categories' | translate }}
                             </div>
                             <div class="mt-4">
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="top-writer mt-4 mx-md-0 mx-3">
-                            <div class="fnt-16 fnt-bold mb-2 mt-3">{{ 'top_writers' | translate }}</div>
+                            <div class="fnt-16 fw-b mb-2 mt-3">{{ 'top_writers' | translate }}</div>
                             <div
                                 *ngFor="let user of topWriters; let isLast = last"
                                 [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"

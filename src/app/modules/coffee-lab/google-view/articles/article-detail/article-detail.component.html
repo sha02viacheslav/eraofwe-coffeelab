@@ -6,10 +6,10 @@
             <app-category-list [isArticlePage]="true" [categoryList]="detailsData?.categories"></app-category-list>
         </div>
         <div class="px-0">
-            <h1 class="main-heading fnt-bold px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+            <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                 {{ detailsData?.title || '--' }}
             </h1>
-            <p class="fnt-16 fnt-md-20 fnt-semi-bold text-md-center px-0 px-lg-5">
+            <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
                 {{ detailsData?.subtitle || '--' }}
             </p>
         </div>
@@ -54,16 +54,11 @@
                     <div class="pb-4 d-flex">
                         <div class="w-100 d-flex justify-content-between">
                             <div>
-                                <p class="fnt-bold mb-1">
-                                    {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
-                                </p>
-                                <p class="fnt-semi-bold text-clr588 mb-1">
+                                <p class="fw-b mb-1">{{ stickySecData?.firstname }} {{ stickySecData?.lastname }}</p>
+                                <p class="fw-sb text-clr588 mb-1">
                                     {{ stickySecData?.organisation_name || stickySecData?.organization_name }}
                                 </p>
-                                <p
-                                    *ngIf="stickySecData?.country || stickySecData?.city"
-                                    class="fnt-semi-bold text-clr588 mb-1"
-                                >
+                                <p *ngIf="stickySecData?.country || stickySecData?.city" class="fw-sb text-clr588 mb-1">
                                     <span *ngIf="stickySecData?.organisation_name || stickySecData?.organization_name"
                                         >@</span
                                     >
@@ -108,7 +103,7 @@
 
                         <div class="articles-answer w-100 pt-3 pb-4">
                             <div>
-                                <p class="fnt-16 fnt-bold mb-35">
+                                <p class="fnt-16 fw-b mb-35">
                                     {{ 'about_the_author' | translate }}
                                 </p>
                                 <div class="d-flex">
@@ -130,11 +125,11 @@
                                     <div>
                                         <a
                                             [routerLink]="'/user-profile/' + stickySecData?.slug"
-                                            class="fnt-bold cursor-pointer text-underline"
+                                            class="fw-b cursor-pointer text-underline"
                                         >
                                             {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                                         </a>
-                                        <p class="fnt-semi-bold mt-2">
+                                        <p class="fw-sb mt-2">
                                             {{ stickySecData?.about_me }}
                                         </p>
                                     </div>
@@ -162,12 +157,12 @@
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                    <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
+                                    <p class="align-items-center d-flex text-nowrap fw-b ml-2">
                                         {{ 'read_the_original_article' | translate }}
                                     </p>
                                 </div>
                                 <div class="bg-f8 px-25 py-2">
-                                    <p class="fnt-semi-bold fnt-12">
+                                    <p class="fw-sb fnt-12">
                                         {{ 'original_language' | translate }} :
                                         {{ detailsData?.original_article?.language | language }}
                                     </p>
@@ -176,7 +171,7 @@
                             <app-user-header [prop]="orginalUserData"></app-user-header>
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
-                                    class="fnt-semi-bold"
+                                    class="fw-sb"
                                     (click)="
                                         onRealtedRoute(
                                             detailsData?.original_article?.language,
@@ -192,11 +187,11 @@
                         </div>
                         <div class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">
-                                <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
+                                <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
                             </div>
                             <div class="d-flex">
                                 <button
-                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-semi-bold text-clr588"
+                                    class="add-comment d-flex align-items-center pl-4 w-100 fw-sb text-clr588"
                                     (click)="onFocus()"
                                 >
                                     {{ 'share_your_thoughts' | translate }}
@@ -205,7 +200,7 @@
                         </div>
                         <div *ngIf="allComments?.length > 0" class="w-100">
                             <div class="comment-border pb-1">
-                                <p class="fnt-semi-bold">{{ allComments?.length }} {{ 'answers' | translate }}</p>
+                                <p class="fw-sb">{{ allComments?.length }} {{ 'answers' | translate }}</p>
                             </div>
                             <div
                                 class="article-wrapper my-45"
@@ -239,7 +234,7 @@
 
     <article *ngIf="showAll" class="row mx-0">
         <div class="col-md-8 px-0 px-md-3">
-            <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
+            <div class="fnt-16 fw-b pt-3 pb-45 background-header">
                 {{ 'recent_articles' | translate }}
             </div>
             <div class="row py-2">
@@ -253,10 +248,10 @@
                             />
                         </div>
                         <div class="cursor-pointer d-flex flex-column">
-                            <p class="fnt-fly fnt-bold cust-flex-grow text-break">
+                            <p class="fnt-fly fw-b cust-flex-grow text-break">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>
-                            <p class="fnt-semi-bold text-underline">
+                            <p class="fw-sb text-underline">
                                 {{ forum?.user_name }}
                             </p>
                         </div>

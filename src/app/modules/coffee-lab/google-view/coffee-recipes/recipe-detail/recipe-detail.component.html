@@ -14,14 +14,14 @@
                         <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
                             <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
                         </div>
-                        <h1 class="fnt-bold mb-0 user-header mt-0 text-break">
+                        <h1 class="fw-b mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
-                        <div class="fnt-20 fnt-semi-bold mt-3 mt-md-4 mb-35 mb-md-4">
+                        <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
                             {{ (detailsData?.descriptionText || '').slice(0, showAll ? 10000 : 500) }}
                         </div>
                         <div class="d-md-flex mb-4 mb-md-0">
-                            <div class="fnt-semi-bold text-clr588 mb-md-45">
+                            <div class="fw-sb text-clr588 mb-md-45">
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
@@ -63,7 +63,7 @@
                                             <label class="fnt-16 text-clr588 mb-0">{{
                                                 recipeInfo.label | translate
                                             }}</label>
-                                            <p class="fnt-16 fnt-bold mb-0 pt-1" *ngIf="detailsData">
+                                            <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
                                                 <span *ngIf="recipeInfo.label === 'equipment'"
                                                     >{{ detailsData[recipeInfo.key] | translate }}
                                                     {{ recipeInfo.key2 ? ':' : '' }}
@@ -90,7 +90,7 @@
                                         <label class="fnt-16 text-clr588 mb-0">{{
                                             recipeInfo.label | translate
                                         }}</label>
-                                        <p class="fnt-16 fnt-bold mb-0 pt-1" *ngIf="detailsData">
+                                        <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
                                             <span *ngIf="recipeInfo.label === 'equipment'"
                                                 >{{ detailsData[recipeInfo.key] | titlecase
                                                 }}{{ recipeInfo.key2 ? ':' : ''
@@ -123,7 +123,7 @@
                         <div class="row pl-md-5">
                             <div class="col-md-5">
                                 <div *ngIf="detailsData?.ingredients" class="mt-45">
-                                    <h1 class="user-header mt-0 mb-0 mb-md-45 fnt-bold">
+                                    <h1 class="user-header mt-0 mb-0 mb-md-45 fw-b">
                                         {{ 'ingredients' | translate }}
                                     </h1>
                                     <div class="ingredients-wrapper">
@@ -131,11 +131,11 @@
                                             class="py-3 px-0 ingredients-item"
                                             *ngFor="let ingredientsItem of detailsData?.ingredients"
                                         >
-                                            <label class="fnt-bold mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
+                                            <label class="fw-b mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
                                                 {{ ingredientsItem.quantity }}
                                                 {{ ingredientsItem.quantity_unit | translate }}
                                             </label>
-                                            <label class="fnt-semi-bold mb-0">{{ ingredientsItem.name }}</label>
+                                            <label class="fw-sb mb-0">{{ ingredientsItem.name }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                             </div>
 
                             <div class="mt-4 mt-md-45 col-md-7">
-                                <h2 class="user-header fnt-bold mt-0 mb-4 mb-md-45">
+                                <h2 class="user-header fw-b mt-0 mb-4 mb-md-45">
                                     {{ 'directions' | translate }}
                                 </h2>
                                 <div
@@ -152,11 +152,9 @@
                                     [id]="'step' + (i + 1)"
                                 >
                                     <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
-                                        <span class="fnt-semi-bold lh-157 mb-1" style="font-size: 24px">{{
-                                            i + 1
-                                        }}</span>
+                                        <span class="fw-sb lh-157 mb-1" style="font-size: 24px">{{ i + 1 }}</span>
                                         <div
-                                            class="activate-link ml-md-3 ml-25 fnt-md-16 fnt-semi-bold lh-157 mb-0 step-desc"
+                                            class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
                                             [innerHTML]="step.description"
                                         ></div>
                                     </div>
@@ -177,7 +175,7 @@
                     <div class="col-md-7 mx-auto mt-5">
                         <div class="recipe-answer w-100 pt-3 pb-4">
                             <div>
-                                <p class="fnt-16 fnt-bold mb-35">
+                                <p class="fnt-16 fw-b mb-35">
                                     {{ 'about_the_author' | translate }}
                                 </p>
                                 <div class="d-flex">
@@ -198,13 +196,13 @@
                                     </div>
                                     <div>
                                         <a
-                                            class="fnt-bold cursor-pointer text-underline"
+                                            class="fw-b cursor-pointer text-underline"
                                             [routerLink]="'/user-profile/' + stickySecData?.slug"
                                         >
                                             {{ stickySecData?.firstname }}
                                             {{ stickySecData?.lastname }}
                                         </a>
-                                        <p class="fnt-semi-bold mt-2">
+                                        <p class="fw-sb mt-2">
                                             {{ stickySecData?.about_me }}
                                         </p>
                                     </div>
@@ -233,12 +231,12 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <div class="d-flex">
                                         <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                        <p class="align-items-center d-flex text-nowrap fnt-bold ml-2">
+                                        <p class="align-items-center d-flex text-nowrap fw-b ml-2">
                                             {{ 'read_the_guide' | translate }}
                                         </p>
                                     </div>
                                     <div class="bg-f8 px-25 py-2">
-                                        <p class="fnt-semi-bold fnt-12">
+                                        <p class="fw-sb fnt-12">
                                             {{ 'original_language' | translate }} :
                                             {{ detailsData?.original_details?.language | language }}
                                         </p>
@@ -247,7 +245,7 @@
                                 <app-user-header [prop]="orginalUserData"></app-user-header>
                                 <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                     <a
-                                        class="fnt-semi-bold"
+                                        class="fw-sb"
                                         (click)="
                                             onRealtedRoute(
                                                 detailsData?.original_details?.language,
@@ -262,11 +260,11 @@
 
                         <div class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">
-                                <p class="fnt-16 fnt-bold mb-25">{{ 'comments' | translate }}</p>
+                                <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
                             </div>
                             <div class="d-flex">
                                 <button
-                                    class="add-comment d-flex align-items-center pl-4 w-100 fnt-semi-bold text-clr588"
+                                    class="add-comment d-flex align-items-center pl-4 w-100 fw-sb text-clr588"
                                     (click)="onFocus()"
                                 >
                                     {{ 'share_your_thoughts' | translate }}
@@ -275,7 +273,7 @@
                         </div>
                         <div *ngIf="allComments?.length > 0">
                             <div class="comment-border">
-                                <p class="fnt-semi-bold">{{ allComments.length }} {{ 'answers' | translate }}</p>
+                                <p class="fw-sb">{{ allComments.length }} {{ 'answers' | translate }}</p>
                             </div>
                             <div
                                 class="answer-wrapper my-45"
@@ -309,7 +307,7 @@
 
     <article *ngIf="showAll" class="row">
         <div class="col-12 col-md-8 px-md-3">
-            <div class="fnt-16 fnt-bold pt-3 pb-45 background-header">
+            <div class="fnt-16 fw-b pt-3 pb-45 background-header">
                 {{ 'popular_brewing_guides' | translate }}
             </div>
             <div class="row py-2">
@@ -317,10 +315,10 @@
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_thumb_url" alt="" /></div>
                         <div class="cursor-pointer d-flex flex-column">
-                            <p class="fnt-fly fnt-bold cust-flex-grow">
+                            <p class="fnt-fly fw-b cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>
-                            <p class="fnt-semi-bold text-underline">
+                            <p class="fw-sb text-underline">
                                 {{ forum?.user_name }}
                             </p>
                         </div>
@@ -341,11 +339,11 @@
         <div class="pb-4 d-flex">
             <div class="w-100 d-flex justify-content-between">
                 <div>
-                    <p class="fnt-bold mb-1">{{ stickySecData?.firstname }} {{ stickySecData?.lastname }}</p>
-                    <p class="fnt-semi-bold text-clr588 mb-1">
+                    <p class="fw-b mb-1">{{ stickySecData?.firstname }} {{ stickySecData?.lastname }}</p>
+                    <p class="fw-sb text-clr588 mb-1">
                         {{ stickySecData?.organisation_name || stickySecData?.organization_name }}
                     </p>
-                    <p *ngIf="stickySecData?.country || stickySecData?.city" class="fnt-semi-bold text-clr588 mb-1">
+                    <p *ngIf="stickySecData?.country || stickySecData?.city" class="fw-sb text-clr588 mb-1">
                         <span *ngIf="stickySecData?.organisation_name || stickySecData?.organization_name">@</span>
                         {{ stickySecData?.city || stickySecData?.organization_city }},
                         {{ stickySecData?.country | country }}

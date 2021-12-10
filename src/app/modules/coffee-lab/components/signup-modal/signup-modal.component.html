@@ -3,7 +3,7 @@
         <i class="pi pi-times fnt-18 text-clr588 cross-icon cursor-pointer" (click)="close()"></i>
     </div>
     <div class="text-center pb-5">
-        <div class="lh-157 fnt-36 mt-5 pt-1 fnt-semi-bold join-head mb-475 pl-4 pr-5">
+        <div class="lh-157 fnt-36 mt-5 pt-1 fw-sb join-head mb-475 pl-4 pr-5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_now_coffee_lab') | translate }}
         </div>
         <div class="pr-2 w-100 align-items-center d-flex flex-column">
@@ -12,7 +12,7 @@
                 (click)="signInWithGoogle()"
             >
                 <img src="assets/images/google.svg" />
-                <span class="fnt-semi-bold ml-3">
+                <span class="fw-sb ml-3">
                     {{ 'signup_with_google' | translate }}
                 </span>
             </div>
@@ -21,19 +21,19 @@
                 (click)="signInWithFacebook()"
             >
                 <img src="assets/images/facebook-color.svg" />
-                <span class="fnt-semi-bold ml-3">
+                <span class="fw-sb ml-3">
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </div>
             <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''" class="signup-btn email-btn">
                 <div class="d-flex fnt-16 align-items-center p-3 cursor-pointer">
                     <img src="assets/images/email.svg" />
-                    <span class="fnt-semi-bold ml-3">
+                    <span class="fw-sb ml-3">
                         {{ 'signup_with_email' | translate }}
                     </span>
                 </div>
             </a>
-            <div class="mt-5 fnt-16 fnt-semi-bold">
+            <div class="mt-5 fnt-16 fw-sb">
                 {{ 'already_have_account' | translate }}
                 <a [href]="ssoWeb + '/login'" class="brown-cta" [rel]="isStaging ? 'nofollow' : ''">{{
                     'login' | translate
