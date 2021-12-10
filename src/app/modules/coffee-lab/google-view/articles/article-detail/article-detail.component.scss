@@ -119,11 +119,6 @@
     border-bottom: 1px solid $dark-color;
 }
 
-::ng-deep .p-inputtextarea:enabled:hover,
-::ng-deep .p-inputtextarea:enabled:focus {
-    border: 1px solid $primary-color !important;
-}
-
 .flavour-profiles {
     border: 2px dashed $primary-border-color;
     a {
@@ -146,10 +141,4 @@
 
 .border-bottom-0 {
     border-bottom: 0 !important;
-}
-
-.align-like {
-    span {
-        margin-top: 0.8rem;
-    }
 }

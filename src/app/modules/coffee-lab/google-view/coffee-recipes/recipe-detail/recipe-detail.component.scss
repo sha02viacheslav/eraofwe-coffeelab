@@ -1,4 +1,9 @@
 @import 'variables';
+
+.loader-wrap {
+    min-height: 50vh;
+}
+
 .page-wrapper {
     @media screen and(max-width:767px) {
         .recipe-info-wrapper {
@@ -199,14 +204,6 @@
     }
 }
 
-.flavour-profiles {
-    border: 1px dashed #ebebeb;
-    a {
-        color: #154faa;
-        text-decoration: underline !important;
-    }
-}
-
 .footer-border {
     border-bottom: solid 0.5px #d8d8d8;
 }
@@ -244,17 +241,6 @@
     background-color: #fff;
 }
 
-.pi:before {
-    --webkit-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-::ng-deep .p-inputtextarea:enabled:hover,
-::ng-deep .p-inputtextarea:enabled:focus {
-    border: 1px solid #30855c !important;
-}
-
 .flavour-profiles {
     border: 2px dashed #d6d6d6;
     a {
@@ -264,37 +250,6 @@
     }
 }
 
-.message-top {
-    margin-top: 6px;
-}
-
-.fnt-24 {
-    font-size: 24px;
-}
-
 .border-bottom-0 {
     border-bottom: 0 !important;
-}
-
-.align-like {
-    .like-int {
-        cursor: pointer;
-        padding: 0.4px 8px;
-        border-radius: 50%;
-        background-color: rgba(116, 117, 136, 0.08);
-        @media (min-width: 992px) {
-            &:hover {
-                background-color: rgba(48, 133, 92, 0.12);
-            }
-        }
-
-        .like {
-            position: relative;
-            top: 6px;
-            height: 22px;
-        }
-    }
-    span {
-        margin-top: 0.8rem;
-    }
 }

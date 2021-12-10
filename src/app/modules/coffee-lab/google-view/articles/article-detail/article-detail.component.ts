@@ -34,7 +34,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
-    loading = true;
+    loading = false;
     jsonLD: any;
     lang: any;
     previousUrl: string;

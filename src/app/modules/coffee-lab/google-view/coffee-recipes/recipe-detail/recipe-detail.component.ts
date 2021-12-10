@@ -1,16 +1,16 @@
-import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService, ResizeService } from '@services';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { environment } from '@env/environment';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
+import { environment } from '@env/environment';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
+import { getLangRoute } from '@utils';
+import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
-import { getLangRoute } from '@utils';
-import { ResizeableComponent } from '@base-components';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -25,7 +25,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
-    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Brewing' }];
     infoData: any[] = [
         {
             icon: 'assets/images/aeropress.svg',
@@ -45,7 +44,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         },
     ];
 
-    loading = true;
+    loading = false;
     jsonLD: any;
     lang: any;
     previousUrl: string;
@@ -62,6 +61,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
         private activatedRoute: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
         private globalsService: GlobalsService,
@@ -100,11 +100,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
             const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
                 .pipe(takeUntil(this.unsubscribeAll$))
                 .subscribe((res) => {
                     if (window.scrollY > 10) {
                         scrollEvent.unsubscribe();
                         this.showAll = true;
+                        this.cdr.detectChanges();
                     }
                 });
         }
@@ -119,7 +121,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         const params = {
             count: 10,
         };
-        this.coffeeLabService.getPopularList('recipe', params).subscribe((res) => {
+        this.coffeeLabService.getPopularList(PostType.RECIPE, params).subscribe((res) => {
             if (res.success) {
                 this.relatedData = res.result;
             }
@@ -128,15 +130,14 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
 
     getDetails() {
         this.loading = true;
-        this.coffeeLabService.getForumDetails('recipe', this.idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails(PostType.RECIPE, this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    const textContent = this.globalsService.getJustText(res.result?.description);
                     this.detailsData = {
                         ...res.result,
-                        descriptionText: textContent,
+                        descriptionText: this.globalsService.getJustText(res.result?.description),
                     };
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
@@ -144,51 +145,57 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.previousUrl = `/${getLangRoute(this.lang)}/${
                         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.RECIPE]
                     }`;
+                    this.getAllData();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();
                     }
-                    if (
-                        this.detailsData?.original_recipe_state &&
-                        this.detailsData?.original_recipe_state === 'ACTIVE'
-                    ) {
-                        this.getOriginalUserDetail(this.detailsData.original_details);
-                    }
-                    this.getUserDetail(this.detailsData);
-                    this.getCommentsData();
                     this.messageService.clear();
-                    this.messageService.add({
-                        key: 'translate',
-                        severity: 'success',
-                        closable: false,
-                    });
+                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                 }
             } else {
                 this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+            this.cdr.detectChanges();
         });
     }
 
-    getUserDetail(userDatils: any): void {
+    getAllData() {
+        const promises = [];
+        if (this.detailsData?.original_recipe_state && this.detailsData?.original_recipe_state === 'ACTIVE') {
+            promises.push(
+                new Promise((resolve) => this.getOriginalUserDetail(this.detailsData.original_details, resolve)),
+            );
+        }
+        promises.push(new Promise((resolve) => this.getUserDetail(this.detailsData, resolve)));
+        promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
+        Promise.all(promises)
+            .then(() => this.cdr.detectChanges())
+            .catch(() => this.cdr.detectChanges());
+    }
+
+    getUserDetail(userDatils: any, resolve): void {
         this.coffeeLabService.getUserDetail(userDatils.posted_by, userDatils.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.stickySecData = res.result;
             }
+            resolve();
         });
     }
 
-    getOriginalUserDetail(userDetails: any): void {
+    getOriginalUserDetail(userDetails: any, resolve): void {
         this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.orginalUserData = res.result;
             }
+            resolve();
         });
     }
 
-    getCommentsData(): void {
-        this.coffeeLabService.getCommentList('recipe', this.detailsData.slug).subscribe((res: any) => {
+    getCommentsData(resolve): void {
+        this.coffeeLabService.getCommentList(PostType.RECIPE, this.detailsData.slug).subscribe((res: any) => {
             if (res.success) {
                 this.allComments = res.result;
                 this.commentData = this.allComments?.slice(0, 3);
@@ -198,6 +205,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.showCommentBtn = false;
                 }
             }
+            resolve();
         });
     }
 
