@@ -28,12 +28,7 @@
         >
             <div class="mb-md-4 mb-3 flex-1 overflow-hidden d-flex justify-content-between">
                 <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
-                <div class="d-flex align-like">
-                    <div class="like-int" (click)="onFocus()">
-                        <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
-                    </div>
-                    <!-- <span class="d-flex mb-05 fnt-300 mr-2">{{ answer?.likes }}</span> -->
-                </div>
+                <div class="btn-icon thumbsup" (click)="onFocus()"></div>
             </div>
             <div class="my-4 lh-15" [ngClass]="{ 'mb-3': !isLast }">
                 <span [innerHTML]="answer?.answer | convertToShortDescription: 25"></span>

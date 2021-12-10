@@ -11,12 +11,7 @@
         </div>
         <div class="mx-4">
             <div class="d-flex justify-content-between">
-                <div class="d-flex align-like">
-                    <div class="like-int" (click)="onFocus($event)">
-                        <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
-                    </div>
-                    <!-- <span class="d-flex mb-05 fnt-300 ml-1 mr-2">{{ article?.likes }}</span> -->
-                </div>
+                <div class="btn-icon thumbsup" (click)="onFocus($event)"></div>
                 <span class="fw-sb tc-m mt-2">
                     {{ article?.posted_at || article?.created_at | date: 'MMMM' | translate }}
                     {{ article?.posted_at || article?.created_at | date: 'd, yyyy' }}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
@@ -9,18 +9,18 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     selector: 'app-like-divider',
     templateUrl: './like-divider.component.html',
     styleUrls: ['./like-divider.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LikeDividerComponent implements OnInit {
     @Input() total: any;
     @Input() question: any;
-    buttonList = [{ button: 'Roasting' }, { button: 'Coffee grinding' }, { button: 'Milling' }, { button: 'Brewing' }];
     showJoinBtn = true;
 
     constructor(
-        public dialogSrv: DialogService,
-        private router: Router,
         private activateRoute: ActivatedRoute,
         private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {

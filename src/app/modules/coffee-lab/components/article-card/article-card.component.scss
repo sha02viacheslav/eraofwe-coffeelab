@@ -48,27 +48,3 @@
         margin-bottom: 0 !important;
     }
 }
-
-.align-like {
-    .like-int {
-        cursor: pointer;
-        padding: 5.5px 8.5px;
-        border-radius: 50%;
-        background-color: rgba(116, 117, 136, 0.08);
-        @media (min-width: 992px) {
-            &:hover {
-                background-color: rgba(48, 133, 92, 0.12);
-            }
-        }
-
-        .like {
-            position: relative;
-            top: 0px;
-            min-height: 22px !important;
-            height: 22px !important;
-        }
-    }
-    span {
-        margin-top: 0.8rem;
-    }
-}

@@ -1,13 +1,8 @@
 <div class="divider-box px-3 d-flex justify-content-between" [ngClass]="{ 'border-l8': total < 1 }">
     <div class="d-flex">
-        <div class="d-flex align-like">
-            <div class="like-int" (click)="onFocus()">
-                <img class="cursor-point like" src="assets/images/thumbsup.svg" alt="thumbs-up" />
-            </div>
-            <!-- <span class="d-flex mb-05 fnt-300 mr-2">{{ question?.likes }}</span> -->
-        </div>
+        <div class="btn-icon thumbsup" (click)="onFocus()"></div>
         <div (click)="onFocus()" class="btn-icon message ml-2 transparent"></div>
-        <div (click)="onFocus()" class="btn-icon save transparent ml-1"></div>
+        <div (click)="onFocus()" class="btn-icon save transparent ml-2"></div>
     </div>
     <div class="d-flex align-items-center" *ngIf="showJoinBtn">
         <div (click)="onJoin()" class="c-p p-1 mr-2 d-none d-md-block fw-sb text-nowrap">
