@@ -9,28 +9,8 @@
         ></app-user-detail>
         <div class="ml-25 flex-1 overflow-hidden">
             <div class="d-flex align-items-center mr-3 text-nowrap">
-                <div [ngClass]="{ ellipsis: enableEllipsis }" class="fw-b mr-md-3 mr-1">
-                    <a
-                        *ngIf="isTopWriters"
-                        routerLink="/user-profile"
-                        [queryParams]="{
-                            user_id: prop?.user_id,
-                            organization: prop?.org_type,
-                            organization_id: prop?.org_id
-                        }"
-                    >
-                        {{
-                            prop?.user_name ||
-                                prop?.question_user ||
-                                prop?.posted_user ||
-                                prop?.first_name ||
-                                prop?.firstname ||
-                                prop?.lastname ||
-                                'Unknown User'
-                        }}
-                        {{ prop?.last_name }}</a
-                    >
-                    <span *ngIf="!isTopWriters">
+                <div [ngClass]="{ ellipsis: enableEllipsis }" class="fnt-bold mr-md-3 mr-1">
+                    <span>
                         {{
                             prop?.user_name ||
                                 prop?.question_user ||
@@ -44,15 +24,15 @@
                     </span>
                 </div>
             </div>
-            <div class="tc-m mt-1 d-flex text-nowrap">
-                <span class="fw-sb mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
-                <span class="fw-sb mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
+            <div class="text-clr588 mt-1 d-flex text-nowrap">
+                <span class="fnt-semi-bold mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
+                <span class="fnt-semi-bold mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
                 <span class="ellipsis" *ngIf="orgType !== 'co'"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
                 <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
                     <span class="d-none d-md-block time-point"></span>
-                    <span class="fw-sb tc-m d-none d-md-block aling-time">
+                    <span class="fnt-semi-bold text-clr588 d-none d-md-block aling-time">
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}
                     </span>
                 </div>
@@ -60,7 +40,7 @@
         </div>
     </div>
     <!-- <div>
-        <div *ngIf="prop?.question" class="tc-m d-none d-md-block time-text">
+        <div *ngIf="prop?.question" class="text-clr588 d-none d-md-block time-text">
             {{ prop?.posted_at || prop?.created_at | date: 'mediumDate' }}
             {{ prop?.posted_at || prop?.created_at | amTimeAgo: true }}
         </div>
