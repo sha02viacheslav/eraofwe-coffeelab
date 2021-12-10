@@ -1,21 +1,22 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { CoffeeLabService, SEOService, StartupService, GlobalsService } from '@services';
-import { Router, ActivatedRoute } from '@angular/router';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterMap, seoVariables } from '@constants';
+import { PostType, RouterSlug } from '@enums';
+import { environment } from '@env/environment';
+import { CoffeeLabService, GlobalsService, SEOService, StartupService } from '@services';
+import { getLangRoute, toSentenceCase } from '@utils';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
-import { environment } from '@env/environment';
-import { RouterMap, seoVariables } from '@constants';
-import { MessageService } from 'primeng/api';
-import { PostType, RouterSlug } from '@enums';
-import { getLangRoute, toSentenceCase } from '@utils';
 
 @Component({
     selector: 'app-question-detail',
     templateUrl: './question-detail.component.html',
     styleUrls: ['./question-detail.component.scss'],
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionDetailComponent implements OnInit {
     readonly PostType = PostType;
@@ -25,21 +26,21 @@ export class QuestionDetailComponent implements OnInit {
     jsonLD: any;
     lang: any;
     previousUrl: string;
-    answerDetail: any;
     urlLang: string;
     showToaster = false;
     constructor(
-        private coffeeLabService: CoffeeLabService,
-        public router: Router,
-        private activatedRoute: ActivatedRoute,
-        private toastService: ToastrService,
-        private seoService: SEOService,
-        private startupService: StartupService,
-        private messageService: MessageService,
-        public globalsService: GlobalsService,
-        public dialogSrv: DialogService,
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
+        private activatedRoute: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+        private globalsService: GlobalsService,
+        private messageService: MessageService,
+        private router: Router,
+        private seoService: SEOService,
+        private startupService: StartupService,
+        private toastService: ToastrService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
@@ -58,47 +59,58 @@ export class QuestionDetailComponent implements OnInit {
 
     getDetails() {
         this.loading = true;
-        this.coffeeLabService.getForumDetails('question', this.idOrSlug).subscribe((res: any) => {
+        this.coffeeLabService.getForumDetails(PostType.QA, this.idOrSlug).subscribe((res: any) => {
             if (res.success) {
                 if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
                     this.lang = res.result.lang_code;
-                    if (this.detailsData.parent_question_id > 0) {
-                        this.detailsData.answers.forEach((element) => {
-                            if (element.parent_answer_id > 0) {
-                                this.getAnswerDetail(element.id);
-                            }
-                        });
-                    } else {
-                        this.answerDetail = {};
-                    }
                     this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
                     this.previousUrl = `/${getLangRoute(this.lang)}/${
                         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
                     }`;
-                    this.setSEO();
-                    this.setSchemaMackup();
                     this.messageService.clear();
-                    this.messageService.add({
-                        key: 'translate',
-                        severity: 'success',
-                        closable: false,
-                    });
+                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
+                    this.getOriginalAnswers();
+
+                    this.setSEO();
+                    if (isPlatformServer(this.platformId)) {
+                        this.setSchemaMackup();
+                    }
                 }
             } else {
                 this.toastService.error('The question is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;
+            this.cdr.detectChanges();
         });
     }
 
-    getAnswerDetail(id: any) {
-        this.coffeeLabService.getForumDetails('answer', id).subscribe((res: any) => {
-            this.answerDetail = res.result;
+    getOriginalAnswers() {
+        const promises = [];
+        if (this.detailsData.parent_question_id > 0) {
+            this.detailsData.answers.forEach((element, index) => {
+                if (element.parent_answer_id > 0) {
+                    promises.push(new Promise((resolve) => this.getAnswerDetail(element.id, index, resolve)));
+                }
+            });
+            if (promises.length) {
+                Promise.all(promises).then(() => {
+                    this.cdr.detectChanges();
+                });
+            }
+        }
+    }
+
+    getAnswerDetail(id: any, answerIdx: number, resolve) {
+        this.coffeeLabService.getForumDetails(PostType.ANSWER, id).subscribe((res) => {
+            if (res.success && res.result?.original_answer_state === 'ACTIVE') {
+                this.detailsData.answers[answerIdx].originalAnswer = res.result.original_details;
+            }
+            resolve();
         });
     }
 

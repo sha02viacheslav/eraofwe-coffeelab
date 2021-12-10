@@ -1,6 +1,6 @@
 <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div class="position-relative loader-wrap mt-4 pb-mt-45" *ngIf="!loading; else loader">
+<div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
     <div class="page-wrapper">
         <article class="flex-1 mb-4">
             <div class="recip-content pt-2 pt-lg-45">

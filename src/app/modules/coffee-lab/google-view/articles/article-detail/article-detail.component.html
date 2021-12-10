@@ -1,6 +1,6 @@
 <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div class="position-relative loader-wrap mt-4 pb-mt-45" *ngIf="!loading; else loader">
+<div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
     <div class="article-main-block">
         <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
             <app-category-list [isArticlePage]="true" [categoryList]="detailsData?.categories"></app-category-list>
