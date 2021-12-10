@@ -125,7 +125,7 @@
                                     <div>
                                         <a
                                             [routerLink]="'/user-profile/' + stickySecData?.slug"
-                                            class="fw-b cursor-pointer text-underline"
+                                            class="fw-b c-p text-underline"
                                         >
                                             {{ stickySecData?.firstname }} {{ stickySecData?.lastname }}
                                         </a>
@@ -240,14 +240,14 @@
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.language, forum.slug)">
-                        <div class="p-articles pr-2 cursor-pointer">
+                        <div class="p-articles pr-2 c-p">
                             <img
                                 [lazyLoad]="forum?.cover_image_thumb_url"
                                 src="assets/images/empty.svg"
                                 [alt]="forum.title"
                             />
                         </div>
-                        <div class="cursor-pointer d-flex flex-column">
+                        <div class="c-p d-flex flex-column">
                             <p class="fnt-fly fw-b cust-flex-grow text-break">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>

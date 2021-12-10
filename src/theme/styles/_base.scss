@@ -56,25 +56,6 @@ input[type='number'] {
     background-color: $primary-bg-color;
 }
 
-// link without arrow
-.custom-link {
-    color: $brown-color !important;
-    font-size: 12px;
-    font-weight: 700;
-    position: relative;
-    text-decoration: underline !important;
-
-    &:hover {
-        color: $brown-color !important;
-        cursor: pointer;
-        text-decoration: underline !important;
-    }
-
-    @media (min-width: 992px) {
-        font-size: 14px;
-    }
-}
-
 // brown CTA
 .brown-cta {
     color: $brown-color !important;
@@ -125,7 +106,7 @@ input[type='number'] {
 }
 
 // Cursor
-.cursor-pointer {
+.c-p {
     cursor: pointer;
 }
 

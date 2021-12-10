@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div
-                            class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0 cursor-pointer"
+                            class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0 c-p"
                             (click)="onFocus()"
                         >
                             <div
@@ -143,7 +143,7 @@
                                 [id]="'step' + (i + 1)"
                             >
                                 <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
-                                    <span class="fw-sb lh-157 mb-1" style="font-size: 24px">{{ i + 1 }}</span>
+                                    <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
                                     <div
                                         class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
                                         [innerHTML]="step.description"
@@ -187,7 +187,7 @@
                                 </div>
                                 <div>
                                     <a
-                                        class="fw-b cursor-pointer text-underline"
+                                        class="fw-b c-p text-underline"
                                         [routerLink]="'/user-profile/' + stickySecData?.slug"
                                     >
                                         {{ stickySecData?.firstname }}
@@ -303,7 +303,7 @@
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
                         <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_thumb_url" alt="" /></div>
-                        <div class="cursor-pointer d-flex flex-column">
+                        <div class="c-p d-flex flex-column">
                             <p class="fnt-fly fw-b cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>
@@ -348,7 +348,7 @@
                 <div class="btn-raised">
                     <img
                         (click)="onFocus()"
-                        class="cursor-pointer"
+                        class="c-p"
                         src="assets/images/message-icon-white.svg"
                         alt="message-icon-white"
                     />
