@@ -49,7 +49,7 @@
                 ></app-profile-certificates-view>
             </div>
         </div>
-        <div class="col-lg-8 mt-4 mt-md-0">
+        <div *ngIf="isBrowser && showAll" class="col-lg-8 mt-4 mt-md-0">
             <p-tabView styleClass="tabview-coffee-lab position-relative">
                 <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
                     <ng-template pTemplate="header">

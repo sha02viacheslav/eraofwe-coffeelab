@@ -1,23 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { isPlatformBrowser, Location } from '@angular/common';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, GlobalsService } from '@services';
-import { DialogService } from 'primeng/dynamicdialog';
-import { SignupModalComponent } from '../components/signup-modal/signup-modal.component';
+import { ResizeableComponent } from '@base-components';
 import { OrganizationType, PostType } from '@enums';
+import { CoffeeLabService, ResizeService } from '@services';
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from 'primeng/dynamicdialog';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { SignupModalComponent } from '../components/signup-modal/signup-modal.component';
 
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly postType = PostType;
     readonly OrgType = OrganizationType;
 
     isLoading = false;
+    showAll = true;
+    isBrowser = false;
     isUpdatingProfile = false;
     bannerUrl: string;
     profileUrl: string;
@@ -25,7 +39,6 @@ export class UserProfileComponent implements OnInit {
     infoForm: FormGroup;
     certificationArray: any[] = [];
     userSlug: any;
-    // queryOrganization: any;
     orgType: OrganizationType;
     menuItems = [
         {
@@ -49,21 +62,47 @@ export class UserProfileComponent implements OnInit {
     ];
 
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
         private activateRoute: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
         private router: Router,
         private toastr: ToastrService,
-        private coffeeLabService: CoffeeLabService,
-        public globals: GlobalsService,
+        protected resizeService: ResizeService,
         public location: Location,
-        private dialogSrv: DialogService,
     ) {
+        super(resizeService);
         this.activateRoute.params.subscribe((res) => {
             this.userSlug = res.user_slug;
         });
         this.getUserInfo();
+
+        if (isPlatformBrowser(this.platformId)) {
+            this.isBrowser = true;
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
+            window.scrollTo(0, 0);
+        }
     }
 
     ngOnInit(): void {}
+
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                        this.cdr.detectChanges();
+                    }
+                });
+        }
+    }
 
     getUserInfo(): void {
         this.isLoading = true;
@@ -78,6 +117,7 @@ export class UserProfileComponent implements OnInit {
                 this.toastr.error('Error while fetching profile');
                 this.router.navigate(['/']);
             }
+            this.cdr.detectChanges();
         });
     }
 

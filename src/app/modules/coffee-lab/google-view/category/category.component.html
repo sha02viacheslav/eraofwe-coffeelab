@@ -1,8 +1,6 @@
 <div *ngIf="!isLoading; else loader" class="main-block">
     <div class="mt-1 mt-lg-3 w-fit-content">
-        <a class="back-page" [routerLink]="previousUrl">
-            <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
-        </a>
+        <a class="back-page" [routerLink]="previousUrl">{{ 'back_to_forum' | translate }}</a>
     </div>
     <div class="d-block d-md-flex">
         <div class="mt-1 mt-md-2 mb-4 mb-lg-5 pb-1">

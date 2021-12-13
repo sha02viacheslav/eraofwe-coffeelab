@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { OrganizationType, PostType } from '@enums';
 import { CoffeeLabService, GlobalsService } from '@services';
 
@@ -6,6 +6,7 @@ import { CoffeeLabService, GlobalsService } from '@services';
     selector: 'app-user-posts',
     templateUrl: './user-posts.component.html',
     styleUrls: ['./user-posts.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserPostsComponent implements OnInit {
     readonly PostType = PostType;
@@ -19,7 +20,11 @@ export class UserPostsComponent implements OnInit {
     page = 1;
     rows = 6;
 
-    constructor(private coffeeLabService: CoffeeLabService, private globalsService: GlobalsService) {}
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private coffeeLabService: CoffeeLabService,
+        private globalsService: GlobalsService,
+    ) {}
 
     ngOnInit(): void {
         this.getPosts();
@@ -50,10 +55,10 @@ export class UserPostsComponent implements OnInit {
                         return item;
                     },
                 );
-                window.scroll(0, 0);
                 this.totalRecords = res.result_info.total_count;
             }
             this.isLoading = false;
+            this.cdr.detectChanges();
         });
     }
 
