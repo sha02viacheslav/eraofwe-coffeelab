@@ -1,26 +1,37 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CoffeeLabService, SEOService, ResizeService } from '@services';
-import { ToastrService } from 'ngx-toastr';
 import { ResizeableComponent } from '@base-components';
-import { environment } from '@env/environment';
 import { PostType } from '@enums';
-import { getLangRoute } from '@utils';
+import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntil } from 'rxjs/operators';
+import { CoffeeLabService, ResizeService, SEOService } from '@services';
+import { getLangRoute } from '@utils';
+import { ToastrService } from 'ngx-toastr';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-qa-forum-view',
     templateUrl: './qa-forum-view.component.html',
     styleUrls: ['./qa-forum-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QaForumViewComponent extends ResizeableComponent implements OnInit {
+export class QaForumViewComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
     sortBy: string;
     filterBy: boolean = null;
     questions: any[] = [];
     isLoading = true;
+    showAll = true;
     keyword = '';
     totalRecords = 0;
     rows = 10;
@@ -40,6 +51,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
+        private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
         private seoService: SEOService,
@@ -48,6 +60,13 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
+            window.scrollTo(0, 0);
+        }
     }
 
     ngOnInit(): void {
@@ -72,6 +91,21 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
         });
     }
 
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                        this.cdr.detectChanges();
+                    }
+                });
+        }
+    }
+
     refreshData() {
         this.getData();
         this.getCategory();
@@ -92,15 +126,18 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
             per_page: this.rows,
         };
         this.isLoading = true;
-        this.coffeeLabService.getForumList('question', params).subscribe((res: any) => {
+        this.coffeeLabService.getForumList(PostType.QA, params).subscribe((res: any) => {
             if (res.success) {
                 this.questions = res.result?.questions || [];
                 this.totalRecords = res.result_info.total_count;
-                this.setSchemaMackup();
+                if (isPlatformServer(this.platformId)) {
+                    this.setSchemaMackup();
+                }
             } else {
                 this.toastService.error('Cannot get forum data');
             }
             this.isLoading = false;
+            this.cdr.detectChanges();
         });
     }
 
@@ -109,6 +146,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit 
             if (category.success) {
                 this.categoryList = category.result;
             }
+            this.cdr.detectChanges();
         });
     }
 

@@ -24,7 +24,7 @@
     <ng-template pTemplate="item" let-item let-i="index">
         <img [src]="item.icon" alt="icon" width="32" height="32" />
         <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
-        <span *ngIf="!isMobile$" class="pl-1">{{ item.label | translate }}</span>
+        <span class="pl-1 d-none d-md-inline-block">{{ item.label | translate }}</span>
     </ng-template>
 </p-tabMenu>
 

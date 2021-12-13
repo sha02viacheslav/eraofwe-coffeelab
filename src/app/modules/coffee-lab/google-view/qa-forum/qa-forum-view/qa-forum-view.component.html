@@ -10,51 +10,58 @@
 
 <div class="d-flex position-relative">
     <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
-        <div class="d-flex flex-md-row flex-column pr-lg-2 mb-4">
-            <p-multiSelect
-                [options]="categoryList"
-                (onChange)="getData()"
-                [(ngModel)]="selectedCategory"
-                styleClass="round-border mb-25 mb-md-0 {{ selectedCategory?.length ? 'highlight' : '' }}"
-                [placeholder]="'categories' | translate"
-                [maxSelectedLabels]="1"
-                selectedItemsLabel="{0} {{ 'categories' | translate }}"
-                optionLabel="name"
-                optionValue="parent_id"
-            ></p-multiSelect>
-            <p-dropdown
-                [options]="filterOptions"
-                [(ngModel)]="filterBy"
-                [showClear]="true"
-                (ngModelChange)="getData()"
-                styleClass="round-border ml-0 ml-md-3 mr-3 mb-25 mb-md-0 {{ filterBy !== null ? 'highlight' : '' }}"
-                [showClear]="true"
-                [placeholder]="'posted_by' | translate"
-            >
-                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-            </p-dropdown>
-            <p-dropdown
-                [options]="sortOptions"
-                [(ngModel)]="sortBy"
-                (ngModelChange)="getData()"
-                styleClass="round-border mb-25 mb-md-0 {{ sortBy ? 'highlight' : '' }}"
-                [showClear]="true"
-                [placeholder]="'sort_by' | translate"
-            >
-                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-            </p-dropdown>
+        <div class="pb-4">
+            <div class="row gutter-16 v-gutter-16">
+                <div class="col-auto">
+                    <p-multiSelect
+                        [options]="categoryList"
+                        (onChange)="getData()"
+                        [(ngModel)]="selectedCategory"
+                        styleClass="round-border {{ selectedCategory?.length ? 'highlight' : '' }}"
+                        [placeholder]="'categories' | translate"
+                        [maxSelectedLabels]="1"
+                        selectedItemsLabel="{0} {{ 'categories' | translate }}"
+                        optionLabel="name"
+                        optionValue="parent_id"
+                    ></p-multiSelect>
+                </div>
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="filterOptions"
+                        [(ngModel)]="filterBy"
+                        [showClear]="true"
+                        (ngModelChange)="getData()"
+                        styleClass="round-border {{ filterBy !== null ? 'highlight' : '' }}"
+                        [showClear]="true"
+                        [placeholder]="'posted_by' | translate"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="sortOptions"
+                        [(ngModel)]="sortBy"
+                        (ngModelChange)="getData()"
+                        styleClass="round-border {{ sortBy ? 'highlight' : '' }}"
+                        [showClear]="true"
+                        [placeholder]="'sort_by' | translate"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
         </div>
 
-        <div *ngIf="!isLoading">
-            <app-questions
-                [questions]="questions"
-                [pages]="page"
-                [rows]="rows"
-                [totalRecords]="totalRecords"
-            ></app-questions>
-        </div>
+        <app-questions
+            *ngIf="!isLoading"
+            [questions]="showAll ? questions : questions?.slice(0, 1)"
+            [pages]="page"
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+        ></app-questions>
 
         <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
