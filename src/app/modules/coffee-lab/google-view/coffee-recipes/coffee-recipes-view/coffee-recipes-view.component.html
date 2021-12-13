@@ -82,15 +82,8 @@
     </div>
 </div>
 <div class="position-relative">
-    <div>
-        <app-recipes
-            [recipes]="coffeeRecipeData"
-            [pages]="page"
-            [rows]="rows"
-            [totalRecords]="totalRecords"
-        ></app-recipes>
-        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
-    </div>
+    <app-recipes [recipes]="coffeeRecipeData" [pages]="page" [rows]="rows" [totalRecords]="totalRecords"></app-recipes>
+    <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
     <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4">
         {{ 'no_data_is_available' | translate }}

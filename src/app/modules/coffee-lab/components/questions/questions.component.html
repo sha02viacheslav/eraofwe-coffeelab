@@ -1,5 +1,5 @@
-<div class="row mx-0">
-    <div *ngFor="let question of questions; let ind = index" class="w-100">
+<div class="row gutter-16 v-gutter-24">
+    <div *ngFor="let question of questions; let ind = index" class="col-12">
         <app-question-card [question]="question" [index]="ind"></app-question-card>
     </div>
 </div>

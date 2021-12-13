@@ -1,31 +1,35 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryRoutingModule } from './category-routing.module';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { SharedModule } from '@shared';
-import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
-import { SeoPaginatorModule } from '@modules/coffee-lab/components/paginator/paginator.module';
+import { CategoryRoutingModule } from './category-routing.module';
+
+import { ArticleCardModule } from '@modules/coffee-lab/components/article-card/article-card.module';
+import { CategoryListModule } from '@modules/coffee-lab/components/category-list/category-list.module';
 import { LanguageDropdownModule } from '@modules/coffee-lab/components/language-dropdown/language-dropdown.module';
+import { QuestionsCardModule } from '@modules/coffee-lab/components/question-card/question-card.module';
+import { RecipeCardModule } from '@modules/coffee-lab/components/recipe-card/recipe-card.module';
+import { SignupModalModule } from '@modules/coffee-lab/components/signup-modal/signup-modal.module';
+import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
+
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { DropdownModule } from 'primeng/dropdown';
-import { TabViewModule } from 'primeng/tabview';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
+
+import { CategoryPostsComponent } from './category-posts/category-posts.component';
 import { CategoryComponent } from './category.component';
-import { CategoryListModule } from '@modules/coffee-lab/components/category-list/category-list.module';
-import { SignupModalModule } from '@modules/coffee-lab/components/signup-modal/signup-modal.module';
-import { QuestionsModule } from '@modules/coffee-lab/components/questions/questions.module';
-import { FormsModule } from '@angular/forms';
-import { ArticlesModule } from '@modules/coffee-lab/components/articles/articles.module';
-import { RecipesModule } from '@modules/coffee-lab/components/recipes/recipes.module';
 
 @NgModule({
-    declarations: [CategoryComponent],
+    declarations: [CategoryPostsComponent, CategoryComponent],
     imports: [
         CommonModule,
         CategoryRoutingModule,
         FormsModule,
         SharedModule,
         UserHeaderModule,
-        SeoPaginatorModule,
         NgxJsonLdModule,
         DropdownModule,
         CategoryListModule,
@@ -33,9 +37,10 @@ import { RecipesModule } from '@modules/coffee-lab/components/recipes/recipes.mo
         TabViewModule,
         LanguageDropdownModule,
         OverlayPanelModule,
-        QuestionsModule,
-        ArticlesModule,
-        RecipesModule,
+        QuestionsCardModule,
+        ArticleCardModule,
+        RecipeCardModule,
+        PaginatorModule,
     ],
 })
 export class CategoryModule {}

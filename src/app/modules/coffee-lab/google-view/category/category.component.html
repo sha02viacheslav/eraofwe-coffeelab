@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading" class="main-block">
+<div *ngIf="!isLoading; else loader" class="main-block">
     <div class="mt-1 mt-lg-3 w-fit-content">
         <a class="back-page" [routerLink]="previousUrl">
             <span class="ml-2">{{ 'back_to_forum' | translate }}</span>
@@ -23,160 +23,43 @@
                 <img [ngClass]="{ 'd-block': selectedTab === i }" [src]="menu.activeIcon" alt="icon" class="d-none" />
                 <span>{{ menu.label | translate }}</span>
             </ng-template>
-            <div class="mt-45" *ngIf="selectedTab === 0">
-                <div class="row mb-475 mb-md-0">
-                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
+            <div class="row no-gutters mt-45">
+                <div class="col-12" [class.col-md-7]="menu.postType === PostType.QA">
+                    <app-category-posts
+                        *ngIf="isBrowser"
+                        [postType]="menu.postType"
+                        [slug]="slug"
+                        [showAll]="showAll"
+                    ></app-category-posts>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-7 px-0">
-                        <div class="d-block ml-25 mr-25 ml-md-3 mr-md-0">
-                            <app-questions
-                                [pages]="page"
-                                [rows]="rows"
-                                [questions]="questions"
-                                [totalRecords]="totalRecords"
-                            ></app-questions>
+                <div
+                    *ngIf="menu.postType === PostType.QA && showAll"
+                    class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 category-list"
+                >
+                    <div class="other-category pt-4 mx-3 mx-md-0">
+                        <div class="row mx-0 fnt-16 fw-b">
+                            {{ 'other_categories' | translate }}
                         </div>
-                        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
-                    </div>
-                    <div *ngIf="questions?.length <= 0" class="col-12 col-md-7 text-center my-4">
-                        {{ 'no_data_is_available' | translate }}
-                    </div>
-                    <div class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 mt-md-0">
-                        <div class="other-category pt-4 mx-3 mx-md-0">
-                            <div class="row mx-0 fnt-16 fw-b">
-                                {{ 'other_categories' | translate }}
-                            </div>
-                            <div class="mt-4">
-                                <app-category-list [categoryList]="otherCategories"></app-category-list>
-                            </div>
-                        </div>
-                        <div class="top-writer mt-4 mx-md-0 mx-3">
-                            <div class="fnt-16 fw-b mb-2 mt-3">{{ 'top_writers' | translate }}</div>
-                            <div
-                                *ngFor="let user of topWriters; let isLast = last"
-                                [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"
-                                class="border-bottom mt-3 pb-3"
-                            >
-                                <app-user-header [prop]="user"></app-user-header>
-                            </div>
+                        <div class="mt-4">
+                            <app-category-list [categoryList]="otherCategories"></app-category-list>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="mt-45" *ngIf="selectedTab === 1">
-                <div class="row mb-475 mb-md-0">
-                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
-                </div>
-                <div>
-                    <app-articles
-                        [pages]="page"
-                        [rows]="rows"
-                        [articles]="articles"
-                        [totalRecords]="totalRecords"
-                    ></app-articles>
-                </div>
-
-                <div *ngIf="!articles?.length" class="text-center my-4">
-                    {{ 'no_data_is_available' | translate }}
-                </div>
-            </div>
-            <div class="mt-45" *ngIf="selectedTab === 2">
-                <div class="row mb-475 mb-md-0">
-                    <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
-                </div>
-                <div>
-                    <app-recipes
-                        [pages]="page"
-                        [rows]="rows"
-                        [recipes]="recipes"
-                        [totalRecords]="totalRecords"
-                    ></app-recipes>
-                </div>
-
-                <div *ngIf="!recipes?.length" class="text-center my-4">
-                    {{ 'no_data_is_available' | translate }}
+                    <div class="top-writer mt-4 mx-md-0 mx-3">
+                        <div class="fnt-16 fw-b mb-2 mt-3">{{ 'top_writers' | translate }}</div>
+                        <div
+                            *ngFor="let user of topWriters; let isLast = last"
+                            [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"
+                            class="border-bottom mt-3 pb-3"
+                        >
+                            <app-user-header [prop]="user"></app-user-header>
+                        </div>
+                    </div>
                 </div>
             </div>
         </p-tabPanel>
     </p-tabView>
 </div>
 
-<div *ngIf="isLoading">
-    <app-loading></app-loading>
-</div>
-<!-- </ng-template> -->
-
-<ng-template #filterDropdowns>
-    <div class="d-flex mb-md-4 ml-3">
-        <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
-            <div class="d-flex flex-md-row" [ngClass]="{ 'flex-column': selectedTab !== 0 }">
-                <div class="mb-md-0 mb-3" *ngIf="selectedTab === 1">
-                    <p-dropdown
-                        [options]="translationsList"
-                        optionLabel="label"
-                        optionValue="value"
-                        [(ngModel)]="isAvailableTranslation"
-                        (onChange)="getArticles()"
-                        placeholder="{{ 'translations_available' | translate }}"
-                        styleClass="round-border"
-                        [showClear]="true"
-                    >
-                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                    </p-dropdown>
-                </div>
-                <div class="mb-md-0 mb-3" *ngIf="selectedTab === 2">
-                    <p-dropdown
-                        [options]="translationsList"
-                        optionLabel="label"
-                        optionValue="value"
-                        [(ngModel)]="isAvailableRecipeTranslation"
-                        (onChange)="getRecipes()"
-                        [placeholder]="'translation_available' | translate"
-                        styleClass="round-border"
-                        [showClear]="true"
-                    >
-                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                    </p-dropdown>
-                </div>
-                <div *ngIf="selectedTab === 0">
-                    <p-dropdown
-                        [options]="filterPostedByOptions"
-                        optionLabel="label"
-                        optionValue="value"
-                        [(ngModel)]="filterBy"
-                        (onChange)="getQuestions()"
-                        styleClass="round-border tc-m"
-                        [placeholder]="'posted_by' | translate"
-                        [showClear]="true"
-                    >
-                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                    </p-dropdown>
-                </div>
-                <div class="ml-md-3" [ngClass]="{ 'ml-3': selectedTab === 0 }">
-                    <p-dropdown
-                        [options]="sortOptions"
-                        [(ngModel)]="
-                            selectedTab === 0 ? sortBy : selectedTab === 1 ? selectedOrder : selectedRecipeOrder
-                        "
-                        (onChange)="
-                            selectedTab === 0 ? getQuestions() : selectedTab === 1 ? getArticles() : getRecipes()
-                        "
-                        [placeholder]="'sort_by' | translate"
-                        styleClass="round-border tc-m"
-                        optionLabel="label"
-                        optionValue="value"
-                        [showClear]="true"
-                    >
-                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                    </p-dropdown>
-                </div>
-            </div>
-        </div>
-        <div class="d-none d-lg-block empty-join-wrapper pl-lg-2"></div>
-    </div>
+<ng-template #loader>
+    <div class="main-block"><app-loading></app-loading></div>
 </ng-template>

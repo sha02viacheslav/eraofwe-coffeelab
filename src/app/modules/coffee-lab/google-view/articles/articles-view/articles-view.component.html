@@ -67,20 +67,18 @@
     </div>
 </div>
 <div class="position-relative">
-    <div class="articles-wrapper">
-        <div *ngIf="!isLoading" class="mr-2 ml-2 mr-md-0 ml-md-0 w-100">
-            <app-articles
-                [articles]="articlesData"
-                [pages]="page"
-                [rows]="rows"
-                [totalRecords]="totalRecords"
-            ></app-articles>
-        </div>
-        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+    <div *ngIf="!isLoading" class="mr-2 ml-2 mr-md-0 ml-md-0 w-100">
+        <app-articles
+            [articles]="articlesData"
+            [pages]="page"
+            [rows]="rows"
+            [totalRecords]="totalRecords"
+        ></app-articles>
+    </div>
+    <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
-        <div *ngIf="!isLoading && !articlesData?.length" class="w-100 text-center my-4">
-            {{ 'no_data_is_available' | translate }}
-        </div>
+    <div *ngIf="!isLoading && !articlesData?.length" class="w-100 text-center my-4">
+        {{ 'no_data_is_available' | translate }}
     </div>
 
     <app-loading *ngIf="isLoading"></app-loading>

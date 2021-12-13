@@ -1,6 +1,6 @@
-<div class="row mx-0">
+<div class="row gutter-16 v-gutter-24">
     <div
-        class="col-md-6 col-xl-4 px-0 py-3 py-md-25 p-md-2 article-item-wrapper"
+        class="col-md-6 col-xl-4"
         *ngFor="let article of articles; let i = index; let isLast = last"
         [ngClass]="{
             'd-none': isEraofWe && !article.is_era_of_we
