@@ -12,60 +12,58 @@
 </div>
 
 <div class="d-flex align-items-md-center justify-content-between pb-3 pb-md-4">
-    <div class="d-block flex-wrap d-md-flex">
-        <div class="d-flex flex-md-row flex-column">
-            <div class="mb-25 mb-md-0">
-                <p-multiSelect
-                    [options]="categoryList"
-                    (onChange)="getData()"
-                    [(ngModel)]="selectedCategory"
-                    styleClass="round-border ml-0 mr-3 {{ selectedCategory?.length ? 'highlight' : '' }}"
-                    [placeholder]="'categories' | translate"
-                    [maxSelectedLabels]="1"
-                    selectedItemsLabel="{0} {{ 'categories' | translate }}"
-                    optionLabel="name"
-                    optionValue="parent_id"
-                ></p-multiSelect>
-            </div>
-            <div class="mb-25 mb-md-0">
-                <p-dropdown
-                    [options]="levels"
-                    [(ngModel)]="level"
-                    (onChange)="getData()"
-                    [placeholder]="'levels' | translate"
-                    [showClear]="true"
-                    styleClass="round-border {{ level ? 'highlight' : '' }}"
-                >
-                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                </p-dropdown>
-            </div>
-            <div class="pl-md-3 pl-0 mb-25 mb-md-0">
-                <p-dropdown
-                    [options]="translationsList"
-                    [(ngModel)]="isAvailableTranslation"
-                    (onChange)="getData()"
-                    [placeholder]="'translation_available' | translate"
-                    [showClear]="true"
-                    styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
-                >
-                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                </p-dropdown>
-            </div>
-            <div class="pl-md-3">
-                <p-dropdown
-                    [options]="orderList"
-                    [(ngModel)]="selectedOrder"
-                    (onChange)="getData()"
-                    [placeholder]="'sort_by' | translate"
-                    [showClear]="true"
-                    styleClass="round-border mobile-ui {{ selectedOrder ? 'highlight' : '' }}"
-                >
-                    <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-                    <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-                </p-dropdown>
-            </div>
+    <div class="row gutter-16 v-gutter-16">
+        <div class="col-auto">
+            <p-multiSelect
+                [options]="categoryList"
+                (onChange)="getData()"
+                [(ngModel)]="selectedCategory"
+                styleClass="round-border {{ selectedCategory?.length ? 'highlight' : '' }}"
+                [placeholder]="'categories' | translate"
+                [maxSelectedLabels]="1"
+                selectedItemsLabel="{0} {{ 'categories' | translate }}"
+                optionLabel="name"
+                optionValue="parent_id"
+            ></p-multiSelect>
+        </div>
+        <div class="col-auto">
+            <p-dropdown
+                [options]="levels"
+                [(ngModel)]="level"
+                (onChange)="getData()"
+                [placeholder]="'levels' | translate"
+                [showClear]="true"
+                styleClass="round-border {{ level ? 'highlight' : '' }}"
+            >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-auto">
+            <p-dropdown
+                [options]="translationsList"
+                [(ngModel)]="isAvailableTranslation"
+                (onChange)="getData()"
+                [placeholder]="'translation_available' | translate"
+                [showClear]="true"
+                styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
+            >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-auto">
+            <p-dropdown
+                [options]="orderList"
+                [(ngModel)]="selectedOrder"
+                (onChange)="getData()"
+                [placeholder]="'sort_by' | translate"
+                [showClear]="true"
+                styleClass="round-border {{ selectedOrder ? 'highlight' : '' }}"
+            >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
         </div>
     </div>
     <div class="col-md-5 d-none d-md-block pl-md-3">
@@ -82,7 +80,14 @@
     </div>
 </div>
 <div class="position-relative">
-    <app-recipes [recipes]="coffeeRecipeData" [pages]="page" [rows]="rows" [totalRecords]="totalRecords"></app-recipes>
+    <app-recipes
+        *ngIf="!isLoading"
+        [recipes]="showAll ? coffeeRecipeData : coffeeRecipeData?.slice(0, 1)"
+        [pages]="page"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+    ></app-recipes>
+
     <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
     <div *ngIf="!isLoading && !coffeeRecipeData.length" class="text-center my-4">

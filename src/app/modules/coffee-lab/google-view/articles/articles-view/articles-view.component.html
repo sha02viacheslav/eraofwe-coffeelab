@@ -12,13 +12,13 @@
     </div>
 </div>
 <div class="d-flex justify-content-between align-items-center pb-3 pb-md-4">
-    <div class="d-md-flex">
-        <div class="mb-25 mb-md-0">
+    <div class="row gutter-16 v-gutter-16">
+        <div class="col-auto">
             <p-multiSelect
                 [options]="categoryList"
                 (onChange)="getData()"
                 [(ngModel)]="selectedCategory"
-                styleClass="round-border ml-0 mr-3 {{ selectedCategory?.length ? 'highlight' : '' }}"
+                styleClass="round-border {{ selectedCategory?.length ? 'highlight' : '' }}"
                 [placeholder]="'categories' | translate"
                 [maxSelectedLabels]="1"
                 selectedItemsLabel="{0} {{ 'categories' | translate }}"
@@ -26,18 +26,20 @@
                 optionValue="parent_id"
             ></p-multiSelect>
         </div>
-        <p-dropdown
-            [options]="translationsList"
-            [(ngModel)]="isAvailableTranslation"
-            (ngModelChange)="getData()"
-            placeholder="{{ 'translations_available' | translate }}"
-            [showClear]="true"
-            styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
-        >
-            <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
-            <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
-        </p-dropdown>
-        <div class="mt-25 mt-md-0">
+        <div class="col-auto">
+            <p-dropdown
+                [options]="translationsList"
+                [(ngModel)]="isAvailableTranslation"
+                (ngModelChange)="getData()"
+                placeholder="{{ 'translations_available' | translate }}"
+                [showClear]="true"
+                styleClass="round-border {{ isAvailableTranslation !== null ? 'highlight' : '' }}"
+            >
+                <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-auto">
             <p-dropdown
                 class="pl-md-3 pl-0"
                 [options]="orderList"
@@ -67,14 +69,14 @@
     </div>
 </div>
 <div class="position-relative">
-    <div *ngIf="!isLoading" class="mr-2 ml-2 mr-md-0 ml-md-0 w-100">
-        <app-articles
-            [articles]="articlesData"
-            [pages]="page"
-            [rows]="rows"
-            [totalRecords]="totalRecords"
-        ></app-articles>
-    </div>
+    <app-articles
+        *ngIf="!isLoading"
+        [articles]="showAll ? articlesData : articlesData?.slice(0, 1)"
+        [pages]="page"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+    ></app-articles>
+
     <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
     <div *ngIf="!isLoading && !articlesData?.length" class="w-100 text-center my-4">

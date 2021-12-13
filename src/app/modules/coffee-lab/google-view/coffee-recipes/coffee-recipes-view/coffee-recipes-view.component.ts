@@ -1,19 +1,30 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
+import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
 import { ToastrService } from 'ngx-toastr';
-import { takeUntil } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 @Component({
     selector: 'app-coffee-recipes-view',
     templateUrl: './coffee-recipes-view.component.html',
     styleUrls: ['./coffee-recipes-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit {
+export class CoffeeRecipesViewComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     rows = 9;
     totalRecords = 0;
     page = 1;
@@ -23,6 +34,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     searchQuery = '';
     coffeeRecipeData: any[] = [];
     isLoading = false;
+    showAll = true;
     selectedOrder: string;
     jsonLD: any;
     categoryList: any[] = [];
@@ -43,6 +55,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
+        private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
         private seoService: SEOService,
@@ -51,6 +64,13 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
+            window.scrollTo(0, 0);
+        }
     }
 
     ngOnInit(): void {
@@ -76,6 +96,21 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         });
     }
 
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                        this.cdr.detectChanges();
+                    }
+                });
+        }
+    }
+
     refreshData() {
         this.getData();
         this.getCategory();
@@ -85,7 +120,6 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     getData(): void {
-        this.isLoading = true;
         const params = {
             query: this.searchQuery,
             translations_available: this.isAvailableTranslation,
@@ -96,7 +130,9 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             page: this.page,
             per_page: this.rows,
         };
-        this.coffeeLabService.getForumList('recipe', params).subscribe((res) => {
+        this.isLoading = true;
+        this.cdr.detectChanges();
+        this.coffeeLabService.getForumList(PostType.RECIPE, params).subscribe((res) => {
             if (res.success) {
                 this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
                 this.totalRecords = res.result_info.total_count;
@@ -105,6 +141,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                 this.toastService.error('Cannot get Recipes data');
             }
             this.isLoading = false;
+            this.cdr.detectChanges();
         });
     }
 
@@ -113,6 +150,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             if (category.success) {
                 this.categoryList = category.result;
             }
+            this.cdr.detectChanges();
         });
     }
 

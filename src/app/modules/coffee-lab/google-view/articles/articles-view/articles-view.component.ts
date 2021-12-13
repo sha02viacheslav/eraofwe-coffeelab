@@ -1,25 +1,37 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { CoffeeLabService, SEOService, ResizeService } from '@services';
-import { environment } from '@env/environment';
 import { ResizeableComponent } from '@base-components';
-import { getLangRoute } from '@utils';
+import { PostType } from '@enums';
+import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntil } from 'rxjs/operators';
+import { CoffeeLabService, ResizeService, SEOService } from '@services';
+import { getLangRoute } from '@utils';
+import { ToastrService } from 'ngx-toastr';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-articles-view',
     templateUrl: './articles-view.component.html',
     styleUrls: ['./articles-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticlesViewComponent extends ResizeableComponent implements OnInit {
+export class ArticlesViewComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     keyword?: string;
     isAvailableTranslation: boolean = null;
     selectedOrder: string;
     articlesData: any[] = [];
     isLoading = true;
+    showAll = true;
     totalRecords = 0;
     rows = 9;
     page = 1;
@@ -37,6 +49,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
+        private cdr: ChangeDetectorRef,
         private route: ActivatedRoute,
         private seoService: SEOService,
         private toastService: ToastrService,
@@ -45,6 +58,13 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         public coffeeLabService: CoffeeLabService,
     ) {
         super(resizeService);
+
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.isMobile$) {
+                this.showAll = false;
+            }
+            window.scrollTo(0, 0);
+        }
     }
 
     ngOnInit(): void {
@@ -69,6 +89,21 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         });
     }
 
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                        this.cdr.detectChanges();
+                    }
+                });
+        }
+    }
+
     refreshData() {
         this.getData();
         this.getCategory();
@@ -88,7 +123,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             per_page: this.rows,
         };
         this.isLoading = true;
-        this.coffeeLabService.getForumList('article', params).subscribe((res) => {
+        this.cdr.detectChanges();
+        this.coffeeLabService.getForumList(PostType.ARTICLE, params).subscribe((res) => {
             if (res.success) {
                 this.articlesData = res.result ?? [];
                 this.totalRecords = res.result_info.total_count;
@@ -96,6 +132,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                 this.toastService.error('Cannot get Articles data');
             }
             this.isLoading = false;
+            this.cdr.detectChanges();
         });
     }
 
@@ -104,6 +141,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             if (category.success) {
                 this.categoryList = category.result;
             }
+            this.cdr.detectChanges();
         });
     }
 
