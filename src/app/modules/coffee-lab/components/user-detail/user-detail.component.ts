@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { OrganizationType } from '@enums';
+import { UserProfile } from '@models';
 import { CoffeeLabService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { OverlayPanel } from 'primeng/overlaypanel';
@@ -20,7 +21,7 @@ export class UserDetailComponent implements OnInit {
     @Input() imageUrl: string;
     @Input() name: string;
     @Input() originalImageUrl: string;
-    data: any;
+    data: UserProfile;
     isOpened = false;
     hiding = false;
     showMore: boolean;

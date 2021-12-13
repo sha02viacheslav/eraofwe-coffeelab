@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiResponse, UserProfile } from '@models';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
@@ -46,11 +47,11 @@ export class CoffeeLabService extends ApiService {
         );
     }
 
-    getUserDetail(userId: string | number, orgType: string) {
+    getUserDetail(userId: string | number, orgType: string): Observable<ApiResponse<UserProfile>> {
         return this.get(this.orgPostUrl, `general/${orgType}/users/${userId}`);
     }
 
-    getUserFromSlug(slug: string): Observable<any> {
+    getUserFromSlug(slug: string): Observable<ApiResponse<UserProfile>> {
         return this.get(this.orgPostUrl, `general/users/${slug}`);
     }
 

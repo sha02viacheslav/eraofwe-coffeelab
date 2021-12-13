@@ -12,7 +12,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { OrganizationType, PostType } from '@enums';
-import { CoffeeLabService, ResizeService } from '@services';
+import { UserProfile } from '@models';
+import { CoffeeLabService, ResizeService, SEOService } from '@services';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
@@ -35,7 +36,7 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
     isUpdatingProfile = false;
     bannerUrl: string;
     profileUrl: string;
-    profileInfo?: any;
+    profileInfo: UserProfile;
     infoForm: FormGroup;
     certificationArray: any[] = [];
     userSlug: any;
@@ -68,6 +69,7 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
         private router: Router,
+        private seoService: SEOService,
         private toastr: ToastrService,
         protected resizeService: ResizeService,
         public location: Location,
@@ -106,12 +108,14 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
 
     getUserInfo(): void {
         this.isLoading = true;
-        this.coffeeLabService.getUserFromSlug(this.userSlug).subscribe((res: any) => {
+        this.coffeeLabService.getUserFromSlug(this.userSlug).subscribe((res) => {
             if (res.success) {
                 this.profileInfo = res.result;
+                this.orgType = this.profileInfo.organization_type;
                 this.bannerUrl = this.profileInfo.banner_url;
                 this.profileUrl = this.profileInfo.profile_image_url;
                 this.certificationArray = res.result?.certificates || [];
+                this.setSEO();
                 this.isLoading = false;
             } else {
                 this.toastr.error('Error while fetching profile');
@@ -119,6 +123,16 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
             }
             this.cdr.detectChanges();
         });
+    }
+
+    setSEO() {
+        const title = `${this.profileInfo?.firstname} ${this.profileInfo?.lastname} - ${
+            this.orgType === OrganizationType.CONSUMER ? 'Coffee consumers' : 'Coffee experts'
+        }`;
+        const description =
+            (this.profileInfo?.about_me || `${this.profileInfo?.firstname} ${this.profileInfo?.lastname}`) +
+            ' - A global coffee marketplace that brings together all members of the supply chain and shifts the value of the coffee brand back to the growers';
+        this.seoService.setSEO(title, description);
     }
 
     onFocus() {
