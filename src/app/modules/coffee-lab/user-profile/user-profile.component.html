@@ -1,6 +1,6 @@
 <a class="back-page" (click)="location.back()"> {{ 'back' | translate }} </a>
 
-<div class="mt-4" *ngIf="!isLoading">
+<div class="mt-4" *ngIf="!isLoading; else loader">
     <div class="full-width position-relative">
         <div class="banner-container bg-f8">
             <img *ngIf="bannerUrl" [src]="bannerUrl" alt="banner" />
@@ -70,3 +70,5 @@
         </div>
     </div>
 </div>
+
+<ng-template #loader><app-loading></app-loading></ng-template>

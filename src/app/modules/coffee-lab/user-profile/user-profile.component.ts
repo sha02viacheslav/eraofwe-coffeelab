@@ -30,7 +30,7 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
     readonly postType = PostType;
     readonly OrgType = OrganizationType;
 
-    isLoading = false;
+    isLoading = true;
     showAll = true;
     isBrowser = false;
     isUpdatingProfile = false;
@@ -78,7 +78,6 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
         this.activateRoute.params.subscribe((res) => {
             this.userSlug = res.user_slug;
         });
-        this.getUserInfo();
 
         if (isPlatformBrowser(this.platformId)) {
             this.isBrowser = true;
@@ -89,7 +88,9 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
         }
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.getUserInfo();
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
@@ -108,6 +109,7 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
 
     getUserInfo(): void {
         this.isLoading = true;
+        this.cdr.detectChanges();
         this.coffeeLabService.getUserFromSlug(this.userSlug).subscribe((res) => {
             if (res.success) {
                 this.profileInfo = res.result;
