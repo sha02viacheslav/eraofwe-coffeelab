@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterMap } from '@constants';
-import { PostType } from '@enums';
+import { Fields, PostType } from '@enums';
 import { CoffeeLabService } from '@services';
 import { getLangRoute } from '@utils';
 
@@ -51,6 +51,7 @@ export class JoinCommunityComponent implements OnInit {
                 category_id: categories,
                 sort_by: 'posted_at',
                 sort_order: 'desc',
+                fields: Fields.BASIC,
             })
             .subscribe((res: any) => {
                 if (res.success) {
