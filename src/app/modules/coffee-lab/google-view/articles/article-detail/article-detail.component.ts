@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { RouterMap } from '@constants';
+import { MetaDespMinLength, RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
@@ -191,7 +191,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             title = 'Era of We Coffee Forum';
         }
         if (this.detailsData?.content) {
-            if (this.detailsData?.articleContentText.length < 60) {
+            if (this.detailsData?.articleContentText.length < MetaDespMinLength) {
                 description = this.detailsData?.content.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );

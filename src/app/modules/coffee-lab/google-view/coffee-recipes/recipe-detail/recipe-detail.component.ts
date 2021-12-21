@@ -2,7 +2,7 @@ import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { RouterMap, seoVariables } from '@constants';
+import { MetaDespMinLength, RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
@@ -223,7 +223,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             title = 'Era of We Coffee Forum';
         }
         if (this.detailsData?.descriptionText) {
-            if (this.detailsData?.descriptionText.length < 60) {
+            if (this.detailsData?.descriptionText.length < MetaDespMinLength) {
                 description = this.detailsData?.descriptionText.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );

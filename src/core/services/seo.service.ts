@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { MetaDespMaxLength, seoVariables } from '@constants';
 import { environment } from '@env/environment';
-import { seoVariables } from '@constants';
 import { GlobalsService } from './globals.service';
 
 @Injectable({
@@ -23,10 +23,7 @@ export class SEOService {
         return this.title.getTitle();
     }
     setMetaData(type, name, content) {
-        const metaData: any = {
-            [type]: name,
-            content,
-        };
+        const metaData: any = { [type]: name, content };
         this.meta.updateTag(metaData);
     }
 
@@ -34,10 +31,10 @@ export class SEOService {
         title = this.globalsService.getJustText(title);
         description = this.globalsService.getJustText(description);
         this.setPageTitle(title);
-        this.setMetaData('name', 'description', description.substr(0, 160));
+        this.setMetaData('name', 'description', description.substr(0, MetaDespMaxLength));
 
         this.setMetaData('property', 'og:title', title);
-        this.setMetaData('property', 'og:description', description.substr(0, 160));
+        this.setMetaData('property', 'og:description', description.substr(0, MetaDespMaxLength));
         this.setMetaData('property', 'og:url', this.doc.URL);
         this.setMetaData('property', 'og:image', `${seoVariables.image}?v=${Date.now()}`);
 
@@ -45,7 +42,7 @@ export class SEOService {
         this.setMetaData('name', 'twitter:creator', seoVariables.author);
         this.setMetaData('name', 'twitter:site', this.doc.URL);
         this.setMetaData('name', 'twitter:title', title);
-        this.setMetaData('name', 'twitter:description', description.substr(0, 160));
+        this.setMetaData('name', 'twitter:description', description.substr(0, MetaDespMaxLength));
 
         this.createLinkForCanonicalURL();
     }
