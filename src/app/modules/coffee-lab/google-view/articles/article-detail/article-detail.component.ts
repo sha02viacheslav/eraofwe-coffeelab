@@ -37,7 +37,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     loading = false;
     jsonLD: any;
     lang: any;
-    previousUrl: string;
+    previousUrl = '';
     addComment = false;
     stickySecData: any;
     orginalUserData: any;
@@ -107,7 +107,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 {
                     count: 11,
                 },
-                this.urlLang,
+                this.urlLang === 'pt-br' ? 'pt' : this.urlLang,
             )
             .subscribe((res: any) => {
                 if (res.success) {

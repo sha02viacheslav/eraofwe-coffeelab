@@ -47,7 +47,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     loading = false;
     jsonLD: any;
     lang: any;
-    previousUrl: string;
+    previousUrl = '';
     stickySecData: any;
     orginalUserData: any;
     commentData: any[] = [];
@@ -123,13 +123,15 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             .getPopularList(
                 PostType.RECIPE,
                 {
-                    count: 10,
+                    count: 11,
                 },
-                this.urlLang,
+                this.urlLang === 'pt-br' ? 'pt' : this.urlLang,
             )
             .subscribe((res) => {
                 if (res.success) {
-                    this.relatedData = res.result;
+                    this.relatedData = (res.result || [])
+                        .filter((item) => item && item?.slug !== this.idOrSlug)
+                        .slice(0, 10);
                 }
             });
     }
