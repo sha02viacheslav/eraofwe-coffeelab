@@ -79,9 +79,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
             }
-            if (!this.relatedData?.length) {
-                this.getRecipeList();
-            }
+            this.getRecipeList();
             if (isPlatformBrowser(this.platformId)) {
                 window.scrollTo(0, 0);
             }
@@ -112,20 +110,28 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         }
     }
 
-    onRealtedRoute(langCode, slug) {
-        this.router.navigateByUrl(`/en/coffee-recipes/${slug}`);
+    onRealtedRoute(langCode: string, slug: string) {
+        return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
+    }
+
+    scrollToTop() {
         window.scrollTo(0, 0);
     }
 
     getRecipeList() {
-        const params = {
-            count: 10,
-        };
-        this.coffeeLabService.getPopularList(PostType.RECIPE, params).subscribe((res) => {
-            if (res.success) {
-                this.relatedData = res.result;
-            }
-        });
+        this.coffeeLabService
+            .getPopularList(
+                PostType.RECIPE,
+                {
+                    count: 10,
+                },
+                this.urlLang,
+            )
+            .subscribe((res) => {
+                if (res.success) {
+                    this.relatedData = res.result;
+                }
+            });
     }
 
     getDetails() {

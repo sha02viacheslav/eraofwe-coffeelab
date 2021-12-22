@@ -71,9 +71,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
             }
-            if (!this.relatedData?.length) {
-                this.getArticleList();
-            }
+            this.getArticleList();
         });
 
         if (isPlatformBrowser(this.platformId)) {
@@ -104,9 +102,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     getArticleList(): any {
         this.relatedData = [];
         this.coffeeLabService
-            .getPopularList(PostType.ARTICLE, {
-                count: 11,
-            })
+            .getPopularList(
+                PostType.ARTICLE,
+                {
+                    count: 11,
+                },
+                this.urlLang,
+            )
             .subscribe((res: any) => {
                 if (res.success) {
                     this.relatedData = (res.result || [])
@@ -116,8 +118,11 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             });
     }
 
-    onRealtedRoute(langCode, slug) {
-        this.router.navigateByUrl(`/en/articles/${slug}`);
+    onRealtedRoute(langCode: string, slug: string) {
+        return `/${getLangRoute(langCode)}/articles/${slug}`;
+    }
+
+    scrollToTop() {
         window.scrollTo(0, 0);
     }
 

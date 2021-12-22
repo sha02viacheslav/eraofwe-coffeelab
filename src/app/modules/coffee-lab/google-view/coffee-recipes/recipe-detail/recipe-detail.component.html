@@ -236,7 +236,8 @@
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
                                     class="fw-sb"
-                                    (click)="
+                                    (click)="scrollToTop()"
+                                    [routerLink]="
                                         onRealtedRoute(
                                             detailsData?.original_details?.language,
                                             detailsData?.original_details?.slug
@@ -301,16 +302,26 @@
             </div>
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
-                    <div class="d-flex pb-4 footer-border" (click)="onRealtedRoute(forum.lang_code, forum.slug)">
-                        <div class="p-articles pr-2"><img [lazyLoad]="forum?.cover_image_thumb_url" alt="" /></div>
-                        <div class="c-p d-flex flex-column">
+                    <div class="d-flex pb-4 footer-border">
+                        <a
+                            class="p-articles pr-2"
+                            (click)="scrollToTop()"
+                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
+                        >
+                            <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
+                        </a>
+                        <a
+                            class="c-p d-flex flex-column"
+                            (click)="scrollToTop()"
+                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
+                        >
                             <p class="fnt-fly fw-b cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>
                             <p class="fw-sb text-underline">
                                 {{ forum?.user_name }}
                             </p>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
