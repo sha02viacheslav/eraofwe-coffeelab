@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoffeeLabService, ResizeService, StartupService } from '@services';
-import { takeUntil } from 'rxjs/operators';
-import { RouterMap, SlugMap } from '@constants';
-import { MenuItem } from 'primeng/api';
-import { PostType, RouterSlug } from '@enums';
-import { getLangRoute } from '@utils';
 import { ResizeableComponent } from '@base-components';
+import { RouterMap, SlugMap } from '@constants';
+import { PostType, RouterSlug } from '@enums';
+import { CoffeeLabService, ResizeService, StartupService } from '@services';
+import { getLangRoute } from '@utils';
+import { MenuItem } from 'primeng/api';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-overview',

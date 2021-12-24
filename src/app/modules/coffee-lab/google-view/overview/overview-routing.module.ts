@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { RouterMap } from '@constants';
 import { RouterSlug } from '@enums';
-
 import { OverviewComponent } from './overview.component';
 
 const routes: Routes = [

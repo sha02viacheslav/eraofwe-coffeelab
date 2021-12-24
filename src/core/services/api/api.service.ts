@@ -1,10 +1,10 @@
 export class Api {}
 import { HttpClient } from '@angular/common/http';
-import { ApiResponse } from '@models';
+import { OrganizationType } from '@enums';
 import { environment } from '@env/environment';
+import { ApiResponse } from '@models';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { OrganizationType } from '@enums';
 
 export class ApiService {
     readonly orgType = OrganizationType.CONSUMER;

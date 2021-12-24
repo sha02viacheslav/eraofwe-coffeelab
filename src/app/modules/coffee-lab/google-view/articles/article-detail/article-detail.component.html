@@ -3,7 +3,11 @@
 <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
     <div class="article-main-block">
         <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
-            <app-category-list [isArticlePage]="true" [categoryList]="detailsData?.categories"></app-category-list>
+            <app-category-list
+                [selectedType]="'articles'"
+                [isArticlePage]="true"
+                [categoryList]="detailsData?.categories"
+            ></app-category-list>
         </div>
         <div class="px-0">
             <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
@@ -184,7 +188,10 @@
                             </div>
                         </div>
                         <div *ngIf="detailsData?.categories" class="row mx-0">
-                            <app-category-list [categoryList]="detailsData?.categories"></app-category-list>
+                            <app-category-list
+                                [selectedType]="'articles'"
+                                [categoryList]="detailsData?.categories"
+                            ></app-category-list>
                         </div>
                         <div class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">

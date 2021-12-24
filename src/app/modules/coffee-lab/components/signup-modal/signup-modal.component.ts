@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { environment } from '@env/environment';
-import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
-import { UserService } from '@services';
 import { DestroyableComponent } from '@base-components';
-import { ToastrService } from 'ngx-toastr';
+import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from '@services';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { ToastrService } from 'ngx-toastr';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-signup-modal',
@@ -38,7 +37,6 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
         this.authService.initState.pipe(takeUntil(this.unsubscribeAll$)).subscribe((res) => {
             this.isReady = res;
         });
-        console.log(this.config);
     }
 
     close(value = null) {

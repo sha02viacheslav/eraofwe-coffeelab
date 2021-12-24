@@ -11,12 +11,13 @@ import { getLangRoute } from '@utils';
 export class CategoryListComponent implements OnInit {
     @Input() categoryList: any[] = [];
     @Input() isArticlePage: boolean;
+    @Input() selectedType: string;
 
     constructor(private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {}
 
     getLink(slug: string) {
-        return '/' + getLangRoute(this.coffeeLabService.currentForumLanguage) + '/' + slug;
+        return '/' + getLangRoute(this.coffeeLabService.currentForumLanguage) + '/' + slug + '/' + this.selectedType;
     }
 }

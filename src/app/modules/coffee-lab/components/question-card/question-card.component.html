@@ -16,7 +16,7 @@
             ></div>
         </a>
         <div *ngIf="question?.categories" class="row mx-0 pt-4">
-            <app-category-list [categoryList]="question?.categories"></app-category-list>
+            <app-category-list [selectedType]="'qa-forum'" [categoryList]="question?.categories"></app-category-list>
         </div>
     </div>
     <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
