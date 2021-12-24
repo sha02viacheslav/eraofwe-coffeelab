@@ -1,0 +1,69 @@
+<div class="row no-gutters mt-45">
+    <div class="col-12 col-md-7">
+        <div class="pb-4">
+            <div class="row gutter-16 v-gutter-16">
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="filterOptions"
+                        [(ngModel)]="filterBy"
+                        (ngModelChange)="getPosts()"
+                        styleClass="round-border {{ filterBy ? 'highlight' : '' }}"
+                        [placeholder]="'posted_by' | translate"
+                        [showClear]="true"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="sortOptions"
+                        [(ngModel)]="sortBy"
+                        (ngModelChange)="getPosts()"
+                        [placeholder]="'sort_by' | translate"
+                        styleClass="round-border {{ sortBy ? 'highlight' : '' }}"
+                        [showClear]="true"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading" class="row gutter-16 v-gutter-24 position-relative">
+            <div *ngFor="let item of showAll ? posts : posts?.slice(0, 1)" class="col-12">
+                <app-question-card [question]="item"></app-question-card>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="row gutter-16 v-gutter-24 position-relative">
+            <app-loading></app-loading>
+        </div>
+        <div *ngIf="!isLoading && !posts.length" class="text-center my-4">
+            {{ 'no_data_is_available' | translate }}
+        </div>
+    </div>
+    <div *ngIf="showAll" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 category-list">
+        <div class="other-category pt-4 mx-3 mx-md-0">
+            <div class="row mx-0 fnt-16 fw-b">
+                {{ 'other_categories' | translate }}
+            </div>
+            <div class="mt-4">
+                <app-category-list [selectedType]="'qa-forum'" [categoryList]="otherCategories"></app-category-list>
+            </div>
+        </div>
+        <div class="top-writer mt-4 mx-md-0 mx-3">
+            <div class="fnt-16 fw-b mb-2 mt-3">{{ 'top_writers' | translate }}</div>
+            <div
+                *ngFor="let user of topWriters; let isLast = last"
+                [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"
+                class="border-bottom mt-3 pb-3"
+            >
+                <app-user-header [prop]="user"></app-user-header>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="totalRecords > this.rows" class="pt-3 pt-md-4 text-center">
+    <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+</div>

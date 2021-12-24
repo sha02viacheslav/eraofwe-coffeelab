@@ -1,0 +1,48 @@
+<div class="row no-gutters mt-45">
+    <div class="col-12">
+        <div class="pb-4">
+            <div class="row gutter-16 v-gutter-16">
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="translationsList"
+                        [(ngModel)]="isAvailableTranslation"
+                        (ngModelChange)="getPosts()"
+                        placeholder="{{ 'translations_available' | translate }}"
+                        styleClass="round-border {{ isAvailableTranslation ? 'highlight' : '' }}"
+                        [showClear]="true"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="col-auto">
+                    <p-dropdown
+                        [options]="orderList"
+                        [placeholder]="'sort_by' | translate"
+                        [(ngModel)]="selectedOrder"
+                        (ngModelChange)="getPosts()"
+                        [showClear]="true"
+                        styleClass="round-border {{ selectedOrder ? 'highlight' : '' }}"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="row gutter-16 v-gutter-24 position-relative">
+            <div *ngFor="let item of showAll ? posts : posts?.slice(0, 1)" class="col-md-6 col-lg-4">
+                <app-article-card [article]="item"></app-article-card>
+            </div>
+            <app-loading *ngIf="isLoading"></app-loading>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="totalRecords > this.rows" class="pt-3 pt-md-4 text-center">
+    <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+</div>
+
+<div *ngIf="!isLoading && !posts.length" class="text-center my-4">
+    {{ 'no_data_is_available' | translate }}
+</div>

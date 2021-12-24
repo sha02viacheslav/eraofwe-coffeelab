@@ -14,48 +14,14 @@
         </div>
     </div>
 
-    <p-tabView [(activeIndex)]="selectedTab" (onChange)="onChangeTab($event.index)">
-        <p-tabPanel *ngFor="let menu of menuItems; let i = index" [selected]="selectedTab === i">
-            <ng-template pTemplate="header">
-                <img [ngClass]="{ 'd-block': selectedTab !== i }" [src]="menu.icon" alt="icon" class="d-none" />
-                <img [ngClass]="{ 'd-block': selectedTab === i }" [src]="menu.activeIcon" alt="icon" class="d-none" />
-                <span>{{ menu.label | translate }}</span>
-            </ng-template>
-            <div class="row no-gutters mt-45">
-                <div class="col-12" [class.col-md-7]="menu.postType === PostType.QA">
-                    <app-category-posts
-                        *ngIf="isBrowser"
-                        [postType]="menu.postType"
-                        [slug]="slug"
-                        [showAll]="showAll"
-                    ></app-category-posts>
-                </div>
-                <div
-                    *ngIf="menu.postType === PostType.QA && showAll"
-                    class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 category-list"
-                >
-                    <div class="other-category pt-4 mx-3 mx-md-0">
-                        <div class="row mx-0 fnt-16 fw-b">
-                            {{ 'other_categories' | translate }}
-                        </div>
-                        <div class="mt-4">
-                            <app-category-list [categoryList]="otherCategories"></app-category-list>
-                        </div>
-                    </div>
-                    <div class="top-writer mt-4 mx-md-0 mx-3">
-                        <div class="fnt-16 fw-b mb-2 mt-3">{{ 'top_writers' | translate }}</div>
-                        <div
-                            *ngFor="let user of topWriters; let isLast = last"
-                            [ngClass]="{ 'border-0': isLast, 'mb-25': isLast }"
-                            class="border-bottom mt-3 pb-3"
-                        >
-                            <app-user-header [prop]="user"></app-user-header>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </p-tabPanel>
-    </p-tabView>
+    <p-tabMenu [model]="menuItems" styleClass="mb-4">
+        <ng-template pTemplate="item" let-item let-i="index">
+            <img [src]="item.icon" alt="icon" width="32" height="32" />
+            <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
+            <span class="pl-1 d-none d-md-inline-block">{{ item.label | translate }}</span>
+        </ng-template>
+    </p-tabMenu>
+    <router-outlet></router-outlet>
 </div>
 
 <ng-template #loader>

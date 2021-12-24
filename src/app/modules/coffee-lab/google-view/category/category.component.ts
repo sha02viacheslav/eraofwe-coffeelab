@@ -14,6 +14,7 @@ import { RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
+import { MenuItem } from 'primeng/api';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -23,12 +24,9 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
     styleUrls: ['./category.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryComponent extends ResizeableComponent implements OnInit, AfterViewInit {
-    readonly PostType = PostType;
+export class CategoryComponent extends ResizeableComponent implements OnInit {
     isLoading = false;
-    showAll = true;
-    isBrowser = false;
-    selectedTab = 0;
+
     slug: string;
     currentCategory: any;
     otherCategories: any[] = [];
@@ -36,29 +34,10 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, Af
     currentLangCode: string;
     topWriters: any[] = [];
     jsonLD: any;
-    menuItems = [
-        {
-            label: 'question_answers',
-            postType: PostType.QA,
-            icon: 'assets/images/qa-forum.svg',
-            activeIcon: 'assets/images/qa-forum-active.svg',
-        },
-        {
-            label: 'posts',
-            postType: PostType.ARTICLE,
-            icon: 'assets/images/article.svg',
-            activeIcon: 'assets/images/article-active.svg',
-        },
-        {
-            label: 'brewing_guides',
-            postType: PostType.RECIPE,
-            icon: 'assets/images/coffee-recipe.svg',
-            activeIcon: 'assets/images/coffee-recipe-active.svg',
-        },
-    ];
+    menuItems: MenuItem[] = [];
+    selectedType: string;
 
     constructor(
-        @Inject(PLATFORM_ID) private platformId: object,
         private activateRoute: ActivatedRoute,
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
@@ -71,59 +50,21 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, Af
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
             this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
+            this.menuItems = this.getMenuItems(this.currentLangCode);
             this.getCategories(false);
         });
-
-        if (isPlatformBrowser(this.platformId)) {
-            this.isBrowser = true;
-            if (this.isMobile$) {
-                this.showAll = false;
-            }
-            window.scrollTo(0, 0);
-        }
+        this.selectedType = this.activateRoute.firstChild.routeConfig.path;
+        this.setPreviousUrl(this.selectedType);
     }
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            this.menuItems = this.getMenuItems(this.currentLangCode);
             this.currentLangCode = language;
             this.startupService.load(language);
+            this.setPreviousUrl(this.selectedType);
             this.getCategories(true);
         });
-        this.getAllTopWriters();
-        this.onChangeTab(this.selectedTab);
-    }
-
-    ngAfterViewInit() {
-        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
-            const scrollEvent = fromEvent(window, 'scroll')
-                .pipe(debounceTime(100))
-                .pipe(takeUntil(this.unsubscribeAll$))
-                .subscribe((res) => {
-                    if (window.scrollY > 10) {
-                        scrollEvent.unsubscribe();
-                        this.showAll = true;
-                        this.cdr.detectChanges();
-                    }
-                });
-        }
-    }
-
-    onChangeTab(index: number) {
-        this.selectedTab = index;
-        if (this.selectedTab === 0) {
-            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
-                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]
-            }`;
-        } else if (this.selectedTab === 1) {
-            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
-                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.ARTICLE]
-            }`;
-        } else if (this.selectedTab === 2) {
-            this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${
-                (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.RECIPE]
-            }`;
-        }
-        window.scroll(0, 0);
     }
 
     getCategories(isLangChanged: boolean) {
@@ -136,9 +77,11 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, Af
                         (element) => element.parent_id === this.currentCategory?.parent_id,
                     );
                     if (isCategory) {
-                        this.router.navigateByUrl(getLangRoute(this.currentLangCode) + '/' + isCategory.slug);
+                        this.slug = isCategory.slug;
+                        this.router.navigateByUrl(
+                            getLangRoute(this.currentLangCode) + '/' + isCategory.slug + '/' + this.selectedType,
+                        );
                         this.currentCategory = isCategory;
-                        this.slug = this.currentCategory.slug;
                     }
                 }
                 this.asssignCategories(res.result);
@@ -150,9 +93,9 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, Af
 
     asssignCategories(data: any) {
         this.otherCategories = data.filter((element) => element.slug !== this.slug);
+        this.coffeeLabService.otherCategories.next(this.otherCategories);
         this.currentCategory = data.find((item) => item.slug === this.slug);
         this.setSEO();
-        this.onChangeTab(this.selectedTab);
     }
 
     getAllTopWriters() {
@@ -165,14 +108,49 @@ export class CategoryComponent extends ResizeableComponent implements OnInit, Af
     }
 
     setSEO() {
-        const title = this.currentCategory.name + ' - A Global Coffee Community';
+        const title = this.currentCategory?.name + ' - A Global Coffee Community';
         const description =
-            this.currentCategory.name +
+            this.currentCategory?.name +
             ' - A global coffee marketplace that brings together all members of the supply chain and shifts the value of the coffee brand back to the growers';
         this.seoService.setSEO(title, description);
     }
 
     setSchemaMackup() {
         // Waiting Lukasz
+    }
+
+    setPreviousUrl(type: string) {
+        this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${type}`;
+    }
+
+    getMenuItems(language) {
+        return [
+            {
+                label: 'question_answers',
+                postType: PostType.QA,
+                icon: 'assets/images/qa-forum.svg',
+                activeIcon: 'assets/images/qa-forum-active.svg',
+                routerLink: `/${getLangRoute(language)}/${this.slug}/qa-forum`,
+                command: () => this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]),
+            },
+            {
+                label: 'posts',
+                postType: PostType.ARTICLE,
+                icon: 'assets/images/article.svg',
+                activeIcon: 'assets/images/article-active.svg',
+                routerLink: `/${getLangRoute(language)}/${this.slug}/articles`,
+                command: () =>
+                    this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.ARTICLE]),
+            },
+            {
+                label: 'brewing_guides',
+                postType: PostType.RECIPE,
+                icon: 'assets/images/coffee-recipe.svg',
+                activeIcon: 'assets/images/coffee-recipe-active.svg',
+                routerLink: `/${getLangRoute(language)}/${this.slug}/coffee-recipes`,
+                command: () =>
+                    this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.RECIPE]),
+            },
+        ];
     }
 }
