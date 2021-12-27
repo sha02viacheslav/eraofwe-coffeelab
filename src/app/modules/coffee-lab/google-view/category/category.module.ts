@@ -15,14 +15,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PaginatorModule } from 'primeng/paginator';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
-import { CategoryArticleComponent } from './category-article/category-article.component';
-import { CategoryQAComponent } from './category-qa/category-qa.component';
-import { CategoryRecipeComponent } from './category-recipe/category-recipe.component';
+import { CategoryPostsComponent } from './category-posts/category-posts.component';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
 
 @NgModule({
-    declarations: [CategoryComponent, CategoryQAComponent, CategoryArticleComponent, CategoryRecipeComponent],
+    declarations: [CategoryComponent, CategoryPostsComponent],
     imports: [
         CommonModule,
         CategoryRoutingModule,

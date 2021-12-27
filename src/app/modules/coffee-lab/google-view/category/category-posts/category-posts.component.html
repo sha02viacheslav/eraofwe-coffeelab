@@ -1,8 +1,8 @@
 <div class="row no-gutters mt-45">
-    <div class="col-12 col-md-7">
+    <div class="col-12 col-md-7" [class.col-md-7]="postType === PostType.QA">
         <div class="pb-4">
             <div class="row gutter-16 v-gutter-16">
-                <div class="col-auto">
+                <div *ngIf="postType === PostType.QA" class="col-auto">
                     <p-dropdown
                         [options]="filterOptions"
                         [(ngModel)]="filterBy"
@@ -15,7 +15,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div class="col-auto">
+                <div *ngIf="postType === PostType.QA" class="col-auto">
                     <p-dropdown
                         [options]="sortOptions"
                         [(ngModel)]="sortBy"
@@ -28,11 +28,42 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
+                <div *ngIf="postType !== PostType.QA" class="col-auto">
+                    <p-dropdown
+                        [options]="translationsList"
+                        [(ngModel)]="isAvailableTranslation"
+                        (ngModelChange)="getPosts()"
+                        placeholder="{{ 'translations_available' | translate }}"
+                        styleClass="round-border {{ isAvailableTranslation ? 'highlight' : '' }}"
+                        [showClear]="true"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+                <div *ngIf="postType !== PostType.QA" class="col-auto">
+                    <p-dropdown
+                        [options]="orderList"
+                        [placeholder]="'sort_by' | translate"
+                        [(ngModel)]="selectedOrder"
+                        (ngModelChange)="getPosts()"
+                        [showClear]="true"
+                        styleClass="round-border {{ selectedOrder ? 'highlight' : '' }}"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
             </div>
         </div>
         <div *ngIf="!isLoading" class="row gutter-16 v-gutter-24 position-relative">
-            <div *ngFor="let item of showAll ? posts : posts?.slice(0, 1)" class="col-12">
-                <app-question-card [question]="item"></app-question-card>
+            <div
+                *ngFor="let item of showAll ? posts : posts?.slice(0, 1)"
+                [ngClass]="postType === PostType.QA ? 'col-12' : 'col-md-6 col-lg-4'"
+            >
+                <app-question-card *ngIf="postType === PostType.QA" [question]="item"></app-question-card>
+                <app-article-card *ngIf="postType === PostType.ARTICLE" [article]="item"></app-article-card>
+                <app-recipe-card *ngIf="postType === PostType.RECIPE" [recipe]="item"></app-recipe-card>
             </div>
         </div>
         <div *ngIf="isLoading" class="row gutter-16 v-gutter-24 position-relative">
@@ -42,7 +73,10 @@
             {{ 'no_data_is_available' | translate }}
         </div>
     </div>
-    <div *ngIf="showAll" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 category-list">
+    <div
+        *ngIf="showAll && postType === PostType.QA"
+        class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content mt-45 category-list"
+    >
         <div class="other-category pt-4 mx-3 mx-md-0">
             <div class="row mx-0 fnt-16 fw-b">
                 {{ 'other_categories' | translate }}
@@ -64,6 +98,6 @@
     </div>
 </div>
 
-<div *ngIf="totalRecords > this.rows" class="pt-3 pt-md-4 text-center">
+<div *ngIf="totalRecords > this.rows && !isLoading" class="pt-3 pt-md-4 text-center">
     <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
 </div>

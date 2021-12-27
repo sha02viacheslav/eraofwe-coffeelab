@@ -1,13 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    Inject,
-    OnInit,
-    PLATFORM_ID,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap } from '@constants';
@@ -15,8 +6,7 @@ import { PostType, RouterSlug } from '@enums';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
-import { fromEvent } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-category',

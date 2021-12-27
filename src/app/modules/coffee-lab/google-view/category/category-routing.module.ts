@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryArticleComponent } from './category-article/category-article.component';
-import { CategoryQAComponent } from './category-qa/category-qa.component';
-import { CategoryRecipeComponent } from './category-recipe/category-recipe.component';
+import { PostType } from '@enums';
+import { CategoryPostsComponent } from './category-posts/category-posts.component';
 import { CategoryComponent } from './category.component';
 
 const routes: Routes = [
@@ -12,15 +11,18 @@ const routes: Routes = [
         children: [
             {
                 path: 'qa-forum',
-                component: CategoryQAComponent,
+                component: CategoryPostsComponent,
+                data: { postType: PostType.QA },
             },
             {
                 path: 'articles',
-                component: CategoryArticleComponent,
+                component: CategoryPostsComponent,
+                data: { postType: PostType.ARTICLE },
             },
             {
                 path: 'coffee-recipes',
-                component: CategoryRecipeComponent,
+                component: CategoryPostsComponent,
+                data: { postType: PostType.RECIPE },
             },
         ],
     },
