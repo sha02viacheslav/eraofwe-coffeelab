@@ -10,6 +10,11 @@ const routes: Routes = [
         component: CategoryComponent,
         children: [
             {
+                path: '',
+                redirectTo: 'qa-forum',
+                pathMatch: 'full',
+            },
+            {
                 path: 'qa-forum',
                 component: CategoryPostsComponent,
                 data: { postType: PostType.QA },
