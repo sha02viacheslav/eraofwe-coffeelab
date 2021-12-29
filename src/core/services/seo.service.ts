@@ -3,18 +3,12 @@ import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { MetaDespMaxLength, seoVariables } from '@constants';
 import { environment } from '@env/environment';
-import { GlobalsService } from './globals.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SEOService {
-    constructor(
-        private title: Title,
-        @Inject(DOCUMENT) private doc,
-        private meta: Meta,
-        private globalsService: GlobalsService,
-    ) {}
+    constructor(private title: Title, @Inject(DOCUMENT) private doc, private meta: Meta) {}
     setPageTitle(title = '') {
         // Have to add ... to prevent duplicated title and h1 issue
         this.title.setTitle(title.length > 60 ? title.substr(0, 60) + '...' : title);
@@ -28,8 +22,6 @@ export class SEOService {
     }
 
     setSEO(title: string, description: string) {
-        title = this.globalsService.getJustText(title);
-        description = this.globalsService.getJustText(description);
         this.setPageTitle(title);
         this.setMetaData('name', 'description', description.substr(0, MetaDespMaxLength));
 
@@ -61,13 +53,13 @@ export class SEOService {
             }
         }
     }
+
     createLinkForHreflang(lang: string) {
         const url = this.doc.URL.split(environment.coffeeLabWeb)[1];
         if (url) {
             const link: HTMLLinkElement = this.doc.createElement('link');
             link.setAttribute('rel', 'alternate');
             const url2 = url.substr(3);
-            // console.log(url2, lang);
             const newUrl =
                 lang === 'x-default'
                     ? `${environment.coffeeLabWeb}${url}`

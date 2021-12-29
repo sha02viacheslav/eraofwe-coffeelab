@@ -195,9 +195,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.content) {
+        if (this.detailsData?.articleContentText) {
             if (this.detailsData?.articleContentText.length < MetaDespMinLength) {
-                description = this.detailsData?.content.concat(
+                description = this.detailsData?.articleContentText.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
