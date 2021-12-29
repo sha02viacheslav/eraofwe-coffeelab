@@ -1,11 +1,5 @@
 <div class="row gutter-16 v-gutter-24">
-    <div
-        class="col-md-6 col-xl-4"
-        *ngFor="let article of articles; let i = index; let isLast = last"
-        [ngClass]="{
-            'd-none': isEraofWe && !article.is_era_of_we
-        }"
-    >
+    <div class="col-md-6 col-xl-4" *ngFor="let article of articles; let i = index; let isLast = last">
         <app-article-card [article]="article"></app-article-card>
     </div>
 </div>
