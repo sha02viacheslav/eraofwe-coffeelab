@@ -1,16 +1,27 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { PostType } from '@enums';
 import { CoffeeLabService, GlobalsService, ResizeService } from '@services';
+import { fromEvent } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-category-posts',
     templateUrl: './category-posts.component.html',
     styleUrls: ['./category-posts.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryPostsComponent extends ResizeableComponent implements OnInit {
+export class CategoryPostsComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     readonly PostType = PostType;
     postType: PostType;
     sortOptions = [
@@ -72,6 +83,21 @@ export class CategoryPostsComponent extends ResizeableComponent implements OnIni
         this.getPosts();
         if (this.postType === PostType.QA) {
             this.getAllTopWriters();
+        }
+    }
+
+    ngAfterViewInit() {
+        if (isPlatformBrowser(this.platformId) && this.isMobile$) {
+            const scrollEvent = fromEvent(window, 'scroll')
+                .pipe(debounceTime(100))
+                .pipe(takeUntil(this.unsubscribeAll$))
+                .subscribe((res) => {
+                    if (window.scrollY > 10) {
+                        scrollEvent.unsubscribe();
+                        this.showAll = true;
+                        this.cdr.detectChanges();
+                    }
+                });
         }
     }
 
