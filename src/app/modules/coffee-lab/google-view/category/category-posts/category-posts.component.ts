@@ -135,12 +135,7 @@ export class CategoryPostsComponent extends ResizeableComponent implements OnIni
             })
             .subscribe((res) => {
                 if (res.success) {
-                    this.posts = ((this.postType === PostType.QA ? res.result?.questions : res.result) ?? []).map(
-                        (item) => {
-                            item.content = this.globalsService.getJustText(item.content);
-                            return item;
-                        },
-                    );
+                    this.posts = (this.postType === PostType.QA ? res.result?.questions : res.result) ?? [];
                     this.totalRecords = res.result_info.total_count;
                 }
                 this.isLoading = false;

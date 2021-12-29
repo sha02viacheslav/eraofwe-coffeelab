@@ -94,10 +94,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
                 if (res.success) {
                     this.data = res.result ? res.result : [];
                     this.totalRecords = res.result_info.total_count;
-                    this.data.map((item) => {
-                        item.content = this.globalsService.getJustText(item.content);
-                        return item;
-                    });
                 } else {
                     this.toastService.error('Cannot get Articles data');
                 }
