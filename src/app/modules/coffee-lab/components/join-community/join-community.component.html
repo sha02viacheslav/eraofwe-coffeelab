@@ -10,7 +10,7 @@
         <p class="pb-3 hover-underline" [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': isLast }">
             <a
                 [routerLink]="getLink(data.slug)"
-                class="fnt-600"
+                class="fw-sb"
                 [innerHTML]="(type === PostType.ARTICLE ? data.title : data.question) || 'N/A'"
             ></a>
         </p>
