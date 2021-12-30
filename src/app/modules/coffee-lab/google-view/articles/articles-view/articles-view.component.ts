@@ -15,7 +15,6 @@ import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
-import { ToastrService } from 'ngx-toastr';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -52,7 +51,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         private cdr: ChangeDetectorRef,
         private route: ActivatedRoute,
         private seoService: SEOService,
-        private toastService: ToastrService,
         private translator: TranslateService,
         protected resizeService: ResizeService,
         public coffeeLabService: CoffeeLabService,
@@ -128,8 +126,6 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             if (res.success) {
                 this.articlesData = res.result ?? [];
                 this.totalRecords = res.result_info.total_count;
-            } else {
-                this.toastService.error('Cannot get Articles data');
             }
             this.isLoading = false;
             this.cdr.detectChanges();

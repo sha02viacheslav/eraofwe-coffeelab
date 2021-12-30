@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@shared';
-import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 import { SignupModalComponent } from './signup-modal.component';
 

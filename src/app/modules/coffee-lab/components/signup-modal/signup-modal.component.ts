@@ -4,7 +4,6 @@ import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '@services';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
-import { ToastrService } from 'ngx-toastr';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { takeUntil } from 'rxjs/operators';
 
@@ -17,9 +16,10 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
     isReady = false;
+    errorMsg: string;
+
     constructor(
         private authService: SocialAuthService,
-        private toastr: ToastrService,
         private translator: TranslateService,
         private userService: UserService,
         public config: DynamicDialogConfig,
@@ -46,16 +46,12 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
     signInWithGoogle(): void {
         if (this.isReady) {
             this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-        } else {
-            this.toastr.error(this.translator.instant('common_error'));
         }
     }
 
     signInWithFacebook(): void {
         if (this.isReady) {
             this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-        } else {
-            this.toastr.error(this.translator.instant('common_error'));
         }
     }
 
@@ -77,9 +73,10 @@ export class SignupModalComponent extends DestroyableComponent implements OnInit
                 window.open(`${environment.consumerWeb}/coffee-lab`, '_self');
             } else {
                 if (res.messages?.email?.includes('already_exists_in_another_app')) {
-                    this.toastr.error(this.translator.instant('email_already_exists_in_another_app'));
-                } else {
-                    this.toastr.error(this.translator.instant('common_error'));
+                    this.errorMsg = this.translator.instant('email_already_exists_in_another_app');
+                    setTimeout(() => {
+                        this.errorMsg = null;
+                    }, 2000);
                 }
             }
         });

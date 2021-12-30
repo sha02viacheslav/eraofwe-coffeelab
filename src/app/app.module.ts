@@ -1,19 +1,19 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ToastrModule } from 'ngx-toastr';
 import {
-    SocialLoginModule,
-    SocialAuthServiceConfig,
-    GoogleLoginProvider,
     FacebookLoginProvider,
+    GoogleLoginProvider,
+    SocialAuthServiceConfig,
+    SocialLoginModule,
 } from 'angularx-social-login';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
@@ -30,13 +30,6 @@ export function StartupServiceFactory(startupService: StartupService) {
         AppRoutingModule,
         TransferHttpCacheModule,
         HttpClientModule,
-        ToastrModule.forRoot({
-            timeOut: 3000,
-            preventDuplicates: true,
-            positionClass: 'toast-bottom-right',
-            closeButton: true,
-            tapToDismiss: false,
-        }),
         TranslateModule.forRoot(),
         SocialLoginModule,
     ],

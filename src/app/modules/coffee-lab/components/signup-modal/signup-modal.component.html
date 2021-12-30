@@ -2,23 +2,26 @@
     <div class="d-flex justify-content-end">
         <i class="pi pi-times fnt-18 tc-m cross-icon c-p" (click)="close()"></i>
     </div>
-    <div class="text-center pb-5">
+    <div class="text-center pb-5 position-relative">
         <div class="lh-157 fnt-24 fnt-md-36 fw-sb join-head mt-4 mt-md-5 mb-4 mb-md-475 pl-3 pl-md-4 pr-4 pr-md-5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_now_coffee_lab') | translate }}
         </div>
+        <h5 *ngIf="errorMsg" class="invalid-combination text-center">
+            {{ errorMsg }}
+        </h5>
         <div class="pr-2 w-100 align-items-center d-flex flex-column">
-            <div class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithGoogle()">
+            <button class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithGoogle()">
                 <img src="assets/images/google.svg" />
                 <span class="fw-sb ml-3">
                     {{ 'signup_with_google' | translate }}
                 </span>
-            </div>
-            <div class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithFacebook()">
+            </button>
+            <button class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithFacebook()">
                 <img src="assets/images/facebook-color.svg" />
                 <span class="fw-sb ml-3">
                     {{ 'signup_with_facebook' | translate }}
                 </span>
-            </div>
+            </button>
             <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''" class="signup-btn email-btn">
                 <div class="d-flex fnt-16 align-items-center p-3 c-p">
                     <img src="assets/images/email.svg" />
@@ -34,5 +37,7 @@
                 }}</a>
             </div>
         </div>
+
+        <app-loading *ngIf="!isReady"></app-loading>
     </div>
 </div>

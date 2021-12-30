@@ -15,7 +15,6 @@ import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
@@ -61,7 +60,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
-        private toastService: ToastrService,
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
@@ -165,7 +163,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     }
                 }
             } else {
-                this.toastService.error('The article is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;

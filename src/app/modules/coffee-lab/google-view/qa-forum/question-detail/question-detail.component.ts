@@ -6,7 +6,6 @@ import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService, GlobalsService, SEOService, StartupService } from '@services';
 import { getLangRoute, toSentenceCase } from '@utils';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
@@ -40,7 +39,6 @@ export class QuestionDetailComponent implements OnInit {
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
-        private toastService: ToastrService,
     ) {
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
@@ -81,7 +79,6 @@ export class QuestionDetailComponent implements OnInit {
                     }
                 }
             } else {
-                this.toastService.error('The question is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;

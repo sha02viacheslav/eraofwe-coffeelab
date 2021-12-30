@@ -1,12 +1,11 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CoffeeLabService, GlobalsService, ResizeService, SEOService } from '@services';
-import { ToastrService } from 'ngx-toastr';
-import { ResizeableComponent } from '@base-components';
-import { getLangRoute } from '@utils';
-import { TranslateService } from '@ngx-translate/core';
-import { takeUntil } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
+import { TranslateService } from '@ngx-translate/core';
+import { CoffeeLabService, ResizeService, SEOService } from '@services';
+import { getLangRoute } from '@utils';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-era-of-we',
@@ -28,10 +27,8 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
-        private globalsService: GlobalsService,
         private route: ActivatedRoute,
         private seoService: SEOService,
-        private toastService: ToastrService,
         private translator: TranslateService,
         protected resizeService: ResizeService,
     ) {
@@ -94,8 +91,6 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
                 if (res.success) {
                     this.data = res.result ? res.result : [];
                     this.totalRecords = res.result_info.total_count;
-                } else {
-                    this.toastService.error('Cannot get Articles data');
                 }
                 this.isLoading = false;
             });

@@ -14,7 +14,6 @@ import { ResizeableComponent } from '@base-components';
 import { OrganizationType, PostType } from '@enums';
 import { UserProfile } from '@models';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
-import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -70,7 +69,6 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
         private dialogSrv: DialogService,
         private router: Router,
         private seoService: SEOService,
-        private toastr: ToastrService,
         protected resizeService: ResizeService,
         public location: Location,
     ) {
@@ -120,7 +118,6 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
                 this.setSEO();
                 this.isLoading = false;
             } else {
-                this.toastr.error('Error while fetching profile');
                 this.router.navigate(['/']);
             }
             this.cdr.detectChanges();

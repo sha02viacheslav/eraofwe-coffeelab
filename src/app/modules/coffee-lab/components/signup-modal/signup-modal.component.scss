@@ -26,6 +26,7 @@
 }
 
 .signup-btn {
+    background-color: $white;
     border: solid 1px #d0d0d0;
     border-radius: 6px;
     width: 53%;
@@ -43,4 +44,12 @@
 
 .fnt-36 {
     font-size: 36px;
+}
+
+.invalid-combination {
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 6px;
+    color: $white;
+    background-color: $invalid-color;
 }

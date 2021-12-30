@@ -8,7 +8,6 @@ import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
@@ -69,7 +68,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
-        private toastService: ToastrService,
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
@@ -162,7 +160,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                 }
             } else {
-                this.toastService.error('The recipe is not exist.');
                 this.router.navigate(['/error']);
             }
             this.loading = false;

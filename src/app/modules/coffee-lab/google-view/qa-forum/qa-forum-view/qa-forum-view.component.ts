@@ -15,7 +15,6 @@ import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
-import { ToastrService } from 'ngx-toastr';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -55,7 +54,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         private coffeeLabService: CoffeeLabService,
         private route: ActivatedRoute,
         private seoService: SEOService,
-        private toastService: ToastrService,
         private translator: TranslateService,
         protected resizeService: ResizeService,
     ) {
@@ -134,8 +132,6 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                 if (isPlatformServer(this.platformId)) {
                     this.setSchemaMackup();
                 }
-            } else {
-                this.toastService.error('Cannot get forum data');
             }
             this.isLoading = false;
             this.cdr.detectChanges();
