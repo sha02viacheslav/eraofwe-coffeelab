@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse, UserProfile } from '@models';
-import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
 import { ApiService } from './api.service';
@@ -16,12 +15,8 @@ export class CoffeeLabService extends ApiService {
     get currentForumLanguage(): string {
         return this.forumLanguage.value;
     }
-    constructor(
-        protected cookieSrv: CookieService,
-        protected http: HttpClient,
-        private langPrefixService: LangPrefixService,
-    ) {
-        super(cookieSrv, http);
+    constructor(protected http: HttpClient, private langPrefixService: LangPrefixService) {
+        super(http);
         this.forumLanguage.next(this.langPrefixService.langPrefix());
     }
 

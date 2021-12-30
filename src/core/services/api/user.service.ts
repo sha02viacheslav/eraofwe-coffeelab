@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UserService extends ApiService {
-    constructor(protected cookieSrv: CookieService, protected http: HttpClient) {
-        super(cookieSrv, http);
+    constructor(protected http: HttpClient) {
+        super(http);
     }
 
     socialLogin(user: any) {

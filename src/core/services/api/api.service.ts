@@ -3,14 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { OrganizationType } from '@enums';
 import { environment } from '@env/environment';
 import { ApiResponse } from '@models';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
 export class ApiService {
     readonly orgType = OrganizationType.CONSUMER;
     protected orgPostUrl: string;
 
-    constructor(protected cookieSrv: CookieService, protected http: HttpClient) {
+    constructor(protected http: HttpClient) {
         this.orgPostUrl = `${environment.apiURL}/${this.orgType}/api`;
     }
 
