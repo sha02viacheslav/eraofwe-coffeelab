@@ -3,8 +3,7 @@
     font-display: swap;
     src: url('~primeicons/fonts/primeicons.eot');
     src: url('~primeicons/fonts/primeicons.eot?#iefix') format('embedded-opentype'),
-        url('~primeicons/fonts/primeicons.ttf') format('truetype'),
-        url('~primeicons/fonts/primeicons.woff') format('woff'),
+        url(assets/fonts/primeicons.ttf) format('truetype'), url('~primeicons/fonts/primeicons.woff') format('woff'),
         url('~primeicons/fonts/primeicons.svg?#primeicons') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -12,7 +11,6 @@
 
 .pi {
     font-family: 'primeicons';
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -23,13 +21,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.pi-globe:before {
-    content: '\e94f';
-}
-
 .pi:before {
     --webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.pi-globe:before {
+    content: '\e94f';
 }
 
 .pi-angle-left:before {
