@@ -10,14 +10,13 @@
 .custom-search {
     position: relative;
     &::before {
-        content: '';
-        background-image: url(assets/images/search.svg);
-        width: 30px;
-        height: 30px;
+        content: '\e908';
+        font-family: 'primeicons';
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        left: 8px;
+        left: 16px;
+        font-size: 18px;
     }
     & > .p-inputtext {
         padding-left: 3.125rem;
