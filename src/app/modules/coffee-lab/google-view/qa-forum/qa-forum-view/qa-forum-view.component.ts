@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { PostType } from '@enums';
+import { Fields, PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
@@ -122,6 +122,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
+            fields: Fields.INTERMEDIATE,
         };
         this.isLoading = true;
         this.cdr.detectChanges();
