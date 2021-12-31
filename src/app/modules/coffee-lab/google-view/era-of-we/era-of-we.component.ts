@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
+import { Fields } from '@enums';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
@@ -83,13 +84,14 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
             is_era_of_we: true,
             page: this.page,
             per_page: this.rows,
+            fields: Fields.INTERMEDIATE,
         };
 
         this.coffeeLabService
             .getForumList('article', params, this.coffeeLabService.currentForumLanguage)
             .subscribe((res) => {
                 if (res.success) {
-                    this.data = res.result ? res.result : [];
+                    this.data = res.result || [];
                     this.totalRecords = res.result_info.total_count;
                 }
                 this.isLoading = false;

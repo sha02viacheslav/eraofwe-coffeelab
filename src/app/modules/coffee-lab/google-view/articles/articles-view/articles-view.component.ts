@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { PostType } from '@enums';
+import { Fields, PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
@@ -120,6 +120,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             fields: 'intermediate',
             page: this.page,
             per_page: this.rows,
+            fields: Fields.INTERMEDIATE,
         };
         this.isLoading = true;
         this.cdr.detectChanges();
@@ -156,7 +157,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         for (const forum of this.articlesData) {
             const itemData = {
                 '@type': 'Article',
-                '@id': `${environment.coffeeLabWeb}/${getLangRoute(
+                '@id': `${environment.coffeeLabWeb}${getLangRoute(
                     this.coffeeLabService.currentForumLanguage,
                 )}/articles/${forum.slug}`,
                 headline: forum.title,
@@ -181,7 +182,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
+                            item: `${environment.coffeeLabWeb}${this.coffeeLabService.currentForumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',

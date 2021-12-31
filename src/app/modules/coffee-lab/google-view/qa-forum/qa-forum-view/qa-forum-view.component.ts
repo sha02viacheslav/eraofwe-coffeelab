@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { PostType } from '@enums';
+import { Fields, PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
@@ -123,6 +123,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
             fields: 'intermediate',
             page: this.page,
             per_page: this.rows,
+            fields: Fields.INTERMEDIATE,
         };
         this.isLoading = true;
         this.cdr.detectChanges();
@@ -178,7 +179,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                             text: answer.answer,
                             dateCreated: answer.created_at,
 
-                            url: `${environment.coffeeLabWeb}/${getLangRoute(
+                            url: `${environment.coffeeLabWeb}${getLangRoute(
                                 this.coffeeLabService.currentForumLanguage,
                             )}/qa-forum/${forum.slug}?#answer-${answer.id}`,
                             author: {
@@ -201,7 +202,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(
+                            item: `${environment.coffeeLabWeb}${getLangRoute(
                                 this.coffeeLabService.currentForumLanguage,
                             )}`,
                         },

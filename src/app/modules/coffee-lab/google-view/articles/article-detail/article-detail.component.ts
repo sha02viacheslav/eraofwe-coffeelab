@@ -224,13 +224,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Posts',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/articles`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/articles`,
                         },
                         {
                             '@type': 'ListItem',
