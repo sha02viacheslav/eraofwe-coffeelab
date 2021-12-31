@@ -84,7 +84,7 @@ export class EraOfWeComponent extends ResizeableComponent implements OnInit {
             is_era_of_we: true,
             page: this.page,
             per_page: this.rows,
-            fields: Fields.INTERMEDIATE,
+            // fields: Fields.INTERMEDIATE,
         };
 
         this.coffeeLabService

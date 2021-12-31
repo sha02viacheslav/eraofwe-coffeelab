@@ -119,7 +119,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
-            fields: Fields.INTERMEDIATE,
+            // fields: Fields.INTERMEDIATE,
         };
         this.isLoading = true;
         this.cdr.detectChanges();

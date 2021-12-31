@@ -127,7 +127,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
-            fields: Fields.INTERMEDIATE,
+            // fields: Fields.INTERMEDIATE,
         };
         this.isLoading = true;
         this.cdr.detectChanges();
