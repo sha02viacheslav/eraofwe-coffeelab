@@ -125,6 +125,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             sort_order: this.selectedOrder === 'latest' || !this.selectedOrder ? 'desc' : 'asc',
             level: this.level?.toLowerCase(),
             category_id: this.selectedCategory,
+            fields: 'intermediate',
             page: this.page,
             per_page: this.rows,
         };
@@ -132,7 +133,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         this.cdr.detectChanges();
         this.coffeeLabService.getForumList(PostType.RECIPE, params).subscribe((res) => {
             if (res.success) {
-                this.coffeeRecipeData = (res.result ?? []).filter((item) => item.publish === true);
+                this.coffeeRecipeData = res.result ?? [];
                 this.totalRecords = res.result_info.total_count;
                 this.setSchemaMackup();
             }

@@ -120,6 +120,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
             sort_order:
                 this.sortBy === 'most_answered' ? 'desc' : this.sortBy === 'latest' || !this.sortBy ? 'desc' : 'asc',
             category_id: this.selectedCategory,
+            fields: 'intermediate',
             page: this.page,
             per_page: this.rows,
         };

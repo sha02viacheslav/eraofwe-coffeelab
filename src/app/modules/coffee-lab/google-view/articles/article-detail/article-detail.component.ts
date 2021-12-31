@@ -38,7 +38,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     lang: any;
     previousUrl = '';
     addComment = false;
-    stickySecData: any;
     orginalUserData: any;
     commentData: any;
     allComments: any;
@@ -140,6 +139,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         ...res.result,
                         articleContentText: this.globalsService.getJustText(res.result?.content),
                     };
+                    const userData = 'userData';
+                    this.detailsData[userData] = {
+                        posted_user: this.detailsData.posted_user,
+                        organisation_name: this.detailsData.organisation_name || this.detailsData.organization_name,
+                        posted_by: this.detailsData.posted_by,
+                        profile_image_thumb_url: this.detailsData.profile_image_thumb_url,
+                    };
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
@@ -177,7 +183,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 new Promise((resolve) => this.getOriginalUserDetail(this.detailsData.original_article, resolve)),
             );
         }
-        promises.push(new Promise((resolve) => this.getUserDetail(this.detailsData, resolve)));
         promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
         Promise.all(promises)
             .then(() => this.cdr.detectChanges())
@@ -258,15 +263,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
             if (res.success) {
                 this.orginalUserData = res.result;
-            }
-            resolve();
-        });
-    }
-
-    getUserDetail(userDetails: any, resolve): void {
-        this.coffeeLabService.getUserDetail(userDetails.user_id, userDetails.organisation_type).subscribe((res) => {
-            if (res.success) {
-                this.stickySecData = res.result;
             }
             resolve();
         });

@@ -117,6 +117,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
             sort_by: 'created_at',
             sort_order: this.selectedOrder === 'latest' || !this.selectedOrder ? 'desc' : 'asc',
             category_id: this.selectedCategory,
+            fields: 'intermediate',
             page: this.page,
             per_page: this.rows,
         };
