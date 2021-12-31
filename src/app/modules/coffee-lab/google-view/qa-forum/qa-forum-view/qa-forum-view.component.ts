@@ -177,7 +177,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                             text: answer.answer,
                             dateCreated: answer.created_at,
 
-                            url: `${environment.coffeeLabWeb}/${getLangRoute(
+                            url: `${environment.coffeeLabWeb}${getLangRoute(
                                 this.coffeeLabService.currentForumLanguage,
                             )}/qa-forum/${forum.slug}?#answer-${answer.id}`,
                             author: {
@@ -200,7 +200,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(
+                            item: `${environment.coffeeLabWeb}${getLangRoute(
                                 this.coffeeLabService.currentForumLanguage,
                             )}`,
                         },

@@ -255,13 +255,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Brewing guides',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/coffee-recipes`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/coffee-recipes`,
                         },
                         {
                             '@type': 'ListItem',

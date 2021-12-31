@@ -185,7 +185,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(
+                            item: `${environment.coffeeLabWeb}${getLangRoute(
                                 this.coffeeLabService.currentForumLanguage,
                             )}`,
                         },

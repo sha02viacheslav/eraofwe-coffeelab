@@ -155,7 +155,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         for (const forum of this.articlesData) {
             const itemData = {
                 '@type': 'Article',
-                '@id': `${environment.coffeeLabWeb}/${getLangRoute(
+                '@id': `${environment.coffeeLabWeb}${getLangRoute(
                     this.coffeeLabService.currentForumLanguage,
                 )}/articles/${forum.slug}`,
                 headline: forum.title,
@@ -180,7 +180,7 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${this.coffeeLabService.currentForumLanguage}`,
+                            item: `${environment.coffeeLabWeb}${this.coffeeLabService.currentForumLanguage}`,
                         },
                         {
                             '@type': 'ListItem',

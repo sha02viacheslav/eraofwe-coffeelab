@@ -150,13 +150,13 @@ export class QuestionDetailComponent implements OnInit {
                             '@type': 'ListItem',
                             position: 1,
                             name: 'Overview',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
                             name: 'Q+A Forum',
-                            item: `${environment.coffeeLabWeb}/${getLangRoute(this.lang)}/qa-forum`,
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/qa-forum`,
                         },
                         {
                             '@type': 'ListItem',
