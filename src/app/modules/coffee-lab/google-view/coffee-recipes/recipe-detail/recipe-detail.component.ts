@@ -47,7 +47,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     jsonLD: any;
     lang: any;
     previousUrl = '';
-    stickySecData: any;
     orginalUserData: any;
     commentData: any[] = [];
     allComments: any[] = [];
@@ -145,6 +144,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         ...res.result,
                         descriptionText: this.globalsService.getJustText(res.result?.description),
                     };
+                    const userData = 'userData';
+                    this.detailsData[userData] = {
+                        posted_user: this.detailsData.posted_user,
+                        organisation_name: this.detailsData.organisation_name || this.detailsData.organization_name,
+                        posted_by: this.detailsData.posted_by,
+                        profile_image_thumb_url: this.detailsData.profile_image_thumb_url,
+                    };
                     this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
@@ -174,20 +180,10 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 new Promise((resolve) => this.getOriginalUserDetail(this.detailsData.original_details, resolve)),
             );
         }
-        promises.push(new Promise((resolve) => this.getUserDetail(this.detailsData, resolve)));
         promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
         Promise.all(promises)
             .then(() => this.cdr.detectChanges())
             .catch(() => this.cdr.detectChanges());
-    }
-
-    getUserDetail(userDatils: any, resolve): void {
-        this.coffeeLabService.getUserDetail(userDatils.posted_by, userDatils.organisation_type).subscribe((res) => {
-            if (res.success) {
-                this.stickySecData = res.result;
-            }
-            resolve();
-        });
     }
 
     getOriginalUserDetail(userDetails: any, resolve): void {
