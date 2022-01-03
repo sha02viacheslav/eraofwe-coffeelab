@@ -7,7 +7,7 @@ import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
-import { getLangRoute } from '@utils';
+import { getLangRoute, removeImages } from '@utils';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
@@ -144,6 +144,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         ...res.result,
                         descriptionText: this.globalsService.getJustText(res.result?.description),
                     };
+                    if (isPlatformServer(this.platformId)) {
+                        this.detailsData.description = removeImages(res.result?.description);
+                    }
                     const userData = 'userData';
                     this.detailsData[userData] = {
                         posted_user: this.detailsData.posted_user,

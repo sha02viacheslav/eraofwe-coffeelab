@@ -20,3 +20,15 @@ export const getLanguage = (code: string): Language => {
     }
     return null;
 };
+
+export const removeImages = (content: string): string => {
+    while (1) {
+        const img = RegExp(/<img.*?(src)="(.*?)"[^>]*>/g).exec(content);
+        if (!img) {
+            break;
+        }
+        content = content.replace(img[0], '');
+    }
+
+    return content;
+};

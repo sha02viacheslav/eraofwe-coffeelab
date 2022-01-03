@@ -14,7 +14,7 @@ import { MetaDespMinLength, RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
-import { getLangRoute } from '@utils';
+import { getLangRoute, removeImages } from '@utils';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
@@ -139,6 +139,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         ...res.result,
                         articleContentText: this.globalsService.getJustText(res.result?.content),
                     };
+                    if (isPlatformServer(this.platformId)) {
+                        this.detailsData.content = removeImages(res.result?.content);
+                    }
                     const userData = 'userData';
                     this.detailsData[userData] = {
                         posted_user: this.detailsData.posted_user,
