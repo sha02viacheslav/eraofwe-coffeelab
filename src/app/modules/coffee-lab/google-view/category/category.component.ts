@@ -41,7 +41,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             this.slug = params.category;
             this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
             this.menuItems = this.getMenuItems(this.currentLangCode);
-            if (this.selectedType === (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]) {
+            if (this.selectedType === RouterMap.en[RouterSlug.QA]) {
                 this.getCategories(false);
             }
         });
@@ -53,7 +53,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             this.currentLangCode = language;
             this.startupService.load(language);
             this.onTabChange(this.selectedType, true);
-            if (this.selectedType !== (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]) {
+            if (this.selectedType !== RouterMap.en[RouterSlug.QA]) {
                 this.getSingleCategory();
             } else {
                 this.getCategories(true);
@@ -125,7 +125,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     }
 
     onTabChange(type: string, onLoad?: boolean) {
-        if (type === (RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA] && !onLoad) {
+        if (type === RouterMap.en[RouterSlug.QA] && !onLoad) {
             this.getCategories(false);
         }
         this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${type}`;
@@ -139,7 +139,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/qa-forum.svg',
                 activeIcon: 'assets/images/qa-forum-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/qa-forum`,
-                command: () => this.onTabChange((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.QA]),
             },
             {
                 label: 'posts',
@@ -147,7 +147,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/article.svg',
                 activeIcon: 'assets/images/article-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/articles`,
-                command: () => this.onTabChange((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.ARTICLE]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.ARTICLE]),
             },
             {
                 label: 'brewing_guides',
@@ -155,7 +155,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/coffee-recipe.svg',
                 activeIcon: 'assets/images/coffee-recipe-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/coffee-recipes`,
-                command: () => this.onTabChange((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.RECIPE]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.RECIPE]),
             },
         ];
     }
