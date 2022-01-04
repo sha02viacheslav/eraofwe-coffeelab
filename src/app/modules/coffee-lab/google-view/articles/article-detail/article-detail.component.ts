@@ -144,9 +144,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     }
                     const userData = 'userData';
                     this.detailsData[userData] = {
-                        posted_user: this.detailsData.posted_user,
+                        user_name: this.detailsData.user_name,
                         organisation_name: this.detailsData.organisation_name || this.detailsData.organization_name,
-                        posted_by: this.detailsData.posted_by,
+                        user_id: this.detailsData.user_id,
                         profile_image_thumb_url: this.detailsData.profile_image_thumb_url,
                     };
                     this.lang = res.result.language;

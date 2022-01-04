@@ -58,7 +58,7 @@
                     <div class="pb-4 d-flex">
                         <div class="w-100 d-flex justify-content-between">
                             <div>
-                                <p class="fw-b mb-1">{{ detailsData?.posted_user }}</p>
+                                <p class="fw-b mb-1">{{ detailsData?.user_name }}</p>
                                 <p class="fw-sb tc-m mb-1">
                                     {{ detailsData?.organisation_name || detailsData?.organization_name }}
                                 </p>
@@ -122,7 +122,7 @@
                                             <img
                                                 class="placeholder"
                                                 lazyLoad="assets/images/avatar-placeholder.svg"
-                                                [alt]="detailsData?.posted_user"
+                                                [alt]="detailsData?.user_name"
                                             />
                                         </ng-template>
                                     </div>
@@ -131,7 +131,7 @@
                                             [routerLink]="'/user-profile/' + detailsData?.user_slug"
                                             class="fw-b c-p text-underline"
                                         >
-                                            {{ detailsData?.posted_user }}
+                                            {{ detailsData?.user_name }}
                                         </a>
                                         <p class="fw-sb mt-2">
                                             {{ detailsData?.about_me }}
