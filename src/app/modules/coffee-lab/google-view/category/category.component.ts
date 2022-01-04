@@ -16,7 +16,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CategoryComponent extends ResizeableComponent implements OnInit {
     isLoading = false;
-
     slug: string;
     currentCategory: any;
     otherCategories: any[] = [];
@@ -37,14 +36,15 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+        this.selectedType = this.activateRoute.firstChild.routeConfig.path;
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
             this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
             this.menuItems = this.getMenuItems(this.currentLangCode);
-            this.getCategories(false);
+            if (this.selectedType === 'qa-forum') {
+                this.getCategories(false);
+            }
         });
-        this.selectedType = this.activateRoute.firstChild.routeConfig.path;
-        this.setPreviousUrl(this.selectedType);
     }
 
     ngOnInit(): void {
@@ -52,8 +52,23 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             this.menuItems = this.getMenuItems(this.currentLangCode);
             this.currentLangCode = language;
             this.startupService.load(language);
-            this.setPreviousUrl(this.selectedType);
-            this.getCategories(true);
+            this.setPreviousUrl(this.selectedType, true);
+            if (this.selectedType !== 'qa-forum') {
+                this.getSingleCategory();
+            } else {
+                this.getCategories(true);
+            }
+        });
+    }
+
+    getSingleCategory(): void {
+        this.isLoading = true;
+        this.coffeeLabService.getCategory(this.currentLangCode, this.slug).subscribe((res) => {
+            if (res.success) {
+                this.currentCategory = res.result[0];
+                this.isLoading = false;
+                this.cdr.detectChanges();
+            }
         });
     }
 
@@ -109,8 +124,11 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         // Waiting Lukasz
     }
 
-    setPreviousUrl(type: string) {
+    setPreviousUrl(type: string, onLoad?: boolean) {
         this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${type}`;
+        if (type === 'qa-forum' && !onLoad) {
+            this.getCategories(false);
+        }
     }
 
     getMenuItems(language) {
