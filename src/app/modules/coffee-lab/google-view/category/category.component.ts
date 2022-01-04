@@ -52,20 +52,26 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             this.menuItems = this.getMenuItems(this.currentLangCode);
             this.currentLangCode = language;
             this.startupService.load(language);
+            this.selectedType = this.activateRoute.firstChild.routeConfig.path;
             this.onTabChange(this.selectedType, true);
             if (this.selectedType !== RouterMap.en[RouterSlug.QA]) {
-                this.getSingleCategory();
+                this.getSingleCategory(true);
             } else {
                 this.getCategories(true);
             }
         });
     }
 
-    getSingleCategory(): void {
+    getSingleCategory(isLangChanged?: boolean): void {
         this.isLoading = true;
         this.coffeeLabService.getCategory(this.currentLangCode, this.slug).subscribe((res) => {
             if (res.success) {
-                this.currentCategory = res.result[0];
+                if (isLangChanged) {
+                    this.currentCategory = res.result[0];
+                    this.router.navigateByUrl(
+                        getLangRoute(this.currentLangCode) + '/' + this.currentCategory.slug + '/' + this.selectedType,
+                    );
+                }
                 this.isLoading = false;
                 this.cdr.detectChanges();
             }
