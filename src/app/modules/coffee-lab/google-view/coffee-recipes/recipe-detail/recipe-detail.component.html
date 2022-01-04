@@ -241,7 +241,6 @@
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
                                     class="fw-sb"
-                                    (click)="scrollToTop()"
                                     [routerLink]="
                                         onRealtedRoute(
                                             detailsData?.original_details?.language,
@@ -308,18 +307,10 @@
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border">
-                        <a
-                            class="p-articles pr-2"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="p-articles pr-2" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
                         </a>
-                        <a
-                            class="c-p d-flex flex-column"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <p class="fnt-fly fw-b cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>

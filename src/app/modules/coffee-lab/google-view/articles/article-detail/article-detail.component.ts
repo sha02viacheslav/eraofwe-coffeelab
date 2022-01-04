@@ -33,6 +33,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
+    initialized = false;
     loading = false;
     jsonLD: any;
     lang: any;
@@ -62,6 +63,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+    }
+
+    ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
@@ -69,17 +73,15 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.getDetails();
             }
             this.getArticleList();
-        });
-
-        if (isPlatformBrowser(this.platformId)) {
-            if (this.isMobile$) {
-                this.showAll = false;
+            if (isPlatformBrowser(this.platformId)) {
+                if (this.isMobile$) {
+                    this.showAll = false;
+                }
+                window.scrollTo(0, 0);
             }
-            window.scrollTo(0, 0);
-        }
+        });
+        this.initialized = true;
     }
-
-    ngOnInit(): void {}
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
@@ -90,7 +92,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     if (window.scrollY > 10) {
                         scrollEvent.unsubscribe();
                         this.showAll = true;
-                        this.cdr.detectChanges();
+                        this.detectChanges();
                     }
                 });
         }
@@ -117,10 +119,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
 
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/articles/${slug}`;
-    }
-
-    scrollToTop() {
-        window.scrollTo(0, 0);
     }
 
     viewAllComments() {
@@ -168,7 +166,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.router.navigate(['/error']);
             }
             this.loading = false;
-            this.cdr.detectChanges();
+            this.detectChanges();
         });
     }
 
@@ -180,9 +178,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             );
         }
         promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
-        Promise.all(promises)
-            .then(() => this.cdr.detectChanges())
-            .catch(() => this.cdr.detectChanges());
+        Promise.all(promises).finally(() => this.detectChanges());
     }
 
     setSEO() {
@@ -282,6 +278,12 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     toastCalled(event) {
         if (event) {
             this.showToaster = true;
+        }
+    }
+
+    detectChanges() {
+        if (this.initialized) {
+            this.cdr.detectChanges();
         }
     }
 }

@@ -43,6 +43,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         },
     ];
 
+    initialized = false;
     loading = false;
     jsonLD: any;
     lang: any;
@@ -70,6 +71,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+    }
+
+    ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
@@ -78,19 +82,15 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             }
             this.getRecipeList();
             if (isPlatformBrowser(this.platformId)) {
+                if (this.isMobile$) {
+                    this.showAll = false;
+                }
                 window.scrollTo(0, 0);
             }
         });
 
-        if (isPlatformBrowser(this.platformId)) {
-            if (this.isMobile$) {
-                this.showAll = false;
-            }
-            window.scrollTo(0, 0);
-        }
+        this.initialized = true;
     }
-
-    ngOnInit(): void {}
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
@@ -101,7 +101,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     if (window.scrollY > 10) {
                         scrollEvent.unsubscribe();
                         this.showAll = true;
-                        this.cdr.detectChanges();
+                        this.detectChanges();
                     }
                 });
         }
@@ -109,10 +109,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
 
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
-    }
-
-    scrollToTop() {
-        window.scrollTo(0, 0);
     }
 
     getRecipeList() {
@@ -165,7 +161,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 this.router.navigate(['/error']);
             }
             this.loading = false;
-            this.cdr.detectChanges();
+            this.detectChanges();
         });
     }
 
@@ -177,9 +173,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             );
         }
         promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
-        Promise.all(promises)
-            .then(() => this.cdr.detectChanges())
-            .catch(() => this.cdr.detectChanges());
+        Promise.all(promises).finally(() => this.detectChanges());
     }
 
     getOriginalUserDetail(userDetails: any, resolve): void {
@@ -295,6 +289,12 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     toastCalled(event) {
         if (event) {
             this.showToaster = true;
+        }
+    }
+
+    detectChanges() {
+        if (this.initialized) {
+            this.cdr.detectChanges();
         }
     }
 }
