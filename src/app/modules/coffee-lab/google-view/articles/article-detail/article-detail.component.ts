@@ -142,13 +142,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.content = removeImages(res.result?.content);
                     }
-                    const userData = 'userData';
-                    this.detailsData[userData] = {
-                        user_name: this.detailsData.user_name,
-                        organisation_name: this.detailsData.organisation_name || this.detailsData.organization_name,
-                        user_id: this.detailsData.user_id,
-                        profile_image_thumb_url: this.detailsData.profile_image_thumb_url,
-                    };
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
