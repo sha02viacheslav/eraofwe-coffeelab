@@ -17,14 +17,4 @@ export class GlobalsService {
         // const count = this.getLimitCounter() > 0 ? this.getLimitCounter() - 1 : 0;
         // this.cookieService.set('limit_count', count.toString());
     }
-
-    getJustText(content: any) {
-        if (content) {
-            const contentElement = this.document.createElement('div');
-            contentElement.innerHTML = content;
-            return contentElement.textContent;
-        } else {
-            return '';
-        }
-    }
 }
