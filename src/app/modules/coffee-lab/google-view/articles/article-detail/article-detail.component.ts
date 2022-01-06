@@ -133,10 +133,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 if (getLangRoute(res.result.language) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    this.detailsData = {
-                        ...res.result,
-                        articleContentText: this.globalsService.getJustText(res.result?.content),
-                    };
+                    this.detailsData = res.result;
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.content = removeImages(res.result?.content);
                     }
@@ -189,13 +186,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.articleContentText) {
-            if (this.detailsData?.articleContentText.length < MetaDespMinLength) {
-                description = this.detailsData?.articleContentText.concat(
+        if (this.detailsData?.stripped_description) {
+            if (this.detailsData?.stripped_description.length < MetaDespMinLength) {
+                description = this.detailsData?.stripped_description.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.articleContentText;
+                description = this.detailsData?.stripped_description;
             }
         } else {
             description =
@@ -235,7 +232,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     '@type': 'Article',
                     '@id': this.doc.URL,
                     headline: this.seoService.getPageTitle(),
-                    description: this.detailsData?.articleContentText.substr(0, 160),
+                    description: this.detailsData?.stripped_description.substr(0, 160),
                     image: this.detailsData?.cover_image_url,
                     datePublished: this.detailsData?.created_at,
                     author: {

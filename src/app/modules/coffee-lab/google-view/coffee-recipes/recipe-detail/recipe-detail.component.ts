@@ -136,10 +136,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 if (getLangRoute(res.result.lang_code) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    this.detailsData = {
-                        ...res.result,
-                        descriptionText: this.globalsService.getJustText(res.result?.description),
-                    };
+                    this.detailsData = res.result;
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.description = removeImages(res.result?.description);
                     }
@@ -213,13 +210,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.descriptionText) {
-            if (this.detailsData?.descriptionText.length < MetaDespMinLength) {
-                description = this.detailsData?.descriptionText.concat(
+        if (this.detailsData?.stripped_content) {
+            if (this.detailsData?.stripped_content.length < MetaDespMinLength) {
+                description = this.detailsData?.stripped_content.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.descriptionText;
+                description = this.detailsData?.stripped_content;
             }
         } else {
             description =
@@ -261,7 +258,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     author: this.detailsData?.posted_user,
                     cookTime: this.detailsData?.cooking_time,
                     datePublished: this.detailsData?.posted_at,
-                    description: this.detailsData?.descriptionText,
+                    description: this.detailsData?.stripped_content,
                     image: this.detailsData?.cover_image_url,
                     recipeIngredient: this.detailsData?.ingredients?.map((item) => {
                         return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
