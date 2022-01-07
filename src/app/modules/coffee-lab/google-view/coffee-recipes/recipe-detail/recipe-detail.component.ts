@@ -210,13 +210,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.stripped_content) {
-            if (this.detailsData?.stripped_content.length < MetaDespMinLength) {
-                description = this.detailsData?.stripped_content.concat(
+        if (this.detailsData?.stripped_description) {
+            if (this.detailsData?.stripped_description.length < MetaDespMinLength) {
+                description = this.detailsData?.stripped_description.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.stripped_content;
+                description = this.detailsData?.stripped_description;
             }
         } else {
             description =
@@ -258,7 +258,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     author: this.detailsData?.posted_user,
                     cookTime: this.detailsData?.cooking_time,
                     datePublished: this.detailsData?.posted_at,
-                    description: this.detailsData?.stripped_content,
+                    description: this.detailsData?.stripped_description,
                     image: this.detailsData?.cover_image_url,
                     recipeIngredient: this.detailsData?.ingredients?.map((item) => {
                         return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
@@ -269,7 +269,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         return {
                             '@type': 'HowToStep',
                             name: `Step ${index + 1}`,
-                            text: item.stripped_description,
+                            text: this.globalsService.getJustText(item.description),
                             url: `${this.doc.URL}#step${index + 1}`,
                         };
                     }),

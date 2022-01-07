@@ -20,7 +20,7 @@
                         {{ detailsData?.name || '--' | titlecase }}
                     </h1>
                     <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
-                        {{ (detailsData?.descriptionText || '').slice(0, showAll ? 10000 : 500) }}
+                        {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
                     </div>
                     <div class="d-md-flex mb-4 mb-md-0">
                         <div class="fw-sb tc-m mb-md-45">

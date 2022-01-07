@@ -186,13 +186,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.stripped_description) {
-            if (this.detailsData?.stripped_description.length < MetaDespMinLength) {
-                description = this.detailsData?.stripped_description.concat(
+        if (this.detailsData?.stripped_content) {
+            if (this.detailsData?.stripped_content.length < MetaDespMinLength) {
+                description = this.detailsData?.stripped_content.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.stripped_description;
+                description = this.detailsData?.stripped_content;
             }
         } else {
             description =
@@ -232,7 +232,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     '@type': 'Article',
                     '@id': this.doc.URL,
                     headline: this.seoService.getPageTitle(),
-                    description: this.detailsData?.stripped_description.substr(0, 160),
+                    description: this.detailsData?.stripped_content.substr(0, 160),
                     image: this.detailsData?.cover_image_url,
                     datePublished: this.detailsData?.created_at,
                     author: {
