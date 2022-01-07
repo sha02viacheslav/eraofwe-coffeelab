@@ -58,7 +58,7 @@
                     <div class="pb-4 d-flex">
                         <div class="w-100 d-flex justify-content-between">
                             <div>
-                                <p class="fw-b mb-1">{{ detailsData?.posted_user }}</p>
+                                <p class="fw-b mb-1">{{ detailsData?.user_name }}</p>
                                 <p class="fw-sb tc-m mb-1">
                                     {{ detailsData?.organisation_name || detailsData?.organization_name }}
                                 </p>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="d-flex flex-wrap w-100 innter-box">
                     <div class="d-flex justify-content-between align-items-md-end w-100">
-                        <app-user-header [prop]="detailsData?.userData"></app-user-header>
+                        <app-user-header [prop]="detailsData"></app-user-header>
                         <div class="d-flex flex-column align-items-end">
                             <app-forum-menu></app-forum-menu>
                         </div>
@@ -122,7 +122,7 @@
                                             <img
                                                 class="placeholder"
                                                 lazyLoad="assets/images/avatar-placeholder.svg"
-                                                [alt]="detailsData?.posted_user"
+                                                [alt]="detailsData?.user_name"
                                             />
                                         </ng-template>
                                     </div>
@@ -131,7 +131,7 @@
                                             [routerLink]="'/user-profile/' + detailsData?.user_slug"
                                             class="fw-b c-p text-underline"
                                         >
-                                            {{ detailsData?.posted_user }}
+                                            {{ detailsData?.user_name }}
                                         </a>
                                         <p class="fw-sb mt-2">
                                             {{ detailsData?.about_me }}
@@ -176,7 +176,6 @@
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
                                     class="fw-sb"
-                                    (click)="scrollToTop()"
                                     [routerLink]="
                                         onRealtedRoute(
                                             detailsData?.original_article?.language,
@@ -248,22 +247,14 @@
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border">
-                        <a
-                            class="p-articles pr-2 c-p"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img
                                 [lazyLoad]="forum?.cover_image_thumb_url"
                                 src="assets/images/empty.svg"
                                 [alt]="forum.title"
                             />
                         </a>
-                        <a
-                            class="c-p d-flex flex-column"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <p class="fnt-fly fw-b cust-flex-grow text-break">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>

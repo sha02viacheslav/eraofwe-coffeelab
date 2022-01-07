@@ -33,6 +33,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
+    initialized = false;
     loading = false;
     jsonLD: any;
     lang: any;
@@ -62,6 +63,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+    }
+
+    ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
             this.urlLang = params?.lang;
             if (params.idOrSlug) {
@@ -69,17 +73,15 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.getDetails();
             }
             this.getArticleList();
-        });
-
-        if (isPlatformBrowser(this.platformId)) {
-            if (this.isMobile$) {
-                this.showAll = false;
+            if (isPlatformBrowser(this.platformId)) {
+                if (this.isMobile$) {
+                    this.showAll = false;
+                }
+                window.scrollTo(0, 0);
             }
-            window.scrollTo(0, 0);
-        }
+        });
+        this.initialized = true;
     }
-
-    ngOnInit(): void {}
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
@@ -90,7 +92,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     if (window.scrollY > 10) {
                         scrollEvent.unsubscribe();
                         this.showAll = true;
-                        this.cdr.detectChanges();
+                        this.detectChanges();
                     }
                 });
         }
@@ -119,10 +121,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         return `/${getLangRoute(langCode)}/articles/${slug}`;
     }
 
-    scrollToTop() {
-        window.scrollTo(0, 0);
-    }
-
     viewAllComments() {
         this.commentData = this.allComments;
         this.showCommentBtn = false;
@@ -135,20 +133,10 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 if (getLangRoute(res.result.language) !== this.urlLang) {
                     this.router.navigateByUrl('/error');
                 } else {
-                    this.detailsData = {
-                        ...res.result,
-                        articleContentText: this.globalsService.getJustText(res.result?.content),
-                    };
+                    this.detailsData = res.result;
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.content = removeImages(res.result?.content);
                     }
-                    const userData = 'userData';
-                    this.detailsData[userData] = {
-                        posted_user: this.detailsData.posted_user,
-                        organisation_name: this.detailsData.organisation_name || this.detailsData.organization_name,
-                        posted_by: this.detailsData.posted_by,
-                        profile_image_thumb_url: this.detailsData.profile_image_thumb_url,
-                    };
                     this.lang = res.result.language;
 
                     if (res.result?.is_era_of_we) {
@@ -175,7 +163,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 this.router.navigate(['/error']);
             }
             this.loading = false;
-            this.cdr.detectChanges();
+            this.detectChanges();
         });
     }
 
@@ -187,9 +175,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             );
         }
         promises.push(new Promise((resolve) => this.getCommentsData(resolve)));
-        Promise.all(promises)
-            .then(() => this.cdr.detectChanges())
-            .catch(() => this.cdr.detectChanges());
+        Promise.all(promises).finally(() => this.detectChanges());
     }
 
     setSEO() {
@@ -200,13 +186,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         } else {
             title = 'Era of We Coffee Forum';
         }
-        if (this.detailsData?.articleContentText) {
-            if (this.detailsData?.articleContentText.length < MetaDespMinLength) {
-                description = this.detailsData?.articleContentText.concat(
+        if (this.detailsData?.stripped_description) {
+            if (this.detailsData?.stripped_description.length < MetaDespMinLength) {
+                description = this.detailsData?.stripped_description.concat(
                     ' - Era of We A global coffee marketplace and community that brings together all members of the supply chain',
                 );
             } else {
-                description = this.detailsData?.articleContentText;
+                description = this.detailsData?.stripped_description;
             }
         } else {
             description =
@@ -246,7 +232,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     '@type': 'Article',
                     '@id': this.doc.URL,
                     headline: this.seoService.getPageTitle(),
-                    description: this.detailsData?.articleContentText.substr(0, 160),
+                    description: this.detailsData?.stripped_description.substr(0, 160),
                     image: this.detailsData?.cover_image_url,
                     datePublished: this.detailsData?.created_at,
                     author: {
@@ -289,6 +275,12 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     toastCalled(event) {
         if (event) {
             this.showToaster = true;
+        }
+    }
+
+    detectChanges() {
+        if (this.initialized) {
+            this.cdr.detectChanges();
         }
     }
 }
