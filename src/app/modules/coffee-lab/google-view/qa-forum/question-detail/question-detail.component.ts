@@ -120,7 +120,7 @@ export class QuestionDetailComponent implements OnInit {
         } else {
             title = toSentenceCase(this.idOrSlug).concat(' - Era of We Coffee Marketplace');
         }
-        const firstAnswerContent = firstAnswer?.answer;
+        const firstAnswerContent = this.globalsService.getJustText(firstAnswer?.answer);
         if (firstAnswerContent) {
             if (firstAnswerContent.length < 100) {
                 description = firstAnswerContent.concat(
@@ -180,7 +180,7 @@ export class QuestionDetailComponent implements OnInit {
                         suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
                             return {
                                 '@type': 'Answer',
-                                text: answer.answer,
+                                text: this.globalsService.getJustText(answer.answer),
                                 dateCreated: answer.created_at,
                                 url: `${this.doc.URL}?#answer-${answer.id}`,
                                 author: {

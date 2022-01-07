@@ -269,7 +269,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         return {
                             '@type': 'HowToStep',
                             name: `Step ${index + 1}`,
-                            text: item.stripped_description,
+                            text: this.globalsService.getJustText(item.description),
                             url: `${this.doc.URL}#step${index + 1}`,
                         };
                     }),
