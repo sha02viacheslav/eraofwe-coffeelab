@@ -76,7 +76,6 @@ export class I18NService {
             return;
         }
         this.updateLangData(lang);
-        localStorage.setItem('locale', lang);
         this.translate.use(lang);
     }
 

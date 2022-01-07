@@ -153,7 +153,7 @@
                     "options": {
                         "browserTarget": "coffee-lab:build:production",
                         "serverTarget": "coffee-lab:server:production",
-                        "routes": ["/", "/en/qa-forum", "/en/articles", "/en/coffee-recipes", "/en/about-era-of-we"]
+                        "routes": []
                     },
                     "configurations": {
                         "production": {}
