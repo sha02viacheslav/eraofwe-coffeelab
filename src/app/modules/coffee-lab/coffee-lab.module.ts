@@ -5,9 +5,10 @@ import { SharedModule } from '@shared';
 
 import { CoffeeLabComponent } from './coffee-lab.component';
 import { FooterComponent } from '@components';
+import { FooterAdsComponent } from './components/footer-ads/footer-ads.component';
 
 @NgModule({
-    declarations: [CoffeeLabComponent, FooterComponent],
+    declarations: [CoffeeLabComponent, FooterComponent, FooterAdsComponent],
     imports: [CommonModule, CoffeLabRoutingModule, SharedModule],
 })
 export class CoffeeLabModule {}
