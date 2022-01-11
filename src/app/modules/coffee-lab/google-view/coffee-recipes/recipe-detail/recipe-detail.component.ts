@@ -55,6 +55,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     urlLang: string;
     showToaster = false;
     showAll = true;
+    adLocation: number;
 
     constructor(
         @Inject(DOCUMENT) private doc,
@@ -137,6 +138,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    this.adLocation = Math.floor(this.detailsData?.steps?.length / 2);
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.description = removeImages(res.result?.description);
                     }

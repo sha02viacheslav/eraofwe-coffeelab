@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { DestroyableComponent } from '@base-components';
-import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
 
 @Component({
     selector: 'app-square-ads',
     templateUrl: './square-ads.component.html',
     styleUrls: ['./square-ads.component.scss'],
 })
-export class SquareAdsComponent extends DestroyableComponent implements OnInit {
-    constructor(private dialogSrv: DialogService, public ref: DynamicDialogRef) {
-        super();
-    }
+export class SquareAdsComponent implements OnInit {
+    constructor(private dialogSrv: DialogService) {}
 
     ngOnInit(): void {}
 
-    close(value = null) {
-        this.ref.close(value);
-    }
+    close() {}
 
     onFocus() {
-        this.dialogSrv.open(SignupModalComponent, {});
+        this.dialogSrv.open(RedirectPopupComponent, {});
     }
 }

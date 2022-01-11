@@ -10,6 +10,7 @@ import { ApiService } from './api.service';
 })
 export class CoffeeLabService extends ApiService {
     forumLanguage = new BehaviorSubject('en');
+    apiUrl = 'https://api.db-ip.com/v2/free/self';
     otherCategories = new BehaviorSubject([]);
 
     get currentForumLanguage(): string {
@@ -62,5 +63,9 @@ export class CoffeeLabService extends ApiService {
 
     getTopWriters(options): Observable<any> {
         return this.get(this.orgPostUrl, `general/coffee-lab/top-writers?${this.serializeParams(options)}`);
+    }
+
+    getCountries() {
+        return this.http.get(`${this.apiUrl}`);
     }
 }

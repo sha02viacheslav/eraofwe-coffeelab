@@ -42,6 +42,9 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             }
             this.setPostType(curRouterSlug);
         });
+        this.coffeeLabService.getCountries().subscribe((resp) => {
+            console.log(resp);
+        });
     }
 
     setPostType(routerSlug: RouterSlug) {

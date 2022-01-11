@@ -1,33 +1,28 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
+import { SquareAdsComponent } from '@modules/coffee-lab/components/square-ads/square-ads.component';
 import { I18NService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
-import { threadId } from 'worker_threads';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent extends DestroyableComponent implements AfterViewInit {
     isStaging = environment.needProtect;
-    @HostListener('window:mouseleave', ['$event'])
-    onMouseLeave(event) {
-        console.log(event);
-    }
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        console.log(event.target.innerWidth);
-    }
 
     constructor(
         private seoService: SEOService,
         private i8nService: I18NService,
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object,
+        private dialogSrv: DialogService, // public ref: DynamicDialogRef,
     ) {
+        super();
         this.seoService.createLinkForCanonicalURL();
         this.document.documentElement.lang = getLangRoute(this.i8nService.currentLang);
         if (this.isStaging) {
@@ -39,7 +34,12 @@ export class AppComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            console.log(event);
+            if (event) {
+                console.log('called');
+                // this.dialogSrv.open(SquareAdsComponent, {});
+            } else {
+                // this.ref.close(null);
+            }
         });
     }
 

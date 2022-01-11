@@ -27,6 +27,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Svedese',
         },
         value: 'sv',
+        countries: ['SV'],
     },
     {
         label: {
@@ -41,6 +42,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Portoghese',
         },
         value: 'pt',
+        countries: ['PT'],
     },
     {
         label: {
@@ -55,6 +57,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Spagnolo',
         },
         value: 'es',
+        countries: ['ES'],
     },
     {
         label: {
@@ -69,6 +72,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Danese',
         },
         value: 'da',
+        countries: ['DA'],
     },
     {
         label: {
@@ -83,6 +87,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Francese',
         },
         value: 'fr',
+        countries: ['FR'],
     },
     {
         label: {
@@ -97,6 +102,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Tedesco',
         },
         value: 'de',
+        countries: ['DE'],
     },
     {
         label: {
@@ -111,6 +117,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Olandese',
         },
         value: 'nl',
+        countries: ['NL'],
     },
     {
         label: {
@@ -125,6 +132,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Italiano',
         },
         value: 'it',
+        countries: ['IT'],
     },
 ];
 

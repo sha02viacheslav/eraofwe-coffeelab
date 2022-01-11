@@ -137,7 +137,6 @@
                         </div>
 
                         <div class="mt-4 mt-md-45 col-md-7">
-                            <app-rectangle-ads></app-rectangle-ads>
                             <h2 class="user-header fw-b mt-0 mb-4 mb-md-45">
                                 {{ 'directions' | translate }}
                             </h2>
@@ -152,6 +151,9 @@
                                         class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
                                         [innerHTML]="step.description"
                                     ></div>
+                                </div>
+                                <div *ngIf="i + 1 === adLocation || adLocation === 0">
+                                    <app-rectangle-ads></app-rectangle-ads>
                                 </div>
                                 <img
                                     *ngIf="step.image_thumb_url || step.image_url"
