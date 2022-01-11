@@ -11,4 +11,4 @@ import { RedirectPopupComponent } from './redirect-popup.component';
     imports: [CommonModule, SharedModule, DynamicDialogModule],
     providers: [DialogService],
 })
-export class RedirectPopupModalModule {}
+export class RedirectPopupModule {}

@@ -1,7 +1,7 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { I18NService, SEOService } from '@services';
-import { environment } from '@env/environment';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { environment } from '@env/environment';
+import { I18NService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
 
 @Component({
@@ -11,6 +11,16 @@ import { getLangRoute } from '@utils';
 })
 export class AppComponent {
     isStaging = environment.needProtect;
+    @HostListener('window:mouseleave', ['$event'])
+    onMouseLeave(event) {
+        console.log(event);
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        console.log(event.target.innerWidth);
+    }
+
     constructor(
         private seoService: SEOService,
         private i8nService: I18NService,

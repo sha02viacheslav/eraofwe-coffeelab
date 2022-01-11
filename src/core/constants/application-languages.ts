@@ -12,6 +12,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Inglese',
         },
         value: 'en',
+        countries: [''],
     },
     {
         label: {

@@ -11,4 +11,4 @@ import { SquareAdsComponent } from './square-ads.component';
     imports: [CommonModule, SharedModule, DynamicDialogModule],
     providers: [DialogService],
 })
-export class SquareAdsModalModule {}
+export class SquareAdsModule {}
