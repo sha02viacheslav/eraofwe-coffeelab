@@ -1,15 +1,16 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { environment } from '@env/environment';
 import { I18NService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
+import { threadId } from 'worker_threads';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
     isStaging = environment.needProtect;
     @HostListener('window:mouseleave', ['$event'])
     onMouseLeave(event) {
@@ -34,6 +35,12 @@ export class AppComponent {
         }
 
         this.setDynamicScripts();
+    }
+
+    ngAfterViewInit(): void {
+        this.document.querySelector('html').addEventListener('pointerleave', (event) => {
+            console.log(event);
+        });
     }
 
     setDynamicScripts() {
