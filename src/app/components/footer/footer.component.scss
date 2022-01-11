@@ -96,3 +96,45 @@
         }
     }
 }
+
+.fnt-bold {
+    font-weight: bold;
+}
+
+.c-btn {
+    position: relative;
+    top: -30px;
+}
+
+.e-btn {
+    position: relative;
+    top: -8px;
+}
+.black-cta {
+    color: #232334 !important;
+    font-weight: 700;
+    text-decoration: underline !important;
+    &:hover {
+        color: #232334 !important;
+        cursor: pointer;
+    }
+}
+
+.fnt-md-32 {
+    font-size: 32px !important;
+}
+
+.border-334 {
+    border: 1px solid #23233433;
+}
+
+.ads-image {
+    position: relative;
+    left: 70px;
+    bottom: 120px;
+    margin-bottom: -115px;
+    img {
+        width: 158px;
+        height: 234px;
+    }
+}

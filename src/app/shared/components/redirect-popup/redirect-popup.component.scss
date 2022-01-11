@@ -1,0 +1,18 @@
+@media (min-width: 768px) {
+    .fnt-md-42 {
+        font-size: 42px !important;
+    }
+}
+
+.fnt-bold {
+    font-weight: bold !important;
+}
+
+::ng-deep {
+    .p-dialog-header {
+        display: none;
+    }
+    .p-dialog .p-dialog-content {
+        border-radius: 8px !important;
+    }
+}

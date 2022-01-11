@@ -57,3 +57,26 @@
         <div class="copyright-wrapper">©2021 SEWN Technology Solutions AB {{ 'all_rights_reserved' | translate }}.</div>
     </div>
 </div>
+
+<div [ngClass]="isExpand ? 'p-5' : 'p-4'" class="border-334 bg-white w-100">
+    <div class="container d-flex justify-content-between">
+        <div [ngClass]="isExpand ? 'ads-image' : ''">
+            <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
+        </div>
+        <div [ngClass]="!isExpand ? 'd-flex' : ''">
+            <div [ngClass]="isExpand ? 'mb-3' : ''" class="fnt-24 fnt-md-32 fnt-bold fnt-muli text-clr334">
+                Get 15% off on your first purchase
+            </div>
+            <div *ngIf="isExpand" class="fnt-18 fnt-md-24 fnt-500 fnt-muli text-clr334">
+                Sign up and get a discount on our e-commerce<br />
+                shop. Also get uninterupted access to the coffee lab
+            </div>
+            <button *ngIf="!isExpand" class="btn-raised ml-45">Buy now</button>
+        </div>
+        <div *ngIf="isExpand" class="d-flex align-items-center">
+            <button class="btn-raised">Buy now</button>
+        </div>
+        <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+        <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
+    </div>
+</div>
