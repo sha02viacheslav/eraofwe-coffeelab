@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { ArticlesComponent } from './articles.component';
-import { SeoPaginatorModule } from '../paginator/paginator.module';
 import { ArticleCardModule } from '../article-card/article-card.module';
+import { SeoPaginatorModule } from '../paginator/paginator.module';
+import { ArticlesComponent } from './articles.component';
 
 @NgModule({
     declarations: [ArticlesComponent],

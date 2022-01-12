@@ -1,0 +1,46 @@
+@media (min-width: 768px) {
+    .fnt-md-32 {
+        font-size: 32px !important;
+    }
+}
+.fnt-bold {
+    font-weight: bold;
+}
+
+.ads-border {
+    border: solid 1px #23233433;
+    margin-bottom: 28px;
+}
+
+.br-8 {
+    border-radius: 8px;
+}
+
+.ads-image {
+    position: relative;
+    left: -15px;
+    bottom: 140px;
+    margin-bottom: -140px;
+    img {
+        width: 238px;
+        height: 350px;
+    }
+}
+
+::ng-deep .remove-background {
+    box-shadow: unset;
+    .p-dialog-header {
+        display: none !important;
+    }
+    .p-dialog-content {
+        padding: 85px 0 0 0 !important;
+        border-radius: 8px !important;
+        background-color: transparent !important;
+    }
+}
+
+.cross-icon {
+    border: solid 1.4px #232334;
+    border-radius: 50%;
+    padding: 5px;
+}

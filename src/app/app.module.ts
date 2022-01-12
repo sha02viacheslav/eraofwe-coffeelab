@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClosePopupModule } from '@modules/coffee-lab/components/close-popup/close-popup.module';
 import { SquareAdsModule } from '@modules/coffee-lab/components/square-ads/square-ads.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -31,6 +32,7 @@ export function StartupServiceFactory(startupService: StartupService) {
         HttpClientModule,
         TranslateModule.forRoot(),
         SocialLoginModule,
+        ClosePopupModule,
         SquareAdsModule,
     ],
     providers: [

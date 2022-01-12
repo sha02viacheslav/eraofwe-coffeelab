@@ -31,6 +31,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            console.log(language);
             this.menuItems = this.getMenuItems(language);
             this.startupService.load(language);
             let currentRouter = this.router.url;
@@ -48,12 +49,14 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         this.coffeeLabService.getCountries().subscribe((resp: any) => {
             APP_LANGUAGES.forEach((item) => {
                 if (item.countries.includes(resp.countryCode)) {
-                    this.dialogSrv.open(RedirectPopupComponent, {
-                        data: {
-                            langName: item.label.en,
-                            countryName: resp.countryName,
-                        },
-                    });
+                    if (this.coffeeLabService.currentForumLanguage !== item.value) {
+                        this.dialogSrv.open(RedirectPopupComponent, {
+                            data: {
+                                langName: item.label.en,
+                                countryName: resp.countryName,
+                            },
+                        });
+                    }
                 }
             });
         });

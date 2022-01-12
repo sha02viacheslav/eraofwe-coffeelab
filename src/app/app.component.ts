@@ -2,7 +2,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
-import { SquareAdsComponent } from '@modules/coffee-lab/components/square-ads/square-ads.component';
+import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
 import { I18NService, SEOService } from '@services';
 import { getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -34,9 +34,12 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
 
     ngAfterViewInit(): void {
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            if (event && !localStorage.getItem('advertise')) {
-                localStorage.setItem('advertise', 'open');
-                this.dialogSrv.open(SquareAdsComponent, {});
+            if (event && !document.cookie) {
+                const date = new Date();
+                date.setTime(date.getTime() + 15 * 60 * 1000);
+                const expires = '; expires=' + date.toUTCString();
+                document.cookie = 'advertise=open' + expires;
+                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
             }
         });
     }

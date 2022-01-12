@@ -71,18 +71,3 @@
         display: block;
     }
 }
-
-.border-ads {
-    border: 1px solid #23233433;
-    border-radius: 8px;
-    margin-bottom: 1.75rem;
-    .image-ads {
-        position: relative;
-        top: 10px;
-        margin-right: 20px;
-        img {
-            width: 125px;
-            height: 184px;
-        }
-    }
-}
