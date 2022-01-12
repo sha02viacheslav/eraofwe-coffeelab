@@ -12,7 +12,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Inglese',
         },
         value: 'en',
-        countries: [''],
+        countries: [],
     },
     {
         label: {
@@ -42,7 +42,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Portoghese',
         },
         value: 'pt',
-        countries: ['PT'],
+        countries: ['PT', 'BR'],
     },
     {
         label: {

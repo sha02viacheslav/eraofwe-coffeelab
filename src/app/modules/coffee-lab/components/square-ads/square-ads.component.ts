@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
 
 @Component({
@@ -8,11 +8,13 @@ import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.compone
     styleUrls: ['./square-ads.component.scss'],
 })
 export class SquareAdsComponent implements OnInit {
-    constructor(private dialogSrv: DialogService) {}
+    constructor(private dialogSrv: DialogService, public ref: DynamicDialogRef) {}
 
     ngOnInit(): void {}
 
-    close() {}
+    close() {
+        this.ref.close(null);
+    }
 
     onFocus() {
         this.dialogSrv.open(RedirectPopupComponent, {});

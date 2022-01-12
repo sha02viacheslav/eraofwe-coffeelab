@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DestroyableComponent } from '@base-components';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-redirect-popup',
@@ -7,9 +8,12 @@ import { DestroyableComponent } from '@base-components';
     styleUrls: ['./redirect-popup.component.scss'],
 })
 export class RedirectPopupComponent extends DestroyableComponent implements OnInit {
-    constructor() {
+    data: any;
+    constructor(public config: DynamicDialogConfig) {
         super();
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.data = this.config?.data;
+    }
 }

@@ -20,7 +20,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         private i8nService: I18NService,
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object,
-        private dialogSrv: DialogService, // public ref: DynamicDialogRef,
+        private dialogSrv: DialogService,
     ) {
         super();
         this.seoService.createLinkForCanonicalURL();
@@ -34,11 +34,9 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
 
     ngAfterViewInit(): void {
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            if (event) {
-                console.log('called');
-                // this.dialogSrv.open(SquareAdsComponent, {});
-            } else {
-                // this.ref.close(null);
+            if (event && !localStorage.getItem('advertise')) {
+                localStorage.setItem('advertise', 'open');
+                this.dialogSrv.open(SquareAdsComponent, {});
             }
         });
     }
