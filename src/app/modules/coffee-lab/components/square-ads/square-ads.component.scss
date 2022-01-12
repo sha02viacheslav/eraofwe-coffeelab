@@ -29,10 +29,12 @@
 
 ::ng-deep {
     .p-dialog-header {
-        display: none;
+        display: none !important;
     }
     .p-dialog .p-dialog-content {
+        padding: 100px 0 0 0 !important;
         border-radius: 8px !important;
+        background-color: transparent !important;
     }
 }
 
