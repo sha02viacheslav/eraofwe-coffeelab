@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-close-popup',
@@ -8,15 +7,11 @@ import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.compone
     styleUrls: ['./close-popup.component.scss'],
 })
 export class ClosePopupComponent implements OnInit {
-    constructor(private dialogSrv: DialogService, public ref: DynamicDialogRef) {}
+    constructor(public ref: DynamicDialogRef) {}
 
     ngOnInit(): void {}
 
     close() {
         this.ref.close(null);
-    }
-
-    onFocus() {
-        this.dialogSrv.open(RedirectPopupComponent, {});
     }
 }

@@ -39,7 +39,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
                 date.setTime(date.getTime() + 15 * 60 * 1000);
                 const expires = '; expires=' + date.toUTCString();
                 document.cookie = 'advertise=open' + expires;
-                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background', width: '33%' });
             }
         });
     }

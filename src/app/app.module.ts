@@ -32,8 +32,6 @@ export function StartupServiceFactory(startupService: StartupService) {
         HttpClientModule,
         TranslateModule.forRoot(),
         SocialLoginModule,
-        ClosePopupModule,
-        SquareAdsModule,
     ],
     providers: [
         StartupService,

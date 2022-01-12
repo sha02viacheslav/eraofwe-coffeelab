@@ -12,3 +12,20 @@
         }
     }
 }
+
+.ads-image {
+    position: relative;
+    left: -15px;
+    bottom: 140px;
+    margin-bottom: -140px;
+    img {
+        width: 238px;
+        height: 350px;
+    }
+}
+
+.get-off {
+    font-size: 42px;
+    font-weight: 500;
+    color: #232334;
+}
