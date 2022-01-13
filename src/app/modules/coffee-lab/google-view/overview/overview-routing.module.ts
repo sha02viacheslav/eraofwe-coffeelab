@@ -7,6 +7,10 @@ import { OverviewComponent } from './overview.component';
 const routes: Routes = [
     {
         path: '',
+        loadChildren: () => import('../landing-page/landing-page.module').then((m) => m.LandingPageModule),
+    },
+    {
+        path: ':lang',
         component: OverviewComponent,
         children: [
             {
@@ -15,46 +19,46 @@ const routes: Routes = [
                 pathMatch: 'full',
             },
             {
-                path: ':lang/qa-forum',
+                path: 'qa-forum',
                 loadChildren: () =>
                     import('../qa-forum/qa-forum-view/qa-forum-view.module').then((m) => m.QaForumViewModule),
             },
             {
-                path: ':lang/articles',
+                path: 'articles',
                 loadChildren: () =>
                     import('../articles/articles-view/articles-view.module').then((m) => m.ArticlesViewModule),
             },
             {
-                path: ':lang/coffee-recipes',
+                path: 'coffee-recipes',
                 loadChildren: () =>
                     import('../coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
                         (m) => m.CoffeeRecipesViewModule,
                     ),
             },
             {
-                path: ':lang/about-era-of-we',
+                path: 'about-era-of-we',
                 loadChildren: () => import('../era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
             },
             {
-                path: `:lang/${RouterMap.sv[RouterSlug.QA]}`,
+                path: `${RouterMap.sv[RouterSlug.QA]}`,
 
                 loadChildren: () =>
                     import('../qa-forum/qa-forum-view/qa-forum-view.module').then((m) => m.QaForumViewModule),
             },
             {
-                path: `:lang/${RouterMap.sv[RouterSlug.ARTICLE]}`,
+                path: `${RouterMap.sv[RouterSlug.ARTICLE]}`,
                 loadChildren: () =>
                     import('../articles/articles-view/articles-view.module').then((m) => m.ArticlesViewModule),
             },
             {
-                path: `:lang/${RouterMap.sv[RouterSlug.RECIPE]}`,
+                path: `${RouterMap.sv[RouterSlug.RECIPE]}`,
                 loadChildren: () =>
                     import('../coffee-recipes/coffee-recipes-view/coffee-recipes-view.module').then(
                         (m) => m.CoffeeRecipesViewModule,
                     ),
             },
             {
-                path: `:lang/${RouterMap.sv[RouterSlug.EOW]}`,
+                path: `${RouterMap.sv[RouterSlug.EOW]}`,
                 loadChildren: () => import('../era-of-we/era-of-we.module').then((m) => m.EraOfWeModule),
             },
         ],
