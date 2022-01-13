@@ -1,1 +1,53 @@
-<p>landing-page works!</p>
+<div class="d-flex coffee-lab-main">
+    <div class="container bg-main">
+        <a class="company-logo" href="https://sewnstaging.com"
+            ><img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab"
+        /></a>
+        <div class="coffee-lab fw-n mb-md-4 mt-md-5 pt-md-5">The Coffee Lab</div>
+        <div class="share fw-b mb-md-5">Share Your Knowledge & Interact With Coffee Enthusiasts</div>
+        <div class="mb-md-5 pb-md-2">
+            <button class="btn-raised mr-3">Start writing</button>
+            <button class="btn-stroked">Explore the forum</button>
+        </div>
+        <hr />
+        <div class="row mt-md-5">
+            <div class="col-md-6">
+                <div class="recipes fw-b mb-md-3">1,100+</div>
+                <div class="fw-b fnt-md-20 mb-md-2">Articles & recipes</div>
+                <p>
+                    Get access to unlimited coffee<br />
+                    guides curated just for you
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="experts fw-b mb-md-3">52+</div>
+                <div class="fw-b fnt-md-20 mb-md-2">Coffee experts</div>
+                <p>
+                    Interact with industry experts and<br />
+                    writers from around the world.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <img src="assets/images/unsplash.png" alt="unsplash" />
+    </div>
+</div>
+
+<div class="trending">
+    <div class="trending-posts">
+        <div class="d-flex justify-content-between">
+            <div class="fnt-md-24 trending-text">Trending posts</div>
+            <button class="btn-raised">Discover more</button>
+        </div>
+        <div class="d-flex mt-45">
+            <div *ngFor="let trend of trending" class="trending-img mr-4">
+                <img src="{{ trend.image }}" alt="trending-image" />
+                <div class="">
+                    <div>{{ trend.title }}</div>
+                    <div>{{ trend.heading }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

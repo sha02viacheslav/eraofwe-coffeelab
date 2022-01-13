@@ -1,0 +1,51 @@
+.coffee-lab-main {
+    .bg-main {
+        background-image: linear-gradient(179deg, rgba(238, 238, 238, 0) 1%, #f8f6ef 67%);
+        padding: 43px 60px 197px 150px;
+        .company-logo {
+            padding-top: 43px;
+            & > img {
+                display: block;
+                width: 94px;
+                height: 32px;
+                object-fit: contain;
+                object-position: center;
+                @media (min-width: 768px) {
+                    width: 106px;
+                    height: 36px;
+                }
+            }
+        }
+        .coffee-lab {
+            font-size: 32px;
+        }
+        .share {
+            font-size: 54px;
+        }
+        .recipes,
+        .experts {
+            font-size: 36px;
+        }
+    }
+}
+.trending {
+    padding-left: 150px;
+    .trending-posts {
+        background-color: #232334;
+        padding: 48px 92px 56px 56px;
+        .trending-text {
+            color: #fff;
+        }
+    }
+    .trending-img {
+        width: 364px;
+        height: 258px;
+        img {
+            width: 364px;
+            height: 258px;
+            opacity: 0.61;
+            border-radius: 4px;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
+        }
+    }
+}
