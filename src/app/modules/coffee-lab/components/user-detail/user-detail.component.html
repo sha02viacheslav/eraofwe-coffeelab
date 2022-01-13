@@ -43,7 +43,10 @@
 
             <div class="mt-2">
                 <ng-container *ngIf="data; else noName">
-                    <div class="fnt-16 fw-b text-underline c-p" [routerLink]="'/user-profile/' + data?.slug">
+                    <div
+                        class="fnt-16 fw-b text-underline c-p"
+                        [routerLink]="'/' + cuurentLang + '/user-profile/' + data?.slug"
+                    >
                         {{ name }}
                     </div>
                     <div class="fw-sb mt-2">

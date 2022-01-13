@@ -7,15 +7,11 @@ import { OverviewComponent } from './overview.component';
 const routes: Routes = [
     {
         path: '',
-        loadChildren: () => import('../landing-page/landing-page.module').then((m) => m.LandingPageModule),
-    },
-    {
-        path: ':lang',
         component: OverviewComponent,
         children: [
             {
                 path: '',
-                redirectTo: 'en/qa-forum',
+                redirectTo: 'qa-forum',
                 pathMatch: 'full',
             },
             {

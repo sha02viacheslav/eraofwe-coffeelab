@@ -17,28 +17,28 @@ const routes: Routes = [
                 loadChildren: () => import('./google-view/overview/overview.module').then((m) => m.OverviewModule),
             },
             {
-                path: ':lang/qa-forum/:idOrSlug',
+                path: 'qa-forum/:idOrSlug',
                 loadChildren: () =>
                     import('./google-view/qa-forum/question-detail/question-detail.module').then(
                         (m) => m.QuestionDetailModule,
                     ),
             },
             {
-                path: ':lang/coffee-recipes/:idOrSlug',
+                path: 'coffee-recipes/:idOrSlug',
                 loadChildren: () =>
                     import('./google-view/coffee-recipes/recipe-detail/recipe-detail.module').then(
                         (m) => m.RecipeDetailModule,
                     ),
             },
             {
-                path: ':lang/articles/:idOrSlug',
+                path: 'articles/:idOrSlug',
                 loadChildren: () =>
                     import('./google-view/articles/article-detail/article-detail.module').then(
                         (m) => m.ArticleDetailModule,
                     ),
             },
             {
-                path: ':lang/:category',
+                path: ':category',
                 loadChildren: () => import('./google-view/category/category.module').then((m) => m.CategoryModule),
             },
             { path: '**', redirectTo: 'en/qa-forum' },

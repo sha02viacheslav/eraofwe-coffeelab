@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, V
 import { OrganizationType } from '@enums';
 import { UserProfile } from '@models';
 import { CoffeeLabService } from '@services';
+import { getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -25,6 +26,7 @@ export class UserDetailComponent implements OnInit {
     isOpened = false;
     hiding = false;
     showMore: boolean;
+    cuurentLang: string;
     public defaultProfileImage = 'assets/images/profile.svg';
 
     constructor(
@@ -46,6 +48,7 @@ export class UserDetailComponent implements OnInit {
                     this.originalImageUrl =
                         this.data?.profile_image_url || this.data?.profile_image_thumb_url || this.imageUrl;
                     this.name = `${this.data?.firstname} ${this.data?.lastname}`;
+                    this.cuurentLang = getLangRoute(this.coffeeLabService.currentForumLanguage);
                 }
                 this.cdr.detectChanges();
             });
