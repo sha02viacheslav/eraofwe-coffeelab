@@ -104,11 +104,19 @@
 .c-btn {
     position: relative;
     top: -30px;
+    @media (max-width: 767px) {
+        top: 52px;
+        font-size: 12px !important;
+    }
 }
 
 .e-btn {
     position: relative;
     top: -8px;
+    @media (max-width: 767px) {
+        top: -12px;
+        font-size: 12px !important;
+    }
 }
 .black-cta {
     color: #232334 !important;
@@ -120,22 +128,43 @@
     }
 }
 
-.fnt-md-32 {
-    font-size: 32px !important;
-}
-
 .border-334 {
     border: 1px solid #23233433;
 }
 
 .ads-image {
     position: relative;
-    left: 70px;
-    bottom: 120px;
-    margin-bottom: -115px;
+    @media (max-width: 767px) {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 13px;
+        top: -66px;
+        margin-bottom: -53px;
+        .mob-disp {
+            display: flex;
+        }
+    }
+    @media (min-width: 768px) {
+        left: 70px;
+        bottom: 120px;
+        margin-bottom: -115px;
+    }
     img {
-        width: 158px;
-        height: 234px;
+        width: 80px;
+        height: 118px;
+        @media (min-width: 768px) {
+            width: 158px;
+            height: 234px;
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .container-md {
+        max-width: 1270px;
+    }
+    .fnt-md-32 {
+        font-size: 32px !important;
     }
 }
 

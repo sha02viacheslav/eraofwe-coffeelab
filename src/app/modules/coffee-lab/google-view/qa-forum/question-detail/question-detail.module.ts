@@ -4,6 +4,7 @@ import { CategoryListModule } from '@modules/coffee-lab/components/category-list
 import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
 import { JoinCommunityModule } from '@modules/coffee-lab/components/join-community/join-community.module';
 import { LikeDividerModule } from '@modules/coffee-lab/components/like-divider/like-divider.module';
+import { RectangleAdsModule } from '@modules/coffee-lab/components/rectangle-ads/rectangle-ads.module';
 import { SquareAdsModule } from '@modules/coffee-lab/components/square-ads/square-ads.module';
 import { TranslateTostModule } from '@modules/coffee-lab/components/translate-toast/translate-toast.module';
 import { TranslationDropdownModule } from '@modules/coffee-lab/components/translation-dropdown/translation-dropdown.module';
@@ -28,6 +29,7 @@ import { QuestionDetailComponent } from './question-detail.component';
         CategoryListModule,
         TranslateTostModule,
         SquareAdsModule,
+        RectangleAdsModule,
     ],
 })
 export class QuestionDetailModule {}

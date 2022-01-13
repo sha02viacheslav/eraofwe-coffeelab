@@ -18,9 +18,18 @@
     left: -15px;
     bottom: 140px;
     margin-bottom: -140px;
+    @media (max-width: 767px) {
+        left: -15px;
+        bottom: 100px;
+        margin-bottom: -100px;
+    }
     img {
         width: 238px;
         height: 350px;
+        @media (max-width: 767px) {
+            width: 114px;
+            height: 250px;
+        }
     }
 }
 
@@ -28,4 +37,7 @@
     font-size: 42px;
     font-weight: 500;
     color: #232334;
+    @media (max-width: 767px) {
+        font-size: 32px;
+    }
 }

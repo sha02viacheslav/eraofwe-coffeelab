@@ -35,14 +35,15 @@
             </div>
         </div>
         <div class="flex-1 my-4">
-            <div class="pb-45">
+            <div class="pb-3 pb-md-45">
                 <img
                     class="w-100 banner-image"
                     [src]="detailsData?.cover_image_url"
                     [alt]="detailsData?.title + ' cover image'"
                 />
             </div>
-            <div *ngIf="isMobile$" class="d-flex justify-content-between mb-3">
+            <app-rectangle-ads *ngIf="isMobile$"></app-rectangle-ads>
+            <div *ngIf="isMobile$" class="d-flex justify-content-between mb-4">
                 <div class="d-flex">
                     <div class="btn-icon thumbsup mr-25" (click)="onFocus()"></div>
                     <div class="btn-icon message mr-25" (click)="onFocus()"></div>
@@ -93,7 +94,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-wrap w-100 innter-box">
-                    <app-rectangle-ads></app-rectangle-ads>
+                    <app-rectangle-ads *ngIf="!isMobile$"></app-rectangle-ads>
                     <div class="d-flex justify-content-between align-items-md-end w-100">
                         <app-user-header [prop]="detailsData"></app-user-header>
                         <div class="d-flex flex-column align-items-end">
