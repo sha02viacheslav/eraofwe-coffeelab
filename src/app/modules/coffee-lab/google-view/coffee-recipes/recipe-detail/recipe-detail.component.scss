@@ -108,6 +108,13 @@
         border: solid 1px #e5e5e5;
     }
 }
+.user-header {
+    font-family: $secondary-font-family;
+    font-size: 48px;
+    @media (max-width: 768px) {
+        font-size: 32px;
+    }
+}
 
 .p-articles img {
     width: 89px;

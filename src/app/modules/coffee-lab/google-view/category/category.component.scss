@@ -1,5 +1,13 @@
 @import 'variables';
 
+.title-header {
+    font-family: $secondary-font-family;
+    font-size: 60px;
+    @media (max-width: 768px) {
+        font-size: 32px;
+    }
+}
+
 .language-drop {
     @media (min-width: 992px) {
         position: relative;

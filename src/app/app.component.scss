@@ -41,9 +41,6 @@
         20: 20px,
         24: 24px,
         32: 32px,
-        42: 42px,
-        48: 48px,
-        60: 60px,
     );
     @each $size, $value in $font-sizes {
         .fnt-#{$size} {
