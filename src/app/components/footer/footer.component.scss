@@ -97,10 +97,6 @@
     }
 }
 
-.fnt-bold {
-    font-weight: bold;
-}
-
 .c-btn {
     position: relative;
     top: -30px;
@@ -159,12 +155,9 @@
     }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
     .container-md {
         max-width: 1270px;
-    }
-    .fnt-md-32 {
-        font-size: 32px !important;
     }
 }
 
