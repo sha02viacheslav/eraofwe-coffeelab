@@ -5,7 +5,7 @@
         content in {{ data?.langName }}?
     </p>
     <div class="d-flex mt-1">
-        <button class="btn-stroked mr-2">No, I will continue in English</button>
-        <button class="btn-raised ml-2">Yes, take me to the {{ data?.langName }} version</button>
+        <button class="btn-stroked mr-2" (click)="onCancel()">No, I will continue in English</button>
+        <button class="btn-raised ml-2" (click)="onApprove()">Yes, take me to the {{ data?.langName }} version</button>
     </div>
 </div>

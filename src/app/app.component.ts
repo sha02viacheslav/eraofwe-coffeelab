@@ -4,7 +4,7 @@ import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
 import { I18NService, SEOService } from '@services';
-import { getLangRoute } from '@utils';
+import { getCookie, getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
@@ -34,7 +34,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
 
     ngAfterViewInit(): void {
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            if (event && !document.cookie) {
+            if (event && getCookie('advertise') !== 'open') {
                 const date = new Date();
                 date.setTime(date.getTime() + 15 * 60 * 1000);
                 const expires = '; expires=' + date.toUTCString();
