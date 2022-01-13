@@ -73,16 +73,14 @@
             </div>
         </div>
         <div [ngClass]="!isExpand ? 'd-flex' : ''">
-            <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fnt-bold fnt-muli text-clr334">
+            <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
                 Get 15% off on your first purchase
             </div>
-            <div *ngIf="isExpand" class="fnt-18 fnt-md-24 fnt-500 fnt-muli text-clr334 d-none d-md-block">
+            <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
                 Sign up and get a discount on our e-commerce<br />
                 shop. Also get uninterupted access to the coffee lab
             </div>
-            <div *ngIf="isExpand" class="fnt-12 fnt-500 fnt-muli text-clr334 d-md-none">
-                Sign up and get a discount on our e-commerce shop.
-            </div>
+            <div *ngIf="isExpand" class="fnt-12 d-md-none">Sign up and get a discount on our e-commerce shop.</div>
             <button *ngIf="!isExpand" class="btn-raised ml-45">Buy now</button>
         </div>
         <div *ngIf="isExpand" class="d-flex align-items-center">
