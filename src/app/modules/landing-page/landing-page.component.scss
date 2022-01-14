@@ -1,7 +1,10 @@
 .coffee-lab-main {
     .bg-main {
         background-image: linear-gradient(179deg, rgba(238, 238, 238, 0) 1%, #f8f6ef 67%);
-        padding: 43px 60px 197px 150px;
+        padding: 24px 18px;
+        @media (min-width: 768px) {
+            padding: 43px 60px 197px 150px;
+        }
         .company-logo {
             padding-top: 43px;
             & > img {
@@ -16,46 +19,160 @@
                 }
             }
         }
-        .coffee-lab {
-            font-size: 32px;
-        }
-        .share {
-            font-size: 54px;
-        }
-        .recipes,
-        .experts {
-            font-size: 36px;
-        }
     }
 }
 .trending {
     position: relative;
-    top: -75px;
-    padding-left: 150px;
+    @media (min-width: 768px) {
+        padding-left: 150px;
+        top: -75px;
+    }
     .trending-posts {
         background-color: #232334;
-        padding: 48px 92px 56px 56px;
-        .trending-text {
-            color: #fff;
+        padding: 48px 18px;
+        @media (min-width: 768px) {
+            padding: 48px 92px 56px 56px;
         }
     }
     .trending-img {
-        width: 364px;
-        height: 258px;
-        img {
+        @media (min-width: 768px) {
             width: 364px;
             height: 258px;
+        }
+        position: relative;
+        img {
+            @media (min-width: 768px) {
+                width: 364px;
+                height: 258px;
+            }
             opacity: 0.61;
             border-radius: 4px;
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
         }
+        .upper-txt {
+            position: absolute;
+            bottom: 20px;
+            left: 1rem;
+        }
     }
 }
 
-.text-cof {
-    font-size: 36px;
+@media (min-width: 768px) {
+    .txt-32 {
+        font-size: 32px !important;
+    }
+    .txt-36 {
+        font-size: 36px !important;
+    }
+    .txt-42 {
+        font-size: 42px !important;
+    }
+    .txt-54 {
+        font-size: 54px !important;
+    }
+    .txt-60 {
+        font-size: 60px !important;
+    }
 }
 
-// .platform {
-//     background-color: red;
-// }
+.txt-w {
+    color: #fff;
+}
+
+.screen-size {
+    @media (min-width: 768px) {
+        width: 1140px;
+    }
+}
+
+.screen-size-2 {
+    @media (min-width: 768px) {
+        width: 947px;
+    }
+}
+
+.brewing-pd {
+    @media (min-width: 768px) {
+        padding-top: 28px;
+        padding-bottom: 131px;
+    }
+}
+
+.platform {
+    background-image: url(../../.../../../assets/images/group-18.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    .plat-card {
+        @media (min-width: 768px) {
+            width: 68.5%;
+        }
+    }
+}
+
+.share-pd {
+    padding: 48px 18px;
+    @media (min-width: 768px) {
+        padding-top: 124px;
+        padding-bottom: 129px;
+        .share-box {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+    }
+}
+
+.learn-pd {
+    padding: 48px 18px !important;
+    @media (min-width: 768px) {
+        padding-top: 90px;
+        padding-bottom: 129px;
+    }
+}
+
+.hear {
+    @media (min-width: 768px) {
+        padding-top: 79px;
+        padding-bottom: 129px;
+    }
+    background-color: #f8f6ef;
+    .box-width {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        .here-box {
+            border-radius: 6px;
+            @media (min-width: 768px) {
+                margin-right: 0.75rem;
+                margin-left: 0.75rem;
+            }
+            img {
+                width: 64px;
+                height: 64px;
+                border-radius: 4px;
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+.more-about {
+    padding: 48px 18px;
+    background-color: #f2f3f5;
+    @media (min-width: 768px) {
+        padding-top: 66px;
+        padding-bottom: 48px;
+    }
+}
+
+::ng-deep.more-about {
+    .p-accordion-header-text {
+        width: 100%;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        @media (min-width: 768px) {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+        border-bottom: 1px solid #cfcfcf;
+    }
+}

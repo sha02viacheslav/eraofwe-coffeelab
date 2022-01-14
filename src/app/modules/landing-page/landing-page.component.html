@@ -1,83 +1,168 @@
-<div class="d-flex coffee-lab-main">
-    <div class="container bg-main">
-        <a class="company-logo" href="https://sewnstaging.com"
-            ><img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab"
-        /></a>
-        <div class="coffee-lab fw-n mb-md-4 mt-md-5 pt-md-5">The Coffee Lab</div>
-        <div class="share fw-b mb-md-5">Share Your Knowledge & Interact With Coffee Enthusiasts</div>
-        <div class="mb-md-5 pb-md-2">
-            <button class="btn-raised mr-3">Start writing</button>
-            <button class="btn-stroked">Explore the forum</button>
+<div class="bg-white">
+    <div class="d-flex coffee-lab-main">
+        <div class="container bg-main">
+            <a class="company-logo" href="https://sewnstaging.com"
+                ><img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab"
+            /></a>
+            <div class="fnt-20 txt-32 fw-n mb-3 mb-md-4 mt-45 pt-25 mt-md-5 pt-md-5">The Coffee Lab</div>
+            <div class="fnt-24 txt-54 fw-b mb-4 mb-md-5">Share Your Knowledge & Interact With Coffee Enthusiasts</div>
+            <div class="mb-md-5 mb-4 pb-md-2">
+                <button class="btn-raised mr-3">Start writing</button>
+                <button class="btn-stroked" routerLink="en/qa-forum">Explore the forum</button>
+            </div>
+            <hr />
+            <div class="row mt-4 mt-md-5">
+                <div class="col-6">
+                    <div class="fnt-20 txt-36 fw-b mb-md-3">1,100+</div>
+                    <div class="fw-b fnt-14 fnt-md-20 mb-md-2">Articles & recipes</div>
+                    <p>
+                        Get access to unlimited coffee<br />
+                        guides curated just for you
+                    </p>
+                </div>
+                <div class="col-6">
+                    <div class="txt-36 fw-b mb-md-3">52+</div>
+                    <div class="fw-b fnt-md-20 mb-md-2">Coffee experts</div>
+                    <p>
+                        Interact with industry experts and<br />
+                        writers from around the world.
+                    </p>
+                </div>
+            </div>
         </div>
-        <hr />
-        <div class="row mt-md-5">
-            <div class="col-md-6">
-                <div class="recipes fw-b mb-md-3">1,100+</div>
-                <div class="fw-b fnt-md-20 mb-md-2">Articles & recipes</div>
-                <p>
-                    Get access to unlimited coffee<br />
-                    guides curated just for you
-                </p>
-            </div>
-            <div class="col-md-6">
-                <div class="experts fw-b mb-md-3">52+</div>
-                <div class="fw-b fnt-md-20 mb-md-2">Coffee experts</div>
-                <p>
-                    Interact with industry experts and<br />
-                    writers from around the world.
-                </p>
-            </div>
+        <div class="d-none d-md-block">
+            <img src="assets/images/unsplash.png" alt="unsplash" />
         </div>
     </div>
-    <div>
-        <img src="assets/images/unsplash.png" alt="unsplash" />
-    </div>
-</div>
 
-<div class="trending">
-    <div class="trending-posts">
-        <div class="d-flex justify-content-between">
-            <div class="fnt-md-24 trending-text">Trending posts</div>
-            <button class="btn-raised">Discover more</button>
-        </div>
-        <div class="d-flex mt-45">
-            <div *ngFor="let trend of trending" class="trending-img mr-4">
-                <img src="{{ trend.image }}" alt="trending-image" />
-                <div class="">
-                    <div>{{ trend.title }}</div>
-                    <div>{{ trend.heading }}</div>
+    <div class="trending">
+        <div class="trending-posts">
+            <div class="d-flex justify-content-between">
+                <div class="fnt-md-24 txt-w">Trending posts</div>
+                <button class="btn-raised d-none d-md-block">Discover more</button>
+            </div>
+            <div class="d-flex mt-45">
+                <div *ngFor="let trend of trending" class="trending-img mr-4 d-none d-md-block">
+                    <img src="{{ trend.image }}" alt="trending-image" />
+                    <div class="upper-txt txt-w">
+                        <div class="fnt-14">{{ trend.title | uppercase }}</div>
+                        <div class="fnt-md-24 fw-sb">{{ trend.heading }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="">
-    <div class="row">
-        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
-            <div class="mb-3 fw-b text-cof">What is The Coffee Lab?</div>
-            <p class="fnt-14 fnt-md-20">
-                The Coffee Lab is a platform for anyone in the coffee world, from roasters to estates to home brewers,
-                to share their views, expertise, and experiences. Members can ask questions, provide answers, talk about
-                their brands, share tips, write about coffee culture, and much more. If you love coffee and want to
-                share that, this is the place for you!
-            </p>
+    <div class="container px-0 brewing-pd screen-size">
+        <div class="row">
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+                <div class="mb-3 fw-b txt-36">What is The Coffee Lab?</div>
+                <p class="fnt-14 fnt-md-20">
+                    The Coffee Lab is a platform for anyone in the coffee world, from roasters to estates to home
+                    brewers, to share their views, expertise, and experiences. Members can ask questions, provide
+                    answers, talk about their brands, share tips, write about coffee culture, and much more. If you love
+                    coffee and want to share that, this is the place for you!
+                </p>
+            </div>
+            <div class="col-md-6"><img src="assets/images/group-16.png" alt="group-16" /></div>
         </div>
-        <div class="col-6 px-0"><img src="assets/images/group-16.png" alt="group-16" /></div>
     </div>
-</div>
 
-<div class="platform">
-    <div class="row">
-        <div class="col-6">
-            <div class="mb-3" *ngFor="let plat of platform">
-                <div class="d-flex justify-content-between">
-                    <div>{{ plat.heading }}</div>
-                    <div>arrow</div>
+    <div class="container platform screen-size">
+        <div class="row p-md-5">
+            <div class="col-md-6 px-0">
+                <div class="mb-3 plat-card bg-f8 p-md-4 br-4" *ngFor="let plat of platform">
+                    <div class="d-flex justify-content-between">
+                        <div class="fnt-md-20 mb-2 fw-b">{{ plat.heading }}</div>
+                        <div><img src="{{ plat.arrow }}" alt="" /></div>
+                    </div>
+                    <p class="fnt-14 lh-157">{{ plat.disp }}</p>
                 </div>
-                <p>{{ plat.disp }}</p>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="txt-60 txt-w fw-b">One platform. Built for bussinesses, proofreaders and consumers</div>
             </div>
         </div>
-        <div class="col-6">One platform. Built for bussinesses, proofreaders and consumers</div>
+    </div>
+
+    <div class="container px-0 share-pd screen-size">
+        <div class="d-flex justify-content-between mb-md-5">
+            <div class="txt-36 fw-b">
+                Share your story, expertise, or<br />
+                brand in 3 easy steps
+            </div>
+            <div class="d-flex align-items-end"><button class="btn-raised">Sign up</button></div>
+        </div>
+        <div class="row mx-0 mt-md-4">
+            <div class="share-box br-4" *ngFor="let share of shareData">
+                <div class="mb-md-3"><img src="{{ share.image }}" alt="" /></div>
+                <div class="pr-md-5">
+                    <div class="fnt-md-20 mb-md-2 fw-b lh-143 pr-md-5 mr-md-5">{{ share.heading }}</div>
+                    <p class="fnt-14 lh-15 pr-md-5">{{ share.disp }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hear">
+        <div class="container px-0 hear-from screen-size">
+            <div class="text-center">
+                <div class="txt-42 fw-b mb-md-3">Hear From Our Members</div>
+                <p class="fnt-14 fnt-md-20 lh-15">
+                    Coffee lovers and industry experts share their experience with The Coffee Lab<br />
+                    Learn more about coffee and share your experiences.
+                </p>
+            </div>
+            <div class="row mt-md-5">
+                <div class="box-width d-none d-md-block" *ngFor="let here of hereData">
+                    <div class="here-box p-md-45 bg-white">
+                        <div class="d-flex">
+                            <img src="{{ here.image }}" alt="" />
+                            <div>
+                                <div class="fnt-md-20 mb-md-2 fw-b">{{ here.name }}</div>
+                                <p class="fnt-md-20">{{ here.position }}</p>
+                            </div>
+                        </div>
+                        <div class="pt-md-4">
+                            <p class="fnt-14 fnt-md-16 lh-15">{{ here.disp }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-0 learn-pd screen-size">
+        <div class="d-flex justify-content-between mb-md-5">
+            <div class="fnt-20 txt-36 fw-b">Learn more about coffee and share <br />your experiences</div>
+            <div class="d-flex align-items-end"><button class="btn-raised">Get started</button></div>
+        </div>
+        <div>
+            <div>tab view</div>
+        </div>
+    </div>
+
+    <div class="more-about">
+        <div class="container px-0 screen-size-2">
+            <div class="fnt-20 txt-42 fw-b mb-md-5">More about writing on The Coffee Lab</div>
+            <div class="mt-md-3">
+                <p-accordion>
+                    <p-accordionTab header="How do I signup?">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </p-accordionTab>
+                    <p-accordionTab header="How do I signup?"> Content 2 </p-accordionTab>
+                    <p-accordionTab header="What can I do on The Coffee Lab?"> Content 3 </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Roasters"> Content 3 </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Roasters"> Content 3 </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Consumers"> Content 3 </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
     </div>
 </div>
