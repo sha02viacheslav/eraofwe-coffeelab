@@ -158,6 +158,11 @@
 @media (min-width: 768px) {
     .container-md {
         max-width: 1270px;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
     }
 }
 
