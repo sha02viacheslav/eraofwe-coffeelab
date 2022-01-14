@@ -42,7 +42,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Portoghese',
         },
         value: 'pt',
-        countries: ['PT', 'BR', 'IN'],
+        countries: ['PT', 'BR'],
     },
     {
         label: {
