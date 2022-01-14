@@ -55,6 +55,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                         this.dialogSrv.open(RedirectPopupComponent, {
                             data: {
                                 langName: item.label.en,
+                                langCode: item.value,
                                 countryName: resp.countryName,
                             },
                         });
