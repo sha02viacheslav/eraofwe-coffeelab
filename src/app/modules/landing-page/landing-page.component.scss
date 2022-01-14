@@ -29,6 +29,8 @@
     }
 }
 .trending {
+    position: relative;
+    top: -75px;
     padding-left: 150px;
     .trending-posts {
         background-color: #232334;
@@ -49,3 +51,11 @@
         }
     }
 }
+
+.text-cof {
+    font-size: 36px;
+}
+
+// .platform {
+//     background-color: red;
+// }

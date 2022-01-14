@@ -51,3 +51,33 @@
         </div>
     </div>
 </div>
+
+<div class="">
+    <div class="row">
+        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="mb-3 fw-b text-cof">What is The Coffee Lab?</div>
+            <p class="fnt-14 fnt-md-20">
+                The Coffee Lab is a platform for anyone in the coffee world, from roasters to estates to home brewers,
+                to share their views, expertise, and experiences. Members can ask questions, provide answers, talk about
+                their brands, share tips, write about coffee culture, and much more. If you love coffee and want to
+                share that, this is the place for you!
+            </p>
+        </div>
+        <div class="col-6 px-0"><img src="assets/images/group-16.png" alt="group-16" /></div>
+    </div>
+</div>
+
+<div class="platform">
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3" *ngFor="let plat of platform">
+                <div class="d-flex justify-content-between">
+                    <div>{{ plat.heading }}</div>
+                    <div>arrow</div>
+                </div>
+                <p>{{ plat.disp }}</p>
+            </div>
+        </div>
+        <div class="col-6">One platform. Built for bussinesses, proofreaders and consumers</div>
+    </div>
+</div>
