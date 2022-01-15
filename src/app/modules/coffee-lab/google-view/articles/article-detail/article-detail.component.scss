@@ -28,6 +28,7 @@
         height: 276px;
         min-height: 276px;
         object-fit: cover;
+        border-radius: 4px;
         @media (max-width: 767px) {
             height: 256px;
             min-height: 256px;
@@ -141,4 +142,20 @@
 
 .border-bottom-0 {
     border-bottom: 0 !important;
+}
+
+.more {
+    margin: 0px -8px 24px -8px;
+    @media (min-width: 768px) {
+        margin: 0px -48px 50px -48px;
+    }
+    .more-text {
+        font-size: 28px;
+        @media (min-width: 768px) {
+            font-size: 48px;
+        }
+    }
+    .sign-up {
+        border-radius: 6px;
+    }
 }
