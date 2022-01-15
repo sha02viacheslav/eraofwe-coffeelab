@@ -2,6 +2,13 @@
     .bg-main {
         background-image: linear-gradient(179deg, rgba(238, 238, 238, 0) 1%, #f8f6ef 67%);
         padding: 24px 18px;
+        .lab-btn {
+            @media (max-width: 767px) {
+                display: flex;
+                flex-direction: column;
+                width: fit-content;
+            }
+        }
         @media (min-width: 768px) {
             padding: 43px 60px 197px 150px;
         }
@@ -41,6 +48,11 @@
         }
         position: relative;
         img {
+            @media (max-width: 767px) {
+                height: 239px;
+                object-fit: cover;
+                width: 100%;
+            }
             @media (min-width: 768px) {
                 width: 364px;
                 height: 258px;
@@ -53,6 +65,11 @@
             position: absolute;
             bottom: 20px;
             left: 1rem;
+            @media (max-width: 767px) {
+                bottom: 3rem;
+                left: 0.5rem;
+                text-align: left;
+            }
         }
     }
 }
@@ -85,6 +102,18 @@
     }
 }
 
+@media (max-width: 767px) {
+    .mob-pd {
+        padding: 48px 18px !important;
+    }
+    .order {
+        order: 1;
+    }
+    .txt-30 {
+        font-size: 30px;
+    }
+}
+
 .screen-size-2 {
     @media (min-width: 768px) {
         width: 947px;
@@ -96,14 +125,28 @@
         padding-top: 28px;
         padding-bottom: 131px;
     }
+    .brew {
+        background-size: cover;
+        @media (max-width: 767px) {
+            margin-bottom: 3rem;
+        }
+        img {
+            object-fit: contain;
+            width: 100%;
+        }
+    }
 }
 
 .platform {
     background-image: url(../../.../../../assets/images/group-18.png);
     background-position: center center;
     background-repeat: no-repeat;
+    background-size: cover;
     object-fit: cover;
     .plat-card {
+        @media (max-width: 767px) {
+            padding: 16px 20px;
+        }
         @media (min-width: 768px) {
             width: 68.5%;
         }
@@ -111,19 +154,22 @@
 }
 
 .share-pd {
-    padding: 48px 18px;
     @media (min-width: 768px) {
         padding-top: 124px;
         padding-bottom: 129px;
-        .share-box {
+    }
+    .share-box {
+        @media (min-width: 768px) {
             flex: 0 0 33.333333%;
             max-width: 33.333333%;
+        }
+        @media (max-width: 767px) {
+            margin-top: 48px;
         }
     }
 }
 
 .learn-pd {
-    padding: 48px 18px !important;
     @media (min-width: 768px) {
         padding-top: 90px;
         padding-bottom: 129px;
@@ -139,12 +185,12 @@
     .box-width {
         flex: 0 0 33.333333%;
         max-width: 33.333333%;
-        .here-box {
-            border-radius: 6px;
-            @media (min-width: 768px) {
-                margin-right: 0.75rem;
-                margin-left: 0.75rem;
-            }
+    }
+    .here-box {
+        border-radius: 6px;
+        @media (min-width: 768px) {
+            margin-right: 0.75rem;
+            margin-left: 0.75rem;
             img {
                 width: 64px;
                 height: 64px;
@@ -174,5 +220,55 @@
             padding-bottom: 24px;
         }
         border-bottom: 1px solid #cfcfcf;
+    }
+}
+
+.product-item {
+    .product-item-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: 0 0.5rem;
+        text-align: center;
+        padding: 1.5rem 0 0.75rem 0;
+    }
+
+    .product-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+}
+
+::ng-deep {
+    .here-csl,
+    .trend-csl {
+        .p-carousel-container {
+            .p-carousel-prev,
+            .p-carousel-next {
+                display: none !important;
+            }
+        }
+        .p-carousel-content {
+            .p-carousel-indicators {
+                padding-left: 0 !important;
+                li {
+                    list-style-type: none;
+                    button {
+                        padding: 0;
+                        margin: 0 5px;
+                        width: 6px !important;
+                        height: 6px !important;
+                        border-radius: 3px !important;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .trend-csl .p-carousel-content .p-carousel-indicators li button {
+        border: 1px solid #fff !important;
+    }
+    .here-csl .p-carousel-content .p-carousel-indicators li button {
+        border: 1px solid #232334 !important;
     }
 }
