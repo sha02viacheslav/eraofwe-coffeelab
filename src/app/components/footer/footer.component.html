@@ -64,7 +64,7 @@
             <div class="mob-disp">
                 <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
                 <div *ngIf="isExpand" class="align-items-end d-flex d-md-none">
-                    <button class="btn-raised ml-3">Buy now</button>
+                    <a class="btn-raised ml-3" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
                 </div>
             </div>
             <div class="d-md-none text-right">
@@ -82,10 +82,12 @@
                     shop. Also get uninterupted access to the coffee lab
                 </div>
                 <div *ngIf="isExpand" class="fnt-12 d-md-none">Sign up and get a discount on our e-commerce shop.</div>
-                <button *ngIf="!isExpand" class="btn-raised ml-45">Buy now</button>
+                <a *ngIf="!isExpand" class="btn-raised ml-45" href="{{ env.publicWeb }}/shop/" target="_blank"
+                    >Buy now</a
+                >
             </div>
             <div *ngIf="isExpand" class="d-flex align-items-center pl-md-5">
-                <button class="btn-raised d-none d-md-block">Buy now</button>
+                <a class="btn-raised d-none d-md-block" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
             </div>
         </div>
         <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
-import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-rectangle-ads',
@@ -8,11 +7,8 @@ import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.compone
     styleUrls: ['./rectangle-ads.component.scss'],
 })
 export class RectangleAdsComponent implements OnInit {
-    constructor(private dialogSrv: DialogService) {}
+    readonly env = environment;
+    constructor() {}
 
     ngOnInit(): void {}
-
-    onPopup() {
-        this.dialogSrv.open(RedirectPopupComponent, {});
-    }
 }
