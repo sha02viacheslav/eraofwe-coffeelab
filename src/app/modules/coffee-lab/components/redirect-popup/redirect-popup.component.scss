@@ -1,0 +1,8 @@
+::ng-deep {
+    .p-dialog-header {
+        display: none;
+    }
+    .p-dialog .p-dialog-content {
+        border-radius: 8px !important;
+    }
+}

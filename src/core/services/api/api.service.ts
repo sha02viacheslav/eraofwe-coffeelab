@@ -1,4 +1,3 @@
-export class Api {}
 import { HttpClient } from '@angular/common/http';
 import { OrganizationType } from '@enums';
 import { environment } from '@env/environment';

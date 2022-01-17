@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { RouterMap, SlugMap } from '@constants';
+import { APP_LANGUAGES, RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
+import { RedirectPopupComponent } from '@modules/coffee-lab/components/redirect-popup/redirect-popup.component';
 import { CoffeeLabService, ResizeService, StartupService } from '@services';
-import { getLangRoute } from '@utils';
+import { getCookie, getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -22,6 +24,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private router: Router,
         private startupService: StartupService,
         protected resizeService: ResizeService,
+        private dialogSrv: DialogService,
     ) {
         super(resizeService);
     }
@@ -41,6 +44,24 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
             }
             this.setPostType(curRouterSlug);
+        });
+        this.coffeeLabService.getCountries().subscribe((resp: any) => {
+            APP_LANGUAGES.forEach((item) => {
+                if (item.countries.includes(resp.countryCode)) {
+                    if (
+                        this.coffeeLabService.currentForumLanguage !== item.value &&
+                        getCookie('langChange') !== 'set'
+                    ) {
+                        this.dialogSrv.open(RedirectPopupComponent, {
+                            data: {
+                                langName: item.label.en,
+                                langCode: item.value,
+                                countryName: resp.countryName,
+                            },
+                        });
+                    }
+                }
+            });
         });
     }
 

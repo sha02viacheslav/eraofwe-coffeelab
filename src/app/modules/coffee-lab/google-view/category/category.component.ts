@@ -16,7 +16,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CategoryComponent extends ResizeableComponent implements OnInit {
     isLoading = false;
-
     slug: string;
     currentCategory: any;
     otherCategories: any[] = [];
@@ -37,14 +36,15 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+        this.selectedType = this.activateRoute.firstChild.routeConfig.path;
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
             this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
             this.menuItems = this.getMenuItems(this.currentLangCode);
-            this.getCategories(false);
+            if (this.selectedType === RouterMap.en[RouterSlug.QA]) {
+                this.getCategories(false);
+            }
         });
-        this.selectedType = this.activateRoute.firstChild.routeConfig.path;
-        this.setPreviousUrl(this.selectedType);
     }
 
     ngOnInit(): void {
@@ -52,9 +52,36 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
             this.menuItems = this.getMenuItems(this.currentLangCode);
             this.currentLangCode = language;
             this.startupService.load(language);
-            this.setPreviousUrl(this.selectedType);
-            this.getCategories(true);
+            this.selectedType = this.activateRoute.firstChild.routeConfig.path;
+            this.onTabChange(this.selectedType, true);
+            if (this.selectedType !== RouterMap.en[RouterSlug.QA]) {
+                this.getSingleCategory(true);
+            } else {
+                this.getCategories(true);
+            }
         });
+    }
+
+    getSingleCategory(isLangChanged?: boolean): void {
+        this.isLoading = true;
+        this.coffeeLabService
+            .getCategory(this.currentLangCode, this.currentCategory ? '' : this.slug, this.currentCategory?.parent_id)
+            .subscribe((res) => {
+                if (res.success) {
+                    if (isLangChanged) {
+                        this.currentCategory = res.result[0];
+                        this.router.navigateByUrl(
+                            getLangRoute(this.currentLangCode) +
+                                '/' +
+                                this.currentCategory.slug +
+                                '/' +
+                                this.selectedType,
+                        );
+                    }
+                    this.isLoading = false;
+                    this.cdr.detectChanges();
+                }
+            });
     }
 
     getCategories(isLangChanged: boolean) {
@@ -109,7 +136,10 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         // Waiting Lukasz
     }
 
-    setPreviousUrl(type: string) {
+    onTabChange(type: string, onLoad?: boolean) {
+        if (type === RouterMap.en[RouterSlug.QA] && !onLoad) {
+            this.getCategories(false);
+        }
         this.previousUrl = `/${getLangRoute(this.currentLangCode)}/${type}`;
     }
 
@@ -121,7 +151,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/qa-forum.svg',
                 activeIcon: 'assets/images/qa-forum-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/qa-forum`,
-                command: () => this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.QA]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.QA]),
             },
             {
                 label: 'posts',
@@ -129,8 +159,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/article.svg',
                 activeIcon: 'assets/images/article-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/articles`,
-                command: () =>
-                    this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.ARTICLE]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.ARTICLE]),
             },
             {
                 label: 'brewing_guides',
@@ -138,8 +167,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                 icon: 'assets/images/coffee-recipe.svg',
                 activeIcon: 'assets/images/coffee-recipe-active.svg',
                 routerLink: `/${getLangRoute(language)}/${this.slug}/coffee-recipes`,
-                command: () =>
-                    this.setPreviousUrl((RouterMap[this.currentLangCode] || RouterMap.en)[RouterSlug.RECIPE]),
+                command: () => this.onTabChange(RouterMap.en[RouterSlug.RECIPE]),
             },
         ];
     }

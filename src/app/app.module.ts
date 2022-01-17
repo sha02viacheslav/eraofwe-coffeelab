@@ -3,21 +3,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ClosePopupModule } from '@modules/coffee-lab/components/close-popup/close-popup.module';
+import { SquareAdsModule } from '@modules/coffee-lab/components/square-ads/square-ads.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { StartupService } from '@services';
 import {
     FacebookLoginProvider,
     GoogleLoginProvider,
     SocialAuthServiceConfig,
     SocialLoginModule,
 } from 'angularx-social-login';
-
+import { DialogService } from 'primeng/dynamicdialog';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 
-import { StartupService } from '@services';
 export function StartupServiceFactory(startupService: StartupService) {
     return () => startupService.load();
 }
@@ -35,6 +35,7 @@ export function StartupServiceFactory(startupService: StartupService) {
     ],
     providers: [
         StartupService,
+        DialogService,
         {
             provide: APP_INITIALIZER,
             useFactory: StartupServiceFactory,

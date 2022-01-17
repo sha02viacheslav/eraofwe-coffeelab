@@ -1,0 +1,27 @@
+.br-8 {
+    border-radius: 8px;
+}
+
+.cross-icon {
+    border: solid 1.4px #232334;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+::ng-deep .remove-background {
+    box-shadow: unset;
+    .p-dialog-header {
+        display: none !important;
+    }
+    .p-dialog-content {
+        padding: 85px 0 0 0 !important;
+        border-radius: 8px !important;
+        background-color: transparent !important;
+    }
+    @media (max-width: 767px) {
+        width: 100% !important;
+    }
+    @media (min-width: 768px) {
+        width: 40% !important;
+    }
+}

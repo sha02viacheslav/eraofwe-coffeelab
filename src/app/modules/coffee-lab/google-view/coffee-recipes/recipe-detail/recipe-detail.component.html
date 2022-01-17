@@ -20,7 +20,7 @@
                         {{ detailsData?.name || '--' | titlecase }}
                     </h1>
                     <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
-                        {{ (detailsData?.descriptionText || '').slice(0, showAll ? 10000 : 500) }}
+                        {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
                     </div>
                     <div class="d-md-flex mb-4 mb-md-0">
                         <div class="fw-sb tc-m mb-md-45">
@@ -152,6 +152,9 @@
                                         [innerHTML]="step.description"
                                     ></div>
                                 </div>
+                                <div *ngIf="i + 1 === adLocation || adLocation === 0">
+                                    <app-rectangle-ads></app-rectangle-ads>
+                                </div>
                                 <img
                                     *ngIf="step.image_thumb_url || step.image_url"
                                     class="w-100 stp-desc-img"
@@ -241,7 +244,6 @@
                             <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
                                 <a
                                     class="fw-sb"
-                                    (click)="scrollToTop()"
                                     [routerLink]="
                                         onRealtedRoute(
                                             detailsData?.original_details?.language,
@@ -308,18 +310,10 @@
             <div class="row py-2">
                 <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
                     <div class="d-flex pb-4 footer-border">
-                        <a
-                            class="p-articles pr-2"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="p-articles pr-2" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
                         </a>
-                        <a
-                            class="c-p d-flex flex-column"
-                            (click)="scrollToTop()"
-                            [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                        >
+                        <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <p class="fnt-fly fw-b cust-flex-grow">
                                 {{ forum?.title | convertToShortDescription: 6 }}
                             </p>

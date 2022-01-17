@@ -1,0 +1,34 @@
+.border-ads {
+    border: 1px solid #23233433;
+    border-radius: 8px;
+    margin-bottom: 1.75rem;
+    .image-ads {
+        position: relative;
+        top: 10px;
+        margin-right: 20px;
+        img {
+            width: 125px;
+            height: 184px;
+        }
+    }
+}
+
+.ads-image {
+    position: relative;
+    left: -15px;
+    bottom: 140px;
+    margin-bottom: -140px;
+    @media (max-width: 767px) {
+        left: -15px;
+        bottom: 100px;
+        margin-bottom: -100px;
+    }
+    img {
+        width: 238px;
+        height: 350px;
+        @media (max-width: 767px) {
+            width: 114px;
+            height: 250px;
+        }
+    }
+}
