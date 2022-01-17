@@ -240,7 +240,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     '@id': this.doc.URL,
                     headline: this.seoService.getPageTitle(),
                     description: this.detailsData?.articleContentText.substr(0, 160),
-                    image: this.detailsData?.cover_image_url,
+                    image: { '@type': 'ImageObject', url: this.detailsData?.cover_image_url, height: 276, width: 824 },
                     datePublished: this.detailsData?.created_at,
                     author: {
                         '@type': 'Person',
