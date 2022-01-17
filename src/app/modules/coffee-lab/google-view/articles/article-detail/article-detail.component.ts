@@ -66,8 +66,10 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     }
 
     ngOnInit(): void {
+        this.activatedRoute.parent.parent.params.subscribe((res) => {
+            this.urlLang = res.lang;
+        });
         this.activatedRoute.params.subscribe((params) => {
-            this.urlLang = params?.lang;
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();

@@ -33,7 +33,7 @@
             <div *ngIf="detailsData?.answers">
                 <div
                     class="answer-wrapper border-bottom-primary mb-4 mx-3 ml-md-5 mr-md-4"
-                    *ngFor="let postItem of detailsData.answers; let isLast = last"
+                    *ngFor="let postItem of detailsData?.answers; let isLast = last"
                     [id]="'answer-' + postItem.id"
                 >
                     <div class="d-flex flex-wrap w-100 mt-3">
@@ -115,7 +115,7 @@
         <app-square-ads class="d-none d-md-block"></app-square-ads>
         <div class="d-none d-lg-block mb-4">
             <app-join-community
-                [categories]="detailsData.categories"
+                [categories]="detailsData?.categories"
                 [type]="PostType.QA"
                 [related]="true"
             ></app-join-community>
