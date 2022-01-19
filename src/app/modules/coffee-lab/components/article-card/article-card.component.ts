@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GlobalsService } from '@services';
 import { Router } from '@angular/router';
-import { DialogService } from 'primeng/dynamicdialog';
 import { getLangRoute } from '@utils';
+import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 
 @Component({
@@ -13,7 +12,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class ArticleCardComponent implements OnInit {
     @Input() article: any;
 
-    constructor(private router: Router, private globalsService: GlobalsService, private dialogSrv: DialogService) {}
+    constructor(private router: Router, private dialogSrv: DialogService) {}
 
     ngOnInit(): void {}
 
@@ -24,11 +23,7 @@ export class ArticleCardComponent implements OnInit {
     gotoDetailPage(event, item: any) {
         event.stopPropagation();
         event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item)]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
+        this.router.navigate([this.getLink(item)]);
     }
 
     onFocus(event) {

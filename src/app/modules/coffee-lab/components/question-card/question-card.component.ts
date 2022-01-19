@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { PostType } from '@enums';
-import { CoffeeLabService, GlobalsService, ResizeService } from '@services';
+import { CoffeeLabService, ResizeService } from '@services';
 import { getLangRoute } from '@utils';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -18,7 +18,6 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
     @Input() pages = 1;
     @Input() index: number;
     constructor(
-        private globalsService: GlobalsService,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
         private router: Router,
@@ -29,26 +28,14 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
 
     ngOnInit(): void {}
 
-    getLink(item: any, answer: any) {
-        const url = `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
-        return {
-            url,
-            queryParmas: {
-                answer: answer?.id,
-            },
-        };
+    getLink(item: any) {
+        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
     }
 
-    gotoDetailPage(event, item: any, answer?: any) {
+    gotoDetailPage(event: any, item: any) {
         event.stopPropagation();
         event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([this.getLink(item, answer).url], {
-                queryParams: this.getLink(item, answer).queryParmas,
-            });
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
+        this.router.navigate([this.getLink(item)]);
     }
 
     onFocus() {
