@@ -46,6 +46,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             this.setPostType(curRouterSlug);
         });
         this.coffeeLabService.getCountries().subscribe((resp: any) => {
+            console.log(resp);
             APP_LANGUAGES.forEach((item) => {
                 if (item.countries.includes(resp.countryCode)) {
                     if (

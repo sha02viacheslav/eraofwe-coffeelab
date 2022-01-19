@@ -36,12 +36,14 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
             if (event && getCookie('advertise') !== 'open') {
                 const date = new Date();
-                date.setTime(date.getTime() + 15 * 60 * 1000);
+                date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
                 const expires = '; expires=' + date.toUTCString();
                 document.cookie = 'advertise=open' + expires;
                 this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
             }
         });
+
+        // 1500-2000
     }
 
     setDynamicScripts() {
