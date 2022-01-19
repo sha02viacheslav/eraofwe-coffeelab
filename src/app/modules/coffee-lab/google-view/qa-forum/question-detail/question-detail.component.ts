@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
-import { CoffeeLabService, GlobalsService, SEOService, StartupService } from '@services';
+import { CoffeeLabService, SEOService, StartupService } from '@services';
 import { getLangRoute, toSentenceCase } from '@utils';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -34,7 +34,6 @@ export class QuestionDetailComponent implements OnInit {
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
-        private globalsService: GlobalsService,
         private messageService: MessageService,
         private router: Router,
         private seoService: SEOService,
@@ -64,7 +63,6 @@ export class QuestionDetailComponent implements OnInit {
                 } else {
                     this.detailsData = res.result;
                     this.lang = res.result.lang_code;
-                    this.globalsService.setLimitCounter();
                     this.startupService.load(this.lang || 'en');
                     this.previousUrl = `/${getLangRoute(this.lang)}/${
                         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
@@ -120,7 +118,7 @@ export class QuestionDetailComponent implements OnInit {
         } else {
             title = toSentenceCase(this.idOrSlug).concat(' - Era of We Coffee Marketplace');
         }
-        const firstAnswerContent = this.globalsService.getJustText(firstAnswer?.answer);
+        const firstAnswerContent = firstAnswer?.answer;
         if (firstAnswerContent) {
             if (firstAnswerContent.length < 100) {
                 description = firstAnswerContent.concat(
@@ -180,7 +178,7 @@ export class QuestionDetailComponent implements OnInit {
                         suggestedAnswer: this.detailsData?.answers.map((answer, index) => {
                             return {
                                 '@type': 'Answer',
-                                text: this.globalsService.getJustText(answer.answer),
+                                text: answer.answer,
                                 dateCreated: answer.created_at,
                                 url: `${this.doc.URL}?#answer-${answer.id}`,
                                 author: {
@@ -193,16 +191,6 @@ export class QuestionDetailComponent implements OnInit {
                 },
             ],
         };
-    }
-
-    onGoRelatedQuestion(event, item) {
-        event.stopPropagation();
-        event.preventDefault();
-        if (this.globalsService.getLimitCounter() > 0) {
-            this.router.navigate([`/${getLangRoute(this.lang)}/qa-forum/${item.slug}`]);
-        } else {
-            this.dialogSrv.open(SignupModalComponent, { data: { isLimit: true } });
-        }
     }
 
     onFocus() {
