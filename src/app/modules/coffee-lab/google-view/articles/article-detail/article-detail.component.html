@@ -253,42 +253,34 @@
                 </div>
             </div>
             <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">
-                <div class="px-0">
-                    <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
-                        {{ forum?.title || '--' }}
-                    </h1>
-                    <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
-                        {{ forum?.slug || '--' }}
-                    </p>
-                </div>
-                <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-                    <div class="published">
-                        {{ 'published' | translate }}
-                        <!-- {{ forum?.posted_at | date: 'MMMM' | translate }}
-                        {{ forum?.posted_at | date: 'd, yyyy' }} -->
+                <a [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug" class="cursor-pointer">
+                    <div class="px-0">
+                        <h2 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                            {{ forum?.title || '--' }}
+                        </h2>
+                        <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
+                            {{ forum?.subtitle || '--' }}
+                        </p>
                     </div>
-                    <div
-                        class="mt-2 mt-md-0 ml-3"
-                        *ngIf="detailsData?.translated_articles && detailsData?.translated_articles.length > 0"
-                    >
-                        <app-translation-dropdown
-                            (isToastCalled)="toastCalled($event)"
-                            forumType="articles"
-                            [translatedList]="detailsData?.translated_articles"
-                        ></app-translation-dropdown>
+                    <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
+                        <div class="published">
+                            {{ 'published' | translate }}
+                            {{ forum?.posted_at | date: 'MMMM' | translate }}
+                            {{ forum?.posted_at | date: 'd, yyyy' }}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="pb-3 pb-md-45">
-                        <img
-                            class="w-100 banner-image"
-                            [lazyLoad]="forum?.cover_image_thumb_url"
-                            src="assets/images/empty.svg"
-                            [alt]="forum.title"
-                        />
+                    <div>
+                        <div class="pb-3 pb-md-45">
+                            <img
+                                class="w-100 banner-image"
+                                [lazyLoad]="forum?.cover_image_url"
+                                src="assets/images/empty.svg"
+                                [alt]="forum.title"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div class="my-md-4" *ngIf="i === 0"><hr /></div>
+                    <div class="my-md-4" *ngIf="i === 0"><hr /></div>
+                </a>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { OrganizationType, PostType } from '@enums';
-import { CoffeeLabService, GlobalsService } from '@services';
+import { CoffeeLabService } from '@services';
 
 @Component({
     selector: 'app-user-posts',
@@ -20,11 +20,7 @@ export class UserPostsComponent implements OnInit {
     page = 1;
     rows = 6;
 
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private coffeeLabService: CoffeeLabService,
-        private globalsService: GlobalsService,
-    ) {}
+    constructor(private cdr: ChangeDetectorRef, private coffeeLabService: CoffeeLabService) {}
 
     ngOnInit(): void {
         this.getPosts();

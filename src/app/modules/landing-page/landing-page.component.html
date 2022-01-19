@@ -190,7 +190,27 @@
             <div class="d-flex align-items-end mt-3 mt-md-0"><button class="btn-raised mt">Get started</button></div>
         </div>
         <div>
-            <div>tab view</div>
+            <!-- <p-tabView styleClass="tabview-coffee-lab position-relative" (onChange)="handleChange($event)">
+                <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
+                    <ng-template pTemplate="header">
+                        <span class="pl-1 d-none d-md-block">{{ labMenu.label }}</span>
+                    </ng-template>
+                    <div
+                        *ngFor="let item of posts"
+                        [ngClass]="labMenu.postType === PostType.QA ? 'col-12' : 'col-md-6'"
+                    >
+                        <app-question-card
+                            *ngIf="labMenu.postType === PostType.QA"
+                            [question]="item"
+                        ></app-question-card>
+                        <app-article-card
+                            *ngIf="labMenu.postType === PostType.ARTICLE"
+                            [article]="item"
+                        ></app-article-card>
+                        <app-recipe-card *ngIf="labMenu.postType === PostType.RECIPE" [recipe]="item"></app-recipe-card>
+                    </div>
+                </p-tabPanel>
+            </p-tabView> -->
         </div>
     </div>
 
@@ -201,20 +221,55 @@
                 <p-accordion>
                     <p-accordionTab header="How do I signup?">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Visit eraofwe.com and click ‘Register Now’. You can now create a profile with your name,
+                            bio, location, etc. Once registered, simply visit The Coffee Lab to get started!
                         </p>
                     </p-accordionTab>
-                    <p-accordionTab header="How do I signup?"> Content 2 </p-accordionTab>
-                    <p-accordionTab header="What can I do on The Coffee Lab?"> Content 3 </p-accordionTab>
-                    <p-accordionTab header="The Coffee Lab for Roasters"> Content 3 </p-accordionTab>
-                    <p-accordionTab header="The Coffee Lab for Roasters"> Content 3 </p-accordionTab>
-                    <p-accordionTab header="The Coffee Lab for Consumers"> Content 3 </p-accordionTab>
+                    <p-accordionTab header="Who can join The Coffee Lab? ">
+                        <p>
+                            Anyone who works with coffee or loves coffee! We’re an inclusive platform that caters to
+                            everyone in the coffee world.
+                        </p>
+                    </p-accordionTab>
+                    <p-accordionTab header="What can I do on The Coffee Lab?"
+                        >You can post articles, proofread, translate, share recipes or brewing guides, and ask or answer
+                        questions. Of course, you can also simply browse the articles, recipes, and Q&As and interact
+                        with others on the platform.
+                    </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Roasters">
+                        <p>
+                            Roasters can share their brand story directly with customers and build trust with their
+                            audience by sharing their expertise and views. The Coffee Lab enables roasters to reach out
+                            to a new niche of customers and create their own brand community.
+                        </p>
+                    </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Estates">
+                        <p>
+                            Estates on The Coffee Lab have the opportunity to interact with consumers first-hand to
+                            promote trust and transparency. They can build their brand value directly with a global
+                            audience and tell the story behind their coffee.
+                        </p>
+                    </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Baristas">
+                        <p>
+                            Cafes, restaurants, and baristas can use The Coffee Lab to position themselves as trusted
+                            voices in the industry, sharing their expertise and experience with consumers. They can also
+                            build long-term relationships with roasters and estates to diversify their business and
+                            offerings.
+                        </p>
+                    </p-accordionTab>
+                    <p-accordionTab header="The Coffee Lab for Consumers">
+                        <p>
+                            The Coffee Lab is a great place for coffee lovers to gather and discuss their favorite
+                            coffee while also discovering new, sustainable coffee brands that are changing the future of
+                            coffee.
+                        </p>
+                    </p-accordionTab>
                 </p-accordion>
             </div>
         </div>
     </div>
+</div>
+<div>
+    <app-footer></app-footer>
 </div>

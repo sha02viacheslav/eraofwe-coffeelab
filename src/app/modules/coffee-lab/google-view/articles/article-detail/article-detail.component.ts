@@ -13,7 +13,7 @@ import { ResizeableComponent } from '@base-components';
 import { MetaDespMinLength, RouterMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
-import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
+import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute, removeImages } from '@utils';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -55,7 +55,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
-        private globalsService: GlobalsService,
         private messageService: MessageService,
         private router: Router,
         private seoService: SEOService,

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { PostType } from '@enums';
+import { CoffeeLabService } from '@services';
 
 @Component({
     selector: 'app-landing-page',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
+    readonly PostType = PostType;
     trending = [
         { title: 'Article', heading: 'Delonghi Magnifica Review', image: 'assets/images/unsplash.png' },
         { title: 'recipe', heading: 'Java Chip Frappuccino Starbucks', image: 'assets/images/unsplash.png' },
@@ -35,26 +38,33 @@ export class LandingPageComponent implements OnInit {
         },
     ];
     hereData = [
-        {
-            name: 'Vasileia Fanarioti',
-            position: 'The Wandering Bean',
-            disp:
-                'Cooking in the heart of Cajun country is an art form. There really is very little science to this particular form of cooking that includes a lot more than mere lagniappe from the pantry or the spice cabinet. Cajun cooking is something that has often been imitated around the country and around the world but can very rarely be accurately duplicated.',
-            image: 'assets/images/rectangle.png',
-        },
+        // {
+        //     name: 'Yker Valerio',
+        //     position: 'Bon Vivant Caffè',
+        //     disp:
+        //         '“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that\'s great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”',
+        //     image: 'assets/images/rectangle.png',
+        // },
         {
             name: 'Anna Nordström',
-            position: 'Anna Nordström',
+            position: 'Lofbergs',
             disp:
-                'Cooking in the heart of Cajun country is an art form. There really is very little science to this particular form of cooking that includes a lot more than mere lagniappe from the pantry or the spice cabinet. Cajun cooking is something that has often been imitated around the country and around the world but can very rarely be accurately duplicated.',
-            image: 'assets/images/rectangle-2.png',
+                '“The Coffee Lab is a platform for sharing knowledge and experience with coffee lovers around the world. A community where we meet around our common passion for coffee. At The Coffee Lab we can ask, learn, share and get inspiration direct from coffee professionals and thereby develop ourselves and others.”',
+            image: 'assets/images/anna-nordström.jpg',
         },
         {
-            name: 'Yker Valerio',
+            name: 'Vasileia Fanaroti',
+            position: 'The Wandering Bean',
+            disp:
+                '"The Coffee Lab is a brilliant platform for both coffee enthusiasts and professionals to share knowledge, learn from each other and stay in touch. It has many coffee recipes and articles, from how-to tutorials to anything related to the coffee value-chain. The Q&A section is my favorite place to ask questions, share thoughts or get advice from others within the community!"',
+            image: 'assets/images/vasileia-fanaroti.png',
+        },
+        {
+            name: 'Susan Rov',
             position: 'Bon Vivant Caffè',
             disp:
-                'Cooking in the heart of Cajun country is an art form. There really is very little science to this particular form of cooking that includes a lot more than mere lagniappe from the pantry or the spice cabinet. Cajun cooking is something that has often been imitated around the country and around the world but can very rarely be accurately duplicated.',
-            image: 'assets/images/rectangle-3.png',
+                '“The Era of We is a great place to connect with other coffee lovers within the community as well as my go-to resource for coffee recipes and educational articles. It’s so valuable to exchange information on a global scale and engage in discussions with coffee enthusiasts from the other side of the world!”',
+            image: 'assets/images/susan-rov.jpeg',
         },
     ];
 
@@ -78,9 +88,26 @@ export class LandingPageComponent implements OnInit {
                 'Help make coffee more inclusive by translating and proofreading in 9 languages, with more languages being added soon.',
         },
     ];
-    responsiveOptions;
+    menuItems = [
+        {
+            label: 'Q&A forum',
+            postType: PostType.QA,
+        },
+        {
+            label: 'Posts',
+            postType: PostType.ARTICLE,
+        },
+        {
+            label: 'Brewing guides',
+            postType: PostType.RECIPE,
+        },
+    ];
+    posts = [];
+    responsiveOptions = [];
+    isLoading: boolean;
+    selectedIndex = 0;
 
-    constructor() {
+    constructor(private cdr: ChangeDetectorRef, private coffeeLabService: CoffeeLabService) {
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -100,5 +127,34 @@ export class LandingPageComponent implements OnInit {
         ];
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.getPosts();
+    }
+
+    handleChange(event) {
+        this.selectedIndex = event.index;
+    }
+
+    getPosts(): void {
+        const params = {
+            sort_by: 'created_at',
+            sort_order: 'desc',
+            publish: true,
+            page: 1,
+            per_page: this.selectedIndex === 0 ? 6 : 3,
+        };
+        this.isLoading = true;
+        this.coffeeLabService
+            .getForumList(
+                this.selectedIndex === 0 ? PostType.QA : this.selectedIndex === 1 ? PostType.ARTICLE : PostType.RECIPE,
+                params,
+            )
+            .subscribe((res) => {
+                if (res.success) {
+                    this.posts = (PostType.QA ? res.result?.questions : res.result) ?? [];
+                }
+                this.isLoading = false;
+                this.cdr.detectChanges();
+            });
+    }
 }

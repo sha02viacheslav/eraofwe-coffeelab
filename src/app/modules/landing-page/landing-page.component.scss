@@ -1,3 +1,5 @@
+@import 'variables';
+
 .coffee-lab-main {
     .bg-main {
         background-image: linear-gradient(179deg, rgba(238, 238, 238, 0) 1%, #f8f6ef 67%);
@@ -191,6 +193,7 @@
         @media (min-width: 768px) {
             margin-right: 0.75rem;
             margin-left: 0.75rem;
+            min-height: 393px;
             img {
                 width: 64px;
                 height: 64px;
@@ -270,5 +273,65 @@
     }
     .here-csl .p-carousel-content .p-carousel-indicators li button {
         border: 1px solid #232334 !important;
+    }
+}
+
+::ng-deep {
+    .p-tabview {
+        &.tabview-coffee-lab {
+            .p-tabview-nav {
+                background: $primary-bg-color;
+                border: none !important;
+                li {
+                    margin-right: 0;
+                    .p-tabview-nav-link {
+                        padding: 11px 16px !important;
+                        img {
+                            display: inline-block;
+                            &.active-icon {
+                                display: none;
+                            }
+                        }
+                    }
+                    &.p-highlight .p-tabview-nav-link,
+                    &:hover .p-tabview-nav-link {
+                        img {
+                            display: none;
+                            &.active-icon {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        flex: 1;
+                        border-top: solid 1px #d6d6d6;
+                        border-bottom: solid 1px #d6d6d6;
+                        border-right: solid 1px #d6d6d6;
+                        .p-tabview-nav-link {
+                            padding: 10px !important;
+                            justify-content: center;
+                        }
+                        &:first-child {
+                            border-left: solid 1px #d6d6d6;
+                            border-top-left-radius: 4px;
+                            border-bottom-left-radius: 4px;
+                        }
+                        &:nth-child(6) {
+                            border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;
+                        }
+                    }
+                }
+                @media (max-width: 767px) {
+                    border-bottom: none;
+                }
+            }
+            .p-tabview-panel {
+                padding-top: 24px;
+                @media (min-width: 758px) {
+                    padding-top: 32px;
+                }
+            }
+        }
     }
 }
