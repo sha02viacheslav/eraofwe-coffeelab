@@ -1,7 +1,8 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ApiResponse, UserProfile } from '@models';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
 import { ApiService } from './api.service';
 
@@ -15,7 +16,11 @@ export class CoffeeLabService extends ApiService {
     get currentForumLanguage(): string {
         return this.forumLanguage.value;
     }
-    constructor(protected http: HttpClient, private langPrefixService: LangPrefixService) {
+    constructor(
+        protected http: HttpClient,
+        private langPrefixService: LangPrefixService,
+        @Inject(DOCUMENT) private document: Document, // private dialogSrv: DialogService,
+    ) {
         super(http);
         this.forumLanguage.next(this.langPrefixService.langPrefix());
     }
@@ -63,9 +68,8 @@ export class CoffeeLabService extends ApiService {
         return this.get(this.orgPostUrl, `general/coffee-lab/top-writers?${this.serializeParams(options)}`);
     }
 
-    getCountries() {
+    getIpInfo(): Observable<any> {
         const apiUrl = 'https://api.db-ip.com/v2/free/self';
         return this.http.get(`${apiUrl}`);
-        // `${apiUrl},23.92.112.0,2.82.132.160,1.178.224.0,80.72.144.0,1.179.112.0,54.93.50.54,102.129.255.0,102.129.205.0`,
     }
 }

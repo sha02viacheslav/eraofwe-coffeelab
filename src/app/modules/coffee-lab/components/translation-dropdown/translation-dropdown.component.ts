@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
@@ -9,8 +10,11 @@ import {
     Output,
     PLATFORM_ID,
 } from '@angular/core';
+import { APP_LANGUAGES } from '@constants';
 import { CoffeeLabService } from '@services';
-import { getLangRoute } from '@utils';
+import { getCookie, getLangRoute } from '@utils';
+import { DialogService } from 'primeng/dynamicdialog';
+import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -18,14 +22,40 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./translation-dropdown.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TranslationDropdownComponent implements OnInit {
-    @Input() translatedList;
-    @Input() forumType;
+export class TranslationDropdownComponent implements OnInit, AfterViewInit {
+    @Input() translatedList: any;
+    @Input() forumType: any;
     @Output() isToastCalled = new EventEmitter();
     isBrower = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: object, private coffeeLabService: CoffeeLabService) {
+    constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+    ) {
         this.isBrower = isPlatformBrowser(this.platformId);
+    }
+
+    ngAfterViewInit(): void {
+        this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
+            const isLang = APP_LANGUAGES.find((lang) => lang.countries.includes(resp.countryCode));
+            if (isLang && this.coffeeLabService.currentForumLanguage !== isLang.value) {
+                const isTransLang = this.translatedList.find(
+                    (item) => item.language.toUpperCase() === isLang.value.toUpperCase(),
+                );
+                if (isTransLang && getCookie('langChange') !== 'set') {
+                    this.dialogSrv.open(RedirectPopupComponent, {
+                        data: {
+                            isDetailPage: true,
+                            langName: isLang.label.en,
+                            langCode: isLang.value,
+                            countryName: resp.countryName,
+                            slug: isTransLang.slug,
+                        },
+                    });
+                }
+            }
+        });
     }
 
     ngOnInit(): void {}

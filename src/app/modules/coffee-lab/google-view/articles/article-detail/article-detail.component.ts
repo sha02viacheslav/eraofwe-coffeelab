@@ -149,7 +149,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         this.previousUrl = `/${getLangRoute(this.lang)}/${
                             (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
                         }`;
-                        this.globalsService.setLimitCounter();
                     }
                     this.startupService.load(this.lang || 'en');
                     this.messageService.clear();

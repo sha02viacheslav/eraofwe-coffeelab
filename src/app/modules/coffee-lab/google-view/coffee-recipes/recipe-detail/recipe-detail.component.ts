@@ -144,7 +144,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.description = removeImages(res.result?.description);
                     }
-                    this.globalsService.setLimitCounter();
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
                     this.previousUrl = `/${getLangRoute(this.lang)}/${

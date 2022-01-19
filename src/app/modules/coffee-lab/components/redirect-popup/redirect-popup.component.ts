@@ -41,14 +41,22 @@ export class RedirectPopupComponent extends DestroyableComponent implements OnIn
         this.startupService.load(this.data.langCode);
         this.coffeeLabService.forumLanguage.next(this.data.langCode);
         let currentRouter = this.router.url;
-        if (currentRouter) {
-            currentRouter = currentRouter.split('/')[2].split('?')[0];
-        }
-        const curRouterSlug = SlugMap[currentRouter] || RouterSlug.QA;
-        const curRouterMap = RouterMap[this.data.langCode] || RouterMap.en;
-        const destinationRouter = `/${getLangRoute(this.data.langCode)}/${curRouterMap[curRouterSlug]}`;
-        if (this.router.url !== destinationRouter) {
-            this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
+        if (this.data.isDetailPage) {
+            if (currentRouter) {
+                const route =
+                    getLangRoute(this.data.langCode) + '/' + currentRouter.split('/')[2] + '/' + this.data.slug;
+                this.router.navigate([route]);
+            }
+        } else {
+            if (currentRouter) {
+                currentRouter = currentRouter.split('/')[2].split('?')[0];
+            }
+            const curRouterSlug = SlugMap[currentRouter] || RouterSlug.QA;
+            const curRouterMap = RouterMap[this.data.langCode] || RouterMap.en;
+            const destinationRouter = `/${getLangRoute(this.data.langCode)}/${curRouterMap[curRouterSlug]}`;
+            if (this.router.url !== destinationRouter) {
+                this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
+            }
         }
         this.ref.close();
     }
