@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
-import { I18NService, SEOService } from '@services';
+import { I18NService, ResizeService, SEOService } from '@services';
 import { getCookie, getLangRoute } from '@utils';
 import { SocialAuthService } from 'angularx-social-login';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -25,6 +25,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         private dialogSrv: DialogService,
         private router: Router,
         private injector: Injector,
+        protected resizeService: ResizeService,
     ) {
         super();
         this.seoService.createLinkForCanonicalURL();
@@ -44,15 +45,27 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
                 page = path[path.length - 1];
             }
         });
-        this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            if (event && getCookie('ad-' + page) !== 'open') {
-                const date = new Date();
-                date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-                const expires = '; expires=' + date.toUTCString();
-                document.cookie = 'ad-' + page + '=open' + expires;
-                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
-            }
-        });
+        if (!this.resizeService.isMobile$) {
+            this.document.querySelector('html').addEventListener('pointerleave', (event) => {
+                if (event && getCookie('ad-' + page) !== 'open') {
+                    this.showPopUp(page);
+                }
+            });
+        } else {
+            setTimeout(() => {
+                if (getCookie('ad-' + page) !== 'open') {
+                    this.showPopUp(page);
+                }
+            }, 15000);
+        }
+    }
+
+    showPopUp(page: string) {
+        const date = new Date();
+        date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+        const expires = '; expires=' + date.toUTCString();
+        document.cookie = 'ad-' + page + '=open' + expires;
+        this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
     }
 
     setDynamicScripts() {

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { APP_LANGUAGES, RouterMap, SlugMap } from '@constants';
+import { RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
-import { RedirectPopupComponent } from '@modules/coffee-lab/components/redirect-popup/redirect-popup.component';
 import { CoffeeLabService, ResizeService, StartupService } from '@services';
-import { getCookie, getLangRoute } from '@utils';
+import { getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

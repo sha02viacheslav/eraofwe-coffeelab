@@ -23,8 +23,8 @@ import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.compone
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TranslationDropdownComponent implements OnInit, AfterViewInit {
-    @Input() translatedList;
-    @Input() forumType;
+    @Input() translatedList: any;
+    @Input() forumType: any;
     @Output() isToastCalled = new EventEmitter();
     isBrower = false;
 
@@ -35,24 +35,26 @@ export class TranslationDropdownComponent implements OnInit, AfterViewInit {
     ) {
         this.isBrower = isPlatformBrowser(this.platformId);
     }
+
     ngAfterViewInit(): void {
-        this.coffeeLabService.getCountries().subscribe((resp: any) => {
-            this.translatedList.forEach((item) => {
-                if (item.language === resp.countryCode) {
-                    if (
-                        this.coffeeLabService.currentForumLanguage !== item.value &&
-                        getCookie('langChange') !== 'set'
-                    ) {
-                        this.dialogSrv.open(RedirectPopupComponent, {
-                            data: {
-                                langName: item.label.en,
-                                langCode: item.value,
-                                countryName: resp.countryName,
-                            },
-                        });
-                    }
+        this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
+            const isLang = APP_LANGUAGES.find((lang) => lang.countries.includes(resp.countryCode));
+            if (isLang && this.coffeeLabService.currentForumLanguage !== isLang.value) {
+                const isTransLang = this.translatedList.find(
+                    (item) => item.language.toUpperCase() === isLang.value.toUpperCase(),
+                );
+                if (isTransLang && getCookie('langChange') !== 'set') {
+                    this.dialogSrv.open(RedirectPopupComponent, {
+                        data: {
+                            isDetailPage: true,
+                            langName: isLang.label.en,
+                            langCode: isLang.value,
+                            countryName: resp.countryName,
+                            slug: isTransLang.slug,
+                        },
+                    });
                 }
-            });
+            }
         });
     }
 

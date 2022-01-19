@@ -10,11 +10,14 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
+import { APP_LANGUAGES } from '@constants';
 import { Fields, PostType } from '@enums';
 import { environment } from '@env/environment';
+import { RedirectPopupComponent } from '@modules/coffee-lab/components/redirect-popup/redirect-popup.component';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService } from '@services';
-import { getLangRoute } from '@utils';
+import { getCookie, getLangRoute } from '@utils';
+import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -53,7 +56,8 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
         private seoService: SEOService,
         private translator: TranslateService,
         protected resizeService: ResizeService,
-        public coffeeLabService: CoffeeLabService,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
     ) {
         super(resizeService);
 
@@ -100,6 +104,24 @@ export class ArticlesViewComponent extends ResizeableComponent implements OnInit
                     }
                 });
         }
+        this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
+            APP_LANGUAGES.forEach((item) => {
+                if (item.countries.includes(resp.countryCode)) {
+                    if (
+                        this.coffeeLabService.currentForumLanguage !== item.value &&
+                        getCookie('langChange') !== 'set'
+                    ) {
+                        this.dialogSrv.open(RedirectPopupComponent, {
+                            data: {
+                                langName: item.label.en,
+                                langCode: item.value,
+                                countryName: resp.countryName,
+                            },
+                        });
+                    }
+                }
+            });
+        });
     }
 
     refreshData() {
