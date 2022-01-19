@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@shared';
-import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
+import { NgModule } from '@angular/core';
 import { ForumMenuModule } from '@modules/coffee-lab/components/forum-menu/forum-menu.module';
+import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
+import { SharedModule } from '@shared';
 import { ArticleCardComponent } from './article-card.component';
 
 @NgModule({

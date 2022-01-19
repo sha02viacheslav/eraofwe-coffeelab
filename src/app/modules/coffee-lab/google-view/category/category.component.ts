@@ -36,7 +36,6 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
-
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
             this.selectedPostType = this.activateRoute.firstChild.routeConfig.path;

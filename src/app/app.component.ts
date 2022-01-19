@@ -1,22 +1,28 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { I18NService, SEOService } from '@services';
-import { environment } from '@env/environment';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { getLangRoute } from '@utils';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { DestroyableComponent } from '@base-components';
+import { environment } from '@env/environment';
+import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
+import { I18NService, SEOService } from '@services';
+import { getCookie, getLangRoute } from '@utils';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent extends DestroyableComponent implements AfterViewInit {
     isStaging = environment.needProtect;
+
     constructor(
         private seoService: SEOService,
         private i8nService: I18NService,
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object,
+        private dialogSrv: DialogService,
     ) {
+        super();
         this.seoService.createLinkForCanonicalURL();
         this.document.documentElement.lang = getLangRoute(this.i8nService.currentLang);
         if (this.isStaging) {
@@ -24,6 +30,18 @@ export class AppComponent {
         }
 
         this.setDynamicScripts();
+    }
+
+    ngAfterViewInit(): void {
+        this.document.querySelector('html').addEventListener('pointerleave', (event) => {
+            if (event && getCookie('advertise') !== 'open') {
+                const date = new Date();
+                date.setTime(date.getTime() + 15 * 60 * 1000);
+                const expires = '; expires=' + date.toUTCString();
+                document.cookie = 'advertise=open' + expires;
+                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+            }
+        });
     }
 
     setDynamicScripts() {

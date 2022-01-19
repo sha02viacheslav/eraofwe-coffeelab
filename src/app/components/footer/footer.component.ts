@@ -9,6 +9,7 @@ import { environment } from '@env/environment';
 })
 export class FooterComponent implements OnInit {
     readonly env = environment;
+    isExpand = true;
     language: string;
     constructor() {}
 
