@@ -60,9 +60,8 @@ export class CoffeeLabService extends ApiService {
         return this.get(this.orgPostUrl, `general/${type}s/${slug}/comments`);
     }
 
-    getCategory(langCode: string, catSlug?: string, parentId?: string): Observable<any> {
-        const language = { language: langCode, slug: catSlug, parent_id: parentId };
-        return this.get(this.orgPostUrl, `general/categories?${this.serializeParams(language)}`);
+    getCategory(params: any): Observable<any> {
+        return this.get(this.orgPostUrl, `general/categories?${this.serializeParams(params)}`);
     }
 
     getTopWriters(options): Observable<any> {

@@ -140,7 +140,8 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     }
 
     getCategory() {
-        this.coffeeLabService.getCategory(this.coffeeLabService.currentForumLanguage).subscribe((category) => {
+        const params = { language: this.coffeeLabService.currentForumLanguage };
+        this.coffeeLabService.getCategory(params).subscribe((category) => {
             if (category.success) {
                 this.categoryList = category.result;
             }
