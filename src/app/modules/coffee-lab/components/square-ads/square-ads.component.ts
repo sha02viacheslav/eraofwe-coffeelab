@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-square-ads',
@@ -6,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./square-ads.component.scss'],
 })
 export class SquareAdsComponent implements OnInit {
+    readonly env = environment;
     @Input() hideBorder: boolean;
     constructor() {}
 

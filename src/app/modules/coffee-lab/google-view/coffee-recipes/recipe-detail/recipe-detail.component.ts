@@ -262,7 +262,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     author: this.detailsData?.posted_user,
                     cookTime: this.detailsData?.cooking_time,
                     datePublished: this.detailsData?.posted_at,
-                    description: this.detailsData?.descriptionText,
+                    description: this.detailsData?.stripped_description,
                     image: { '@type': 'ImageObject', url: this.detailsData?.cover_image_url, height: 494, width: 1144 },
                     recipeIngredient: this.detailsData?.ingredients?.map((item) => {
                         return `${item.quantity} ${item.quantity_unit}  ${item.name}`;
