@@ -69,17 +69,7 @@ export class CoffeeLabService extends ApiService {
     }
 
     getIpInfo(): Observable<any> {
-        return of({
-            ipAddress: '171.61.69.100',
-            continentCode: 'AS',
-            continentName: 'Asia',
-            countryCode: 'BR',
-            countryName: 'India',
-            stateProv: 'Karnataka',
-            city: 'Bengaluru',
-        });
-        // const apiUrl = 'https://api.db-ip.com/v2/free/self';
-        // return this.http.get(`${apiUrl}`);
-        // `${apiUrl},23.92.112.0,2.82.132.160,1.178.224.0,80.72.144.0,1.179.112.0,54.93.50.54,102.129.255.0,102.129.205.0`,
+        const apiUrl = 'https://api.db-ip.com/v2/free/self';
+        return this.http.get(`${apiUrl}`);
     }
 }
