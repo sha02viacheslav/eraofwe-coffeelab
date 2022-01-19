@@ -8,7 +8,7 @@
                 <app-forum-menu></app-forum-menu>
             </div>
         </div>
-        <a [routerLink]="[getLink(question, null).url]">
+        <a [routerLink]="[getLink(question)]">
             <div
                 class="fnt-16 fnt-md-18 fw-b mt-4 c-p hover-underline"
                 (click)="gotoDetailPage($event, question)"
