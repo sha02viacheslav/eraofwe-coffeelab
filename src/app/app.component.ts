@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
@@ -21,6 +22,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object,
         private dialogSrv: DialogService,
+        private router: Router,
     ) {
         super();
         this.seoService.createLinkForCanonicalURL();
@@ -33,17 +35,22 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
     }
 
     ngAfterViewInit(): void {
+        let page: string;
+        this.router.events.subscribe((e) => {
+            if (e instanceof NavigationEnd) {
+                const path = e.url.split('/');
+                page = path[path.length - 1];
+            }
+        });
         this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-            if (event && getCookie('advertise') !== 'open') {
+            if (event && getCookie('ad-' + page) !== 'open') {
                 const date = new Date();
                 date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
                 const expires = '; expires=' + date.toUTCString();
-                document.cookie = 'advertise=open' + expires;
+                document.cookie = 'ad-' + page + '=open' + expires;
                 this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
             }
         });
-
-        // 1500-2000
     }
 
     setDynamicScripts() {

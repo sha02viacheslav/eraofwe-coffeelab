@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ApiResponse, UserProfile } from '@models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
@@ -15,7 +16,11 @@ export class CoffeeLabService extends ApiService {
     get currentForumLanguage(): string {
         return this.forumLanguage.value;
     }
-    constructor(protected http: HttpClient, private langPrefixService: LangPrefixService) {
+    constructor(
+        protected http: HttpClient,
+        private langPrefixService: LangPrefixService,
+        @Inject(DOCUMENT) private document: Document, // private dialogSrv: DialogService,
+    ) {
         super(http);
         this.forumLanguage.next(this.langPrefixService.langPrefix());
     }

@@ -24,7 +24,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private router: Router,
         private startupService: StartupService,
         protected resizeService: ResizeService,
-        private dialogSrv: DialogService,
     ) {
         super(resizeService);
     }
@@ -44,25 +43,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
             }
             this.setPostType(curRouterSlug);
-        });
-        this.coffeeLabService.getCountries().subscribe((resp: any) => {
-            console.log(resp);
-            APP_LANGUAGES.forEach((item) => {
-                if (item.countries.includes(resp.countryCode)) {
-                    if (
-                        this.coffeeLabService.currentForumLanguage !== item.value &&
-                        getCookie('langChange') !== 'set'
-                    ) {
-                        this.dialogSrv.open(RedirectPopupComponent, {
-                            data: {
-                                langName: item.label.en,
-                                langCode: item.value,
-                                countryName: resp.countryName,
-                            },
-                        });
-                    }
-                }
-            });
         });
     }
 

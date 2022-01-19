@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
@@ -9,8 +10,11 @@ import {
     Output,
     PLATFORM_ID,
 } from '@angular/core';
+import { APP_LANGUAGES } from '@constants';
 import { CoffeeLabService } from '@services';
-import { getLangRoute } from '@utils';
+import { getCookie, getLangRoute } from '@utils';
+import { DialogService } from 'primeng/dynamicdialog';
+import { RedirectPopupComponent } from '../redirect-popup/redirect-popup.component';
 
 @Component({
     selector: 'app-translation-dropdown',
@@ -18,14 +22,38 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./translation-dropdown.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TranslationDropdownComponent implements OnInit {
+export class TranslationDropdownComponent implements OnInit, AfterViewInit {
     @Input() translatedList;
     @Input() forumType;
     @Output() isToastCalled = new EventEmitter();
     isBrower = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: object, private coffeeLabService: CoffeeLabService) {
+    constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+    ) {
         this.isBrower = isPlatformBrowser(this.platformId);
+    }
+    ngAfterViewInit(): void {
+        this.coffeeLabService.getCountries().subscribe((resp: any) => {
+            this.translatedList.forEach((item) => {
+                if (item.language === resp.countryCode) {
+                    if (
+                        this.coffeeLabService.currentForumLanguage !== item.value &&
+                        getCookie('langChange') !== 'set'
+                    ) {
+                        this.dialogSrv.open(RedirectPopupComponent, {
+                            data: {
+                                langName: item.label.en,
+                                langCode: item.value,
+                                countryName: resp.countryName,
+                            },
+                        });
+                    }
+                }
+            });
+        });
     }
 
     ngOnInit(): void {}
