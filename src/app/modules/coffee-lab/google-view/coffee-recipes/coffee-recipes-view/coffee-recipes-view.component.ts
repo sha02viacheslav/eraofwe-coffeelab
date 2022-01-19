@@ -143,7 +143,8 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     getCategory() {
-        this.coffeeLabService.getCategory(this.coffeeLabService.currentForumLanguage).subscribe((category) => {
+        const params = { language: this.coffeeLabService.currentForumLanguage, is_recipe: true };
+        this.coffeeLabService.getCategory(params).subscribe((category) => {
             if (category.success) {
                 this.categoryList = category.result;
             }
