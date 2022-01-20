@@ -148,7 +148,6 @@ export class LandingPageComponent implements OnInit {
             .subscribe((res) => {
                 if (res.success && res.result) {
                     this.posts = index === 0 ? res.result?.questions : res.result;
-                    console.log(this.posts);
                 } else {
                     this.posts = [];
                 }
