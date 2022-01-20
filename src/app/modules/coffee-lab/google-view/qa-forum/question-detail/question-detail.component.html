@@ -1,129 +1,138 @@
-<a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
+<div class="main-block">
+    <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div
-    *ngIf="!loading; else loader"
-    class="page-wrapper d-block d-lg-flex justify-content-between position-relative mt-4 pb-mt-45"
->
-    <app-rectangle-ads class="d-md-none"></app-rectangle-ads>
-    <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
-        <div class="border-question-view">
-            <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
-                <div class="flex-1">
-                    <app-user-header [prop]="detailsData"></app-user-header>
+    <div
+        *ngIf="!loading; else loader"
+        class="page-wrapper d-block d-lg-flex justify-content-between position-relative mt-4 pb-mt-45"
+    >
+        <app-rectangle-ads class="d-md-none"></app-rectangle-ads>
+        <article class="pr-lg-2 flex-1 mb-4 col-md-7 col-12 pl-md-0 pl-0 pr-0 pr-md-3">
+            <div class="border-question-view">
+                <div class="d-flex justify-content-between p-3 pt-lg-4 px-lg-4">
+                    <div class="flex-1">
+                        <app-user-header [prop]="detailsData"></app-user-header>
+                    </div>
+                    <div class="mobile-dot d-none d-md-block">
+                        <app-forum-menu></app-forum-menu>
+                    </div>
                 </div>
-                <div class="mobile-dot d-none d-md-block">
-                    <app-forum-menu></app-forum-menu>
+                <div class="px-3 px-lg-4" [ngClass]="{ 'mb-4': !detailsData?.categories }">
+                    <h1 class="fnt-16 fnt-md-18 fw-b mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
                 </div>
-            </div>
-            <div class="px-3 px-lg-4" [ngClass]="{ 'mb-4': !detailsData?.categories }">
-                <h1 class="fnt-16 fnt-md-18 fw-b mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
-            </div>
-            <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
-                <app-category-list
-                    [selectedType]="'qa-forum'"
-                    [categoryList]="detailsData?.categories"
-                ></app-category-list>
-            </div>
-            <app-like-divider [question]="detailsData"></app-like-divider>
-            <div class="d-flex mr-4 my-3 my-md-35 ml-md-4 pl-3">
-                <button class="add-comment c-p w-100 fw-sb tc-m d-flex align-items-center pl-4" (click)="onFocus()">
-                    {{ 'add_a_comment' | translate }}
-                </button>
-            </div>
-            <div *ngIf="detailsData?.answers">
-                <div
-                    class="answer-wrapper border-bottom-primary mb-4 mx-3 ml-md-5 mr-md-4"
-                    *ngFor="let postItem of detailsData?.answers; let isLast = last"
-                    [id]="'answer-' + postItem.id"
-                >
-                    <div class="d-flex flex-wrap w-100 mt-3">
-                        <div class="d-flex justify-content-between align-items-md-end w-100">
-                            <app-user-header [prop]="postItem"></app-user-header>
-                            <div class="d-flex flex-column align-items-end">
-                                <app-forum-menu></app-forum-menu>
-                                <div class="translate-wrapper" *ngIf="postItem.translations">
-                                    <app-translation-dropdown
-                                        (isToastCalled)="toastCalled($event)"
-                                        forumType="qa-forum"
-                                        [translatedList]="postItem.translations"
-                                    ></app-translation-dropdown>
+                <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
+                    <app-category-list
+                        [selectedType]="'qa-forum'"
+                        [categoryList]="detailsData?.categories"
+                    ></app-category-list>
+                </div>
+                <app-like-divider [question]="detailsData"></app-like-divider>
+                <div class="d-flex mr-4 my-3 my-md-35 ml-md-4 pl-3">
+                    <button class="add-comment c-p w-100 fw-sb tc-m d-flex align-items-center pl-4" (click)="onFocus()">
+                        {{ 'add_a_comment' | translate }}
+                    </button>
+                </div>
+                <div *ngIf="detailsData?.answers">
+                    <div
+                        class="answer-wrapper border-bottom-primary mb-4 mx-3 ml-md-5 mr-md-4"
+                        *ngFor="let postItem of detailsData?.answers; let isLast = last"
+                        [id]="'answer-' + postItem.id"
+                    >
+                        <div class="d-flex flex-wrap w-100 mt-3">
+                            <div class="d-flex justify-content-between align-items-md-end w-100">
+                                <app-user-header [prop]="postItem"></app-user-header>
+                                <div class="d-flex flex-column align-items-end">
+                                    <app-forum-menu></app-forum-menu>
+                                    <div class="translate-wrapper" *ngIf="postItem.translations">
+                                        <app-translation-dropdown
+                                            (isToastCalled)="toastCalled($event)"
+                                            forumType="qa-forum"
+                                            [translatedList]="postItem.translations"
+                                        ></app-translation-dropdown>
+                                    </div>
                                 </div>
                             </div>
+                            <div
+                                class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
+                                *ngIf="postItem.translations"
+                            >
+                                <app-translation-dropdown
+                                    (isToastCalled)="toastCalled($event)"
+                                    forumType="qa-forum"
+                                    [translatedList]="postItem.translations"
+                                ></app-translation-dropdown>
+                            </div>
                         </div>
-                        <div
-                            class="w-100 translate-mob-wrapper mt-3 py-3 pr-0 border-top-main border-bottom-main"
-                            *ngIf="postItem.translations"
-                        >
-                            <app-translation-dropdown
-                                (isToastCalled)="toastCalled($event)"
-                                forumType="qa-forum"
-                                [translatedList]="postItem.translations"
-                            ></app-translation-dropdown>
+                        <div class="pt-4 px-0 forum-content">
+                            <div
+                                [ngClass]="{ 'mb-2': !isLast }"
+                                class="activate-link"
+                                [innerHTML]="postItem.answer"
+                            ></div>
+                            <ng-container *ngIf="postItem.images">
+                                <img
+                                    class="w-100 mb-3"
+                                    *ngFor="let img of postItem.images"
+                                    [src]="img.thumb_file || img.file"
+                                    alt="answer image"
+                                />
+                            </ng-container>
                         </div>
-                    </div>
-                    <div class="pt-4 px-0 forum-content">
-                        <div [ngClass]="{ 'mb-2': !isLast }" class="activate-link" [innerHTML]="postItem.answer"></div>
-                        <ng-container *ngIf="postItem.images">
-                            <img
-                                class="w-100 mb-3"
-                                *ngFor="let img of postItem.images"
-                                [src]="img.thumb_file || img.file"
-                                alt="answer image"
-                            />
-                        </ng-container>
-                    </div>
-                    <div class="d-flex justify-content-between my-3 my-md-4">
-                        <div class="d-flex">
-                            <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-                            <div class="btn-icon save ml-25" (click)="onFocus()"></div>
-                        </div>
-                        <div class="btn-icon share" (click)="onFocus()"></div>
-                    </div>
-                    <div *ngIf="postItem.originalAnswer" class="border-main br-4 p-4 mb-4 d-none d-md-block w-100">
-                        <div class="d-flex justify-content-between mb-4">
+                        <div class="d-flex justify-content-between my-3 my-md-4">
                             <div class="d-flex">
-                                <img src="assets/images/qa-forum.svg" alt="question-image" />
-                                <p class="align-items-center d-flex text-nowrap fw-b ml-2">
-                                    {{ 'read_the_original_answer' | translate }}
-                                </p>
+                                <div class="btn-icon thumbsup" (click)="onFocus()"></div>
+                                <div class="btn-icon save ml-25" (click)="onFocus()"></div>
                             </div>
-                            <div class="bg-f8 px-25 py-2">
-                                <p class="fw-sb fnt-12">
-                                    {{ 'original_language' | translate }} :
-                                    {{ postItem.originalAnswer?.language | language }}
-                                </p>
-                            </div>
+                            <div class="btn-icon share" (click)="onFocus()"></div>
                         </div>
-                        <app-user-header [prop]="postItem.originalAnswer"></app-user-header>
-                        <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                            <a
-                                class="fw-sb"
-                                [routerLink]="
-                                    getLink(postItem.originalAnswer?.language, postItem.originalAnswer?.question_slug)
-                                "
-                                [innerHTML]="postItem.originalAnswer?.question | titlecase"
-                            ></a>
+                        <div *ngIf="postItem.originalAnswer" class="border-main br-4 p-4 mb-4 d-none d-md-block w-100">
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="d-flex">
+                                    <img src="assets/images/qa-forum.svg" alt="question-image" />
+                                    <p class="align-items-center d-flex text-nowrap fw-b ml-2">
+                                        {{ 'read_the_original_answer' | translate }}
+                                    </p>
+                                </div>
+                                <div class="bg-f8 px-25 py-2">
+                                    <p class="fw-sb fnt-12">
+                                        {{ 'original_language' | translate }} :
+                                        {{ postItem.originalAnswer?.language | language }}
+                                    </p>
+                                </div>
+                            </div>
+                            <app-user-header [prop]="postItem.originalAnswer"></app-user-header>
+                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                <a
+                                    class="fw-sb"
+                                    [routerLink]="
+                                        getLink(
+                                            postItem.originalAnswer?.language,
+                                            postItem.originalAnswer?.question_slug
+                                        )
+                                    "
+                                    [innerHTML]="postItem.originalAnswer?.question | titlecase"
+                                ></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div (click)="onFocus()" class="brown-cta ml-md-5 ml-3 mb-4">{{ 'write_comment' | translate }}</div>
             </div>
-            <div (click)="onFocus()" class="brown-cta ml-md-5 ml-3 mb-4">{{ 'write_comment' | translate }}</div>
-        </div>
-    </article>
+        </article>
 
-    <article class="w-tab-100 w-min-content col-md-5 col-12 px-0 pad-left pr-md-3">
-        <app-square-ads [questionDetail]="true" class="d-none d-md-block"></app-square-ads>
-        <div class="d-none d-lg-block mb-4">
-            <app-join-community
-                [categories]="detailsData?.categories"
-                [type]="PostType.QA"
-                [related]="true"
-            ></app-join-community>
-        </div>
-    </article>
-    <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+        <article class="w-tab-100 w-min-content col-md-5 col-12 px-0 pad-left pr-md-3">
+            <app-square-ads [questionDetail]="true" class="d-none d-md-block"></app-square-ads>
+            <div class="d-none d-lg-block mb-4">
+                <app-join-community
+                    [categories]="detailsData?.categories"
+                    [type]="PostType.QA"
+                    [related]="true"
+                ></app-join-community>
+            </div>
+        </article>
+        <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+    </div>
+
+    <app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>
+
+    <ng-template #loader><app-loading></app-loading></ng-template>
 </div>
-
-<app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>
-
-<ng-template #loader><app-loading></app-loading></ng-template>

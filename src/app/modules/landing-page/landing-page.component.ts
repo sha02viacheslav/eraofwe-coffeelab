@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostType } from '@enums';
 import { CoffeeLabService } from '@services';
-import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-landing-page',
@@ -10,16 +9,10 @@ import { getLangRoute } from '@utils';
 })
 export class LandingPageComponent implements OnInit {
     readonly PostType = PostType;
-    trending = [
-        { title: 'Article', heading: 'Delonghi Magnifica Review', image: 'assets/images/unsplash.png' },
-        { title: 'recipe', heading: 'Java Chip Frappuccino Starbucks', image: 'assets/images/unsplash.png' },
-        {
-            title: 'Article',
-            heading: 'Does Ground Coffee Lose Caffeine Over Time?',
-            image: 'assets/images/unsplash.png',
-        },
-    ];
-
+    posts = [];
+    responsiveOptions = [];
+    trendingData = [];
+    isLoading: boolean;
     shareData = [
         {
             heading: 'Create an account on Era of We',
@@ -39,13 +32,6 @@ export class LandingPageComponent implements OnInit {
         },
     ];
     hereData = [
-        // {
-        //     name: 'Yker Valerio',
-        //     position: 'Bon Vivant Caffè',
-        //     disp:
-        //         '“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that\'s great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”',
-        //     image: 'assets/images/rectangle.png',
-        // },
         {
             name: 'Anna Nordström',
             position: 'Lofbergs',
@@ -68,7 +54,6 @@ export class LandingPageComponent implements OnInit {
             image: 'assets/images/susan-rov.jpeg',
         },
     ];
-
     platform = [
         {
             arrow: 'assets/images/arrow-down-circle-2.svg',
@@ -103,9 +88,6 @@ export class LandingPageComponent implements OnInit {
             postType: PostType.RECIPE,
         },
     ];
-    posts = [];
-    responsiveOptions = [];
-    isLoading: boolean;
 
     constructor(private cdr: ChangeDetectorRef, private coffeeLabService: CoffeeLabService) {
         this.responsiveOptions = [
@@ -129,6 +111,7 @@ export class LandingPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.getPosts(0);
+        this.getTrendingData();
     }
 
     handleChange(event) {
@@ -157,7 +140,15 @@ export class LandingPageComponent implements OnInit {
             });
     }
 
-    getLink(item: any) {
-        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
+    getTrendingData() {
+        this.coffeeLabService.getTrendingPosts().subscribe((res) => {
+            if (res.success) {
+                this.trendingData = [res.result.articles[0], res.result.recipes[0], res.result.articles[1]];
+            }
+        });
+    }
+
+    getLink(item: any, type: string) {
+        return `/en/${type}/${item.slug}`;
     }
 }

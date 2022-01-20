@@ -43,19 +43,26 @@
             </div>
             <div class="d-md-none trend-csl">
                 <p-carousel
-                    [value]="trending"
+                    [value]="trendingData"
                     [numVisible]="3"
                     [numScroll]="3"
                     [circular]="false"
                     [responsiveOptions]="responsiveOptions"
                 >
                     <ng-template let-trending pTemplate="item">
-                        <div class="product-item">
+                        <div
+                            class="product-item"
+                            [routerLink]="[getLink(trending, trending.title ? 'articles' : 'coffee-recipes')]"
+                        >
                             <div class="product-item-content trending-img">
-                                <img src="{{ trending.image }}" alt="trending-image" />
+                                <img
+                                    [lazyLoad]="trending.cover_image_url"
+                                    src="assets/images/empty.svg"
+                                    alt="trending-image"
+                                />
                                 <div class="upper-txt txt-w">
-                                    <div class="fnt-14">{{ trending.title | uppercase }}</div>
-                                    <div class="fnt-md-24 fw-sb">{{ trending.heading }}</div>
+                                    <div class="fnt-14">{{ trending.title ? 'ARTICLE' : 'RECIPE' }}</div>
+                                    <div class="fnt-18 fw-b">{{ trending.title || trending.name }}</div>
                                 </div>
                             </div>
                         </div>
@@ -64,11 +71,15 @@
                 <button class="btn-raised mt-4">Discover more</button>
             </div>
             <div class="d-flex mt-md-45">
-                <div *ngFor="let trend of trending" class="trending-img mr-4 d-none d-md-block">
-                    <img src="{{ trend.image }}" alt="trending-image" />
+                <div
+                    *ngFor="let trend of trendingData"
+                    class="trending-img mr-4 d-none d-md-block"
+                    [routerLink]="[getLink(trend, trend.title ? 'articles' : 'coffee-recipes')]"
+                >
+                    <img [lazyLoad]="trend.cover_image_url" src="assets/images/empty.svg" alt="trend-image" />
                     <div class="upper-txt txt-w">
-                        <div class="fnt-14">{{ trend.title | uppercase }}</div>
-                        <div class="fnt-md-24 fw-sb">{{ trend.heading }}</div>
+                        <div class="fnt-14">{{ trend.title ? 'ARTICLE' : 'RECIPE' }}</div>
+                        <div class="fnt-md-24 fw-b">{{ trend.title || trend.name }}</div>
                     </div>
                 </div>
             </div>
@@ -203,7 +214,7 @@
                                         <app-user-header [prop]="item"></app-user-header>
                                     </div>
                                     <div class="d-flex pt-25">
-                                        <a class="fnt-16 question-hover" [routerLink]="[getLink(item)]">{{
+                                        <a class="fnt-16 question-hover" [routerLink]="[getLink(item, 'qa-forum')]">{{
                                             item.question
                                         }}</a>
                                     </div>

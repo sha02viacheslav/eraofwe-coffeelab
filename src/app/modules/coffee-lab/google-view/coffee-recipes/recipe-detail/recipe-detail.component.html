@@ -1,63 +1,89 @@
-<a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
+<div class="main-block">
+    <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
-    <div class="page-wrapper">
-        <article class="flex-1 mb-4">
-            <div class="recip-content pt-2 pt-lg-45">
-                <img
-                    class="w-100 br-4 recip-img"
-                    [src]="detailsData?.cover_image_url"
-                    [alt]="detailsData?.name + ' cover image'"
-                />
-                <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
-                    <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
-                        <app-category-list
-                            [selectedType]="'coffee-recipes'"
-                            [categoryList]="detailsData?.categories"
-                        ></app-category-list>
-                    </div>
-                    <h1 class="fw-b mb-0 user-header mt-0 text-break">
-                        {{ detailsData?.name || '--' | titlecase }}
-                    </h1>
-                    <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
-                        {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
-                    </div>
-                    <div class="d-md-flex mb-4 mb-md-0">
-                        <div class="fw-sb tc-m mb-md-45">
-                            {{ 'published' | translate }}
-                            {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
-                            {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
+    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
+        <div class="page-wrapper">
+            <article class="flex-1 mb-4">
+                <div class="recip-content pt-2 pt-lg-45">
+                    <img
+                        class="w-100 br-4 recip-img"
+                        [src]="detailsData?.cover_image_url"
+                        [alt]="detailsData?.name + ' cover image'"
+                    />
+                    <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
+                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
+                            <app-category-list
+                                [selectedType]="'coffee-recipes'"
+                                [categoryList]="detailsData?.categories"
+                            ></app-category-list>
                         </div>
-                        <div class="pl-2" *ngIf="detailsData?.translations">
-                            <app-translation-dropdown
-                                (isToastCalled)="toastCalled($event)"
-                                forumType="coffee-recipes"
-                                [translatedList]="detailsData?.translations"
-                            ></app-translation-dropdown>
+                        <h1 class="fw-b mb-0 user-header mt-0 text-break">
+                            {{ detailsData?.name || '--' | titlecase }}
+                        </h1>
+                        <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
+                            {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
                         </div>
-                    </div>
-                    <div class="d-md-flex justify-content-md-between align-items-md-end w-100">
-                        <app-user-header [prop]="detailsData"></app-user-header>
-                        <div class="row justify-content-between ml-1 mob-b-boder">
-                            <div class="d-flex mt-3 mb-45 d-md-none">
-                                <div class="btn-icon thumbsup mr-25" (click)="onFocus()"></div>
-                                <div class="btn-icon message mr-25" (click)="onFocus()"></div>
-                                <div class="btn-icon save" (click)="onFocus()"></div>
+                        <div class="d-md-flex mb-4 mb-md-0">
+                            <div class="fw-sb tc-m mb-md-45">
+                                {{ 'published' | translate }}
+                                {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
+                                {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
                             </div>
-                            <div class="d-flex">
-                                <div class="d-flex mob-height align-items-center mr-3 mt-1">
-                                    <app-forum-menu></app-forum-menu>
+                            <div class="pl-2" *ngIf="detailsData?.translations">
+                                <app-translation-dropdown
+                                    (isToastCalled)="toastCalled($event)"
+                                    forumType="coffee-recipes"
+                                    [translatedList]="detailsData?.translations"
+                                ></app-translation-dropdown>
+                            </div>
+                        </div>
+                        <div class="d-md-flex justify-content-md-between align-items-md-end w-100">
+                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <div class="row justify-content-between ml-1 mob-b-boder">
+                                <div class="d-flex mt-3 mb-45 d-md-none">
+                                    <div class="btn-icon thumbsup mr-25" (click)="onFocus()"></div>
+                                    <div class="btn-icon message mr-25" (click)="onFocus()"></div>
+                                    <div class="btn-icon save" (click)="onFocus()"></div>
                                 </div>
-                                <div class="btn-icon save" style="margin-top: 6px" (click)="onFocus()"></div>
+                                <div class="d-flex">
+                                    <div class="d-flex mob-height align-items-center mr-3 mt-1">
+                                        <app-forum-menu></app-forum-menu>
+                                    </div>
+                                    <div class="btn-icon save" style="margin-top: 6px" (click)="onFocus()"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <ng-container *ngIf="showAll">
-                    <div class="recipe-info-wrapper">
-                        <div class="d-none d-md-block">
-                            <div class="d-flex">
-                                <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
+                    <ng-container *ngIf="showAll">
+                        <div class="recipe-info-wrapper">
+                            <div class="d-none d-md-block">
+                                <div class="d-flex">
+                                    <div class="d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
+                                        <div class="align-items-center d-flex">
+                                            <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
+                                        </div>
+                                        <div class="pl-2">
+                                            <label class="fnt-16 tc-m mb-0">{{ recipeInfo.label | translate }}</label>
+                                            <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
+                                                <span *ngIf="recipeInfo.label === 'equipment'"
+                                                    >{{ detailsData[recipeInfo.key] | translate }}
+                                                    {{ recipeInfo.key2 ? ':' : '' }}
+                                                    {{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
+                                                >
+                                                <span *ngIf="recipeInfo.label !== 'equipment'">
+                                                    {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
+                                                    }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-md-none">
+                                <div
+                                    class="col-6 d-flex py-2 px-3 recipe-info-item"
+                                    *ngFor="let recipeInfo of infoData"
+                                >
                                     <div class="align-items-center d-flex">
                                         <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
                                     </div>
@@ -65,9 +91,9 @@
                                         <label class="fnt-16 tc-m mb-0">{{ recipeInfo.label | translate }}</label>
                                         <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
                                             <span *ngIf="recipeInfo.label === 'equipment'"
-                                                >{{ detailsData[recipeInfo.key] | translate }}
-                                                {{ recipeInfo.key2 ? ':' : '' }}
-                                                {{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
+                                                >{{ detailsData[recipeInfo.key] | titlecase
+                                                }}{{ recipeInfo.key2 ? ':' : ''
+                                                }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
                                             >
                                             <span *ngIf="recipeInfo.label !== 'equipment'">
                                                 {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
@@ -77,302 +103,286 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row d-md-none">
-                            <div class="col-6 d-flex py-2 px-3 recipe-info-item" *ngFor="let recipeInfo of infoData">
-                                <div class="align-items-center d-flex">
-                                    <img [src]="recipeInfo.icon" [alt]="recipeInfo.label" />
-                                </div>
-                                <div class="pl-2">
-                                    <label class="fnt-16 tc-m mb-0">{{ recipeInfo.label | translate }}</label>
-                                    <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
-                                        <span *ngIf="recipeInfo.label === 'equipment'"
-                                            >{{ detailsData[recipeInfo.key] | titlecase }}{{ recipeInfo.key2 ? ':' : ''
-                                            }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
-                                        >
-                                        <span *ngIf="recipeInfo.label !== 'equipment'">
-                                            {{ detailsData[recipeInfo.key] }}{{ recipeInfo.key2 ? ':' : ''
-                                            }}{{ recipeInfo.key2 ? detailsData[recipeInfo.key2] : '' }}</span
-                                        >
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0 c-p"
-                            (click)="onFocus()"
-                        >
                             <div
-                                class="align-items-center d-flex justify-content-center"
-                                [ngClass]="detailsData?.is_brewed ? 'active-check-icon' : 'check-icon'"
+                                class="align-items-center d-flex mob-b-boder pt-4 pb-325 pt-md-0 pb-md-0 c-p"
+                                (click)="onFocus()"
                             >
-                                <i class="pi custom-check pi-check"></i>
+                                <div
+                                    class="align-items-center d-flex justify-content-center"
+                                    [ngClass]="detailsData?.is_brewed ? 'active-check-icon' : 'check-icon'"
+                                >
+                                    <i class="pi custom-check pi-check"></i>
+                                </div>
+                                <p class="fnt-18 fw-sb">{{ 'mark_as_brewed' | translate }}</p>
                             </div>
-                            <p class="fnt-18 fw-sb">{{ 'mark_as_brewed' | translate }}</p>
                         </div>
-                    </div>
-                    <div *ngIf="detailsData?.introduction" class="mx-md-5 mx-0 mt-425 row step-desc border-0">
-                        <div [innerHTML]="detailsData?.introduction"></div>
-                    </div>
-                    <div class="row pl-md-5">
-                        <div class="col-md-5">
-                            <div *ngIf="detailsData?.ingredients" class="mt-45">
-                                <h2 class="user-header mt-0 mb-0 mb-md-45 fw-b">
-                                    {{ 'ingredients' | translate }}
+                        <div *ngIf="detailsData?.introduction" class="mx-md-5 mx-0 mt-425 row step-desc border-0">
+                            <div [innerHTML]="detailsData?.introduction"></div>
+                        </div>
+                        <div class="row pl-md-5">
+                            <div class="col-md-5">
+                                <div *ngIf="detailsData?.ingredients" class="mt-45">
+                                    <h2 class="user-header mt-0 mb-0 mb-md-45 fw-b">
+                                        {{ 'ingredients' | translate }}
+                                    </h2>
+                                    <div class="ingredients-wrapper">
+                                        <div
+                                            class="py-3 px-0 ingredients-item"
+                                            *ngFor="let ingredientsItem of detailsData?.ingredients"
+                                        >
+                                            <label class="fw-b mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
+                                                {{ ingredientsItem.quantity }}
+                                                {{ ingredientsItem.quantity_unit | translate }}
+                                            </label>
+                                            <label class="fw-sb mb-0">{{ ingredientsItem.name }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
+                            </div>
+
+                            <div class="mt-4 mt-md-45 col-md-7">
+                                <h2 class="user-header fw-b mt-0 mb-4 mb-md-45">
+                                    {{ 'directions' | translate }}
                                 </h2>
-                                <div class="ingredients-wrapper">
-                                    <div
-                                        class="py-3 px-0 ingredients-item"
-                                        *ngFor="let ingredientsItem of detailsData?.ingredients"
-                                    >
-                                        <label class="fw-b mb-0 pr-3" *ngIf="ingredientsItem.quantity !== '-'">
-                                            {{ ingredientsItem.quantity }}
-                                            {{ ingredientsItem.quantity_unit | translate }}
-                                        </label>
-                                        <label class="fw-sb mb-0">{{ ingredientsItem.name }}</label>
+                                <div
+                                    class="pb-4 step-wrapper"
+                                    *ngFor="let step of detailsData?.steps; let i = index; let last = last"
+                                    [id]="'step' + (i + 1)"
+                                >
+                                    <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
+                                        <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
+                                        <div
+                                            class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
+                                            [innerHTML]="step.description"
+                                        ></div>
+                                    </div>
+                                    <div *ngIf="i + 1 === adLocation || adLocation === 0">
+                                        <app-rectangle-ads></app-rectangle-ads>
+                                    </div>
+                                    <img
+                                        *ngIf="step.image_thumb_url || step.image_url"
+                                        class="w-100 stp-desc-img"
+                                        src="assets/images/empty.svg"
+                                        [lazyLoad]="step.image_url || step.image_thumb_url"
+                                        [alt]="detailsData?.name + ' step image'"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <ng-container *ngIf="showAll">
+                    <div class="divder mt-3"></div>
+                    <div class="col-md-7 mx-auto mt-5">
+                        <div class="recipe-answer w-100 pt-3 pb-4">
+                            <div>
+                                <p class="fnt-16 fw-b mb-35">
+                                    {{ 'about_the_author' | translate }}
+                                </p>
+                                <div class="d-flex">
+                                    <div class="author-image mr-3">
+                                        <img
+                                            *ngIf="detailsData?.profile_image_thumb_url; else placeholder"
+                                            [lazyLoad]="detailsData?.profile_image_thumb_url"
+                                            class="br-4"
+                                            alt="Author-image"
+                                        />
+                                        <ng-template #placeholder>
+                                            <img
+                                                class="placeholder"
+                                                lazyLoad="assets/images/avatar-placeholder.svg"
+                                                [alt]="detailsData?.posted_user"
+                                            />
+                                        </ng-template>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class="fw-b c-p text-underline"
+                                            [routerLink]="'/user-profile/' + detailsData?.user_slug"
+                                        >
+                                            {{ detailsData?.posted_user }}
+                                        </a>
+                                        <p class="fw-sb mt-2">
+                                            {{ detailsData?.about_me }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <ng-container *ngTemplateOutlet="userWrapper"></ng-container>
                         </div>
 
-                        <div class="mt-4 mt-md-45 col-md-7">
-                            <h2 class="user-header fw-b mt-0 mb-4 mb-md-45">
-                                {{ 'directions' | translate }}
-                            </h2>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between mt-3 mb-4">
+                                <div class="d-flex">
+                                    <div class="btn-icon thumbsup" (click)="onFocus()"></div>
+                                    <div class="btn-icon save ml-3" (click)="onFocus()"></div>
+                                </div>
+                                <div class="btn-icon share" (click)="onFocus()"></div>
+                            </div>
+                            <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
+                                <app-category-list
+                                    [selectedType]="'coffee-recipes'"
+                                    [categoryList]="detailsData?.categories"
+                                ></app-category-list>
+                            </div>
                             <div
-                                class="pb-4 step-wrapper"
-                                *ngFor="let step of detailsData?.steps; let i = index; let last = last"
-                                [id]="'step' + (i + 1)"
+                                *ngIf="
+                                    detailsData?.original_recipe_state &&
+                                    detailsData?.original_recipe_state === 'ACTIVE'
+                                "
+                                class="border-main br-4 p-4 mt-5 d-none d-md-block w-100"
                             >
-                                <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
-                                    <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
-                                    <div
-                                        class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
-                                        [innerHTML]="step.description"
-                                    ></div>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="d-flex">
+                                        <img src="assets/images/noun-questions.svg" alt="file-imag" />
+                                        <p class="align-items-center d-flex text-nowrap fw-b ml-2">
+                                            {{ 'read_the_guide' | translate }}
+                                        </p>
+                                    </div>
+                                    <div class="bg-f8 px-25 py-2">
+                                        <p class="fw-sb fnt-12">
+                                            {{ 'original_language' | translate }} :
+                                            {{ detailsData?.original_details?.language | language }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div *ngIf="i + 1 === adLocation || adLocation === 0">
-                                    <app-rectangle-ads></app-rectangle-ads>
+                                <app-user-header [prop]="orginalUserData"></app-user-header>
+                                <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                    <a
+                                        class="fw-sb"
+                                        [routerLink]="
+                                            onRealtedRoute(
+                                                detailsData?.original_details?.language,
+                                                detailsData?.original_details?.slug
+                                            )
+                                        "
+                                        >{{ detailsData?.original_details?.name | titlecase }}</a
+                                    >
                                 </div>
-                                <img
-                                    *ngIf="step.image_thumb_url || step.image_url"
-                                    class="w-100 stp-desc-img"
-                                    src="assets/images/empty.svg"
-                                    [lazyLoad]="step.image_url || step.image_thumb_url"
-                                    [alt]="detailsData?.name + ' step image'"
-                                />
+                            </div>
+                        </div>
+
+                        <div class="mt-md-5 mt-45 mb-4 w-100">
+                            <div class="w-100">
+                                <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
+                            </div>
+                            <div class="d-flex">
+                                <button
+                                    class="add-comment d-flex align-items-center pl-4 w-100 fw-sb tc-m"
+                                    (click)="onFocus()"
+                                >
+                                    {{ 'share_your_thoughts' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="allComments?.length > 0">
+                            <div class="comment-border">
+                                <p class="fw-sb">{{ allComments.length }} {{ 'answers' | translate }}</p>
+                            </div>
+                            <div
+                                class="answer-wrapper my-45"
+                                *ngFor="let postItem of commentData; let isLast = last"
+                                [ngClass]="{
+                                    'border-bottom-0': isLast && !showCommentBtn,
+                                    'border-bottom-primary': !isLast && showCommentBtn
+                                }"
+                                [id]="'answer-' + postItem.id"
+                            >
+                                <div class="d-flex flex-wrap w-100 mt-3">
+                                    <div class="d-flex justify-content-between align-items-md-end w-100">
+                                        <app-user-header [prop]="postItem" [isRecipeDetail]="true"></app-user-header>
+                                    </div>
+                                </div>
+                                <div class="mt-3 px-0 forum-content mb-4 ml-md-5 pl-md-1">
+                                    <div class="activate-link" [innerHTML]="postItem.comment"></div>
+                                </div>
+                            </div>
+                            <div class="text-center w-100" *ngIf="showCommentBtn">
+                                <div (click)="viewAllComments()" class="brown-cta">
+                                    {{ 'view_all_comments' | translate }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </ng-container>
-            </div>
-            <ng-container *ngIf="showAll">
-                <div class="divder mt-3"></div>
-                <div class="col-md-7 mx-auto mt-5">
-                    <div class="recipe-answer w-100 pt-3 pb-4">
-                        <div>
-                            <p class="fnt-16 fw-b mb-35">
-                                {{ 'about_the_author' | translate }}
-                            </p>
-                            <div class="d-flex">
-                                <div class="author-image mr-3">
-                                    <img
-                                        *ngIf="detailsData?.profile_image_thumb_url; else placeholder"
-                                        [lazyLoad]="detailsData?.profile_image_thumb_url"
-                                        class="br-4"
-                                        alt="Author-image"
-                                    />
-                                    <ng-template #placeholder>
-                                        <img
-                                            class="placeholder"
-                                            lazyLoad="assets/images/avatar-placeholder.svg"
-                                            [alt]="detailsData?.posted_user"
-                                        />
-                                    </ng-template>
-                                </div>
-                                <div>
-                                    <a
-                                        class="fw-b c-p text-underline"
-                                        [routerLink]="'/user-profile/' + detailsData?.user_slug"
-                                    >
-                                        {{ detailsData?.posted_user }}
-                                    </a>
-                                    <p class="fw-sb mt-2">
-                                        {{ detailsData?.about_me }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </article>
+        </div>
 
-                    <div class="w-100">
-                        <div class="d-flex justify-content-between mt-3 mb-4">
-                            <div class="d-flex">
-                                <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-                                <div class="btn-icon save ml-3" (click)="onFocus()"></div>
-                            </div>
-                            <div class="btn-icon share" (click)="onFocus()"></div>
-                        </div>
-                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
-                            <app-category-list
-                                [selectedType]="'coffee-recipes'"
-                                [categoryList]="detailsData?.categories"
-                            ></app-category-list>
-                        </div>
-                        <div
-                            *ngIf="
-                                detailsData?.original_recipe_state && detailsData?.original_recipe_state === 'ACTIVE'
-                            "
-                            class="border-main br-4 p-4 mt-5 d-none d-md-block w-100"
-                        >
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="d-flex">
-                                    <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                    <p class="align-items-center d-flex text-nowrap fw-b ml-2">
-                                        {{ 'read_the_guide' | translate }}
-                                    </p>
-                                </div>
-                                <div class="bg-f8 px-25 py-2">
-                                    <p class="fw-sb fnt-12">
-                                        {{ 'original_language' | translate }} :
-                                        {{ detailsData?.original_details?.language | language }}
-                                    </p>
-                                </div>
-                            </div>
-                            <app-user-header [prop]="orginalUserData"></app-user-header>
-                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                                <a
-                                    class="fw-sb"
-                                    [routerLink]="
-                                        onRealtedRoute(
-                                            detailsData?.original_details?.language,
-                                            detailsData?.original_details?.slug
-                                        )
-                                    "
-                                    >{{ detailsData?.original_details?.name | titlecase }}</a
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-md-5 mt-45 mb-4 w-100">
-                        <div class="w-100">
-                            <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
-                        </div>
-                        <div class="d-flex">
-                            <button
-                                class="add-comment d-flex align-items-center pl-4 w-100 fw-sb tc-m"
-                                (click)="onFocus()"
+        <article *ngIf="showAll" class="row">
+            <div class="col-12 col-md-8 px-md-3">
+                <div class="fnt-16 fw-b pt-3 pb-45 background-header">
+                    {{ 'popular_brewing_guides' | translate }}
+                </div>
+                <div class="row py-2">
+                    <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
+                        <div class="d-flex pb-4 footer-border">
+                            <a class="p-articles pr-2" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
+                                <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
+                            </a>
+                            <a
+                                class="c-p d-flex flex-column"
+                                [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
                             >
-                                {{ 'share_your_thoughts' | translate }}
-                            </button>
-                        </div>
-                    </div>
-                    <div *ngIf="allComments?.length > 0">
-                        <div class="comment-border">
-                            <p class="fw-sb">{{ allComments.length }} {{ 'answers' | translate }}</p>
-                        </div>
-                        <div
-                            class="answer-wrapper my-45"
-                            *ngFor="let postItem of commentData; let isLast = last"
-                            [ngClass]="{
-                                'border-bottom-0': isLast && !showCommentBtn,
-                                'border-bottom-primary': !isLast && showCommentBtn
-                            }"
-                            [id]="'answer-' + postItem.id"
-                        >
-                            <div class="d-flex flex-wrap w-100 mt-3">
-                                <div class="d-flex justify-content-between align-items-md-end w-100">
-                                    <app-user-header [prop]="postItem" [isRecipeDetail]="true"></app-user-header>
-                                </div>
-                            </div>
-                            <div class="mt-3 px-0 forum-content mb-4 ml-md-5 pl-md-1">
-                                <div class="activate-link" [innerHTML]="postItem.comment"></div>
-                            </div>
-                        </div>
-                        <div class="text-center w-100" *ngIf="showCommentBtn">
-                            <div (click)="viewAllComments()" class="brown-cta">
-                                {{ 'view_all_comments' | translate }}
-                            </div>
+                                <p class="fnt-fly fw-b cust-flex-grow">
+                                    {{ forum?.title | convertToShortDescription: 6 }}
+                                </p>
+                                <p class="fw-sb text-underline">
+                                    {{ forum?.user_name }}
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </ng-container>
+            </div>
+            <div class="col-12 col-md-4 mb-4 px-md-3">
+                <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
+            </div>
         </article>
+
+        <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>
     </div>
 
-    <article *ngIf="showAll" class="row">
-        <div class="col-12 col-md-8 px-md-3">
-            <div class="fnt-16 fw-b pt-3 pb-45 background-header">
-                {{ 'popular_brewing_guides' | translate }}
-            </div>
-            <div class="row py-2">
-                <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
-                    <div class="d-flex pb-4 footer-border">
-                        <a class="p-articles pr-2" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
-                        </a>
-                        <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <p class="fnt-fly fw-b cust-flex-grow">
-                                {{ forum?.title | convertToShortDescription: 6 }}
-                            </p>
-                            <p class="fw-sb text-underline">
-                                {{ forum?.user_name }}
-                            </p>
-                        </a>
+    <ng-template #userWrapper>
+        <div *ngIf="!isMobile$" class="user-wrapper">
+            <div class="pb-4 d-flex">
+                <div class="w-100 d-flex justify-content-between">
+                    <div>
+                        <p class="fw-b mb-1">{{ detailsData?.posted_user }}</p>
+                        <p class="fw-sb tc-m mb-1">
+                            {{ detailsData?.organisation_name || detailsData?.organization_name }}
+                        </p>
+                        <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
+                            <span *ngIf="detailsData?.organisation_name || detailsData?.organization_name">@</span>
+                            {{ detailsData?.city }}, {{ detailsData?.country | country }}
+                        </p>
                     </div>
                 </div>
             </div>
+            <div class="pb-4">
+                <div class="d-flex">
+                    <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + detailsData?.user_slug">
+                        {{ 'view_profile' | translate }}
+                    </button>
+                    <div class="btn-raised">
+                        <img
+                            (click)="onFocus()"
+                            class="c-p"
+                            src="assets/images/message-icon-white.svg"
+                            alt="message-icon-white"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="sticky-divder"></div>
+            <div class="d-flex my-4">
+                <div class="btn-icon thumbsup" (click)="onFocus()"></div>
+                <div class="btn-icon message ml-3" (click)="onFocus()"></div>
+                <div class="btn-icon save ml-3" (click)="onFocus()"></div>
+            </div>
         </div>
-        <div class="col-12 col-md-4 mb-4 px-md-3">
-            <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
-        </div>
-    </article>
+    </ng-template>
 
-    <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>
+    <app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>
+
+    <ng-template #loader><app-loading></app-loading></ng-template>
 </div>
-
-<ng-template #userWrapper>
-    <div *ngIf="!isMobile$" class="user-wrapper">
-        <div class="pb-4 d-flex">
-            <div class="w-100 d-flex justify-content-between">
-                <div>
-                    <p class="fw-b mb-1">{{ detailsData?.posted_user }}</p>
-                    <p class="fw-sb tc-m mb-1">
-                        {{ detailsData?.organisation_name || detailsData?.organization_name }}
-                    </p>
-                    <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
-                        <span *ngIf="detailsData?.organisation_name || detailsData?.organization_name">@</span>
-                        {{ detailsData?.city }}, {{ detailsData?.country | country }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="pb-4">
-            <div class="d-flex">
-                <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + detailsData?.user_slug">
-                    {{ 'view_profile' | translate }}
-                </button>
-                <div class="btn-raised">
-                    <img
-                        (click)="onFocus()"
-                        class="c-p"
-                        src="assets/images/message-icon-white.svg"
-                        alt="message-icon-white"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="sticky-divder"></div>
-        <div class="d-flex my-4">
-            <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-            <div class="btn-icon message ml-3" (click)="onFocus()"></div>
-            <div class="btn-icon save ml-3" (click)="onFocus()"></div>
-        </div>
-    </div>
-</ng-template>
-
-<app-translate-toast *ngIf="showToaster" [language]="detailsData?.lang_code"></app-translate-toast>
-
-<ng-template #loader><app-loading></app-loading></ng-template>

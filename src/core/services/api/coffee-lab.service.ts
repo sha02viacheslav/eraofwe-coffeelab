@@ -77,4 +77,9 @@ export class CoffeeLabService extends ApiService {
         const apiUrl = `https://api.db-ip.com/v2/${key}/self`;
         return this.http.get(`${apiUrl}`);
     }
+
+    getTrendingPosts(): Observable<any> {
+        const params = { article_count: 2, recipe_count: 1 };
+        return this.get(this.orgPostUrl, `general/coffee-lab/trending-posts?${this.serializeParams(params)}`);
+    }
 }

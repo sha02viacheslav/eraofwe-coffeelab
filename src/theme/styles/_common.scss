@@ -34,6 +34,19 @@
     }
 }
 
+.main-block {
+    background-color: $white;
+    border-radius: 4px;
+    padding: 0.5rem 0.5rem 1rem;
+    min-height: 100vh;
+    @media (min-width: 768px) {
+        padding: 16px;
+    }
+    @media (min-width: 992px) {
+        padding: 48px 48px 32px 48px;
+    }
+}
+
 .fit-sm-screen {
     @media (max-width: 767px) {
         min-height: calc(100vh - (#{$mobile-header-height} + #{$mobile-page-pt} + #{$mobile-page-pb}));

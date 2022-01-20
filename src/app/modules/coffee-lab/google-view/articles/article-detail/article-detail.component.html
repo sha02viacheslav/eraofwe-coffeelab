@@ -1,332 +1,340 @@
-<a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
+<div class="main-block">
+    <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-<div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
-    <div class="article-main-block">
-        <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
-            <app-category-list
-                [selectedType]="'articles'"
-                [isArticlePage]="true"
-                [categoryList]="detailsData?.categories"
-            ></app-category-list>
-        </div>
-        <div class="px-0">
-            <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
-                {{ detailsData?.title || '--' }}
-            </h1>
-            <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
-                {{ detailsData?.subtitle || '--' }}
-            </p>
-        </div>
-        <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-            <div class="published">
-                {{ 'published' | translate }}
-                {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
-                {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
+    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
+        <div class="article-main-block">
+            <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
+                <app-category-list
+                    [selectedType]="'articles'"
+                    [isArticlePage]="true"
+                    [categoryList]="detailsData?.categories"
+                ></app-category-list>
             </div>
-            <div
-                class="mt-2 mt-md-0 ml-3"
-                *ngIf="detailsData?.translated_articles && detailsData?.translated_articles.length > 0"
-            >
-                <app-translation-dropdown
-                    (isToastCalled)="toastCalled($event)"
-                    forumType="articles"
-                    [translatedList]="detailsData?.translated_articles"
-                ></app-translation-dropdown>
+            <div class="px-0">
+                <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                    {{ detailsData?.title || '--' }}
+                </h1>
+                <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
+                    {{ detailsData?.subtitle || '--' }}
+                </p>
             </div>
-        </div>
-        <div class="flex-1 my-4">
-            <div class="pb-3 pb-md-45">
-                <img
-                    class="w-100 banner-image"
-                    [src]="detailsData?.cover_image_url"
-                    [alt]="detailsData?.title + ' cover image'"
-                />
-            </div>
-            <app-rectangle-ads *ngIf="isMobile$"></app-rectangle-ads>
-            <div *ngIf="isMobile$" class="d-flex justify-content-between mb-4">
-                <div class="d-flex">
-                    <div class="btn-icon thumbsup mr-25" (click)="onFocus()"></div>
-                    <div class="btn-icon message mr-25" (click)="onFocus()"></div>
-                    <div class="btn-icon save" (click)="onFocus()"></div>
+            <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
+                <div class="published">
+                    {{ 'published' | translate }}
+                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
+                    {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
                 </div>
-                <div class="d-flex">
-                    <div class="btn-icon share"></div>
-                    <div class="ml-1"><app-forum-menu></app-forum-menu></div>
+                <div
+                    class="mt-2 mt-md-0 ml-3"
+                    *ngIf="detailsData?.translated_articles && detailsData?.translated_articles.length > 0"
+                >
+                    <app-translation-dropdown
+                        (isToastCalled)="toastCalled($event)"
+                        forumType="articles"
+                        [translatedList]="detailsData?.translated_articles"
+                    ></app-translation-dropdown>
                 </div>
             </div>
-            <div class="d-flex">
-                <div *ngIf="!isMobile$" class="user-wrapper">
-                    <div class="pb-4 d-flex">
-                        <div class="w-100 d-flex justify-content-between">
-                            <div>
-                                <p class="fw-b mb-1">{{ detailsData?.user_name }}</p>
-                                <p class="fw-sb tc-m mb-1">
-                                    {{ detailsData?.organisation_name || detailsData?.organization_name }}
-                                </p>
-                                <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
-                                    <span *ngIf="detailsData?.organisation_name || detailsData?.organization_name"
-                                        >@</span
-                                    >
-                                    {{ detailsData?.city || detailsData?.organization_city }},
-                                    {{ detailsData?.country | country }}
-                                </p>
+            <div class="flex-1 my-4">
+                <div class="pb-3 pb-md-45">
+                    <img
+                        class="w-100 banner-image"
+                        [src]="detailsData?.cover_image_url"
+                        [alt]="detailsData?.title + ' cover image'"
+                    />
+                </div>
+                <app-rectangle-ads *ngIf="isMobile$"></app-rectangle-ads>
+                <div *ngIf="isMobile$" class="d-flex justify-content-between mb-4">
+                    <div class="d-flex">
+                        <div class="btn-icon thumbsup mr-25" (click)="onFocus()"></div>
+                        <div class="btn-icon message mr-25" (click)="onFocus()"></div>
+                        <div class="btn-icon save" (click)="onFocus()"></div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="btn-icon share"></div>
+                        <div class="ml-1"><app-forum-menu></app-forum-menu></div>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div *ngIf="!isMobile$" class="user-wrapper">
+                        <div class="pb-4 d-flex">
+                            <div class="w-100 d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-b mb-1">{{ detailsData?.user_name }}</p>
+                                    <p class="fw-sb tc-m mb-1">
+                                        {{ detailsData?.organisation_name || detailsData?.organization_name }}
+                                    </p>
+                                    <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
+                                        <span *ngIf="detailsData?.organisation_name || detailsData?.organization_name"
+                                            >@</span
+                                        >
+                                        {{ detailsData?.city || detailsData?.organization_city }},
+                                        {{ detailsData?.country | country }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex pb-4">
-                        <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + detailsData?.user_slug">
-                            {{ 'view_profile' | translate }}
-                        </button>
-                        <div class="btn-raised" (click)="onFocus()">
-                            <img
-                                src="assets/images/message-icon-white.svg"
-                                alt="message-icon-white"
-                                width="18"
-                                height="18"
-                            />
+                        <div class="d-flex pb-4">
+                            <button class="btn-stroked mr-2" [routerLink]="'/user-profile/' + detailsData?.user_slug">
+                                {{ 'view_profile' | translate }}
+                            </button>
+                            <div class="btn-raised" (click)="onFocus()">
+                                <img
+                                    src="assets/images/message-icon-white.svg"
+                                    alt="message-icon-white"
+                                    width="18"
+                                    height="18"
+                                />
+                            </div>
+                        </div>
+                        <div class="divder"></div>
+                        <div class="d-flex my-4">
+                            <div class="btn-icon thumbsup" (click)="onFocus()"></div>
+                            <div class="btn-icon message ml-3" (click)="onFocus()"></div>
+                            <div class="btn-icon save ml-3" (click)="onFocus()"></div>
                         </div>
                     </div>
-                    <div class="divder"></div>
-                    <div class="d-flex my-4">
-                        <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-                        <div class="btn-icon message ml-3" (click)="onFocus()"></div>
-                        <div class="btn-icon save ml-3" (click)="onFocus()"></div>
-                    </div>
-                </div>
-                <div class="d-flex flex-wrap w-100 innter-box">
-                    <app-rectangle-ads *ngIf="!isMobile$"></app-rectangle-ads>
-                    <div class="d-flex justify-content-between align-items-md-end w-100">
-                        <app-user-header [prop]="detailsData"></app-user-header>
-                        <div class="d-flex flex-column align-items-end">
-                            <app-forum-menu></app-forum-menu>
-                        </div>
-                    </div>
-
-                    <ng-container *ngIf="showAll">
-                        <div class="forum-content w-100 pt-4 mb-5 content-margin">
-                            <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content || '--'"></div>
+                    <div class="d-flex flex-wrap w-100 innter-box">
+                        <app-rectangle-ads *ngIf="!isMobile$"></app-rectangle-ads>
+                        <div class="d-flex justify-content-between align-items-md-end w-100">
+                            <app-user-header [prop]="detailsData"></app-user-header>
+                            <div class="d-flex flex-column align-items-end">
+                                <app-forum-menu></app-forum-menu>
+                            </div>
                         </div>
 
-                        <div class="articles-answer w-100 pt-3 pb-4">
-                            <div>
-                                <p class="fnt-16 fw-b mb-35">
-                                    {{ 'about_the_author' | translate }}
-                                </p>
-                                <div class="d-flex">
-                                    <div class="author-image mr-3">
-                                        <img
-                                            *ngIf="detailsData?.profile_image_url; else placeholder"
-                                            [lazyLoad]="detailsData?.profile_image_url"
-                                            class="br-4"
-                                            alt="Author-image"
-                                        />
-                                        <ng-template #placeholder>
+                        <ng-container *ngIf="showAll">
+                            <div class="forum-content w-100 pt-4 mb-5 content-margin">
+                                <div class="activate-link lh-157 mb-0" [innerHTML]="detailsData?.content || '--'"></div>
+                            </div>
+
+                            <div class="articles-answer w-100 pt-3 pb-4">
+                                <div>
+                                    <p class="fnt-16 fw-b mb-35">
+                                        {{ 'about_the_author' | translate }}
+                                    </p>
+                                    <div class="d-flex">
+                                        <div class="author-image mr-3">
                                             <img
-                                                class="placeholder"
-                                                lazyLoad="assets/images/avatar-placeholder.svg"
-                                                [alt]="detailsData?.user_name"
+                                                *ngIf="detailsData?.profile_image_url; else placeholder"
+                                                [lazyLoad]="detailsData?.profile_image_url"
+                                                class="br-4"
+                                                alt="Author-image"
                                             />
-                                        </ng-template>
+                                            <ng-template #placeholder>
+                                                <img
+                                                    class="placeholder"
+                                                    lazyLoad="assets/images/avatar-placeholder.svg"
+                                                    [alt]="detailsData?.user_name"
+                                                />
+                                            </ng-template>
+                                        </div>
+                                        <div>
+                                            <a
+                                                [routerLink]="'/user-profile/' + detailsData?.user_slug"
+                                                class="fw-b c-p text-underline"
+                                            >
+                                                {{ detailsData?.user_name }}
+                                            </a>
+                                            <p class="fw-sb mt-2">
+                                                {{ detailsData?.about_me }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <a
-                                            [routerLink]="'/user-profile/' + detailsData?.user_slug"
-                                            class="fw-b c-p text-underline"
-                                        >
-                                            {{ detailsData?.user_name }}
-                                        </a>
-                                        <p class="fw-sb mt-2">
-                                            {{ detailsData?.about_me }}
+                                </div>
+                            </div>
+
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between mt-3 mb-4">
+                                    <div class="d-flex">
+                                        <div class="btn-icon thumbsup" (click)="onFocus()"></div>
+                                        <div class="btn-icon save ml-3" (click)="onFocus()"></div>
+                                    </div>
+                                    <div class="btn-icon share" (click)="onFocus()"></div>
+                                </div>
+                            </div>
+                            <div
+                                *ngIf="
+                                    !isMobile$ &&
+                                    detailsData?.original_article_state &&
+                                    detailsData?.original_article_state === 'ACTIVE'
+                                "
+                                class="border-main br-4 p-4 mt-45 w-100 mb-475"
+                            >
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="d-flex">
+                                        <img src="assets/images/noun-questions.svg" alt="file-imag" />
+                                        <p class="align-items-center d-flex text-nowrap fw-b ml-2">
+                                            {{ 'read_the_original_article' | translate }}
+                                        </p>
+                                    </div>
+                                    <div class="bg-f8 px-25 py-2">
+                                        <p class="fw-sb fnt-12">
+                                            {{ 'original_language' | translate }} :
+                                            {{ detailsData?.original_article?.language | language }}
                                         </p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="w-100">
-                            <div class="d-flex justify-content-between mt-3 mb-4">
-                                <div class="d-flex">
-                                    <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-                                    <div class="btn-icon save ml-3" (click)="onFocus()"></div>
-                                </div>
-                                <div class="btn-icon share" (click)="onFocus()"></div>
-                            </div>
-                        </div>
-                        <div
-                            *ngIf="
-                                !isMobile$ &&
-                                detailsData?.original_article_state &&
-                                detailsData?.original_article_state === 'ACTIVE'
-                            "
-                            class="border-main br-4 p-4 mt-45 w-100 mb-475"
-                        >
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="d-flex">
-                                    <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                    <p class="align-items-center d-flex text-nowrap fw-b ml-2">
-                                        {{ 'read_the_original_article' | translate }}
-                                    </p>
-                                </div>
-                                <div class="bg-f8 px-25 py-2">
-                                    <p class="fw-sb fnt-12">
-                                        {{ 'original_language' | translate }} :
-                                        {{ detailsData?.original_article?.language | language }}
-                                    </p>
+                                <app-user-header [prop]="orginalUserData"></app-user-header>
+                                <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
+                                    <a
+                                        class="fw-sb"
+                                        [routerLink]="
+                                            onRealtedRoute(
+                                                detailsData?.original_article?.language,
+                                                detailsData?.original_article?.slug
+                                            )
+                                        "
+                                        >{{ detailsData?.original_article?.name | titlecase }}</a
+                                    >
                                 </div>
                             </div>
-                            <app-user-header [prop]="orginalUserData"></app-user-header>
-                            <div class="flavour-profiles bg-f8 w-100 p-3 mt-35">
-                                <a
-                                    class="fw-sb"
-                                    [routerLink]="
-                                        onRealtedRoute(
-                                            detailsData?.original_article?.language,
-                                            detailsData?.original_article?.slug
-                                        )
-                                    "
-                                    >{{ detailsData?.original_article?.name | titlecase }}</a
-                                >
-                            </div>
-                        </div>
-                        <div *ngIf="detailsData?.categories" class="row mx-0">
-                            <app-category-list
-                                [selectedType]="'articles'"
-                                [categoryList]="detailsData?.categories"
-                            ></app-category-list>
-                        </div>
-                        <div
-                            *ngIf="showCommentOff"
-                            (click)="showComment = true; showCommentOff = false"
-                            class="brown-cta w-100"
-                        >
-                            {{ allComments?.length > 0 ? 'Show comment' : 'Add comment' }}
-                        </div>
-                        <div *ngIf="showComment" class="mt-md-5 mt-45 mb-4 w-100">
-                            <div class="w-100">
-                                <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
-                            </div>
-                            <div class="d-flex">
-                                <button
-                                    class="add-comment d-flex align-items-center pl-4 w-100 fw-sb tc-m"
-                                    (click)="onFocus()"
-                                >
-                                    {{ 'share_your_thoughts' | translate }}
-                                </button>
-                            </div>
-                        </div>
-                        <div *ngIf="showComment" class="w-100">
-                            <div class="comment-border pb-1">
-                                <p class="fw-sb">{{ allComments?.length }} {{ 'answers' | translate }}</p>
+                            <div *ngIf="detailsData?.categories" class="row mx-0">
+                                <app-category-list
+                                    [selectedType]="'articles'"
+                                    [categoryList]="detailsData?.categories"
+                                ></app-category-list>
                             </div>
                             <div
-                                class="article-wrapper my-45"
-                                *ngFor="let postItem of commentData; let isLast = last"
-                                [ngClass]="{
-                                    'border-bottom-0': isLast && !showCommentBtn,
-                                    'border-bottom-primary': !isLast && showCommentBtn
-                                }"
-                                [id]="'answer-' + postItem.id"
+                                *ngIf="showCommentOff"
+                                (click)="showComment = true; showCommentOff = false"
+                                class="brown-cta w-100"
                             >
-                                <div class="d-flex flex-wrap w-100 mt-3">
-                                    <div class="d-flex justify-content-between align-items-md-end w-100">
-                                        <app-user-header [prop]="postItem" [isArticleDetail]="true"></app-user-header>
+                                {{ allComments?.length > 0 ? 'Show comment' : 'Add comment' }}
+                            </div>
+                            <div *ngIf="showComment" class="mt-md-5 mt-45 mb-4 w-100">
+                                <div class="w-100">
+                                    <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
+                                </div>
+                                <div class="d-flex">
+                                    <button
+                                        class="add-comment d-flex align-items-center pl-4 w-100 fw-sb tc-m"
+                                        (click)="onFocus()"
+                                    >
+                                        {{ 'share_your_thoughts' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div *ngIf="showComment" class="w-100">
+                                <div class="comment-border pb-1">
+                                    <p class="fw-sb">{{ allComments?.length }} {{ 'answers' | translate }}</p>
+                                </div>
+                                <div
+                                    class="article-wrapper my-45"
+                                    *ngFor="let postItem of commentData; let isLast = last"
+                                    [ngClass]="{
+                                        'border-bottom-0': isLast && !showCommentBtn,
+                                        'border-bottom-primary': !isLast && showCommentBtn
+                                    }"
+                                    [id]="'answer-' + postItem.id"
+                                >
+                                    <div class="d-flex flex-wrap w-100 mt-3">
+                                        <div class="d-flex justify-content-between align-items-md-end w-100">
+                                            <app-user-header
+                                                [prop]="postItem"
+                                                [isArticleDetail]="true"
+                                            ></app-user-header>
+                                        </div>
+                                    </div>
+                                    <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
+                                        <div class="activate-link" [innerHTML]="postItem.comment"></div>
                                     </div>
                                 </div>
-                                <div class="px-0 mt-3 mb-4 forum-content ml-md-5 pl-md-1">
-                                    <div class="activate-link" [innerHTML]="postItem.comment"></div>
+                                <div class="text-center w-100" *ngIf="showCommentBtn">
+                                    <div (click)="viewAllComments()" class="brown-cta">
+                                        {{ 'view_all_comments' | translate }}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-center w-100" *ngIf="showCommentBtn">
-                                <div (click)="viewAllComments()" class="brown-cta">
-                                    {{ 'view_all_comments' | translate }}
-                                </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="more bg-f8">
+            <div class="container pt-4 py-md-5">
+                <div class="more-text mt-md-4 mb-3 mb-md-45 text-center">More on the coffee lab</div>
+                <div class="d-flex justify-content-center mt-md-25 mb-md-5 pb-md-3">
+                    <div class="d-flex sign-up py-md-4 px-md-5 bg-white">
+                        <div class="fnt-14 fnt-md-24 mr-md-4 align-items-center d-flex px-3 py-2">
+                            Sign up and contribute now
+                        </div>
+                        <button class="btn-raised">Sign up</button>
+                    </div>
+                </div>
+                <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">
+                    <a [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug" class="cursor-pointer">
+                        <div class="px-0">
+                            <h2 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                                {{ forum?.title || '--' }}
+                            </h2>
+                            <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
+                                {{ forum?.subtitle || '--' }}
+                            </p>
+                        </div>
+                        <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
+                            <div class="published">
+                                {{ 'published' | translate }}
+                                {{ forum?.posted_at | date: 'MMMM' | translate }}
+                                {{ forum?.posted_at | date: 'd, yyyy' }}
                             </div>
                         </div>
-                    </ng-container>
+                        <div>
+                            <div class="pb-3 pb-md-45">
+                                <img
+                                    class="w-100 banner-image"
+                                    [lazyLoad]="forum?.cover_image_url"
+                                    src="assets/images/empty.svg"
+                                    [alt]="forum.title"
+                                />
+                            </div>
+                        </div>
+                        <div class="my-md-4" *ngIf="i === 0"><hr /></div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="more bg-f8">
-        <div class="container pt-4 py-md-5">
-            <div class="more-text mt-md-4 mb-3 mb-md-45 text-center">More on the coffee lab</div>
-            <div class="d-flex justify-content-center mt-md-25 mb-md-5 pb-md-3">
-                <div class="d-flex sign-up py-md-4 px-md-5 bg-white">
-                    <div class="fnt-14 fnt-md-24 mr-md-4 align-items-center d-flex px-3 py-2">
-                        Sign up and contribute now
-                    </div>
-                    <button class="btn-raised">Sign up</button>
+        <article *ngIf="showAll" class="row mx-0">
+            <div class="col-md-8 px-0 px-md-3">
+                <div class="fnt-16 fw-b pt-3 pb-45 background-header">
+                    {{ 'recent_articles' | translate }}
                 </div>
-            </div>
-            <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">
-                <a [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug" class="cursor-pointer">
-                    <div class="px-0">
-                        <h2 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
-                            {{ forum?.title || '--' }}
-                        </h2>
-                        <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
-                            {{ forum?.subtitle || '--' }}
-                        </p>
-                    </div>
-                    <div class="d-md-flex justify-content-md-center mt-35 mt-md-4 mb-4">
-                        <div class="published">
-                            {{ 'published' | translate }}
-                            {{ forum?.posted_at | date: 'MMMM' | translate }}
-                            {{ forum?.posted_at | date: 'd, yyyy' }}
+                <div class="row py-2">
+                    <div *ngFor="let forum of relatedData.slice(2, 10)" class="col-md-6 pb-4">
+                        <div class="d-flex pb-4 footer-border">
+                            <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
+                                <img
+                                    [lazyLoad]="forum?.cover_image_thumb_url"
+                                    src="assets/images/empty.svg"
+                                    [alt]="forum.title"
+                                />
+                            </a>
+                            <a
+                                class="c-p d-flex flex-column"
+                                [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
+                            >
+                                <p class="fnt-fly fw-b cust-flex-grow text-break">
+                                    {{ forum?.title | convertToShortDescription: 6 }}
+                                </p>
+                                <p class="fw-sb text-underline">
+                                    {{ forum?.user_name }}
+                                </p>
+                            </a>
                         </div>
                     </div>
-                    <div>
-                        <div class="pb-3 pb-md-45">
-                            <img
-                                class="w-100 banner-image"
-                                [lazyLoad]="forum?.cover_image_url"
-                                src="assets/images/empty.svg"
-                                [alt]="forum.title"
-                            />
-                        </div>
-                    </div>
-                    <div class="my-md-4" *ngIf="i === 0"><hr /></div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <article *ngIf="showAll" class="row mx-0">
-        <div class="col-md-8 px-0 px-md-3">
-            <div class="fnt-16 fw-b pt-3 pb-45 background-header">
-                {{ 'recent_articles' | translate }}
-            </div>
-            <div class="row py-2">
-                <div *ngFor="let forum of relatedData.slice(2, 10)" class="col-md-6 pb-4">
-                    <div class="d-flex pb-4 footer-border">
-                        <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <img
-                                [lazyLoad]="forum?.cover_image_thumb_url"
-                                src="assets/images/empty.svg"
-                                [alt]="forum.title"
-                            />
-                        </a>
-                        <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <p class="fnt-fly fw-b cust-flex-grow text-break">
-                                {{ forum?.title | convertToShortDescription: 6 }}
-                            </p>
-                            <p class="fw-sb text-underline">
-                                {{ forum?.user_name }}
-                            </p>
-                        </a>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
-            <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
-        </div>
-    </article>
+            <div class="col-12 col-md-4 mb-4 px-0 px-md-3">
+                <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
+            </div>
+        </article>
 
-    <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>
+        <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>
+    </div>
+
+    <app-translate-toast *ngIf="showToaster" [language]="detailsData?.language"></app-translate-toast>
+
+    <ng-template #loader><app-loading></app-loading></ng-template>
 </div>
-
-<app-translate-toast *ngIf="showToaster" [language]="detailsData?.language"></app-translate-toast>
-
-<ng-template #loader><app-loading></app-loading></ng-template>

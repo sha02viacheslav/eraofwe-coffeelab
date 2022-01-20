@@ -60,7 +60,7 @@
 
 <div
     *ngIf="pageOffsetHeight > 1000"
-    [ngClass]="isExpand ? 'p-4 p-md-5' : 'p-3 p-md-4'"
+    [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
     class="footer-ads border-334 bg-white w-100"
 >
     <div class="container-md d-md-flex justify-content-between">
@@ -78,12 +78,16 @@
         </div>
         <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
-                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">Grab it while it’s hot!</div>
-                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                    Sign up and get a discount on our e-commerce<br />
-                    shop. Also get uninterupted access to the coffee lab
+                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
+                    <span *ngIf="isExpand">Grab it while it’s hot!</span>
+                    <span *ngIf="!isExpand"> Sign up to order coffee directly from farms to your home. </span>
                 </div>
-                <div *ngIf="isExpand" class="fnt-12 d-md-none">Sign up and get a discount on our e-commerce shop.</div>
+                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
+                    Sign up to order coffee directly from farms to your home.
+                </div>
+                <div *ngIf="isExpand" class="fnt-12 d-md-none">
+                    Sign up to order coffee directly from farms to your home.
+                </div>
                 <a *ngIf="!isExpand" class="btn-raised ml-45" href="{{ env.publicWeb }}/shop/" target="_blank"
                     >Buy now</a
                 >
