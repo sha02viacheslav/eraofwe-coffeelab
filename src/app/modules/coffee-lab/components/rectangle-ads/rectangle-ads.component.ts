@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '@env/environment';
 
 @Component({
@@ -7,6 +7,7 @@ import { environment } from '@env/environment';
     styleUrls: ['./rectangle-ads.component.scss'],
 })
 export class RectangleAdsComponent implements OnInit {
+    @Input() questionPage: boolean;
     readonly env = environment;
     constructor() {}
 

@@ -1,8 +1,43 @@
 @import 'variables';
 
+.main-forum {
+    background-color: #f8f6ef;
+    padding: 60px 0 57px 48px;
+    @media (max-width: 768px) {
+        padding-left: 16px !important;
+    }
+    h1 {
+        font-size: 42px;
+        @media (max-width: 768px) {
+            font-size: 32px;
+        }
+    }
+}
+
+.discussion-bg {
+    background-color: #f8f8f8;
+    padding: 25px 35px 24px 50px;
+    @media (max-width: 768px) {
+        padding: 25px 16px 24px 16px;
+    }
+}
+
+.main-block {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 0.5rem 0.5rem 1rem;
+    min-height: 100vh;
+    @media (min-width: 768px) {
+        padding: 16px;
+    }
+    @media (min-width: 992px) {
+        padding: 48px 48px 32px 48px;
+    }
+}
+
 .language-wrapper {
     background-color: $primary-bg-color;
-    padding: 12px 8px 11px;
+    margin-left: -7px;
 }
 
 :host ::ng-deep {

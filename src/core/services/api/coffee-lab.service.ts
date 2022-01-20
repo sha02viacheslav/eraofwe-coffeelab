@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 import { ApiResponse, UserProfile } from '@models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
@@ -69,7 +70,11 @@ export class CoffeeLabService extends ApiService {
     }
 
     getIpInfo(): Observable<any> {
-        const apiUrl = 'https://api.db-ip.com/v2/free/self';
+        let key = 'free';
+        if (!environment.needProtect) {
+            key = '647d0bef7327311cc890ddce5e07a41c97d03d89';
+        }
+        const apiUrl = `https://api.db-ip.com/v2/${key}/self`;
         return this.http.get(`${apiUrl}`);
     }
 }

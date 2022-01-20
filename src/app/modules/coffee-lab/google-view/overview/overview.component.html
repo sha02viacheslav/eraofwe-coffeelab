@@ -1,35 +1,37 @@
-<div *ngIf="isMobile$" class="language-wrapper mb-3">
-    <app-language-dropdown></app-language-dropdown>
-</div>
-
-<div class="d-flex flex-column flex-md-row justify-content-between w-100 pb-4">
-    <div class="mb-3 mb-md-0 flex-1 pr-md-3">
-        <h1 class="fnt-16 fnt-md-18 fw-b mt-0 mb-2 mb-md-25">
-            <span *ngIf="cuurentRoasterSlug === 'QA'">{{ 'qa_h1_title' | translate }}</span>
-            <span *ngIf="cuurentRoasterSlug === 'ARTICLE'">{{ 'article_h1_title' | translate }}</span>
-            <span *ngIf="cuurentRoasterSlug === 'RECIPE'">{{ 'recipe_h1_title' | translate }}</span>
-            <span *ngIf="cuurentRoasterSlug === 'EOW'">{{ 'about_h1_title' | translate }}</span>
-        </h1>
-        <p class="tc-m">{{ 'coffee_lab_sub_text' | translate }}</p>
+<div class="main-forum">
+    <h1 class="fw-b mt-0 mb-0">
+        <span *ngIf="cuurentRoasterSlug === 'QA'">{{ 'qa_h1_title' | translate }}</span>
+        <span *ngIf="cuurentRoasterSlug === 'ARTICLE'">{{ 'article_h1_title' | translate }}</span>
+        <span *ngIf="cuurentRoasterSlug === 'RECIPE'">{{ 'recipe_h1_title' | translate }}</span>
+        <span *ngIf="cuurentRoasterSlug === 'EOW'">{{ 'about_h1_title' | translate }}</span>
+    </h1>
+    <h2 class="fnt-16 fnt-md-18 fw-b mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
+    <div class="d-flex mt-45">
+        <button class="btn-raised">Start writing</button>
+        <a class="btn-stroked ml-3" routerLink="/">Know more</a>
     </div>
-    <app-search-forum></app-search-forum>
 </div>
-
-<div *ngIf="isDesktop$" class="d-flex justify-content-between align-items-center pt-2 pb-45">
-    <p class="fw-sb">{{ 'discussions_knowledge_language' | translate }}</p>
-    <app-language-dropdown></app-language-dropdown>
+<div class="discussion-bg">
+    <div class="d-flex justify-content-between align-items-center">
+        <p class="fw-sb fnt-16 fnt-md-18 fnt-b">{{ 'discussions_knowledge_language' | translate }}</p>
+        <app-language-dropdown *ngIf="isDesktop$"></app-language-dropdown>
+    </div>
+    <div *ngIf="isMobile$" class="language-wrapper my-3">
+        <app-language-dropdown></app-language-dropdown>
+    </div>
 </div>
+<div class="main-block">
+    <p-tabMenu [model]="menuItems" styleClass="mb-4">
+        <ng-template pTemplate="item" let-item let-i="index">
+            <img [src]="item.icon" alt="icon" width="32" height="32" />
+            <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
+            <span class="pl-1 d-none d-md-inline-block">{{ item.label | translate }}</span>
+        </ng-template>
+    </p-tabMenu>
 
-<p-tabMenu [model]="menuItems" styleClass="mb-4">
-    <ng-template pTemplate="item" let-item let-i="index">
-        <img [src]="item.icon" alt="icon" width="32" height="32" />
-        <img [src]="item.activeIcon" alt="icon" class="active-icon" width="32" height="32" />
-        <span class="pl-1 d-none d-md-inline-block">{{ item.label | translate }}</span>
-    </ng-template>
-</p-tabMenu>
+    <div class="col-lg-7 px-0 pb-3 pb-md-4">
+        <app-publish-forum [type]="postType"></app-publish-forum>
+    </div>
 
-<div class="col-lg-7 px-0 pb-3 pb-md-4">
-    <app-publish-forum [type]="postType"></app-publish-forum>
+    <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

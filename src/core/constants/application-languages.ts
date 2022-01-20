@@ -27,7 +27,7 @@ export const APP_LANGUAGES: any[] = [
             it: 'Svedese',
         },
         value: 'sv',
-        countries: ['SV'],
+        countries: ['SE'],
     },
     {
         label: {
