@@ -43,7 +43,7 @@ export class TranslationDropdownComponent implements OnInit, AfterViewInit {
                 const isTransLang = this.translatedList.find(
                     (item) => item.language.toUpperCase() === isLang.value.toUpperCase(),
                 );
-                if (isTransLang && getCookie('langChange') !== 'set') {
+                if (isPlatformBrowser(this.platformId) && isTransLang && getCookie('langChange') !== 'set') {
                     this.dialogSrv.open(RedirectPopupComponent, {
                         data: {
                             isDetailPage: true,
