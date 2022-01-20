@@ -99,5 +99,10 @@
 </div>
 
 <div *ngIf="totalRecords > this.rows && !isLoading" class="pt-3 pt-md-4 text-center">
-    <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+    <p-paginator
+        [rows]="rows"
+        [pageLinkSize]="isMobile$ ? 3 : 5"
+        [totalRecords]="totalRecords"
+        (onPageChange)="paginate($event)"
+    ></p-paginator>
 </div>
