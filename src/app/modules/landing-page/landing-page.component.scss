@@ -196,10 +196,12 @@
             min-height: 393px;
         }
         img {
-            width: 64px;
-            height: 64px;
+            width: 46px;
+            height: 46px;
             border-radius: 4px;
             @media (min-width: 768px) {
+                width: 64px;
+                height: 64px;
                 margin-right: 20px;
             }
         }
