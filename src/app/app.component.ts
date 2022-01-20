@@ -61,11 +61,13 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
     }
 
     showPopUp(page: string) {
-        const date = new Date();
-        date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-        const expires = '; expires=' + date.toUTCString();
-        document.cookie = 'ad-' + page + '=open' + expires;
-        this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+        if (isPlatformBrowser(this.platformId)) {
+            const date = new Date();
+            date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+            const expires = '; expires=' + date.toUTCString();
+            this.document.cookie = 'ad-' + page + '=open' + expires;
+            this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+        }
     }
 
     setDynamicScripts() {

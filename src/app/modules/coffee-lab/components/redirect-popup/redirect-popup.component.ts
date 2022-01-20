@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { DestroyableComponent } from '@base-components';
 import { RouterMap, SlugMap } from '@constants';
@@ -15,7 +16,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class RedirectPopupComponent extends DestroyableComponent implements OnInit {
     data: any;
+    isBrower: boolean;
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
+        @Inject(DOCUMENT) private document: Document,
         private config: DynamicDialogConfig,
         private startupService: StartupService,
         private ref: DynamicDialogRef,
@@ -23,6 +27,7 @@ export class RedirectPopupComponent extends DestroyableComponent implements OnIn
         private coffeeLabService: CoffeeLabService,
     ) {
         super();
+        this.isBrower = isPlatformBrowser(this.platformId);
     }
 
     ngOnInit(): void {
@@ -30,11 +35,13 @@ export class RedirectPopupComponent extends DestroyableComponent implements OnIn
     }
 
     onCancel() {
-        const date = new Date();
-        date.setTime(date.getTime() + 15 * 60 * 1000);
-        const expires = '; expires=' + date.toUTCString();
-        document.cookie = 'langChange=set' + expires;
-        this.ref.close();
+        if (this.isBrower) {
+            const date = new Date();
+            date.setTime(date.getTime() + 15 * 60 * 1000);
+            const expires = '; expires=' + date.toUTCString();
+            this.document.cookie = 'langChange=set' + expires;
+            this.ref.close();
+        }
     }
 
     onApprove() {
