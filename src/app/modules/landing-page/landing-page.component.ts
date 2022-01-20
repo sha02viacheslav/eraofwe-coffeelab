@@ -105,7 +105,6 @@ export class LandingPageComponent implements OnInit {
     posts = [];
     responsiveOptions = [];
     isLoading: boolean;
-    selectedIndex = 0;
 
     constructor(private cdr: ChangeDetectorRef, private coffeeLabService: CoffeeLabService) {
         this.responsiveOptions = [
@@ -128,30 +127,30 @@ export class LandingPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getPosts();
+        this.getPosts(0);
     }
 
     handleChange(event) {
-        this.selectedIndex = event.index;
+        this.getPosts(event.index);
     }
 
-    getPosts(): void {
+    getPosts(index): void {
         const params = {
             sort_by: 'created_at',
             sort_order: 'desc',
             publish: true,
             page: 1,
-            per_page: this.selectedIndex === 0 ? 6 : 3,
+            per_page: index === 0 ? 6 : 3,
         };
         this.isLoading = true;
         this.coffeeLabService
-            .getForumList(
-                this.selectedIndex === 0 ? PostType.QA : this.selectedIndex === 1 ? PostType.ARTICLE : PostType.RECIPE,
-                params,
-            )
+            .getForumList(index === 0 ? PostType.QA : index === 1 ? PostType.ARTICLE : PostType.RECIPE, params)
             .subscribe((res) => {
-                if (res.success) {
-                    this.posts = (PostType.QA ? res.result?.questions : res.result) ?? [];
+                if (res.success && res.result) {
+                    this.posts = index === 0 ? res.result?.questions : res.result;
+                    console.log(this.posts);
+                } else {
+                    this.posts = [];
                 }
                 this.isLoading = false;
                 this.cdr.detectChanges();

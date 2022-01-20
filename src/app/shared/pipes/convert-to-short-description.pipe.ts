@@ -7,13 +7,13 @@ import { getWordCount } from '@utils';
 export class ConvertToShortDescriptionPipe implements PipeTransform {
     transform(description: string, count: number, seperator?: string): string {
         const plainString = getWordCount(description);
-        const wordCount = plainString.split(seperator ? seperator : ' ').length;
+        const wordCount = plainString?.split(seperator ? seperator : ' ').length;
         if (wordCount <= count) {
             return description;
         } else {
             return (
                 description
-                    .split(seperator ? seperator : ' ')
+                    ?.split(seperator ? seperator : ' ')
                     .slice(0, count)
                     .join(' ') + '...'
             );

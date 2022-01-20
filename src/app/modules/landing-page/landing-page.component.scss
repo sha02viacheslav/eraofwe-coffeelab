@@ -280,8 +280,7 @@
     .p-tabview {
         &.tabview-coffee-lab {
             .p-tabview-nav {
-                background: $primary-bg-color;
-                border: none !important;
+                background: transparent;
                 li {
                     margin-right: 0;
                     .p-tabview-nav-link {
