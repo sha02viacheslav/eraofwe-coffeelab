@@ -71,3 +71,8 @@
         display: block;
     }
 }
+@media (min-width: 992px) {
+    .pad-left {
+        padding-left: 44px !important;
+    }
+}
