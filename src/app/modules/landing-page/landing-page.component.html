@@ -203,7 +203,9 @@
                                         <app-user-header [prop]="item"></app-user-header>
                                     </div>
                                     <div class="d-flex pt-25">
-                                        <p class="fnt-16">{{ item.question }}</p>
+                                        <a class="fnt-16 question-hover" [routerLink]="[getLink(item)]">{{
+                                            item.question
+                                        }}</a>
                                     </div>
                                     <div class="d-flex mt-4">
                                         <app-category-list

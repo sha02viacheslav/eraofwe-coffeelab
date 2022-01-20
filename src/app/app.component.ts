@@ -38,36 +38,29 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
     }
 
     ngAfterViewInit(): void {
-        let page: string;
-        this.router.events.subscribe((e) => {
-            if (e instanceof NavigationEnd) {
-                const path = e.url.split('/');
-                page = path[path.length - 1];
-            }
-        });
         if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
             this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-                if (event && getCookie('ad-' + page) !== 'open') {
-                    this.showPopUp(page);
+                if (event && getCookie('ad-popup') !== 'open') {
+                    this.showPopUp();
                 }
             });
         } else {
             if (isPlatformBrowser(this.platformId)) {
                 setTimeout(() => {
-                    if (getCookie('ad-' + page) !== 'open') {
-                        this.showPopUp(page);
+                    if (getCookie('ad-popup') !== 'open') {
+                        this.showPopUp();
                     }
                 }, 15000);
             }
         }
     }
 
-    showPopUp(page: string) {
+    showPopUp() {
         if (isPlatformBrowser(this.platformId)) {
             const date = new Date();
             date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
             const expires = '; expires=' + date.toUTCString();
-            this.document.cookie = 'ad-' + page + '=open' + expires;
+            this.document.cookie = 'ad-popup' + '=open' + expires;
             this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
         }
     }

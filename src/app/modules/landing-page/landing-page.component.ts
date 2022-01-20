@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostType } from '@enums';
 import { CoffeeLabService } from '@services';
+import { getLangRoute } from '@utils';
 
 @Component({
     selector: 'app-landing-page',
@@ -154,5 +155,9 @@ export class LandingPageComponent implements OnInit {
                 this.isLoading = false;
                 this.cdr.detectChanges();
             });
+    }
+
+    getLink(item: any) {
+        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
     }
 }
