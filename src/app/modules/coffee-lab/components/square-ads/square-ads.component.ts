@@ -9,6 +9,7 @@ import { environment } from '@env/environment';
 export class SquareAdsComponent implements OnInit {
     readonly env = environment;
     @Input() hideBorder: boolean;
+    @Input() questionDetail: boolean;
     constructor() {}
 
     ngOnInit(): void {}
