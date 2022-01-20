@@ -194,7 +194,14 @@
                                 [categoryList]="detailsData?.categories"
                             ></app-category-list>
                         </div>
-                        <div class="mt-md-5 mt-45 mb-4 w-100">
+                        <div
+                            *ngIf="showCommentOff"
+                            (click)="showComment = true; showCommentOff = false"
+                            class="brown-cta w-100"
+                        >
+                            {{ allComments?.length > 0 ? 'Show comment' : 'Add comment' }}
+                        </div>
+                        <div *ngIf="showComment" class="mt-md-5 mt-45 mb-4 w-100">
                             <div class="w-100">
                                 <p class="fnt-16 fw-b mb-25">{{ 'comments' | translate }}</p>
                             </div>
@@ -207,7 +214,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div *ngIf="allComments?.length > 0" class="w-100">
+                        <div *ngIf="showComment" class="w-100">
                             <div class="comment-border pb-1">
                                 <p class="fw-sb">{{ allComments?.length }} {{ 'answers' | translate }}</p>
                             </div>

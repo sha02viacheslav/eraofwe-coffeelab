@@ -47,6 +47,8 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     urlLang: string;
     showAll = true;
     showToaster = false;
+    showComment = false;
+    showCommentOff = true;
 
     constructor(
         @Inject(DOCUMENT) private doc,
