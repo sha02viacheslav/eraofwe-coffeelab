@@ -8,7 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run coffee-lab:serve-ssr",
     "serve:ssr": "node dist/coffee-lab/server/main.js",
     "prerender": "ng run coffee-lab:prerender",
     "build:ssr": "ng build --prod && ng run coffee-lab:server:production && npm run prerender"
