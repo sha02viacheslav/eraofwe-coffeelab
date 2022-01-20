@@ -45,18 +45,20 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
                 page = path[path.length - 1];
             }
         });
-        if (!this.resizeService.isMobile$) {
+        if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
             this.document.querySelector('html').addEventListener('pointerleave', (event) => {
                 if (event && getCookie('ad-' + page) !== 'open') {
                     this.showPopUp(page);
                 }
             });
         } else {
-            setTimeout(() => {
-                if (getCookie('ad-' + page) !== 'open') {
-                    this.showPopUp(page);
-                }
-            }, 15000);
+            if (isPlatformBrowser(this.platformId)) {
+                setTimeout(() => {
+                    if (getCookie('ad-' + page) !== 'open') {
+                        this.showPopUp(page);
+                    }
+                }, 15000);
+            }
         }
     }
 

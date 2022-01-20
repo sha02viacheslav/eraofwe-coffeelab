@@ -115,6 +115,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             APP_LANGUAGES.forEach((item) => {
                 if (item.countries.includes(resp.countryCode)) {
                     if (
+                        isPlatformBrowser(this.platformId) &&
                         this.coffeeLabService.currentForumLanguage !== item.value &&
                         getCookie('langChange') !== 'set'
                     ) {

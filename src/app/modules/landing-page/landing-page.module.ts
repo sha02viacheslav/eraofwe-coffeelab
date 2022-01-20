@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ArticleCardModule } from '@modules/coffee-lab/components/article-card/article-card.module';
-import { QuestionsCardModule } from '@modules/coffee-lab/components/question-card/question-card.module';
 import { RecipeCardModule } from '@modules/coffee-lab/components/recipe-card/recipe-card.module';
+import { UserHeaderModule } from '@modules/coffee-lab/components/user-header/user-header.module';
 import { AccordionModule } from 'primeng/accordion';
 import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
@@ -18,7 +18,7 @@ import { LandingPageComponent } from './landing-page.component';
         AccordionModule,
         CarouselModule,
         FooterModule,
-        QuestionsCardModule,
+        UserHeaderModule,
         ArticleCardModule,
         RecipeCardModule,
         TabViewModule,
