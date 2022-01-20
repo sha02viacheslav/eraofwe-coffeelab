@@ -198,7 +198,7 @@
                     <div
                         *ngFor="let item of posts"
                         [ngClass]="labMenu.postType === PostType.QA ? 'col-12' : 'col-md-6'"
-                    >
+                    > 
                         <app-question-card
                             *ngIf="labMenu.postType === PostType.QA"
                             [question]="item"
