@@ -38,7 +38,7 @@ export class LandingPageComponent implements OnInit {
             name: 'Yker Valerio',
             position: 'Bon Vivant Caffè',
             disp:
-                "“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”",
+                "“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”	",
             image: 'assets/images/yker-valerio.png',
         },
         {
@@ -70,7 +70,7 @@ export class LandingPageComponent implements OnInit {
                 'Write about your coffee experiences, share your own articles and recipes, pose questions to experts and other consumers. It enables you to meet other coffee lovers from around the world',
         },
         {
-            arrow: 'assets/images/arrow-down-circle.svg',
+            arrow: 'assets/images/arrow-down-circle-2.svg',
             heading: 'Proofreaders',
             disp:
                 'Help make coffee more inclusive by translating and proofreading in 9 languages, with more languages being added soon.',
@@ -160,5 +160,23 @@ export class LandingPageComponent implements OnInit {
 
     showSignUp() {
         this.dialogSrv.open(SignupModalComponent, {});
+    }
+
+    mouseEnter(index: number) {
+        this.platform.map((plat, ind) => {
+            if (ind === index) {
+                plat.arrow = 'assets/images/arrow-down-circle.svg';
+            }
+            return plat;
+        });
+    }
+
+    mouseLeave(index: number) {
+        this.platform.map((plat, ind) => {
+            if (ind === index) {
+                plat.arrow = 'assets/images/arrow-down-circle-2.svg';
+            }
+            return plat;
+        });
     }
 }
