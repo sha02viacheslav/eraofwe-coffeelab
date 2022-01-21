@@ -85,6 +85,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
                             this.selectedPostType,
                     );
                 }
+                this.setSEO();
                 this.isLoading = false;
                 this.cdr.detectChanges();
             }
@@ -139,9 +140,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
 
     setSEO() {
         const title = this.currentCategory?.name + ' - A Global Coffee Community';
-        const description =
-            this.currentCategory?.name +
-            ' - A global coffee marketplace that brings together all members of the supply chain and shifts the value of the coffee brand back to the growers';
+        const description = this.currentCategory?.description + ' - Era of We';
         this.seoService.setSEO(title, description);
     }
 
