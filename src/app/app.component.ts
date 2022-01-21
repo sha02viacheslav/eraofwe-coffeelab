@@ -38,31 +38,32 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
     }
 
     ngAfterViewInit(): void {
-        if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
-            this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-                if (event && getCookie('ad-popup') !== 'open') {
-                    this.showPopUp();
-                }
-            });
-        } else {
-            if (isPlatformBrowser(this.platformId)) {
-                setTimeout(() => {
-                    if (getCookie('ad-popup') !== 'open') {
-                        this.showPopUp();
-                    }
-                }, 15000);
-            }
-        }
+        // Until shop URL is ready
+        // if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
+        //     this.document.querySelector('html').addEventListener('pointerleave', (event) => {
+        //         if (event && getCookie('ad-popup') !== 'open') {
+        //             this.showPopUp();
+        //         }
+        //     });
+        // } else {
+        //     if (isPlatformBrowser(this.platformId)) {
+        //         setTimeout(() => {
+        //             if (getCookie('ad-popup') !== 'open') {
+        //                 this.showPopUp();
+        //             }
+        //         }, 15000);
+        //     }
+        // }
     }
 
     showPopUp() {
-        if (isPlatformBrowser(this.platformId)) {
-            const date = new Date();
-            date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-            const expires = '; expires=' + date.toUTCString();
-            this.document.cookie = 'ad-popup' + '=open' + expires;
-            this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
-        }
+        // if (isPlatformBrowser(this.platformId)) {
+        //     const date = new Date();
+        //     date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+        //     const expires = '; expires=' + date.toUTCString();
+        //     this.document.cookie = 'ad-popup' + '=open' + expires;
+        //     this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+        // }
     }
 
     setDynamicScripts() {

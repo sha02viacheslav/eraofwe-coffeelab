@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -22,6 +24,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private router: Router,
         private startupService: StartupService,
         protected resizeService: ResizeService,
+        private dialogSrv: DialogService,
     ) {
         super(resizeService);
     }
@@ -98,5 +101,9 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 command: () => this.setPostType(RouterSlug.EOW),
             },
         ];
+    }
+
+    onWrite() {
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }
