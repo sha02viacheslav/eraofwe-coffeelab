@@ -33,11 +33,11 @@ export class LandingPageComponent implements OnInit {
     ];
     hereData = [
         {
-            name: 'Anna Nordström',
-            position: 'Lofbergs',
+            name: 'Yker Valerio',
+            position: 'Bon Vivant Caffè',
             disp:
-                '“The Coffee Lab is a platform for sharing knowledge and experience with coffee lovers around the world. A community where we meet around our common passion for coffee. At The Coffee Lab we can ask, learn, share and get inspiration direct from coffee professionals and thereby develop ourselves and others.”',
-            image: 'assets/images/anna-nordström.jpg',
+                "“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”",
+            image: 'assets/images/yker-valerio.png',
         },
         {
             name: 'Vasileia Fanaroti',

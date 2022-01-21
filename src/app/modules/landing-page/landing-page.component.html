@@ -129,9 +129,15 @@
             <div class="d-flex align-items-end mt-3 mt-md-0"><button class="btn-raised">Sign up</button></div>
         </div>
         <div class="row mx-0 mt-md-4">
-            <div class="share-box br-4" *ngFor="let share of shareData">
-                <div class="mb-md-3 mb-2"><img src="{{ share.image }}" alt="" /></div>
-                <div class="pr-md-5">
+            <div
+                class="col-md-4 mt-1 mt-md-0 br-4"
+                [ngClass]="i === 0 || i === 1 ? 'pr-md-5' : 'pl-0'"
+                *ngFor="let share of shareData; let i = index"
+            >
+                <div class="mb-md-3 mb-2" [ngClass]="{ 'pl-45 ml-3': i > 0 }">
+                    <img src="{{ share.image }}" alt="" />
+                </div>
+                <div [class.border-right]="i !== 2">
                     <div class="fnt-18 fnt-md-20 mb-2 fw-b lh-143 pr-md-5 mr-md-5">{{ share.heading }}</div>
                     <p class="fnt-14 lh-15 pr-md-5">{{ share.disp }}</p>
                 </div>

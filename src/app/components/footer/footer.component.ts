@@ -14,10 +14,10 @@ export class FooterComponent implements OnInit {
     pageOffsetHeight: number;
     constructor() {}
 
-    @HostListener('window:scroll', ['$event'])
-    scrollHandler(event) {
-        this.pageOffsetHeight = window.pageYOffset;
-    }
+    // @HostListener('window:scroll', ['$event'])
+    // scrollHandler(event) {
+    //     this.pageOffsetHeight = window.pageYOffset;
+    // }
 
     ngOnInit(): void {}
 }

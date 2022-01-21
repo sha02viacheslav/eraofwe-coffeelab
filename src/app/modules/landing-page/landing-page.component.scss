@@ -160,16 +160,17 @@
         padding-top: 124px;
         padding-bottom: 129px;
     }
-    .share-box {
-        @media (min-width: 768px) {
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-        }
-        @media (max-width: 767px) {
-            margin-top: 48px;
-        }
-    }
 }
+
+.border-right {
+    border-right: 1px solid #ddd;
+    height: 137px;
+}
+
+// .border-left {
+//     border-left: 1px solid #ddd;
+//     padding-left: 48px;
+// }
 
 .learn-pd {
     @media (min-width: 768px) {
