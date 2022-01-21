@@ -34,6 +34,16 @@
             min-height: 256px;
         }
     }
+    .popular-image {
+        height: 397px;
+        min-height: 397px;
+        object-fit: cover;
+        border-radius: 4px;
+        @media (max-width: 767px) {
+            height: 377px;
+            min-height: 377px;
+        }
+    }
     .published {
         color: #797a8d;
         line-height: 1.57;
@@ -81,7 +91,6 @@
 }
 
 .article-wrapper {
-    border-bottom: 1px solid #d8d8d8;
     &:first-child {
         border-top: 1px solid #d8d8d8;
     }
@@ -157,5 +166,10 @@
     }
     .sign-up {
         border-radius: 6px;
+        height: 55px;
     }
+}
+
+.down-border {
+    border-bottom: 1px solid #d8d8d8;
 }

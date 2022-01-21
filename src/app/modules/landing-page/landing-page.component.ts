@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostType } from '@enums';
+import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { CoffeeLabService } from '@services';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-landing-page',
@@ -76,7 +78,7 @@ export class LandingPageComponent implements OnInit {
     ];
     menuItems = [
         {
-            label: 'Q&A forum',
+            label: 'Q & A forum',
             postType: PostType.QA,
         },
         {
@@ -89,7 +91,11 @@ export class LandingPageComponent implements OnInit {
         },
     ];
 
-    constructor(private cdr: ChangeDetectorRef, private coffeeLabService: CoffeeLabService) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private coffeeLabService: CoffeeLabService,
+        private dialogSrv: DialogService,
+    ) {
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -150,5 +156,9 @@ export class LandingPageComponent implements OnInit {
 
     getLink(item: any, type: string) {
         return `/en/${type}/${item.slug}`;
+    }
+
+    showSignUp() {
+        this.dialogSrv.open(SignupModalComponent, {});
     }
 }

@@ -7,24 +7,24 @@
             <div class="fnt-20 txt-32 fw-n mb-3 mb-md-4 mt-45 pt-25 mt-md-5 pt-md-5">The Coffee Lab</div>
             <div class="fnt-24 txt-54 fw-b mb-4 mb-md-5">Share Your Knowledge & Interact With Coffee Enthusiasts</div>
             <div class="lab-btn mb-md-5 mb-4 pb-md-2">
-                <button class="btn-raised mr-3">Start writing</button>
+                <button class="btn-raised mr-3" (click)="showSignUp()">Start writing</button>
                 <button class="btn-stroked mt-25 mt-md-0" routerLink="en/qa-forum">Explore the forum</button>
             </div>
             <hr />
             <div class="row mt-4 mt-md-5">
                 <div class="col-6">
-                    <div class="fnt-20 txt-36 fw-b mb-md-3">1,100+</div>
-                    <div class="fw-b fnt-14 fnt-md-20 mb-md-2">Articles & recipes</div>
+                    <div class="fnt-20 txt-36 fw-b mb-md-3 mb-1">1,100+</div>
+                    <div class="fw-b fnt-md-20 mb-md-2 mb-1">Articles & recipes</div>
                     <p>
-                        Get access to unlimited coffee<br />
+                        Get access to unlimited coffee<br class="d-md-block d-none" />
                         guides curated just for you
                     </p>
                 </div>
                 <div class="col-6">
-                    <div class="txt-36 fw-b mb-md-3">52+</div>
-                    <div class="fw-b fnt-md-20 mb-md-2">Coffee experts</div>
+                    <div class="fnt-20 txt-36 fw-b mb-md-3 mb-1">52+</div>
+                    <div class="fw-b fnt-md-20 mb-md-2 mb-1">Coffee experts</div>
                     <p>
-                        Interact with industry experts and<br />
+                        Interact with industry experts and<br class="d-md-block d-none" />
                         writers from around the world.
                     </p>
                 </div>
@@ -39,7 +39,7 @@
         <div class="trending-posts">
             <div class="d-flex justify-content-between">
                 <div class="fnt-20 fnt-md-24 txt-w">Trending posts</div>
-                <button class="btn-raised d-none d-md-block">Discover more</button>
+                <a class="btn-raised d-none d-md-block" routerLink="en/qa-forum">Discover more</a>
             </div>
             <div class="d-md-none trend-csl">
                 <p-carousel
@@ -61,14 +61,14 @@
                                     alt="trending-image"
                                 />
                                 <div class="upper-txt txt-w">
-                                    <div class="fnt-14">{{ trending.title ? 'ARTICLE' : 'RECIPE' }}</div>
-                                    <div class="fnt-18 fw-b">{{ trending.title || trending.name }}</div>
+                                    <div class="">{{ trending.title ? 'ARTICLE' : 'RECIPE' }}</div>
+                                    <div class="fnt-16 fw-b">{{ trending.title || trending.name }}</div>
                                 </div>
                             </div>
                         </div>
                     </ng-template>
                 </p-carousel>
-                <button class="btn-raised mt-4">Discover more</button>
+                <a class="btn-raised mt-4" routerLink="en/qa-forum">Discover more</a>
             </div>
             <div class="d-flex mt-md-45">
                 <div
@@ -78,7 +78,7 @@
                 >
                     <img [lazyLoad]="trend.cover_image_url" src="assets/images/empty.svg" alt="trend-image" />
                     <div class="upper-txt txt-w">
-                        <div class="fnt-14">{{ trend.title ? 'ARTICLE' : 'RECIPE' }}</div>
+                        <div class="">{{ trend.title ? 'ARTICLE' : 'RECIPE' }}</div>
                         <div class="fnt-md-24 fw-b">{{ trend.title || trend.name }}</div>
                     </div>
                 </div>
@@ -90,26 +90,29 @@
         <div class="row">
             <div class="order col-md-6 d-flex flex-column justify-content-center">
                 <div class="fnt-20 mb-2 mb-md-3 fw-b txt-36">What is The Coffee Lab?</div>
-                <p class="fnt-14 fnt-md-20">
+                <p class="fnt-md-20">
                     The Coffee Lab is a platform for anyone in the coffee world, from roasters to estates to home
                     brewers, to share their views, expertise, and experiences. Members can ask questions, provide
                     answers, talk about their brands, share tips, write about coffee culture, and much more. If you love
                     coffee and want to share that, this is the place for you!
                 </p>
             </div>
-            <div class="col-md-6 brew"><img src="assets/images/group-16.png" alt="group-16" /></div>
+            <div class="col-md-6 brew">
+                <img src="assets/images/landing-mobile-text.png" alt="mobile-posts" class="d-none d-md-block" />
+                <img src="assets/images/landing-mobile-text-sm.png" alt="mobile-posts-sm" class="d-md-none" />
+            </div>
         </div>
     </div>
 
     <div class="container platform screen-size mob-pd">
         <div class="row p-md-5">
             <div class="col-md-6 order px-md-0">
-                <div class="mb-3 plat-card bg-f8 p-md-4 br-4" *ngFor="let plat of platform">
+                <div class="mb-3 plat-card p-md-4 br-4" *ngFor="let plat of platform" (click)="showSignUp()">
                     <div class="d-flex justify-content-between">
                         <div class="fnt-16 fnt-md-20 mb-2 fw-b">{{ plat.heading }}</div>
                         <div><img src="{{ plat.arrow }}" alt="" /></div>
                     </div>
-                    <p class="fnt-14 lh-157">{{ plat.disp }}</p>
+                    <p class="lh-157">{{ plat.disp }}</p>
                 </div>
             </div>
             <div class="col-md-6 d-flex align-items-center">
@@ -126,7 +129,9 @@
                 Share your story, expertise, or<br />
                 brand in 3 easy steps
             </div>
-            <div class="d-flex align-items-end mt-3 mt-md-0"><button class="btn-raised">Sign up</button></div>
+            <div class="d-flex align-items-end mt-3 mt-md-0">
+                <button class="btn-raised" (click)="showSignUp()">Sign up</button>
+            </div>
         </div>
         <div class="row mx-0 mt-md-4">
             <div
@@ -134,12 +139,12 @@
                 [ngClass]="i === 0 || i === 1 ? 'pr-md-5' : 'pl-0'"
                 *ngFor="let share of shareData; let i = index"
             >
-                <div class="mb-md-3 mb-2" [ngClass]="{ 'pl-45 ml-3': i > 0 }">
+                <div class="mb-md-3 mb-2">
                     <img src="{{ share.image }}" alt="" />
                 </div>
                 <div [class.border-right]="i !== 2">
                     <div class="fnt-18 fnt-md-20 mb-2 fw-b lh-143 pr-md-5 mr-md-5">{{ share.heading }}</div>
-                    <p class="fnt-14 lh-15 pr-md-5">{{ share.disp }}</p>
+                    <p class="lh-15 pr-md-5">{{ share.disp }}</p>
                 </div>
             </div>
         </div>
@@ -174,7 +179,7 @@
                                         </div>
                                     </div>
                                     <div class="pt-25">
-                                        <p class="fnt-14 fnt-md-16 lh-15 text-left">{{ here.disp }}</p>
+                                        <p class="fnt-md-16 lh-15 text-left">{{ here.disp }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +198,7 @@
                             </div>
                         </div>
                         <div class="pt-md-4">
-                            <p class="fnt-14 fnt-md-16 lh-15">{{ here.disp }}</p>
+                            <p class="fnt-md-16 lh-15">{{ here.disp }}</p>
                         </div>
                     </div>
                 </div>
@@ -204,7 +209,9 @@
     <div class="container px-0 learn-pd mob-pd screen-size">
         <div class="d-md-flex justify-content-between mb-md-5">
             <div class="fnt-20 txt-36 fw-b">Learn more about coffee and share <br />your experiences</div>
-            <div class="d-flex align-items-end mt-3 mt-md-0"><button class="btn-raised mt">Get started</button></div>
+            <div class="d-flex align-items-end mt-3 mt-md-0">
+                <button class="btn-raised mt" (click)="showSignUp()">Get started</button>
+            </div>
         </div>
         <div>
             <p-tabView styleClass="tabview-coffee-lab position-relative" (onChange)="handleChange($event)">

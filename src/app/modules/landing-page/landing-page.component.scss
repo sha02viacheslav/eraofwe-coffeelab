@@ -137,6 +137,9 @@
             width: 100%;
         }
     }
+    p {
+        width: 80%;
+    }
 }
 
 .platform {
@@ -146,6 +149,8 @@
     background-size: cover;
     object-fit: cover;
     .plat-card {
+        cursor: pointer;
+        background-color: #f8f6ef;
         @media (max-width: 767px) {
             padding: 16px 20px;
         }
@@ -163,14 +168,11 @@
 }
 
 .border-right {
-    border-right: 1px solid #ddd;
-    height: 137px;
+    @media (min-width: 768px) {
+        border-right: 1px solid #ddd;
+        height: 137px;
+    }
 }
-
-// .border-left {
-//     border-left: 1px solid #ddd;
-//     padding-left: 48px;
-// }
 
 .learn-pd {
     @media (min-width: 768px) {
