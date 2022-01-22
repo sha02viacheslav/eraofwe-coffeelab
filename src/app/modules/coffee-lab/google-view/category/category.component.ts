@@ -1,17 +1,18 @@
+import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { RouterMap } from '@constants';
+import { RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
-import { MenuItem } from 'primeng/api';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-category',
     templateUrl: './category.component.html',
     styleUrls: ['./category.component.scss'],
+    providers: [TitleCasePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent extends ResizeableComponent implements OnInit {
@@ -34,6 +35,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         private seoService: SEOService,
         private startupService: StartupService,
         protected resizeService: ResizeService,
+        public titleCasePipe: TitleCasePipe,
     ) {
         super(resizeService);
 
@@ -139,8 +141,16 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     }
 
     setSEO() {
-        const title = this.currentCategory?.name + ' - A Global Coffee Community';
-        const description = this.currentCategory?.description + ' - Era of We';
+        const title =
+            this.currentCategory?.name +
+            ' ' +
+            this.titleCasePipe.transform(SlugMap[this.selectedPostType]) +
+            ' - A Global Coffee Community';
+        const description =
+            this.titleCasePipe.transform(SlugMap[this.selectedPostType]) +
+            ' - ' +
+            this.currentCategory?.description +
+            ' - Era of We';
         this.seoService.setSEO(title, description);
     }
 
