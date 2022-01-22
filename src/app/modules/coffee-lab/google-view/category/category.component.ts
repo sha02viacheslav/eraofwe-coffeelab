@@ -2,7 +2,7 @@ import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { RouterMap, SlugMap } from '@constants';
+import { APP_LANGUAGES, RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
@@ -142,6 +142,8 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     setSEO() {
         const title =
             this.currentCategory?.name +
+            ' ' +
+            APP_LANGUAGES.find((lang) => lang.value === this.currentLangCode).label[this.currentLangCode] +
             ' ' +
             this.titleCasePipe.transform(SlugMap[this.selectedPostType]) +
             ' - A Global Coffee Community';
