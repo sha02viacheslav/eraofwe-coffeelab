@@ -11,7 +11,7 @@
                 ></app-category-list>
             </div>
             <div class="px-0">
-                <h1 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                <h1 class="main-heading fnt-head fw-sb px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                     {{ detailsData?.title || '--' }}
                 </h1>
                 <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
@@ -254,7 +254,7 @@
 
         <div class="more bg-f8">
             <div class="container pt-4 py-md-5">
-                <div class="more-text mt-md-4 mb-3 mb-md-45 text-center">
+                <div class="more-text fnt-head fw-sb mt-md-4 mb-3 mb-md-45 text-center">
                     {{ 'more_on_the_coffee_lab' | translate }}
                 </div>
                 <div class="d-flex justify-content-center mt-md-25 mb-md-5 pb-md-3">
@@ -266,7 +266,7 @@
                 <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">
                     <a [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug" class="cursor-pointer">
                         <div class="px-0">
-                            <h2 class="main-heading fw-b px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                            <h2 class="main-heading fw-m px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                                 {{ forum?.title || '--' }}
                             </h2>
                             <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
