@@ -105,12 +105,12 @@
                     class="mb-3 plat-card p-md-4 br-4"
                     *ngFor="let plat of platform; let i = index"
                     (click)="showSignUp()"
+                    (mouseenter)="mouseEnter(i)"
+                    (mouseleave)="mouseLeave(i)"
                 >
                     <div class="d-flex justify-content-between">
                         <div class="fnt-16 fnt-md-20 mb-2 fw-b">{{ plat.heading }}</div>
-                        <a (mouseenter)="mouseEnter(i)" (mouseleave)="mouseLeave(i)"
-                            ><img src="{{ plat.arrow }}" alt=""
-                        /></a>
+                        <div><img src="{{ plat.arrow }}" alt="" /></div>
                     </div>
                     <p class="lh-157">{{ plat.disp }}</p>
                 </div>

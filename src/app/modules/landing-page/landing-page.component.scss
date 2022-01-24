@@ -150,9 +150,16 @@
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
+    @media (max-width: 767px) {
+        background-image: url(../../.../../../assets/images/platform-mobile.png);
+        background-position: unset;
+    }
     .plat-card {
         cursor: pointer;
         background-color: #f8f6ef;
+        &:hover {
+            box-shadow: 5px 5px 5px 1px rgb(45 43 42 / 57%);
+        }
         @media (max-width: 767px) {
             padding: 16px 20px;
         }
