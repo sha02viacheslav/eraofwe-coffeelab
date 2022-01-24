@@ -183,6 +183,19 @@
     }
 }
 
+.w-325 {
+    @media (min-width: 768px) {
+        flex: 1 0 32%;
+        max-width: 32%;
+    }
+}
+.w-36 {
+    @media (min-width: 768px) {
+        flex: 1 0 36%;
+        max-width: 36%;
+    }
+}
+
 .border-bottom {
     border-bottom: 1px solid #ddd;
     margin: 1.5rem 5.3rem 0.5rem 5.3rem;

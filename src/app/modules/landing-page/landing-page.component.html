@@ -135,16 +135,18 @@
         </div>
         <div class="row mx-0 pt-md-35 mt-md-5">
             <div
-                class="col-md-4 mt-45 mt-md-0 br-4 px-0"
-                [ngClass]="i === 0 || i === 1 ? 'pr-md-5' : 'pl-0'"
+                [ngClass]="i == 1 ? 'w-36' : 'w-325'"
+                class="mt-45 mt-md-0 br-4 px-0"
                 *ngFor="let share of shareData; let i = index"
             >
-                <div class="mb-md-3 mb-2">
+                <div class="mb-md-3 mb-2" [ngClass]="i == 1 ? 'px-md-5' : i == 0 ? 'pr-md-5' : 'pl-md-5'">
                     <img src="{{ share.image }}" alt="" />
                 </div>
-                <div [class.border-right]="i !== 2">
-                    <div class="fnt-18 fnt-md-20 mb-2 fw-b lh-143 pr-md-5 mr-md-5">{{ share.heading }}</div>
-                    <p class="lh-15 pr-md-5">{{ share.disp }}</p>
+                <div [class.border-right]="i !== 2" [ngClass]="i == 1 ? 'px-md-5' : i == 0 ? 'pr-md-5' : 'pl-md-5'">
+                    <div class="fnt-18 fnt-md-20 mb-2 fw-b lh-143 mr-md-5" [ngClass]="i == 0 ? 'pr-md-5' : ''">
+                        {{ share.heading }}
+                    </div>
+                    <p class="fnt-md-16 lh-15" [ngClass]="i == 2 ? 'pr-md-2' : ''">{{ share.disp }}</p>
                     <div [class.border-bottom]="i !== 2" class="d-md-none"></div>
                 </div>
             </div>
