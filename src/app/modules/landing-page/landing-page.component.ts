@@ -12,6 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 export class LandingPageComponent implements OnInit {
     readonly PostType = PostType;
     posts = [];
+    responsiveOptionsPosts = [];
     responsiveOptions = [];
     trendingData = [];
     isLoading: boolean;
@@ -96,6 +97,23 @@ export class LandingPageComponent implements OnInit {
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
     ) {
+        this.responsiveOptionsPosts = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3,
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2,
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1.5,
+                numScroll: 1,
+            },
+        ];
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
