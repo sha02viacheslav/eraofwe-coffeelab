@@ -151,6 +151,7 @@
                 <div [class.border-right]="i !== 2">
                     <div class="fnt-18 fnt-md-20 mb-2 fw-b lh-143 pr-md-5 mr-md-5">{{ share.heading }}</div>
                     <p class="lh-15 pr-md-5">{{ share.disp }}</p>
+                    <div [class.border-bottom]="i !== 2" class="d-md-none"></div>
                 </div>
             </div>
         </div>
@@ -219,14 +220,18 @@
                 <button class="btn-raised mt" (click)="showSignUp()">Get started</button>
             </div>
         </div>
-        <div>
+        <div class="mt-45 mt-md-0">
             <p-tabView styleClass="tabview-coffee-lab position-relative" (onChange)="handleChange($event)">
                 <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
                     <ng-template pTemplate="header">
-                        <span class="pl-1 d-none d-md-block">{{ labMenu.label }}</span>
+                        <span class="pl-1">{{ labMenu.label }}</span>
                     </ng-template>
                     <div class="row mx-0" *ngIf="!isLoading">
-                        <div *ngFor="let item of posts" class="col-md-4">
+                        <div
+                            *ngFor="let item of posts"
+                            class="col-md-4 mb-md-0"
+                            [class.mb-45]="labMenu.postType !== PostType.QA"
+                        >
                             <div class="d-flex mb-5" *ngIf="labMenu.postType === PostType.QA">
                                 <div class="col-4">
                                     <div class="d-flex">
@@ -246,7 +251,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <app-article-card
                                 *ngIf="labMenu.postType === PostType.ARTICLE"
                                 [article]="item"
