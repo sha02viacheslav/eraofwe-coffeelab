@@ -1,106 +1,3 @@
-<div class="footer-container">
-    <div class="container">
-        <div class="footer-content flex-column flex-sm-row">
-            <a class="company-logo__img d-inline-block d-sm-none mb-3" [href]="env.publicWeb">
-                <img lazyLoad="assets/images/era-we-black.svg" alt="Comany-Logo" />
-            </a>
-            <div class="d-flex flex-column flex-md-row">
-                <div class="text-content about-wrap my-3 my-md-0">
-                    <div>{{ 'about_us' | translate }}</div>
-                    <ul>
-                        <li>
-                            <a href="{{ env.publicWeb }}/terms-and-condition/" target="_blank">
-                                {{ 'terms_and_condition_user' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ env.publicWeb }}/privacy-policy/" target="_blank">
-                                {{ 'privacy_policy' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ env.publicWeb }}/cookie-policy/" target="_blank">
-                                {{ 'cookie_policy' | translate }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="text-content pl-0 pl-md-5 my-3 my-md-0">
-                    <div>{{ 'help_and_support' | translate }}:</div>
-                    <ul>
-                        <li>
-                            <a [href]="'mailto:' + env.supportEmailAddress">{{ env.supportEmailAddress }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="d-flex flex-column align-items-start align-items-sm-end">
-                <a class="company-logo__img d-none d-sm-inline-block mb-3" [href]="env.publicWeb">
-                    <img lazyLoad="assets/images/era-we-black.svg" alt="Comany-Logo" />
-                </a>
-                <div class="d-flex mt-3">
-                    <a class="social-logo" [href]="env.facebookUrl" target="_blank" rel="noopener noreferrer">
-                        <img lazyLoad="assets/images/facebook.svg" alt="social-Logo" />
-                    </a>
-                    <a class="social-logo" [href]="env.twitterUrl" target="_blank" rel="noopener noreferrer">
-                        <img lazyLoad="assets/images/twitter.svg" alt="social-Logo" />
-                    </a>
-                    <a class="social-logo" [href]="env.instagramUrl" target="_blank" rel="noopener noreferrer">
-                        <img lazyLoad="assets/images/instagram.svg" alt="social-Logo" />
-                    </a>
-                    <a class="social-logo" [href]="env.linkedinUrl" target="_blank" rel="noopener noreferrer">
-                        <img lazyLoad="assets/images/linkedin.svg" alt="social-Logo" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-wrapper">©2021 SEWN Technology Solutions AB {{ 'all_rights_reserved' | translate }}.</div>
-    </div>
-</div>
-
-<!-- <div
-    *ngIf="pageOffsetHeight > 1000"
-    [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
-    class="footer-ads border-334 bg-white w-100"
->
-    <div class="container-md d-md-flex justify-content-between">
-        <div [ngClass]="isExpand ? 'ads-image' : ''">
-            <div class="mob-disp">
-                <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
-                <div *ngIf="isExpand" class="align-items-end d-flex d-md-none">
-                    <a class="btn-raised ml-3" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
-                </div>
-            </div>
-            <div class="d-md-none text-right">
-                <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
-                <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
-            </div>
-        </div>
-        <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'">
-            <div [ngClass]="!isExpand ? 'd-flex' : ''">
-                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
-                    <span *ngIf="isExpand">Grab it while it’s hot!</span>
-                    <span *ngIf="!isExpand"> Sign up to order coffee directly from farms to your home. </span>
-                </div>
-                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                    Sign up to order coffee directly from farms to your home.
-                </div>
-                <div *ngIf="isExpand" class="fnt-12 d-md-none">
-                    Sign up to order coffee directly from farms to your home.
-                </div>
-                <a *ngIf="!isExpand" class="btn-raised ml-45" href="{{ env.publicWeb }}/shop/" target="_blank"
-                    >Buy now</a
-                >
-            </div>
-            <div *ngIf="isExpand" class="d-flex align-items-center pl-md-5 pt-35">
-                <a class="btn-raised d-none d-md-block" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
-            </div>
-        </div>
-        <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
-        <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
-    </div>
-</div> -->
-
 <div class="footer">
     <div class="content d-md-flex">
         <div class="newsletter">
@@ -180,3 +77,46 @@
         <div class="dropdown"></div>
     </div>
 </div>
+
+<!-- <div
+    *ngIf="pageOffsetHeight > 1000"
+    [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
+    class="footer-ads border-334 bg-white w-100"
+>
+    <div class="container-md d-md-flex justify-content-between">
+        <div [ngClass]="isExpand ? 'ads-image' : ''">
+            <div class="mob-disp">
+                <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
+                <div *ngIf="isExpand" class="align-items-end d-flex d-md-none">
+                    <a class="btn-raised ml-3" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+                </div>
+            </div>
+            <div class="d-md-none text-right">
+                <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+                <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
+            </div>
+        </div>
+        <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'">
+            <div [ngClass]="!isExpand ? 'd-flex' : ''">
+                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
+                    <span *ngIf="isExpand">Grab it while it’s hot!</span>
+                    <span *ngIf="!isExpand"> Sign up to order coffee directly from farms to your home. </span>
+                </div>
+                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
+                    Sign up to order coffee directly from farms to your home.
+                </div>
+                <div *ngIf="isExpand" class="fnt-12 d-md-none">
+                    Sign up to order coffee directly from farms to your home.
+                </div>
+                <a *ngIf="!isExpand" class="btn-raised ml-45" href="{{ env.publicWeb }}/shop/" target="_blank"
+                    >Buy now</a
+                >
+            </div>
+            <div *ngIf="isExpand" class="d-flex align-items-center pl-md-5 pt-35">
+                <a class="btn-raised d-none d-md-block" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+            </div>
+        </div>
+        <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+        <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
+    </div>
+</div> -->
