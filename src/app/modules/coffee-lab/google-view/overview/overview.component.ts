@@ -18,7 +18,7 @@ import { takeUntil } from 'rxjs/operators';
 export class OverviewComponent extends ResizeableComponent implements OnInit {
     menuItems: MenuItem[] = [];
     postType: PostType;
-    cuurentRoasterSlug = '';
+    // cuurentRoasterSlug = '';
     constructor(
         private coffeeLabService: CoffeeLabService,
         private router: Router,
@@ -48,7 +48,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     }
 
     setPostType(routerSlug: RouterSlug) {
-        this.cuurentRoasterSlug = routerSlug;
+        // this.cuurentRoasterSlug = routerSlug;
         switch (routerSlug) {
             case RouterSlug.QA: {
                 this.postType = PostType.QA;

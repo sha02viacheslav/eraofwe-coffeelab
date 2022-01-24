@@ -15,18 +15,12 @@
                 <div class="col-6">
                     <div class="fnt-20 txt-36 fw-b mb-md-3 mb-1">1,100+</div>
                     <div class="fw-b fnt-md-20 mb-md-2 mb-1">Articles & recipes</div>
-                    <p class="fnt-md-16">
-                        Get access to unlimited coffee<br class="d-md-block d-none" />
-                        guides curated just for you
-                    </p>
+                    <p class="fnt-md-16">Get access to unlimited coffee guides curated just for you</p>
                 </div>
                 <div class="col-6">
                     <div class="fnt-20 txt-36 fw-b mb-md-3 mb-1">52+</div>
                     <div class="fw-b fnt-md-20 mb-md-2 mb-1">Coffee experts</div>
-                    <p class="fnt-md-16">
-                        Interact with industry experts and<br class="d-md-block d-none" />
-                        writers from around the world.
-                    </p>
+                    <p class="fnt-md-16">Interact with industry experts and writers from around the world.</p>
                 </div>
             </div>
         </div>
@@ -90,7 +84,7 @@
         <div class="row">
             <div class="order col-md-6 d-flex flex-column justify-content-center">
                 <div class="fnt-20 mb-2 mb-md-3 fw-b txt-36">What is The Coffee Lab?</div>
-                <p class="fnt-md-20">
+                <p class="fnt-md-20 fnt-16">
                     The Coffee Lab is a platform for anyone in the coffee world, from roasters to estates to home
                     brewers, to share their views, expertise, and experiences. Members can ask questions, provide
                     answers, talk about their brands, share tips, write about coffee culture, and much more. If you love
@@ -235,7 +229,7 @@
                             <div class="d-flex mb-5" *ngIf="labMenu.postType === PostType.QA">
                                 <div class="col-4">
                                     <div class="d-flex">
-                                        <app-user-header [prop]="item"></app-user-header>
+                                        <app-user-header [isLandingPage]="true" [prop]="item"></app-user-header>
                                     </div>
                                     <div class="d-flex pt-25">
                                         <a class="fnt-16 question-hover" [routerLink]="[getLink(item, 'qa-forum')]">{{

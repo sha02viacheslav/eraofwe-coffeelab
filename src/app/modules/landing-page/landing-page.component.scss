@@ -44,10 +44,6 @@
         }
     }
     .trending-img {
-        @media (min-width: 768px) {
-            width: 364px;
-            height: 258px;
-        }
         position: relative;
         img {
             @media (max-width: 767px) {
@@ -58,6 +54,7 @@
             @media (min-width: 768px) {
                 width: 364px;
                 height: 258px;
+                object-fit: cover;
             }
             opacity: 0.61;
             border-radius: 4px;
@@ -110,6 +107,9 @@
     }
     .order {
         order: 1;
+        p {
+            line-height: 1.56;
+        }
     }
     .txt-30 {
         font-size: 30px;
@@ -203,7 +203,7 @@
         @media (min-width: 768px) {
             margin-right: 0.75rem;
             margin-left: 0.75rem;
-            min-height: 393px;
+            min-height: 465px;
         }
         @media (max-width: 767px) {
             min-height: 565px;
