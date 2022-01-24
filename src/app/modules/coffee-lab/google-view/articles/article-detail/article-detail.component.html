@@ -260,7 +260,9 @@
                 <div class="d-flex justify-content-center mt-md-25 mb-md-5 pb-md-3">
                     <div class="d-flex sign-up px-md-5 bg-white align-items-center">
                         <div class="fnt-16 mr-md-4 px-3 py-2">{{ 'sign_up_and_contribute_now' | translate }}</div>
-                        <button class="btn-raised mt-1 mt-md-0" (click)="onFocus()">{{ 'sign_up' | translate }}</button>
+                        <button class="btn-raised mt-1 mt-md-0 fnt-16" (click)="onFocus()">
+                            {{ 'sign_up' | translate }}
+                        </button>
                     </div>
                 </div>
                 <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">

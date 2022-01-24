@@ -28,6 +28,16 @@
                 }
             }
         }
+        .share-text {
+            font-weight: 500;
+            line-height: 1.14;
+            font-size: 54px;
+            @media (max-width: 767px) {
+                font-size: 24px;
+                line-height: 1.38;
+                font-weight: 600;
+            }
+        }
     }
 }
 .trending {
@@ -65,7 +75,7 @@
             bottom: 20px;
             left: 1rem;
             @media (max-width: 767px) {
-                bottom: 3rem;
+                bottom: 1.8rem;
                 left: 0.5rem;
                 text-align: left;
             }
@@ -384,6 +394,10 @@
             }
         }
     }
+}
+
+.lh-136 {
+    line-height: 1.36;
 }
 
 @media (max-width: 768px) {
