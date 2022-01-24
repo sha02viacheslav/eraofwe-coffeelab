@@ -361,3 +361,9 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .show-web {
+        display: none;
+    }
+}
