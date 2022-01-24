@@ -30,7 +30,10 @@
                 <span class="ellipsis" *ngIf="orgType !== 'co'"
                     >@{{ orgType === 'sa' || !orgType ? 'Era of We' : orgType }}</span
                 >
-                <div class="d-flex" *ngIf="prop?.question || prop?.answer || isArticleDetail || isRecipeDetail">
+                <div
+                    class="d-flex"
+                    *ngIf="!isLandingPage && (prop?.question || prop?.answer || isArticleDetail || isRecipeDetail)"
+                >
                     <span class="d-none d-md-block time-point"></span>
                     <span class="fnt-semi-bold text-clr588 d-none d-md-block aling-time">
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}

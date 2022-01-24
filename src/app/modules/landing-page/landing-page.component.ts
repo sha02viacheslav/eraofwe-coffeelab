@@ -152,7 +152,7 @@ export class LandingPageComponent implements OnInit {
         };
         this.isLoading = true;
         this.coffeeLabService
-            .getForumList(index === 0 ? PostType.QA : index === 1 ? PostType.ARTICLE : PostType.RECIPE, params)
+            .getForumList(index === 0 ? PostType.QA : index === 1 ? PostType.ARTICLE : PostType.RECIPE, params, 'en')
             .subscribe((res) => {
                 if (res.success && res.result) {
                     this.posts = index === 0 ? res.result?.questions : res.result;

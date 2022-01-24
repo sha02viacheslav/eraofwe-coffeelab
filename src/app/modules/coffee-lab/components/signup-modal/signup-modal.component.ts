@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 export class SignupModalComponent extends DestroyableComponent implements OnInit {
     ssoWeb = environment.ssoWeb;
     isStaging = environment.needProtect;
-    isReady = false;
+    isReady = true;
     errorMsg: string;
 
     constructor(
