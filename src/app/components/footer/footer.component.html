@@ -100,3 +100,83 @@
         <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
     </div>
 </div> -->
+
+<div class="footer">
+    <div class="content d-md-flex">
+        <div class="newsletter">
+            <a class="company-logo__img" [href]="env.publicWeb">
+                <img lazyLoad="assets/images/fiiterlogo.svg" alt="Comany-Logo" />
+            </a>
+            <div class="email-letter">
+                <h2>Subscribe to our newsletter</h2>
+                <form>
+                    <div class="form-group">
+                        <input type="email" name="email" value="" placeholder="What's your email address?" />
+                        <div class="p-error"></div>
+                    </div>
+                    <button type="submit" class="btndefault greenbtn fnt-14 fw-b fnt-md-16">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="each-section">
+                <h2>Partners</h2>
+                <ul>
+                    <li><a href="https://www.eraofwe.com/coffee-roaster/">Roasters</a></li>
+                    <li><a href="https://www.eraofwe.com/estates/">Estates</a></li>
+                    <li><a href="https://www.eraofwe.com/facilitator/">Facilitators</a></li>
+                    <li><a href="https://www.eraofwe.com/hospitality/">Hospitality</a></li>
+                    <li><a href="https://www.eraofwe.com/micro-roaster/">Micro Roasters</a></li>
+                    <li><a href="https://www.eraofwe.com/consumer/">Consumers</a></li>
+                </ul>
+            </div>
+            <div class="each-section">
+                <h2>Company</h2>
+                <ul>
+                    <li><a href="https://www.eraofwe.com/contact/">Contact us</a></li>
+                    <li><a href="https://www.eraofwe.com/press-media/">Press and Media</a></li>
+                    <li><a href="{{ env.publicWeb }}/privacy-policy/">Privacy policy</a></li>
+                    <li>
+                        <a href="{{ env.publicWeb }}/terms-and-condition/" target="_blank">Terms &amp; conditions</a>
+                    </li>
+                    <li><a href="{{ env.publicWeb }}/cookie-policy/">Cookie policy</a></li>
+                </ul>
+            </div>
+            <div class="each-section">
+                <h2>About</h2>
+                <ul>
+                    <li><a href="https://www.eraofwe.com/aboutus/">Our Mission</a></li>
+                    <li><a href="https://www.eraofwe.com/solutions/">Solution</a></li>
+                    <li><a href="https://www.eraofwe.com/sustainability/">Sustainability</a></li>
+                    <li><a href="https://www.eraofwe.com/traceability/">The Traceability Experience</a></li>
+                </ul>
+            </div>
+            <div class="each-section">
+                <h2>Resources</h2>
+                <ul>
+                    <li><a href="https://www.eraofwe.com/community-news/">Community News</a></li>
+                    <li><a href="https://www.eraofwe.com/price-crisis/">Price Crisis</a></li>
+                    <li><a href="https://support.eraofwe.com">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="flex-div">
+            <div class="social-links">
+                <a href="https://www.facebook.com/eraofwe" rel="nofollow"
+                    ><img lazyLoad="assets/images/facebook-white.svg" alt="Facebook" /></a
+                ><a href="https://twitter.com/eraofweofficial" rel="nofollow"
+                    ><img lazyLoad="assets/images/twitter-white.svg" alt="Twitter" /></a
+                ><a href="https://www.instagram.com/accounts/login/?next=/eraofwe/" rel="nofollow"
+                    ><img lazyLoad="assets/images/instagram-white.svg" alt="Instagram" /></a
+                ><a href="https://www.linkedin.com/company/eraofwe/" rel="nofollow"
+                    ><img lazyLoad="assets/images/linkedin-white.svg" alt="LinkedIn"
+                /></a>
+            </div>
+            <p>©2022 SEWN Technology Solutions AB {{ 'all_rights_reserved' | translate }}</p>
+        </div>
+        <p class="desktop">©2022 SEWN Technology Solutions AB {{ 'all_rights_reserved' | translate }}</p>
+        <div class="dropdown"></div>
+    </div>
+</div>
