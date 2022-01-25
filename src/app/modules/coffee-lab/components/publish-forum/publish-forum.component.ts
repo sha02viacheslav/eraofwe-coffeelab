@@ -9,7 +9,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     styleUrls: ['./publish-forum.component.scss'],
 })
 export class PublishForumComponent implements OnInit {
-    readonly isQaType = PostType.QA;
+    readonly Postype = PostType;
     @Input() type = PostType.QA;
     btnValues = {
         [PostType.ARTICLE]: {
