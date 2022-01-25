@@ -3,10 +3,12 @@
     border-bottom: 0 !important;
 }
 .question-header {
-    border-top: 2px solid $general-text-color;
-    border-bottom: 2px solid $general-text-color;
+    border-radius: 12px;
+    border: solid 1px #d0d0d0;
+    padding: 25px 15px 10px 17px;
+    background-color: #fbfbfb;
     .question-list {
-        border-bottom: 1px solid #d8d8d8;
+        border-bottom: solid 1px #d8d8d8;
         p a {
             &:hover {
                 text-decoration: underline;

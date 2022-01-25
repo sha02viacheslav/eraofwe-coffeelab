@@ -1,16 +1,12 @@
 <div *ngIf="!isLoading" class="question-header mb-4" [class.no-border]="!showBorderBottom">
-    <p class="fnt-16 fw-b mt-3">
+    <p class="fnt-16 fw-sb">
         <span *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>
         <span *ngIf="!related">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
-    <div
-        *ngFor="let data of relatedData; let ind = index; let isLast = last"
-        [class.question-list]="type === PostType.QA"
-    >
-        <p class="pb-3 hover-underline" [ngClass]="{ 'pt-4': ind === 0, 'pt-3': ind > 0, 'pb-4': isLast }">
+    <div *ngFor="let data of relatedData; let ind = index; let isLast = last" class="question-list">
+        <p class="pb-2 hover-underline" [ngClass]="{ 'pt-25': ind === 0, 'pt-2': ind > 0, 'pb-25': isLast }">
             <a
                 [routerLink]="getLink(data.slug)"
-                class="fw-sb"
                 [innerHTML]="(type === PostType.ARTICLE ? data.title : data.question) || 'N/A'"
             ></a>
         </p>

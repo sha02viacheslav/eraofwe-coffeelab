@@ -1,5 +1,5 @@
 <div class="border-box">
-    <div class="p-md-4 p-3">
+    <div class="pb-2 pt-25">
         <div class="d-flex justify-content-between">
             <div class="flex-1">
                 <app-user-header [prop]="question"></app-user-header>
@@ -10,7 +10,7 @@
         </div>
         <a [routerLink]="[getLink(question)]">
             <div
-                class="fnt-16 fnt-md-18 fw-b mt-4 c-p hover-underline"
+                class="fnt-16 fw-m mt-4 c-p hover-underline"
                 (click)="gotoDetailPage($event, question)"
                 [innerHTML]="question?.question"
             ></div>
@@ -19,8 +19,8 @@
             <app-category-list [selectedType]="'qa-forum'" [categoryList]="question?.categories"></app-category-list>
         </div>
     </div>
-    <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider>
-    <div *ngIf="question.total_answers > 0" class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main">
+    <!-- <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider> -->
+    <!-- <div *ngIf="question.total_answers > 0" class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main">
         <div
             *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
             [ngClass]="{ 'border-bottom-main': !isLast }"
@@ -34,7 +34,7 @@
                 <span [innerHTML]="answer?.answer | convertToShortDescription: 25"></span>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <div *ngIf="index === 1 && !isDesktop$" class="mt-4 mt-md-3">
     <app-join-community [pages]="pages" [type]="PostType.QA"></app-join-community>

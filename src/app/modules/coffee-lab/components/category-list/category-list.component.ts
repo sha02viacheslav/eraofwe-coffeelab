@@ -12,7 +12,6 @@ export class CategoryListComponent implements OnInit {
     @Input() categoryList: any[] = [];
     @Input() isArticlePage: boolean;
     @Input() selectedType: string;
-    @Input() isLandingPage: boolean;
 
     constructor(private coffeeLabService: CoffeeLabService) {}
 

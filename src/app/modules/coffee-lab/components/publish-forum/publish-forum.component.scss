@@ -1,32 +1,15 @@
 @import 'variables';
-.bg-f34 {
-    background: $general-text-color;
-    .user-profile {
-        padding: 2px 10px 2px 0px;
-    }
-    .ask-question input {
-        padding: 0.625rem 0.75rem !important;
-    }
-    .post-btn {
-        height: 35px;
-        margin: 16px 13px 0 0;
-        padding: 6px 14px 7px 13px;
-        border-radius: 17.5px;
-        color: $white;
-        border: solid 1px $muted-text-color;
-        cursor: pointer;
-        background-color: rgba(116, 117, 136, 0.39);
-    }
-}
 
-:host ::ng-deep {
-    .sewn-form-field {
-        display: inline-flex;
-        flex-direction: column;
-        .p-inputtext {
-            padding: 0.9375rem 0.75rem;
-            border-radius: 4px;
-            width: 100%;
-        }
+.w-75 {
+    width: 75%;
+}
+.ask-question {
+    border-radius: 5px;
+    box-shadow: -3px 4px 12px 0 rgb(0, 0, 0, 0.08);
+    border: solid 0.4px #d0d0d01c;
+    background-color: #fff;
+    input {
+        padding: 1.188rem 0.75rem !important;
+        border-color: transparent !important;
     }
 }

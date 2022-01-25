@@ -75,29 +75,21 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             {
                 label: 'question_answers',
                 routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.QA]}`,
-                icon: 'assets/images/qa-forum.svg',
-                activeIcon: 'assets/images/qa-forum-active.svg',
                 command: () => this.setPostType(RouterSlug.QA),
             },
             {
                 label: 'posts',
                 routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.ARTICLE]}`,
-                icon: 'assets/images/article.svg',
-                activeIcon: 'assets/images/article-active.svg',
                 command: () => this.setPostType(RouterSlug.ARTICLE),
             },
             {
                 label: 'brewing_guides',
                 routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.RECIPE]}`,
-                icon: 'assets/images/coffee-recipe.svg',
-                activeIcon: 'assets/images/coffee-recipe-active.svg',
                 command: () => this.setPostType(RouterSlug.RECIPE),
             },
             {
                 label: 'about_era_of_we',
                 routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.EOW]}`,
-                icon: 'assets/images/era-of-we.svg',
-                activeIcon: 'assets/images/era-of-we-active.svg',
                 command: () => this.setPostType(RouterSlug.EOW),
             },
         ];

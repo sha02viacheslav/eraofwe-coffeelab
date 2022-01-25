@@ -9,7 +9,7 @@
 </div>
 
 <div class="d-flex position-relative">
-    <div class="col-12 col-md-7 px-0" [ngClass]="{ 'no-data': !questions.length }">
+    <div class="col-12 col-md-8 pr-2 pl-0" [ngClass]="{ 'no-data': !questions.length }">
         <div class="pb-4">
             <div class="row gutter-16 v-gutter-16">
                 <div class="col-auto">
@@ -70,8 +70,8 @@
         </div>
     </div>
 
-    <div *ngIf="isDesktop$" class="col-12 col-md-4 px-0 mx-auto w-min-content h-fit-content">
-        <div class="empty-join-wrapper mb-4">
+    <div *ngIf="isDesktop$" class="col-12 col-md-4 pl-3 pr-2 mx-auto w-min-content h-fit-content">
+        <div class="mb-4">
             <div class="custom-search qa-forum-search">
                 <input
                     class="w-100"
