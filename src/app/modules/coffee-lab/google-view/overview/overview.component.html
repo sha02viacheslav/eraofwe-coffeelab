@@ -1,12 +1,12 @@
 <div class="main-forum">
-    <h1 class="fw-b mt-0 mb-0">
+    <h1 class="fw-m mt-0 mb-0">
         <span>{{ 'the_coffee_forum' | translate }}</span>
         <!-- <span *ngIf="cuurentRoasterSlug === 'QA'">{{ 'qa_h1_title' | translate }}</span>
         <span *ngIf="cuurentRoasterSlug === 'ARTICLE'">{{ 'article_h1_title' | translate }}</span>
         <span *ngIf="cuurentRoasterSlug === 'RECIPE'">{{ 'recipe_h1_title' | translate }}</span>
         <span *ngIf="cuurentRoasterSlug === 'EOW'">{{ 'about_h1_title' | translate }}</span> -->
     </h1>
-    <h2 class="fnt-16 fnt-md-18 fw-b mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
+    <h2 class="fnt-16 fnt-md-18 fw-m mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
     <div class="d-flex mt-45">
         <button class="btn-raised" (click)="onWrite()">{{ 'start_writing' | translate }}</button>
         <a class="btn-stroked ml-3" routerLink="/">{{ 'know_more' | translate }}</a>
@@ -14,7 +14,7 @@
 </div>
 <div class="discussion-bg">
     <div class="d-flex justify-content-between align-items-center">
-        <p class="fw-sb fnt-16 fnt-md-18 fnt-b">{{ 'discussions_knowledge_language' | translate }}</p>
+        <p class="fw-m fnt-16 fnt-md-18 fnt-b">{{ 'discussions_knowledge_language' | translate }}</p>
         <app-language-dropdown *ngIf="isDesktop$"></app-language-dropdown>
     </div>
     <div *ngIf="isMobile$" class="language-wrapper my-3">

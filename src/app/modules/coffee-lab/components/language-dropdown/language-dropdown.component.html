@@ -5,7 +5,7 @@
     (onChange)="onChangeLanguage()"
 >
     <ng-template pTemplate="selectedItem">
-        <span class="fw-b tc-b">
+        <span class="fw-sb tc-b fnt-16 fnt-md-18">
             <i class="pi pi-globe pr-1 align-middle"></i>
             {{ 'language' | translate }} :
             {{ selectedFullLang ? (selectedFullLang | titlecase) : (selectedLangCode | language) }}
