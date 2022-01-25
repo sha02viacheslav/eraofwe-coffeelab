@@ -222,7 +222,6 @@
 .p-inputtext {
     font-family: $general-font-family;
     font-size: 14px;
-    font-weight: 600;
     color: $general-text-color;
     background: #ffffff;
     padding: 0.625rem 1rem;
@@ -334,12 +333,10 @@
     padding: 0.625rem 1rem;
     padding-right: 0;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    font-weight: 600;
     line-height: 18px;
 }
 .p-multiselect .p-multiselect-label.p-placeholder {
     color: $muted-text-color;
-    font-weight: 600;
     line-height: 18px;
 }
 .p-multiselect.p-multiselect-chip .p-multiselect-token {

@@ -61,7 +61,7 @@
                             <div class="w-100 d-flex justify-content-between">
                                 <div>
                                     <p class="fw-b mb-1">{{ detailsData?.user_name }}</p>
-                                    <p class="fw-sb tc-m mb-1">
+                                    <p class="fw-m tc-m mb-1">
                                         {{ detailsData?.organisation_name || detailsData?.organization_name }}
                                     </p>
                                     <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
@@ -132,7 +132,7 @@
                                         <div>
                                             <a
                                                 [routerLink]="'/user-profile/' + detailsData?.user_slug"
-                                                class="fw-b c-p text-underline"
+                                                class="fw-sb c-p text-underline"
                                             >
                                                 {{ detailsData?.user_name }}
                                             </a>
@@ -169,7 +169,7 @@
                                         </p>
                                     </div>
                                     <div class="bg-f8 px-25 py-2">
-                                        <p class="fw-sb fnt-12">
+                                        <p class="fnt-12">
                                             {{ 'original_language' | translate }} :
                                             {{ detailsData?.original_article?.language | language }}
                                         </p>
@@ -259,8 +259,8 @@
                 </div>
                 <div class="d-flex justify-content-center mt-md-25 mb-md-5 pb-md-3">
                     <div class="d-flex sign-up px-md-5 bg-white align-items-center">
-                        <div class="fnt-16 mr-md-4 px-3 py-2">{{ 'sign_up_and_contribute_now' | translate }}</div>
-                        <button class="btn-raised mt-1 mt-md-0 fnt-16" (click)="onFocus()">
+                        <div class="fnt-18 mr-md-4 px-3 py-2">{{ 'sign_up_and_contribute_now' | translate }}</div>
+                        <button class="btn-raised mt-1 mt-md-0 fnt-16 fw-m" (click)="onFocus()">
                             {{ 'sign_up' | translate }}
                         </button>
                     </div>
@@ -271,7 +271,7 @@
                             <h2 class="main-heading fw-m px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                                 {{ forum?.title || '--' }}
                             </h2>
-                            <p class="fnt-16 fnt-md-20 fw-sb text-md-center px-0 px-lg-5">
+                            <p class="fnt-16 fnt-md-20 fw-m text-md-center px-0 px-lg-5">
                                 {{ forum?.subtitle || '--' }}
                             </p>
                         </div>
@@ -317,10 +317,10 @@
                                 class="c-p d-flex flex-column"
                                 [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
                             >
-                                <p class="fnt-fly fw-b cust-flex-grow text-break">
+                                <p class="fw-sb fnt-16 cust-flex-grow text-break">
                                     {{ forum?.title | convertToShortDescription: 6 }}
                                 </p>
-                                <p class="fw-sb text-underline">
+                                <p class="fw-m text-underline">
                                     {{ forum?.user_name }}
                                 </p>
                             </a>

@@ -11,20 +11,20 @@
                         [alt]="detailsData?.name + ' cover image'"
                     />
                     <div class="user-details p-md-45 mt-45 mt-md-0 ml-md-5 bg-white col-md-7 w-100 br-4 px-0">
-                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-45 mx-0">
+                        <div *ngIf="detailsData?.categories" class="row mb-4 mb-md-35 mt-2 mx-0">
                             <app-category-list
                                 [selectedType]="'coffee-recipes'"
                                 [categoryList]="detailsData?.categories"
                             ></app-category-list>
                         </div>
-                        <h1 class="fw-b mb-0 user-header mt-0 text-break">
+                        <h1 class="fw-sb mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
-                        <div class="fnt-20 fw-sb mt-3 mt-md-4 mb-35 mb-md-4">
+                        <div class="fnt-20 fw-m mt-3 mt-md-4 mb-35 mb-md-4">
                             {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
                         </div>
                         <div class="d-md-flex mb-4 mb-md-0">
-                            <div class="fw-sb tc-m mb-md-45">
+                            <div class="tc-m mb-md-45">
                                 {{ 'published' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'MMMM' | translate }}
                                 {{ detailsData?.posted_at || detailsData?.created_at | date: 'd, yyyy' }}
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="pl-2">
                                             <label class="fnt-16 tc-m mb-0">{{ recipeInfo.label | translate }}</label>
-                                            <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
+                                            <p class="fnt-16 fw-sb mb-0 pt-1" *ngIf="detailsData">
                                                 <span *ngIf="recipeInfo.label === 'equipment'"
                                                     >{{ detailsData[recipeInfo.key] | translate }}
                                                     {{ recipeInfo.key2 ? ':' : '' }}
@@ -122,7 +122,7 @@
                         <div class="row pl-md-5">
                             <div class="col-md-5">
                                 <div *ngIf="detailsData?.ingredients" class="mt-45">
-                                    <h2 class="user-header mt-0 mb-0 mb-md-45 fw-b">
+                                    <h2 class="user-header mt-0 mb-0 mb-md-45 fw-sb">
                                         {{ 'ingredients' | translate }}
                                     </h2>
                                     <div class="ingredients-wrapper">
@@ -134,7 +134,7 @@
                                                 {{ ingredientsItem.quantity }}
                                                 {{ ingredientsItem.quantity_unit | translate }}
                                             </label>
-                                            <label class="fw-sb mb-0">{{ ingredientsItem.name }}</label>
+                                            <label class="fw-m mb-0">{{ ingredientsItem.name }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                             </div>
 
                             <div class="mt-4 mt-md-45 col-md-7">
-                                <h2 class="user-header fw-b mt-0 mb-4 mb-md-45">
+                                <h2 class="user-header fw-sb mt-0 mb-4 mb-md-45">
                                     {{ 'directions' | translate }}
                                 </h2>
                                 <div
@@ -153,7 +153,7 @@
                                     <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
                                         <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
                                         <div
-                                            class="activate-link ml-md-3 ml-25 fnt-md-16 fw-sb lh-157 mb-0 step-desc"
+                                            class="activate-link ml-md-3 ml-25 fnt-md-16 lh-157 mb-0 step-desc"
                                             [innerHTML]="step.description"
                                         ></div>
                                     </div>
@@ -203,7 +203,7 @@
                                         >
                                             {{ detailsData?.posted_user }}
                                         </a>
-                                        <p class="fw-sb mt-2">
+                                        <p class="mt-2">
                                             {{ detailsData?.about_me }}
                                         </p>
                                     </div>
@@ -240,7 +240,7 @@
                                         </p>
                                     </div>
                                     <div class="bg-f8 px-25 py-2">
-                                        <p class="fw-sb fnt-12">
+                                        <p class="fnt-12">
                                             {{ 'original_language' | translate }} :
                                             {{ detailsData?.original_details?.language | language }}
                                         </p>
@@ -323,10 +323,10 @@
                                 class="c-p d-flex flex-column"
                                 [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
                             >
-                                <p class="fnt-fly fw-b cust-flex-grow">
+                                <p class="fw-sb fnt-16 cust-flex-grow text-break">
                                     {{ forum?.title | convertToShortDescription: 6 }}
                                 </p>
-                                <p class="fw-sb text-underline">
+                                <p class="fw-m text-underline">
                                     {{ forum?.user_name }}
                                 </p>
                             </a>

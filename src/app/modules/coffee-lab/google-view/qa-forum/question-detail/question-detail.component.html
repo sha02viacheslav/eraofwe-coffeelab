@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="px-3 px-lg-4" [ngClass]="{ 'mb-4': !detailsData?.categories }">
-                    <h1 class="fnt-16 fnt-md-18 fw-b mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
+                    <h1 class="fnt-16 fnt-md-18 fw-sb mb-0 mt-0" [innerHTML]="detailsData?.question"></h1>
                 </div>
                 <div *ngIf="detailsData?.categories" class="row mb-md-4 ml-3 mr-1 mr-md-4 ml-md-4 mt-3">
                     <app-category-list
@@ -88,7 +88,7 @@
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex">
                                     <img src="assets/images/qa-forum.svg" alt="question-image" />
-                                    <p class="align-items-center d-flex text-nowrap fw-b ml-2">
+                                    <p class="align-items-center d-flex text-nowrap fw-sb ml-2">
                                         {{ 'read_the_original_answer' | translate }}
                                     </p>
                                 </div>

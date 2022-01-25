@@ -12,12 +12,12 @@
         <div class="mx-4">
             <div class="d-flex justify-content-between">
                 <div class="btn-icon thumbsup" (click)="onFocus($event)"></div>
-                <span class="fw-sb tc-m mt-2">
+                <span class="tc-m mt-2">
                     {{ article?.posted_at || article?.created_at | date: 'MMMM' | translate }}
                     {{ article?.posted_at || article?.created_at | date: 'd, yyyy' }}
                 </span>
             </div>
-            <h3 class="fw-b lh-157 cursor-pointerer article-title-text mb-0">
+            <h3 class="fw-sb lh-157 cursor-pointerer article-title-text mb-0">
                 {{ article?.title?.length < 65 ? article?.title : article?.title.slice(0, 65).concat('...') }}
             </h3>
             <div class="lh-143 mt-2 mt-md-3">

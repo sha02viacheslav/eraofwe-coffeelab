@@ -39,6 +39,7 @@ export class JoinCommunityComponent implements OnInit {
 
     ngOnInit(): void {
         this.getQaList();
+        console.log(this.type);
     }
 
     getQaList() {

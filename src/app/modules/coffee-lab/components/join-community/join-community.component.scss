@@ -2,23 +2,30 @@
 .no-border {
     border-bottom: 0 !important;
 }
+
+.other-header {
+    border-top: 2px solid $general-text-color;
+    border-bottom: 2px solid $general-text-color;
+}
+
 .question-header {
     border-radius: 12px;
     border: solid 1px #d0d0d0;
-    padding: 25px 15px 10px 17px;
+    padding: 22px 15px 10px 17px;
     background-color: #fbfbfb;
-    .question-list {
-        border-bottom: solid 1px #d8d8d8;
-        p a {
-            &:hover {
-                text-decoration: underline;
-            }
+}
+
+.question-list {
+    border-bottom: solid 1px #d8d8d8;
+    p a {
+        &:hover {
+            text-decoration: underline;
         }
     }
-    .remove-border {
-        border-bottom: none !important;
-    }
-    .question-list:last-child {
-        border-bottom: none !important;
-    }
+}
+.remove-border {
+    border-bottom: none !important;
+}
+.question-list:last-child {
+    border-bottom: none !important;
 }
