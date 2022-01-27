@@ -36,7 +36,7 @@
                     class="d-flex"
                     *ngIf="!isLandingPage && (prop?.question || prop?.answer || isArticleDetail || isRecipeDetail)"
                 >
-                    <!-- <span class="d-none d-md-block time-point"></span> -->
+                    <span *ngIf="prop?.answer" class="d-none d-md-block time-point"></span>
                     <span
                         class="text-clr588 d-none d-md-block position-relative"
                         [class.align-time]="prop.question"
