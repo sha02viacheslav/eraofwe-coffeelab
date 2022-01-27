@@ -3,7 +3,7 @@
         <i class="pi pi-times fnt-18 tc-m cross-icon c-p" (click)="close()"></i>
     </div>
     <div class="text-center pb-5 position-relative">
-        <div class="lh-157 fw-sb join-head mt-4 mt-md-5 mb-4 mb-md-475 pl-3 pl-md-4 pr-4 pr-md-5">
+        <div class="lh-157 fw-m join-head mt-4 mt-md-5 mb-4 mb-md-475 pl-3 pl-md-4 pr-4 pr-md-5">
             {{ (config.data?.isLimit ? 'read_more_posts' : 'join_now_coffee_lab') | translate }}
         </div>
         <h5 *ngIf="errorMsg" class="invalid-combination text-center">
@@ -12,25 +12,25 @@
         <div class="pr-2 w-100 align-items-center d-flex flex-column">
             <button class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithGoogle()">
                 <img src="assets/images/google.svg" />
-                <span class="fw-sb ml-3">
+                <span class="ml-3">
                     {{ 'signup_with_google' | translate }}
                 </span>
             </button>
             <button class="d-flex fnt-16 align-items-center signup-btn p-3 c-p mb-4" (click)="signInWithFacebook()">
                 <img src="assets/images/facebook-color.svg" />
-                <span class="fw-sb ml-3">
+                <span class="ml-3">
                     {{ 'signup_with_facebook' | translate }}
                 </span>
             </button>
             <a [href]="ssoWeb + '/email-signup'" [rel]="isStaging ? 'nofollow' : ''" class="signup-btn email-btn">
                 <div class="d-flex fnt-16 align-items-center p-3 c-p">
                     <img src="assets/images/email.svg" />
-                    <span class="fw-sb ml-3">
+                    <span class="ml-3">
                         {{ 'signup_with_email' | translate }}
                     </span>
                 </div>
             </a>
-            <div class="mt-5 fnt-16 fw-sb">
+            <div class="mt-5 fnt-16">
                 {{ 'already_have_account' | translate }}
                 <a [href]="ssoWeb + '/login'" class="brown-cta" [rel]="isStaging ? 'nofollow' : ''">{{
                     'login' | translate

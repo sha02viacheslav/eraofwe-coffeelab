@@ -8,20 +8,20 @@
     </h1>
     <h2 class="fnt-16 fnt-md-18 fw-m mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
     <div class="d-flex mt-45">
-        <button class="btn-raised fnt-16" (click)="onWrite()">{{ 'start_writing' | translate }}</button>
-        <a class="btn-stroked fnt-16 ml-3" routerLink="/">{{ 'know_more' | translate }}</a>
+        <button class="btn-raised" (click)="onWrite()">{{ 'start_writing' | translate }}</button>
+        <a class="btn-stroked ml-3" routerLink="/">{{ 'know_more' | translate }}</a>
     </div>
 </div>
 <div class="discussion-bg">
     <div class="d-flex justify-content-between align-items-center">
-        <p class="fw-m fnt-16 fnt-md-18 fnt-b">{{ 'discussions_knowledge_language' | translate }}</p>
+        <p class="fw-m fnt-16">{{ 'discussions_knowledge_language' | translate }}</p>
         <app-language-dropdown *ngIf="isDesktop$"></app-language-dropdown>
     </div>
     <div *ngIf="isMobile$" class="language-wrapper my-3">
         <app-language-dropdown></app-language-dropdown>
     </div>
 </div>
-<div class="main-block">
+<div class="main-block pull-main">
     <p-tabMenu [model]="menuItems" styleClass="mb-4">
         <ng-template pTemplate="item" let-item let-i="index">
             <img *ngIf="isMobile$" [src]="item.icon" alt="icon" width="32" height="32" />

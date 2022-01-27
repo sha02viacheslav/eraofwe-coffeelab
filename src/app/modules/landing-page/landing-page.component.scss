@@ -31,7 +31,7 @@
         .share-text {
             font-weight: 500;
             line-height: 1.14;
-            font-size: 54px;
+            font-size: 56px;
             @media (max-width: 767px) {
                 font-size: 24px;
                 line-height: 1.38;
@@ -409,6 +409,18 @@
 
 .lh-136 {
     line-height: 1.36;
+}
+
+.lh-133 {
+    line-height: 1.33;
+}
+
+.lh-113 {
+    line-height: 1.13;
+}
+
+.lh-135 {
+    line-height: 1.35;
 }
 
 @media (max-width: 768px) {

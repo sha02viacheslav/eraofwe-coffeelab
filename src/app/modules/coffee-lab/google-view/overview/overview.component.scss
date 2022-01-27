@@ -17,9 +17,18 @@
 .discussion-bg {
     background-color: #f8f8f8;
     padding: 25px 35px 24px 50px;
+    border-bottom-left-radius: 23px;
+    border-bottom-right-radius: 23px;
+    position: relative;
+    z-index: 1;
     @media (max-width: 768px) {
         padding: 25px 16px 24px 16px;
     }
+}
+
+.pull-main {
+    position: relative;
+    bottom: 17px;
 }
 
 .language-wrapper {

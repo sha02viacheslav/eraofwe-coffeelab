@@ -8,6 +8,10 @@
 @import 'primeng_tabview';
 
 .custom-search {
+    @media (min-width: 767px) {
+        margin-left: auto;
+        width: 360px;
+    }
     position: relative;
     &::before {
         content: '\e908';

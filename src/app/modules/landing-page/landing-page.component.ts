@@ -40,21 +40,21 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
             name: 'Yker Valerio',
             position: 'Bon Vivant Caffè',
             disp:
-                "“The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.”	",
+                "The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.",
             image: 'assets/images/yker-valerio.png',
         },
         {
             name: 'Vasileia Fanaroti',
             position: 'The Wandering Bean',
             disp:
-                '"The Coffee Lab is a brilliant platform for both coffee enthusiasts and professionals to share knowledge, learn from each other and stay in touch. It has many coffee recipes and articles, from how-to tutorials to anything related to the coffee value-chain. The Q&A section is my favorite place to ask questions, share thoughts or get advice from others within the community!"',
+                'The Coffee Lab is a brilliant platform for both coffee enthusiasts and professionals to share knowledge, learn from each other and stay in touch. It has many coffee recipes and articles, from how-to tutorials to anything related to the coffee value-chain. The Q&A section is my favorite place to ask questions, share thoughts or get advice from others within the community!',
             image: 'assets/images/vasileia-fanaroti.png',
         },
         {
             name: 'Susan Rov',
             position: 'Bon Vivant Caffè',
             disp:
-                '“The Era of We is a great place to connect with other coffee lovers within the community as well as my go-to resource for coffee recipes and educational articles. It’s so valuable to exchange information on a global scale and engage in discussions with coffee enthusiasts from the other side of the world!”',
+                'The Era of We is a great place to connect with other coffee lovers within the community as well as my go-to resource for coffee recipes and educational articles. It’s so valuable to exchange information on a global scale and engage in discussions with coffee enthusiasts from the other side of the world!',
             image: 'assets/images/susan-rov.jpeg',
         },
     ];
