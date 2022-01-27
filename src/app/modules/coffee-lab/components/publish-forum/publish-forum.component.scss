@@ -1,7 +1,10 @@
 @import 'variables';
 
-.w-75 {
-    width: 75%;
+.box-width {
+    width: 84%;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 }
 .ask-question {
     border-radius: 5px;

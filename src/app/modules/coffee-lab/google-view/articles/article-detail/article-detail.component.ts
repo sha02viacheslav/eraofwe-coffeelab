@@ -107,7 +107,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             .getPopularList(
                 PostType.ARTICLE,
                 {
-                    count: 11,
+                    count: 13,
                 },
                 this.urlLang === 'pt-br' ? 'pt' : this.urlLang,
             )
@@ -115,7 +115,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 if (res.success) {
                     this.relatedData = (res.result || [])
                         .filter((item) => item && item?.slug !== this.idOrSlug)
-                        .slice(0, 10);
+                        .slice(0, 12);
                 }
             });
     }

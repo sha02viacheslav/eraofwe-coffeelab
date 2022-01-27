@@ -49,6 +49,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        window.scroll(0, 0);
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.currentLangCode = language;
             this.startupService.load(language);
@@ -143,7 +144,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         const title =
             this.currentCategory?.name +
             ' ' +
-            APP_LANGUAGES.find((lang) => lang.value === this.currentLangCode).label[this.currentLangCode] +
+            APP_LANGUAGES.find((lang) => lang.value === this.currentLangCode)?.label[this.currentLangCode] +
             ' ' +
             this.titleCasePipe.transform(SlugMap[this.selectedPostType]) +
             ' - A Global Coffee Community';

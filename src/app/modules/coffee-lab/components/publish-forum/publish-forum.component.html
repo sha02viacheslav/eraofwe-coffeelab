@@ -4,13 +4,13 @@
     <span *ngIf="type === Postype.RECIPE">{{ 'brewing_guides' | translate }}</span>
 </div>
 <div class="d-flex">
-    <div class="w-75">
+    <div class="box-width">
         <div class="sewn-form-field ask-question w-100 mb-0">
             <input
                 type="text"
                 pInputText
                 [placeholder]="btnValues[type].placeHolderValue | translate"
-                class="c-p"
+                class="c-p w-100"
                 (focus)="onFocus()"
             />
         </div>

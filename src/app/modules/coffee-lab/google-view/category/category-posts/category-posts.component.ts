@@ -51,7 +51,7 @@ export class CategoryPostsComponent extends ResizeableComponent implements OnIni
     totalRecords = 0;
     page = 1;
     rows = 6;
-    posts: any;
+    posts = [];
     isLoading: boolean;
     topWriters: any;
     otherCategories: any[];

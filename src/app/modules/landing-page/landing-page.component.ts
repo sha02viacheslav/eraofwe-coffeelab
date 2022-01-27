@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ResizeableComponent } from '@base-components';
 import { PostType } from '@enums';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, ResizeService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
@@ -9,7 +10,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     templateUrl: './landing-page.component.html',
     styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     posts = [];
     responsiveOptionsPosts = [];
@@ -80,14 +81,20 @@ export class LandingPageComponent implements OnInit {
     menuItems = [
         {
             label: 'Q & A forum',
+            icon: 'assets/images/qa-forum.svg',
+            activeIcon: 'assets/images/qa-forum-active.svg',
             postType: PostType.QA,
         },
         {
             label: 'Posts',
+            icon: 'assets/images/article.svg',
+            activeIcon: 'assets/images/article-active.svg',
             postType: PostType.ARTICLE,
         },
         {
             label: 'Brewing guides',
+            icon: 'assets/images/coffee-recipe.svg',
+            activeIcon: 'assets/images/coffee-recipe-active.svg',
             postType: PostType.RECIPE,
         },
     ];
@@ -95,8 +102,10 @@ export class LandingPageComponent implements OnInit {
     constructor(
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
+        protected resizeService: ResizeService,
         private dialogSrv: DialogService,
     ) {
+        super(resizeService);
         this.responsiveOptionsPosts = [
             {
                 breakpoint: '1024px',
