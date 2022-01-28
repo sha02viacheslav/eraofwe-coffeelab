@@ -221,16 +221,7 @@
             <p-tabView styleClass="tabview-coffee-lab position-relative" (onChange)="handleChange($event)">
                 <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
                     <ng-template pTemplate="header">
-                        <img *ngIf="isMobile$" [src]="labMenu.icon" alt="icon" width="32" height="32" />
-                        <img
-                            *ngIf="isMobile$"
-                            [src]="labMenu.activeIcon"
-                            alt="icon"
-                            class="active-icon"
-                            width="32"
-                            height="32"
-                        />
-                        <span class="pl-1 d-none d-md-inline-block">{{ labMenu.label }}</span>
+                        <span class="pl-1 d-md-inline-block">{{ labMenu.label }}</span>
                     </ng-template>
                     <div class="row mx-0" *ngIf="!isLoading">
                         <div

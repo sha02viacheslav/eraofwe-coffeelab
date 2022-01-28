@@ -81,20 +81,14 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
     menuItems = [
         {
             label: 'Q & A forum',
-            icon: 'assets/images/qa-forum.svg',
-            activeIcon: 'assets/images/qa-forum-active.svg',
             postType: PostType.QA,
         },
         {
             label: 'Posts',
-            icon: 'assets/images/article.svg',
-            activeIcon: 'assets/images/article-active.svg',
             postType: PostType.ARTICLE,
         },
         {
             label: 'Brewing guides',
-            icon: 'assets/images/coffee-recipe.svg',
-            activeIcon: 'assets/images/coffee-recipe-active.svg',
             postType: PostType.RECIPE,
         },
     ];
