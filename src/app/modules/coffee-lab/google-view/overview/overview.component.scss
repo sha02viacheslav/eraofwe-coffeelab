@@ -29,7 +29,18 @@
 .pull-main {
     position: relative;
     @media (min-width: 768px) {
-        bottom: 17px;
+        bottom: 57px;
+    }
+}
+
+.global-search {
+    @media (min-width: 768px) {
+        position: relative;
+        z-index: 1;
+        top: 9px;
+        .custom-search {
+            width: 25%;
+        }
     }
 }
 
