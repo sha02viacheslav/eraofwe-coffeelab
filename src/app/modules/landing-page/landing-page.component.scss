@@ -55,6 +55,10 @@
     }
     .trending-img {
         position: relative;
+        &:hover {
+            cursor: pointer;
+            box-shadow: 1px 1px 12px 10px #14141b;
+        }
         img {
             @media (max-width: 767px) {
                 height: 239px;

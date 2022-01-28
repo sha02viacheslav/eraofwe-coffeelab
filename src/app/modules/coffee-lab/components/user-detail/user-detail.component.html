@@ -44,16 +44,16 @@
             <div class="mt-2">
                 <ng-container *ngIf="data; else noName">
                     <div
-                        class="fnt-16 fw-b text-underline c-p"
+                        class="fnt-16 fw-sb text-underline c-p"
                         [routerLink]="'/' + cuurentLang + '/user-profile/' + data?.slug"
                     >
                         {{ name }}
                     </div>
-                    <div class="fw-sb mt-2">
+                    <div class="fw-m mt-2">
                         {{ data?.organization_type === OrgType.SEWN_ADMIN ? ('Era of We' | translate) : '' }}
                         {{ data?.organization_name ? data?.organization_name : '' }}
                     </div>
-                    <div class="d-flex align-items-center fw-sb mt-1">
+                    <div class="d-flex align-items-center fw-m mt-1">
                         <i class="pi pi-map-marker fnt-16"></i>
                         <span class="location-align ml-2"
                             >{{ data?.city || data?.organization_city }},
@@ -73,7 +73,7 @@
             <div class="detail-slide-down" [class.fadeIn]="showMore">
                 <div>
                     <div *ngIf="data; else noAboutMe">
-                        <div *ngIf="data?.about_me" class="fw-sb pb-3">
+                        <div *ngIf="data?.about_me" class="fw-m pb-3">
                             {{ data?.about_me | convertToShortDescription: 13 }}
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     </ng-template>
                     <div *ngIf="data; else noConverse" class="d-flex flex-wrap mb-n1">
                         <div class="mr-1 mb-1" *ngFor="let language of data?.converse_languages">
-                            <div class="border-main bg-f8 fnt-12 fw-sb tc-m px-2 py-1 language-item-br">
+                            <div class="border-main bg-f8 fnt-12 fw-m tc-m px-2 py-1 language-item-br">
                                 {{ language | language }}
                             </div>
                         </div>
