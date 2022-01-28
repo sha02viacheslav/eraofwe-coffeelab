@@ -196,7 +196,6 @@
     background: transparent;
     transition: background-color 0.2s, box-shadow 0.2s;
     border-radius: 2px;
-    font-weight: 500;
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: $general-text-color;
@@ -230,6 +229,7 @@
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     appearance: none;
     border-radius: 3px;
+    font-weight: 500;
 }
 .round-border.p-inputtext {
     border-radius: 20px;
@@ -417,7 +417,6 @@
     background: transparent;
     transition: background-color 0.2s, box-shadow 0.2s;
     border-radius: 0;
-    font-weight: 500;
 }
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
     background: $primary-bg-color;

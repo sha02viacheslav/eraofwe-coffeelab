@@ -15,7 +15,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType === PostType.QA" class="col-auto">
+                <div *ngIf="postType === PostType.QA" class="col-auto pl-0">
                     <p-dropdown
                         [options]="sortOptions"
                         [(ngModel)]="sortBy"
@@ -28,7 +28,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType !== PostType.QA" class="col-auto">
+                <div *ngIf="postType !== PostType.QA" class="col-auto pl-0">
                     <p-dropdown
                         [options]="translationsList"
                         [(ngModel)]="isAvailableTranslation"
@@ -41,7 +41,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType !== PostType.QA" class="col-auto">
+                <div *ngIf="postType !== PostType.QA" class="col-auto pl-0">
                     <p-dropdown
                         [options]="orderList"
                         [placeholder]="'sort_by' | translate"

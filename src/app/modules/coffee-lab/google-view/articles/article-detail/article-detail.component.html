@@ -1,7 +1,7 @@
 <div class="main-block">
     <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
 
-    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
+    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-5 pt-3 pb-mt-45">
         <div class="article-main-block">
             <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
                 <app-category-list
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <button
-                                        class="add-comment d-flex align-items-center pl-4 w-100 fw-sb tc-m"
+                                        class="add-comment d-flex align-items-center pl-4 w-100 tc-m"
                                         (click)="onFocus()"
                                     >
                                         {{ 'share_your_thoughts' | translate }}
@@ -279,9 +279,9 @@
                 <div class="article-main-block" *ngFor="let forum of relatedData.slice(0, 2); let i = index">
                     <a [routerLink]="'/' + forum.lang_code + '/articles/' + forum.slug" class="cursor-pointer">
                         <div class="px-0">
-                            <h2 class="main-heading fw-m px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
+                            <p class="main-heading fw-m px-0 px-lg-5 mt-md-4 mt-35 mb-md-3 mb-2">
                                 {{ forum?.title || '--' }}
-                            </h2>
+                            </p>
                             <p class="fnt-16 fnt-md-20 fw-m text-md-center px-0 px-lg-5">
                                 {{ forum?.subtitle || '--' }}
                             </p>

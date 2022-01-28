@@ -1,5 +1,5 @@
 <div class="main-forum">
-    <h1 class="fw-m mt-0 mb-0">
+    <h1 class="fw-sb mt-0 mb-0">
         <span>{{ 'the_coffee_forum' | translate }}</span>
         <!-- <span *ngIf="cuurentRoasterSlug === 'QA'">{{ 'qa_h1_title' | translate }}</span>
         <span *ngIf="cuurentRoasterSlug === 'ARTICLE'">{{ 'article_h1_title' | translate }}</span>
@@ -22,13 +22,13 @@
     </div>
 </div>
 <div class="main-block pull-main">
-    <p-tabMenu [model]="menuItems" styleClass="mb-4">
+    <p-tabMenu [model]="menuItems" styleClass="mb-45">
         <ng-template pTemplate="item" let-item let-i="index">
             <span class="pl-1 pb-2 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
         </ng-template>
     </p-tabMenu>
 
-    <div class="col-lg-7 px-0 pb-3 pb-md-4">
+    <div *ngIf="cuurentRoasterSlug !== 'EOW'" class="col-lg-7 px-0 pb-3 pb-md-45">
         <app-publish-forum [type]="postType"></app-publish-forum>
     </div>
 

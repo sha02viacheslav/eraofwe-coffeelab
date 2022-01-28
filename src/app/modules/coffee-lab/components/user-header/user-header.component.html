@@ -38,9 +38,8 @@
                 >
                     <span *ngIf="prop?.answer" class="d-none d-md-block time-point"></span>
                     <span
-                        class="text-clr588 d-none d-md-block position-relative"
+                        class="text-clr588 d-none d-md-block position-relative fw-n"
                         [class.align-time]="prop.question"
-                        [class.align-answerTime]="prop?.answer || isArticleDetail || isRecipeDetail"
                     >
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}
                     </span>

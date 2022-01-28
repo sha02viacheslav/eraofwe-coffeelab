@@ -25,7 +25,7 @@
                         optionValue="parent_id"
                     ></p-multiSelect>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto pl-0">
                     <p-dropdown
                         [options]="filterOptions"
                         [(ngModel)]="filterBy"
@@ -39,7 +39,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto pl-0">
                     <p-dropdown
                         [options]="sortOptions"
                         [(ngModel)]="sortBy"
