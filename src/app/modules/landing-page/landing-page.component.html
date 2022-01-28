@@ -66,8 +66,9 @@
             </div>
             <div class="d-flex mt-md-45">
                 <div
-                    *ngFor="let trend of trendingData"
-                    class="trending-img mr-4 d-none d-md-block"
+                    *ngFor="let trend of trendingData; let i = index"
+                    class="trending-img d-none d-md-block"
+                    [ngClass]="i == 2 ? '' : 'mr-4'"
                     [routerLink]="[getLink(trend, trend.title ? 'articles' : 'coffee-recipes')]"
                 >
                     <img [lazyLoad]="trend.cover_image_url" src="assets/images/empty.svg" alt="trend-image" />
