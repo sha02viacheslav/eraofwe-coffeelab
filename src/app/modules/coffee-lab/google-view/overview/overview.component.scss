@@ -28,7 +28,9 @@
 
 .pull-main {
     position: relative;
-    bottom: 17px;
+    @media (max-width: 767px) {
+        bottom: 17px;
+    }
 }
 
 .language-wrapper {
