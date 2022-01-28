@@ -61,7 +61,10 @@ export class UserDetailComponent implements OnInit {
             this.getUserData();
             this.myOp.show(event);
             this.showMore = false;
-            setTimeout(() => (this.showMore = true), 800);
+            setTimeout(() => {
+                this.showMore = true;
+                this.cdr.detectChanges();
+            }, 800);
         }
     }
 
