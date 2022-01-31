@@ -23,7 +23,7 @@
                 [maxSelectedLabels]="1"
                 selectedItemsLabel="{0} {{ 'categories' | translate }}"
                 optionLabel="name"
-                optionValue="parent_id"
+                optionValue="id"
             ></p-multiSelect>
         </div>
         <div class="col-auto pl-0">
@@ -79,7 +79,10 @@
     <ngx-json-ld [json]="jsonLD"></ngx-json-ld>
 
     <div *ngIf="!isLoading && !articlesData?.length" class="w-100 text-center my-4">
-        {{ 'no_data_is_available' | translate }}
+        <app-empty
+            [title]="(keyword ? 'no_data_available' : 'you_have_not_posted_anything_yet') | translate"
+            [description]="(keyword ? '' : 'no_any_posts_to_show_description') | translate"
+        ></app-empty>
     </div>
 
     <app-loading *ngIf="isLoading"></app-loading>

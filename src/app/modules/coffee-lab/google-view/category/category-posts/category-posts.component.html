@@ -70,7 +70,10 @@
             <app-loading></app-loading>
         </div>
         <div *ngIf="!isLoading && !posts.length" class="text-center my-4">
-            {{ 'no_data_is_available' | translate }}
+            <app-empty
+                [title]="'you_have_not_posted_anything_yet' | translate"
+                [description]="'no_any_posts_to_show_description' | translate"
+            ></app-empty>
         </div>
     </div>
     <div

@@ -1,0 +1,8 @@
+<div class="flex-fill d-flex flex-column justify-content-center align-items-center text-center p-5">
+    <div>
+        <img class="mb-3" src="assets/images/no-data.svg" alt="Empty data" />
+        <h1 class="fnt-18 fnt-bold text-clr334 mb-3">{{ title }}</h1>
+        <div *ngIf="description" class="fnt-18 text-clr589 fnt-600 fnt-muli mb-3">{{ description }}</div>
+        <button *ngIf="button" class="btn-raised mt-4" [routerLink]="link">{{ button }}</button>
+    </div>
+</div>
