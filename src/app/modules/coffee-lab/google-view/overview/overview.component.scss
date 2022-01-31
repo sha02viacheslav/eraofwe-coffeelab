@@ -49,10 +49,19 @@
     margin-left: -7px;
 }
 
+.custom-stroked {
+    background-color: #f8f6ef !important;
+    &:hover {
+        background-color: #30855c !important;
+    }
+}
+
 :host ::ng-deep {
     .p-tabmenu {
         .p-tabmenu-nav {
             border-bottom: 1px solid $primary-border-color;
+            position: relative;
+            z-index: 1;
             @media (max-width: 767px) {
                 border-bottom: none;
             }

@@ -80,7 +80,7 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
     ];
     menuItems = [
         {
-            label: 'Q & A forum',
+            label: 'Q&A forum',
             postType: PostType.QA,
         },
         {

@@ -9,11 +9,11 @@
 
         <div class="m-3 m-md-4">
             <div class="d-flex justify-content-between mb-4">
-                <div class="recipe-name flex-1 fnt-md-16 fw-sb">
-                    <span class="mb-1 d-flex recipe-title text-break">{{
+                <div class="recipe-name flex-1 fnt-md-16">
+                    <span class="mb-1 d-flex recipe-title text-break fw-sb">{{
                         recipe?.name?.length < 60 ? recipe?.name : recipe?.name.slice(0, 60).concat('...')
                     }}</span>
-                    <span class="mb-45 mb-md-4 mt-2">
+                    <span class="mb-45 mb-md-4 mt-2 fw-m">
                         {{ recipe?.equipment_name | titlecase | convertToShortDescription: 2 }}
                     </span>
                 </div>
