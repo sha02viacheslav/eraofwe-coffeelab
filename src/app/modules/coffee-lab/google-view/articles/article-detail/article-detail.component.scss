@@ -33,16 +33,7 @@
             min-height: 256px;
         }
     }
-    .popular-image {
-        height: 397px;
-        min-height: 397px;
-        object-fit: cover;
-        border-radius: 4px;
-        @media (max-width: 767px) {
-            height: 377px;
-            min-height: 377px;
-        }
-    }
+
     .published {
         color: #797a8d;
         line-height: 1.57;
@@ -171,4 +162,23 @@
 
 .down-border {
     border-bottom: 1px solid #d8d8d8;
+}
+
+.more-banner {
+    .popular-image {
+        height: 397px;
+        min-height: 397px;
+        object-fit: cover;
+        border-radius: 4px;
+        @media (max-width: 767px) {
+            height: 377px;
+            min-height: 377px;
+        }
+    }
+    .ng-lazyloaded {
+        width: 100%;
+    }
+    .ng-lazyloading {
+        width: unset;
+    }
 }

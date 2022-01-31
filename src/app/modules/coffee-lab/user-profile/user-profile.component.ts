@@ -44,20 +44,14 @@ export class UserProfileComponent extends ResizeableComponent implements OnInit,
         {
             label: 'question_answers',
             postType: PostType.QA,
-            icon: 'assets/images/qa-forum.svg',
-            activeIcon: 'assets/images/qa-forum-active.svg',
         },
         {
             label: 'posts',
             postType: PostType.ARTICLE,
-            icon: 'assets/images/article.svg',
-            activeIcon: 'assets/images/article-active.svg',
         },
         {
             label: 'brewing_guides',
             postType: PostType.RECIPE,
-            icon: 'assets/images/coffee-recipe.svg',
-            activeIcon: 'assets/images/coffee-recipe-active.svg',
         },
     ];
 

@@ -24,7 +24,7 @@
                             <div class="btn-trans-icon message-icon" (click)="onFocus()"></div>
                         </div>
                     </div>
-                    <h1 class="fnt-16 fw-b mt-4">
+                    <h1 class="fnt-16 fw-m mt-4">
                         {{ profileInfo?.firstname + ' ' + profileInfo?.lastname }}
                     </h1>
                     <div class="fw-sb tc-m">{{ orgType | orgType }}</div>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="border-main br-4 p-4 mt-3">
-                    <div class="fnt-18 fw-b mb-25">About</div>
+                    <div class="fw-b mb-25">About</div>
                     <div *ngIf="profileInfo?.about_me" class="lh-15">
                         {{ profileInfo?.about_me }}
                     </div>
@@ -54,8 +54,6 @@
                 <p-tabView styleClass="tabview-coffee-lab position-relative">
                     <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
                         <ng-template pTemplate="header">
-                            <img [src]="labMenu.icon" alt="icon" />
-                            <img [src]="labMenu.activeIcon" alt="icon" class="active-icon" />
                             <span class="pl-1 d-none d-md-block">{{ labMenu.label | translate }}</span>
                         </ng-template>
                         <button class="btn-raised write-post-btn w-mob-100 mb-4 mb-md-0" (click)="onFocus()">

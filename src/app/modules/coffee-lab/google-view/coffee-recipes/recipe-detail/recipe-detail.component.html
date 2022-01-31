@@ -358,7 +358,7 @@
                         </p>
                         <p *ngIf="detailsData?.country || detailsData?.city" class="fw-sb tc-m mb-1">
                             <span *ngIf="detailsData?.organisation_name || detailsData?.organization_name">@</span>
-                            {{ detailsData?.city }}, {{ detailsData?.country | country }}
+                            {{ detailsData?.city }}, <span class="fw-n">{{ detailsData?.country | country }}</span>
                         </p>
                     </div>
                 </div>

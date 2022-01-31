@@ -4,7 +4,7 @@
         <div *ngFor="let certificate of certificationArray; let i = index">
             <div *ngIf="certificate?.name" [ngClass]="{ 'border-top-dashed-main pt-4': i }" class="mb-2">
                 <ul class="no-bullet-ul">
-                    <li class="fw-b">
+                    <li class="fw-m">
                         <a [href]="certificate.public_url" target="_blank">{{ certificate.name | titlecase }}</a>
                     </li>
                     <li class="fnt-12 fw-sb tc-m mt-1">
