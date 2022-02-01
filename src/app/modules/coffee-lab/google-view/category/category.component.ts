@@ -1,5 +1,5 @@
-import { TitleCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { isPlatformBrowser, TitleCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { APP_LANGUAGES, RouterMap, SlugMap } from '@constants';
@@ -28,6 +28,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     selectedPostType: string;
 
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
         private activateRoute: ActivatedRoute,
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
@@ -49,7 +50,9 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        window.scroll(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            window.scroll(0, 0);
+        }
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.currentLangCode = language;
             this.startupService.load(language);
