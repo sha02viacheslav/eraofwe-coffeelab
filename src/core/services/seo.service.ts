@@ -40,7 +40,6 @@ export class SEOService {
     }
 
     createLinkForCanonicalURL() {
-        // console.log(this.doc.URL);
         if (this.doc.URL?.includes('https')) {
             const existingLink = this.doc.querySelector('link[rel="canonical"]');
             if (existingLink) {
