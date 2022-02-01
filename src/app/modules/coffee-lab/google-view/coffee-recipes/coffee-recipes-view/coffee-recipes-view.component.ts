@@ -86,14 +86,13 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
             }
             this.refreshData();
         });
-
         let langPrefix = '';
-        this.route.paramMap.subscribe((params) => {
-            if (params.has('lang')) {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            if (language) {
                 if (langPrefix) {
                     this.refreshData();
                 }
-                langPrefix = params.get('lang');
+                langPrefix = language;
             }
         });
     }

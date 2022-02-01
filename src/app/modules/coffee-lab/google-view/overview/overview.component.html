@@ -15,9 +15,11 @@
 <div class="discussion-bg">
     <div class="d-flex justify-content-between align-items-center">
         <p class="fw-m fnt-16">{{ 'discussions_knowledge_language' | translate }}</p>
-        <app-language-dropdown *ngIf="isDesktop$"></app-language-dropdown>
+        <div class="d-md-block d-none">
+            <app-language-dropdown></app-language-dropdown>
+        </div>
     </div>
-    <div *ngIf="isMobile$" class="language-wrapper my-3">
+    <div class="language-wrapper my-3 d-md-none">
         <app-language-dropdown></app-language-dropdown>
     </div>
 </div>

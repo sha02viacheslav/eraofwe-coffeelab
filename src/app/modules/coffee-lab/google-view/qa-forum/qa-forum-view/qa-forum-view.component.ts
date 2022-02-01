@@ -83,12 +83,12 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
             this.refreshData();
         });
         let langPrefix = '';
-        this.route.paramMap.subscribe((params) => {
-            if (params.has('lang')) {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            if (language) {
                 if (langPrefix) {
                     this.refreshData();
                 }
-                langPrefix = params.get('lang');
+                langPrefix = language;
             }
         });
     }
@@ -108,22 +108,24 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         }
         if (isPlatformBrowser(this.platformId)) {
             this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
-                APP_LANGUAGES.forEach((item) => {
-                    if (item.countries.includes(resp.countryCode)) {
-                        if (
-                            this.coffeeLabService.currentForumLanguage !== item.value &&
-                            getCookie('langChange') !== 'set'
-                        ) {
-                            this.dialogSrv.open(RedirectPopupComponent, {
-                                data: {
-                                    langName: item.label.en,
-                                    langCode: item.value,
-                                    countryName: resp.countryName,
-                                },
-                            });
+                if (resp) {
+                    APP_LANGUAGES.forEach((item) => {
+                        if (item.countries.includes(resp.countryCode)) {
+                            if (
+                                this.coffeeLabService.currentForumLanguage !== item.value &&
+                                getCookie('langChange') !== 'set'
+                            ) {
+                                this.dialogSrv.open(RedirectPopupComponent, {
+                                    data: {
+                                        langName: item.label.en,
+                                        langCode: item.value,
+                                        countryName: resp.countryName,
+                                    },
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
         }
     }
