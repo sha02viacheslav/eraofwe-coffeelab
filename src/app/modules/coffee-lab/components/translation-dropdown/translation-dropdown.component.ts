@@ -37,25 +37,27 @@ export class TranslationDropdownComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
-            const isLang = APP_LANGUAGES.find((lang) => lang.countries.includes(resp.countryCode));
-            if (isLang && this.coffeeLabService.currentForumLanguage !== isLang.value) {
-                const isTransLang = this.translatedList.find(
-                    (item) => item.language.toUpperCase() === isLang.value.toUpperCase(),
-                );
-                if (isPlatformBrowser(this.platformId) && isTransLang && getCookie('langChange') !== 'set') {
-                    this.dialogSrv.open(RedirectPopupComponent, {
-                        data: {
-                            isDetailPage: true,
-                            langName: isLang.label.en,
-                            langCode: isLang.value,
-                            countryName: resp.countryName,
-                            slug: isTransLang.slug,
-                        },
-                    });
+        if (isPlatformBrowser(this.platformId)) {
+            this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
+                const isLang = APP_LANGUAGES.find((lang) => lang.countries.includes(resp.countryCode));
+                if (isLang && this.coffeeLabService.currentForumLanguage !== isLang.value) {
+                    const isTransLang = this.translatedList.find(
+                        (item) => item.language.toUpperCase() === isLang.value.toUpperCase(),
+                    );
+                    if (isTransLang && getCookie('langChange') !== 'set') {
+                        this.dialogSrv.open(RedirectPopupComponent, {
+                            data: {
+                                isDetailPage: true,
+                                langName: isLang.label.en,
+                                langCode: isLang.value,
+                                countryName: resp.countryName,
+                                slug: isTransLang.slug,
+                            },
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     ngOnInit(): void {}

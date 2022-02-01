@@ -111,25 +111,26 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     }
                 });
         }
-        this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
-            APP_LANGUAGES.forEach((item) => {
-                if (item.countries.includes(resp.countryCode)) {
-                    if (
-                        isPlatformBrowser(this.platformId) &&
-                        this.coffeeLabService.currentForumLanguage !== item.value &&
-                        getCookie('langChange') !== 'set'
-                    ) {
-                        this.dialogSrv.open(RedirectPopupComponent, {
-                            data: {
-                                langName: item.label.en,
-                                langCode: item.value,
-                                countryName: resp.countryName,
-                            },
-                        });
+        if (isPlatformBrowser(this.platformId)) {
+            this.coffeeLabService.getIpInfo().subscribe((resp: any) => {
+                APP_LANGUAGES.forEach((item) => {
+                    if (item.countries.includes(resp.countryCode)) {
+                        if (
+                            this.coffeeLabService.currentForumLanguage !== item.value &&
+                            getCookie('langChange') !== 'set'
+                        ) {
+                            this.dialogSrv.open(RedirectPopupComponent, {
+                                data: {
+                                    langName: item.label.en,
+                                    langCode: item.value,
+                                    countryName: resp.countryName,
+                                },
+                            });
+                        }
                     }
-                }
+                });
             });
-        });
+        }
     }
 
     refreshData() {
