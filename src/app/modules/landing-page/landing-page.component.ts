@@ -40,7 +40,7 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
             name: 'Yker Valerio',
             position: 'Bon Vivant Caffè',
             disp:
-                "The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people, and The Coffee Lab is a space that's great to meet coffee connoisseurs and enthusiasts.Sharing insights through The Coffee Lab is a wonderful exercise to keep up-to-date. Checking questions, reading articles, and writing for like-minded people has been enriching and exciting. I definitely enjoy participating in The Coffee Lab.",
+                'The world of coffee is full of generous and forward-thinking individuals and organizations. Since I started learning about specialty coffee, I have met incredible people. In this regard, The Coffee Lab is great to meet coffee connoisseurs and enthusiasts, sharing insights, and keeping up-to-date. I genuinely enjoy participating in The Coffee Lab, and I’m excited about its future.',
             image: 'assets/images/yker-valerio.png',
         },
         {
@@ -61,7 +61,7 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
     platform = [
         {
             arrow: 'assets/images/arrow-down-circle-2.svg',
-            heading: 'Coffee Bussinesses',
+            heading: 'Coffee Businesses',
             disp:
                 'Share your brand story directly with our audience. This platform gives you the space to build trust in your brand by sharing your expertise with consumers.',
         },

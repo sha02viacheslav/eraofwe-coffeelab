@@ -50,11 +50,11 @@
                     ></app-profile-certificates-view>
                 </div>
             </div>
-            <div *ngIf="isBrowser && showAll" class="col-lg-8 mt-4 mt-md-0">
+            <div *ngIf="isBrowser && showAll" class="col-lg-8 mt-3">
                 <p-tabView styleClass="tabview-coffee-lab position-relative">
                     <p-tabPanel *ngFor="let labMenu of menuItems" header="labMenu">
                         <ng-template pTemplate="header">
-                            <span class="pl-1 d-none d-md-block">{{ labMenu.label | translate }}</span>
+                            <span class="pl-1">{{ labMenu.label | translate }}</span>
                         </ng-template>
                         <button class="btn-raised write-post-btn w-mob-100 mb-4 mb-md-0" (click)="onFocus()">
                             {{ 'write_post' | translate }}
