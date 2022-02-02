@@ -171,14 +171,18 @@
         object-fit: cover;
         border-radius: 4px;
         @media (max-width: 767px) {
-            height: 377px;
-            min-height: 377px;
+            height: 271px;
+            min-height: 272px;
+            width: 271px;
         }
     }
     .ng-lazyloaded {
         width: 100%;
     }
     .ng-lazyloading {
-        width: unset;
+        @media (max-width: 767px) {
+            width: 271px;
+        }
+        width: 397px;
     }
 }
