@@ -1,5 +1,5 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +30,7 @@ export function StartupServiceFactory(startupService: StartupService) {
         AppRoutingModule,
         TransferHttpCacheModule,
         HttpClientModule,
+        HttpClientJsonpModule,
         TranslateModule.forRoot(),
         SocialLoginModule,
     ],

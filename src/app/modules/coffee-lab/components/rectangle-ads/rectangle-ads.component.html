@@ -4,12 +4,15 @@
     [class.mb-4]="!questionPage"
 >
     <div>
-        <div class="fnt-14 fnt-md-20 fw-b mb-25">Grab it while it’s hot!</div>
-        <div class="fnt-14 fnt-md-20 pr-md-5 mr-md-5">
-            Ethically sourched coffee delivered straight at your doorstep
-        </div>
+        <div class="fnt-14 fnt-md-20 fw-b mb-25">From farm to your home</div>
+        <div class="fnt-14 fnt-md-20">Want coffee offer updates straight to your inbox?</div>
     </div>
     <div class="d-flex align-items-center mt-3 mt-md-0">
-        <a class="btn-raised" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+        <div class="d-flex">
+            <div class="form-group">
+                <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
+            </div>
+            <button class="btn-raised subscribe-button" (click)="onSubmit()">Send</button>
+        </div>
     </div>
 </div>

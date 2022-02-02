@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { ApiResponse, UserProfile } from '@models';
@@ -81,5 +81,13 @@ export class CoffeeLabService extends ApiService {
     getTrendingPosts(): Observable<any> {
         const params = { article_count: 2, recipe_count: 1 };
         return this.get(this.orgPostUrl, `general/coffee-lab/trending-posts?${this.serializeParams(params)}`);
+    }
+
+    subscribeToMailList(email: string) {
+        const mailChimpEndpoint =
+            'https://nordsud.us6.list-manage.com/subscribe/post-json?u=e93a215496f5c5f6203911365&amp;id=f4f7c2427a';
+        const params = new HttpParams().set('EMAIL', email).set('MERGE6', 'sewn-tcl');
+        const mailChimpUrl = mailChimpEndpoint + '&' + params.toString();
+        return this.http.jsonp(mailChimpUrl, 'c');
     }
 }

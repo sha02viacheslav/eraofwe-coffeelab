@@ -6,19 +6,17 @@
             </a>
             <div class="email-letter">
                 <h2>Subscribe to our newsletter</h2>
-                <form>
+                <div class="d-flex">
                     <div class="form-group">
                         <input
-                            type="email"
-                            name="email"
-                            value=""
-                            class="fw-m"
+                            type="text"
+                            pInputText
+                            [(ngModel)]="subscribeEmail"
                             placeholder="What's your email address?"
                         />
-                        <div class="p-error"></div>
                     </div>
-                    <button type="submit" class="btn-raised">Submit</button>
-                </form>
+                    <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
+                </div>
             </div>
         </div>
         <div class="footer-links">
@@ -84,7 +82,7 @@
     </div>
 </div>
 
-<!-- <div
+<div
     *ngIf="pageOffsetHeight > 1000"
     [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
     class="footer-ads border-334 bg-white w-100"
@@ -94,7 +92,16 @@
             <div class="mob-disp">
                 <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
                 <div *ngIf="isExpand" class="align-items-end d-flex d-md-none">
-                    <a class="btn-raised ml-3" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            [(ngModel)]="subscribeEmail"
+                            class="custom-border"
+                            placeholder="Enter your mail"
+                        />
+                        <div class="p-error"></div>
+                    </div>
+                    <button class="btn-raised subscribe-button custom-submit-foot" (click)="onSubmit()">Submit</button>
                 </div>
             </div>
             <div class="d-md-none text-right">
@@ -102,27 +109,32 @@
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
         </div>
-        <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'">
+        <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'" class="pr-md-5 mr-md-5">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
                 <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
-                    <span *ngIf="isExpand">Grab it while it’s hot!</span>
-                    <span *ngIf="!isExpand"> Sign up to order coffee directly from farms to your home. </span>
+                    <span *ngIf="isExpand">From farm to your home</span>
+                    <span *ngIf="!isExpand">Want coffee offer updates straight to your inbox?</span>
                 </div>
                 <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                    Sign up to order coffee directly from farms to your home.
+                    Want coffee offer updates straight <br />
+                    to your inbox?
                 </div>
-                <div *ngIf="isExpand" class="fnt-12 d-md-none">
-                    Sign up to order coffee directly from farms to your home.
-                </div>
-                <a *ngIf="!isExpand" class="btn-raised ml-45" href="{{ env.publicWeb }}/shop/" target="_blank"
-                    >Buy now</a
-                >
+                <div *ngIf="isExpand" class="fnt-12 d-md-none">Want coffee offer updates straight to your inbox?</div>
             </div>
-            <div *ngIf="isExpand" class="d-flex align-items-center pl-md-5 pt-35">
-                <a class="btn-raised d-none d-md-block" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+            <div *ngIf="isExpand" class="d-md-flex d-none pl-md-5 align-items-center">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        pInputText
+                        [(ngModel)]="subscribeEmail"
+                        class="custom-border"
+                        placeholder="Enter your mail"
+                    />
+                </div>
+                <button class="btn-raised subscribe-button custom-submit-foot" (click)="onSubmit()">Submit</button>
             </div>
         </div>
         <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
         <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
     </div>
-</div> -->
+</div>

@@ -1,6 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, Injector, PLATFORM_ID } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
@@ -23,7 +22,6 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object,
         private dialogSrv: DialogService,
-        private router: Router,
         private injector: Injector,
         protected resizeService: ResizeService,
     ) {
@@ -39,31 +37,31 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
 
     ngAfterViewInit(): void {
         // Until shop URL is ready
-        // if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
-        //     this.document.querySelector('html').addEventListener('pointerleave', (event) => {
-        //         if (event && getCookie('ad-popup') !== 'open') {
-        //             this.showPopUp();
-        //         }
-        //     });
-        // } else {
-        //     if (isPlatformBrowser(this.platformId)) {
-        //         setTimeout(() => {
-        //             if (getCookie('ad-popup') !== 'open') {
-        //                 this.showPopUp();
-        //             }
-        //         }, 15000);
-        //     }
-        // }
+        if (!this.resizeService.isMobile$ && isPlatformBrowser(this.platformId)) {
+            this.document.querySelector('html').addEventListener('pointerleave', (event) => {
+                if (event && getCookie('ad-popup') !== 'open') {
+                    this.showPopUp();
+                }
+            });
+        } else {
+            if (isPlatformBrowser(this.platformId)) {
+                setTimeout(() => {
+                    if (getCookie('ad-popup') !== 'open') {
+                        this.showPopUp();
+                    }
+                }, 15000);
+            }
+        }
     }
 
     showPopUp() {
-        // if (isPlatformBrowser(this.platformId)) {
-        //     const date = new Date();
-        //     date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-        //     const expires = '; expires=' + date.toUTCString();
-        //     this.document.cookie = 'ad-popup' + '=open' + expires;
-        //     this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
-        // }
+        if (isPlatformBrowser(this.platformId)) {
+            const date = new Date();
+            date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+            const expires = '; expires=' + date.toUTCString();
+            this.document.cookie = 'ad-popup' + '=open' + expires;
+            this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+        }
     }
 
     setDynamicScripts() {
