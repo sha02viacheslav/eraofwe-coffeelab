@@ -1,9 +1,9 @@
 <div class="row gutter-16 v-gutter-24">
     <div *ngFor="let question of questions; let ind = index" class="col-12">
         <app-question-card [question]="question" [index]="ind"></app-question-card>
-        <!-- <div class="mt-3" *ngIf="ind === 4">
+        <div class="mt-3" *ngIf="ind === 4">
             <app-rectangle-ads [questionPage]="true"></app-rectangle-ads>
-        </div> -->
+        </div>
     </div>
 </div>
 <div *ngIf="totalRecords" class="pt-3 pt-md-4 text-center">

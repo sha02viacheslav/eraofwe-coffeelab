@@ -59,7 +59,7 @@
                                     src="assets/images/empty.svg"
                                     alt="trending-image"
                                 />
-                                <div class="upper-txt txt-w">
+                                <div class="upper-txt txt-w c-p">
                                     <div class="">{{ trending.title ? 'ARTICLE' : 'RECIPE' }}</div>
                                     <div class="fnt-16 fw-sb">{{ trending.title || trending.name }}</div>
                                 </div>
@@ -77,7 +77,7 @@
                     [routerLink]="[getLink(trend, trend.title ? 'articles' : 'coffee-recipes')]"
                 >
                     <img [lazyLoad]="trend.cover_image_url" src="assets/images/empty.svg" alt="trend-image" />
-                    <div class="upper-txt txt-w">
+                    <div class="upper-txt txt-w c-p">
                         <div class="">{{ trend.title ? 'ARTICLE' : 'RECIPE' }}</div>
                         <div class="fnt-md-24 fw-sb">{{ trend.title || trend.name }}</div>
                     </div>

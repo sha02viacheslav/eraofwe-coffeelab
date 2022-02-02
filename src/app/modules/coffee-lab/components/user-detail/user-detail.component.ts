@@ -26,7 +26,7 @@ export class UserDetailComponent implements OnInit {
     isOpened = false;
     hiding = false;
     showMore: boolean;
-    cuurentLang: string;
+    currentLang: string;
     public defaultProfileImage = 'assets/images/profile.svg';
 
     constructor(
@@ -48,7 +48,7 @@ export class UserDetailComponent implements OnInit {
                     this.originalImageUrl =
                         this.data?.profile_image_url || this.data?.profile_image_thumb_url || this.imageUrl;
                     this.name = `${this.data?.firstname} ${this.data?.lastname}`;
-                    this.cuurentLang = getLangRoute(this.coffeeLabService.currentForumLanguage);
+                    this.currentLang = getLangRoute(this.coffeeLabService.currentForumLanguage);
                 }
                 this.cdr.detectChanges();
             });

@@ -1,14 +1,36 @@
 <div
-    class="d-flex p-1"
+    class="d-flex p-1 flex-column"
     [ngClass]="questionDetail ? 'px-md-4 py-md-45' : 'px-md-4 py-md-25'"
     [class.border-ads]="!hideBorder"
 >
-    <div [class.ads-image]="hideBorder" [class.image-ads]="!hideBorder">
-        <img src="assets/images/product.png" alt="product" />
+    <div class="d-flex">
+        <div [class.ads-image]="hideBorder" [class.image-ads]="!hideBorder">
+            <img src="assets/images/product.png" alt="product" />
+        </div>
+        <div>
+            <div class="fnt-md-32 fnt-24 fw-sb mb-2 mb-md-25">From farm to your home</div>
+            <div class="fnt-14 fnt-md-20" [class.lh-143]="!questionDetail">
+                Want coffee offer updates <br *ngIf="!questionDetail" />
+                straight to your inbox?
+            </div>
+            <div class="d-flex mt-45" *ngIf="!questionDetail">
+                <div class="form-group">
+                    <input
+                        type="email"
+                        name="email"
+                        class="popup-email"
+                        [(ngModel)]="subscribeEmail"
+                        placeholder="Enter your email"
+                    />
+                </div>
+                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Sign-up</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <div class="fnt-md-32 fnt-24 fw-b mb-2 mb-md-25">Grab it while it’s hot!</div>
-        <div class="fnt-14 fnt-md-18">Sign up to order coffee directly from farms to your home.</div>
-        <a class="btn-raised mt-3 mt-md-4" href="{{ env.publicWeb }}/shop/" target="_blank">Buy now</a>
+    <div class="d-flex mt-45" *ngIf="questionDetail">
+        <div class="form-group w-100">
+            <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
+        </div>
+        <button class="btn-raised subscribe-button" (click)="onSubmit()">Send</button>
     </div>
 </div>
