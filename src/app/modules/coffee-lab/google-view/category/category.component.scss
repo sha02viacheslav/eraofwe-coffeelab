@@ -47,7 +47,8 @@
                         text-align: center;
                         margin: auto;
                         transform: translate(-50%);
-                        border-radius: 1.5px;
+                        border-top-left-radius: 2px;
+                        border-top-right-radius: 2px;
                         background-color: $primary-color;
                         opacity: 0;
                         transition: 0.4s ease-in-out;
