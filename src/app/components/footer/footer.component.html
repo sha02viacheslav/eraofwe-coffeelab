@@ -83,7 +83,7 @@
 </div>
 
 <div
-    *ngIf="pageOffsetHeight > 1000"
+    *ngIf="pageOffsetHeight > 850"
     [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
     class="footer-ads border-334 bg-white w-100"
 >
@@ -121,7 +121,7 @@
                 </div>
                 <div *ngIf="isExpand" class="fnt-12 d-md-none">Want coffee offer updates straight to your inbox?</div>
             </div>
-            <div *ngIf="isExpand" class="d-md-flex d-none pl-md-5 align-items-center">
+            <div *ngIf="isExpand" class="d-md-flex d-none custom-pad align-items-center">
                 <div class="form-group">
                     <input
                         type="text"
@@ -138,3 +138,4 @@
         <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
     </div>
 </div>
+<p-toast key="myKey1" position="bottom-right" class="toast" life="1000000"></p-toast>

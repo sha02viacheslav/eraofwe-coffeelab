@@ -63,6 +63,6 @@ export class FooterComponent implements OnInit {
                 console.log(err);
             },
         );
-        this.subscribeEmail = '';
+        // this.subscribeEmail = '';
     }
 }
