@@ -79,8 +79,15 @@ export class CoffeeLabService extends ApiService {
     }
 
     getTrendingPosts(): Observable<any> {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Accept-Language': 'en' }),
+        };
         const params = { article_count: 2, recipe_count: 1 };
-        return this.get(this.orgPostUrl, `general/coffee-lab/trending-posts?${this.serializeParams(params)}`);
+        return this.get(
+            this.orgPostUrl,
+            `general/coffee-lab/trending-posts?${this.serializeParams(params)}`,
+            httpOptions,
+        );
     }
 
     subscribeToMailList(email: string) {
