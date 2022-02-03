@@ -74,15 +74,10 @@ export class CoffeeLabComponent extends DestroyableComponent implements OnInit, 
 
     open() {
         const dropdown = document.getElementsByClassName('dropbtn');
-
         let i;
-
         for (i = 0; i < dropdown.length; i++) {
             dropdown[i].addEventListener('click', (item: any) => {
-                console.log(item.nextElementSibling);
-
                 item.classList.toggle('active');
-
                 const dropdownContent = item.nextElementSibling;
 
                 if (dropdownContent.style.display === 'block') {

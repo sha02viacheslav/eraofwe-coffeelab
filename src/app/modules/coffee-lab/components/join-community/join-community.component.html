@@ -5,7 +5,12 @@
     [class.other-header]="type === PostType.QA"
     [class.no-border]="!showBorderBottom"
 >
-    <p class="fnt-16 fw-sb" [class.mt-3]="type === PostType.QA">
+    <p
+        class="fnt-18 fw-sb"
+        [class.pb-25]="type === PostType.QA"
+        [class.mb-1]="type === PostType.QA"
+        [class.border-btm]="!showBorderBottom"
+    >
         <span *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>
         <span *ngIf="!related">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
