@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ResizeableComponent } from '@base-components';
 import { PostType } from '@enums';
+import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { CoffeeLabService, ResizeService } from '@services';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -12,6 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class LandingPageComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
+    readonly env = environment;
     posts = [];
     responsiveOptionsPosts = [];
     responsiveOptions = [];
