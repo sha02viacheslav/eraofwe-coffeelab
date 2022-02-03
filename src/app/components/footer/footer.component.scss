@@ -3,6 +3,10 @@
 .c-btn {
     position: relative;
     top: -30px;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
     @media (max-width: 767px) {
         top: 52px;
         font-size: 12px !important;
@@ -12,6 +16,10 @@
 .e-btn {
     position: relative;
     top: -8px;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
     @media (max-width: 767px) {
         top: -72px;
         font-size: 12px !important;
