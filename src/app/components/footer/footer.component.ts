@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService } from '@services';
@@ -17,14 +18,17 @@ export class FooterComponent implements OnInit {
     language: string;
     pageOffsetHeight: number;
     subscribeEmail: string;
+    isQAPage: boolean;
     constructor(
         private coffeLabService: CoffeeLabService,
         private messageService: MessageService,
         private translator: TranslateService,
+        private router: Router,
     ) {}
 
     @HostListener('window:scroll', ['$event'])
     scrollHandler(event) {
+        this.isQAPage = this.router.url.includes('/qa-forum/');
         this.pageOffsetHeight = window.pageYOffset;
     }
 

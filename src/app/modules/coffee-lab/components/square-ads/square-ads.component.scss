@@ -51,12 +51,18 @@
     .popup-email {
         width: 246px !important;
         height: 50px;
+        @media (max-width: 767px) {
+            width: 150px !important;
+        }
     }
 }
 
 .pop-btn {
     height: 50px !important;
     width: 111px !important;
+    @media (max-width: 767px) {
+        width: 75px !important;
+    }
 }
 
 .subscribe-button {

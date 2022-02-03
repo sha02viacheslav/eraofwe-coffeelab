@@ -13,7 +13,7 @@
     position: relative;
     top: -8px;
     @media (max-width: 767px) {
-        top: -12px;
+        top: -72px;
         font-size: 12px !important;
     }
 }
@@ -310,6 +310,9 @@
         border-bottom-left-radius: 6px;
         width: 188px !important;
         height: 40px !important;
+        @media (max-width: 767px) {
+            width: 130px !important;
+        }
     }
 }
 
@@ -324,6 +327,9 @@
 .custom-submit-foot {
     width: 70px !important;
     height: 40px !important;
+    @media (max-width: 767px) {
+        width: 50px !important;
+    }
 }
 
 .custom-pad {

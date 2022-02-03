@@ -83,15 +83,18 @@
 </div>
 
 <div
-    *ngIf="pageOffsetHeight > 850"
+    *ngIf="pageOffsetHeight > 850 || isQAPage"
     [ngClass]="isExpand ? 'p-4 px-md-5 pt-md-5 pb-md-35' : 'p-3 p-md-4'"
     class="footer-ads border-334 bg-white w-100"
 >
-    <div class="container-md d-md-flex justify-content-between">
+    <div
+        class="container-md d-md-flex justify-content-between"
+        [ngClass]="!isExpand ? 'd-flex flex-column-reverse' : ''"
+    >
         <div [ngClass]="isExpand ? 'ads-image' : ''">
             <div class="mob-disp">
                 <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
-                <div *ngIf="isExpand" class="align-items-end d-flex d-md-none">
+                <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
                     <div class="form-group">
                         <input
                             type="text"
@@ -109,11 +112,10 @@
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
         </div>
-        <div [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'd-flex'" class="pr-md-5 mr-md-5">
+        <div [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
-                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-b">
-                    <span *ngIf="isExpand">From farm to your home</span>
-                    <span *ngIf="!isExpand">Want coffee offer updates straight to your inbox?</span>
+                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
+                    <span>From farm to your home</span>
                 </div>
                 <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
                     Want coffee offer updates straight <br />
@@ -121,7 +123,7 @@
                 </div>
                 <div *ngIf="isExpand" class="fnt-12 d-md-none">Want coffee offer updates straight to your inbox?</div>
             </div>
-            <div *ngIf="isExpand" class="d-md-flex d-none custom-pad align-items-center">
+            <div class="d-md-flex d-none custom-pad align-items-center">
                 <div class="form-group">
                     <input
                         type="text"
