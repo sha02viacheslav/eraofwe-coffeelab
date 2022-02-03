@@ -1,16 +1,48 @@
 <header>
     <nav class="nav-top1">
         <div class="container">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-between">
                 <a class="company-logo" [href]="env.publicWeb">
                     <img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab" />
                 </a>
-                <a
-                    [href]="env.ssoWeb + '/login'"
-                    class="btn-raised ml-auto"
-                    [rel]="env.needProtect ? 'nofollow' : ''"
-                    >{{ 'login' | translate }}</a
-                >
+                <div>
+                    <a
+                        [href]="env.publicWeb + '/login'"
+                        class="mr-md-3 pr-25 fnt-16 fnt-m"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >Why Era of We</a
+                    >
+                    <a
+                        [href]="env.publicWeb + '/solutions/'"
+                        class="mr-md-3 pr-25 fnt-16 fnt-m"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >Solutions</a
+                    >
+                    <a
+                        [href]="env.publicWeb + '/login'"
+                        class="mr-md-3 pr-25 fnt-16 fnt-m"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >Partners</a
+                    >
+                    <a
+                        [href]="env.publicWeb + '/login'"
+                        class="mr-md-3 pr-25 fnt-16 fnt-m"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >About us</a
+                    >
+                    <a
+                        [href]="env.publicWeb + '/login'"
+                        class="mr-md-3 pr-25 fnt-16 fnt-m"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >The Coffee lab</a
+                    >
+                    <a
+                        [href]="env.ssoWeb + '/login'"
+                        class="btn-raised ml-auto"
+                        [rel]="env.needProtect ? 'nofollow' : ''"
+                        >{{ 'login' | translate }}</a
+                    >
+                </div>
             </div>
         </div>
     </nav>
