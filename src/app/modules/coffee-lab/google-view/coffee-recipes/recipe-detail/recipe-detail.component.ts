@@ -19,7 +19,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
     styleUrls: ['./recipe-detail.component.scss'],
     providers: [MessageService],
 })
-export class RecipeDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
+export class RecipeDetailComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
@@ -87,6 +87,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             if (isPlatformBrowser(this.platformId)) {
                 if (this.isMobile$) {
                     this.showAll = false;
+                    this.catchScrollEvent();
                 }
                 window.scrollTo(0, 0);
             }
@@ -95,7 +96,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         this.initialized = true;
     }
 
-    ngAfterViewInit() {
+    catchScrollEvent() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
             const scrollEvent = fromEvent(window, 'scroll')
                 .pipe(debounceTime(100))
@@ -109,7 +110,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 });
         }
     }
-
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
     }

@@ -28,7 +28,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
     providers: [MessageService],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleDetailComponent extends ResizeableComponent implements OnInit, AfterViewInit {
+export class ArticleDetailComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     relatedData: any[] = [];
     detailsData: any;
@@ -79,6 +79,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             if (isPlatformBrowser(this.platformId)) {
                 if (this.isMobile$) {
                     this.showAll = false;
+                    this.catchScrollEvent();
                 }
                 window.scrollTo(0, 0);
             }
@@ -86,7 +87,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         this.initialized = true;
     }
 
-    ngAfterViewInit() {
+    catchScrollEvent() {
         if (isPlatformBrowser(this.platformId) && this.isMobile$) {
             const scrollEvent = fromEvent(window, 'scroll')
                 .pipe(debounceTime(100))
