@@ -14,6 +14,10 @@ export class CoffeeLabComponent extends DestroyableComponent implements OnInit, 
     readonly env = environment;
     isMatched = !environment.needProtect;
     showAll = true;
+    sideNavOpened: boolean;
+    showSearch: any;
+    searchString: any;
+    searchResults: any;
 
     constructor(@Inject(PLATFORM_ID) private platformId: object) {
         super();
@@ -40,5 +44,31 @@ export class CoffeeLabComponent extends DestroyableComponent implements OnInit, 
 
     onCheckPassword(password: string) {
         this.isMatched = password === protectPassword || !environment.needProtect;
+    }
+
+    closeSideNav() {
+        this.sideNavOpened = false;
+        setTimeout(() => {
+            // this.menuService.isMenuOpened.next(this.sideNavOpened);
+        }, 800);
+    }
+
+    openSideNav() {
+        this.sideNavOpened = true;
+        // this.menuService.isMenuOpened.next(this.sideNavOpened);
+    }
+
+    openSearchPanel() {
+        if (!this.showSearch) {
+            this.showSearch = true;
+            window.scrollTo(0, 0);
+        }
+    }
+
+    closeSearchPanel() {
+        this.searchString = null;
+        this.searchResults = null;
+        this.showSearch = false;
+        window.scrollTo(0, 0);
     }
 }
