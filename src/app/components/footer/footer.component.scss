@@ -365,4 +365,21 @@
     position: relative;
     top: 4px;
     margin-right: 0.5rem;
+    @media (max-width: 767px) {
+        top: 8px;
+    }
+}
+
+.mob-cl-btn {
+    @media (max-width: 767px) {
+        z-index: 3;
+        position: relative;
+    }
+}
+
+.align-thank {
+    @media (max-width: 767px) {
+        position: relative;
+        top: 28px;
+    }
 }
