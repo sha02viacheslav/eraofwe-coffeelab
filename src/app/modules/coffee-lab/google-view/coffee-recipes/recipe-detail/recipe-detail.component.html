@@ -314,7 +314,7 @@
         </div>
 
         <div *ngIf="showAll">
-            <app-popular-posts [relatedData]="relatedData"></app-popular-posts>
+            <app-popular-posts [type]="'recipe'" [relatedData]="relatedData"></app-popular-posts>
         </div>
 
         <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>

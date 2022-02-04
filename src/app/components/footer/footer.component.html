@@ -98,7 +98,7 @@
         [ngClass]="!isExpand ? 'd-flex flex-column-reverse flex-md-row' : ''"
     >
         <div [ngClass]="isExpand ? 'ads-image' : ''">
-            <div class="mob-disp">
+            <div class="mob-disp" *ngIf="!showValidateMsg">
                 <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
                 <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
                     <div class="form-group">
@@ -120,7 +120,7 @@
                     </button>
                 </div>
             </div>
-            <div class="d-md-none text-right">
+            <div class="d-md-none text-right" *ngIf="!showValidateMsg">
                 <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
@@ -158,11 +158,17 @@
             </div>
         </div>
         <div *ngIf="showValidateMsg">
-            <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
+            <div [ngClass]="isExpand ? 'mb-md-3 align-thank' : ''" class="fnt-18 fnt-md-32 fw-m">
                 <img src="assets/images/confirm-tick.svg" alt="confirm-tick" class="align-tick" />
-                <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
+                <span>Thank you for submitting {{ showAgainMsg ? 'again' : '' }}</span>
             </div>
-            <div class="fnt-18 fnt-md-24 ml-md-5">We’ll be in touch with our latest coffee offers</div>
+            <div *ngIf="!isExpand" class="fnt-16 pt-2 pt-md-0 fnt-md-24 ml-md-5">
+                We’ll be in touch with our latest coffee offers
+            </div>
+            <div class="d-md-none text-right">
+                <span class="black-cta mob-cl-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+                <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
+            </div>
         </div>
         <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
         <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>

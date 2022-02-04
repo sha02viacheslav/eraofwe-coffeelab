@@ -3,7 +3,7 @@ import { AfterViewInit, Component, Inject, Injector, PLATFORM_ID } from '@angula
 import { DestroyableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { ClosePopupComponent } from '@modules/coffee-lab/components/close-popup/close-popup.component';
-import { I18NService, ResizeService, SEOService } from '@services';
+import { CoffeeLabService, I18NService, ResizeService, SEOService } from '@services';
 import { getCookie, getLangRoute } from '@utils';
 import { SocialAuthService } from 'angularx-social-login';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -24,6 +24,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
         private dialogSrv: DialogService,
         private injector: Injector,
         protected resizeService: ResizeService,
+        private coffeeLabService: CoffeeLabService,
     ) {
         super();
         this.seoService.createLinkForCanonicalURL();
@@ -60,7 +61,13 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
             date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
             const expires = '; expires=' + date.toUTCString();
             this.document.cookie = 'ad-popup' + '=open' + expires;
-            this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+            let showAd: boolean;
+            this.coffeeLabService.showAd.subscribe((res) => {
+                showAd = res;
+            });
+            if (showAd) {
+                this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
+            }
         }
     }
 

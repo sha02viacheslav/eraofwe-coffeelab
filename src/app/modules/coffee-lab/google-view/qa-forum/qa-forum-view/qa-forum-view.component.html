@@ -45,6 +45,7 @@
                         [(ngModel)]="sortBy"
                         (ngModelChange)="getData()"
                         styleClass="round-border {{ sortBy ? 'highlight' : '' }}"
+                        class="ml-2 ml-md-0"
                         [showClear]="true"
                         [placeholder]="'sort_by' | translate"
                     >

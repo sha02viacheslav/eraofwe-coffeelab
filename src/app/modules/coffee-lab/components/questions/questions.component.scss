@@ -1,3 +1,5 @@
 .custom-adsmarg {
-    margin: 0 0 0 -47px;
+    @media (min-width: 767px) {
+        margin: 0 0 0 -47px;
+    }
 }

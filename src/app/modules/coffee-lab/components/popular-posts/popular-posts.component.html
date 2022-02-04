@@ -14,10 +14,11 @@
         <article class="row mx-45">
             <div class="col-md-7 px-0 px-md-3">
                 <div class="fnt-18 fw-b pb-25 background-header">
-                    {{ 'recent_articles' | translate }}
+                    <span *ngIf="type === 'article'">{{ 'recent_articles' | translate }}</span>
+                    <span *ngIf="type === 'recipe'">{{ 'popular_brewing_guides' | translate }}</span>
                 </div>
-                <div *ngFor="let forum of relatedData" class="pb-4 pt-35">
-                    <div class="d-flex pb-4 footer-border">
+                <div *ngFor="let forum of relatedData" class="pt-35">
+                    <div class="d-flex pb-35 footer-border">
                         <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img
                                 [lazyLoad]="forum?.cover_image_thumb_url"
@@ -26,10 +27,10 @@
                             />
                         </a>
                         <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <p class="fw-sb fnt-16 cust-flex-grow mb-2 text-break">
+                            <p class="fw-sb fnt-20 cust-flex-grow mb-2 text-break">
                                 {{ forum?.title }}
                             </p>
-                            <p class="fw-m text-underline">
+                            <p class="fw-sb text-underline">
                                 {{ forum?.user_name }}
                             </p>
                         </a>
