@@ -1,4 +1,4 @@
-export const CATEGORIES = {
+export const HEADER_CATEGORIES = {
     en: [
         {
             slug: 'brewing-coffee',

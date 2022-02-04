@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ResizeableComponent } from '@base-components';
 import { environment } from '@env/environment';
 import { CoffeeLabService, ResizeService } from '@services';
+import { getLangRoute } from '@utils';
 import { takeUntil } from 'rxjs/operators';
-import { CATEGORIES } from './category';
+import { HEADER_CATEGORIES } from './category';
 
 @Component({
     selector: 'app-header',
@@ -21,11 +22,9 @@ export class HeaderComponent extends ResizeableComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.categories);
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            this.categories = CATEGORIES[language];
-            this.selectedLangCode = language;
-            console.log(this.categories);
+            this.categories = HEADER_CATEGORIES[language];
+            this.selectedLangCode = getLangRoute(language);
         });
     }
 
