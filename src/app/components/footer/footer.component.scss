@@ -317,6 +317,9 @@
         line-height: 2;
         border: none;
         color: #232334;
+        &:focus {
+            outline: none;
+        }
     }
 
     .custom-border {
@@ -351,15 +354,13 @@
     padding-left: 5rem;
 }
 
-:host ::ng-deep .toast .p-toast .p-toast-message-content,
-::ng-deep .toast .p-toast .p-toast-message .p-toast-summary,
-::ng-deep .toast .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
-    display: flex !important;
-    align-items: center !important;
+.align-expand {
+    position: relative;
+    bottom: 15px;
 }
-:host ::ng-deep .toast .p-toast-bottom-right {
-    @media screen and (max-width: 767px) {
-        padding-right: 0px;
-        padding-left: 1.5rem;
-    }
+
+.align-tick {
+    position: relative;
+    top: 4px;
+    margin-right: 0.5rem;
 }
