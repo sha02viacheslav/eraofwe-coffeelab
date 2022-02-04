@@ -24,7 +24,7 @@
                             >
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown custom-pad-head">
                         <a class="dropbtn" href="{{ env.publicWeb }}/solutions/">Solution</a>
                     </div>
                     <div class="dropdown">
@@ -60,7 +60,7 @@
                             >
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown custom-pad-head">
                         <a class="dropbtn coffee-lab-nev-text mr-md-45" href="{{ env.publicWeb }}/solutions/">
                             The Coffee lab
                         </a>
@@ -151,11 +151,14 @@
                     <app-language-dropdown [isSubHeader]="true"></app-language-dropdown>
                 </div>
                 <div class="d-flex">
-                    <p class="d-none d-md-block">Decaf Recipes</p>
-                    <p class="d-none d-md-block">Coffee Roasting</p>
-                    <p class="d-none d-md-block">Sustainablity in Coffee</p>
-                    <p>Brewing guides</p>
-                    <p>Green beans</p>
+                    <a class="d-none d-md-block" routerLink="/en/brewing-coffee/articles">Brewing Coffee</a>
+                    <a class="d-none d-md-block" routerLink="/en/coffee-equipmente/articles">Coffee Equipment</a>
+                    <a class="d-none d-md-block" routerLink="/en/coffee-culture-story/articles"
+                        >Coffee Culture & Story</a
+                    >
+                    <a routerLink="/en/coffee-health/articles">Coffee & Health</a>
+                    <a routerLink="/en/coffee-shops/articles">Coffee Shops</a>
+                    <a routerLink="/en/sustainable-coffee/articles">Sustainable Coffee</a>
                 </div>
             </div>
         </div>
