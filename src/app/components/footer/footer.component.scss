@@ -355,8 +355,10 @@
 }
 
 .align-expand {
-    position: relative;
-    bottom: 15px;
+    @media (min-width: 768px) {
+        position: relative;
+        bottom: 15px;
+    }
 }
 
 .align-tick {
