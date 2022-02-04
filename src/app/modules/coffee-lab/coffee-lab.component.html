@@ -1,56 +1,170 @@
 <header>
     <nav class="nav-top1">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-md-between navbar">
+                <a class="sidenav-hamberg d-lg-none px-0" (click)="openSideNav()">
+                    <img src="assets/images/hamberg.svg" alt="hamberg" class="d-md-none" />
+                    <img src="assets/images/hamberg-tablet.svg" alt="hamberg" class="d-none d-md-inline-block" />
+                </a>
                 <a class="company-logo" [href]="env.publicWeb">
                     <img src="assets/images/era-we-black.svg" alt="EraOfWe.com - The Coffee Lab" />
                 </a>
-                <div>
-                    <a
-                        [href]="env.publicWeb + '/login'"
-                        class="mr-md-3 pr-25 fnt-16 fnt-m"
-                        [rel]="env.needProtect ? 'nofollow' : ''"
-                        >Why Era of We</a
-                    >
-                    <a
-                        [href]="env.publicWeb + '/solutions/'"
-                        class="mr-md-3 pr-25 fnt-16 fnt-m"
-                        [rel]="env.needProtect ? 'nofollow' : ''"
-                        >Solutions</a
-                    >
-                    <a
-                        [href]="env.publicWeb + '/login'"
-                        class="mr-md-3 pr-25 fnt-16 fnt-m"
-                        [rel]="env.needProtect ? 'nofollow' : ''"
-                        >Partners</a
-                    >
-                    <a
-                        [href]="env.publicWeb + '/login'"
-                        class="mr-md-3 pr-25 fnt-16 fnt-m"
-                        [rel]="env.needProtect ? 'nofollow' : ''"
-                        >About us</a
-                    >
-                    <a
-                        [href]="env.publicWeb + '/login'"
-                        class="mr-md-3 pr-25 fnt-16 fnt-m"
-                        [rel]="env.needProtect ? 'nofollow' : ''"
-                        >The Coffee lab</a
-                    >
+                <div class="d-none d-md-block">
+                    <div class="dropdown">
+                        <button class="dropbtn">Why Era of We <i class="pi pi-chevron-down"></i></button>
+                        <div class="dropdown-content">
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/sustainability/"
+                                >Sustainability</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/community/"
+                                >Our Community</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/traceability/"
+                                >A Traceable Experience</a
+                            >
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" href="{{ env.publicWeb }}/solutions/">Solution</button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">Partners <i class="pi pi-chevron-down"></i></button>
+                        <div class="dropdown-content">
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/coffee-roaster/"
+                                >Roaster</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/estates/">Estate</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/facilitator/"
+                                >Facilitator</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/micro-roaster/"
+                                >Micro Roasters</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/consumer/"
+                                >End consumer</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/hospitality/"
+                                >Hospitality</a
+                            >
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">About us <i class="pi pi-chevron-down"></i></button>
+                        <div class="dropdown-content">
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/aboutus/">Our Mission</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/press-media/"
+                                >Press and Media</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/community-news/"
+                                >Community News</a
+                            >
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn coffee-lab-nev-text mr-md-45" href="{{ env.publicWeb }}/solutions/">
+                            The Coffee lab
+                        </button>
+                    </div>
                     <a
                         [href]="env.ssoWeb + '/login'"
-                        class="btn-raised ml-auto"
+                        class="btn-raised mt-md-1"
                         [rel]="env.needProtect ? 'nofollow' : ''"
                         >{{ 'login' | translate }}</a
                     >
                 </div>
+                <a
+                    [href]="env.ssoWeb + '/login'"
+                    class="btn-raised ml-auto d-lg-none"
+                    [rel]="env.needProtect ? 'nofollow' : ''"
+                    >{{ 'login' | translate }}</a
+                >
             </div>
         </div>
     </nav>
+
+    <nav class="bg-f8 d-lg-none">
+        <div class="container">
+            <div class="w-100 sidenav-mb" [class.open]="sideNavOpened">
+                <span class="sidenav-mb__hide" (click)="closeSideNav()"></span>
+                <div class="sidenav-mb__content" [class.open]="sideNavOpened">
+                    <div class="sidenav-mb__close" (click)="closeSideNav()">
+                        <img src="assets/images/close-icon.png" />
+                    </div>
+                    <div class="">
+                        <div class="dropdown w-100">
+                            <button class="dropbtn w-100 d-flex justify-content-between" (click)="open()">
+                                Why Era of We <i class="pi pi-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a class="paragraph-p2 text-darker semi" href="/sustainability/">Sustainability</a>
+                                <a class="paragraph-p2 text-darker semi" href="/community/">Our Community</a>
+                                <a class="paragraph-p2 text-darker semi" href="/traceability/"
+                                    >A Traceable Experience</a
+                                >
+                            </div>
+                        </div>
+                        <div class="dropdown w-100"><button class="dropbtn" href="/solutions/">Solution</button></div>
+                        <div class="dropdown w-100">
+                            <button class="dropbtn w-100 d-flex justify-content-between" (click)="open()">
+                                Partners <i class="pi pi-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a class="paragraph-p2 text-darker semi" href="/coffee-roaster/">Roaster</a>
+                                <a class="paragraph-p2 text-darker semi" href="/estates/">Estate</a>
+                                <a class="paragraph-p2 text-darker semi" href="/facilitator/">Facilitator</a>
+                                <a class="paragraph-p2 text-darker semi" href="/micro-roaster/">Micro Roasters</a>
+                                <a class="paragraph-p2 text-darker semi" href="/consumer/">End consumer</a>
+                                <a class="paragraph-p2 text-darker semi" href="/hospitality/">Hospitality</a>
+                            </div>
+                        </div>
+                        <div class="dropdown w-100">
+                            <button class="dropbtn w-100 d-flex justify-content-between" (click)="open()">
+                                About us <i class="pi pi-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a class="paragraph-p2 text-darker semi" href="/aboutus/">Our Mission</a>
+                                <a class="paragraph-p2 text-darker semi" href="/press-media/">Press and Media</a>
+                                <a class="paragraph-p2 text-darker semi" href="/community-news/">Community News</a>
+                            </div>
+                        </div>
+                        <div class="dropdown w-100">
+                            <button class="dropbtn coffee-lab-nev-text ml-md-3" href="/solutions/">
+                                The Coffee lab
+                            </button>
+                        </div>
+                        <a
+                            [href]="env.ssoWeb + '/login'"
+                            class="btn-raised mt-md-1 w-100"
+                            [rel]="env.needProtect ? 'nofollow' : ''"
+                            >{{ 'login' | translate }}</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-black">
+        <div class="container">
+            <div class="d-flex justify-content-md-between align-items-center tab-text">
+                <div class="d-md-flex">
+                    <app-language-dropdown [isSubHeader]="true"></app-language-dropdown>
+                </div>
+                <div class="d-flex">
+                    <p class="d-none d-md-block">Decaf Recipes</p>
+                    <p class="d-none d-md-block">Coffee Roasting</p>
+                    <p class="d-none d-md-block">Sustainablity in Coffee</p>
+                    <p>Brewing guides</p>
+                    <p>Green beans</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <ng-container *ngIf="isMatched; else protectWrapper">
     <div class="container router-design">
-        <div>
+        <div class="mt-5">
             <router-outlet></router-outlet>
         </div>
     </div>

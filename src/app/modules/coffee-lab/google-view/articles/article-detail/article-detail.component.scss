@@ -41,8 +41,8 @@
 }
 
 .p-articles img {
-    width: 89px;
-    height: 89px;
+    width: 200px;
+    height: 116px;
     object-fit: cover;
 }
 .fnt-fly {
@@ -129,14 +129,13 @@
 }
 
 .cust-flex-grow {
-    flex-grow: 0.9;
     &:hover {
         text-decoration: underline;
     }
 }
 
 .background-header {
-    border-top: 2px solid #232334;
+    border-bottom: 2px solid $dark-color;
 }
 
 .border-bottom-0 {
