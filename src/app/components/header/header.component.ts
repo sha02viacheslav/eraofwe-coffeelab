@@ -22,10 +22,6 @@ export class HeaderComponent implements OnInit {
         this.sideNavOpened = true;
     }
 
-    closeSearchPanel() {
-        window.scrollTo(0, 0);
-    }
-
     onToggel(id) {
         const dropdown = document.getElementById(id);
         if (dropdown.style.display === 'block') {
