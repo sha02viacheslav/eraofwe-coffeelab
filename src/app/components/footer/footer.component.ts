@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
     isQAPage: boolean;
     showValidateMsg: boolean;
     showAgainMsg: boolean;
-    constructor(private coffeLabService: CoffeeLabService, private router: Router) {}
+    constructor(private coffeLabService: CoffeeLabService, private router: Router, private cdr: ChangeDetectorRef) {}
 
     @HostListener('window:scroll', ['$event'])
     scrollHandler(event) {
@@ -42,6 +42,7 @@ export class FooterComponent implements OnInit {
                     }
                     this.subscribeEmail = '';
                     this.subscribeEmail2 = '';
+                    this.cdr.detectChanges();
                 },
                 (err) => {
                     console.log(err);

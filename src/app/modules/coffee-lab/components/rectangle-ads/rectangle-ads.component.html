@@ -3,11 +3,17 @@
     [class.mb-md-5]="!questionPage"
     [class.mb-4]="!questionPage"
 >
-    <div>
-        <div class="fnt-14 fnt-md-20 fw-sb mb-25">From farm to your home</div>
-        <div class="fnt-14 fnt-md-20">Want coffee offer updates straight to your inbox?</div>
+    <div *ngIf="!showValidateMsg">
+        <div class="fnt-md-20 fw-sb mb-25">From farm to your home</div>
+        <div class="fnt-md-20">Want coffee offer updates straight to your inbox?</div>
     </div>
-    <div class="d-flex align-items-center mt-3 mt-md-0">
+    <div *ngIf="showValidateMsg" class="align-items-center d-flex flex-column custom-marg">
+        <div class="fnt-18 fnt-md-32 fw-m mb-25">
+            <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
+        </div>
+        <div class="fnt-md-18">We’ll be in touch with our latest coffee offers</div>
+    </div>
+    <div *ngIf="!showValidateMsg" class="d-flex align-items-center mt-3 mt-md-0">
         <div class="d-flex">
             <div class="form-group">
                 <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
