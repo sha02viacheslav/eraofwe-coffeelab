@@ -9,9 +9,11 @@
 }
 
 .no-border {
-    border-left: 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    @media (min-width: 767px) {
+        border-left: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
     border-color: #d0d0d061 !important;
 }
 
