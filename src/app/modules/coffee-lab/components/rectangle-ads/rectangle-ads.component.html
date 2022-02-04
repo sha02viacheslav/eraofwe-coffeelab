@@ -1,11 +1,12 @@
 <div
+    *ngIf="showAd"
     class="d-md-flex py-4 px-3 p-md-4 ads-border br-4 bg-f1"
     [class.mb-md-5]="!questionPage"
     [class.mb-4]="!questionPage"
 >
     <div *ngIf="!showValidateMsg">
-        <div class="fnt-md-20 fw-sb mb-25">From farm to your home</div>
-        <div class="fnt-md-20">Want coffee offer updates straight to your inbox?</div>
+        <div class="fnt-md-20 fw-sb mb-25">A new way of discovering coffee</div>
+        <div class="fnt-md-20">Join our mailing list to be the first to know about our Era of We Shop</div>
     </div>
     <div *ngIf="showValidateMsg" class="align-items-center d-flex flex-column custom-marg">
         <div class="fnt-18 fnt-md-32 fw-m mb-25">

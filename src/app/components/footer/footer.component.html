@@ -85,6 +85,7 @@
 </div>
 
 <div
+    *ngIf="showAd"
     [ngClass]="{
         'p-4 px-md-5 pt-md-5 pb-md-35': isExpand,
         'p-3 p-md-4': !isExpand,
@@ -124,16 +125,18 @@
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
         </div>
-        <div *ngIf="!showValidateMsg" [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
+        <div *ngIf="!showValidateMsg" [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
                 <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-sb">
-                    <span>From farm to your home</span>
+                    <span>A new way of discovering coffee</span>
                 </div>
                 <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                    Want coffee offer updates straight <br />
-                    to your inbox?
+                    Join our mailing list to be the first to <br />
+                    know about our Era of We Shop
                 </div>
-                <div *ngIf="isExpand" class="fnt-12 d-md-none">Want coffee offer updates straight to your inbox?</div>
+                <div *ngIf="isExpand" class="fnt-12 d-md-none">
+                    Join our mailing list to be the first to know about our Era of We Shop
+                </div>
             </div>
             <div class="d-md-flex d-none custom-pad align-items-center">
                 <div class="form-group">

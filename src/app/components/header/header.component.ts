@@ -22,10 +22,6 @@ export class HeaderComponent implements OnInit {
         this.sideNavOpened = true;
     }
 
-    closeSearchPanel() {
-        window.scrollTo(0, 0);
-    }
-
     open() {
         const dropdown = document.getElementsByClassName('dropbtn');
         let i;
