@@ -27,6 +27,13 @@
     &:hover {
         box-shadow: 0 0 7px 1px rgba(67, 146, 108, 0.5);
     }
+    &:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+        &:hover {
+            box-shadow: 0 0 0 0;
+        }
+    }
 }
 .btn-stroked {
     color: $primary-color;

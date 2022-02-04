@@ -1,16 +1,13 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
-import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService } from '@services';
-import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [MessageService],
 })
 export class FooterComponent implements OnInit {
     readonly env = environment;
@@ -18,13 +15,11 @@ export class FooterComponent implements OnInit {
     language: string;
     pageOffsetHeight: number;
     subscribeEmail: string;
+    subscribeEmail2: string;
     isQAPage: boolean;
-    constructor(
-        private coffeLabService: CoffeeLabService,
-        private messageService: MessageService,
-        private translator: TranslateService,
-        private router: Router,
-    ) {}
+    showValidateMsg: boolean;
+    showAgainMsg: boolean;
+    constructor(private coffeLabService: CoffeeLabService, private router: Router) {}
 
     @HostListener('window:scroll', ['$event'])
     scrollHandler(event) {
@@ -35,38 +30,23 @@ export class FooterComponent implements OnInit {
     ngOnInit(): void {}
 
     onSubmit() {
-        if (!this.subscribeEmail || !this.subscribeEmail.length) {
-            this.messageService.add({
-                key: 'myKey1',
-                severity: 'error',
-                summary: 'Please enter a valid email',
-            });
-            return;
+        const email = this.subscribeEmail || this.subscribeEmail2;
+        if (email) {
+            this.coffeLabService.subscribeToMailList(email).subscribe(
+                (res: any) => {
+                    if (res.result && res.result === 'success') {
+                        this.showValidateMsg = true;
+                    } else {
+                        this.showValidateMsg = true;
+                        this.showAgainMsg = true;
+                    }
+                    this.subscribeEmail = '';
+                    this.subscribeEmail2 = '';
+                },
+                (err) => {
+                    console.log(err);
+                },
+            );
         }
-
-        this.coffeLabService.subscribeToMailList(this.subscribeEmail).subscribe(
-            (res: any) => {
-                if (res.result && res.result === 'success') {
-                    this.messageService.add({
-                        key: 'myKey1',
-                        severity: 'success',
-                        summary: this.translator.instant('thankyou_subscribing'),
-                    });
-                } else {
-                    const summary = res.msg?.includes('already subscribed')
-                        ? this.translator.instant('email_already_subscribed')
-                        : this.translator.instant('common_error');
-                    this.messageService.add({
-                        key: 'myKey1',
-                        severity: 'error',
-                        summary,
-                    });
-                }
-            },
-            (err) => {
-                console.log(err);
-            },
-        );
-        // this.subscribeEmail = '';
     }
 }

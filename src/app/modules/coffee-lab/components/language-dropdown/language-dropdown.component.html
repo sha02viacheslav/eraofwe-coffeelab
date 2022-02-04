@@ -1,13 +1,26 @@
 <p-dropdown
     [options]="languageList"
     [(ngModel)]="selectedLangCode"
-    styleClass="p-dropdown-translate"
+    styleClass="custom-dropdown-translate"
     (onChange)="onChangeLanguage()"
+    [ngClass]="isSubHeader ? 'p-dropdown-translate-sub' : 'p-dropdown-translate'"
 >
     <ng-template pTemplate="selectedItem">
-        <span class="fw-sb tc-b fnt-16">
-            <i class="pi pi-globe pr-1 align-middle"></i>
-            {{ 'language' | translate }} :
+        <span class="mr-2">
+            <img
+                *ngIf="selectedLangCode !== 'pt'"
+                [src]="'assets/images/' + selectedLangCode + '-flag.svg'"
+                alt="flag-image"
+                class="flag-image"
+            />
+            <img
+                *ngIf="selectedLangCode === 'pt'"
+                [src]="'assets/images/brazil-flag.png'"
+                class="flag-image"
+                alt="flag-image"
+            />
+        </span>
+        <span class="fw-sb fnt-16" [ngClass]="isSubHeader ? 'change-color' : 'tc-b'">
             {{ selectedFullLang ? (selectedFullLang | titlecase) : (selectedLangCode | language) }}
         </span>
     </ng-template>

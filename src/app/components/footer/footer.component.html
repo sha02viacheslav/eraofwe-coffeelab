@@ -9,13 +9,15 @@
                 <div class="d-flex">
                     <div class="form-group">
                         <input
-                            type="text"
-                            pInputText
+                            type="email"
+                            name="email1"
                             [(ngModel)]="subscribeEmail"
                             placeholder="What's your email address?"
                         />
                     </div>
-                    <button class="btn-raised subscribe-button" (click)="onSubmit()">Send</button>
+                    <button class="btn-raised subscribe-button" (click)="onSubmit()" [disabled]="!subscribeEmail">
+                        Send
+                    </button>
                 </div>
             </div>
         </div>
@@ -89,7 +91,7 @@
 >
     <div
         class="container-md d-md-flex justify-content-between"
-        [ngClass]="!isExpand ? 'd-flex flex-column-reverse' : ''"
+        [ngClass]="!isExpand ? 'd-flex flex-column-reverse flex-md-row' : ''"
     >
         <div [ngClass]="isExpand ? 'ads-image' : ''">
             <div class="mob-disp">
@@ -97,14 +99,21 @@
                 <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
                     <div class="form-group">
                         <input
-                            type="text"
-                            [(ngModel)]="subscribeEmail"
+                            type="email"
+                            name="email1"
+                            [(ngModel)]="subscribeEmail2"
                             class="custom-border"
                             placeholder="Enter your mail"
                         />
                         <div class="p-error"></div>
                     </div>
-                    <button class="btn-raised subscribe-button custom-submit-foot" (click)="onSubmit()">Send</button>
+                    <button
+                        class="btn-raised subscribe-button custom-submit-foot"
+                        (click)="onSubmit()"
+                        [disabled]="!subscribeEmail2"
+                    >
+                        Send
+                    </button>
                 </div>
             </div>
             <div class="d-md-none text-right">
@@ -112,7 +121,7 @@
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
         </div>
-        <div [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
+        <div *ngIf="!showValidateMsg" [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
                 <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
                     <span>From farm to your home</span>
@@ -128,16 +137,28 @@
                     <input
                         type="text"
                         pInputText
-                        [(ngModel)]="subscribeEmail"
+                        [(ngModel)]="subscribeEmail2"
                         class="custom-border"
                         placeholder="Enter your mail"
                     />
                 </div>
-                <button class="btn-raised subscribe-button custom-submit-foot" (click)="onSubmit()">Send</button>
+                <button
+                    class="btn-raised subscribe-button custom-submit-foot"
+                    (click)="onSubmit()"
+                    [disabled]="!subscribeEmail2"
+                >
+                    Send
+                </button>
             </div>
+        </div>
+        <div *ngIf="showValidateMsg">
+            <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
+                <!-- <img src="assets/images/thumbsup.svg" alt="product" /> -->
+                <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
+            </div>
+            <div class="fnt-18 fnt-md-24">We’ll be in touch with our latest coffee offers</div>
         </div>
         <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
         <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
     </div>
 </div>
-<p-toast key="myKey1" position="bottom-right" class="toast" life="1000000"></p-toast>

@@ -1,6 +1,11 @@
 @import 'variables';
 .no-border {
     border-bottom: 0 !important;
+    border-top: 0 !important;
+}
+
+.border-btm {
+    border-bottom: 2px solid $general-text-color;
 }
 
 .other-header {

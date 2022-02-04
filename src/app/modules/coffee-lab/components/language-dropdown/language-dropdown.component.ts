@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { ResizeableComponent } from '@base-components';
 import { APP_LANGUAGES, RouterMap, ROUTER_SLUG_ITEMS } from '@constants';
 import { CoffeeLabService, ResizeService } from '@services';
@@ -19,6 +19,7 @@ export class LanguageDropdownComponent extends ResizeableComponent implements On
     selectedLangCode: string;
     selectedFullLang: string;
     isBrower = false;
+    @Input() isSubHeader: boolean;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,

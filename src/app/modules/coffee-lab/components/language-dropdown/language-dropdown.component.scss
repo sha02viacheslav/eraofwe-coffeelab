@@ -1,4 +1,27 @@
-.translate-icon {
-    width: 16px;
-    height: 16px;
+@import 'variables';
+
+.flag-image {
+    height: 15px;
+}
+
+.change-color {
+    color: $white;
+}
+
+::ng-deep {
+    .custom-dropdown-translate {
+        border: none !important;
+    }
+    .custom-dropdown-translate .p-dropdown-trigger {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .p-dropdown-translate .p-dropdown-trigger-icon {
+        color: #804500 !important;
+        font-size: 12px;
+    }
+    .p-dropdown-translate-sub .p-dropdown-trigger-icon {
+        color: $white !important;
+        font-size: 12px;
+    }
 }
