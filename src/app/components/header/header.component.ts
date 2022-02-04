@@ -26,21 +26,12 @@ export class HeaderComponent implements OnInit {
         window.scrollTo(0, 0);
     }
 
-    open() {
-        const dropdown = document.getElementsByClassName('dropbtn');
-        let i;
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener('click', (item: any) => {
-                item?.classList?.toggle('active');
-                const dropdownContent = item?.nextElementSibling;
-                if (dropdownContent) {
-                    if (dropdownContent.style.display === 'block') {
-                        dropdownContent.style.display = 'none';
-                    } else {
-                        dropdownContent.style.display = 'block';
-                    }
-                }
-            });
+    onToggel(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+        } else {
+            dropdown.style.display = 'block';
         }
     }
 }
