@@ -173,18 +173,13 @@
                     <app-language-dropdown [isSubHeader]="true"></app-language-dropdown>
                 </div>
                 <div class="d-flex">
-                    <a class="d-none d-md-block" href="{{ env.coffeeLabWeb }}en/brewing-coffee/articles"
-                        >Brewing Coffee</a
+                    <a
+                        *ngFor="let item of categories; let i = index"
+                        [class.d-none]="i < 3"
+                        class="d-md-block"
+                        href="{{ env.coffeeLabWeb }}{{ selectedLangCode }}/{{ item.slug }}/articles"
+                        >{{ item.name }}</a
                     >
-                    <a class="d-none d-md-block" href="{{ env.coffeeLabWeb }}en/coffee-equipment/articles"
-                        >Coffee Equipment</a
-                    >
-                    <a class="d-none d-md-block" href="{{ env.coffeeLabWeb }}en/coffee-culture-story/articles"
-                        >Coffee Culture & Story</a
-                    >
-                    <a href="{{ env.coffeeLabWeb }}en/coffee-health/articles">Coffee & Health</a>
-                    <a href="{{ env.coffeeLabWeb }}en/coffee-shops/articles">Coffee Shops</a>
-                    <a href="{{ env.coffeeLabWeb }}en/sustainable-coffee/articles" class="pr-0">Sustainable Coffee</a>
                 </div>
             </div>
         </div>
