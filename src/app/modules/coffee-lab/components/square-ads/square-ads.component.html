@@ -1,15 +1,17 @@
 <div
     *ngIf="showAd"
     class="d-flex p-1 flex-column"
-    [ngClass]="questionDetail ? 'pl-md-35 pr-md-5 py-md-45' : 'px-md-4 py-md-25'"
+    [ngClass]="questionDetail ? 'pl-md-35 py-md-45' : 'px-md-4 py-md-25'"
+    [class.pr-md-5]="questionDetail && !showValidateMsg"
+    [class.pr-md-2]="questionDetail && showValidateMsg"
     [class.border-ads]="!hideBorder"
 >
     <div class="d-flex">
         <div [ngClass]="hideBorder ? 'ads-image' : 'image-ads'">
             <img src="assets/images/product.png" alt="product" />
         </div>
-        <div [class.mt-3]="questionDetail">
-            <div *ngIf="!showValidateMsg">
+        <div>
+            <div *ngIf="!showValidateMsg" [class.mt-md-45]="questionDetail">
                 <div class="fnt-24 fw-sb mb-2 mb-md-25" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
                     A new way of discovering coffee
                 </div>
@@ -18,11 +20,14 @@
                     to know about our Era of We Shop
                 </div>
             </div>
-            <div *ngIf="showValidateMsg">
-                <div class="fnt-18 fnt-md-32 fw-m mb-3">
-                    <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
+            <div *ngIf="showValidateMsg" class="mt-md-4 text-center">
+                <img src="assets/images/confirm-tick.svg" class="mb-25" />
+                <div class="fnt-18 fw-m mb-2" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
+                    <span>Thank you for submitting {{ showAgainMsg ? 'again' : '' }}</span>
                 </div>
-                <div class="fnt-md-18">We’ll be in touch with our latest coffee offers</div>
+                <div [ngClass]="!questionDetail ? 'lh-143 fnt-md-20' : 'fnt-md-16 lh-157'">
+                    We’ll be in touch with our latest coffee offers
+                </div>
             </div>
             <div class="d-flex mt-35 mt-md-45" *ngIf="!questionDetail && !showValidateMsg">
                 <div class="form-group">

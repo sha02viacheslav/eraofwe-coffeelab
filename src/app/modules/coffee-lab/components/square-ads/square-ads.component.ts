@@ -41,6 +41,7 @@ export class SquareAdsComponent implements OnInit {
                 }
                 setTimeout(() => {
                     this.coffeLabService.showAd.next(false);
+                    this.cdr.detectChanges();
                 }, 10000);
                 if (isPlatformBrowser(this.platformId)) {
                     window.localStorage.setItem('showAd', 'false');

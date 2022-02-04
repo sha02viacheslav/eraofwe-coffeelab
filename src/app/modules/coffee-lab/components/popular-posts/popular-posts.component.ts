@@ -12,6 +12,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 export class PopularPostsComponent implements OnInit {
     readonly PostType = PostType;
     @Input() relatedData: any[] = [];
+    @Input() type: string;
 
     constructor(private dialogSrv: DialogService) {}
 
@@ -22,6 +23,6 @@ export class PopularPostsComponent implements OnInit {
     }
 
     onRealtedRoute(langCode: string, slug: string) {
-        return `/${getLangRoute(langCode)}/articles/${slug}`;
+        return `/${getLangRoute(langCode)}/${this.type === 'article' ? 'articles' : 'coffee-recipes'}/${slug}`;
     }
 }
