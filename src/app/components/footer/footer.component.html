@@ -84,69 +84,31 @@
     </div>
 </div>
 
-<div>
+<div
+    [ngClass]="{
+        'p-4 px-md-5 pt-md-5 pb-md-35': isExpand,
+        'p-3 p-md-4': !isExpand,
+        tansition1: pageOffsetHeight > 850 || isQAPage
+    }"
+    class="footer-ads border-334 bg-white w-100"
+>
     <div
-        [ngClass]="{
-            'p-4 px-md-5 pt-md-5 pb-md-35': isExpand,
-            'p-3 p-md-4': !isExpand,
-            tansition1: pageOffsetHeight > 850 || isQAPage
-        }"
-        class="footer-ads border-334 bg-white w-100"
+        class="container-md d-md-flex justify-content-between"
+        [ngClass]="!isExpand ? 'd-flex flex-column-reverse flex-md-row' : ''"
     >
-        <div
-            class="container-md d-md-flex justify-content-between"
-            [ngClass]="!isExpand ? 'd-flex flex-column-reverse flex-md-row' : ''"
-        >
-            <div [ngClass]="isExpand ? 'ads-image' : ''">
-                <div class="mob-disp">
-                    <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
-                    <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                name="email1"
-                                [(ngModel)]="subscribeEmail2"
-                                class="custom-border"
-                                placeholder="Enter your mail"
-                            />
-                            <div class="p-error"></div>
-                        </div>
-                        <button
-                            class="btn-raised subscribe-button custom-submit-foot"
-                            (click)="onSubmit()"
-                            [disabled]="!subscribeEmail2"
-                        >
-                            Send
-                        </button>
-                    </div>
-                </div>
-                <div class="d-md-none text-right">
-                    <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
-                    <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
-                </div>
-            </div>
-            <div *ngIf="!showValidateMsg" [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
-                <div [ngClass]="!isExpand ? 'd-flex' : ''">
-                    <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-sb">
-                        <span>From farm to your home</span>
-                    </div>
-                    <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                        Want coffee offer updates straight <br />
-                        to your inbox?
-                    </div>
-                    <div *ngIf="isExpand" class="fnt-12 d-md-none">
-                        Want coffee offer updates straight to your inbox?
-                    </div>
-                </div>
-                <div class="d-md-flex d-none custom-pad align-items-center">
+        <div [ngClass]="isExpand ? 'ads-image' : ''">
+            <div class="mob-disp">
+                <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
+                <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
                     <div class="form-group">
                         <input
-                            type="text"
-                            pInputText
+                            type="email"
+                            name="email1"
                             [(ngModel)]="subscribeEmail2"
                             class="custom-border"
                             placeholder="Enter your mail"
                         />
+                        <div class="p-error"></div>
                     </div>
                     <button
                         class="btn-raised subscribe-button custom-submit-foot"
@@ -157,15 +119,49 @@
                     </button>
                 </div>
             </div>
-            <div *ngIf="showValidateMsg">
-                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
-                    <!-- <img src="assets/images/thumbsup.svg" alt="product" /> -->
-                    <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
-                </div>
-                <div class="fnt-18 fnt-md-24">We’ll be in touch with our latest coffee offers</div>
+            <div class="d-md-none text-right">
+                <span class="black-cta c-btn" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+                <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
-            <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
-            <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
         </div>
+        <div *ngIf="!showValidateMsg" [ngClass]="{ 'ml-md-5 pl-md-25': !isExpand }" class="d-flex pr-md-5 mr-md-5">
+            <div [ngClass]="!isExpand ? 'd-flex' : ''">
+                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-sb">
+                    <span>From farm to your home</span>
+                </div>
+                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
+                    Want coffee offer updates straight <br />
+                    to your inbox?
+                </div>
+                <div *ngIf="isExpand" class="fnt-12 d-md-none">Want coffee offer updates straight to your inbox?</div>
+            </div>
+            <div class="d-md-flex d-none custom-pad align-items-center">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        pInputText
+                        [(ngModel)]="subscribeEmail2"
+                        class="custom-border"
+                        placeholder="Enter your mail"
+                    />
+                </div>
+                <button
+                    class="btn-raised subscribe-button custom-submit-foot"
+                    (click)="onSubmit()"
+                    [disabled]="!subscribeEmail2"
+                >
+                    Send
+                </button>
+            </div>
+        </div>
+        <div *ngIf="showValidateMsg">
+            <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
+                <!-- <img src="assets/images/thumbsup.svg" alt="product" /> -->
+                <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
+            </div>
+            <div class="fnt-18 fnt-md-24">We’ll be in touch with our latest coffee offers</div>
+        </div>
+        <span class="black-cta c-btn d-none d-md-block" *ngIf="isExpand" (click)="isExpand = false">Collapse</span>
+        <span class="black-cta e-btn d-none d-md-block" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
     </div>
 </div>
