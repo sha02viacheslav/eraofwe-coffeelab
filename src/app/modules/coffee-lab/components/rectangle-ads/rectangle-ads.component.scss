@@ -6,13 +6,16 @@
 
 .ads-border {
     border: solid 1px #d0d0d0;
+    @media (max-width: 767px) {
+        border-radius: 6px;
+    }
 }
 
 .no-border {
     @media (min-width: 767px) {
         border-left: 0;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
     }
     border-color: #d0d0d061 !important;
 }
