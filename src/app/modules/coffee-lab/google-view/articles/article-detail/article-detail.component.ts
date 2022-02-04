@@ -1,13 +1,5 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    Inject,
-    OnInit,
-    PLATFORM_ID,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { MetaDespMinLength, RouterMap } from '@constants';
@@ -57,7 +49,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
-        private messageService: MessageService,
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
@@ -153,8 +144,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         }`;
                     }
                     this.startupService.load(this.lang || 'en');
-                    this.messageService.clear();
-                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                     this.getAllData();
 
                     this.setSEO();

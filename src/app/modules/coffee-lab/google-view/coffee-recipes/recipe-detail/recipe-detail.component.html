@@ -313,36 +313,9 @@
             </article>
         </div>
 
-        <article *ngIf="showAll" class="row">
-            <div class="col-12 col-md-8 px-md-3">
-                <div class="fnt-16 fw-b pt-3 pb-45 background-header">
-                    {{ 'popular_brewing_guides' | translate }}
-                </div>
-                <div class="row py-2">
-                    <div *ngFor="let forum of relatedData" class="col-12 col-md-6 pb-4">
-                        <div class="d-flex pb-4 footer-border">
-                            <a class="p-articles pr-2" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                                <img [lazyLoad]="forum?.cover_image_thumb_url" alt="" />
-                            </a>
-                            <a
-                                class="c-p d-flex flex-column"
-                                [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)"
-                            >
-                                <p class="fw-sb fnt-16 cust-flex-grow text-break">
-                                    {{ forum?.title | convertToShortDescription: 6 }}
-                                </p>
-                                <p class="fw-m text-underline">
-                                    {{ forum?.user_name }}
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4 px-md-3">
-                <app-join-community [type]="PostType.QA" [showBorderBottom]="false"></app-join-community>
-            </div>
-        </article>
+        <div *ngIf="showAll">
+            <app-popular-posts [relatedData]="relatedData"></app-popular-posts>
+        </div>
 
         <ngx-json-ld *ngIf="showAll" [json]="jsonLD"></ngx-json-ld>
     </div>

@@ -119,7 +119,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             .getPopularList(
                 PostType.RECIPE,
                 {
-                    count: 11,
+                    count: 7,
                 },
                 this.urlLang === 'pt-br' ? 'pt' : this.urlLang,
             )
@@ -127,7 +127,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 if (res.success) {
                     this.relatedData = (res.result || [])
                         .filter((item) => item && item?.slug !== this.idOrSlug)
-                        .slice(0, 10);
+                        .slice(0, 6);
                 }
             });
     }

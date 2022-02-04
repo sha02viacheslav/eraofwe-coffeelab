@@ -40,17 +40,6 @@
     }
 }
 
-.p-articles img {
-    width: 200px;
-    height: 116px;
-    object-fit: cover;
-}
-.fnt-fly {
-    font-family: $secondary-font-family;
-    font-size: 22px;
-    line-height: 1.23;
-}
-
 ::ng-deep .forum-content > div {
     word-break: break-word;
     a:hover {
@@ -93,10 +82,6 @@
     margin: 0 0.13rem;
 }
 
-.content-margin {
-    margin: 0 0.13rem;
-}
-
 .comment-border {
     border-bottom: solid 0.5px #d8d8d8;
 }
@@ -111,10 +96,6 @@
     }
 }
 
-.footer-border {
-    border-bottom: solid 0.5px #d8d8d8;
-}
-
 .divder {
     border-bottom: 1px solid $dark-color;
 }
@@ -125,63 +106,5 @@
         cursor: pointer;
         text-decoration: underline;
         color: #154faa;
-    }
-}
-
-.cust-flex-grow {
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-.background-header {
-    border-bottom: 2px solid $dark-color;
-}
-
-.border-bottom-0 {
-    border-bottom: 0 !important;
-}
-
-.more {
-    margin: 0px -8px 24px -8px;
-    @media (min-width: 768px) {
-        margin: 0px -48px 50px -48px;
-    }
-    .more-text {
-        font-size: 28px;
-        @media (min-width: 768px) {
-            font-size: 48px;
-        }
-    }
-    .sign-up {
-        border-radius: 6px;
-        height: 55px;
-    }
-}
-
-.down-border {
-    border-bottom: 1px solid #d8d8d8;
-}
-
-.more-banner {
-    .popular-image {
-        height: 397px;
-        min-height: 397px;
-        object-fit: cover;
-        border-radius: 4px;
-        @media (max-width: 767px) {
-            height: 271px;
-            min-height: 272px;
-            width: 271px;
-        }
-    }
-    .ng-lazyloaded {
-        width: 100%;
-    }
-    .ng-lazyloading {
-        @media (max-width: 767px) {
-            width: 271px;
-        }
-        width: 397px;
     }
 }
