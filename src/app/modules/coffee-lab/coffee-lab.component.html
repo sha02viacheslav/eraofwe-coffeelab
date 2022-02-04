@@ -13,33 +13,57 @@
                     <div class="dropdown">
                         <button class="dropbtn">Why Era of We <i class="pi pi-chevron-down"></i></button>
                         <div class="dropdown-content">
-                            <a class="paragraph-p2 text-darker semi" href="/sustainability/">Sustainability</a>
-                            <a class="paragraph-p2 text-darker semi" href="/community/">Our Community</a>
-                            <a class="paragraph-p2 text-darker semi" href="/traceability/">A Traceable Experience</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/sustainability/"
+                                >Sustainability</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/community/"
+                                >Our Community</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/traceability/"
+                                >A Traceable Experience</a
+                            >
                         </div>
                     </div>
-                    <div class="dropdown"><button class="dropbtn" href="/solutions/">Solution</button></div>
+                    <div class="dropdown">
+                        <button class="dropbtn" href="{{ env.publicWeb }}/solutions/">Solution</button>
+                    </div>
                     <div class="dropdown">
                         <button class="dropbtn">Partners <i class="pi pi-chevron-down"></i></button>
                         <div class="dropdown-content">
-                            <a class="paragraph-p2 text-darker semi" href="/coffee-roaster/">Roaster</a>
-                            <a class="paragraph-p2 text-darker semi" href="/estates/">Estate</a>
-                            <a class="paragraph-p2 text-darker semi" href="/facilitator/">Facilitator</a>
-                            <a class="paragraph-p2 text-darker semi" href="/micro-roaster/">Micro Roasters</a>
-                            <a class="paragraph-p2 text-darker semi" href="/consumer/">End consumer</a>
-                            <a class="paragraph-p2 text-darker semi" href="/hospitality/">Hospitality</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/coffee-roaster/"
+                                >Roaster</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/estates/">Estate</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/facilitator/"
+                                >Facilitator</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/micro-roaster/"
+                                >Micro Roasters</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/consumer/"
+                                >End consumer</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/hospitality/"
+                                >Hospitality</a
+                            >
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">About us <i class="pi pi-chevron-down"></i></button>
                         <div class="dropdown-content">
-                            <a class="paragraph-p2 text-darker semi" href="/aboutus/">Our Mission</a>
-                            <a class="paragraph-p2 text-darker semi" href="/press-media/">Press and Media</a>
-                            <a class="paragraph-p2 text-darker semi" href="/community-news/">Community News</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/aboutus/">Our Mission</a>
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/press-media/"
+                                >Press and Media</a
+                            >
+                            <a class="paragraph-p2 text-darker semi" href="{{ env.publicWeb }}/community-news/"
+                                >Community News</a
+                            >
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button class="dropbtn coffee-lab-nev-text mr-md-45" href="/solutions/">The Coffee lab</button>
+                        <button class="dropbtn coffee-lab-nev-text mr-md-45" href="{{ env.publicWeb }}/solutions/">
+                            The Coffee lab
+                        </button>
                     </div>
                     <a
                         [href]="env.ssoWeb + '/login'"

@@ -2,14 +2,12 @@ import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angul
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
-import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [MessageService],
 })
 export class FooterComponent implements OnInit {
     readonly env = environment;
