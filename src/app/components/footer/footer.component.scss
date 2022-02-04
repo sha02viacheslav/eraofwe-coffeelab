@@ -317,14 +317,17 @@
         line-height: 2;
         border: none;
         color: #232334;
+        &:focus {
+            outline: none;
+        }
     }
 
     .custom-border {
         border: solid 1px #30855c;
         border-top-left-radius: 6px;
         border-bottom-left-radius: 6px;
-        width: 188px !important;
-        height: 40px !important;
+        width: 247px !important;
+        height: 45px !important;
         @media (max-width: 767px) {
             width: 130px !important;
         }
@@ -340,26 +343,26 @@
     border: none;
 }
 .custom-submit-foot {
-    width: 70px !important;
-    height: 40px !important;
+    width: 85px !important;
+    height: 45px !important;
     @media (max-width: 767px) {
         width: 50px !important;
     }
 }
 
 .custom-pad {
-    padding-left: 9rem;
+    padding-left: 5rem;
 }
 
-:host ::ng-deep .toast .p-toast .p-toast-message-content,
-::ng-deep .toast .p-toast .p-toast-message .p-toast-summary,
-::ng-deep .toast .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
-    display: flex !important;
-    align-items: center !important;
-}
-:host ::ng-deep .toast .p-toast-bottom-right {
-    @media screen and (max-width: 767px) {
-        padding-right: 0px;
-        padding-left: 1.5rem;
+.align-expand {
+    @media (min-width: 768px) {
+        position: relative;
+        bottom: 15px;
     }
+}
+
+.align-tick {
+    position: relative;
+    top: 4px;
+    margin-right: 0.5rem;
 }

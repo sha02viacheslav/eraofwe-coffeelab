@@ -1,22 +1,21 @@
 <div
+    *ngIf="showAd"
     class="d-flex p-1 flex-column"
-    [ngClass]="questionDetail ? 'px-md-35 py-md-45' : 'px-md-4 py-md-25'"
+    [ngClass]="questionDetail ? 'pl-md-35 pr-md-5 py-md-45' : 'px-md-4 py-md-25'"
     [class.border-ads]="!hideBorder"
 >
     <div class="d-flex">
-        <div [class.ads-image]="hideBorder" [class.image-ads]="!hideBorder">
+        <div [ngClass]="hideBorder ? 'ads-image' : 'image-ads'">
             <img src="assets/images/product.png" alt="product" />
         </div>
         <div [class.mt-3]="questionDetail">
             <div *ngIf="!showValidateMsg">
-                <div class="fnt-md-32 fnt-24 fw-sb mb-2 mb-md-25">From farm to your home</div>
-                <div
-                    [class.lh-143]="!questionDetail"
-                    [class.fnt-md-20]="!questionDetail"
-                    [class.fnt-md-18]="questionDetail"
-                >
-                    Want coffee offer updates <br *ngIf="!questionDetail" />
-                    straight to your inbox?
+                <div class="fnt-24 fw-sb mb-2 mb-md-25" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
+                    A new way of discovering coffee
+                </div>
+                <div [ngClass]="!questionDetail ? 'lh-143 fnt-md-20' : 'fnt-md-16 lh-157'">
+                    Join our mailing list to be the first <br *ngIf="!questionDetail" />
+                    to know about our Era of We Shop
                 </div>
             </div>
             <div *ngIf="showValidateMsg">
@@ -25,7 +24,7 @@
                 </div>
                 <div class="fnt-md-18">We’ll be in touch with our latest coffee offers</div>
             </div>
-            <div class="d-flex mt-45" *ngIf="!questionDetail && !showValidateMsg">
+            <div class="d-flex mt-35 mt-md-45" *ngIf="!questionDetail && !showValidateMsg">
                 <div class="form-group">
                     <input
                         type="email"
@@ -35,14 +34,14 @@
                         placeholder="Enter your email"
                     />
                 </div>
-                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Send</button>
+                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Submit</button>
             </div>
         </div>
     </div>
-    <div class="d-flex mt-45" *ngIf="questionDetail && !showValidateMsg">
+    <div class="d-flex mt-md-45 ml-md-5" *ngIf="questionDetail && !showValidateMsg">
         <div class="form-group w-100">
             <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
         </div>
-        <button class="btn-raised subscribe-button" (click)="onSubmit()">Send</button>
+        <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
     </div>
 </div>

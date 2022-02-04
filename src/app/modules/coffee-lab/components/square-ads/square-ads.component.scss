@@ -46,6 +46,9 @@
         border-bottom-left-radius: 6px;
         border: solid 1px $primary-color;
         color: $dark-color;
+        &:focus {
+            outline: none;
+        }
     }
 
     .popup-email {
@@ -64,6 +67,7 @@
 }
 
 .subscribe-button {
+    width: 85px;
     height: 50px;
     border-radius: 0px;
     border-top-right-radius: 4px;

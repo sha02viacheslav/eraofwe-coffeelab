@@ -1,6 +1,6 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from '@env/environment';
 import { ApiResponse, UserProfile } from '@models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -13,16 +13,19 @@ import { ApiService } from './api.service';
 export class CoffeeLabService extends ApiService {
     forumLanguage = new BehaviorSubject('en');
     otherCategories = new BehaviorSubject([]);
-
+    showAd = new BehaviorSubject(true);
     get currentForumLanguage(): string {
         return this.forumLanguage.value;
     }
     constructor(
         protected http: HttpClient,
         private langPrefixService: LangPrefixService,
-        @Inject(DOCUMENT) private document: Document, // private dialogSrv: DialogService,
+        @Inject(PLATFORM_ID) private platformId: object,
     ) {
         super(http);
+        if (isPlatformBrowser(this.platformId)) {
+            this.showAd.next(window.localStorage.getItem('showAd') ? false : true);
+        }
         this.forumLanguage.next(this.langPrefixService.langPrefix());
     }
 

@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    HostListener,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
@@ -19,12 +28,24 @@ export class FooterComponent implements OnInit {
     isQAPage: boolean;
     showValidateMsg: boolean;
     showAgainMsg: boolean;
-    constructor(private coffeLabService: CoffeeLabService, private router: Router, private cdr: ChangeDetectorRef) {}
+    showAd: boolean;
+    constructor(
+        private coffeLabService: CoffeeLabService,
+        private router: Router,
+        private cdr: ChangeDetectorRef,
+        @Inject(PLATFORM_ID) private platformId: object,
+    ) {
+        this.coffeLabService.showAd.subscribe((res) => {
+            this.showAd = res;
+        });
+    }
 
     @HostListener('window:scroll', ['$event'])
     scrollHandler(event) {
         this.isQAPage = this.router.url.includes('/qa-forum/');
-        this.pageOffsetHeight = window.pageYOffset;
+        if (isPlatformBrowser(this.platformId)) {
+            this.pageOffsetHeight = window.pageYOffset;
+        }
     }
 
     ngOnInit(): void {}
@@ -42,6 +63,12 @@ export class FooterComponent implements OnInit {
                     }
                     this.subscribeEmail = '';
                     this.subscribeEmail2 = '';
+                    setTimeout(() => {
+                        this.coffeLabService.showAd.next(false);
+                    }, 10000);
+                    if (isPlatformBrowser(this.platformId)) {
+                        window.localStorage.setItem('showAd', 'false');
+                    }
                     this.cdr.detectChanges();
                 },
                 (err) => {

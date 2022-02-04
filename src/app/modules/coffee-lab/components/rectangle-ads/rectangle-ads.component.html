@@ -1,24 +1,29 @@
 <div
-    class="d-md-flex py-4 px-3 p-md-4 ads-border br-4 bg-f1"
-    [class.mb-md-5]="!questionPage"
-    [class.mb-4]="!questionPage"
+    *ngIf="showAd"
+    class="d-md-flex py-4 px-3 p-md-4 ads-border bg-f1"
+    [ngClass]="!questionPage ? 'mb-md-5 flex-column mb-4' : 'no-border justify-content-md-between'"
+    [class.add-padding]="showValidateMsg && questionPage"
 >
-    <div *ngIf="!showValidateMsg">
-        <div class="fnt-md-20 fw-sb mb-25">From farm to your home</div>
-        <div class="fnt-md-20">Want coffee offer updates straight to your inbox?</div>
+    <div *ngIf="!showValidateMsg" [class.ml-md-4]="questionPage">
+        <div class="fnt-md-20 fw-sb mb-2">A new way of discovering coffee</div>
+        <div [ngClass]="!questionPage ? 'fnt-md-16 mb-md-25' : 'fnt-md-18'">
+            Join our mailing list to be the first to<br [class.d-none]="!questionPage" />
+            know about our Era of We Shop
+        </div>
     </div>
-    <div *ngIf="showValidateMsg" class="align-items-center d-flex flex-column custom-marg">
+    <div *ngIf="showValidateMsg" class="align-items-center d-flex flex-column">
         <div class="fnt-18 fnt-md-32 fw-m mb-25">
+            <img src="assets/images/confirm-tick.svg" class="align-tick" />
             <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
         </div>
-        <div class="fnt-md-18">We’ll be in touch with our latest coffee offers</div>
+        <div class="fnt-md-18 pl-md-5 ml-md-3">We’ll be in touch with our latest coffee offers</div>
     </div>
     <div *ngIf="!showValidateMsg" class="d-flex align-items-center mt-3 mt-md-0">
         <div class="d-flex">
             <div class="form-group">
                 <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
             </div>
-            <button class="btn-raised subscribe-button" (click)="onSubmit()">Send</button>
+            <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
         </div>
     </div>
 </div>
