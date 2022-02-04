@@ -11,6 +11,11 @@
 
 <ng-template #protectWrapper>
     <div class="container router-design">
-        <input type="password" (change)="onCheckPassword($event.target.value)" placeholder="Please input password" />
+        <input
+            type="password"
+            (change)="onCheckPassword($event.target.value)"
+            class="align-input"
+            placeholder="Please input password"
+        />
     </div>
 </ng-template>
