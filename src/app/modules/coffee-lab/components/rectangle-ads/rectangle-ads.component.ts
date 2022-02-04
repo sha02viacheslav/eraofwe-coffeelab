@@ -42,7 +42,7 @@ export class RectangleAdsComponent implements OnInit {
                     this.coffeLabService.showAd.next(false);
                 }, 10000);
                 if (isPlatformBrowser(this.platformId)) {
-                    // window.localStorage.setItem('showAd', 'false');
+                    window.localStorage.setItem('showAd', 'false');
                 }
                 this.subscribeEmail = '';
                 this.cdr.detectChanges();
