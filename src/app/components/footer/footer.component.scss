@@ -76,9 +76,16 @@
     }
 }
 
+.tansition1 {
+    transform: translate(0, 0) !important;
+    transition: transform 0.7s ease-in, -webkit-transform 0.7s ease-in !important;
+}
+
 .footer-ads {
     position: fixed;
     bottom: 0;
+    transform: translate(0, 260px);
+    transition: transform 0.7s ease-out, -webkit-transform 0.7s ease-out;
 }
 
 .footer {
