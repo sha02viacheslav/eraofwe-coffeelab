@@ -61,7 +61,11 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
             date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
             const expires = '; expires=' + date.toUTCString();
             this.document.cookie = 'ad-popup' + '=open' + expires;
-            if (this.coffeeLabService.showAd) {
+            let showAd: boolean;
+            this.coffeeLabService.showAd.subscribe((res) => {
+                showAd = res;
+            });
+            if (showAd) {
                 this.dialogSrv.open(ClosePopupComponent, { styleClass: 'remove-background' });
             }
         }
