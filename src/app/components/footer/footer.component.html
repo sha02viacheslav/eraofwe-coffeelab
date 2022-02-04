@@ -125,7 +125,7 @@
                 <span class="black-cta e-btn" *ngIf="!isExpand" (click)="isExpand = true">Expand</span>
             </div>
         </div>
-        <div *ngIf="showValidateMsg" [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'align-expand'" class="d-flex">
+        <div *ngIf="!showValidateMsg" [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'align-expand'" class="d-flex">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
                 <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-sb">
                     <span>A new way of discovering coffee</span>
@@ -157,7 +157,7 @@
                 </button>
             </div>
         </div>
-        <div *ngIf="!showValidateMsg">
+        <div *ngIf="showValidateMsg">
             <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-m">
                 <img src="assets/images/confirm-tick.svg" alt="confirm-tick" class="align-tick" />
                 <span>Thank you submitting {{ showAgainMsg ? 'again' : '' }}</span>
