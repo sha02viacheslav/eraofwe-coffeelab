@@ -9,6 +9,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
 import { FooterModule } from 'src/app/components/footer/footer.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
 
@@ -26,6 +27,7 @@ import { LandingPageComponent } from './landing-page.component';
         ArticleCardModule,
         RecipeCardModule,
         CategoryListModule,
+        HeaderModule,
     ],
 })
 export class LandingPageModule {}

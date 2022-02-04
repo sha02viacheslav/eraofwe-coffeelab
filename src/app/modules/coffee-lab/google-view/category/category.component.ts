@@ -42,7 +42,7 @@ export class CategoryComponent extends ResizeableComponent implements OnInit {
         this.activateRoute.params.subscribe((params) => {
             this.slug = params.category;
             this.selectedPostType = this.activateRoute.firstChild.routeConfig.path;
-            this.currentLangCode = params.lang === 'pt-br' ? 'pt' : params.lang;
+            this.currentLangCode = this.coffeeLabService.currentForumLanguage;
             if (this.selectedPostType === RouterMap.en[RouterSlug.QA]) {
                 this.getCategories(false);
             }
