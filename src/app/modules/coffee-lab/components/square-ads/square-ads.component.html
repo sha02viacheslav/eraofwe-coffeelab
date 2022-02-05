@@ -39,7 +39,9 @@
                         placeholder="Enter your email"
                     />
                 </div>
-                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Submit</button>
+                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()" [disabled]="!subscribeEmail">
+                    Submit
+                </button>
             </div>
         </div>
     </div>
@@ -47,6 +49,6 @@
         <div class="form-group w-100">
             <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
         </div>
-        <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
+        <button class="btn-raised subscribe-button" (click)="onSubmit()" [disabled]="!subscribeEmail">Submit</button>
     </div>
 </div>
