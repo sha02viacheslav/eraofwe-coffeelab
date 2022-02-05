@@ -1,5 +1,7 @@
+@import 'variables';
+
 .search-forum {
-    border-color: #d6d6d6;
+    border-color: $primary-border-color;
     padding-top: 9px;
     padding-bottom: 9px;
 }

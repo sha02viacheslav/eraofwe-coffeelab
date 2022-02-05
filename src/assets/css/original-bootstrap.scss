@@ -930,7 +930,7 @@ button.bg-dark:focus {
   background-color: #1d2124 !important;
 }
 .bg-white {
-  background-color: #ffffff !important;
+  background-color: $white !important;
 }
 .bg-transparent {
   background-color: transparent !important;
@@ -990,7 +990,7 @@ button.bg-dark:focus {
   border-color: #343a40 !important;
 }
 .border-white {
-  border-color: #ffffff !important;
+  border-color: $white !important;
 }
 .rounded-sm {
   border-radius: 0.2rem !important;
@@ -5319,7 +5319,7 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 .text-white {
-  color: #ffffff !important;
+  color: $white !important;
 }
 .text-primary {
   color: #007bff !important;
@@ -5414,34 +5414,34 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: 700 !important;
 }
 .border-main {
-  border: solid 1px #ebebeb !important;
+  border: solid 1px $secondary-border-color !important;
 }
 .border-primary {
-  border: solid 1px #d6d6d6 !important;
+  border: solid 1px $primary-border-color !important;
 }
 .border-top-main {
-  border-top: solid 1px #ebebeb !important;
+  border-top: solid 1px $secondary-border-color !important;
 }
 .border-top-dashed-main {
-  border-top: dashed 1px #ebebeb !important;
+  border-top: dashed 1px $secondary-border-color !important;
 }
 .border-top-primary {
-  border-top: solid 1px #d6d6d6 !important;
+  border-top: solid 1px $primary-border-color !important;
 }
 .border-top-dashed-primary {
-  border-top: dashed 1px #d6d6d6 !important;
+  border-top: dashed 1px $primary-border-color !important;
 }
 .border-bottom-main {
-  border-bottom: solid 1px #ebebeb !important;
+  border-bottom: solid 1px $secondary-border-color !important;
 }
 .border-bottom-dashed-main {
-  border-bottom: dashed 1px #ebebeb !important;
+  border-bottom: dashed 1px $secondary-border-color !important;
 }
 .border-bottom-primary {
-  border-bottom: solid 1px #d6d6d6 !important;
+  border-bottom: solid 1px $primary-border-color !important;
 }
 .border-bottom-dashed-primary {
-  border-bottom: dashed 1px #d6d6d6 !important;
+  border-bottom: dashed 1px $primary-border-color !important;
 }
 .br-2 {
   border-radius: 2px !important;

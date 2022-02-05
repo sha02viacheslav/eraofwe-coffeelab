@@ -36,13 +36,13 @@
     input {
         width: 247px;
         height: 45px;
-        font-size: 14px;
+        font-size: 16px;
         padding: 0 0 0 16px;
         background-color: $white;
         border-top-left-radius: 6px;
         border-bottom-left-radius: 6px;
-        border: solid 1px #30855c;
-        color: #232334;
+        border: solid 1px $primary-color;
+        color: $general-text-color;
         &:focus {
             outline: none;
         }
@@ -50,6 +50,10 @@
             width: 220px;
         }
     }
+}
+
+::-webkit-input-placeholder {
+    color: #797a8d;
 }
 
 .align-tick {

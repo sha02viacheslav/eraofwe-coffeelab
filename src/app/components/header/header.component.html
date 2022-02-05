@@ -61,20 +61,20 @@
                         </div>
                     </div>
                     <div class="dropdown custom-pad-head">
-                        <a class="dropbtn coffee-lab-nev-text mr-md-45">The Coffee lab</a>
+                        <a class="dropbtn coffee-lab-nev-text">The Coffee lab</a>
                     </div>
                     <a
                         [href]="env.ssoWeb + '/login'"
                         class="btn-raised mt-md-1"
                         [rel]="env.needProtect ? 'nofollow' : ''"
-                        >{{ 'login' | translate }}</a
+                        >{{ 'sign_up' | translate }}</a
                     >
                 </div>
                 <a
                     [href]="env.ssoWeb + '/login'"
                     class="btn-raised ml-auto d-lg-none"
                     [rel]="env.needProtect ? 'nofollow' : ''"
-                    >{{ 'login' | translate }}</a
+                    >{{ 'sign_up' | translate }}</a
                 >
             </div>
         </div>
@@ -157,7 +157,7 @@
                                 [href]="env.ssoWeb + '/login'"
                                 class="btn-raised mt-md-1 w-100"
                                 [rel]="env.needProtect ? 'nofollow' : ''"
-                                >{{ 'login' | translate }}</a
+                                >{{ 'sign_up' | translate }}</a
                             >
                         </div>
                     </div>
@@ -176,6 +176,7 @@
                     <a
                         *ngFor="let item of categories; let i = index"
                         [class.d-none]="i < 3"
+                        [class.pr-md-0]="i == categories.length - 1"
                         class="d-md-block"
                         href="{{ env.coffeeLabWeb }}{{ selectedLangCode }}/{{ item.slug }}/articles"
                         >{{ item.name }}</a

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .article-item {
     border-radius: 14px;
     min-height: 485px;
@@ -5,7 +7,7 @@
     border: 1px solid #d0d0d0;
     transition: transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
     .card-hght {
-        background-color: #f8f8f8;
+        background-color: $secondary-border-color;
         height: 234px;
         min-height: 234px;
         border-radius: 14px;

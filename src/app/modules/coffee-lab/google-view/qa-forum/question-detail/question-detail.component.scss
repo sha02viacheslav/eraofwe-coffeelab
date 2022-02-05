@@ -23,7 +23,7 @@
 }
 
 .flavour-profiles {
-    border: 2px dashed #d6d6d6;
+    border: 2px dashed $primary-border-color;
     a {
         cursor: pointer;
         text-decoration: underline;

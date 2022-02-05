@@ -47,7 +47,7 @@
         top: -75px;
     }
     .trending-posts {
-        background-color: #232334;
+        background-color: $general-text-color;
         padding: 48px 18px;
         @media (min-width: 768px) {
             padding: 48px 92px 56px 56px;
@@ -354,7 +354,7 @@
         border: 1px solid #fff !important;
     }
     .here-csl .p-carousel-content .p-carousel-indicators li button {
-        border: 1px solid #232334 !important;
+        border: 1px solid $general-text-color !important;
     }
 }
 
@@ -395,11 +395,11 @@
                     }
                     @media (max-width: 767px) {
                         flex: 1;
-                        border-top: solid 1px #d6d6d6;
-                        border-bottom: solid 1px #d6d6d6;
-                        border-right: solid 1px #d6d6d6;
+                        border-top: solid 1px $primary-border-color;
+                        border-bottom: solid 1px $primary-border-color;
+                        border-right: solid 1px $primary-border-color;
                         &:first-child {
-                            border-left: solid 1px #d6d6d6;
+                            border-left: solid 1px $primary-border-color;
                             border-top-left-radius: 4px;
                             border-bottom-left-radius: 4px;
                         }
@@ -446,7 +446,7 @@
 .custom-stroked {
     background-color: #f8f6ef !important;
     &:hover {
-        background-color: #30855c !important;
+        background-color: $primary-color !important;
     }
 }
 

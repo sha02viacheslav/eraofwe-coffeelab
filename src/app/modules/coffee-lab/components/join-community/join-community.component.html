@@ -6,8 +6,8 @@
     [class.no-border]="!showBorderBottom"
 >
     <p
-        class="fnt-18 fw-sb"
-        [ngClass]="type === PostType.QA ? 'pb-25 mb-1 pt-3' : ''"
+        class="fnt-18"
+        [ngClass]="type === PostType.QA ? 'pb-25 mb-1 pt-3 fw-b' : 'fw-sb'"
         [class.border-btm]="!showBorderBottom"
     >
         <span *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>

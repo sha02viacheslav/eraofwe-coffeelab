@@ -26,7 +26,7 @@
 }
 .p-checkbox .p-checkbox-box {
     border: 1px solid #a6a6a6;
-    background: #ffffff;
+    background: $white;
     width: 18px;
     height: 18px;
     color: #333333;
@@ -35,7 +35,7 @@
 }
 .p-checkbox .p-checkbox-box .p-checkbox-icon {
     transition-duration: 0.2s;
-    color: #ffffff;
+    color: $white;
     font-size: 12px;
 }
 .p-checkbox .p-checkbox-box.p-highlight {
@@ -54,7 +54,7 @@
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
     border-color: $primary-color;
     background: $primary-color;
-    color: #ffffff;
+    color: $white;
 }
 
 .p-checkbox-label {
@@ -64,7 +64,7 @@
 }
 
 .p-highlight .p-checkbox .p-checkbox-box {
-    border-color: #ffffff;
+    border-color: $white;
 }
 
 .p-dropdown {
@@ -140,7 +140,7 @@
 }
 
 .p-dropdown-panel {
-    background: #ffffff;
+    background: $white;
     color: $general-text-color;
     border: none;
     border-radius: 2px;
@@ -173,7 +173,7 @@
     padding: 0.429rem 0.857rem;
     border-bottom: 1px solid #eaeaea;
     color: $general-text-color;
-    background: #ffffff;
+    background: $white;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -222,7 +222,7 @@
     font-family: $general-font-family;
     font-size: 14px;
     color: $general-text-color;
-    background: #ffffff;
+    background: $white;
     padding: 0.625rem 1rem;
     line-height: 18px;
     border: 1px solid $primary-border-color;
@@ -309,7 +309,7 @@
 }
 
 .p-multiselect {
-    background: #ffffff;
+    background: $white;
     border: 1px solid $primary-border-color;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 3px;
@@ -342,7 +342,7 @@
     padding: 0.2145rem 0.429rem;
     margin-right: 0.5rem;
     background: $primary-color;
-    color: #ffffff;
+    color: $white;
     border-radius: 3px;
 }
 .p-multiselect.p-multiselect-chip .p-multiselect-token .p-multiselect-token-icon {
@@ -368,7 +368,7 @@
 }
 
 .p-multiselect-panel {
-    background: #ffffff;
+    background: $white;
     color: #333333;
     border-radius: 3px;
     box-shadow: 0 22px 34px 0 rgba(0, 0, 0, 0.08);
@@ -377,7 +377,7 @@
     padding: 0.75rem;
     border-bottom: 1px solid #eaeaea;
     color: #333333;
-    background: #ffffff;
+    background: $white;
     margin: 0;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -530,7 +530,7 @@
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
 }
 .p-dialog .p-dialog-content {
-    background: #ffffff;
+    background: $white;
     color: $general-text-color;
     padding: 1rem;
 }
@@ -540,7 +540,7 @@
 }
 
 .p-overlaypanel {
-    background: #ffffff;
+    background: $white;
     color: $general-text-color;
     border: 1px solid #c8c8c8;
     border-radius: 3px;
@@ -551,7 +551,7 @@
 }
 .p-overlaypanel .p-overlaypanel-close {
     background: #007ad9;
-    color: #ffffff;
+    color: $white;
     width: 2rem;
     height: 2rem;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
@@ -562,12 +562,12 @@
 }
 .p-overlaypanel .p-overlaypanel-close:enabled:hover {
     background: #116fbf;
-    color: #ffffff;
+    color: $white;
 }
 .p-overlaypanel:after {
     border: solid transparent;
     border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: #ffffff;
+    border-bottom-color: $white;
 }
 .p-overlaypanel:before {
     border: solid transparent;
@@ -575,7 +575,7 @@
     border-bottom-color: #c8c8c8;
 }
 .p-overlaypanel.p-overlaypanel-flipped:after {
-    border-top-color: #ffffff;
+    border-top-color: $white;
 }
 .p-overlaypanel.p-overlaypanel-flipped:before {
     border-top-color: #c8c8c8;

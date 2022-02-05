@@ -1,3 +1,5 @@
+@import 'variables';
+
 @media (min-width: 768px) {
     .category-list {
         margin-top: 64px !important;
@@ -5,10 +7,10 @@
 }
 
 .other-category {
-    border-top: 1px solid #232334;
+    border-top: 1px solid $general-text-color;
 }
 
 .top-writer {
-    border-top: 1px solid #232334;
-    border-bottom: 1px solid #232334;
+    border-top: 1px solid $general-text-color;
+    border-bottom: 1px solid $general-text-color;
 }

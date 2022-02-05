@@ -123,12 +123,12 @@
 }
 
 .background-header {
-    border-top: 2px solid #232334;
+    border-top: 2px solid $general-text-color;
 }
 
 .recipe-answer {
-    border-top: 1px solid #232334;
-    border-bottom: 2px solid #232334;
+    border-top: 1px solid $general-text-color;
+    border-bottom: 2px solid $general-text-color;
 }
 
 .author-image img {
@@ -216,7 +216,7 @@
 }
 
 .sticky-divder {
-    border-bottom: 1px solid #232334;
+    border-bottom: 1px solid $general-text-color;
 }
 
 .divder {
@@ -242,7 +242,7 @@
 }
 
 .flavour-profiles {
-    border: 2px dashed #d6d6d6;
+    border: 2px dashed $primary-border-color;
     a {
         cursor: pointer;
         text-decoration: underline;

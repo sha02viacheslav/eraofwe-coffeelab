@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* Bootstrap is minimized for the performance */
 /* Please copy the needed styles from original-bootstrap.scss */
 
@@ -140,7 +142,7 @@
 }
 
 .bg-white {
-    background-color: #ffffff !important;
+    background-color: $white !important;
 }
 .bg-transparent {
     background-color: transparent !important;
@@ -2189,22 +2191,22 @@
     font-weight: 700 !important;
 }
 .border-main {
-    border: solid 1px #ebebeb !important;
+    border: solid 1px $secondary-border-color !important;
 }
 .border-primary {
-    border: solid 1px #d6d6d6 !important;
+    border: solid 1px $primary-border-color !important;
 }
 .border-top-main {
-    border-top: solid 1px #ebebeb !important;
+    border-top: solid 1px $secondary-border-color !important;
 }
 .border-top-dashed-primary {
-    border-top: dashed 1px #d6d6d6 !important;
+    border-top: dashed 1px $primary-border-color !important;
 }
 .border-bottom-main {
-    border-bottom: solid 1px #ebebeb !important;
+    border-bottom: solid 1px $secondary-border-color !important;
 }
 .border-bottom-dashed-primary {
-    border-bottom: dashed 1px #d6d6d6 !important;
+    border-bottom: dashed 1px $primary-border-color !important;
 }
 .br-2 {
     border-radius: 2px !important;

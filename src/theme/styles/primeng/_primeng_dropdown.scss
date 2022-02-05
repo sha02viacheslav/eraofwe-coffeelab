@@ -1,3 +1,5 @@
+@import 'variables';
+
 .round-border.p-dropdown {
     border-radius: 20px;
 }
@@ -18,7 +20,7 @@
                 }
             }
             .p-dropdown-item.p-highlight {
-                background: #f8f8f8;
+                background: $secondary-border-color;
             }
         }
     }
@@ -30,7 +32,7 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 1.57;
-        color: #80460b !important;
+        color: $brown-color !important;
         display: flex;
         align-items: center;
         padding: 0 8px;

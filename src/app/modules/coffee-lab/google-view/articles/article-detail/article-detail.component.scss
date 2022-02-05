@@ -55,12 +55,17 @@
     border-bottom: 2px solid $dark-color;
 }
 
-.author-image img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
+.author-image {
+    img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+    }
+    .change-size {
+        width: 40px;
+        height: 40px;
+    }
 }
-
 .add-comment {
     border: 1px solid transparent !important;
     height: 50px;

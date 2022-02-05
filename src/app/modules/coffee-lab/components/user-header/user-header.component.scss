@@ -1,8 +1,10 @@
+@import 'variables';
+
 .time-point {
     width: 3px;
     height: 3px;
     margin: 8px 6px 3px 8px;
-    background-color: #232334;
+    background-color: $general-text-color;
 }
 
 .align-time {

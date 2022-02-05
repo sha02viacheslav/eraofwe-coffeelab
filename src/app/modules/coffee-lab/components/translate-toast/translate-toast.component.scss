@@ -1,3 +1,5 @@
+@import 'variables';
+
 :host ::ng-deep {
     .p-toast .p-toast-message .p-toast-message-content {
         padding: 1rem;
@@ -8,7 +10,7 @@
         margin-left: 0;
         opacity: 1;
         .p-toast-message {
-            background: #ffffff !important;
+            background: $white !important;
             border-radius: 4px;
             box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.07);
         }
