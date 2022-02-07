@@ -54,7 +54,7 @@ export class LandingPageComponent extends ResizeableComponent implements OnInit 
         },
         {
             name: 'Susan Rov',
-            position: 'Bon Vivant Caffè',
+            position: 'Coffee Writer',
             disp:
                 'The Era of We is a great place to connect with other coffee lovers within the community as well as my go-to resource for coffee recipes and educational articles. It’s so valuable to exchange information on a global scale and engage in discussions with coffee enthusiasts from the other side of the world!',
             image: 'assets/images/susan-rov.jpeg',
