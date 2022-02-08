@@ -172,17 +172,22 @@
         background-image: url(../../.../../../assets/images/platform-mobile.png);
         background-position: unset;
     }
-    .plat-card {
-        cursor: pointer;
-        background-color: #f8f6ef;
-        &:hover {
-            box-shadow: 0 22px 34px 0 rgb(0 0 0 / 8%);
-        }
-        @media (max-width: 767px) {
-            padding: 16px 20px;
-        }
+    .platform-box-pad {
         @media (min-width: 768px) {
-            width: 68.5%;
+            padding: 51px 48px;
+        }
+        .plat-card {
+            cursor: pointer;
+            background-color: #f8f6ef;
+            &:hover {
+                box-shadow: 0 22px 34px 0 rgb(0 0 0 / 8%);
+            }
+            @media (max-width: 767px) {
+                padding: 16px 20px;
+            }
+            @media (min-width: 768px) {
+                width: 68.5%;
+            }
         }
     }
 }
