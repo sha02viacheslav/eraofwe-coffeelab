@@ -2,13 +2,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
-import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-square-ads',
     templateUrl: './square-ads.component.html',
     styleUrls: ['./square-ads.component.scss'],
-    providers: [MessageService],
 })
 export class SquareAdsComponent implements OnInit {
     readonly env = environment;
