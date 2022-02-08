@@ -8,6 +8,11 @@ header {
     box-shadow: 0 12px 44px -10px rgb(143 51 11 / 10%);
 }
 
+.pi-search:before {
+    content: '\e908';
+    color: #fff;
+}
+
 .nav-top1 {
     background-color: $white;
     display: flex;
