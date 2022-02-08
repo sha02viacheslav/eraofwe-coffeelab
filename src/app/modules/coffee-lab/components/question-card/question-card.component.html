@@ -1,4 +1,4 @@
-<div class="border-box" [class.no-border]="index === 4">
+<div class="border-box" [ngClass]="!showAd ? '' : index === 4 ? 'no-border' : ''">
     <div class="pb-2">
         <div class="d-flex justify-content-between">
             <div class="flex-1">

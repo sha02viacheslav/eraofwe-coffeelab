@@ -78,4 +78,16 @@ export class FooterComponent implements OnInit {
             );
         }
     }
+
+    onCollapse(item) {
+        if (item === 'collapse') {
+            this.isExpand = false;
+        }
+    }
+
+    onExpand(item) {
+        if (item === 'expand') {
+            this.isExpand = true;
+        }
+    }
 }

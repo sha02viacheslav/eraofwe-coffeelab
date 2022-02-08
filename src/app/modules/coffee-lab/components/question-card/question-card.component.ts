@@ -17,6 +17,7 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
     @Input() question: any;
     @Input() pages = 1;
     @Input() index: number;
+    showAd: boolean;
     constructor(
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
@@ -24,6 +25,9 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
         protected resizeService: ResizeService,
     ) {
         super(resizeService);
+        this.coffeeLabService.showAd.subscribe((res) => {
+            this.showAd = res;
+        });
     }
 
     ngOnInit(): void {}

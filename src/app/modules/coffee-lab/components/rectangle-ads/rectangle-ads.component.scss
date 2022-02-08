@@ -6,9 +6,9 @@
 
 .ads-border {
     border: solid 1px #d0d0d0;
-    @media (max-width: 767px) {
-        border-radius: 6px;
-    }
+    // @media (max-width: 767px) {
+    border-radius: 6px;
+    // }
 }
 
 .no-border {
