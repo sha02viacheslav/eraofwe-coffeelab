@@ -30,6 +30,11 @@
     }
     .footer-border {
         border-bottom: solid 0.5px #d8d8d8;
+        .w-mob-100 {
+            @media (max-width: 767px) {
+                width: 100%;
+            }
+        }
     }
     .p-articles img {
         width: 200px;

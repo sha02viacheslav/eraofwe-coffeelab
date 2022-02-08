@@ -18,16 +18,17 @@
                     <span *ngIf="type === 'recipe'">{{ 'popular_brewing_guides' | translate }}</span>
                 </div>
                 <div *ngFor="let forum of relatedData" class="pt-35">
-                    <div class="d-flex pb-35 footer-border">
+                    <div class="d-md-flex pb-35 footer-border">
                         <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img
+                                class="w-mob-100"
                                 [lazyLoad]="forum?.cover_image_thumb_url"
                                 src="assets/images/empty.svg"
                                 [alt]="forum.title"
                             />
                         </a>
                         <a class="c-p d-flex flex-column" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
-                            <p class="fw-sb fnt-20 cust-flex-grow mb-2 text-break">
+                            <p class="fw-sb fnt-20 cust-flex-grow mb-2 text-break mt-25 mt-md-0">
                                 {{ forum?.title }}
                             </p>
                             <p class="fw-sb text-underline">
