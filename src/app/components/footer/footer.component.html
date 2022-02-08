@@ -99,7 +99,7 @@
     >
         <div [ngClass]="isExpand ? 'ads-image' : ''">
             <div class="mob-disp" *ngIf="!showValidateMsg">
-                <img *ngIf="isExpand" src="assets/images/product.png" alt="product" />
+                <img *ngIf="isExpand" lazyLoad="assets/images/product.webp" alt="product" />
                 <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
                     <div class="form-group">
                         <input
@@ -159,7 +159,7 @@
         </div>
         <div *ngIf="showValidateMsg">
             <div [ngClass]="isExpand ? 'mb-md-3 align-thank' : ''" class="fnt-18 fnt-md-32 fw-sb">
-                <img src="assets/images/confirm-tick.svg" alt="confirm-tick" class="align-tick" />
+                <img lazyLoad="assets/images/confirm-tick.svg" alt="confirm-tick" class="align-tick" />
                 <span>Thank you for submitting {{ showAgainMsg ? 'again' : '' }}</span>
             </div>
             <div *ngIf="!isExpand" class="fnt-16 pt-2 pt-md-0 fnt-md-24 ml-md-5">
