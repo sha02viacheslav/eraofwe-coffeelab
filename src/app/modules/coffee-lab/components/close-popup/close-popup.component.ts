@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoffeeLabService } from '@services';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -7,7 +8,12 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
     styleUrls: ['./close-popup.component.scss'],
 })
 export class ClosePopupComponent implements OnInit {
-    constructor(public ref: DynamicDialogRef) {}
+    showAd: any;
+    constructor(public ref: DynamicDialogRef, private coffeLabService: CoffeeLabService) {
+        this.coffeLabService.showAd.subscribe((res) => {
+            this.showAd = res;
+        });
+    }
 
     ngOnInit(): void {}
 
