@@ -36,9 +36,17 @@
             }
         }
     }
-    .p-articles img {
-        width: 200px;
-        height: 116px;
-        object-fit: cover;
+    .p-articles {
+        .ng-lazyloaded {
+            width: 200px;
+            height: 116px;
+        }
+        .ng-lazyloading {
+            width: 120px;
+            height: 120px;
+        }
+        img {
+            object-fit: cover;
+        }
     }
 }
