@@ -94,7 +94,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
             }
         });
         this.items = [
-            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'Home', routerLink: '/' },
             { label: 'Brewing recipes', routerLink: `/${this.urlLang}/coffee-recipes` },
             {
                 label: this.capitalizeFirstLetter(this.idOrSlug),

@@ -56,7 +56,7 @@ export class QuestionDetailComponent implements OnInit {
             window.scrollTo(0, 0);
         }
         this.items = [
-            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'Home', routerLink: '/' },
             { label: 'QA forum', routerLink: `/${this.urlLang}/qa-forum` },
             {
                 label: this.capitalizeFirstLetter(this.idOrSlug),

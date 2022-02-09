@@ -79,7 +79,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         });
         this.initialized = true;
         this.items = [
-            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'Home', routerLink: '/' },
             { label: 'Articles', routerLink: `/${this.urlLang}/articles` },
             {
                 label: this.capitalizeFirstLetter(this.idOrSlug),
