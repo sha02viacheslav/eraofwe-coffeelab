@@ -13,11 +13,10 @@
         <div>
             <div *ngIf="!showValidateMsg" [class.mt-md-45]="questionDetail">
                 <div class="fnt-24 fw-sb mb-2 mb-md-25" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
-                    A new way of discovering coffee
+                    {{ 'coffee_lab_main_ad' | translate }}
                 </div>
                 <div [ngClass]="!questionDetail ? 'lh-143 fnt-md-20' : 'fnt-md-16 lh-157'">
-                    Join our mailing list to be the first <br *ngIf="!questionDetail" />
-                    to know about our Era of We Shop
+                    {{ 'coffee_lab_sub_ad' | translate }}
                 </div>
             </div>
             <div *ngIf="showValidateMsg" class="mt-md-4 text-center">
@@ -36,17 +35,17 @@
                         name="email"
                         class="popup-email"
                         [(ngModel)]="subscribeEmail"
-                        placeholder="Enter your email"
+                        placeholder="Enter Email ID"
                     />
                 </div>
-                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Submit</button>
+                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Claim your offer</button>
             </div>
         </div>
     </div>
-    <div class="d-flex mt-md-45 ml-md-5" *ngIf="questionDetail && !showValidateMsg">
+    <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
         <div class="form-group w-100">
-            <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
+            <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter Email ID" />
         </div>
-        <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
+        <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
     </div>
 </div>

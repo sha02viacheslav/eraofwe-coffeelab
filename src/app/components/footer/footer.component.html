@@ -107,7 +107,7 @@
                             name="email1"
                             [(ngModel)]="subscribeEmail2"
                             class="custom-border"
-                            placeholder="Enter your mail"
+                            placeholder="Enter Email ID"
                         />
                         <div class="p-error"></div>
                     </div>
@@ -116,7 +116,7 @@
                         (click)="onSubmit()"
                         [disabled]="!subscribeEmail2"
                     >
-                        Submit
+                        Claim your offer
                     </button>
                 </div>
             </div>
@@ -127,25 +127,24 @@
         </div>
         <div *ngIf="!showValidateMsg" [ngClass]="!isExpand ? 'ml-md-5 pl-md-25' : 'align-expand'" class="d-flex">
             <div [ngClass]="!isExpand ? 'd-flex' : ''">
-                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 fw-sb">
-                    <span>A new way of discovering coffee</span>
+                <div [ngClass]="isExpand ? 'mb-md-3' : ''" class="fnt-18 fnt-md-32 ml-md-45 text-nowrap fw-sb">
+                    <span>{{ 'coffee_lab_main_ad' | translate }}</span>
                 </div>
-                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block">
-                    Join our mailing list to be the first to <br />
-                    know about our Era of We Shop
+                <div *ngIf="isExpand" class="fnt-18 fnt-md-24 d-none d-md-block ml-md-45">
+                    {{ 'coffee_lab_sub_ad' | translate }}
                 </div>
                 <div *ngIf="isExpand" class="fnt-12 d-md-none">
-                    Join our mailing list to be the first to know about our Era of We Shop
+                    {{ 'coffee_lab_sub_ad' | translate }}
                 </div>
             </div>
-            <div class="d-md-flex d-none custom-pad align-items-center">
+            <div class="d-md-flex d-none pl-md-35 align-items-center">
                 <div class="form-group">
                     <input
                         type="text"
                         pInputText
                         [(ngModel)]="subscribeEmail2"
                         class="custom-border"
-                        placeholder="Enter your mail"
+                        placeholder="Enter Email ID"
                     />
                 </div>
                 <button
@@ -153,7 +152,7 @@
                     (click)="onSubmit()"
                     [disabled]="!subscribeEmail2"
                 >
-                    Submit
+                    Claim your offer
                 </button>
             </div>
         </div>

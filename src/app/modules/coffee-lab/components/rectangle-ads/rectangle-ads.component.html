@@ -5,10 +5,9 @@
     [class.add-padding]="showValidateMsg && questionPage"
 >
     <div *ngIf="!showValidateMsg" [class.ml-md-4]="questionPage">
-        <div class="fnt-md-20 fw-sb mb-2">A new way of discovering coffee</div>
+        <div class="fnt-md-20 fw-sb mb-2">{{ 'coffee_lab_main_ad' | translate }}</div>
         <div [ngClass]="!questionPage ? 'fnt-md-16 mb-md-25' : 'fnt-md-18'">
-            Join our mailing list to be the first to<br [class.d-none]="!questionPage" />
-            know about our Era of We Shop
+            {{ 'coffee_lab_sub_ad' | translate }}
         </div>
     </div>
     <div *ngIf="showValidateMsg" class="align-items-center d-flex flex-column">
@@ -21,9 +20,9 @@
     <div *ngIf="!showValidateMsg" class="d-flex align-items-center mt-3 mt-md-0">
         <div class="d-flex">
             <div class="form-group">
-                <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter your email" />
+                <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter Email ID" />
             </div>
-            <button class="btn-raised subscribe-button" (click)="onSubmit()">Submit</button>
+            <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
         </div>
     </div>
 </div>
