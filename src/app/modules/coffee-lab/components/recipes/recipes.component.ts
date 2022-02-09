@@ -11,7 +11,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     styleUrls: ['./recipes.component.scss'],
 })
 export class RecipesComponent implements OnInit {
-    @Input() recipes: any[] = [];
+    @Input() recipes: any;
     @Input() totalRecords = 0;
     @Input() pages: number;
     @Input() rows: number;

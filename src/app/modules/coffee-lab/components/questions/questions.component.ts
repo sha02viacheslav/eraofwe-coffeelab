@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-    @Input() questions: any[] = [];
+    @Input() questions: any;
     @Input() totalRecords = 0;
     @Input() pages: number;
     @Input() rows: number;

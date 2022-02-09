@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
@@ -8,7 +8,8 @@ import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { forkJoin, Subject } from 'rxjs';
 
 @Component({
     selector: 'app-overview',
@@ -20,14 +21,30 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     postType: PostType;
     cuurentRoasterSlug: RouterSlug;
     // cuurentRoasterSlug = '';
+    isGlobalSearchResultPage = false;
+    isLoading: boolean;
+    keyword?: string;
+    keyword$?: string;
+    searchInput$: Subject<any> = new Subject<any>();
+    searchResult: any;
+
     constructor(
         private coffeeLabService: CoffeeLabService,
         private router: Router,
         private startupService: StartupService,
         protected resizeService: ResizeService,
         private dialogSrv: DialogService,
+        private route: ActivatedRoute,
     ) {
         super(resizeService);
+        this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
+            this.startSearch();
+        });
+        const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
+        if (searchQueryParam) {
+            this.keyword = searchQueryParam;
+            this.startSearch();
+        }
     }
 
     ngOnInit(): void {
@@ -98,5 +115,54 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
 
     onWrite() {
         this.dialogSrv.open(SignupModalComponent, {});
+    }
+
+    handleSearch(): void {
+        this.searchInput$.next(this.keyword);
+    }
+
+    startSearch(): void {
+        if (!this.keyword) {
+            this.handleBackPage();
+            return;
+        }
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { search: this.keyword },
+            queryParamsHandling: 'merge',
+        });
+        this.keyword$ = this.keyword;
+        this.isGlobalSearchResultPage = true;
+        const params = {
+            query: this.keyword,
+            sort_by: 'created_at',
+            sort_order: 'desc',
+            publish: true,
+            page: 1,
+            per_page: 10000,
+        };
+        this.isLoading = true;
+        forkJoin([
+            this.coffeeLabService.getForumList('question', params),
+            this.coffeeLabService.getForumList('article', params),
+            this.coffeeLabService.getForumList('recipe', params),
+        ]).subscribe((res: any[]) => {
+            const questions = res[0]?.result?.questions || [];
+            const articles = res[1]?.result || [];
+            const recipes = res[2]?.result || [];
+            this.searchResult = {
+                questions,
+                articles,
+                recipes,
+                total_count: questions.length + articles.length + recipes.length,
+            };
+            this.isLoading = false;
+        });
+    }
+
+    handleBackPage(): void {
+        this.isGlobalSearchResultPage = false;
+        this.keyword = '';
+        this.router.navigate([], { relativeTo: this.route, queryParams: { search: '' }, queryParamsHandling: 'merge' });
     }
 }

@@ -12,7 +12,7 @@ import { SignupModalComponent } from '../signup-modal/signup-modal.component';
     styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent extends ResizeableComponent implements OnInit {
-    @Input() articles: any[] = [];
+    @Input() articles: any;
     @Input() isEraofWe = false;
     @Input() totalRecords = 0;
     @Input() pages: number;
