@@ -56,6 +56,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     showToaster = false;
     showAll = true;
     adLocation: number;
+    items: ({ label: string; routerLink: string } | { label: any; routerLink?: undefined })[];
 
     constructor(
         @Inject(DOCUMENT) private doc,
@@ -92,6 +93,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 window.scrollTo(0, 0);
             }
         });
+        this.items = [
+            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'Brewing recipes', routerLink: `/${this.urlLang}/coffee-recipes` },
+            {
+                label: this.capitalizeFirstLetter(this.idOrSlug),
+            },
+        ];
 
         this.initialized = true;
     }
@@ -112,6 +120,11 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     }
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
+    }
+
+    capitalizeFirstLetter(name) {
+        const x = name.charAt(0).toUpperCase() + name.slice(1);
+        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
     }
 
     getRecipeList() {

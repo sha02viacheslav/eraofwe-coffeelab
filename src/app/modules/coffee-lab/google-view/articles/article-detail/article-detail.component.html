@@ -1,5 +1,6 @@
 <div class="main-block pb-0">
-    <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a>
+    <p-breadcrumb [model]="items"></p-breadcrumb>
+    <!-- <a class="back-page d-md-none" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a> -->
 
     <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-5 pt-3 pb-mt-45">
         <div class="article-main-block">

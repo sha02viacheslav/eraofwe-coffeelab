@@ -22,6 +22,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
 })
 export class ArticleDetailComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
+    items = [];
     relatedData: any[] = [];
     detailsData: any;
     idOrSlug: string;
@@ -62,6 +63,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             this.urlLang = res.lang;
         });
         this.activatedRoute.params.subscribe((params) => {
+            console.log(params);
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
@@ -76,6 +78,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             }
         });
         this.initialized = true;
+        this.items = [
+            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'Articles', routerLink: `/${this.urlLang}/articles` },
+            {
+                label: this.capitalizeFirstLetter(this.idOrSlug),
+            },
+        ];
     }
 
     catchScrollEvent() {
@@ -115,6 +124,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/articles/${slug}`;
     }
+
+    capitalizeFirstLetter(name) {
+        const x = name.charAt(0).toUpperCase() + name.slice(1);
+        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
+    }
+
+    public getReadableName(name) {}
 
     viewAllComments() {
         this.commentData = this.allComments;

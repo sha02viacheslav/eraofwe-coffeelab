@@ -27,6 +27,7 @@ export class QuestionDetailComponent implements OnInit {
     previousUrl: string;
     urlLang: string;
     showToaster = false;
+    items = [];
     constructor(
         @Inject(DOCUMENT) private doc,
         @Inject(PLATFORM_ID) private platformId: object,
@@ -54,6 +55,13 @@ export class QuestionDetailComponent implements OnInit {
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
         }
+        this.items = [
+            { label: 'Home', routerLink: '/coffee-lab' },
+            { label: 'QA forum', routerLink: `/${this.urlLang}/qa-forum` },
+            {
+                label: this.capitalizeFirstLetter(this.idOrSlug),
+            },
+        ];
     }
 
     getDetails() {
@@ -201,6 +209,11 @@ export class QuestionDetailComponent implements OnInit {
 
     getLink(language, slug) {
         return `/${getLangRoute(language)}/qa-forum/${slug}`;
+    }
+
+    capitalizeFirstLetter(name) {
+        const x = name.charAt(0).toUpperCase() + name.slice(1);
+        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
     }
 
     toastCalled(event) {
