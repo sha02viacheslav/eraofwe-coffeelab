@@ -309,7 +309,6 @@
         margin-bottom: 0px;
     }
     input {
-        width: 230px;
         height: 47px;
         font-size: 16px;
         padding: 0 0 0 16px;
@@ -326,10 +325,10 @@
         border: solid 1px $primary-color;
         border-top-left-radius: 6px;
         border-bottom-left-radius: 6px;
-        width: 247px !important;
+        width: auto !important;
         height: 45px !important;
         @media (max-width: 767px) {
-            width: 140px !important;
+            width: auto !important;
         }
     }
 }
@@ -347,15 +346,11 @@
     border: none;
 }
 .custom-submit-foot {
-    width: 85px !important;
+    width: auto !important;
     height: 45px !important;
     @media (max-width: 767px) {
-        width: 65px !important;
+        width: auto !important;
     }
-}
-
-.custom-pad {
-    padding-left: 5rem;
 }
 
 .align-expand {
