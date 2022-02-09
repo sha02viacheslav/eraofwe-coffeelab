@@ -131,9 +131,9 @@ header {
         a {
             color: #fff;
             font-size: 14px;
-            // @media (max-width: 767px) {
-            //     font-size: 13px;
-            // }
+            @media (max-width: 767px) {
+                font-size: 13px;
+            }
             font-weight: 500;
             padding: 11.5px 20px 11.5px 20px;
             @media (max-width: 767px) {
