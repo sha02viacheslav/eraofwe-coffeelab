@@ -11,6 +11,9 @@
 }
 
 ::ng-deep .remove-background {
+    @media (min-width: 768px) {
+        max-width: 712px !important;
+    }
     box-shadow: unset;
     .p-dialog-header {
         display: none !important;
