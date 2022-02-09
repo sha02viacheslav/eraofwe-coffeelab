@@ -21,9 +21,10 @@
                         <h1 class="fw-sb mb-0 user-header mt-0 text-break">
                             {{ detailsData?.name || '--' | titlecase }}
                         </h1>
-                        <div class="fnt-20 fw-m mt-3 mt-md-4 mb-35 mb-md-4">
-                            {{ (detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500) }}
-                        </div>
+                        <div
+                            [innerHtml]="(detailsData?.stripped_description || '').slice(0, showAll ? 10000 : 500)"
+                            class="fnt-20 fw-m mt-3 mt-md-4 mb-35 mb-md-4"
+                        ></div>
                         <div class="d-md-flex mb-4 mb-md-0">
                             <div class="tc-m mb-md-45">
                                 {{ 'published' | translate }}

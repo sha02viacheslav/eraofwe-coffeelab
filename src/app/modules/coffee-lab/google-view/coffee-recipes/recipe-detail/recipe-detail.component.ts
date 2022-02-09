@@ -93,14 +93,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 window.scrollTo(0, 0);
             }
         });
-        this.items = [
-            { label: 'Home', routerLink: '/' },
-            { label: 'Brewing recipes', routerLink: `/${this.urlLang}/coffee-recipes` },
-            {
-                label: this.capitalizeFirstLetter(this.idOrSlug),
-            },
-        ];
-
         this.initialized = true;
     }
 
@@ -118,13 +110,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 });
         }
     }
+
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
-    }
-
-    capitalizeFirstLetter(name) {
-        const x = name.charAt(0).toUpperCase() + name.slice(1);
-        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
     }
 
     getRecipeList() {
@@ -153,6 +141,13 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    this.items = [
+                        { label: 'The Coffee Lab', routerLink: '/' },
+                        { label: 'Brewing recipes', routerLink: `/${this.urlLang}/coffee-recipes` },
+                        {
+                            label: this.detailsData?.name,
+                        },
+                    ];
                     this.adLocation = Math.floor(this.detailsData?.steps?.length / 2);
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.description = removeImages(res.result?.description);

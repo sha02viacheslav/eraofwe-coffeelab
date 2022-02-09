@@ -55,13 +55,6 @@ export class QuestionDetailComponent implements OnInit {
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);
         }
-        this.items = [
-            { label: 'Home', routerLink: '/' },
-            { label: 'QA forum', routerLink: `/${this.urlLang}/qa-forum` },
-            {
-                label: this.capitalizeFirstLetter(this.idOrSlug),
-            },
-        ];
     }
 
     getDetails() {
@@ -72,6 +65,13 @@ export class QuestionDetailComponent implements OnInit {
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    this.items = [
+                        { label: 'The Coffee Lab', routerLink: '/' },
+                        { label: 'QA forum', routerLink: `/${this.urlLang}/qa-forum` },
+                        {
+                            label: this.detailsData.question,
+                        },
+                    ];
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
                     this.previousUrl = `/${getLangRoute(this.lang)}/${
@@ -209,11 +209,6 @@ export class QuestionDetailComponent implements OnInit {
 
     getLink(language, slug) {
         return `/${getLangRoute(language)}/qa-forum/${slug}`;
-    }
-
-    capitalizeFirstLetter(name) {
-        const x = name.charAt(0).toUpperCase() + name.slice(1);
-        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
     }
 
     toastCalled(event) {
