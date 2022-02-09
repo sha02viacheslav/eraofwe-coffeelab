@@ -42,6 +42,7 @@
         border-bottom-left-radius: 6px;
         border: solid 1px $primary-color;
         color: $general-text-color;
+        background-color: $body-bg-color;
         &:focus {
             outline: none;
         }
