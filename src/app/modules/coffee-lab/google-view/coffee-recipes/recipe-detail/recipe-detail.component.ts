@@ -47,7 +47,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     loading = false;
     jsonLD: any;
     lang: any;
-    previousUrl = '';
+    // previousUrl = '';
     orginalUserData: any;
     commentData: any[] = [];
     allComments: any[] = [];
@@ -154,9 +154,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     }
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    this.previousUrl = `/${getLangRoute(this.lang)}/${
-                        (RouterMap[this.lang] || RouterMap.en)[RouterSlug.RECIPE]
-                    }`;
+                    // this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //     (RouterMap[this.lang] || RouterMap.en)[RouterSlug.RECIPE]
+                    // }`;
                     this.getAllData();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {

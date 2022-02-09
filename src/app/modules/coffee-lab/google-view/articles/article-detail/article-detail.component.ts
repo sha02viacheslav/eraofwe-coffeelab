@@ -30,7 +30,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     loading = false;
     jsonLD: any;
     lang: any;
-    previousUrl = '';
+    // previousUrl = '';
     addComment = false;
     orginalUserData: any;
     commentData: any;
@@ -145,15 +145,15 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     }
                     this.lang = res.result.language;
 
-                    if (res.result?.is_era_of_we) {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${
-                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
-                        }`;
-                    } else {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${
-                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
-                        }`;
-                    }
+                    // if (res.result?.is_era_of_we) {
+                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
+                    //     }`;
+                    // } else {
+                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
+                    //     }`;
+                    // }
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
 

@@ -24,7 +24,7 @@ export class QuestionDetailComponent implements OnInit {
     loading = true;
     jsonLD: any;
     lang: any;
-    previousUrl: string;
+    // previousUrl: string;
     urlLang: string;
     showToaster = false;
     items = [];
@@ -74,9 +74,9 @@ export class QuestionDetailComponent implements OnInit {
                     ];
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    this.previousUrl = `/${getLangRoute(this.lang)}/${
-                        (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
-                    }`;
+                    // this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //     (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
+                    // }`;
                     this.messageService.clear();
                     this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                     this.getOriginalAnswers();
