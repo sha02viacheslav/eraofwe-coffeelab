@@ -23,7 +23,12 @@ export class PublishForumComponent implements OnInit {
             placeHolderValue: 'ask_a_question',
         },
     };
-    constructor(public dialogSrv: DialogService) {}
+    hideContent: boolean;
+    constructor(public dialogSrv: DialogService, private route: ActivatedRoute) {
+        this.route.queryParamMap.subscribe((params) => {
+            this.hideContent = params.has('search') ? true : false;
+        });
+    }
 
     ngOnInit(): void {}
     onFocus() {

@@ -63,7 +63,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             this.urlLang = res.lang;
         });
         this.activatedRoute.params.subscribe((params) => {
-            console.log(params);
             if (params.idOrSlug) {
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();

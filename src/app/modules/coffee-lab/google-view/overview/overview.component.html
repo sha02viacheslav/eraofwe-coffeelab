@@ -66,7 +66,7 @@
         </div>
 
         <div [class.change-pad]="isGlobalSearchResultPage" *ngIf="!isLoading">
-            <p-tabMenu [model]="menuItems" styleClass="mb-45 mt-3">
+            <p-tabMenu [model]="menuItems" styleClass="mb-45 mt-3" *ngIf="menuItems?.length > 0">
                 <ng-template pTemplate="item" let-item let-i="index">
                     <span class="pl-1 pb-md-2 pb-1 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
                 </ng-template>
@@ -77,14 +77,7 @@
                 class="col-lg-7 px-0 pb-3"
                 [class.pb-md-45]="!isGlobalSearchResultPage"
             >
-                <div *ngIf="!isGlobalSearchResultPage"><app-publish-forum [type]="postType"></app-publish-forum></div>
-                <div *ngIf="isGlobalSearchResultPage">
-                    <div class="fw-sb fnt-md-18 fnt-16 d-flex mb-25">
-                        <span *ngIf="postType === Postype.QA">{{ 'question_answers' | translate }}</span>
-                        <span *ngIf="postType === Postype.ARTICLE">{{ 'posts' | translate }}</span>
-                        <span *ngIf="postType === Postype.RECIPE">{{ 'brewing_guides' | translate }}</span>
-                    </div>
-                </div>
+                <app-publish-forum [type]="postType"></app-publish-forum>
             </div>
             <router-outlet></router-outlet>
         </div>

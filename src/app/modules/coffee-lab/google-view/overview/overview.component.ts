@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap, SlugMap } from '@constants';
@@ -17,7 +17,6 @@ import { forkJoin, Subject } from 'rxjs';
     styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent extends ResizeableComponent implements OnInit {
-    readonly Postype = PostType;
     menuItems: MenuItem[] = [];
     postType: PostType;
     cuurentRoasterSlug: RouterSlug;
@@ -33,17 +32,16 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         protected resizeService: ResizeService,
         private dialogSrv: DialogService,
         private route: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
     ) {
         super(resizeService);
-        this.searchInput$.pipe(debounceTime(1000)).subscribe((res) => {
-            console.log(res);
+        this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
             this.startSearch();
         });
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
         if (searchQueryParam) {
             this.keyword = searchQueryParam;
             this.searchInput$.next(this.keyword);
-            this.startSearch();
         }
     }
 
@@ -53,6 +51,9 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             this.startupService.load(language);
             if (this.router.url !== this.handleRoute(language).destinationRouter) {
                 this.router.navigate([this.handleRoute(language).destinationRouter], { queryParamsHandling: 'merge' });
+            }
+            if (this.keyword) {
+                this.startSearch();
             }
             this.setPostType(this.handleRoute(language).curRouterSlug);
         });
@@ -81,7 +82,9 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     }
 
     handleRoute(language) {
-        this.isGlobalSearchResultPage = false;
+        if (!this.keyword) {
+            this.isGlobalSearchResultPage = false;
+        }
         this.searchResult = [];
         this.coffeeLabService.searchResult.next(this.searchResult);
         let currentRouter = this.router.url;
@@ -159,7 +162,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             this.isGlobalSearchResultPage = false;
             this.searchResult = [];
             this.coffeeLabService.searchResult.next(this.searchResult);
-            this.router.navigate([this.handleRoute(this.coffeeLabService.currentForumLanguage)]);
+            this.router.navigate([this.handleRoute(this.coffeeLabService.currentForumLanguage).destinationRouter]);
             this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
         }
     }
@@ -169,11 +172,11 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             return;
         }
         this.isLoading = true;
-        this.router.navigate([], {
-            relativeTo: this.route,
-            queryParams: { search: this.keyword },
-            queryParamsHandling: 'merge',
-        });
+        // this.router.navigate([], {
+        //     relativeTo: this.route,
+        //     queryParams: { search: this.keyword },
+        //     queryParamsHandling: 'merge',
+        // });
         this.isGlobalSearchResultPage = true;
         const params = {
             query: this.keyword,
@@ -199,48 +202,80 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             };
             this.coffeeLabService.searchResult.next(this.searchResult);
             this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
-            if (this.searchResult?.questions && this.searchResult?.questions.length > 0) {
-                this.router.navigate(
-                    [
-                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
-                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.QA]
-                        }`,
-                    ],
-                    {
-                        relativeTo: this.route,
-                        queryParams: { search: this.keyword },
-                        queryParamsHandling: 'merge',
-                    },
-                );
-            } else if (this.searchResult?.articles && this.searchResult?.articles.length > 0) {
-                this.router.navigate(
-                    [
-                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
-                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE]
-                        }`,
-                    ],
-                    {
-                        relativeTo: this.route,
-                        queryParams: { search: this.keyword },
-                        queryParamsHandling: 'merge',
-                    },
-                );
-            } else if (this.searchResult?.recipes && this.searchResult?.recipes.length > 0) {
-                this.router.navigate(
-                    [
-                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
-                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE]
-                        }`,
-                    ],
-                    {
-                        relativeTo: this.route,
-                        queryParams: { search: this.keyword },
-                        queryParamsHandling: 'merge',
-                    },
-                );
-            }
+            this.handleSearchRoute();
             this.isLoading = false;
+            this.cdr.detectChanges();
         });
+    }
+
+    handleSearchRoute() {
+        if (
+            this.searchResult?.questions &&
+            this.searchResult?.questions.length > 0 &&
+            this.router.url.includes(
+                `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                    RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.QA]
+                }`,
+            )
+        ) {
+            this.postType = PostType.QA;
+            this.router.navigate(
+                [
+                    `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                        RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.QA]
+                    }`,
+                ],
+                {
+                    relativeTo: this.route,
+                    queryParams: { search: this.keyword },
+                    queryParamsHandling: 'merge',
+                },
+            );
+        } else if (
+            this.searchResult?.articles &&
+            this.searchResult?.articles.length > 0 &&
+            this.router.url.includes(
+                `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                    RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.ARTICLE]
+                }`,
+            )
+        ) {
+            this.postType = PostType.ARTICLE;
+            this.router.navigate(
+                [
+                    `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                        RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.ARTICLE]
+                    }`,
+                ],
+                {
+                    relativeTo: this.route,
+                    queryParams: { search: this.keyword },
+                    queryParamsHandling: 'merge',
+                },
+            );
+        } else if (
+            this.searchResult?.recipes &&
+            this.searchResult?.recipes.length > 0 &&
+            this.router.url.includes(
+                `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                    RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE]
+                }`,
+            )
+        ) {
+            this.postType = PostType.RECIPE;
+            this.router.navigate(
+                [
+                    `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                        RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE]
+                    }`,
+                ],
+                {
+                    relativeTo: this.route,
+                    queryParams: { search: this.keyword },
+                    queryParamsHandling: 'merge',
+                },
+            );
+        }
     }
 
     onClose(): void {
@@ -249,7 +284,7 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         this.isGlobalSearchResultPage = false;
         this.searchResult = [];
         this.coffeeLabService.searchResult.next(this.searchResult);
-        this.router.navigate([this.handleRoute(this.coffeeLabService.currentForumLanguage)]);
+        this.router.navigate([this.handleRoute(this.coffeeLabService.currentForumLanguage).destinationRouter]);
         this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
     }
 }
