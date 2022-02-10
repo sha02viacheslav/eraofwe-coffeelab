@@ -17,6 +17,7 @@ import { forkJoin, Subject } from 'rxjs';
     styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent extends ResizeableComponent implements OnInit {
+    readonly Postype = PostType;
     menuItems: MenuItem[] = [];
     postType: PostType;
     cuurentRoasterSlug: RouterSlug;
@@ -34,12 +35,14 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         super(resizeService);
-        this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
+        this.searchInput$.pipe(debounceTime(1000)).subscribe((res) => {
+            console.log(res);
             this.startSearch();
         });
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
         if (searchQueryParam) {
             this.keyword = searchQueryParam;
+            this.searchInput$.next(this.keyword);
             this.startSearch();
         }
     }

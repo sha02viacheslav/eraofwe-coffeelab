@@ -77,7 +77,14 @@
                 class="col-lg-7 px-0 pb-3"
                 [class.pb-md-45]="!isGlobalSearchResultPage"
             >
-                <app-publish-forum [type]="postType"></app-publish-forum>
+                <div *ngIf="!isGlobalSearchResultPage"><app-publish-forum [type]="postType"></app-publish-forum></div>
+                <div *ngIf="isGlobalSearchResultPage">
+                    <div class="fw-sb fnt-md-18 fnt-16 d-flex mb-25">
+                        <span *ngIf="postType === Postype.QA">{{ 'question_answers' | translate }}</span>
+                        <span *ngIf="postType === Postype.ARTICLE">{{ 'posts' | translate }}</span>
+                        <span *ngIf="postType === Postype.RECIPE">{{ 'brewing_guides' | translate }}</span>
+                    </div>
+                </div>
             </div>
             <router-outlet></router-outlet>
         </div>
