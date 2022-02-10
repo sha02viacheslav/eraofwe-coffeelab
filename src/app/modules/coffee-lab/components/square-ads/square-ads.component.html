@@ -42,16 +42,11 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
-            <form [formGroup]="form" class="form-group w-100">
-                <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
-                <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
-            </form>
-        </div>
-        <small *ngIf="form.controls['subscribeEmail'].errors?.required" class="p-error">
-            Please fill the mandatory fields</small
-        >
-        <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error"> Please fill valied email</small>
+    <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
+        <form [formGroup]="form" class="form-group w-100">
+            <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
+            <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
+        </form>
     </div>
+    <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error"> Please fill valied email</small>
 </div>

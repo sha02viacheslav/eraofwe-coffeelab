@@ -23,12 +23,7 @@
                 <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
                 <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
             </form>
-            <small *ngIf="form.controls['subscribeEmail'].errors?.required" class="p-error">
-                {{ 'required' | translate }}
-            </small>
-            <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error">
-                Please fill valied email</small
-            >
         </div>
     </div>
+    <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error"> Please fill valied email</small>
 </div>

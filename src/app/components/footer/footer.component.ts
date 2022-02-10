@@ -41,7 +41,6 @@ export class FooterComponent implements OnInit {
         });
         this.form = this.fb.group({
             subscribeEmail: ['', Validators.compose([Validators.required, Validators.email])],
-            subscribeEmail2: ['', Validators.compose([Validators.required, Validators.email])],
         });
     }
 
@@ -56,10 +55,8 @@ export class FooterComponent implements OnInit {
     ngOnInit(): void {}
 
     onSubmit() {
-        const email = this.form.value.subscribeEmail || this.form.value.subscribeEmail2;
-        console.log(email);
-        if (email) {
-            this.coffeLabService.subscribeToMailList(email).subscribe(
+        if (this.form.valid) {
+            this.coffeLabService.subscribeToMailList(this.form.value.subscribeEmail).subscribe(
                 (res: any) => {
                     if (res.result && res.result === 'success') {
                         this.showValidateMsg = true;
@@ -67,8 +64,7 @@ export class FooterComponent implements OnInit {
                         this.showValidateMsg = true;
                         this.showAgainMsg = true;
                     }
-                    this.form.value.subscribeEmail = '';
-                    this.form.value.subscribeEmail2 = '';
+                    this.form.reset();
                     setTimeout(() => {
                         this.coffeLabService.showAd.next(false);
                         this.cdr.detectChanges();

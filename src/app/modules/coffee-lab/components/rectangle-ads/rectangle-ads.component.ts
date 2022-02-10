@@ -35,27 +35,29 @@ export class RectangleAdsComponent implements OnInit {
     ngOnInit(): void {}
 
     onSubmit() {
-        this.coffeLabService.subscribeToMailList(this.form.value.subscribeEmail).subscribe(
-            (res: any) => {
-                if (res.result && res.result === 'success') {
-                    this.showValidateMsg = true;
-                } else {
-                    this.showValidateMsg = true;
-                    this.showAgainMsg = true;
-                }
-                setTimeout(() => {
-                    this.coffeLabService.showAd.next(false);
+        if (this.form.valid) {
+            this.coffeLabService.subscribeToMailList(this.form.value.subscribeEmail).subscribe(
+                (res: any) => {
+                    if (res.result && res.result === 'success') {
+                        this.showValidateMsg = true;
+                    } else {
+                        this.showValidateMsg = true;
+                        this.showAgainMsg = true;
+                    }
+                    setTimeout(() => {
+                        this.coffeLabService.showAd.next(false);
+                        this.cdr.detectChanges();
+                    }, 10000);
+                    if (isPlatformBrowser(this.platformId)) {
+                        window.localStorage.setItem('showAd', 'false');
+                    }
+                    this.form.value.subscribeEmail = '';
                     this.cdr.detectChanges();
-                }, 10000);
-                if (isPlatformBrowser(this.platformId)) {
-                    window.localStorage.setItem('showAd', 'false');
-                }
-                this.form.value.subscribeEmail = '';
-                this.cdr.detectChanges();
-            },
-            (err) => {
-                console.log(err);
-            },
-        );
+                },
+                (err) => {
+                    console.log(err);
+                },
+            );
+        }
     }
 }
