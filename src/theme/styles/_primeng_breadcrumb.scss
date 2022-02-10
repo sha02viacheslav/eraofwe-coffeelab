@@ -34,9 +34,6 @@ p-breadcrumb {
 }
 .p-breadcrumb .pi-chevron-right::before {
     content: '\e932';
-    font-size: 12px;
+    font-size: 14px;
     color: $button-icon-color;
-    @media (min-width: 768px) {
-        font-size: 14px;
-    }
 }
