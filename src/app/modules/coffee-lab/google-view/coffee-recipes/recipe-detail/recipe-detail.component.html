@@ -184,7 +184,7 @@
                                     {{ 'about_the_author' | translate }}
                                 </p>
                                 <div class="d-flex">
-                                    <div class="author-image mr-3">
+                                    <div class="author-image d-flex justify-content-center align-items-center mr-3">
                                         <img
                                             *ngIf="detailsData?.profile_image_thumb_url; else placeholder"
                                             [lazyLoad]="detailsData?.profile_image_thumb_url"

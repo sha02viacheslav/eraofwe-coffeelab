@@ -134,10 +134,16 @@
     border-bottom: 2px solid $general-text-color;
 }
 
-.author-image img {
+.author-image {
     width: 70px;
     height: 70px;
-    object-fit: cover;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    img {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
 }
 
 .add-comment {
