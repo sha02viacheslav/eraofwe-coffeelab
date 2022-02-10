@@ -17,8 +17,8 @@
                     <span *ngIf="type === 'article'">{{ 'recent_articles' | translate }}</span>
                     <span *ngIf="type === 'recipe'">{{ 'popular_brewing_guides' | translate }}</span>
                 </div>
-                <div *ngFor="let forum of relatedData" class="pt-35">
-                    <div class="d-md-flex pb-35 footer-border">
+                <div *ngFor="let forum of relatedData" class="pt-3">
+                    <div class="d-md-flex pb-3 footer-border">
                         <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img
                                 class="w-mob-100"
