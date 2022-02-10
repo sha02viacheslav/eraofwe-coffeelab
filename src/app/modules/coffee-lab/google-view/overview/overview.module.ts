@@ -9,7 +9,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SearchForumComponent } from '../../components/search-forum/search-forum.component';
-import { GlobalSearchResultModule } from './global-search-result/global-search-result.module';
 import { OverviewRoutingModule } from './overview-routing.module';
 import { OverviewComponent } from './overview.component';
 
@@ -26,7 +25,6 @@ import { OverviewComponent } from './overview.component';
         InputTextModule,
         DropdownModule,
         LanguageDropdownModule,
-        GlobalSearchResultModule,
     ],
 })
 export class OverviewModule {}

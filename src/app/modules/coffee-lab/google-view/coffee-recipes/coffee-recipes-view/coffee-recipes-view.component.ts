@@ -54,6 +54,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
         { label: 'latest', value: 'latest' },
         { label: 'oldest', value: 'oldest' },
     ];
+    hideContent: boolean;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -84,6 +85,7 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
                     this.page = 1;
                 }
             }
+            this.hideContent = params.has('search') ? true : false;
             this.refreshData();
         });
         let langPrefix = '';
@@ -133,7 +135,14 @@ export class CoffeeRecipesViewComponent extends ResizeableComponent implements O
     }
 
     refreshData() {
-        this.getData();
+        this.coffeeLabService.searchResult.subscribe((res: any) => {
+            if (res?.recipes && this.hideContent) {
+                this.coffeeRecipeData = res.recipes;
+                this.isLoading = false;
+            } else {
+                this.getData();
+            }
+        });
         this.getCategory();
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);

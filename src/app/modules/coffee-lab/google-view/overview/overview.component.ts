@@ -20,12 +20,10 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     menuItems: MenuItem[] = [];
     postType: PostType;
     cuurentRoasterSlug: RouterSlug;
-    // cuurentRoasterSlug = '';
     isGlobalSearchResultPage = false;
     isLoading: boolean;
-    keyword?: string;
-    keyword$?: string;
-    searchInput$: Subject<any> = new Subject<any>();
+    keyword: string;
+
     searchResult: any;
 
     constructor(
@@ -37,12 +35,13 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         super(resizeService);
-        this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
+        this.coffeeLabService.searchInput$.pipe(debounceTime(1000)).subscribe((res) => {
             this.startSearch();
         });
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
         if (searchQueryParam) {
             this.keyword = searchQueryParam;
+            this.coffeeLabService.searchInput$.next(this.keyword);
             this.startSearch();
         }
     }
@@ -62,6 +61,9 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
             }
             this.setPostType(curRouterSlug);
+        });
+        this.coffeeLabService.searchInput$.subscribe((res) => {
+            console.log(res);
         });
     }
 
@@ -89,28 +91,57 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
 
     getMenuItems(language) {
         const curRouterMap = RouterMap[language] || RouterMap.en;
-        return [
-            {
-                label: 'question_answers',
-                routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.QA]}`,
-                command: () => this.setPostType(RouterSlug.QA),
-            },
-            {
-                label: 'posts',
-                routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.ARTICLE]}`,
-                command: () => this.setPostType(RouterSlug.ARTICLE),
-            },
-            {
-                label: 'brewing_guides',
-                routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.RECIPE]}`,
-                command: () => this.setPostType(RouterSlug.RECIPE),
-            },
-            {
-                label: 'about_era_of_we',
-                routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.EOW]}`,
-                command: () => this.setPostType(RouterSlug.EOW),
-            },
-        ];
+        let menuItems = [];
+        if (this.isGlobalSearchResultPage) {
+            if (this.searchResult?.questions && this.searchResult?.questions.length > 0) {
+                menuItems.push({
+                    label: 'question_answers',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.QA]}`,
+                    queryParams: { search: this.keyword },
+                    command: () => this.setPostType(RouterSlug.QA),
+                });
+            }
+            if (this.searchResult?.articles && this.searchResult?.articles.length > 0) {
+                menuItems.push({
+                    label: 'posts',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.ARTICLE]}`,
+                    queryParams: { search: this.keyword },
+                    command: () => this.setPostType(RouterSlug.ARTICLE),
+                });
+            }
+            if (this.searchResult?.recipes && this.searchResult?.recipes.length > 0) {
+                menuItems.push({
+                    label: 'brewing_guides',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.RECIPE]}`,
+                    queryParams: { search: this.keyword },
+                    command: () => this.setPostType(RouterSlug.RECIPE),
+                });
+            }
+        } else {
+            menuItems = [
+                {
+                    label: 'question_answers',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.QA]}`,
+                    command: () => this.setPostType(RouterSlug.QA),
+                },
+                {
+                    label: 'posts',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.ARTICLE]}`,
+                    command: () => this.setPostType(RouterSlug.ARTICLE),
+                },
+                {
+                    label: 'brewing_guides',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.RECIPE]}`,
+                    command: () => this.setPostType(RouterSlug.RECIPE),
+                },
+                {
+                    label: 'about_era_of_we',
+                    routerLink: `/${getLangRoute(language)}/${curRouterMap[RouterSlug.EOW]}`,
+                    command: () => this.setPostType(RouterSlug.EOW),
+                },
+            ];
+        }
+        return menuItems;
     }
 
     onWrite() {
@@ -118,20 +149,26 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     }
 
     handleSearch(): void {
-        this.searchInput$.next(this.keyword);
+        this.coffeeLabService.searchInput$.next(this.keyword);
+        if (!this.keyword) {
+            this.isGlobalSearchResultPage = false;
+            this.searchResult = [];
+            this.coffeeLabService.searchResult.next(this.searchResult);
+            this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
+        }
     }
 
     startSearch(): void {
         if (!this.keyword) {
-            this.handleBackPage();
+            // this.handleBackPage();
             return;
         }
+        this.isLoading = true;
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: { search: this.keyword },
             queryParamsHandling: 'merge',
         });
-        this.keyword$ = this.keyword;
         this.isGlobalSearchResultPage = true;
         const params = {
             query: this.keyword,
@@ -141,7 +178,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             page: 1,
             per_page: 10000,
         };
-        this.isLoading = true;
         forkJoin([
             this.coffeeLabService.getForumList('question', params),
             this.coffeeLabService.getForumList('article', params),
@@ -156,6 +192,48 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 recipes,
                 total_count: questions.length + articles.length + recipes.length,
             };
+            this.coffeeLabService.searchResult.next(this.searchResult);
+            this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
+            if (this.searchResult?.questions && this.searchResult?.questions.length > 0) {
+                this.router.navigate(
+                    [
+                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.QA]
+                        }`,
+                    ],
+                    {
+                        relativeTo: this.route,
+                        queryParams: { search: this.keyword },
+                        queryParamsHandling: 'merge',
+                    },
+                );
+            } else if (this.searchResult?.articles && this.searchResult?.articles.length > 0) {
+                this.router.navigate(
+                    [
+                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.ARTICLE]
+                        }`,
+                    ],
+                    {
+                        relativeTo: this.route,
+                        queryParams: { search: this.keyword },
+                        queryParamsHandling: 'merge',
+                    },
+                );
+            } else if (this.searchResult?.recipes && this.searchResult?.recipes.length > 0) {
+                this.router.navigate(
+                    [
+                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                            RouterMap[this.coffeeLabService.currentForumLanguage][RouterSlug.RECIPE]
+                        }`,
+                    ],
+                    {
+                        relativeTo: this.route,
+                        queryParams: { search: this.keyword },
+                        queryParamsHandling: 'merge',
+                    },
+                );
+            }
             this.isLoading = false;
         });
     }
@@ -163,6 +241,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     handleBackPage(): void {
         this.isGlobalSearchResultPage = false;
         this.keyword = '';
-        this.router.navigate([], { relativeTo: this.route, queryParams: { search: '' }, queryParamsHandling: 'merge' });
+        // this.router.navigate([], { relativeTo: this.route, queryParams: { search: '' }, queryParamsHandling: 'merge' });
     }
 }
