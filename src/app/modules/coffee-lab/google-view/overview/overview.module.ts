@@ -9,12 +9,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SearchForumComponent } from '../../components/search-forum/search-forum.component';
-import { GlobalSearchResultComponent } from './global-search-result/global-search-result.component';
+import { GlobalSearchResultModule } from './global-search-result/global-search-result.module';
 import { OverviewRoutingModule } from './overview-routing.module';
 import { OverviewComponent } from './overview.component';
 
 @NgModule({
-    declarations: [OverviewComponent, SearchForumComponent, GlobalSearchResultComponent],
+    declarations: [OverviewComponent, SearchForumComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -26,6 +26,7 @@ import { OverviewComponent } from './overview.component';
         InputTextModule,
         DropdownModule,
         LanguageDropdownModule,
+        GlobalSearchResultModule,
     ],
 })
 export class OverviewModule {}
