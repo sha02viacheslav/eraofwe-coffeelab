@@ -12,6 +12,7 @@ import { SharedModule } from '@shared';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { ArticleDetailRoutingModule } from './article-detail-routing.module';
 import { ArticleDetailComponent } from './article-detail.component';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
     declarations: [ArticleDetailComponent],
@@ -28,6 +29,7 @@ import { ArticleDetailComponent } from './article-detail.component';
         TranslateTostModule,
         RectangleAdsModule,
         PopularPostsModule,
+        BreadcrumbModule,
     ],
 })
 export class ArticleDetailModule {}

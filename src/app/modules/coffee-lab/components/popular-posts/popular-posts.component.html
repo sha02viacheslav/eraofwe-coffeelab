@@ -13,12 +13,12 @@
         </div>
         <article class="row mx-0 px-2 px-md-0 mx-md-45">
             <div class="col-md-7 px-0 px-md-3">
-                <div class="fnt-16 fw-b pb-25 background-header pt-3">
-                    <span *ngIf="type === 'article'">{{ 'recent_articles' | translate }}</span>
-                    <span *ngIf="type === 'recipe'">{{ 'popular_brewing_guides' | translate }}</span>
+                <div class="fnt-16 fnt-md-18 fw-b pb-25 background-header pt-3">
+                    <span class="fnt-head" *ngIf="type === 'article'">{{ 'recent_articles' | translate }}</span>
+                    <span class="fnt-head" *ngIf="type === 'recipe'">{{ 'popular_brewing_guides' | translate }}</span>
                 </div>
-                <div *ngFor="let forum of relatedData" class="pt-35">
-                    <div class="d-md-flex pb-35 footer-border">
+                <div *ngFor="let forum of relatedData" class="pt-3">
+                    <div class="d-md-flex pb-3 footer-border">
                         <a class="p-articles pr-2 c-p" [routerLink]="onRealtedRoute(forum.lang_code, forum.slug)">
                             <img
                                 class="w-mob-100"

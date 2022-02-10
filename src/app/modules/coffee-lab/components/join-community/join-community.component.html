@@ -6,12 +6,12 @@
     [class.no-border]="!showBorderBottom"
 >
     <p
-        class="fnt-16"
+        class="fnt-16 fnt-md-18"
         [ngClass]="type === PostType.QA ? 'pb-25 mb-1 pt-3 fw-b' : 'fw-sb'"
         [class.border-btm]="!showBorderBottom"
     >
-        <span *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>
-        <span *ngIf="!related">{{ 'recent_discussions_on_forum' | translate }}</span>
+        <span class="fnt-head" *ngIf="related">{{ 'related_discussions_on_the_forum' | translate }}</span>
+        <span class="fnt-head" *ngIf="!related">{{ 'recent_discussions_on_forum' | translate }}</span>
     </p>
     <div *ngFor="let data of relatedData; let ind = index; let isLast = last" class="question-list">
         <p class="pb-25 hover-underline" [ngClass]="{ 'pt-25': ind === 0, 'pt-2': ind > 0 }">
