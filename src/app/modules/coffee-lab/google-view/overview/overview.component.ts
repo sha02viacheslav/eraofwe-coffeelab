@@ -35,13 +35,10 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         super(resizeService);
-        this.coffeeLabService.searchInput$.pipe(debounceTime(1000)).subscribe((res) => {
-            this.startSearch();
-        });
+
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
         if (searchQueryParam) {
             this.keyword = searchQueryParam;
-            this.coffeeLabService.searchInput$.next(this.keyword);
             this.startSearch();
         }
     }
@@ -61,9 +58,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                 this.router.navigate([destinationRouter], { queryParamsHandling: 'merge' });
             }
             this.setPostType(curRouterSlug);
-        });
-        this.coffeeLabService.searchInput$.subscribe((res) => {
-            console.log(res);
         });
     }
 
@@ -149,7 +143,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     }
 
     handleSearch(): void {
-        this.coffeeLabService.searchInput$.next(this.keyword);
         if (!this.keyword) {
             this.isGlobalSearchResultPage = false;
             this.searchResult = [];

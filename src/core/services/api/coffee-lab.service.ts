@@ -15,7 +15,6 @@ export class CoffeeLabService extends ApiService {
     otherCategories = new BehaviorSubject([]);
     searchResult = new BehaviorSubject([]);
     showAd = new BehaviorSubject(true);
-    searchInput$ = new BehaviorSubject('');
 
     get currentForumLanguage(): string {
         return this.forumLanguage.value;
