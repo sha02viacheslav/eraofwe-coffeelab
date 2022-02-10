@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
 
@@ -12,24 +13,28 @@ export class SquareAdsComponent implements OnInit {
     readonly env = environment;
     @Input() hideBorder: boolean;
     @Input() questionDetail: boolean;
-    subscribeEmail: string;
+    form: FormGroup;
     showValidateMsg: boolean;
     showAgainMsg: boolean;
     showAd: boolean;
     constructor(
         private coffeLabService: CoffeeLabService,
         private cdr: ChangeDetectorRef,
+        public fb: FormBuilder,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.coffeLabService.showAd.subscribe((res) => {
             this.showAd = res;
+        });
+        this.form = this.fb.group({
+            subscribeEmail: ['', Validators.compose([Validators.required, Validators.email])],
         });
     }
 
     ngOnInit(): void {}
 
     onSubmit() {
-        this.coffeLabService.subscribeToMailList(this.subscribeEmail).subscribe(
+        this.coffeLabService.subscribeToMailList(this.form.value.subscribeEmail).subscribe(
             (res: any) => {
                 if (res.result && res.result === 'success') {
                     this.showValidateMsg = true;
@@ -44,7 +49,7 @@ export class SquareAdsComponent implements OnInit {
                 if (isPlatformBrowser(this.platformId)) {
                     window.localStorage.setItem('showAd', 'false');
                 }
-                this.subscribeEmail = '';
+                this.form.value.subscribeEmail = '';
                 this.cdr.detectChanges();
             },
             (err) => {

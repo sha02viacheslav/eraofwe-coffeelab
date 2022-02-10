@@ -29,23 +29,29 @@
                 </div>
             </div>
             <div class="d-flex mt-35 mt-md-45" *ngIf="!questionDetail && !showValidateMsg">
-                <div class="form-group">
+                <form [formGroup]="form" class="form-group">
                     <input
                         type="email"
                         name="email"
                         class="popup-email"
-                        [(ngModel)]="subscribeEmail"
+                        formControlName="subscribeEmail"
                         placeholder="Enter Email ID"
                     />
-                </div>
+                </form>
                 <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Claim your offer</button>
             </div>
         </div>
     </div>
-    <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
-        <div class="form-group w-100">
-            <input type="email" name="email" [(ngModel)]="subscribeEmail" placeholder="Enter Email ID" />
+    <div>
+        <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
+            <form [formGroup]="form" class="form-group w-100">
+                <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
+                <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
+            </form>
         </div>
-        <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
+        <small *ngIf="form.controls['subscribeEmail'].errors?.required" class="p-error">
+            Please fill the mandatory fields</small
+        >
+        <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error"> Please fill valied email</small>
     </div>
 </div>

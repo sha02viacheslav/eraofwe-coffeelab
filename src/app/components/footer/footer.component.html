@@ -7,17 +7,21 @@
             <div class="email-letter">
                 <h2>Subscribe to our newsletter</h2>
                 <div class="d-flex">
-                    <div class="form-group">
+                    <form [formGroup]="form" class="form-group">
                         <input
                             type="email"
                             name="email1"
-                            [(ngModel)]="subscribeEmail"
+                            formControlName="subscribeEmail"
                             placeholder="What's your email address?"
                         />
-                    </div>
-                    <button class="btn-raised subscribe-button" (click)="onSubmit()" [disabled]="!subscribeEmail">
-                        Submit
-                    </button>
+                        <button
+                            class="btn-raised subscribe-button"
+                            (click)="onSubmit()"
+                            [disabled]="!form.value.subscribeEmail"
+                        >
+                            Submit
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -101,23 +105,25 @@
             <div class="mob-disp" *ngIf="!showValidateMsg">
                 <img *ngIf="isExpand" lazyLoad="assets/images/product.webp" alt="product" />
                 <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
-                    <div class="form-group">
+                    <form [formGroup]="form" class="form-group">
                         <input
                             type="email"
                             name="email1"
-                            [(ngModel)]="subscribeEmail2"
+                            formControlName="subscribeEmail2"
                             class="custom-border"
                             placeholder="Enter Email ID"
                         />
-                        <div class="p-error"></div>
-                    </div>
-                    <button
-                        class="btn-raised subscribe-button custom-submit-foot"
-                        (click)="onSubmit()"
-                        [disabled]="!subscribeEmail2"
-                    >
-                        Claim your offer
-                    </button>
+                        <button
+                            class="btn-raised subscribe-button custom-submit-foot"
+                            (click)="onSubmit()"
+                            [disabled]="!form.value.subscribeEmail2"
+                        >
+                            Claim your offer
+                        </button>
+                        <!-- <small *ngIf="form.controls['subscribeEmail2'].errors?.required" class="p-error">
+                            {{ 'required' | translate }}
+                        </small> -->
+                    </form>
                 </div>
             </div>
             <div class="d-md-none text-right" *ngIf="!showValidateMsg">
@@ -138,22 +144,27 @@
                 </div>
             </div>
             <div class="d-md-flex d-none pl-md-35 align-items-center">
-                <div class="form-group">
+                <form [formGroup]="form" class="form-group">
                     <input
                         type="email"
                         pInputText
-                        [(ngModel)]="subscribeEmail2"
+                        formControlName="subscribeEmail2"
                         class="custom-border"
                         placeholder="Enter Email ID"
                     />
-                </div>
-                <button
-                    class="btn-raised subscribe-button fw-m custom-submit-foot"
-                    (click)="onSubmit()"
-                    [disabled]="!subscribeEmail2"
-                >
-                    Claim your offer
-                </button>
+
+                    <button
+                        class="btn-raised subscribe-button fw-m custom-submit-foot"
+                        (click)="onSubmit()"
+                        [disabled]="!form.value.subscribeEmail2"
+                    >
+                        Claim your offer
+                    </button>
+
+                    <small *ngIf="form.controls['subscribeEmail2'].errors?.required" class="p-error">
+                        {{ 'required' | translate }}
+                    </small>
+                </form>
             </div>
         </div>
         <div *ngIf="showValidateMsg">

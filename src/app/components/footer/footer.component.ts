@@ -8,6 +8,7 @@ import {
     OnInit,
     PLATFORM_ID,
 } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
@@ -20,11 +21,10 @@ import { CoffeeLabService } from '@services';
 })
 export class FooterComponent implements OnInit {
     readonly env = environment;
+    form: FormGroup;
     isExpand = true;
     language: string;
     pageOffsetHeight: number;
-    subscribeEmail: string;
-    subscribeEmail2: string;
     isQAPage: boolean;
     showValidateMsg: boolean;
     showAgainMsg: boolean;
@@ -33,10 +33,15 @@ export class FooterComponent implements OnInit {
         private coffeLabService: CoffeeLabService,
         private router: Router,
         private cdr: ChangeDetectorRef,
+        public fb: FormBuilder,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.coffeLabService.showAd.subscribe((res) => {
             this.showAd = res;
+        });
+        this.form = this.fb.group({
+            subscribeEmail: ['', Validators.compose([Validators.required, Validators.email])],
+            subscribeEmail2: ['', Validators.compose([Validators.required, Validators.email])],
         });
     }
 
@@ -51,7 +56,8 @@ export class FooterComponent implements OnInit {
     ngOnInit(): void {}
 
     onSubmit() {
-        const email = this.subscribeEmail || this.subscribeEmail2;
+        const email = this.form.value.subscribeEmail || this.form.value.subscribeEmail2;
+        console.log(email);
         if (email) {
             this.coffeLabService.subscribeToMailList(email).subscribe(
                 (res: any) => {
@@ -61,8 +67,8 @@ export class FooterComponent implements OnInit {
                         this.showValidateMsg = true;
                         this.showAgainMsg = true;
                     }
-                    this.subscribeEmail = '';
-                    this.subscribeEmail2 = '';
+                    this.form.value.subscribeEmail = '';
+                    this.form.value.subscribeEmail2 = '';
                     setTimeout(() => {
                         this.coffeLabService.showAd.next(false);
                         this.cdr.detectChanges();
