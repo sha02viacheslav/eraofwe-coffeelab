@@ -14,6 +14,8 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
 import { QuestionDetailRoutingModule } from './question-detail-routing.module';
 import { QuestionDetailComponent } from './question-detail.component';
 
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+
 @NgModule({
     declarations: [QuestionDetailComponent],
     imports: [
@@ -30,6 +32,7 @@ import { QuestionDetailComponent } from './question-detail.component';
         TranslateTostModule,
         SquareAdsModule,
         RectangleAdsModule,
+        BreadcrumbModule,
     ],
 })
 export class QuestionDetailModule {}

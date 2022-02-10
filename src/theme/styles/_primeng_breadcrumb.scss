@@ -29,26 +29,11 @@ p-breadcrumb {
         font-size: 14px;
     }
 }
-.p-breadcrumb ul li.p-breadcrumb-chevron {
-    margin-top: -4px;
-    margin-right: 8px;
-    margin-left: 4px;
-    @media (min-width: 768px) {
-        margin-right: 16px;
-        margin-left: 8px;
-    }
-}
 .p-breadcrumb ul li:last-child .p-menuitem-link .p-menuitem-text {
     color: $general-text-color;
 }
 .p-breadcrumb .pi-chevron-right::before {
     content: '\e932';
-    font-size: 19px;
-    position: relative;
-    top: 2px;
+    font-size: 14px;
     color: $button-icon-color;
-    font-size: 18px;
-    @media (min-width: 768px) {
-        font-size: 19px;
-    }
 }

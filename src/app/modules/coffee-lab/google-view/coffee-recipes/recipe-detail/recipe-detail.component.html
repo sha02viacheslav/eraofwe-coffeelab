@@ -1,8 +1,7 @@
 <div class="main-block">
-    <p-breadcrumb [model]="items"></p-breadcrumb>
-    <!-- <a class="back-page" [routerLink]="previousUrl"> {{ 'back_to_forum' | translate }} </a> -->
+    <div class="pt-3 pt-md-0"><p-breadcrumb [model]="items"></p-breadcrumb></div>
 
-    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-4 pb-mt-45">
+    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-2 mt-md-4 pb-mt-45">
         <div class="page-wrapper">
             <article class="flex-1 mb-4">
                 <div class="recip-content pt-2 pt-lg-45">
@@ -186,7 +185,7 @@
                                     {{ 'about_the_author' | translate }}
                                 </p>
                                 <div class="d-flex">
-                                    <div class="author-image mr-3">
+                                    <div class="author-image d-flex justify-content-center align-items-center mr-3">
                                         <img
                                             *ngIf="detailsData?.profile_image_thumb_url; else placeholder"
                                             [lazyLoad]="detailsData?.profile_image_thumb_url"
