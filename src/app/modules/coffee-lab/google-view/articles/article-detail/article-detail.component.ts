@@ -30,7 +30,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     loading = false;
     jsonLD: any;
     lang: any;
-    previousUrl = '';
+    // previousUrl = '';
     addComment = false;
     orginalUserData: any;
     commentData: any;
@@ -78,13 +78,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             }
         });
         this.initialized = true;
-        this.items = [
-            { label: 'Home', routerLink: '/' },
-            { label: 'Articles', routerLink: `/${this.urlLang}/articles` },
-            {
-                label: this.capitalizeFirstLetter(this.idOrSlug),
-            },
-        ];
     }
 
     catchScrollEvent() {
@@ -125,11 +118,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         return `/${getLangRoute(langCode)}/articles/${slug}`;
     }
 
-    capitalizeFirstLetter(name) {
-        const x = name.charAt(0).toUpperCase() + name.slice(1);
-        return x ? x.replace(/_/g, ' ').replace(/-/g, ' ') : x;
-    }
-
     public getReadableName(name) {}
 
     viewAllComments() {
@@ -145,20 +133,27 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    this.items = [
+                        { label: 'The Coffee Lab', routerLink: '/' },
+                        { label: 'Articles', routerLink: `/${this.urlLang}/articles` },
+                        {
+                            label: this.detailsData.title,
+                        },
+                    ];
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.content = removeImages(res.result?.content);
                     }
                     this.lang = res.result.language;
 
-                    if (res.result?.is_era_of_we) {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${
-                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
-                        }`;
-                    } else {
-                        this.previousUrl = `/${getLangRoute(this.lang)}/${
-                            (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
-                        }`;
-                    }
+                    // if (res.result?.is_era_of_we) {
+                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
+                    //     }`;
+                    // } else {
+                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
+                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
+                    //     }`;
+                    // }
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
 
