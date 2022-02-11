@@ -68,7 +68,7 @@
         <div [class.change-pad]="isGlobalSearchResultPage" *ngIf="!isLoading">
             <p-tabMenu [model]="menuItems" styleClass="mb-45 mt-3" *ngIf="menuItems?.length > 0">
                 <ng-template pTemplate="item" let-item let-i="index">
-                    <span class="pl-1 pb-md-2 pb-1 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
+                    <span class="pl-1 pb-md-2 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
                 </ng-template>
             </p-tabMenu>
 

@@ -2,9 +2,10 @@ import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { MetaDespMinLength, RouterMap } from '@constants';
-import { PostType, RouterSlug } from '@enums';
+import { MetaDespMinLength } from '@constants';
+import { PostType } from '@enums';
 import { environment } from '@env/environment';
+import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute, removeImages } from '@utils';
 import { MessageService } from 'primeng/api';
@@ -54,6 +55,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private seoService: SEOService,
         private startupService: StartupService,
         protected resizeService: ResizeService,
+        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -133,8 +135,8 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                 } else {
                     this.detailsData = res.result;
                     this.items = [
-                        { label: 'The Coffee Lab', routerLink: '/' },
-                        { label: 'Articles', routerLink: `/${this.urlLang}/articles` },
+                        { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
+                        { label: this.translator.instant('articles'), routerLink: `/${this.urlLang}/articles` },
                         {
                             label: this.detailsData.title,
                         },

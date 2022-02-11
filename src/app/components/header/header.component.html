@@ -190,10 +190,10 @@
                     >
                     <i
                         *ngIf="!showTextBox"
-                        class="pi pi-search d-flex align-items-center pl-md-4 pr-md-1 c-p"
+                        class="pi pi-search d-md-flex d-none align-items-center pl-md-4 pr-md-1 c-p"
                         (click)="showTextBox = true"
                     ></i>
-                    <div class="d-flex align-items-center ml-35" *ngIf="showTextBox">
+                    <div class="d-md-flex d-none align-items-center ml-35" *ngIf="showTextBox">
                         <input
                             type="text"
                             pInputText
