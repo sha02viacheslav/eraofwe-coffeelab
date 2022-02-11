@@ -8,8 +8,8 @@ import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { debounceTime, takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-overview',
@@ -36,6 +36,11 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     ) {
         super(resizeService);
         this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
+            this.router.navigate([], {
+                relativeTo: this.route,
+                queryParams: { search: this.keyword },
+                queryParamsHandling: 'merge',
+            });
             this.startSearch();
         });
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
@@ -116,6 +121,20 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                     queryParams: { search: this.keyword },
                     command: () => this.setPostType(RouterSlug.ARTICLE),
                 });
+            } else {
+                this.postType = PostType.QA;
+                this.router.navigate(
+                    [
+                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                            RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.QA]
+                        }`,
+                    ],
+                    {
+                        relativeTo: this.route,
+                        queryParams: { search: this.keyword },
+                        queryParamsHandling: 'merge',
+                    },
+                );
             }
             if (this.searchResult?.recipes && this.searchResult?.recipes.length > 0) {
                 menuItems.push({
@@ -124,6 +143,20 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
                     queryParams: { search: this.keyword },
                     command: () => this.setPostType(RouterSlug.RECIPE),
                 });
+            } else {
+                this.postType = PostType.QA;
+                this.router.navigate(
+                    [
+                        `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${
+                            RouterMap[this.coffeeLabService.currentForumLanguage] || RouterMap.en[RouterSlug.QA]
+                        }`,
+                    ],
+                    {
+                        relativeTo: this.route,
+                        queryParams: { search: this.keyword },
+                        queryParamsHandling: 'merge',
+                    },
+                );
             }
         } else {
             menuItems = [
@@ -172,11 +205,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
             return;
         }
         this.isLoading = true;
-        // this.router.navigate([], {
-        //     relativeTo: this.route,
-        //     queryParams: { search: this.keyword },
-        //     queryParamsHandling: 'merge',
-        // });
         this.isGlobalSearchResultPage = true;
         const params = {
             query: this.keyword,
