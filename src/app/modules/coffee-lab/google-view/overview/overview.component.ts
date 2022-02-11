@@ -36,11 +36,13 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
     ) {
         super(resizeService);
         this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
-            this.router.navigate([], {
-                relativeTo: this.route,
-                queryParams: { search: this.keyword },
-                queryParamsHandling: 'merge',
-            });
+            if (this.keyword) {
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: { search: this.keyword },
+                    queryParamsHandling: 'merge',
+                });
+            }
             this.startSearch();
         });
         const searchQueryParam = this.route.snapshot.queryParamMap.get('search');
