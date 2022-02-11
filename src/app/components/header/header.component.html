@@ -183,11 +183,26 @@
                         *ngFor="let item of categories; let i = index"
                         [class.d-none]="i < 3"
                         [class.pr-md-0]="i == categories.length - 1"
+                        [class.pl-0]="showTextBox"
                         class="d-md-block"
                         href="{{ env.coffeeLabWeb }}{{ selectedLangCode }}/{{ item.slug }}/articles"
                         >{{ item.name }}</a
                     >
-                    <i class="pi pi-search d-flex align-items-center pl-md-4 pr-md-1"></i>
+                    <i
+                        *ngIf="!showTextBox"
+                        class="pi pi-search d-md-flex d-none align-items-center pl-md-4 pr-md-1 c-p"
+                        (click)="showTextBox = true"
+                    ></i>
+                    <div class="d-md-flex d-none align-items-center ml-35" *ngIf="showTextBox">
+                        <input
+                            type="text"
+                            pInputText
+                            class="br-12 search-box"
+                            [placeholder]="'search_the_coffee_lab' | translate"
+                            [(ngModel)]="keyword"
+                            (ngModelChange)="handleSearch()"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

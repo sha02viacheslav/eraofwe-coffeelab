@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PostType } from '@enums';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../signup-modal/signup-modal.component';
@@ -22,7 +23,12 @@ export class PublishForumComponent implements OnInit {
             placeHolderValue: 'ask_a_question',
         },
     };
-    constructor(public dialogSrv: DialogService) {}
+    hideContent: boolean;
+    constructor(public dialogSrv: DialogService, private route: ActivatedRoute) {
+        this.route.queryParamMap.subscribe((params) => {
+            this.hideContent = params.has('search') ? true : false;
+        });
+    }
 
     ngOnInit(): void {}
     onFocus() {

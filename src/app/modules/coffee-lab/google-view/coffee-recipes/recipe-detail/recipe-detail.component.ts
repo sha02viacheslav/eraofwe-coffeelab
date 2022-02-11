@@ -1,11 +1,12 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { MetaDespMinLength, RouterMap, seoVariables } from '@constants';
-import { PostType, RouterSlug } from '@enums';
+import { MetaDespMinLength, seoVariables } from '@constants';
+import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { getLangRoute, removeImages } from '@utils';
 import { MessageService } from 'primeng/api';
@@ -71,6 +72,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         private seoService: SEOService,
         private startupService: StartupService,
         protected resizeService: ResizeService,
+        private translator: TranslateService,
     ) {
         super(resizeService);
     }
@@ -142,8 +144,11 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 } else {
                     this.detailsData = res.result;
                     this.items = [
-                        { label: 'The Coffee Lab', routerLink: '/' },
-                        { label: 'Brewing recipes', routerLink: `/${this.urlLang}/coffee-recipes` },
+                        { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
+                        {
+                            label: this.translator.instant('brewing_guides'),
+                            routerLink: `/${this.urlLang}/coffee-recipes`,
+                        },
                         {
                             label: this.detailsData?.name,
                         },

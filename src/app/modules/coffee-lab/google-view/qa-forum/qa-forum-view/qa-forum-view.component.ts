@@ -50,6 +50,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
         { label: 'coffee_experts', value: false },
         { label: 'coffee_consumer', value: true },
     ];
+    hideContent: boolean;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -80,6 +81,7 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
                     this.page = 1;
                 }
             }
+            this.hideContent = params.has('search') ? true : false;
             this.refreshData();
         });
         let langPrefix = '';
@@ -131,7 +133,14 @@ export class QaForumViewComponent extends ResizeableComponent implements OnInit,
     }
 
     refreshData() {
-        this.getData();
+        this.coffeeLabService.searchResult.subscribe((res: any) => {
+            if (res?.questions && this.hideContent) {
+                this.questions = res.questions;
+                this.isLoading = false;
+            } else {
+                this.getData();
+            }
+        });
         this.getCategory();
         if (isPlatformBrowser(this.platformId)) {
             window.scrollTo(0, 0);

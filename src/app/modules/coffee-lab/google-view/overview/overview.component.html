@@ -1,18 +1,16 @@
-<div class="main-forum">
-    <h1 class="fw-sb mt-0 mb-0">
-        <span>{{ 'the_coffee_forum' | translate }}</span>
-        <!-- <span *ngIf="cuurentRoasterSlug === 'QA'">{{ 'qa_h1_title' | translate }}</span>
-        <span *ngIf="cuurentRoasterSlug === 'ARTICLE'">{{ 'article_h1_title' | translate }}</span>
-        <span *ngIf="cuurentRoasterSlug === 'RECIPE'">{{ 'recipe_h1_title' | translate }}</span>
-        <span *ngIf="cuurentRoasterSlug === 'EOW'">{{ 'about_h1_title' | translate }}</span> -->
-    </h1>
-    <h2 class="fnt-16 fnt-md-18 fw-m mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
-    <div class="d-flex mt-45">
-        <button class="btn-raised fnt-md-16" (click)="onWrite()">{{ 'start_writing' | translate }}</button>
-        <a class="btn-stroked ml-3 fnt-md-16 custom-stroked" routerLink="/">{{ 'know_more' | translate }}</a>
+<div class="main-forum" *ngIf="!isGlobalSearchResultPage">
+    <div>
+        <h1 class="fw-sb mt-0 mb-0">
+            <span>{{ 'the_coffee_forum' | translate }}</span>
+        </h1>
+        <h2 class="fnt-16 fnt-md-18 fw-m mt-3">{{ 'coffee_lab_sub_text' | translate }}</h2>
+        <div class="d-flex mt-45">
+            <button class="btn-raised fnt-md-16" (click)="onWrite()">{{ 'start_writing' | translate }}</button>
+            <a class="btn-stroked ml-3 fnt-md-16 custom-stroked" routerLink="/">{{ 'know_more' | translate }}</a>
+        </div>
     </div>
 </div>
-<div class="discussion-bg">
+<div class="discussion-bg" *ngIf="!isGlobalSearchResultPage">
     <div class="d-flex justify-content-between align-items-center">
         <p class="fw-sb fnt-16">{{ 'discussions_knowledge_language' | translate }}</p>
         <div class="d-md-block d-none">
@@ -23,21 +21,66 @@
         <app-language-dropdown></app-language-dropdown>
     </div>
 </div>
-<div class="d-flex justify-content-md-end global-search pb-3 pb-md-0">
+<div class="d-flex justify-content-md-end global-search pb-3 pb-md-0" *ngIf="!isGlobalSearchResultPage">
     <div class="custom-search">
-        <input type="text" pInputText [placeholder]="'search_the_coffee_lab' | translate" (click)="onWrite()" />
+        <input
+            type="text"
+            pInputText
+            [placeholder]="'search_the_coffee_lab' | translate"
+            [(ngModel)]="keyword"
+            (ngModelChange)="handleSearch()"
+        />
     </div>
 </div>
-<div class="main-block pull-main">
-    <p-tabMenu [model]="menuItems" styleClass="mb-45 mt-3">
-        <ng-template pTemplate="item" let-item let-i="index">
-            <span class="pl-1 pb-md-2 pb-1 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
-        </ng-template>
-    </p-tabMenu>
 
-    <div *ngIf="cuurentRoasterSlug !== 'EOW'" class="col-lg-7 px-0 pb-3 pb-md-45">
-        <app-publish-forum [type]="postType"></app-publish-forum>
+<div>
+    <div class="main-block" [class.pull-main]="!isGlobalSearchResultPage" [class.search-pad]="isGlobalSearchResultPage">
+        <div class="search-bg" *ngIf="isGlobalSearchResultPage">
+            <div class="d-flex justify-content-between">
+                <h1 class="fw-sb mt-0 mb-25 fnt-18">Search The Coffee Lab</h1>
+                <i class="pi pi-times-circle tc-m c-p" (click)="onClose()"></i>
+            </div>
+            <div class="d-flex flex-column pb-3 pb-md-0">
+                <div class="custom-search w-100">
+                    <input
+                        type="text"
+                        pInputText
+                        [placeholder]="'search_the_coffee_lab' | translate"
+                        [(ngModel)]="keyword"
+                        class="global-input"
+                        (ngModelChange)="handleSearch()"
+                    />
+                </div>
+                <span class="mt-25">Search results for "{{ keyword }}"</span>
+            </div>
+        </div>
+        <div *ngIf="isGlobalSearchResultPage && !isLoading">
+            <div class="d-flex justify-content-end search-lang pr-md-4">
+                <div class="d-md-block d-none">
+                    <app-language-dropdown></app-language-dropdown>
+                </div>
+            </div>
+            <div class="language-wrapper my-3 d-md-none">
+                <app-language-dropdown></app-language-dropdown>
+            </div>
+        </div>
+
+        <div [class.change-pad]="isGlobalSearchResultPage" *ngIf="!isLoading">
+            <p-tabMenu [model]="menuItems" styleClass="mb-45 mt-3" *ngIf="menuItems?.length > 0">
+                <ng-template pTemplate="item" let-item let-i="index">
+                    <span class="pl-1 pb-md-2 fw-m fnt-14 d-md-inline-block">{{ item.label | translate }}</span>
+                </ng-template>
+            </p-tabMenu>
+
+            <div
+                *ngIf="cuurentRoasterSlug !== 'EOW'"
+                class="col-lg-7 px-0 pb-3"
+                [class.pb-md-45]="!isGlobalSearchResultPage"
+            >
+                <app-publish-forum [type]="postType"></app-publish-forum>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
-    <router-outlet></router-outlet>
+    <app-loading *ngIf="isLoading"></app-loading>
 </div>

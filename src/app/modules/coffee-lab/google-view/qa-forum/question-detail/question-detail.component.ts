@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterMap, seoVariables } from '@constants';
 import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
+import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, SEOService, StartupService } from '@services';
 import { getLangRoute, toSentenceCase } from '@utils';
 import { MessageService } from 'primeng/api';
@@ -39,6 +40,7 @@ export class QuestionDetailComponent implements OnInit {
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
+        private translator: TranslateService,
     ) {
         this.activatedRoute.parent.parent.params.subscribe((res) => {
             this.urlLang = res.lang;
@@ -66,17 +68,14 @@ export class QuestionDetailComponent implements OnInit {
                 } else {
                     this.detailsData = res.result;
                     this.items = [
-                        { label: 'The Coffee Lab', routerLink: '/' },
-                        { label: 'QA forum', routerLink: `/${this.urlLang}/qa-forum` },
+                        { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
+                        { label: this.translator.instant('qa_forum'), routerLink: `/${this.urlLang}/qa-forum` },
                         {
                             label: this.detailsData.question,
                         },
                     ];
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    // this.previousUrl = `/${getLangRoute(this.lang)}/${
-                    //     (RouterMap[this.lang] || RouterMap.en)[RouterSlug.QA]
-                    // }`;
                     this.messageService.clear();
                     this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                     this.getOriginalAnswers();
