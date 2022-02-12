@@ -13,6 +13,11 @@ const routes: Routes = [
                 loadChildren: () => import('./user-profile/user-profile.module').then((m) => m.UserProfileModule),
             },
             {
+                path: 'search',
+                loadChildren: () =>
+                    import('./google-view/global-search/global-search.module').then((m) => m.GlobalSearchModule),
+            },
+            {
                 path: '',
                 loadChildren: () => import('./google-view/overview/overview.module').then((m) => m.OverviewModule),
             },
@@ -37,6 +42,7 @@ const routes: Routes = [
                         (m) => m.ArticleDetailModule,
                     ),
             },
+
             {
                 path: ':category',
                 loadChildren: () => import('./google-view/category/category.module').then((m) => m.CategoryModule),

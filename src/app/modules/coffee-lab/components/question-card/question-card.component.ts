@@ -33,7 +33,7 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
     ngOnInit(): void {}
 
     getLink(item: any) {
-        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item.slug}`;
+        return `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/qa-forum/${item?.slug}`;
     }
 
     gotoDetailPage(event: any, item: any) {

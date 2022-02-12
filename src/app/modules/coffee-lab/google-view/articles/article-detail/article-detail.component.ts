@@ -7,8 +7,8 @@ import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
+import { ConvertToShortDescriptionPipe } from '@shared';
 import { getLangRoute, removeImages } from '@utils';
-import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -18,7 +18,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
     selector: 'app-article-detail',
     templateUrl: './article-detail.component.html',
     styleUrls: ['./article-detail.component.scss'],
-    providers: [MessageService],
+    providers: [ConvertToShortDescriptionPipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailComponent extends ResizeableComponent implements OnInit {
@@ -31,7 +31,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     loading = false;
     jsonLD: any;
     lang: any;
-    // previousUrl = '';
     addComment = false;
     orginalUserData: any;
     commentData: any;
@@ -56,6 +55,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
         private startupService: StartupService,
         protected resizeService: ResizeService,
         private translator: TranslateService,
+        private convertToShortDescription: ConvertToShortDescriptionPipe,
     ) {
         super(resizeService);
     }
@@ -138,23 +138,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
                         { label: this.translator.instant('articles'), routerLink: `/${this.urlLang}/articles` },
                         {
-                            label: this.detailsData.title,
+                            label: this.convertToShortDescription.transform(this.detailsData.title, 4),
                         },
                     ];
                     if (isPlatformServer(this.platformId)) {
                         this.detailsData.content = removeImages(res.result?.content);
                     }
                     this.lang = res.result.language;
-
-                    // if (res.result?.is_era_of_we) {
-                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
-                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.EOW]
-                    //     }`;
-                    // } else {
-                    //     this.previousUrl = `/${getLangRoute(this.lang)}/${
-                    //         (RouterMap[this.lang] || RouterMap.en)[RouterSlug.ARTICLE]
-                    //     }`;
-                    // }
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
 

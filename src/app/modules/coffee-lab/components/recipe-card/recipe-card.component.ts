@@ -20,7 +20,7 @@ export class RecipeCardComponent implements OnInit {
     ngOnInit(): void {}
 
     getLink(item) {
-        return `/${getLangRoute(item.lang_code)}/coffee-recipes/${item.slug}`;
+        return `/${getLangRoute(item?.lang_code)}/coffee-recipes/${item.slug}`;
     }
 
     gotoDetailPage(event, item: any) {

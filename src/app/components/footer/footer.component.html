@@ -145,11 +145,10 @@
                         class="custom-border"
                         placeholder="Enter Email ID"
                     />
-
                     <button
                         class="btn-raised subscribe-button fw-m custom-submit-foot"
                         (click)="onSubmit()"
-                        [disabled]="!form.valid"
+                        [disabled]="form.invalid"
                     >
                         Claim your offer
                     </button>

@@ -8,8 +8,8 @@ import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
+import { ConvertToShortDescriptionPipe } from '@shared';
 import { getLangRoute, removeImages } from '@utils';
-import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -18,7 +18,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
     selector: 'app-recipe-detail',
     templateUrl: './recipe-detail.component.html',
     styleUrls: ['./recipe-detail.component.scss'],
-    providers: [MessageService],
+    providers: [ConvertToShortDescriptionPipe],
 })
 export class RecipeDetailComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
@@ -48,7 +48,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     loading = false;
     jsonLD: any;
     lang: any;
-    // previousUrl = '';
     orginalUserData: any;
     commentData: any[] = [];
     allComments: any[] = [];
@@ -67,12 +66,12 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
         private globalsService: GlobalsService,
-        private messageService: MessageService,
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
         protected resizeService: ResizeService,
         private translator: TranslateService,
+        private convertToShortDescription: ConvertToShortDescriptionPipe,
     ) {
         super(resizeService);
     }
@@ -150,7 +149,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                             routerLink: `/${this.urlLang}/coffee-recipes`,
                         },
                         {
-                            label: this.detailsData?.name,
+                            label: this.convertToShortDescription.transform(this.detailsData?.name, 4),
                         },
                     ];
                     this.adLocation = Math.floor(this.detailsData?.steps?.length / 2);
@@ -159,16 +158,11 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     }
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    // this.previousUrl = `/${getLangRoute(this.lang)}/${
-                    //     (RouterMap[this.lang] || RouterMap.en)[RouterSlug.RECIPE]
-                    // }`;
                     this.getAllData();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();
                     }
-                    this.messageService.clear();
-                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                 }
             } else {
                 this.router.navigate(['/error']);

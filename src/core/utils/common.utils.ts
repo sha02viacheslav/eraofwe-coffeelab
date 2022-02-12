@@ -1,3 +1,4 @@
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { COUNTRY_LIST, LANGUAGES, OrganizationName } from '@constants';
 import { OrganizationType } from '@enums';
 import { Country, Language } from '@models';
@@ -46,4 +47,16 @@ export function getCookie(name: string) {
         }
     }
     return '';
+}
+
+export function validateEmail(control: AbstractControl): ValidationErrors {
+    if (control.value) {
+        const pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/;
+        if (!control.value.match(pattern)) {
+            console.log(!control.value.match(pattern));
+            return { invalidEmail: true };
+        }
+    }
+
+    return null;
 }

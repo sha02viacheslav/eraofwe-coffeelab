@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
+import { validateEmail } from '@utils';
 
 @Component({
     selector: 'app-footer',
@@ -40,7 +41,7 @@ export class FooterComponent implements OnInit {
             this.showAd = res;
         });
         this.form = this.fb.group({
-            subscribeEmail: ['', Validators.compose([Validators.required, Validators.email])],
+            subscribeEmail: ['', [Validators.required, validateEmail.bind(this)]],
         });
     }
 

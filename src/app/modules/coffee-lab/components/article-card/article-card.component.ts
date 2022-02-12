@@ -17,7 +17,7 @@ export class ArticleCardComponent implements OnInit {
     ngOnInit(): void {}
 
     getLink(item) {
-        return `/${getLangRoute(item.language)}/articles/${item.slug}`;
+        return `/${getLangRoute(item?.language)}/articles/${item.slug}`;
     }
 
     gotoDetailPage(event, item: any) {

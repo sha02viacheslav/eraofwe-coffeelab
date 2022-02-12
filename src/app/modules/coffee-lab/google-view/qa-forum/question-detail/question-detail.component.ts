@@ -1,13 +1,13 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterMap, seoVariables } from '@constants';
-import { PostType, RouterSlug } from '@enums';
+import { seoVariables } from '@constants';
+import { PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, SEOService, StartupService } from '@services';
+import { ConvertToShortDescriptionPipe } from '@shared';
 import { getLangRoute, toSentenceCase } from '@utils';
-import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SignupModalComponent } from '../../../components/signup-modal/signup-modal.component';
 
@@ -15,7 +15,7 @@ import { SignupModalComponent } from '../../../components/signup-modal/signup-mo
     selector: 'app-question-detail',
     templateUrl: './question-detail.component.html',
     styleUrls: ['./question-detail.component.scss'],
-    providers: [MessageService],
+    providers: [ConvertToShortDescriptionPipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionDetailComponent implements OnInit {
@@ -25,7 +25,6 @@ export class QuestionDetailComponent implements OnInit {
     loading = true;
     jsonLD: any;
     lang: any;
-    // previousUrl: string;
     urlLang: string;
     showToaster = false;
     items = [];
@@ -36,11 +35,11 @@ export class QuestionDetailComponent implements OnInit {
         private cdr: ChangeDetectorRef,
         private coffeeLabService: CoffeeLabService,
         private dialogSrv: DialogService,
-        private messageService: MessageService,
         private router: Router,
         private seoService: SEOService,
         private startupService: StartupService,
         private translator: TranslateService,
+        private convertToShortDescription: ConvertToShortDescriptionPipe,
     ) {
         this.activatedRoute.parent.parent.params.subscribe((res) => {
             this.urlLang = res.lang;
@@ -71,13 +70,11 @@ export class QuestionDetailComponent implements OnInit {
                         { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
                         { label: this.translator.instant('qa_forum'), routerLink: `/${this.urlLang}/qa-forum` },
                         {
-                            label: this.detailsData.question,
+                            label: this.convertToShortDescription.transform(this.detailsData.question, 4),
                         },
                     ];
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
-                    this.messageService.clear();
-                    this.messageService.add({ key: 'translate', severity: 'success', closable: false });
                     this.getOriginalAnswers();
 
                     this.setSEO();
