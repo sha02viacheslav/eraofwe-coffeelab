@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterMap } from '@constants';
+import { ResizeableComponent } from '@base-components';
+import { RouterMap, SlugMap } from '@constants';
 import { PostType, RouterSlug } from '@enums';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, ResizeService, StartupService } from '@services';
 import { getLangRoute } from '@utils';
 import { forkJoin, Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-global-search',
     templateUrl: './global-search.component.html',
     styleUrls: ['./global-search.component.scss'],
 })
-export class GlobalSearchComponent implements OnInit {
+export class GlobalSearchComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     isLoading: boolean;
-    keyword: string;
+    keyword = '';
     searchResult: any;
     searchInput$: Subject<any> = new Subject<any>();
     selectedTab: any = 0;
@@ -41,33 +42,46 @@ export class GlobalSearchComponent implements OnInit {
     ];
     categoryList: any;
     tabMenuItems: { label: string; postType: PostType }[] = [];
+    rows = 9;
+    page = 1;
 
-    constructor(private coffeeLabService: CoffeeLabService, private router: Router, private route: ActivatedRoute) {
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private startupService: StartupService,
+        protected resizeService: ResizeService,
+    ) {
+        super(resizeService);
+        const searchQueryParam = this.route.snapshot.queryParamMap.get('query');
+        if (searchQueryParam) {
+            this.keyword = searchQueryParam;
+        }
         this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
             if (this.keyword) {
                 this.router.navigate([], {
+                    queryParams: { query: this.keyword },
+                    queryParamsHandling: 'merge',
+                });
+            }
+            this.startSearch();
+        });
+    }
+
+    ngOnInit(): void {
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            this.startupService.load(language);
+            if (this.router.url !== `/${getLangRoute(language)}/search?query=${this.keyword}`) {
+                this.router.navigate([`/${getLangRoute(language)}/search`], {
                     queryParams: { query: this.keyword },
                 });
             }
             this.startSearch();
         });
-        const searchQueryParam = this.route.snapshot.queryParamMap.get('query');
-        if (searchQueryParam) {
-            this.keyword = searchQueryParam;
-            this.startSearch();
-        }
     }
-
-    ngOnInit(): void {}
 
     handleSearch(): void {
         this.searchInput$.next(this.keyword);
-        if (!this.keyword) {
-            // this.searchResult = [];
-            // this.coffeeLabService.searchResult.next(this.searchResult);
-            // this.router.navigate([this.handleRoute(this.coffeeLabService.currentForumLanguage).destinationRouter]);
-            // this.menuItems = this.getMenuItems(this.coffeeLabService.currentForumLanguage);
-        }
     }
 
     getCategory(isRecipe: boolean) {
@@ -87,8 +101,8 @@ export class GlobalSearchComponent implements OnInit {
             sort_order: 'desc',
             publish: true,
             category_id: this.selectedCategory,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService.getForumList(PostType.ARTICLE, params).subscribe((res: any) => {
@@ -105,8 +119,8 @@ export class GlobalSearchComponent implements OnInit {
             sort_order: 'desc',
             publish: true,
             category_id: this.selectedCategory,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService.getForumList(PostType.RECIPE, params).subscribe((res: any) => {
@@ -122,8 +136,8 @@ export class GlobalSearchComponent implements OnInit {
             sort_order: 'desc',
             publish: true,
             category_id: this.selectedCategory,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService.getForumList(PostType.QA, params).subscribe((res: any) => {
@@ -145,8 +159,8 @@ export class GlobalSearchComponent implements OnInit {
                     : 'asc',
             publish: true,
             category_id: this.selectedCategory,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
         this.coffeeLabService.getForumList(this.getSelectedType(), params).subscribe((res: any) => {
             if (res.success) {
@@ -168,8 +182,8 @@ export class GlobalSearchComponent implements OnInit {
             sort_order: 'desc',
             publish: true,
             category_id: this.selectedCategory,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
 
         this.coffeeLabService.getForumList(this.getSelectedType(), params).subscribe((res: any) => {
@@ -195,8 +209,8 @@ export class GlobalSearchComponent implements OnInit {
             sort_by: 'created_at',
             sort_order: 'desc',
             publish: true,
-            page: 1,
-            per_page: 10000,
+            page: this.page,
+            per_page: this.rows,
         };
         forkJoin([
             this.coffeeLabService.getForumList(PostType.QA, params),
@@ -210,9 +224,11 @@ export class GlobalSearchComponent implements OnInit {
                 questions,
                 articles,
                 recipes,
-                total_count: questions.length + articles.length + recipes.length,
+                qa_total_count: res[0]?.result_info.total_count || 0,
+                article_total_count: res[1]?.result_info.total_count || 0,
+                recipe_total_count: res[2]?.result_info.total_count || 0,
             };
-            console.log(this.searchResult);
+            this.tabMenuItems = [];
             if (this.searchResult.questions.length > 0) {
                 this.tabMenuItems.push({
                     label: 'question_answers',

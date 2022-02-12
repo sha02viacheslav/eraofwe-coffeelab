@@ -44,13 +44,28 @@
                         </div>
                     </div>
                     <div *ngIf="item.postType === PostType.QA">
-                        <app-questions [questions]="searchResult?.questions"></app-questions>
+                        <app-questions
+                            [questions]="searchResult?.questions"
+                            [pages]="page"
+                            [rows]="rows"
+                            [totalRecords]="searchResult?.qa_total_count"
+                        ></app-questions>
                     </div>
                     <div *ngIf="item.postType === PostType.ARTICLE">
-                        <app-articles [articles]="searchResult?.articles"></app-articles>
+                        <app-articles
+                            [articles]="searchResult?.articles"
+                            [pages]="page"
+                            [rows]="rows"
+                            [totalRecords]="searchResult?.article_total_count"
+                        ></app-articles>
                     </div>
                     <div *ngIf="item.postType === PostType.RECIPE">
-                        <app-recipes [recipes]="searchResult?.recipes"></app-recipes>
+                        <app-recipes
+                            [recipes]="searchResult?.recipes"
+                            [pages]="page"
+                            [rows]="rows"
+                            [totalRecords]="searchResult?.recipe_total_count"
+                        ></app-recipes>
                     </div>
                 </div>
             </p-tabPanel>

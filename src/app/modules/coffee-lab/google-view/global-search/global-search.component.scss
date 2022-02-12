@@ -9,3 +9,11 @@
         width: 50%;
     }
 }
+
+.search-lang {
+    @media (min-width: 768px) {
+        position: relative;
+        top: 30px;
+        z-index: 1;
+    }
+}
