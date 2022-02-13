@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { RouterMap, SlugMap } from '@constants';
@@ -46,6 +47,7 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
     page = 1;
 
     constructor(
+        @Inject(PLATFORM_ID) private platformId: object,
         private coffeeLabService: CoffeeLabService,
         private router: Router,
         private route: ActivatedRoute,
@@ -78,6 +80,9 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
             }
             this.startSearch();
         });
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 
     handleSearch(): void {

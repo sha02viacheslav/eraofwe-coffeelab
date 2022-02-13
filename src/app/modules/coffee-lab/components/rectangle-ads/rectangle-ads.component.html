@@ -20,8 +20,16 @@
     <div *ngIf="!showValidateMsg" class="d-flex align-items-center mt-3 mt-md-0">
         <div class="d-flex">
             <form [formGroup]="form" class="form-group">
-                <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
-                <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
+                <input
+                    type="email"
+                    name="email"
+                    formControlName="subscribeEmail"
+                    [class.question-width]="questionPage"
+                    placeholder="Enter Email ID"
+                />
+                <button class="btn-raised subscribe-button" (click)="onSubmit()" [class.question-btn]="questionPage">
+                    Claim your offer
+                </button>
             </form>
         </div>
     </div>

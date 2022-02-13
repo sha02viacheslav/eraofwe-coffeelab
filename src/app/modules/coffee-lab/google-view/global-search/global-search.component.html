@@ -18,9 +18,9 @@
             <span class="mt-25">Search results for "{{ keyword }}"</span>
         </div>
     </div>
-    <div>
-        <div class="d-flex justify-content-end search-lang pr-md-4">
-            <div class="d-md-block d-none">
+    <div *ngIf="!isLoading && searchResult">
+        <div class="d-flex justify-content-end pr-md-4">
+            <div class="d-md-block d-none search-lang">
                 <app-language-dropdown></app-language-dropdown>
             </div>
         </div>
@@ -29,20 +29,20 @@
         </div>
     </div>
 
-    <div *ngIf="!isLoading" class="px-md-4">
+    <div *ngIf="!isLoading && searchResult" class="px-md-4">
         <p-tabView
             styleClass="tabview-coffee-lab position-relative"
             (onChange)="onTabChange($event)"
             [(activeIndex)]="selectedTab"
         >
             <p-tabPanel header="{{ item.label | translate }}" *ngFor="let item of tabMenuItems">
-                <div class="col-12 pr-2 pl-0" [ngClass]="item.postType === PostType.QA ? 'col-md-8' : 'col -md-12'">
-                    <div class="row mb-475 mb-md-0">
-                        <div class="fw-sb fnt-md-18 fnt-16 d-flex flex-column mb-25">
-                            <span class="mb-35 mt-4 pl-4">{{ item.label | translate }}</span>
-                            <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
-                        </div>
+                <div class="row mb-475 mb-md-0">
+                    <div class="fw-sb fnt-md-18 fnt-16 d-flex flex-column mb-25">
+                        <span class="mb-35 mt-4 pl-4">{{ item.label | translate }}</span>
+                        <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
                     </div>
+                </div>
+                <div class="col-12 pr-2 pl-0" [ngClass]="item.postType === PostType.QA ? 'col-md-8' : 'col -md-12'">
                     <div *ngIf="item.postType === PostType.QA">
                         <app-questions
                             [questions]="searchResult?.questions"
@@ -75,9 +75,9 @@
 <app-loading *ngIf="isLoading"></app-loading>
 
 <ng-template #filterDropdowns>
-    <div class="d-flex mb-md-4 ml-3">
+    <div class="d-flex mb-md-4 ml-md-45">
         <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
-            <div class="d-flex flex-md-row" [ngClass]="{ 'flex-column': selectedTab !== 0 }">
+            <div class="row" [ngClass]="{ 'flex-column': selectedTab !== 0 }">
                 <div class="col-auto pl-md-0">
                     <p-multiSelect
                         [options]="categoryList"

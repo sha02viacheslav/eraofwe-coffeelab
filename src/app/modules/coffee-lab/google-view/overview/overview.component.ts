@@ -36,7 +36,6 @@ export class OverviewComponent extends ResizeableComponent implements OnInit {
 
     ngOnInit(): void {
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
-            console.log('called in overivew');
             this.menuItems = this.getMenuItems(language);
             this.startupService.load(language);
             let currentRouter = this.router.url;

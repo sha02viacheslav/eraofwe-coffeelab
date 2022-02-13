@@ -19,9 +19,6 @@ export class HeaderComponent extends ResizeableComponent implements OnInit {
     categories: any[] = [];
     sideNavOpened: boolean;
     selectedLangCode: string;
-    keyword: string;
-    showTextBox: boolean;
-    searchInput$: Subject<any> = new Subject<any>();
 
     constructor(
         protected resizeService: ResizeService,
@@ -30,15 +27,6 @@ export class HeaderComponent extends ResizeableComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         super(resizeService);
-        this.searchInput$.pipe(debounceTime(1000)).subscribe(() => {
-            if (this.keyword) {
-                this.router.navigate(['/en/qa-forum'], {
-                    relativeTo: this.route,
-                    queryParams: { search: this.keyword },
-                    queryParamsHandling: 'merge',
-                });
-            }
-        });
     }
 
     ngOnInit(): void {
@@ -65,7 +53,9 @@ export class HeaderComponent extends ResizeableComponent implements OnInit {
         }
     }
 
-    handleSearch() {
-        this.searchInput$.next(this.keyword);
+    onSearch() {
+        this.router.navigate([`/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/search`], {
+            queryParams: { query: '' },
+        });
     }
 }
