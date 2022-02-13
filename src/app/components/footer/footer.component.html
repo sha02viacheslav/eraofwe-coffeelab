@@ -11,10 +11,14 @@
                         <input
                             type="email"
                             name="email1"
-                            formControlName="subscribeEmail"
+                            formControlName="subscribeMainEmail"
                             placeholder="What's your email address?"
                         />
-                        <button class="btn-raised subscribe-button" (click)="onSubmit()" [disabled]="!form.valid">
+                        <button
+                            class="btn-raised subscribe-button"
+                            (click)="onSubmit()"
+                            [disabled]="form?.get('subscribeMainEmail').invalid"
+                        >
                             Submit
                         </button>
                     </form>
@@ -141,14 +145,14 @@
                     <input
                         type="email"
                         pInputText
-                        formControlName="subscribeEmail"
+                        formControlName="subscribeSubEmail"
                         class="custom-border"
                         placeholder="Enter Email ID"
                     />
                     <button
                         class="btn-raised subscribe-button fw-m custom-submit-foot"
                         (click)="onSubmit()"
-                        [disabled]="form.invalid"
+                        [disabled]="form?.get('subscribeSubEmail').invalid"
                     >
                         Claim your offer
                     </button>

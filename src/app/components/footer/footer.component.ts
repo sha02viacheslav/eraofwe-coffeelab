@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { CoffeeLabService } from '@services';
-import { validateEmail } from '@utils';
 
 @Component({
     selector: 'app-footer',
@@ -41,7 +40,24 @@ export class FooterComponent implements OnInit {
             this.showAd = res;
         });
         this.form = this.fb.group({
-            subscribeEmail: ['', [Validators.required, validateEmail.bind(this)]],
+            subscribeMainEmail: [
+                '',
+                [
+                    Validators.required,
+                    Validators.pattern(
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    ),
+                ],
+            ],
+            subscribeSubEmail: [
+                '',
+                [
+                    Validators.required,
+                    Validators.pattern(
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    ),
+                ],
+            ],
         });
     }
 

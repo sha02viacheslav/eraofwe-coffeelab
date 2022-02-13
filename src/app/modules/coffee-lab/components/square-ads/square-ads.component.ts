@@ -27,7 +27,15 @@ export class SquareAdsComponent implements OnInit {
             this.showAd = res;
         });
         this.form = this.fb.group({
-            subscribeEmail: ['', Validators.compose([Validators.required, Validators.email])],
+            subscribeEmail: [
+                '',
+                [
+                    Validators.required,
+                    Validators.pattern(
+                        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    ),
+                ],
+            ],
         });
     }
 
