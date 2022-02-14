@@ -109,14 +109,14 @@
                         <input
                             type="email"
                             name="email1"
-                            formControlName="subscribeEmail"
+                            formControlName="subscribeSubEmail"
                             class="custom-border"
                             placeholder="Enter Email ID"
                         />
                         <button
                             class="btn-raised subscribe-button custom-submit-foot"
                             (click)="onSubmit()"
-                            [disabled]="!form.valid"
+                            [disabled]="form?.get('subscribeSubEmail').invalid"
                         >
                             Claim your offer
                         </button>
