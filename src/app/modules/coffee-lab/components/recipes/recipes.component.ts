@@ -31,7 +31,7 @@ export class RecipesComponent implements OnInit {
 
     paginate(event: any) {
         if (this.pages !== event.page + 1) {
-            this.router.navigate([], { queryParams: { page: event.page + 1 } });
+            this.router.navigate([], { queryParams: { page: event.page + 1 }, queryParamsHandling: 'merge' });
         }
     }
 }

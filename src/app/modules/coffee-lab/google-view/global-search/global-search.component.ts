@@ -16,6 +16,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 })
 export class GlobalSearchComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
+    isFirstLoading: boolean;
     isLoading: boolean;
     keyword = '';
     searchResult: any;
@@ -37,6 +38,10 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
         { label: 'coffee_experts', value: false },
         { label: 'coffee_consumer', value: true },
     ];
+    orderList: any[] = [
+        { label: 'latest', value: 'latest' },
+        { label: 'oldest', value: 'oldest' },
+    ];
     translationsList: any[] = [
         { label: 'yes', value: true },
         { label: 'no', value: false },
@@ -45,6 +50,10 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
     tabMenuItems: { label: string; postType: PostType }[] = [];
     rows = 9;
     page = 1;
+
+    get postType(): PostType {
+        return this.tabMenuItems[this.selectedTab]?.postType || PostType.QA;
+    }
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: object,
@@ -71,6 +80,18 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
     }
 
     ngOnInit(): void {
+        this.route.queryParamMap.subscribe((params) => {
+            if (params.has('page')) {
+                let page = +params.get('page') || 1;
+                if (page < 1) {
+                    page = 1;
+                }
+                if (this.page !== page) {
+                    this.page = page;
+                    this.getPosts();
+                }
+            }
+        });
         this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
             this.startupService.load(language);
             if (this.router.url !== `/${getLangRoute(language)}/search?query=${this.keyword}`) {
@@ -80,17 +101,27 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
             }
             this.startSearch();
         });
-        if (isPlatformBrowser(this.platformId)) {
-            window.scrollTo(0, 0);
-        }
+        this.scrollTop();
     }
 
     handleSearch(): void {
         this.searchInput$.next(this.keyword);
     }
 
-    getCategory(isRecipe: boolean) {
-        const params = { language: this.coffeeLabService.currentForumLanguage, is_recipe: isRecipe };
+    clearFilters() {
+        this.sortBy = null;
+        this.filterBy = null;
+        this.isAvailableTranslation = null;
+        this.selectedCategory = null;
+        this.page = 1;
+        this.router.navigate([], { queryParams: { page: this.page }, queryParamsHandling: 'merge' });
+    }
+
+    getCategory() {
+        const params = {
+            language: this.coffeeLabService.currentForumLanguage,
+            is_recipe: this.postType === PostType.RECIPE,
+        };
         this.coffeeLabService.getCategory(params).subscribe((category) => {
             if (category.success) {
                 this.categoryList = category.result;
@@ -98,109 +129,53 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
         });
     }
 
-    getArticles() {
+    getPosts() {
+        const postType = this.tabMenuItems[this.selectedTab]?.postType;
+        if (!postType) {
+            return;
+        }
         const params = {
             query: this.keyword,
-            sort_by: 'created_at',
-            translations_available: this.isAvailableTranslation,
-            sort_order: 'desc',
-            publish: true,
-            category_id: this.selectedCategory,
-            page: this.page,
-            per_page: this.rows,
-        };
-
-        this.coffeeLabService.getForumList(PostType.ARTICLE, params).subscribe((res: any) => {
-            if (res.success) {
-                this.searchResult.articles = res.result;
-            }
-        });
-    }
-    getRecipes() {
-        const params = {
-            query: this.keyword,
-            translations_available: this.isAvailableRecipeTranslation,
-            sort_by: 'created_at',
-            sort_order: 'desc',
-            publish: true,
-            category_id: this.selectedCategory,
-            page: this.page,
-            per_page: this.rows,
-        };
-
-        this.coffeeLabService.getForumList(PostType.RECIPE, params).subscribe((res: any) => {
-            if (res.success) {
-                this.searchResult.articles = res.result;
-            }
-        });
-    }
-    getQuestions() {
-        const params = {
-            query: this.keyword,
-            sort_by: 'created_at',
-            sort_order: 'desc',
-            publish: true,
-            category_id: this.selectedCategory,
-            page: this.page,
-            per_page: this.rows,
-        };
-
-        this.coffeeLabService.getForumList(PostType.QA, params).subscribe((res: any) => {
-            if (res.success) {
-                this.searchResult.questions = res.result.questions;
-            }
-        });
-    }
-
-    filterSortBy() {
-        const params = {
-            query: this.keyword,
-            sort_by: 'created_at',
+            sort_by:
+                postType === PostType.QA
+                    ? this.sortBy === 'most_answered'
+                        ? 'most_answered'
+                        : 'posted_at'
+                    : 'created_at',
             sort_order:
-                this.selectedOrder === 'most_answered'
-                    ? 'desc'
+                postType === PostType.QA
+                    ? this.sortBy === 'most_answered'
+                        ? 'desc'
+                        : this.sortBy === 'latest' || !this.sortBy
+                        ? 'desc'
+                        : 'asc'
                     : this.selectedOrder === 'latest' || !this.selectedOrder
                     ? 'desc'
                     : 'asc',
-            publish: true,
-            category_id: this.selectedCategory,
-            page: this.page,
-            per_page: this.rows,
-        };
-        this.coffeeLabService.getForumList(this.getSelectedType(), params).subscribe((res: any) => {
-            if (res.success) {
-                if (this.getSelectedType() === PostType.QA) {
-                    this.searchResult.questions = res.result.questions;
-                } else if (this.getSelectedType() === PostType.ARTICLE) {
-                    this.searchResult.articles = res.result;
-                } else if (this.getSelectedType() === PostType.RECIPE) {
-                    this.searchResult.recipes = res.result;
-                }
-            }
-        });
-    }
-
-    filterCategory() {
-        const params = {
-            query: this.keyword,
-            sort_by: 'created_at',
-            sort_order: 'desc',
+            is_consumer: this.filterBy,
+            translations_available: this.isAvailableTranslation,
             publish: true,
             category_id: this.selectedCategory,
             page: this.page,
             per_page: this.rows,
         };
 
-        this.coffeeLabService.getForumList(this.getSelectedType(), params).subscribe((res: any) => {
+        this.isLoading = true;
+        this.scrollTop();
+        this.coffeeLabService.getForumList(postType, params).subscribe((res: any) => {
             if (res.success) {
-                if (this.getSelectedType() === PostType.QA) {
+                if (postType === PostType.QA) {
                     this.searchResult.questions = res.result.questions;
-                } else if (this.getSelectedType() === PostType.ARTICLE) {
+                    this.searchResult.qa_total_count = res.result_info.total_count || 0;
+                } else if (postType === PostType.ARTICLE) {
                     this.searchResult.articles = res.result;
-                } else if (this.getSelectedType() === PostType.RECIPE) {
+                    this.searchResult.article_total_count = res.result_info.total_count || 0;
+                } else if (postType === PostType.RECIPE) {
                     this.searchResult.recipes = res.result;
+                    this.searchResult.recipe_total_count = res.result_info.total_count || 0;
                 }
             }
+            this.isLoading = false;
         });
     }
 
@@ -208,7 +183,7 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
         if (!this.keyword) {
             return;
         }
-        this.isLoading = true;
+        this.isFirstLoading = true;
         const params = {
             query: this.keyword,
             sort_by: 'created_at',
@@ -235,59 +210,27 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
             };
             this.tabMenuItems = [];
             if (this.searchResult.questions.length > 0) {
-                this.tabMenuItems.push({
-                    label: 'question_answers',
-                    postType: PostType.QA,
-                });
+                this.tabMenuItems.push({ label: 'question_answers', postType: PostType.QA });
             }
             if (this.searchResult.articles.length > 0) {
-                this.tabMenuItems.push({
-                    label: 'posts',
-                    postType: PostType.ARTICLE,
-                });
+                this.tabMenuItems.push({ label: 'posts', postType: PostType.ARTICLE });
             }
             if (this.searchResult.recipes.length > 0) {
-                this.tabMenuItems.push({
-                    label: 'brewing_guides',
-                    postType: PostType.RECIPE,
-                });
+                this.tabMenuItems.push({ label: 'brewing_guides', postType: PostType.RECIPE });
             }
-            this.onTabChange({ index: 0 });
+            this.selectedTab = 0;
+            this.clearFilters();
+            this.getCategory();
             this.coffeeLabService.searchResult.next(this.searchResult);
-            this.isLoading = false;
+            this.isFirstLoading = false;
         });
     }
 
     onTabChange(event) {
         this.selectedTab = event.index;
-        this.selectedCategory = null;
-        this.searchResult.recipes.length > 0 && this.tabMenuItems.length - 1 === event.index
-            ? this.getCategory(true)
-            : this.getCategory(false);
-    }
-
-    getSelectedType(): string {
-        let type: string;
-        if (this.selectedTab === 0) {
-            if (this.searchResult.questions) {
-                type = PostType.QA;
-            } else if (this.searchResult.articles) {
-                type = PostType.ARTICLE;
-            } else if (this.searchResult.recipes) {
-                type = PostType.RECIPE;
-            }
-        } else if (this.selectedTab === 1) {
-            if (this.searchResult.articles) {
-                type = PostType.ARTICLE;
-            } else if (this.searchResult.recipes) {
-                type = PostType.RECIPE;
-            }
-        } else if (this.selectedTab === 2) {
-            if (this.searchResult.recipes) {
-                type = PostType.RECIPE;
-            }
-        }
-        return type;
+        this.clearFilters();
+        this.getPosts();
+        this.getCategory();
     }
 
     onClose(): void {
@@ -296,5 +239,11 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
         this.router.navigate([
             `/${getLangRoute(this.coffeeLabService.currentForumLanguage)}/${curRouterMap[RouterSlug.QA]}`,
         ]);
+    }
+
+    scrollTop() {
+        if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo(0, 0);
+        }
     }
 }
