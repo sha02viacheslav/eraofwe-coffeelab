@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ResizeableComponent } from '@base-components';
 import { RouterMap } from '@constants';
 import { Fields, PostType } from '@enums';
-import { CoffeeLabService } from '@services';
+import { CoffeeLabService, ResizeService } from '@services';
 import { getLangRoute } from '@utils';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-join-community',
@@ -11,7 +12,7 @@ import { getLangRoute } from '@utils';
     styleUrls: ['./join-community.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JoinCommunityComponent implements OnInit {
+export class JoinCommunityComponent extends ResizeableComponent implements OnInit {
     readonly PostType = PostType;
     @Input() pages: number;
     @Input() type: PostType;
@@ -23,22 +24,16 @@ export class JoinCommunityComponent implements OnInit {
 
     constructor(
         private cdr: ChangeDetectorRef,
-        private route: ActivatedRoute,
         public coffeeLabService: CoffeeLabService,
+        protected resizeService: ResizeService,
     ) {
-        let langPrefix = '';
-        this.route.paramMap.subscribe((params) => {
-            if (params.has('lang')) {
-                if (langPrefix) {
-                    this.getQaList();
-                }
-                langPrefix = params.get('lang');
-            }
-        });
+        super(resizeService);
     }
 
     ngOnInit(): void {
-        this.getQaList();
+        this.coffeeLabService.forumLanguage.pipe(takeUntil(this.unsubscribeAll$)).subscribe((language) => {
+            this.getQaList();
+        });
     }
 
     getQaList() {

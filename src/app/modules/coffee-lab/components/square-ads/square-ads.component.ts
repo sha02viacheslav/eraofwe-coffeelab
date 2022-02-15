@@ -20,7 +20,7 @@ export class SquareAdsComponent implements OnInit {
     constructor(
         private coffeLabService: CoffeeLabService,
         private cdr: ChangeDetectorRef,
-        public fb: FormBuilder,
+        private fb: FormBuilder,
         @Inject(PLATFORM_ID) private platformId: object,
     ) {
         this.coffeLabService.showAd.subscribe((res) => {

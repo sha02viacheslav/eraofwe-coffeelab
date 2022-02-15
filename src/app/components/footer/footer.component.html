@@ -104,8 +104,8 @@
         <div [ngClass]="isExpand ? 'ads-image' : ''">
             <div class="mob-disp" *ngIf="!showValidateMsg">
                 <img *ngIf="isExpand" lazyLoad="assets/images/product.webp" alt="product" />
-                <div class="align-items-end d-flex d-md-none mt-25" [class.ml-35]="isExpand">
-                    <form [formGroup]="form" class="form-group">
+                <div class="align-items-end d-flex d-md-none mt-25" [class.ml-25]="isExpand">
+                    <form [formGroup]="form" class="form-group d-flex">
                         <input
                             type="email"
                             name="email1"
@@ -164,7 +164,7 @@
                 <img lazyLoad="assets/images/confirm-tick.svg" alt="confirm-tick" class="align-tick" />
                 <span>Thank you for submitting {{ showAgainMsg ? 'again' : '' }}</span>
             </div>
-            <div *ngIf="!isExpand" class="fnt-16 pt-2 pt-md-0 fnt-md-24 ml-md-5">
+            <div *ngIf="isExpand" class="fnt-16 pt-2 pt-md-0 fnt-md-24 ml-md-5">
                 We’ll be in touch with our latest coffee offers
             </div>
             <div class="d-md-none text-right">

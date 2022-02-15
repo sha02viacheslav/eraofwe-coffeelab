@@ -4,9 +4,15 @@
         border-radius: 5px;
         background-color: #f8f6ef;
         padding: 32px;
+        @media (max-width: 767px) {
+            padding: 24px;
+        }
     }
     .global-input {
-        width: 50%;
+        @media (min-width: 768px) {
+            width: 50%;
+        }
+        width: 92%;
     }
 }
 
@@ -15,5 +21,17 @@
         position: relative;
         top: 30px;
         z-index: 1;
+    }
+}
+
+.align-cross {
+    position: relative;
+    right: 25px;
+    top: 2px;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    @media (max-width: 767px) {
+        padding: 0 20px 9px 20px;
     }
 }

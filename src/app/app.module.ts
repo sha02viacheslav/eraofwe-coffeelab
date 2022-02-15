@@ -1,10 +1,9 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClosePopupModule } from '@modules/coffee-lab/components/close-popup/close-popup.module';
-import { SquareAdsModule } from '@modules/coffee-lab/components/square-ads/square-ads.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { StartupService } from '@services';
@@ -28,6 +27,8 @@ export function StartupServiceFactory(startupService: StartupService) {
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
         AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
         TransferHttpCacheModule,
         HttpClientModule,
         HttpClientJsonpModule,

@@ -11,6 +11,7 @@ export class QuestionsComponent implements OnInit {
     @Input() totalRecords = 0;
     @Input() pages: number;
     @Input() rows: number;
+    @Input() searchPage: boolean;
     constructor(private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {

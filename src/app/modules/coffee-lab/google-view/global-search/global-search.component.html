@@ -1,11 +1,13 @@
 <div class="search-pad main-block">
     <div class="search-bg">
         <div class="d-flex justify-content-between">
-            <h1 class="fw-sb mt-0 mb-25 fnt-18">Search The Coffee Lab</h1>
+            <h1 class="fw-sb mt-0 mb-25 fnt-18">{{ 'search_the_coffee_lab' | translate }}</h1>
             <i class="pi pi-times-circle tc-m c-p" (click)="onClose()"></i>
         </div>
         <div class="d-flex flex-column pb-3 pb-md-0">
             <div class="custom-search w-100">
+                <!-- <span class="p-input-icon-right">
+                     -->
                 <input
                     type="text"
                     pInputText
@@ -14,8 +16,10 @@
                     class="global-input"
                     (ngModelChange)="handleSearch()"
                 />
+                <i *ngIf="keyword" class="pi pi-times tc-m c-p align-cross" (click)="keyword = ''; handleSearch()"></i>
+                <!-- </span> -->
             </div>
-            <span class="mt-25">Search results for "{{ keyword }}"</span>
+            <span class="mt-25">{{ 'search_results_for' | translate }} "{{ keyword }}"</span>
         </div>
     </div>
     <div *ngIf="!isLoading && searchResult">
@@ -24,7 +28,7 @@
                 <app-language-dropdown></app-language-dropdown>
             </div>
         </div>
-        <div class="language-wrapper my-3 d-md-none">
+        <div class="language-wrapper d-flex justify-content-end my-3 d-md-none">
             <app-language-dropdown></app-language-dropdown>
         </div>
     </div>
@@ -39,12 +43,15 @@
                 <div class="row mb-475 mb-md-0">
                     <div class="fw-sb fnt-md-18 fnt-16 d-flex flex-column mb-25">
                         <span class="mb-35 mt-4 pl-4">{{ item.label | translate }}</span>
-                        <ng-container *ngTemplateOutlet="filterDropdowns"></ng-container>
+                        <ng-container
+                            *ngTemplateOutlet="filterdropdown; context: { item: item.postType }"
+                        ></ng-container>
                     </div>
                 </div>
                 <div class="col-12 pr-2 pl-0" [ngClass]="item.postType === PostType.QA ? 'col-md-8' : 'col -md-12'">
                     <div *ngIf="item.postType === PostType.QA">
                         <app-questions
+                            [searchPage]="true"
                             [questions]="searchResult?.questions"
                             [pages]="page"
                             [rows]="rows"
@@ -71,14 +78,25 @@
             </p-tabPanel>
         </p-tabView>
     </div>
+    <div
+        *ngIf="
+            !isLoading &&
+            searchResult?.questions?.length === 0 &&
+            searchResult?.articles?.length === 0 &&
+            searchResult?.recipes?.length === 0
+        "
+        class="text-center my-4 text-clr24"
+    >
+        <app-empty [title]="'no_data_available' | translate"></app-empty>
+    </div>
 </div>
 <app-loading *ngIf="isLoading"></app-loading>
 
-<ng-template #filterDropdowns>
+<ng-template #filterdropdown let-item="item">
     <div class="d-flex mb-md-4 ml-md-45">
         <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
-            <div class="row" [ngClass]="{ 'flex-column': selectedTab !== 0 }">
-                <div class="col-auto pl-md-0">
+            <div class="row" [ngClass]="{ 'flex-md-row flex-column': selectedTab !== 0 }">
+                <div class="col-auto pl-md-0 pl-45">
                     <p-multiSelect
                         [options]="categoryList"
                         (onChange)="filterCategory()"
@@ -91,7 +109,20 @@
                         optionValue="id"
                     ></p-multiSelect>
                 </div>
-                <div class="mb-md-0 mb-3 col-auto pl-md-0" *ngIf="selectedTab === 1">
+                <div class="col-auto pl-md-0 pl-45 mt-md-0 mt-3" *ngIf="item === PostType.RECIPE">
+                    <p-dropdown
+                        [options]="levels"
+                        [(ngModel)]="level"
+                        (onChange)="getRecipes()"
+                        [placeholder]="'levels' | translate"
+                        [showClear]="true"
+                        styleClass="round-border {{ level ? 'highlight' : '' }}"
+                    >
+                        <ng-template let-item pTemplate="selectedItem">{{ item.label | translate }}</ng-template>
+                        <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="mt-md-0 mt-3 col-auto pl-45 pl-md-0" *ngIf="item === PostType.ARTICLE">
                     <p-dropdown
                         [options]="translationsList"
                         optionLabel="label"
@@ -106,7 +137,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div class="mb-md-0 mb-3 col-auto pl-md-0" *ngIf="selectedTab === 2">
+                <div class="mt-md-0 mt-3 col-auto pl-45 pl-md-0" *ngIf="item === PostType.RECIPE">
                     <p-dropdown
                         [options]="translationsList"
                         optionLabel="label"
@@ -121,7 +152,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div class="col-auto pl-md-0" *ngIf="selectedTab === 0">
+                <div class="col-auto pl-md-0" *ngIf="item === PostType.QA">
                     <p-dropdown
                         [options]="filterPostedByOptions"
                         optionLabel="label"
@@ -136,7 +167,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div class="col-auto pl-md-0">
+                <div class="col-auto pl-md-0 mt-3 mt-md-0 pl-45">
                     <p-dropdown
                         [options]="sortOptions"
                         [(ngModel)]="selectedOrder"

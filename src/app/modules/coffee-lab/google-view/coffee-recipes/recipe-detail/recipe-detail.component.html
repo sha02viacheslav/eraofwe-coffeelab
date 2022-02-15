@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="pl-2">
                                         <label class="fnt-16 tc-m mb-0">{{ recipeInfo.label | translate }}</label>
-                                        <p class="fnt-16 fw-b mb-0 pt-1" *ngIf="detailsData">
+                                        <p class="fnt-16 fw-sb mb-0 pt-1" *ngIf="detailsData">
                                             <span *ngIf="recipeInfo.label === 'equipment'"
                                                 >{{ detailsData[recipeInfo.key] | titlecase
                                                 }}{{ recipeInfo.key2 ? ':' : ''
@@ -154,7 +154,10 @@
                                     *ngFor="let step of detailsData?.steps; let i = index; let last = last"
                                     [id]="'step' + (i + 1)"
                                 >
-                                    <div class="d-flex desc-bord" [ngClass]="{ 'remove-border': last }">
+                                    <div
+                                        class="d-flex desc-bord"
+                                        [ngClass]="{ 'remove-border': last || i === adLocation - 1 }"
+                                    >
                                         <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
                                         <div
                                             class="activate-link ml-md-3 ml-25 fnt-md-16 lh-157 mb-0 step-desc"
@@ -202,7 +205,7 @@
                                     </div>
                                     <div>
                                         <a
-                                            class="fw-b c-p text-underline"
+                                            class="fw-sb c-p text-underline"
                                             [routerLink]="
                                                 '/' + detailsData.lang_code + '/user-profile/' + detailsData?.user_slug
                                             "
@@ -241,7 +244,7 @@
                                 <div class="d-flex justify-content-between mb-4">
                                     <div class="d-flex">
                                         <img src="assets/images/noun-questions.svg" alt="file-imag" />
-                                        <p class="align-items-center d-flex text-nowrap fw-b ml-2">
+                                        <p class="align-items-center d-flex text-nowrap fw-sb ml-2">
                                             {{ 'read_the_guide' | translate }}
                                         </p>
                                     </div>
@@ -326,7 +329,7 @@
             <div class="pb-4 d-flex">
                 <div class="w-100 d-flex justify-content-between">
                     <div>
-                        <p class="fw-b mb-1">{{ detailsData?.posted_user }}</p>
+                        <p class="fw-sb mb-1">{{ detailsData?.posted_user }}</p>
                         <p class="fw-sb tc-m mb-1">
                             {{ detailsData?.organisation_name || detailsData?.organization_name }}
                         </p>

@@ -28,6 +28,12 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
     selectedRecipeOrder: string;
     isAvailableRecipeTranslation?: any;
     selectedCategory: any;
+    level: any;
+    levels = [
+        { label: 'expertise_easy', value: 'expertise_easy' },
+        { label: 'expertise_intermediate', value: 'expertise_intermediate' },
+        { label: 'expertise_hard', value: 'expertise_hard' },
+    ];
     sortOptions = [
         { label: 'latest', value: 'latest' },
         { label: 'most_answered', value: 'most_answered' },
@@ -122,6 +128,7 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
             translations_available: this.isAvailableRecipeTranslation,
             sort_by: 'created_at',
             sort_order: 'desc',
+            level: this.level?.toLowerCase(),
             publish: true,
             category_id: this.selectedCategory,
             page: this.page,
