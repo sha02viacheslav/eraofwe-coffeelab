@@ -164,8 +164,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         this.setSchemaMackup();
                     }
                 }
-            } else {
-                this.router.navigate(['/error']);
             }
             this.loading = false;
             this.detectChanges();

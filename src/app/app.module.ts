@@ -1,8 +1,9 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorInterceptor } from '@interceptors';
 import { ClosePopupModule } from '@modules/coffee-lab/components/close-popup/close-popup.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -61,6 +62,11 @@ export function StartupServiceFactory(startupService: StartupService) {
                     },
                 ],
             } as SocialAuthServiceConfig,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true,
         },
     ],
     bootstrap: [AppComponent],

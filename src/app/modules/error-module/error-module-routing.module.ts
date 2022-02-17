@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from '../error-module/page-not-found/page-not-found.component';
 import { InternalServerErrorComponent } from './internal-server-error/internal-server-error.component';
-// import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NoInternetConnectionComponent } from './no-internet-connection/no-internet-connection.component';
 import { PostNotFoundComponent } from './post-not-found/post-not-found.component';
 
