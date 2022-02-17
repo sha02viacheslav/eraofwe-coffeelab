@@ -11,6 +11,15 @@
         top: 52px;
         font-size: 12px !important;
     }
+    @media (min-width: 768px) {
+    }
+}
+
+.thk-c-btn {
+    right: 0px;
+}
+.sub-c-btn {
+    right: 58px;
 }
 
 .e-btn {
@@ -21,9 +30,24 @@
         text-decoration: underline;
     }
     @media (max-width: 767px) {
-        top: -72px;
         font-size: 12px !important;
     }
+}
+
+.thk-ebtn {
+    top: -42px;
+}
+.sub-ebtn {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+.sub-cbtn {
+    right: 52px;
+    top: 43px;
+}
+.thk-cbtn {
+    right: 0px;
 }
 .black-cta {
     color: $general-text-color !important;
@@ -325,10 +349,10 @@
         border: solid 1px $primary-color;
         border-top-left-radius: 6px;
         border-bottom-left-radius: 6px;
-        width: auto !important;
         height: 45px !important;
+        width: 200px;
         @media (max-width: 767px) {
-            width: 150px !important;
+            width: 144px !important;
         }
     }
 }
@@ -372,13 +396,18 @@
 .mob-cl-btn {
     @media (max-width: 767px) {
         z-index: 3;
+        bottom: 140px;
         position: relative;
     }
 }
-
+.thank-w {
+    @media (min-width: 768px) {
+        width: 65%;
+    }
+}
 .align-thank {
     @media (max-width: 767px) {
         position: relative;
-        top: 28px;
+        top: -6px;
     }
 }
