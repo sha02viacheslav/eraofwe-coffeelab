@@ -11,7 +11,7 @@
             <img src="assets/images/product.webp" alt="product" />
         </div>
         <div>
-            <div *ngIf="!showValidateMsg" [class.mt-md-45]="questionDetail">
+            <div *ngIf="showValidateMsg" [class.mt-md-45]="questionDetail">
                 <div class="fnt-24 fw-sb mb-2 mb-md-25" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
                     {{ 'coffee_lab_main_ad' | translate }}
                 </div>
@@ -19,7 +19,7 @@
                     {{ 'coffee_lab_sub_ad' | translate }}
                 </div>
             </div>
-            <div *ngIf="showValidateMsg" class="mt-md-4 text-center">
+            <div *ngIf="!showValidateMsg" class="mt-md-4 text-center">
                 <img src="assets/images/confirm-tick.svg" class="mb-25" />
                 <div class="fnt-18 fw-sb mb-2" [ngClass]="!questionDetail ? 'fnt-md-32' : 'fnt-md-20'">
                     <span>Thank you for submitting {{ showAgainMsg ? 'again' : '' }}</span>

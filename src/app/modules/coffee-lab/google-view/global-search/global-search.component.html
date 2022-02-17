@@ -53,6 +53,7 @@
                         <div *ngIf="item.postType === PostType.QA">
                             <app-questions
                                 [questions]="searchResult?.questions"
+                                [searchPage]="true"
                                 [pages]="page"
                                 [rows]="rows"
                                 [totalRecords]="searchResult?.qa_total_count"
@@ -96,7 +97,7 @@
     <div class="d-flex mb-md-4 ml-md-45">
         <div class="d-md-flex justify-content-md-between align-items-center pr-lg-2 flex-1">
             <div class="row gutter-16 v-gutter-16">
-                <div class="col-auto pl-md-0 pl-45">
+                <div class="col-auto pl-md-0 pl-45 pr-2">
                     <p-multiSelect
                         [options]="categoryList"
                         (onChange)="getPosts()"
@@ -109,7 +110,7 @@
                         optionValue="id"
                     ></p-multiSelect>
                 </div>
-                <div class="col-auto pl-0" *ngIf="postType === PostType.RECIPE">
+                <div class="col-auto pl-0 pr-2" *ngIf="postType === PostType.RECIPE">
                     <p-dropdown
                         [options]="levels"
                         [(ngModel)]="level"
@@ -122,7 +123,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType === PostType.QA" class="col-auto">
+                <div *ngIf="postType === PostType.QA" class="col-auto pr-2">
                     <p-dropdown
                         [options]="filterPostedByOptions"
                         [(ngModel)]="filterBy"
@@ -135,7 +136,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType === PostType.QA" class="col-auto pl-md-0 pl-45">
+                <div *ngIf="postType === PostType.QA" class="col-auto pl-md-0 pl-45 pr-2">
                     <p-dropdown
                         [options]="sortOptions"
                         [(ngModel)]="sortBy"
@@ -148,7 +149,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType !== PostType.QA" class="col-auto pl-md-0 pl-45">
+                <div *ngIf="postType !== PostType.QA" class="col-auto pl-md-0 pl-45 pr-2">
                     <p-dropdown
                         [options]="translationsList"
                         [(ngModel)]="isAvailableTranslation"
@@ -161,7 +162,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType !== PostType.QA" class="col-auto pl-md-0 pl-45">
+                <div *ngIf="postType !== PostType.QA" class="col-auto pl-md-0 pl-45 pr-2">
                     <p-dropdown
                         [options]="orderList"
                         [placeholder]="'sort_by' | translate"

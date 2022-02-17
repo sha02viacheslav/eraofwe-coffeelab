@@ -17,6 +17,7 @@ export class QuestionsCardComponent extends ResizeableComponent implements OnIni
     @Input() question: any;
     @Input() pages = 1;
     @Input() index: number;
+    @Input() searchPage: boolean;
     showAd: boolean;
     constructor(
         private coffeeLabService: CoffeeLabService,

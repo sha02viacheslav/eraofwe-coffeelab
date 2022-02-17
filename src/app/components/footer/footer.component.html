@@ -89,7 +89,7 @@
 </div>
 
 <div
-    *ngIf="showAd"
+    *ngIf="showAd && !isLandingPage"
     [ngClass]="{
         'px-25 py-4 px-md-5 pt-md-5 pb-md-35': isExpand,
         'p-3 p-md-4': !isExpand,

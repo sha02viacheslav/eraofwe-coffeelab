@@ -5,6 +5,7 @@ import {
     Component,
     HostListener,
     Inject,
+    Input,
     OnInit,
     PLATFORM_ID,
 } from '@angular/core';
@@ -29,6 +30,7 @@ export class FooterComponent implements OnInit {
     showValidateMsg: boolean;
     showAgainMsg: boolean;
     showAd: boolean;
+    @Input() isLandingPage: boolean;
     constructor(
         private coffeLabService: CoffeeLabService,
         private router: Router,

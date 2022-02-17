@@ -19,23 +19,7 @@
             <app-category-list [selectedType]="'qa-forum'" [categoryList]="question?.categories"></app-category-list>
         </div>
     </div>
-    <!-- <app-like-divider [question]="question" [total]="question.total_answers"></app-like-divider> -->
-    <!-- <div *ngIf="question.total_answers > 0" class="pt-md-4 pb-md-0 py-3 pl-3 pl-md-5 pr-md-4 pr-3 border-top-main">
-        <div
-            *ngFor="let answer of question?.answers; let isLast = last; let ansInd = index"
-            [ngClass]="{ 'border-bottom-main': !isLast }"
-            class="mb-4"
-        >
-            <div class="mb-md-4 mb-3 flex-1 overflow-hidden d-flex justify-content-between">
-                <app-user-header [total]="question.total_answers" [prop]="answer"></app-user-header>
-                <div class="btn-icon thumbsup" (click)="onFocus()"></div>
-            </div>
-            <div class="my-4 lh-15" [ngClass]="{ 'mb-3': !isLast }">
-                <span [innerHTML]="answer?.answer | convertToShortDescription: 25"></span>
-            </div>
-        </div>
-    </div> -->
 </div>
-<div *ngIf="index === 1 && !isDesktop$" class="mt-4 mt-md-3">
+<div *ngIf="index === 1 && !isDesktop$ && !searchPage" class="mt-4 mt-md-3">
     <app-join-community [pages]="pages" [type]="PostType.QA"></app-join-community>
 </div>

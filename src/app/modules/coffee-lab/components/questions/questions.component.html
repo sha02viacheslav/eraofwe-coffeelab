@@ -1,6 +1,6 @@
 <div class="row gutter-16 v-gutter-24">
     <div *ngFor="let question of questions; let ind = index" class="col-12">
-        <app-question-card [question]="question" [index]="ind"></app-question-card>
+        <app-question-card [question]="question" [searchPage]="searchPage" [index]="ind"></app-question-card>
         <div class="custom-adsmarg" [class.change-adsmarg]="searchPage" *ngIf="ind === 4">
             <app-rectangle-ads [questionPage]="true"></app-rectangle-ads>
         </div>
