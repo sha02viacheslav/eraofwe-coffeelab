@@ -42,7 +42,7 @@
             <p-tabPanel header="{{ item.label | translate }}" *ngFor="let item of tabMenuItems">
                 <div class="row mb-475 mb-md-0">
                     <div class="fw-sb fnt-md-18 fnt-16 d-flex flex-column mb-25">
-                        <span class="mb-35 mt-4 pl-4">{{ item.label | translate }}</span>
+                        <span class="mb-35 fw-m mt-4 pl-4">{{ item.label | translate }}</span>
                         <ng-container
                             *ngTemplateOutlet="filterdropdown; context: { item: item.postType }"
                         ></ng-container>
@@ -123,7 +123,7 @@
                         <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
                     </p-dropdown>
                 </div>
-                <div *ngIf="postType === PostType.QA" class="col-auto pr-2">
+                <div *ngIf="postType === PostType.QA" class="col-auto pl-0 pr-2">
                     <p-dropdown
                         [options]="filterPostedByOptions"
                         [(ngModel)]="filterBy"

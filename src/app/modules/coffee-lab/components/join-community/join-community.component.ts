@@ -38,7 +38,7 @@ export class JoinCommunityComponent extends ResizeableComponent implements OnIni
 
     getQaList() {
         this.isLoading = true;
-        const categories = (this.categories || [])?.map((item: any) => item.parent_id);
+        const categories = (this.categories || [])?.map((item: any) => item.id);
         this.coffeeLabService
             .getForumList(this.type, {
                 page: 1,

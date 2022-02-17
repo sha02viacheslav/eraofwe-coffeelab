@@ -30,8 +30,14 @@
     top: 2px;
 }
 
-:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    @media (max-width: 767px) {
-        padding: 0 20px 9px 20px;
+:host ::ng-deep {
+    .p-tabview-title {
+        font-weight: 500;
+    }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        font-weight: 600;
+        @media (max-width: 767px) {
+            padding: 0 20px 9px 20px;
+        }
     }
 }

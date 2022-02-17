@@ -73,40 +73,40 @@ export class FooterComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    onSubmit() {
-        if (this.form.valid) {
-            this.coffeLabService.subscribeToMailList(this.form.value.subscribeEmail).subscribe(
-                (res: any) => {
-                    if (res.result && res.result === 'success') {
-                        this.showValidateMsg = true;
-                    } else {
-                        this.showValidateMsg = true;
-                        this.showAgainMsg = true;
-                    }
-                    this.form.reset();
-                    setTimeout(() => {
-                        this.coffeLabService.showAd.next(false);
-                        this.cdr.detectChanges();
-                    }, 10000);
-                    if (isPlatformBrowser(this.platformId)) {
-                        window.localStorage.setItem('showAd', 'false');
-                    }
-                    this.cdr.detectChanges();
-                },
-                (err) => {
-                    console.log(err);
-                },
-            );
+    onSubmit(type: string) {
+        let email: string;
+        if (type === 'main') {
+            email = this.form.value.subscribeMainEmail;
+        } else if (type === 'sub') {
+            email = this.form.value.subscribeSubEmail;
         }
+        this.coffeLabService.subscribeToMailList(email).subscribe(
+            (res: any) => {
+                if (res.result && res.result === 'success') {
+                    this.showValidateMsg = true;
+                } else {
+                    this.showValidateMsg = true;
+                    this.showAgainMsg = true;
+                }
+                this.form.reset();
+                setTimeout(() => {
+                    this.coffeLabService.showAd.next(false);
+                    this.cdr.detectChanges();
+                }, 10000);
+                if (isPlatformBrowser(this.platformId)) {
+                    window.localStorage.setItem('showAd', 'false');
+                }
+            },
+            (err) => {
+                console.log(err);
+            },
+        );
     }
 
-    onCollapse(item) {
+    onActionChange(item) {
         if (item === 'collapse') {
             this.isExpand = false;
         }
-    }
-
-    onExpand(item) {
         if (item === 'expand') {
             this.isExpand = true;
         }
