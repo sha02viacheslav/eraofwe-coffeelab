@@ -38,6 +38,6 @@
         *ngIf="form.controls['subscribeEmail'].errors?.pattern || form.controls['subscribeEmail'].errors?.email"
         class="p-error"
     >
-        Please fill valied email
+        {{ 'please_fill_valid_email' | translate }}
     </small>
 </div>
