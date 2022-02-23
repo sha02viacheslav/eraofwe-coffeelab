@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { MetaDespMinLength, seoVariables } from '@constants';
-import { PostType } from '@enums';
+import { OrganizationType, PostType } from '@enums';
 import { environment } from '@env/environment';
 import { SignupModalComponent } from '@modules/coffee-lab/components/signup-modal/signup-modal.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -57,6 +57,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
     showAll = true;
     adLocation: number;
     items: ({ label: string; routerLink: string } | { label: any; routerLink?: undefined })[];
+    stickySecData: any;
 
     constructor(
         @Inject(DOCUMENT) private doc,
@@ -112,6 +113,17 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         }
     }
 
+    getUserData() {
+        this.detailsData.organisation_type = this.detailsData.organisation_type.toLowerCase() as OrganizationType;
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.user_id, this.detailsData.organisation_type)
+            .subscribe((res) => {
+                if (res.success) {
+                    this.stickySecData = res.result;
+                }
+            });
+    }
+
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
     }
@@ -159,6 +171,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.lang = res.result.lang_code;
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
+                    this.getUserData();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();

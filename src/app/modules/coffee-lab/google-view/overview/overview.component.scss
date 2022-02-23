@@ -16,7 +16,7 @@
 
 .discussion-bg {
     background-color: $primary-bg-color;
-    padding: 20px 35px 20px 50px;
+    padding: 10px 35px 11px 50px;
     border-bottom-left-radius: 23px;
     border-bottom-right-radius: 23px;
     position: relative;
@@ -74,7 +74,7 @@
                     justify-content: center;
                     margin: 0 0 -1px 0;
                     font-weight: 600;
-                    padding: 0 16px 4px 16px;
+                    padding: 0 12px 4px 12px;
                     transition: background-color 0.2s, box-shadow 0.2s;
                     @media (max-width: 991px) {
                         padding: 0 10px 4px 16px;

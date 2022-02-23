@@ -100,7 +100,7 @@ export class CoffeeLabService extends ApiService {
             'https://nordsud.us6.list-manage.com/subscribe/post-json?u=e93a215496f5c5f6203911365&amp;id=f4f7c2427a';
         let key = 'sewn-tcl';
         if (!environment.needProtect) {
-            key = 'era-tcl';
+            key = 'sewn-tcl';
         }
         const params = new HttpParams().set('EMAIL', email).set('MERGE6', key);
         const mailChimpUrl = mailChimpEndpoint + '&' + params.toString();

@@ -1,5 +1,5 @@
 <div class="col-12 d-md-none px-0 mb-3">
-    <div class="custom-search qa-forum-search d-lg-block">
+    <div class="custom-search qa-forum-search">
         <input
             class="w-100 fnt-16"
             type="text"
@@ -13,7 +13,7 @@
 
 <div class="d-flex align-items-md-center justify-content-between pb-3 pb-md-4">
     <div class="row gutter-16 v-gutter-16">
-        <div class="col-auto">
+        <div class="col-auto pr-2">
             <p-multiSelect
                 [options]="categoryList"
                 (onChange)="getData()"
@@ -26,7 +26,7 @@
                 optionValue="id"
             ></p-multiSelect>
         </div>
-        <div class="col-auto pl-0">
+        <div class="col-auto pl-0 pr-2">
             <p-dropdown
                 [options]="levels"
                 [(ngModel)]="level"
@@ -39,7 +39,7 @@
                 <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
         </div>
-        <div class="col-auto pl-0">
+        <div class="col-auto pl-0 pr-2">
             <p-dropdown
                 [options]="translationsList"
                 [(ngModel)]="isAvailableTranslation"
@@ -52,7 +52,7 @@
                 <ng-template let-item pTemplate="item">{{ item.label | translate }}</ng-template>
             </p-dropdown>
         </div>
-        <div class="col-auto pl-0">
+        <div class="col-auto pl-0 pr-2">
             <p-dropdown
                 [options]="orderList"
                 [(ngModel)]="selectedOrder"
@@ -66,7 +66,7 @@
             </p-dropdown>
         </div>
     </div>
-    <div class="col-md-5 d-none d-md-block pl-md-3">
+    <div class="col-md-5 d-none d-md-block pl-md-3 pr-0">
         <div class="custom-search qa-forum-search" *ngIf="!hideContent">
             <input
                 class="w-100"

@@ -37,6 +37,13 @@
         }
     }
     .p-articles {
+        width: 200px;
+        height: 116px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        margin-right: 0.8rem;
         .ng-lazyloaded {
             width: 200px;
             height: 116px;
@@ -45,6 +52,7 @@
             width: 120px;
             height: 120px;
         }
+
         img {
             object-fit: cover;
         }

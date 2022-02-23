@@ -39,6 +39,19 @@
                     />
                 </form>
                 <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Claim your offer</button>
+
+                <small
+                    *ngIf="
+                        form.controls['subscribeEmail'].errors?.required &&
+                        form.controls['subscribeEmail'].errors?.touched
+                    "
+                    class="p-error"
+                >
+                    Required
+                </small>
+                <small *ngIf="form.controls['subscribeEmail'].errors?.pattern" class="p-error">
+                    Please enter valied email
+                </small>
             </div>
         </div>
     </div>
@@ -47,6 +60,17 @@
             <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
             <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
         </form>
+        <small
+            *ngIf="form.controls['subscribeEmail'].errors?.required && form.controls['subscribeEmail'].errors?.touched"
+            class="p-error"
+        >
+            Required
+        </small>
+        <small
+            *ngIf="form.controls['subscribeEmail'].errors?.pattern || form.controls['subscribeEmail'].errors?.email"
+            class="p-error"
+        >
+            {{ 'please_fill_valid_email' | translate }}
+        </small>
     </div>
-    <small *ngIf="form.controls['subscribeEmail'].errors?.email" class="p-error"> Please fill valied email</small>
 </div>

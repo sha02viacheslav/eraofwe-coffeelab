@@ -24,7 +24,10 @@
                     </span>
                 </div>
             </div>
-            <div class="tc-m mt-1 d-flex justify-content-md-between text-nowra">
+            <div
+                class="tc-m mt-1 d-flex text-nowrap"
+                [class.justify-content-md-between]="prop?.question && !prop.question_id"
+            >
                 <div>
                     <span class="mr-1" *ngIf="orgType !== 'co'">{{ 'coffee_experts' | translate }}</span>
                     <span class="mr-1" *ngIf="orgType === 'co'">{{ 'coffee_consumer' | translate }}</span>
@@ -36,10 +39,13 @@
                     class="d-flex"
                     *ngIf="!isLandingPage && (prop?.question || prop?.answer || isArticleDetail || isRecipeDetail)"
                 >
-                    <span *ngIf="prop?.answer" class="d-none d-md-block time-point"></span>
+                    <span
+                        *ngIf="prop?.answer || prop.question_id || prop?.comment"
+                        class="d-none d-md-block time-point"
+                    ></span>
                     <span
                         class="text-clr588 d-none d-md-block position-relative fw-n"
-                        [class.align-time]="prop.question"
+                        [class.align-time]="prop?.question && !prop.question_id"
                     >
                         {{ prop?.posted_at || prop?.created_at | amTimeAgo | dateAgoReplace: true }}
                     </span>

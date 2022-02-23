@@ -91,6 +91,7 @@ export class AppComponent extends DestroyableComponent implements AfterViewInit 
                             );
                             dynamicScripts.push('https://jscloud.net/x/13391/inlinks.js');
                             dynamicScripts.push('https://www.googletagmanager.com/gtm.js?id=GTM-KZWL6RR');
+                            dynamicScripts.push(`https://grow.clearbitjs.com/api/pixel.js?v=${new Date().getTime()}`);
                         }
 
                         for (const value of dynamicScripts) {
