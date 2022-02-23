@@ -1,13 +1,8 @@
-.welcome-sec {
-    border-radius: 4px;
-    background-color: #ffffff;
-    width: 85%;
-    margin: auto;
-    margin: 32px 100px 32px 100px;
+.custom-block {
+    min-height: 100vh;
+    padding: 0.5rem 0.5rem 1rem;
 }
-.pink {
-    padding-bottom: 184px;
-}
+
 .error-image {
     margin-top: 109px;
     margin-bottom: 40.1px;
@@ -23,7 +18,7 @@
 .page-not-found {
     height: 100%;
     width: 100%;
-    background-color: #f1f1f1;
+    margin-top: 6rem;
 }
 .error-header {
     font-size: 48px;

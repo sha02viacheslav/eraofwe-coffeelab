@@ -31,14 +31,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 return of(event);
             }),
-            catchError((error: HttpErrorResponse) => {
-                if (error.error instanceof ErrorEvent || error.message === 'URL_NOT_FOUND') {
-                    router.navigate(['/error/internal-server-error']);
-                } else {
-                    router.navigate(['/error/network-connection-error']);
-                }
-                return throwError(error);
-            }),
         );
     }
 }
