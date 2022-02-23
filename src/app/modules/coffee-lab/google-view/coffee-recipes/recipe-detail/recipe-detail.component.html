@@ -47,7 +47,7 @@
                                     <div class="btn-icon save" (click)="onFocus()"></div>
                                 </div>
                                 <div class="d-flex flex-row-reverse flex-md-row mt-3 mt-md-0">
-                                    <div class="d-flex mob-height align-items-center mr-3 mt-1">
+                                    <div class="d-flex mob-height align-items-center mr-3 mt-2">
                                         <app-forum-menu></app-forum-menu>
                                     </div>
                                     <div class="btn-icon save d-none d-md-inline-flex" (click)="onFocus()"></div>
@@ -162,6 +162,7 @@
                                         <span class="fnt-24 fw-sb lh-157 mb-1">{{ i + 1 }}</span>
                                         <div
                                             class="activate-link ml-md-3 ml-25 fnt-md-16 lh-157 mb-0 step-desc"
+                                            [ngClass]="{ 'remove-border': last }"
                                             [innerHTML]="step.description"
                                         ></div>
                                     </div>

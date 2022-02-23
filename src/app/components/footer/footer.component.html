@@ -13,9 +13,10 @@
                             name="email1"
                             formControlName="subscribeMainEmail"
                             placeholder="What's your email address?"
+                            class="subs-topInput"
                         />
                         <button
-                            class="btn-raised subscribe-button"
+                            class="btn-raised subscribe-button subs-topBtn"
                             (click)="onSubmit('main')"
                             [disabled]="form?.get('subscribeMainEmail').invalid"
                         >

@@ -412,3 +412,16 @@
         top: -6px;
     }
 }
+
+.subs-topBtn {
+    @media (min-width: 320px) and (max-width: 370px) {
+        width: 80px;
+    }
+}
+
+.subs-topInput {
+    @media (min-width: 320px) and (max-width: 370px) {
+        width: 210px;
+        font-size: 14px !important;
+    }
+}

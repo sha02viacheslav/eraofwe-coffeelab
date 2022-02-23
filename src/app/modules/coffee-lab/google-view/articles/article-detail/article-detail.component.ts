@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
 import { MetaDespMinLength } from '@constants';
-import { PostType } from '@enums';
+import { OrganizationType, PostType } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
@@ -42,6 +42,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     showToaster = false;
     showComment = false;
     showCommentOff = true;
+    stickySecData: any;
 
     constructor(
         @Inject(DOCUMENT) private doc,
@@ -115,6 +116,17 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
             });
     }
 
+    getUserData() {
+        this.detailsData.organisation_type = this.detailsData.organisation_type.toLowerCase() as OrganizationType;
+        this.coffeeLabService
+            .getUserDetail(this.detailsData.user_id, this.detailsData.organisation_type)
+            .subscribe((res) => {
+                if (res.success) {
+                    this.stickySecData = res.result;
+                }
+            });
+    }
+
     onRealtedRoute(langCode: string, slug: string) {
         return `/${getLangRoute(langCode)}/articles/${slug}`;
     }
@@ -147,7 +159,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.lang = res.result.language;
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
-
+                    this.getUserData();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();

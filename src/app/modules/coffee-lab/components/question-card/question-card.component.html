@@ -11,6 +11,7 @@
         <a [routerLink]="[getLink(question)]">
             <div
                 class="fnt-16 fw-sb mt-4 c-p hover-underline"
+                [class.mb-3]="!question?.categories"
                 (click)="gotoDetailPage($event, question)"
                 [innerHTML]="question?.question"
             ></div>
