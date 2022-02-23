@@ -12,7 +12,9 @@ export class ClosePopupComponent implements OnInit {
     constructor(public ref: DynamicDialogRef, private coffeLabService: CoffeeLabService) {
         this.coffeLabService.showAd.subscribe((res) => {
             this.showAd = res;
-            // this.close();
+            if (!res) {
+                this.close();
+            }
         });
     }
 

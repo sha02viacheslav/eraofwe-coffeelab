@@ -13,7 +13,7 @@
                     <span class="mb-1 d-flex recipe-title text-break fw-sb">{{
                         recipe?.name?.length < 60 ? recipe?.name : recipe?.name.slice(0, 60).concat('...')
                     }}</span>
-                    <span class="mb-45 mb-md-4 mt-2 fw-m">
+                    <span class="mb-45 mb-md-4 fnt-14 mt-2 fw-m">
                         {{ recipe?.equipment_name | titlecase | convertToShortDescription: 2 }}
                     </span>
                 </div>
