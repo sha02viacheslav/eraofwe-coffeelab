@@ -425,3 +425,23 @@
         font-size: 14px !important;
     }
 }
+
+.p-error {
+    color: rgb(247, 36, 36);
+}
+
+.e-err {
+    position: absolute;
+    top: 70px;
+}
+
+.t-err {
+    position: absolute;
+    top: 90px;
+    right: 280px;
+}
+.b-err {
+    position: absolute;
+    top: 90px;
+    right: 175px;
+}

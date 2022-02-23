@@ -24,6 +24,16 @@
                         </button>
                     </form>
                 </div>
+                <small *ngIf="form.controls['subscribeMainEmail'].errors?.required" class="p-error"> Required </small>
+                <small
+                    *ngIf="
+                        form.controls['subscribeMainEmail'].errors?.pattern ||
+                        form.controls['subscribeMainEmail'].errors?.email
+                    "
+                    class="p-error"
+                >
+                    Please fill valied email
+                </small>
             </div>
         </div>
         <div class="footer-links">
@@ -162,6 +172,20 @@
                         Claim your offer
                     </button>
                 </form>
+                <small
+                    *ngIf="form.controls['subscribeSubEmail'].errors?.required"
+                    class="p-error"
+                    [ngClass]="isExpand ? 't-err' : 'e-err'"
+                >
+                    Required
+                </small>
+                <small
+                    *ngIf="form.controls['subscribeSubEmail'].errors?.pattern"
+                    class="p-error text-nowrap"
+                    [ngClass]="isExpand ? 'b-err' : 'e-err'"
+                >
+                    Please fill valied email
+                </small>
             </div>
         </div>
         <div *ngIf="showValidateMsg" [ngClass]="isExpand ? 'thank-w' : ''">
