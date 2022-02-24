@@ -433,15 +433,17 @@
 .e-err {
     position: absolute;
     top: 70px;
+    @media (max-width: 767px) {
+        top: 92px;
+    }
 }
 
-.t-err {
-    position: absolute;
-    top: 90px;
-    right: 280px;
-}
 .b-err {
     position: absolute;
     top: 90px;
-    right: 175px;
+    right: 165px;
+    @media (max-width: 767px) {
+        top: 118px;
+        right: 109px;
+    }
 }

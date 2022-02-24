@@ -24,7 +24,6 @@
                         </button>
                     </form>
                 </div>
-                <small *ngIf="form.controls['subscribeMainEmail'].errors?.required" class="p-error"> Required </small>
                 <small
                     *ngIf="
                         form.controls['subscribeMainEmail'].errors?.pattern ||
@@ -132,6 +131,13 @@
                             Claim your offer
                         </button>
                     </form>
+                    <small
+                        *ngIf="form.controls['subscribeSubEmail'].errors?.pattern"
+                        class="p-error fnt-12 text-nowrap"
+                        [ngClass]="isExpand ? 'b-err' : 'e-err'"
+                    >
+                        {{ 'please_fill_valid_email' | translate }}
+                    </small>
                 </div>
             </div>
             <div class="d-md-none text-right" *ngIf="!showValidateMsg">
@@ -172,13 +178,6 @@
                         Claim your offer
                     </button>
                 </form>
-                <small
-                    *ngIf="form.controls['subscribeSubEmail'].errors?.required"
-                    class="p-error"
-                    [ngClass]="isExpand ? 't-err' : 'e-err'"
-                >
-                    Required
-                </small>
                 <small
                     *ngIf="form.controls['subscribeSubEmail'].errors?.pattern"
                     class="p-error text-nowrap"

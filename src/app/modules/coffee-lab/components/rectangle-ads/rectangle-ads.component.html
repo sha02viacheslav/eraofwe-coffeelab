@@ -33,7 +33,6 @@
             </form>
         </div>
     </div>
-    <small *ngIf="form.controls['subscribeEmail'].errors?.touched" class="p-error"> Required </small>
     <small
         *ngIf="form.controls['subscribeEmail'].errors?.pattern || form.controls['subscribeEmail'].errors?.email"
         class="p-error"
