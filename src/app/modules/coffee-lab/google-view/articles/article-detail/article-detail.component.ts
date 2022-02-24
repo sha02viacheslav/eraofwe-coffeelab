@@ -165,8 +165,6 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         this.setSchemaMackup();
                     }
                 }
-            } else {
-                this.router.navigate(['/error']);
             }
             this.loading = false;
             this.detectChanges();

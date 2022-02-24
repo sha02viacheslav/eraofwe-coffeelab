@@ -82,8 +82,6 @@ export class QuestionDetailComponent implements OnInit {
                         this.setSchemaMackup();
                     }
                 }
-            } else {
-                this.router.navigate(['/error']);
             }
             this.loading = false;
             this.cdr.detectChanges();
