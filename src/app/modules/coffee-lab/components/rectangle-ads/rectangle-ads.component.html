@@ -27,7 +27,12 @@
                     [class.question-width]="questionPage"
                     placeholder="Enter Email ID"
                 />
-                <button class="btn-raised subscribe-button" (click)="onSubmit()" [class.question-btn]="questionPage">
+                <button
+                    class="btn-raised subscribe-button"
+                    (click)="onSubmit()"
+                    [disabled]="form?.get('subscribeEmail').invalid"
+                    [class.question-btn]="questionPage"
+                >
                     Claim your offer
                 </button>
             </form>

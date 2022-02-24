@@ -38,7 +38,13 @@
                         placeholder="Enter Email ID"
                     />
                 </form>
-                <button class="btn-raised subscribe-button pop-btn" (click)="onSubmit()">Claim your offer</button>
+                <button
+                    class="btn-raised subscribe-button pop-btn"
+                    [disabled]="form?.get('subscribeEmail').invalid"
+                    (click)="onSubmit()"
+                >
+                    Claim your offer
+                </button>
 
                 <small
                     *ngIf="
@@ -54,7 +60,13 @@
     <div class="d-flex mt-md-45 ml-md-4" *ngIf="questionDetail && !showValidateMsg">
         <form [formGroup]="form" class="form-group w-100">
             <input type="email" name="email" formControlName="subscribeEmail" placeholder="Enter Email ID" />
-            <button class="btn-raised subscribe-button" (click)="onSubmit()">Claim your offer</button>
+            <button
+                class="btn-raised subscribe-button"
+                [disabled]="form?.get('subscribeEmail').invalid"
+                (click)="onSubmit()"
+            >
+                Claim your offer
+            </button>
         </form>
         <small
             *ngIf="form.controls['subscribeEmail'].errors?.pattern || form.controls['subscribeEmail'].errors?.email"
