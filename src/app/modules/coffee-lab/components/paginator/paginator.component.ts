@@ -10,6 +10,8 @@ import {
     PLATFORM_ID,
     ViewChild,
 } from '@angular/core';
+import { ResizeableComponent } from '@base-components';
+import { ResizeService } from '@services';
 import { Paginator } from 'primeng/paginator';
 
 @Component({
@@ -17,7 +19,7 @@ import { Paginator } from 'primeng/paginator';
     templateUrl: './paginator.component.html',
     styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit, AfterViewInit {
+export class PaginatorComponent extends ResizeableComponent implements OnInit, AfterViewInit {
     @ViewChild('paginator', { static: true }) paginator: Paginator;
 
     @Input() totalRecords;
@@ -25,8 +27,10 @@ export class PaginatorComponent implements OnInit, AfterViewInit {
     @Input() page = 0;
     @Output() pageChange = new EventEmitter();
     isServer = false;
+    isMobile: boolean;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: object) {
+    constructor(@Inject(PLATFORM_ID) private platformId: object, protected resizeService: ResizeService) {
+        super(resizeService);
         if (isPlatformServer(this.platformId)) {
             this.isServer = true;
         }
