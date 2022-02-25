@@ -87,7 +87,7 @@
                         <div class="d-flex pb-4">
                             <button
                                 class="btn-stroked mr-2"
-                                [routerLink]="'/' + detailsData.language + '/user-profile/' + detailsData?.user_slug"
+                                [routerLink]="'/' + detailsData?.language + '/user-profile/' + detailsData?.user_slug"
                             >
                                 {{ 'view_profile' | translate }}
                             </button>
@@ -149,7 +149,7 @@
                                             <a
                                                 [routerLink]="
                                                     '/' +
-                                                    detailsData.language +
+                                                    detailsData?.language +
                                                     '/user-profile/' +
                                                     detailsData?.user_slug
                                                 "
