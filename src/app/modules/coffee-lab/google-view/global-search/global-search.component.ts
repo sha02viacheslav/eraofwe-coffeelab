@@ -21,7 +21,7 @@ export class GlobalSearchComponent extends ResizeableComponent implements OnInit
     keyword = '';
     searchResult: any;
     searchInput$: Subject<any> = new Subject<any>();
-    selectedTab: any = 0;
+    selectedTab = 0;
     sortBy: any;
     filterBy: any;
     isAvailableTranslation?: any;

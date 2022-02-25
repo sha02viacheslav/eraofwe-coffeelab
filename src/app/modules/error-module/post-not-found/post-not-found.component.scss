@@ -1,3 +1,5 @@
+@import 'variables';
+
 .custom-block {
     min-height: 100vh;
     padding: 0.5rem 0.5rem 1rem;
@@ -42,5 +44,64 @@
     font-size: 20px;
     font-weight: 500;
     color: #232334;
-    padding-bottom: 12rem;
+    padding-bottom: 3rem;
+}
+
+::ng-deep {
+    .p-tabview {
+        &.tabview-coffee-lab {
+            .p-tabview-nav {
+                background: transparent;
+                li {
+                    margin-right: 0;
+                    .p-tabview-nav-link {
+                        padding: 11px 16px !important;
+                        @media (max-width: 768px) {
+                            display: flex;
+                            justify-content: center;
+                        }
+                        img {
+                            display: inline-block;
+                            &.active-icon {
+                                display: none;
+                            }
+                        }
+                    }
+                    &.p-highlight .p-tabview-nav-link,
+                    &:hover .p-tabview-nav-link {
+                        img {
+                            display: none;
+                            &.active-icon {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        flex: 1;
+                        border-top: solid 1px $primary-border-color;
+                        border-bottom: solid 1px $primary-border-color;
+                        border-right: solid 1px $primary-border-color;
+                        &:first-child {
+                            border-left: solid 1px $primary-border-color;
+                            border-top-left-radius: 4px;
+                            border-bottom-left-radius: 4px;
+                        }
+                        &:nth-child(6) {
+                            border-top-right-radius: 4px;
+                            border-bottom-right-radius: 4px;
+                        }
+                    }
+                }
+                @media (max-width: 767px) {
+                    border-bottom: none;
+                }
+            }
+            .p-tabview-panel {
+                padding-top: 24px;
+                @media (min-width: 758px) {
+                    padding-top: 32px;
+                }
+            }
+        }
+    }
 }
