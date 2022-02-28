@@ -165,6 +165,9 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         this.setSchemaMackup();
                     }
                 }
+            } else {
+                this.router.navigateByUrl('/error/post-not-found');
+                this.coffeeLabService.postNotFoundCategories.next(res.result.categories);
             }
             this.loading = false;
             this.detectChanges();

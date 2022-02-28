@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostType } from '@enums';
 import { CoffeeLabService } from '@services';
@@ -11,12 +11,21 @@ import { forkJoin } from 'rxjs';
 })
 export class PostNotFoundComponent implements OnInit {
     readonly PostType = PostType;
-    tabMenuItems: { label: string; postType: PostType }[] = [];
+    tabMenuItems = [
+        { label: 'question_answers', postType: PostType.QA },
+        { label: 'posts', postType: PostType.ARTICLE },
+        { label: 'brewing_guides', postType: PostType.RECIPE },
+    ];
     selectedTab = 0;
     data: any;
     type: string;
     isLoading: boolean;
-    constructor(private coffeeLabService: CoffeeLabService, private activateRoute: ActivatedRoute) {
+    categorySlugs: any[];
+    constructor(
+        private coffeeLabService: CoffeeLabService,
+        private activateRoute: ActivatedRoute,
+        private cdr: ChangeDetectorRef,
+    ) {
         this.activateRoute.queryParamMap.subscribe((res: any) => {
             this.type = res;
             this.getPosts(0);
@@ -33,17 +42,18 @@ export class PostNotFoundComponent implements OnInit {
 
     getPosts(index): void {
         this.coffeeLabService.postNotFoundCategories.subscribe((res) => {
-            console.log(res);
+            this.categorySlugs = res;
         });
         const params = {
             sort_by: 'created_at',
             sort_order: 'desc',
             publish: true,
-            // category_slug: this.slug,
+            // category_slug: this.categorySlugs,
             page: 1,
             per_page: index === 0 ? 6 : 3,
         };
         this.isLoading = true;
+        // this.tabMenuItems = [];
         this.coffeeLabService
             .getForumList(index === 0 ? PostType.QA : index === 1 ? PostType.ARTICLE : PostType.RECIPE, params, 'en')
             .subscribe((res) => {
@@ -53,7 +63,7 @@ export class PostNotFoundComponent implements OnInit {
                     this.data = [];
                 }
                 this.isLoading = false;
-                // this.cdr.detectChanges();
+                this.cdr.detectChanges();
             });
     }
 

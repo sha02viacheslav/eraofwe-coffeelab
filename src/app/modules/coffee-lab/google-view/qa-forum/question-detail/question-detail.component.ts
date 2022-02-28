@@ -82,6 +82,9 @@ export class QuestionDetailComponent implements OnInit {
                         this.setSchemaMackup();
                     }
                 }
+            } else {
+                this.router.navigateByUrl('/error/post-not-found');
+                this.coffeeLabService.postNotFoundCategories.next(res.result.categories);
             }
             this.loading = false;
             this.cdr.detectChanges();

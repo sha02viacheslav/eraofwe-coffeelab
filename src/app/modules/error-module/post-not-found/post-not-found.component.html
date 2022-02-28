@@ -4,7 +4,7 @@
 <div class="custom-block bg-f8">
     <div class="page-not-found container">
         <div class="col-md-12">
-            <!-- <div class="text-center pink">
+            <div class="text-center pink">
                 <img src="assets/images/page-not-found.svg" alt="page-not-found" class="error-image" />
                 <h1 class="error-header">This page is gone!</h1>
                 <p class="error-sub-text">
@@ -12,13 +12,14 @@
                     coffee and most likely will never come back.
                 </p>
                 <p class="light-gray create-txt mb-4">Here are a few links that might help!</p>
-            </div> -->
+            </div>
             <div>
                 <p-tabView styleClass="tabview-coffee-lab position-relative" (onChange)="handleChange($event)">
                     <p-tabPanel *ngFor="let labMenu of tabMenuItems" header="labMenu">
                         <ng-template pTemplate="header">
-                            <span class="pl-1 d-md-inline-block">{{ labMenu.label }}</span>
+                            <span class="pl-1 d-md-inline-block">{{ labMenu.label | translate }}</span>
                         </ng-template>
+                        <div class="fnt-md-18 pb-4 fw-sb ml-35">{{ labMenu.label | translate }}</div>
                         <div class="row mx-0" *ngIf="!isLoading">
                             <div
                                 *ngFor="let item of data"
@@ -55,7 +56,7 @@
                                 ></app-recipe-card>
                             </div>
                         </div>
-                        <div class="row mx-0 mb-5 pb-5" *ngIf="isLoading">
+                        <div class="row mx-0 my-5 py-5" *ngIf="isLoading">
                             <app-loading></app-loading>
                         </div>
                     </p-tabPanel>
