@@ -63,11 +63,11 @@ export function StartupServiceFactory(startupService: StartupService) {
                 ],
             } as SocialAuthServiceConfig,
         },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptor,
-            multi: true,
-        },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: ErrorInterceptor,
+        //     multi: true,
+        // },
     ],
     bootstrap: [AppComponent],
 })

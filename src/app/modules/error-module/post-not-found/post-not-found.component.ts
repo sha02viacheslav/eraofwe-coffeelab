@@ -32,10 +32,14 @@ export class PostNotFoundComponent implements OnInit {
     }
 
     getPosts(index): void {
+        this.coffeeLabService.postNotFoundCategories.subscribe((res) => {
+            console.log(res);
+        });
         const params = {
             sort_by: 'created_at',
             sort_order: 'desc',
             publish: true,
+            // category_slug: this.slug,
             page: 1,
             per_page: index === 0 ? 6 : 3,
         };

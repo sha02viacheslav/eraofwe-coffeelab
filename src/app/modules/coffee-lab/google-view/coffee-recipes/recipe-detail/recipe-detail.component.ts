@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { ConvertToShortDescriptionPipe } from '@shared';
 import { getLangRoute, removeImages } from '@utils';
+import * as e from 'express';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -177,6 +178,9 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                         this.setSchemaMackup();
                     }
                 }
+            } else {
+                this.router.navigateByUrl('/error/post-not-found');
+                this.coffeeLabService.postNotFoundCategories.next(res.result.categories);
             }
             this.loading = false;
             this.detectChanges();

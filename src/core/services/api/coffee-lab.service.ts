@@ -1,9 +1,9 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from '@env/environment';
 import { ApiResponse, UserProfile } from '@models';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LangPrefixService } from '../lang-prefix.service';
 import { ApiService } from './api.service';
 
@@ -14,6 +14,7 @@ export class CoffeeLabService extends ApiService {
     forumLanguage = new BehaviorSubject('en');
     otherCategories = new BehaviorSubject([]);
     searchResult = new BehaviorSubject([]);
+    postNotFoundCategories = new BehaviorSubject([]);
     showAd = new BehaviorSubject(true);
 
     get currentForumLanguage(): string {
