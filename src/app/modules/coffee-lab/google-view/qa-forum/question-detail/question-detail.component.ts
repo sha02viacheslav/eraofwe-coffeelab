@@ -1,8 +1,8 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { seoVariables } from '@constants';
-import { PostType } from '@enums';
+import { RouterMap, seoVariables } from '@constants';
+import { PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, SEOService, StartupService } from '@services';
@@ -66,9 +66,13 @@ export class QuestionDetailComponent implements OnInit {
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    const curRouterMap = RouterMap[getLangRoute(this.urlLang)] || RouterMap.en;
                     this.items = [
                         { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
-                        { label: this.translator.instant('qa_forum'), routerLink: `/${this.urlLang}/qa-forum` },
+                        {
+                            label: this.translator.instant('question_answers'),
+                            routerLink: `/${this.urlLang}/${curRouterMap[RouterSlug.QA]}`,
+                        },
                         {
                             label: this.convertToShortDescription.transform(this.detailsData.question, 4),
                         },
@@ -145,6 +149,7 @@ export class QuestionDetailComponent implements OnInit {
     }
 
     setSchemaMackup() {
+        const curRouterMap = RouterMap[getLangRoute(this.urlLang)] || RouterMap.en;
         this.jsonLD = {
             '@context': 'https://schema.org',
             '@graph': [
@@ -154,14 +159,16 @@ export class QuestionDetailComponent implements OnInit {
                         {
                             '@type': 'ListItem',
                             position: 1,
-                            name: 'Overview',
-                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}`,
+                            name: this.translator.instant('the_coffee_lab'),
+                            item: `${environment.coffeeLabWeb}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
-                            name: 'Q+A Forum',
-                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/qa-forum`,
+                            name: this.translator.instant('question_answers'),
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/${
+                                curRouterMap[RouterSlug.QA]
+                            }`,
                         },
                         {
                             '@type': 'ListItem',

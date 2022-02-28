@@ -2,8 +2,8 @@ import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResizeableComponent } from '@base-components';
-import { MetaDespMinLength } from '@constants';
-import { OrganizationType, PostType } from '@enums';
+import { MetaDespMinLength, RouterMap } from '@constants';
+import { OrganizationType, PostType, RouterSlug } from '@enums';
 import { environment } from '@env/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, ResizeService, SEOService, StartupService } from '@services';
@@ -146,9 +146,13 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     this.router.navigateByUrl('/error');
                 } else {
                     this.detailsData = res.result;
+                    const curRouterMap = RouterMap[getLangRoute(this.urlLang)] || RouterMap.en;
                     this.items = [
                         { label: this.translator.instant('the_coffee_lab'), routerLink: '/' },
-                        { label: this.translator.instant('articles'), routerLink: `/${this.urlLang}/articles` },
+                        {
+                            label: this.translator.instant('articles'),
+                            routerLink: `/${this.urlLang}/${curRouterMap[RouterSlug.ARTICLE]}`,
+                        },
                         {
                             label: this.convertToShortDescription.transform(this.detailsData.title, 4),
                         },
@@ -210,6 +214,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
     }
 
     setSchemaMackup() {
+        const curRouterMap = RouterMap[getLangRoute(this.urlLang)] || RouterMap.en;
         this.jsonLD = {
             '@context': 'https://schema.org',
             '@graph': [
@@ -219,14 +224,16 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                         {
                             '@type': 'ListItem',
                             position: 1,
-                            name: 'Overview',
-                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}`,
+                            name: this.translator.instant('the_coffee_lab'),
+                            item: `${environment.coffeeLabWeb}`,
                         },
                         {
                             '@type': 'ListItem',
                             position: 2,
-                            name: 'Posts',
-                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/articles`,
+                            name: this.translator.instant('posts'),
+                            item: `${environment.coffeeLabWeb}${getLangRoute(this.lang)}/${
+                                curRouterMap[RouterSlug.ARTICLE]
+                            }`,
                         },
                         {
                             '@type': 'ListItem',
