@@ -170,7 +170,7 @@ export class ArticleDetailComponent extends ResizeableComponent implements OnIni
                     }
                 }
             } else {
-                this.router.navigateByUrl('/error/post-not-found');
+                this.router.navigate(['/error/post-not-found'], { queryParams: { isRecipe: false } });
                 this.coffeeLabService.postNotFoundCategories.next(res.result.categories);
             }
             this.loading = false;

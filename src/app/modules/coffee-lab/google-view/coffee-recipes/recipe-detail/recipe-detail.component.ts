@@ -10,7 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoffeeLabService, GlobalsService, ResizeService, SEOService, StartupService } from '@services';
 import { ConvertToShortDescriptionPipe } from '@shared';
 import { getLangRoute, removeImages } from '@utils';
-import * as e from 'express';
 import { DialogService } from 'primeng/dynamicdialog';
 import { fromEvent } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -87,7 +86,6 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                 this.idOrSlug = params.idOrSlug;
                 this.getDetails();
             }
-            this.getRecipeList();
             if (isPlatformBrowser(this.platformId)) {
                 if (this.isMobile$) {
                     this.showAll = false;
@@ -129,7 +127,7 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
         return `/${getLangRoute(langCode)}/coffee-recipes/${slug}`;
     }
 
-    getRecipeList() {
+    getPopularList() {
         this.coffeeLabService
             .getPopularList(
                 PostType.RECIPE,
@@ -174,13 +172,14 @@ export class RecipeDetailComponent extends ResizeableComponent implements OnInit
                     this.startupService.load(this.lang || 'en');
                     this.getAllData();
                     this.getUserData();
+                    this.getPopularList();
                     this.setSEO();
                     if (isPlatformServer(this.platformId)) {
                         this.setSchemaMackup();
                     }
                 }
             } else {
-                this.router.navigateByUrl('/error/post-not-found');
+                this.router.navigate(['/error/post-not-found'], { queryParams: { isRecipe: true } });
                 this.coffeeLabService.postNotFoundCategories.next(res.result.categories);
             }
             this.loading = false;

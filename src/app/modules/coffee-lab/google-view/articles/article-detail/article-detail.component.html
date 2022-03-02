@@ -1,6 +1,6 @@
 <div class="main-block pb-0">
     <div class="pt-3 pt-md-0"><p-breadcrumb [model]="items"></p-breadcrumb></div>
-    <div *ngIf="!loading; else loader" class="position-relative loader-wrap mt-md-5 mt-2 pt-3 pb-mt-45">
+    <div *ngIf="!loading && detailsData; else loader" class="position-relative loader-wrap mt-md-5 mt-2 pt-3 pb-mt-45">
         <div class="article-main-block">
             <div *ngIf="detailsData?.categories" class="mx-md-5 pl-md-5 d-flex justify-content-md-center">
                 <app-category-list

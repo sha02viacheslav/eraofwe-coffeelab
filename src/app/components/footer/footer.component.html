@@ -132,9 +132,11 @@
                         </button>
                     </form>
                     <small
-                        *ngIf="form.controls['subscribeSubEmail'].errors?.pattern"
-                        class="p-error fnt-12 text-nowrap"
-                        [ngClass]="isExpand ? 'b-err' : 'e-err'"
+                        *ngIf="
+                            form.controls['subscribeSubEmail'].errors?.pattern ||
+                            form.controls['subscribeSubEmail'].errors?.email
+                        "
+                        class="p-error"
                     >
                         {{ 'please_fill_valid_email' | translate }}
                     </small>
@@ -179,9 +181,11 @@
                     </button>
                 </form>
                 <small
-                    *ngIf="form.controls['subscribeSubEmail'].errors?.pattern"
-                    class="p-error text-nowrap"
-                    [ngClass]="isExpand ? 'b-err' : 'e-err'"
+                    *ngIf="
+                        form.controls['subscribeSubEmail'].errors?.pattern ||
+                        form.controls['subscribeSubEmail'].errors?.email
+                    "
+                    class="p-error"
                 >
                     {{ 'please_fill_valid_email' | translate }}
                 </small>
