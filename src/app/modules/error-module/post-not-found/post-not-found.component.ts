@@ -58,7 +58,6 @@ export class PostNotFoundComponent implements OnInit {
         } else {
             type = PostType.ARTICLE;
         }
-        console.log(type);
         const params = {
             sort_by: 'created_at',
             sort_order: 'desc',
